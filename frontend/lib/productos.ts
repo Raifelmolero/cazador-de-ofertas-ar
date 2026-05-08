@@ -28,3 +28,10 @@ export function getProductos(): ProductWithMargins[] {
 export function getProductoById(id: string): ProductWithMargins | undefined {
   return getProductos().find(p => p.id_ml === id)
 }
+
+export function getScrapedAt(): Date {
+  const filePath = path.join(process.cwd(), '..', 'data', 'productos_rentables.json')
+  const raw = fs.readFileSync(filePath, 'utf8')
+  const data = JSON.parse(raw)
+  return new Date(data.metadata.scraped_at)
+}

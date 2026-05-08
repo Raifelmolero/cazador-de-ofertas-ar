@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import random
 import re
 import time
@@ -92,7 +93,11 @@ class MLScraper:
 
     async def __aenter__(self) -> "MLScraper":
         self._playwright = await async_playwright().start()
-        self._browser = await self._playwright.chromium.launch(headless=self.settings.headless)
+        # --no-sandbox is required when running as root on Linux CI (GitHub Actions).
+        launch_args = ["--no-sandbox", "--disable-setuid-sandbox"] if os.getenv("CI") else []
+        self._browser = await self._playwright.chromium.launch(
+            headless=self.settings.headless, args=launch_args
+        )
         return self
 
     async def __aexit__(self, exc_type, exc, tb) -> None:

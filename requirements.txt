@@ -1,0 +1,5 @@
+playwright==1.54.0; python_version < "3.14"
+pydantic==2.11.7; python_version < "3.14"
+# Pandas no tiene wheels para Python 3.14 (hoy); se instala en 3.10–3.12.
+pandas==2.3.0; python_version < "3.13"
+python-dotenv==1.1.1

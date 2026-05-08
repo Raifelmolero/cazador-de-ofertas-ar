@@ -36,7 +36,7 @@ class Settings:
     # Output
     output_json_path: str = os.getenv(
         "OUTPUT_JSON_PATH",
-        os.path.join("data", "productos_rentables.json"),
+        os.path.join("frontend", "data", "productos_rentables.json"),
     )
 
 

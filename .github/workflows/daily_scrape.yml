@@ -34,7 +34,7 @@ jobs:
       - name: Auto-commit si hay datos nuevos
         run: |
           # Verificar que el scraper devolvió productos (seguridad)
-          COUNT=$(python -c "import json; d=json.load(open('data/productos_rentables.json')); print(len(d['items']))")
+          COUNT=$(python -c "import json; d=json.load(open('frontend/data/productos_rentables.json')); print(len(d['items']))")
           echo "✅ Productos scrapeados: $COUNT"
 
           if [ "$COUNT" -eq 0 ]; then
@@ -44,7 +44,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/productos_rentables.json
+          git add frontend/data/productos_rentables.json
 
           if git diff --cached --quiet; then
             echo "✓ JSON sin cambios respecto al anterior — no se hace commit."

@@ -18,11 +18,13 @@ export interface ProductWithMargins {
   margen_neto_premium_ars: number
 }
 
+function readJson() {
+  const filePath = path.join(process.cwd(), 'data', 'productos_rentables.json')
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+}
+
 export function getProductos(): ProductWithMargins[] {
-  const filePath = path.join(process.cwd(), '..', 'data', 'productos_rentables.json')
-  const raw = fs.readFileSync(filePath, 'utf8')
-  const data = JSON.parse(raw)
-  return data.items as ProductWithMargins[]
+  return readJson().items as ProductWithMargins[]
 }
 
 export function getProductoById(id: string): ProductWithMargins | undefined {
@@ -30,8 +32,5 @@ export function getProductoById(id: string): ProductWithMargins | undefined {
 }
 
 export function getScrapedAt(): Date {
-  const filePath = path.join(process.cwd(), '..', 'data', 'productos_rentables.json')
-  const raw = fs.readFileSync(filePath, 'utf8')
-  const data = JSON.parse(raw)
-  return new Date(data.metadata.scraped_at)
+  return new Date(readJson().metadata.scraped_at)
 }

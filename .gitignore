@@ -11,9 +11,6 @@ dist/
 build/
 .pytest_cache/
 
-# Data generada (no subir resultados del scraper)
-data/productos_rentables.json
-
 # Next.js
 frontend/node_modules/
 frontend/.next/

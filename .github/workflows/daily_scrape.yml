@@ -1,0 +1,56 @@
+name: Daily ML Scrape
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # 04:00 ART (UTC-3) todos los días
+  workflow_dispatch:       # Permite ejecución manual desde GitHub
+
+permissions:
+  contents: write  # Necesario para que el bot haga auto-commit
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright + Chromium
+        run: playwright install chromium --with-deps
+
+      - name: Run scraper
+        run: python main.py
+
+      - name: Auto-commit si hay datos nuevos
+        run: |
+          # Verificar que el scraper devolvió productos (seguridad)
+          COUNT=$(python -c "import json; d=json.load(open('data/productos_rentables.json')); print(len(d['items']))")
+          echo "✅ Productos scrapeados: $COUNT"
+
+          if [ "$COUNT" -eq 0 ]; then
+            echo "⚠️ El scraper no devolvió productos — se aborta el commit."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/productos_rentables.json
+
+          if git diff --cached --quiet; then
+            echo "✓ JSON sin cambios respecto al anterior — no se hace commit."
+          else
+            DATE=$(date -u '+%Y-%m-%d %H:%M UTC')
+            git commit -m "data: actualizar productos rentables [$DATE] — $COUNT items"
+            git push
+            echo "🚀 $COUNT productos actualizados y subidos al repo."
+          fi

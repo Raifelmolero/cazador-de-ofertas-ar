@@ -335,6 +335,11 @@ class MLScraper:
                 else:
                     url_producto = href
 
+                # Inyectamos el ID de afiliado si está configurado.
+                if self.settings.ml_affiliate_id:
+                    sep = "&" if "?" in url_producto else "?"
+                    url_producto = f"{url_producto}{sep}matt_tool={self.settings.ml_affiliate_id}"
+
                 id_ml = (
                     _infer_ml_id_from_url(url_producto)
                     or re.sub(r"\W+", "", urlparse(url_producto).path)[-24:]

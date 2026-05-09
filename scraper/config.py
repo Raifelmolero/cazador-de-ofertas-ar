@@ -33,6 +33,11 @@ class Settings:
     min_delay_s: float = float(os.getenv("MIN_DELAY_S", "0.8"))
     max_delay_s: float = float(os.getenv("MAX_DELAY_S", "2.2"))
 
+    # Afiliados — Mercado Libre Partners
+    # Registrate en partners.mercadolibre.com.ar y pegá tu Publisher ID acá.
+    # Si está vacío, las URLs se guardan sin tracking de afiliado.
+    ml_affiliate_id: str = os.getenv("ML_AFFILIATE_ID", "")
+
     # Output
     output_json_path: str = os.getenv(
         "OUTPUT_JSON_PATH",

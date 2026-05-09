@@ -5,6 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'https://calculadoraml.com.ar'),
   title: 'SEO Pasivo ML — Calculadora de Ganancia',
   description: 'Descubrí los productos más rentables de Mercado Libre y calculá tu ganancia neta en segundos.',
 }

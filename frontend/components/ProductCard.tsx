@@ -7,8 +7,8 @@ export default function ProductCard({ producto }: { producto: ProductWithMargins
   const isHighMargin = producto.margen_neto_clasico_ars > 30000
 
   return (
-    <Link href={`/calculadora/${producto.id_ml}`} className="group block h-full">
-      <article className="h-full flex flex-col bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-200">
+    <article className="group h-full flex flex-col bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-200">
+      <Link href={`/calculadora/${producto.id_ml}`} className="flex flex-col flex-1">
         {/* Image */}
         <div className="relative h-44 bg-gray-800 overflow-hidden flex-shrink-0">
           {producto.url_imagen ? (
@@ -62,7 +62,18 @@ export default function ProductCard({ producto }: { producto: ProductWithMargins
             </span>
           </div>
         </div>
-      </article>
-    </Link>
+      </Link>
+
+      <div className="px-4 pb-4">
+        <a
+          href={producto.url_producto}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="block w-full text-center text-xs font-medium text-yellow-400 border border-yellow-400/30 hover:bg-yellow-400/10 transition-colors rounded-lg py-2"
+        >
+          Ver en Mercado Libre ↗
+        </a>
+      </div>
+    </article>
   )
 }

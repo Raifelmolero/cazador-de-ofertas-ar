@@ -29,6 +29,8 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run scraper
+        env:
+          ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
         run: python main.py
 
       - name: Auto-commit si hay datos nuevos

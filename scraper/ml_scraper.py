@@ -349,9 +349,16 @@ class MLScraper:
                     url_producto = f"https://articulo.mercadolibre.com.ar/{id_ml[:3]}-{id_ml[3:]}"
 
                 # Inyectamos el ID de afiliado sobre la URL final del producto.
+                # El parámetro debe quedar en el query string (antes del #),
+                # no en el fragmento — el servidor ML nunca recibe lo que va después de #.
                 if self.settings.ml_affiliate_id:
-                    sep = "&" if "?" in url_producto else "?"
-                    url_producto = f"{url_producto}{sep}matt_tool={self.settings.ml_affiliate_id}"
+                    if "#" in url_producto:
+                        base, fragment = url_producto.split("#", 1)
+                        sep = "&" if "?" in base else "?"
+                        url_producto = f"{base}{sep}matt_tool={self.settings.ml_affiliate_id}#{fragment}"
+                    else:
+                        sep = "&" if "?" in url_producto else "?"
+                        url_producto = f"{url_producto}{sep}matt_tool={self.settings.ml_affiliate_id}"
 
                 currency_el = await card.query_selector(SELECTOR_CURRENCY)
                 currency_symbol = (await currency_el.inner_text()).strip() if currency_el else "$"

@@ -335,16 +335,23 @@ class MLScraper:
                 else:
                     url_producto = href
 
-                # Inyectamos el ID de afiliado si está configurado.
-                if self.settings.ml_affiliate_id:
-                    sep = "&" if "?" in url_producto else "?"
-                    url_producto = f"{url_producto}{sep}matt_tool={self.settings.ml_affiliate_id}"
-
+                # Extraemos el MLA ID antes de transformar la URL.
                 id_ml = (
                     _infer_ml_id_from_url(url_producto)
                     or re.sub(r"\W+", "", urlparse(url_producto).path)[-24:]
                     or url_producto
                 )
+
+                # Las URLs click1.mercadolibre.com.ar son redirects internos de ML:
+                # si añadimos matt_tool ahí, se pierde al redirigir al producto final.
+                # Cuando tenemos el MLA ID construimos la URL directa del artículo.
+                if "click1.mercadolibre.com.ar" in url_producto and re.match(r"^MLA\d+$", id_ml):
+                    url_producto = f"https://articulo.mercadolibre.com.ar/{id_ml[:3]}-{id_ml[3:]}"
+
+                # Inyectamos el ID de afiliado sobre la URL final del producto.
+                if self.settings.ml_affiliate_id:
+                    sep = "&" if "?" in url_producto else "?"
+                    url_producto = f"{url_producto}{sep}matt_tool={self.settings.ml_affiliate_id}"
 
                 currency_el = await card.query_selector(SELECTOR_CURRENCY)
                 currency_symbol = (await currency_el.inner_text()).strip() if currency_el else "$"

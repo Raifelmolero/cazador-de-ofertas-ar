@@ -29,6 +29,15 @@ def _rand_viewport() -> dict:
     return {"width": random.choice(widths), "height": random.choice(heights)}
 
 
+def _clean_titulo(text: str) -> str:
+    """Limpia el título para uso en meta tags y slugs SEO."""
+    import html
+    t = html.unescape(text)
+    t = re.sub(r"[\x00-\x1f\x7f]", "", t)   # control chars
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
 def _parse_ventas(text: str) -> Optional[int]:
     """Parsea '+50 vendidos', '1.000+ vendidos', '50 vendidos', etc. → int."""
     if not text:
@@ -335,9 +344,9 @@ class MLScraper:
 
                 titulo = ""
                 if title_el:
-                    titulo = (await title_el.inner_text()).strip()
+                    titulo = _clean_titulo(await title_el.inner_text())
                 if not titulo:
-                    titulo = (await link_el.inner_text()).strip()
+                    titulo = _clean_titulo(await link_el.inner_text())
 
                 href = await link_el.get_attribute("href")
                 if not href:

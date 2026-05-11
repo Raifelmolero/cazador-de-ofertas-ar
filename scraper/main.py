@@ -51,7 +51,11 @@ async def run() -> None:
                 print(f"  ⚠️  Error en {url}: {exc}")
 
     all_items = list(seen_ids.values())
-    print(f"Total sin duplicados: {len(all_items)}")
+    # Descartamos items que probablemente ya no tienen stock o son errores de parsing:
+    # precio 0 / negativo indica placeholder; margen negativo no aporta valor al usuario.
+    before = len(all_items)
+    all_items = [p for p in all_items if p.precio_actual > 0]
+    print(f"Total sin duplicados: {len(all_items)} (descartados {before - len(all_items)} sin precio)")
 
     # Ordenar: primero los que ML marca como "MÁS VENDIDO" (badge), luego el resto.
     # Dentro de cada grupo, orden de aparición en la página (ya viene implícito).
@@ -74,6 +78,10 @@ async def run() -> None:
                 margen_neto_premium_ars=margen.margen_neto_premium_ars,
             )
         )
+
+    # Eliminamos productos con margen negativo (sin stock real o con precio mal parseado).
+    enriched = [p for p in enriched if p.margen_neto_clasico_ars > 0]
+    print(f"Con margen positivo: {len(enriched)}")
 
     items_out = [_model_dump_json_dict(x) for x in enriched]
 

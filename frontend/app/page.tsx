@@ -1,6 +1,8 @@
 import { getProductos } from '@/lib/productos'
 import ProductsGrid from '@/components/ProductsGrid'
 
+export const revalidate = 3600
+
 export default function HomePage() {
   const productos = getProductos()
 

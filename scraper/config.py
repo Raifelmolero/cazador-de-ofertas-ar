@@ -11,6 +11,8 @@ DEFAULT_SEED_URLS: list[str] = [
     "https://listado.mercadolibre.com.ar/hogar-muebles-jardin/",
     "https://listado.mercadolibre.com.ar/deportes-y-fitness/",
     "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
+    "https://listado.mercadolibre.com.ar/electrodomesticos/",
+    "https://listado.mercadolibre.com.ar/herramientas/",
 ]
 
 
@@ -29,8 +31,8 @@ class Settings:
     # Playwright
     headless: bool = os.getenv("HEADLESS", "1") not in {"0", "false", "False"}
     navigation_timeout_ms: int = int(os.getenv("NAV_TIMEOUT_MS", "45000"))
-    max_products: int = int(os.getenv("MAX_PRODUCTS", "50"))
-    max_pages: int = int(os.getenv("MAX_PAGES", "3"))
+    max_products: int = int(os.getenv("MAX_PRODUCTS", "500"))
+    max_pages: int = int(os.getenv("MAX_PAGES", "5"))
 
     # Anti-baneo / throttling
     min_delay_s: float = float(os.getenv("MIN_DELAY_S", "0.8"))

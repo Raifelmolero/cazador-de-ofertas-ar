@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Fondo redondeado -->
+  <rect width="32" height="32" rx="6" fill="#18181b"/>
+  <!-- Cuerpo calculadora -->
+  <rect x="7" y="5" width="18" height="22" rx="2.5" fill="#facc15"/>
+  <!-- Pantalla -->
+  <rect x="9.5" y="7.5" width="13" height="5" rx="1" fill="#18181b"/>
+  <!-- Numero en pantalla -->
+  <text x="22" y="12" font-family="monospace" font-size="4.5" fill="#facc15" text-anchor="end">$</text>
+  <!-- Botones fila 1 -->
+  <rect x="9.5" y="15" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <rect x="14.25" y="15" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <rect x="19" y="15" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <!-- Botones fila 2 -->
+  <rect x="9.5" y="19" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <rect x="14.25" y="19" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <rect x="19" y="19" width="3.5" height="2.5" rx="0.8" fill="#18181b"/>
+  <!-- Boton grande inferior -->
+  <rect x="9.5" y="23" width="13" height="2.5" rx="0.8" fill="#18181b"/>
+</svg>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
+import Footer from '@/components/Footer'
 
 export async function generateStaticParams() {
   const productos = getProductos()
@@ -85,7 +86,7 @@ export default function CalculadoraPage({ params }: { params: { id: string } }) 
                 </p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 mb-0.5">Margen estimado</p>
+                <p className="text-xs text-gray-500 mb-0.5">Neto a Cobrar</p>
                 <p className="text-2xl font-bold text-emerald-400">
                   ${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}
                 </p>
@@ -126,11 +127,9 @@ export default function CalculadoraPage({ params }: { params: { id: string } }) 
           envioArs={envioArs}
         />
 
-        {/* Footer note */}
-        <p className="text-xs text-gray-600 text-center pb-4">
-          Los márgenes son estimados. Verificá comisiones y costos actuales en Mercado Libre antes de vender.
-        </p>
       </div>
+
+      <Footer />
     </main>
   )
 }

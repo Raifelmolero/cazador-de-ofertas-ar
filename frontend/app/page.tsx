@@ -1,5 +1,6 @@
 import { getProductos } from '@/lib/productos'
 import ProductsGrid from '@/components/ProductsGrid'
+import Footer from '@/components/Footer'
 
 export const revalidate = 3600
 
@@ -88,9 +89,11 @@ export default function HomePage() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
         <ProductsGrid productos={productos} />
       </div>
+
+      <Footer />
 
     </main>
   )

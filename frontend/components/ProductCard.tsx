@@ -28,9 +28,6 @@ export default function ProductCard({ producto }: { producto: ProductWithMargins
             Top
           </span>
         )}
-        <span className="absolute top-2 right-2 text-xs font-bold text-yellow-400 bg-black/70 border border-yellow-400/30 px-2 py-0.5 rounded-full">
-          {margenPct}%
-        </span>
       </Link>
 
       {/* Content */}
@@ -47,15 +44,10 @@ export default function ProductCard({ producto }: { producto: ProductWithMargins
             </span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-xs text-zinc-500">Ganancia estimada</span>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-black text-yellow-400">
-                ${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}
-              </span>
-              <span className="text-xs font-bold bg-yellow-400 text-black px-1.5 py-0.5 rounded-full">
-                {margenPct}%
-              </span>
-            </div>
+            <span className="text-xs text-zinc-500">Neto a Cobrar</span>
+            <span className="text-sm font-black text-yellow-400">
+              ${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}
+            </span>
           </div>
         </div>
       </Link>

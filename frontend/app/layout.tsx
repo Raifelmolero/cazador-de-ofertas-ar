@@ -6,14 +6,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'https://calculadoraml.com.ar'),
-  title: 'SEO Pasivo ML — Calculadora de Ganancia',
-  description: 'Descubrí los productos más rentables de Mercado Libre y calculá tu ganancia neta en segundos.',
+  title: 'CalculadoraML — Productos rentables de Mercado Libre',
+  description: 'Descubrí los 50 productos más rentables de Mercado Libre hoy. Calculadora de ganancia incluida, gratis y actualizada a diario.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={`${inter.className} bg-gray-950 text-white antialiased`}>
+      <body className={`${inter.className} bg-zinc-950 text-white antialiased`}>
         {children}
       </body>
     </html>

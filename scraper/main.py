@@ -5,10 +5,6 @@ import json
 import os
 from datetime import datetime, timezone
 
-try:
-    import pandas as pd  # type: ignore
-except Exception:
-    pd = None
 
 from .calculator import MarginCalculator
 from .config import settings
@@ -79,12 +75,7 @@ async def run() -> None:
             )
         )
 
-    rows = [_model_dump_json_dict(x) for x in enriched]
-    if pd is not None:
-        df = pd.DataFrame(rows)
-        items_out = df.to_dict(orient="records")
-    else:
-        items_out = rows
+    items_out = [_model_dump_json_dict(x) for x in enriched]
 
     payload = {
         "metadata": {

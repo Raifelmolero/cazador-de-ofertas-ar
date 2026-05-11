@@ -3,11 +3,12 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import random
 from datetime import datetime, timezone
 
 
 from .calculator import MarginCalculator
-from .config import settings
+from .config import settings, CATEGORY_ROTATION_SIZE
 from .ml_scraper import MLScraper
 from .models import ProductWithMargins
 
@@ -30,11 +31,33 @@ def _ensure_parent_dir(path: str) -> None:
         os.makedirs(parent, exist_ok=True)
 
 
+def _warn_if_stale(output_path: str) -> None:
+    """Avisa si el JSON existente tiene más de 48 horas de antigüedad."""
+    if not os.path.exists(output_path):
+        return
+    try:
+        with open(output_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        scraped_at_str = data.get("metadata", {}).get("scraped_at")
+        if scraped_at_str:
+            scraped_at = datetime.fromisoformat(scraped_at_str)
+            age_h = (datetime.now(timezone.utc) - scraped_at).total_seconds() / 3600
+            if age_h > 48:
+                print(f"⚠️  DATOS DESACTUALIZADOS: el JSON tiene {age_h:.1f} h de antigüedad (> 48 h).")
+            else:
+                print(f"ℹ️  Datos anteriores: {age_h:.1f} h de antigüedad.")
+    except Exception:
+        pass
+
+
 async def run() -> None:
     _ensure_parent_dir(settings.output_json_path)
+    _warn_if_stale(settings.output_json_path)
 
-    seed_urls = settings.get_seed_urls()
-    print(f"Scrapeando {len(seed_urls)} categorías: {seed_urls}")
+    all_urls = settings.get_seed_urls()
+    # Rotación aleatoria: elegimos CATEGORY_ROTATION_SIZE categorías distintas por ejecución.
+    seed_urls = random.sample(all_urls, min(CATEGORY_ROTATION_SIZE, len(all_urls)))
+    print(f"Categorías elegidas ({len(seed_urls)}/{len(all_urls)}): {seed_urls}")
 
     # Recolectamos items de todas las URLs, deduplicamos por id_ml
     seen_ids: dict[str, object] = {}

@@ -3,17 +3,25 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-# Categorías principales de ML Argentina ordenadas por popularidad.
-# Se scrapeará cada una y se tomará el top max_products con más ventas reales.
+# Pool ampliado de categorías ML Argentina.
+# Cada ejecución elige CATEGORY_ROTATION_SIZE al azar para rotar el inventario.
 DEFAULT_SEED_URLS: list[str] = [
-    "https://listado.mercadolibre.com.ar/ropa-calzado-accesorios/",
-    "https://listado.mercadolibre.com.ar/electronica/",
+    "https://listado.mercadolibre.com.ar/celulares-telefonos/",
+    "https://listado.mercadolibre.com.ar/herramientas/",
+    "https://listado.mercadolibre.com.ar/electrodomesticos/",
+    "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
     "https://listado.mercadolibre.com.ar/hogar-muebles-jardin/",
     "https://listado.mercadolibre.com.ar/deportes-y-fitness/",
-    "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
-    "https://listado.mercadolibre.com.ar/electrodomesticos/",
-    "https://listado.mercadolibre.com.ar/herramientas/",
+    "https://listado.mercadolibre.com.ar/electronica/",
+    "https://listado.mercadolibre.com.ar/ropa-calzado-accesorios/",
+    "https://listado.mercadolibre.com.ar/computacion/",
+    "https://listado.mercadolibre.com.ar/juegos-juguetes/",
+    "https://listado.mercadolibre.com.ar/bebes/",
+    "https://listado.mercadolibre.com.ar/musica-peliculas-series/",
 ]
+
+# Cuántas categorías usar por ejecución (rotación aleatoria).
+CATEGORY_ROTATION_SIZE: int = 3
 
 
 @dataclass(frozen=True)

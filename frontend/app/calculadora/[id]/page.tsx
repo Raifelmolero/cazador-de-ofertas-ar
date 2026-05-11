@@ -101,11 +101,10 @@ export default function CalculadoraPage({ params }: { params: { id: string } }) 
             <a
               href={producto.url_producto}
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+              rel="noopener noreferrer sponsored"
+              className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors"
             >
-              Ver producto en Mercado Libre
-              <span aria-hidden>↗</span>
+              Ver Oferta y Stock en ML ↗
             </a>
           </div>
         </section>

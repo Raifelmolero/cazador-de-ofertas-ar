@@ -400,12 +400,15 @@ class MLScraper:
                     img = alt or img
 
                         # Ventas estimadas — ML no expone conteo en listados.
-                # Usamos el badge "MÁS VENDIDO" (poly-component__float-highlight)
-                # como señal: 1 = ML lo marca como más vendido, None = sin badge.
+                # Detectamos el badge "MÁS VENDIDO" / "Top" validando el texto
+                # para no confundirlo con "ENVÍO GRATIS" u otros float-highlights.
                 ventas_estimadas: Optional[int] = None
                 badge_el = await card.query_selector("span.poly-component__float-highlight")
                 if badge_el:
-                    ventas_estimadas = 1
+                    badge_text = (await badge_el.inner_text()).strip().upper()
+                    _MAS_VENDIDO_KEYWORDS = ("MÁS VENDIDO", "MAS VENDIDO", "TOP", "TENDENCIA")
+                    if any(kw in badge_text for kw in _MAS_VENDIDO_KEYWORDS):
+                        ventas_estimadas = 1
 
                 # Categoría principal (best-effort).
                 # Ajuste típico: breadcrumb o chips; si falla, "desconocida".

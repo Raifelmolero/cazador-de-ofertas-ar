@@ -60,7 +60,7 @@ export default function ProductCard({ producto }: { producto: ProductWithMargins
           rel="noopener noreferrer sponsored"
           className="block w-full text-center text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl py-2.5 transition-colors"
         >
-          Comprarlo en Mercado Libre ↗
+          Ver Oferta y Stock en ML ↗
         </a>
         <Link
           href={`/calculadora/${producto.id_ml}`}

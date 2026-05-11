@@ -1,11 +1,13 @@
-import { getProductos } from '@/lib/productos'
+import { getProductos, getScrapedAt } from '@/lib/productos'
 import ProductsGrid from '@/components/ProductsGrid'
 import Footer from '@/components/Footer'
+import LastUpdated from '@/components/LastUpdated'
 
 export const revalidate = 3600
 
 export default function HomePage() {
   const productos = getProductos()
+  const scrapedAt = getScrapedAt().toISOString()
 
   const margenPromedio = Math.round(
     productos.reduce(
@@ -36,8 +38,7 @@ export default function HomePage() {
 
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
-          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
-          Actualizado hoy · {productos.length} productos analizados
+          <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} productos analizados
         </div>
 
         {/* Headline */}
@@ -63,7 +64,9 @@ export default function HomePage() {
             <span className="block text-xs text-zinc-600 mt-1">margen promedio</span>
           </div>
           <div>
-            <span className="block text-2xl sm:text-3xl font-black text-yellow-400">Hoy</span>
+            <span className="block text-xl sm:text-2xl font-black text-yellow-400 leading-tight">
+              <LastUpdated scrapedAt={scrapedAt} />
+            </span>
             <span className="block text-xs text-zinc-600 mt-1">actualizado</span>
           </div>
         </div>

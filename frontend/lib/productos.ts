@@ -24,7 +24,8 @@ function readJson() {
 }
 
 export function getProductos(): ProductWithMargins[] {
-  return readJson().items as ProductWithMargins[]
+  const items = readJson().items as ProductWithMargins[]
+  return items.sort((a, b) => b.margen_neto_clasico_ars - a.margen_neto_clasico_ars)
 }
 
 export function getProductoById(id: string): ProductWithMargins | undefined {

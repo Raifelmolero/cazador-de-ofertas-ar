@@ -29,6 +29,15 @@ def _rand_viewport() -> dict:
     return {"width": random.choice(widths), "height": random.choice(heights)}
 
 
+def _parse_ventas(text: str) -> Optional[int]:
+    """Parsea '+50 vendidos', '1.000+ vendidos', '50 vendidos', etc. → int."""
+    if not text:
+        return None
+    cleaned = text.strip().lower().replace(".", "").replace(",", "").replace("+", "")
+    m = re.search(r"(\d+)", cleaned)
+    return int(m.group(1)) if m else None
+
+
 def _infer_ml_id_from_url(url: str) -> Optional[str]:
     # Ejemplos comunes: ".../MLA-123456789..." o ".../MLA123456789..."
     m = re.search(r"(MLA[-]?\d{6,})", url, flags=re.IGNORECASE)
@@ -244,9 +253,9 @@ class MLScraper:
                     detach()
         return []
 
-    async def extraer_listado_tendencias(self) -> ScrapeResult:
+    async def extraer_listado(self, url: str) -> ScrapeResult:
         """
-        Navega al seed_search_url y extrae al menos `max_products` items (si hay).
+        Navega a `url` y extrae hasta `max_products` items con ventas reales.
 
         IMPORTANTE: Los selectores cambian seguido en ML.
         - Ajustá `SELECTOR_*` (idealmente usando `data-testid` / atributos estables).
@@ -254,7 +263,6 @@ class MLScraper:
         """
 
         page = await self._new_page()
-        url = self.settings.seed_search_url
 
         await self._goto_listing_then_settle(page, url)
 
@@ -290,6 +298,13 @@ class MLScraper:
         SELECTOR_IMG = "img"
         SELECTOR_BREADCRUMB_CATEGORY = "ol.andes-breadcrumb__list li a"
         SELECTOR_NEXT = "a[title='Siguiente'], a.andes-pagination__link[aria-label*='Siguiente']"
+        # Ventas estimadas — ML muestra "X vendidos" en distintos formatos según versión del polycard
+        SELECTOR_SOLD_CANDIDATES = [
+            "span.poly-component__sold",
+            ".poly-component__sold-and-reviews span",
+            ".ui-search-item__sold",
+            "span[class*='sold']",
+        ]
 
         SELECTOR_RESULT_CARD = await self._wait_until_listing_ready(page, SELECTOR_RESULT_CARD_CANDIDATES)
         await self._jitter()
@@ -372,9 +387,16 @@ class MLScraper:
                 img_el = await card.query_selector(SELECTOR_IMG)
                 img = await img_el.get_attribute("src") if img_el else None
                 if img and img.startswith("data:"):
-                    # a veces la imagen real está en data-src / srcset
                     alt = await img_el.get_attribute("data-src") if img_el else None
                     img = alt or img
+
+                        # Ventas estimadas — ML no expone conteo en listados.
+                # Usamos el badge "MÁS VENDIDO" (poly-component__float-highlight)
+                # como señal: 1 = ML lo marca como más vendido, None = sin badge.
+                ventas_estimadas: Optional[int] = None
+                badge_el = await card.query_selector("span.poly-component__float-highlight")
+                if badge_el:
+                    ventas_estimadas = 1
 
                 # Categoría principal (best-effort).
                 # Ajuste típico: breadcrumb o chips; si falla, "desconocida".
@@ -393,7 +415,7 @@ class MLScraper:
                         categoria_principal=categoria_principal,
                         precio_actual=float(precio),
                         moneda=moneda,
-                        ventas_estimadas=None,
+                        ventas_estimadas=ventas_estimadas,
                         url_producto=url_producto,
                         url_imagen=img,
                     )

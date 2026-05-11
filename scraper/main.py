@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 
 try:
     import pandas as pd  # type: ignore
-except Exception:  # pandas puede no estar disponible (ej. Python 3.14 sin wheels)
+except Exception:
     pd = None
 
 from .calculator import MarginCalculator
@@ -17,14 +17,12 @@ from .models import ProductWithMargins
 
 
 def _model_dump_dict(obj) -> dict:
-    """Pydantic v2 (`model_dump`) o v1 (`dict`)."""
     if hasattr(obj, "model_dump"):
         return obj.model_dump()
     return obj.dict()
 
 
 def _model_dump_json_dict(obj) -> dict:
-    """URLs y tipos especiales como JSON-serializables."""
     if hasattr(obj, "model_dump"):
         return obj.model_dump(mode="json")
     return json.loads(obj.json())
@@ -39,15 +37,36 @@ def _ensure_parent_dir(path: str) -> None:
 async def run() -> None:
     _ensure_parent_dir(settings.output_json_path)
 
+    seed_urls = settings.get_seed_urls()
+    print(f"Scrapeando {len(seed_urls)} categorías: {seed_urls}")
+
+    # Recolectamos items de todas las URLs, deduplicamos por id_ml
+    seen_ids: dict[str, object] = {}
+
     async with MLScraper(settings) as scraper:
-        result = await scraper.extraer_listado_tendencias()
+        for url in seed_urls:
+            print(f"  URL: {url}")
+            try:
+                result = await scraper.extraer_listado(url)
+                for item in result.items:
+                    if item.id_ml not in seen_ids:
+                        seen_ids[item.id_ml] = item
+            except Exception as exc:
+                print(f"  ⚠️  Error en {url}: {exc}")
+
+    all_items = list(seen_ids.values())
+    print(f"Total sin duplicados: {len(all_items)}")
+
+    # Ordenar: primero los que ML marca como "MÁS VENDIDO" (badge), luego el resto.
+    # Dentro de cada grupo, orden de aparición en la página (ya viene implícito).
+    badgeados = [p for p in all_items if p.ventas_estimadas is not None]
+    sin_badge = [p for p in all_items if p.ventas_estimadas is None]
+    all_items = (badgeados + sin_badge)[: settings.max_products]
+    print(f"Con badge MAS VENDIDO: {len(badgeados)} | Sin badge: {len(sin_badge)} | Total final: {len(all_items)}")
 
     enriched: list[ProductWithMargins] = []
-    for item in result.items:
-        # Por ahora asumimos que precio_actual está en ARS.
-        # Si más adelante scrapeás USD u otras monedas, normalizá acá.
+    for item in all_items:
         margen = MarginCalculator.calcular(item.precio_actual)
-
         enriched.append(
             ProductWithMargins(
                 **_model_dump_dict(item),
@@ -62,7 +81,6 @@ async def run() -> None:
 
     rows = [_model_dump_json_dict(x) for x in enriched]
     if pd is not None:
-        # Aplanamos a DataFrame para limpieza/estructuración futura (y fácil export).
         df = pd.DataFrame(rows)
         items_out = df.to_dict(orient="records")
     else:
@@ -70,9 +88,10 @@ async def run() -> None:
 
     payload = {
         "metadata": {
-            "source_url": result.source_url,
+            "source_urls": seed_urls,
             "scraped_at": datetime.now(timezone.utc).isoformat(),
             "count": int(len(enriched)),
+            "min_ventas_filter": settings.min_ventas,
         },
         "items": items_out,
     }
@@ -89,4 +108,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

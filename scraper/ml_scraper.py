@@ -403,12 +403,23 @@ class MLScraper:
                 # Detectamos el badge "MÁS VENDIDO" / "Top" validando el texto
                 # para no confundirlo con "ENVÍO GRATIS" u otros float-highlights.
                 ventas_estimadas: Optional[int] = None
-                badge_el = await card.query_selector("span.poly-component__float-highlight")
-                if badge_el:
-                    badge_text = (await badge_el.inner_text()).strip().upper()
-                    _MAS_VENDIDO_KEYWORDS = ("MÁS VENDIDO", "MAS VENDIDO", "TOP", "TENDENCIA")
-                    if any(kw in badge_text for kw in _MAS_VENDIDO_KEYWORDS):
-                        ventas_estimadas = 1
+                # ML usa distintos selectores según versión del polycard.
+                # Probamos todos y validamos que el texto indique popularidad.
+                _BADGE_SELECTORS = [
+                    "span.poly-component__float-highlight",
+                    ".poly-component__highlight",
+                    "span[class*='highlight']",
+                    "span[class*='sold']",
+                    ".ui-search-item__highlight-label",
+                ]
+                _MAS_VENDIDO_KEYWORDS = ("MÁS VENDIDO", "MAS VENDIDO", "TOP", "TENDENCIA", "VENDIDO")
+                for _bs in _BADGE_SELECTORS:
+                    _el = await card.query_selector(_bs)
+                    if _el:
+                        _txt = (await _el.inner_text()).strip().upper()
+                        if any(kw in _txt for kw in _MAS_VENDIDO_KEYWORDS):
+                            ventas_estimadas = 1
+                            break
 
                 # Categoría principal (best-effort).
                 # Ajuste típico: breadcrumb o chips; si falla, "desconocida".

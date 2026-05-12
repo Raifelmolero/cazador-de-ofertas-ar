@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { ProductWithMargins } from '@/lib/productos'
 import ProductCard from './ProductCard'
 
@@ -15,12 +15,18 @@ function StatCard({ label, value, accent }: { label: string; value: string; acce
 
 export default function ProductsGrid({ productos }: { productos: ProductWithMargins[] }) {
   const [search, setSearch] = useState('')
+  const [shuffled, setShuffled] = useState(productos)
+
+  // Shuffle aleatorio en cada carga de página (client-side, post-hydration).
+  useEffect(() => {
+    setShuffled([...productos].sort(() => Math.random() - 0.5))
+  }, [productos])
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return productos
+    if (!search.trim()) return shuffled
     const q = search.toLowerCase()
-    return productos.filter(p => p.titulo.toLowerCase().includes(q))
-  }, [productos, search])
+    return shuffled.filter(p => p.titulo.toLowerCase().includes(q))
+  }, [shuffled, search])
 
   const avgMargen = Math.round(
     productos.reduce((sum, p) => sum + p.margen_neto_clasico_ars, 0) / productos.length

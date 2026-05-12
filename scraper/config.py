@@ -3,10 +3,15 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-# Pool ampliado de categorías ML Argentina.
-# Cada ejecución elige CATEGORY_ROTATION_SIZE al azar para rotar el inventario.
-DEFAULT_SEED_URLS: list[str] = [
+# Categorías 'hot' (ticket alto → mejor comisión). Siempre incluidas en cada ejecución.
+HOT_SEED_URLS: list[str] = [
     "https://listado.mercadolibre.com.ar/celulares-telefonos/",
+    "https://listado.mercadolibre.com.ar/consolas-videojuegos/",
+    "https://listado.mercadolibre.com.ar/computacion/",
+]
+
+# Pool rotativo — se elige CATEGORY_ROTATION_SIZE al azar en cada ejecución.
+DEFAULT_SEED_URLS: list[str] = [
     "https://listado.mercadolibre.com.ar/herramientas/",
     "https://listado.mercadolibre.com.ar/electrodomesticos/",
     "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
@@ -14,14 +19,16 @@ DEFAULT_SEED_URLS: list[str] = [
     "https://listado.mercadolibre.com.ar/deportes-y-fitness/",
     "https://listado.mercadolibre.com.ar/electronica/",
     "https://listado.mercadolibre.com.ar/ropa-calzado-accesorios/",
-    "https://listado.mercadolibre.com.ar/computacion/",
     "https://listado.mercadolibre.com.ar/juegos-juguetes/",
     "https://listado.mercadolibre.com.ar/bebes/",
     "https://listado.mercadolibre.com.ar/musica-peliculas-series/",
 ]
 
-# Cuántas categorías usar por ejecución (rotación aleatoria).
-CATEGORY_ROTATION_SIZE: int = 3
+# Cuántas categorías del pool rotativo usar por ejecución.
+CATEGORY_ROTATION_SIZE: int = 2
+
+# Máximo de productos aceptados por URL de categoría (evita inundar con una sola subcategoría).
+PER_CATEGORY_LIMIT: int = 15
 
 
 @dataclass(frozen=True)
@@ -62,7 +69,10 @@ class Settings:
     def get_seed_urls(self) -> list[str]:
         if self.seed_search_urls_csv.strip():
             return [u.strip() for u in self.seed_search_urls_csv.split(",") if u.strip()]
-        return DEFAULT_SEED_URLS
+        # Hot categories siempre presentes; más N rotativas aleatorias del pool.
+        import random as _random
+        rotativas = _random.sample(DEFAULT_SEED_URLS, min(CATEGORY_ROTATION_SIZE, len(DEFAULT_SEED_URLS)))
+        return HOT_SEED_URLS + rotativas
 
 
 settings = Settings()

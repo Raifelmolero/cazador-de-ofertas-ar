@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 
 from .calculator import MarginCalculator
-from .config import settings, CATEGORY_ROTATION_SIZE
+from .config import settings, CATEGORY_ROTATION_SIZE, PER_CATEGORY_LIMIT
 from .ml_scraper import MLScraper
 from .models import ProductWithMargins
 
@@ -43,9 +43,9 @@ def _warn_if_stale(output_path: str) -> None:
             scraped_at = datetime.fromisoformat(scraped_at_str)
             age_h = (datetime.now(timezone.utc) - scraped_at).total_seconds() / 3600
             if age_h > 48:
-                print(f"⚠️  DATOS DESACTUALIZADOS: el JSON tiene {age_h:.1f} h de antigüedad (> 48 h).")
+                print(f"[!] DATOS DESACTUALIZADOS: el JSON tiene {age_h:.1f} h de antiguedad (> 48 h).")
             else:
-                print(f"ℹ️  Datos anteriores: {age_h:.1f} h de antigüedad.")
+                print(f"[i] Datos anteriores: {age_h:.1f} h de antiguedad.")
     except Exception:
         pass
 
@@ -54,12 +54,11 @@ async def run() -> None:
     _ensure_parent_dir(settings.output_json_path)
     _warn_if_stale(settings.output_json_path)
 
-    all_urls = settings.get_seed_urls()
-    # Rotación aleatoria: elegimos CATEGORY_ROTATION_SIZE categorías distintas por ejecución.
-    seed_urls = random.sample(all_urls, min(CATEGORY_ROTATION_SIZE, len(all_urls)))
-    print(f"Categorías elegidas ({len(seed_urls)}/{len(all_urls)}): {seed_urls}")
+    seed_urls = settings.get_seed_urls()
+    print(f"Categorías a scrapear ({len(seed_urls)}): {seed_urls}")
 
-    # Recolectamos items de todas las URLs, deduplicamos por id_ml
+    # Recolectamos items deduplicados por id_ml,
+    # con límite de PER_CATEGORY_LIMIT por URL de origen.
     seen_ids: dict[str, object] = {}
 
     async with MLScraper(settings) as scraper:
@@ -67,11 +66,16 @@ async def run() -> None:
             print(f"  URL: {url}")
             try:
                 result = await scraper.extraer_listado(url)
+                added = 0
                 for item in result.items:
+                    if added >= PER_CATEGORY_LIMIT:
+                        break
                     if item.id_ml not in seen_ids:
                         seen_ids[item.id_ml] = item
+                        added += 1
+                print(f"    -> {added} productos aceptados (limite={PER_CATEGORY_LIMIT})")
             except Exception as exc:
-                print(f"  ⚠️  Error en {url}: {exc}")
+                print(f"  [!] Error en {url}: {exc}")
 
     all_items = list(seen_ids.values())
     # Descartamos items que probablemente ya no tienen stock o son errores de parsing:

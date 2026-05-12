@@ -3,20 +3,20 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-# Categorías 'hot' (ticket alto → mejor comisión). Siempre incluidas en cada ejecución.
+# Categorías fijas — siempre incluidas en cada ejecución.
 HOT_SEED_URLS: list[str] = [
     "https://listado.mercadolibre.com.ar/celulares-telefonos/",
     "https://listado.mercadolibre.com.ar/consolas-videojuegos/",
     "https://listado.mercadolibre.com.ar/computacion/",
+    "https://listado.mercadolibre.com.ar/hogar-muebles-jardin/",
+    "https://listado.mercadolibre.com.ar/herramientas/",
+    "https://listado.mercadolibre.com.ar/deportes-y-fitness/",
+    "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
 ]
 
 # Pool rotativo — se elige CATEGORY_ROTATION_SIZE al azar en cada ejecución.
 DEFAULT_SEED_URLS: list[str] = [
-    "https://listado.mercadolibre.com.ar/herramientas/",
     "https://listado.mercadolibre.com.ar/electrodomesticos/",
-    "https://listado.mercadolibre.com.ar/belleza-y-cuidado-personal/",
-    "https://listado.mercadolibre.com.ar/hogar-muebles-jardin/",
-    "https://listado.mercadolibre.com.ar/deportes-y-fitness/",
     "https://listado.mercadolibre.com.ar/electronica/",
     "https://listado.mercadolibre.com.ar/ropa-calzado-accesorios/",
     "https://listado.mercadolibre.com.ar/juegos-juguetes/",
@@ -27,8 +27,8 @@ DEFAULT_SEED_URLS: list[str] = [
 # Cuántas categorías del pool rotativo usar por ejecución.
 CATEGORY_ROTATION_SIZE: int = 2
 
-# Máximo de productos aceptados por URL de categoría (evita inundar con una sola subcategoría).
-PER_CATEGORY_LIMIT: int = 15
+# Máximo de productos aceptados por URL de categoría.
+PER_CATEGORY_LIMIT: int = 50
 
 
 @dataclass(frozen=True)

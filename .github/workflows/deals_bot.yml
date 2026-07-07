@@ -45,11 +45,11 @@ jobs:
           fi
           python bot/cazador_bot.py
 
-      - name: Guardar estado (ids publicados)
+      - name: Guardar estado y datos del sitio
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add bot/state/posted_ids.json
+          git add bot/state/posted_ids.json frontend/data/productos_rentables.json
           if git diff --cached --quiet; then
             echo "Sin cambios de estado."
           else

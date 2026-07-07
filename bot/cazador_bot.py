@@ -153,6 +153,61 @@ def parse_cards(html: str) -> list[dict]:
     return out
 
 
+# ---------------------------------------------------------------- sitio web
+
+# Réplica exacta de scraper/calculator.py — márgenes para revendedores.
+COMISION_CLASICA_PCT = 0.15
+COMISION_PREMIUM_PCT = 0.30
+RETENCION_IIBB_PCT = 0.03
+COSTO_ENVIO_BASE_ARS = 8000.0
+UMBRAL_ENVIO_GRATIS_ARS = 30000.0
+
+SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.json"
+
+
+def write_site_data(deals: list[dict], affiliate_id: str) -> None:
+    """Actualiza el JSON de CalculadoraML con las ofertas del día."""
+    items = []
+    for d in deals:
+        precio = float(d["price_cur"])
+        envio = COSTO_ENVIO_BASE_ARS if precio >= UMBRAL_ENVIO_GRATIS_ARS else 0.0
+        iibb = precio * RETENCION_IIBB_PCT
+        margen_clasico = precio - precio * COMISION_CLASICA_PCT - iibb - envio
+        margen_premium = precio - precio * COMISION_PREMIUM_PCT - iibb - envio
+        if margen_clasico <= 0:
+            continue
+        items.append(
+            {
+                "id_ml": d["id"],
+                "titulo": d["title"],
+                "categoria_principal": "ofertas del día",
+                "precio_actual": round(precio, 2),
+                "moneda": "ARS",
+                "ventas_estimadas": None,
+                "url_producto": affiliate_url(d["url"], affiliate_id),
+                "url_imagen": d["img"],
+                "comision_clasica_pct": COMISION_CLASICA_PCT,
+                "comision_premium_pct": COMISION_PREMIUM_PCT,
+                "retencion_iibb_pct": RETENCION_IIBB_PCT,
+                "costo_envio_base_ars": envio,
+                "margen_neto_clasico_ars": round(margen_clasico, 2),
+                "margen_neto_premium_ars": round(margen_premium, 2),
+            }
+        )
+    payload = {
+        "metadata": {
+            "scraped_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "fuente": "mercadolibre.com.ar/ofertas",
+            "total_items": len(items),
+        },
+        "items": items,
+    }
+    SITE_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(SITE_DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    print(f"[info] sitio: {len(items)} productos escritos en {SITE_DATA_PATH.name}")
+
+
 # ---------------------------------------------------------------- afiliados
 
 def affiliate_url(url: str, affiliate_id: str) -> str:
@@ -295,6 +350,9 @@ def main() -> int:
 
     deals = fetch_deals(pages=cfg.get("pages", 3))
     print(f"[info] {len(deals)} ofertas únicas parseadas")
+
+    if deals and os.getenv("SKIP_SITE_DATA") != "1":
+        write_site_data(deals, affiliate_id)
 
     if len(deals) < 5:
         alert_admin(

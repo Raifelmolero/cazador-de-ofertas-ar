@@ -1,0 +1,59 @@
+name: Cazador Deals Bot
+
+on:
+  schedule:
+    # 12:00, 17:00 y 21:00 hora Argentina (UTC-3)
+    - cron: '0 15,20 * * *'
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      force_ig_kit:
+        description: 'Mandar kit de Instagram al admin'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  post-deals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Publicar ofertas
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
+          FORCE_IG_KIT: ${{ inputs.force_ig_kit == true && '1' || '0' }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
+            echo "::warning::Falta el secreto TELEGRAM_BOT_TOKEN — agregalo en Settings → Secrets → Actions. Salgo sin publicar."
+            exit 0
+          fi
+          python bot/cazador_bot.py
+
+      - name: Guardar estado (ids publicados)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bot/state/posted_ids.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios de estado."
+          else
+            git commit -m "bot: registrar ofertas publicadas [skip ci]"
+            git pull --rebase origin main
+            git push origin main
+          fi

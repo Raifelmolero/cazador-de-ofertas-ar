@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getProductos, getScrapedAt } from '@/lib/productos'
 
-const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://seo-pasivo-ml.vercel.app').replace(/\/$/, '')
+const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const productos = getProductos()

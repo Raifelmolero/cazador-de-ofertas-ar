@@ -1,8 +1,8 @@
 {
  "metadata": {
-  "scraped_at": "2026-07-08T21:17:13+00:00",
+  "scraped_at": "2026-07-08T21:58:36+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 111
+  "total_items": 110
  },
  "items": [
   {
@@ -886,22 +886,6 @@
    "margen_neto_premium_ars": 205360.83
   },
   {
-   "id_ml": "MLA68507293",
-   "titulo": "Freidora De Aire Suono Airfryer Neo Oven Descongela Fríe Asar Recalenta 12 L Comida Saludable Pantalla Xl Color Negro",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 134999.0,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/freidora-de-aire-suono-airfryer-neo-oven-descongela-frie-asar-recalenta-12-l-comida-saludable-pantalla-xl-color-negro/p/MLA68507293?matt_tool=mora4237191",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_956298-MLA112214726986_062026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 102699.18,
-   "margen_neto_premium_ars": 82449.33
-  },
-  {
    "id_ml": "MLA24529820",
    "titulo": "Ups Apc Easy Srv 2000va (1600watt) Srv2ki-ar Tres Tomas Color Negro",
    "categoria_principal": "ofertas del día",
@@ -1302,22 +1286,6 @@
    "margen_neto_premium_ars": 36745.28
   },
   {
-   "id_ml": "MLA66850209",
-   "titulo": "Smart Tv Samsung 55 Qled Q6f 4k Smart Tv",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 799999.0,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/smart-tv-samsung-55-qled-q6f-4k-smart-tv/p/MLA66850209?matt_tool=mora4237191",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_840312-MLA108249322714_032026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 647999.18,
-   "margen_neto_premium_ars": 527999.33
-  },
-  {
    "id_ml": "MLA15585570",
    "titulo": "Termotanque eléctrico Philco 94PHTE100B2 blanco 93L",
    "categoria_principal": "ofertas del día",
@@ -1702,22 +1670,6 @@
    "margen_neto_premium_ars": 437549.33
   },
   {
-   "id_ml": "MLA69224182",
-   "titulo": "Aspiradora Robot Suono Gyro Ideal Mascotas Trapeadora Monitoreo Smart Roller Brush Filtro Hepa App Wifi P8000Pa Mapeo Inteligente",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 199999.0,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/aspiradora-robot-suono-gyro-ideal-mascotas-trapeadora-monitoreo-smart-roller-brush-filtro-hepa-app-wifi-p8000pa-mapeo-inteligente/p/MLA69224182?matt_tool=mora4237191",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_908503-MLA111273544943_052026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 155999.18,
-   "margen_neto_premium_ars": 125999.33
-  },
-  {
    "id_ml": "MLA39964729",
    "titulo": "Termo Stanley Classic Clay | 1.4 Lt Color Marrón Claro",
    "categoria_principal": "ofertas del día",
@@ -1780,6 +1732,38 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 148045.18,
    "margen_neto_premium_ars": 119500.33
+  },
+  {
+   "id_ml": "MLA51038311",
+   "titulo": "Heladera Philco One Door Cíclica Con Dispenser 164L INOX - PHSD170XD",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 509999.0,
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/heladera-philco-one-door-ciclica-con-dispenser-164l-inox-phsd170xd/p/MLA51038311?matt_tool=mora4237191",
+   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_844783-MLA99984701083_112025-AB.webp",
+   "comision_clasica_pct": 0.15,
+   "comision_premium_pct": 0.3,
+   "retencion_iibb_pct": 0.03,
+   "costo_envio_base_ars": 8000.0,
+   "margen_neto_clasico_ars": 410199.18,
+   "margen_neto_premium_ars": 333699.33
+  },
+  {
+   "id_ml": "MLA16139274",
+   "titulo": "Aspiradora Industrial Pektra 15 Litros Polvo Liquido Acero Inoxidable",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 80999.0,
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/aspiradora-industrial-pektra-15-litros-polvo-liquido-acero-inoxidable/p/MLA16139274?matt_tool=mora4237191",
+   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_763327-MLA108180314446_032026-AB.webp",
+   "comision_clasica_pct": 0.15,
+   "comision_premium_pct": 0.3,
+   "retencion_iibb_pct": 0.03,
+   "costo_envio_base_ars": 8000.0,
+   "margen_neto_clasico_ars": 58419.18,
+   "margen_neto_premium_ars": 46269.33
   }
  ]
 }

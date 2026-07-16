@@ -385,7 +385,7 @@ def main() -> int:
 
     # kit de Instagram: en el run del mediodía ART (15h UTC) o forzado
     hour_utc = datetime.now(timezone.utc).hour
-    if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc == 15) and to_post:
+    if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in (15, 16, 17)) and to_post:
         best = to_post[0]
         send_ig_kit(
             token, cfg["admin_chat"], best, affiliate_url(best["url"], affiliate_id), dry

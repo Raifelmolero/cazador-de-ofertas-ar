@@ -214,7 +214,7 @@ def affiliate_url(url: str, affiliate_id: str) -> str:
     if not affiliate_id:
         return url
     sep = "&" if "?" in url else "?"
-    return f"{url}{sep}matt_tool={affiliate_id}"
+    return f"{url}{sep}matt_word={affiliate_id}&matt_tool=37267219"
 
 
 # ---------------------------------------------------------------- telegram

@@ -378,7 +378,27 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | N
         print("[warn] IG: la oferta no tiene imagen, salteo publicación")
         return None
     caption = ig_caption(deal)
-    image_url = ig_image_url(deal["img"])
+    image_url = ig_image_url(deal["img"])  # fallback: foto del producto
+
+    # placa diseñada 4:5 para el feed (best-effort; si falla va la foto)
+    try:
+        from story import render_feed  # requiere Pillow
+
+        req = urllib.request.Request(image_url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            image_bytes = resp.read()
+        fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d')}.jpg"
+        out = BASE_DIR / "feed" / fname
+        render_feed(deal, image_bytes, out)
+        if dry:
+            print(f"[DRY] placa del feed renderizada en {out}")
+        elif _git_push_file(out, "bot: placa del feed del día [skip ci]"):
+            repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/seo-pasivo-ml")
+            image_url = f"https://raw.githubusercontent.com/{repo}/main/bot/feed/{fname}"
+            time.sleep(5)
+    except Exception as e:  # noqa: BLE001 — la placa es opcional, la foto no
+        print(f"[warn] placa del feed falló, uso la foto del producto: {e}")
+
     if dry:
         print("=" * 60)
         print(f"[DRY] IG publish → {image_url}\n{caption}")

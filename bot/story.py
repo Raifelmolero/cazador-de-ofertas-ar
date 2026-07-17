@@ -57,6 +57,64 @@ def _wrap(draw: ImageDraw.ImageDraw, text: str, font, max_w: int, max_lines: int
     return lines[:max_lines]
 
 
+def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
+    """Placa 4:5 (1080x1350) para el post del feed."""
+    FW, FH = 1080, 1350
+    img = Image.new("RGB", (FW, FH), BG)
+    d = ImageDraw.Draw(img)
+
+    d.text((FW // 2, 78), "CAZADOR DE OFERTAS AR", font=_font(40), fill=AMBER, anchor="mm")
+    d.text((FW // 2, 128), "ofertas verificadas de MercadoLibre", font=_font(27, bold=False), fill=GRAY, anchor="mm")
+
+    card_w = 760
+    card = Image.new("RGB", (card_w, card_w), WHITE)
+    prod = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    prod = ImageOps.contain(prod, (card_w - 80, card_w - 80))
+    card.paste(prod, ((card_w - prod.width) // 2, (card_w - prod.height) // 2))
+    mask = Image.new("L", (card_w, card_w), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, card_w, card_w], radius=42, fill=255)
+    img.paste(card, ((FW - card_w) // 2, 175), mask)
+
+    badge_f = _font(56)
+    badge_txt = f"-{deal['discount']}%"
+    tw = d.textlength(badge_txt, font=badge_f)
+    bx1, byc = 945, 205
+    bx0 = bx1 - tw - 66
+    d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, fill=AMBER)
+    d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, outline=BG, width=6)
+    d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
+
+    title_f = _font(44)
+    y = 995
+    for line in _wrap(d, deal["title"], title_f, 940):
+        d.text((FW // 2, y), line, font=title_f, fill=WHITE, anchor="mm")
+        y += 58
+
+    prev_f = _font(40, bold=False)
+    prev_txt = f"Antes {_fmt(deal['price_prev'])}"
+    pw = d.textlength(prev_txt, font=prev_f)
+    py = 1128
+    d.text((FW // 2, py), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
+    d.line([(FW - pw) // 2 - 8, py, (FW + pw) // 2 + 8, py], fill=GRAY, width=4)
+
+    d.text((FW // 2, 1210), _fmt(deal["price_cur"]), font=_font(92), fill=AMBER, anchor="mm")
+
+    d.rectangle([0, 1276, FW, 1350], fill=AMBER)
+    banner_f = _font(42)
+    banner_txt = "LINK EN BIO"
+    tw = d.textlength(banner_txt, font=banner_f)
+    cx = FW // 2 + 18
+    d.text((cx, 1312), banner_txt, font=banner_f, fill=BLACK, anchor="mm")
+    ax = int(cx - tw / 2 - 42)
+    d.polygon([(ax, 1295), (ax - 17, 1320), (ax + 17, 1320)], fill=BLACK)
+    d.rectangle([ax - 7, 1320, ax + 7, 1333], fill=BLACK)
+
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_path, "JPEG", quality=90)
+    return out_path
+
+
 def render_story(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)

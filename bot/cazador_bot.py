@@ -451,7 +451,7 @@ def _git_push_file(path: Path, message: str) -> bool:
             ["git", "-C", str(repo_root), *ident, "commit", "-m", message], check=True
         )
         subprocess.run(
-            ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
+            ["git", "-C", str(repo_root), "pull", "--rebase", "--autostash", "origin", "main"],
             check=True,
         )
         subprocess.run(["git", "-C", str(repo_root), "push", "origin", "main"], check=True)

@@ -416,6 +416,82 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | N
         return f"media_id {media['id']}"
 
 
+def _git_push_file(path: Path, message: str) -> bool:
+    """Commitea y pushea un archivo desde el runner (usa las credenciales del checkout)."""
+    import subprocess
+
+    repo_root = BASE_DIR.parent
+    ident = [
+        "-c", "user.name=github-actions[bot]",
+        "-c", "user.email=github-actions[bot]@users.noreply.github.com",
+    ]
+    try:
+        subprocess.run(["git", "-C", str(repo_root), "add", str(path)], check=True)
+        subprocess.run(
+            ["git", "-C", str(repo_root), *ident, "commit", "-m", message], check=True
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
+            check=True,
+        )
+        subprocess.run(["git", "-C", str(repo_root), "push", "origin", "main"], check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"[warn] git push falló: {e}")
+        return False
+
+
+def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool:
+    """Genera la placa 9:16 y la publica como story. Best-effort: nunca frena el bot."""
+    if not deal.get("img"):
+        return False
+    try:
+        from story import render_story  # requiere Pillow (instalado en el workflow)
+    except ImportError:
+        print("[warn] Pillow no disponible — salteo la story")
+        return False
+
+    req = urllib.request.Request(
+        ig_image_url(deal["img"]), headers={"User-Agent": UA}
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        image_bytes = resp.read()
+
+    fname = f"story-{datetime.now(timezone.utc).strftime('%Y%m%d')}.jpg"
+    out = BASE_DIR / "stories" / fname
+    render_story(deal, image_bytes, out)
+    if dry:
+        print(f"[DRY] story renderizada en {out}")
+        return True
+
+    if not _git_push_file(out, "bot: placa de story del día [skip ci]"):
+        return False
+    repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/seo-pasivo-ml")
+    public_url = f"https://raw.githubusercontent.com/{repo}/main/bot/stories/{fname}"
+    time.sleep(5)  # margen para que raw.githubusercontent sirva el archivo
+
+    container = ig_call(
+        "POST",
+        f"{ig_user_id}/media",
+        {"media_type": "STORIES", "image_url": public_url, "access_token": ig_token},
+    )
+    for _ in range(10):
+        status = ig_call(
+            "GET", container["id"], {"fields": "status_code", "access_token": ig_token}
+        )
+        if status.get("status_code") == "FINISHED":
+            break
+        if status.get("status_code") == "ERROR":
+            raise RuntimeError(f"IG story container en ERROR: {status}")
+        time.sleep(5)
+    ig_call(
+        "POST",
+        f"{ig_user_id}/media_publish",
+        {"creation_id": container["id"], "access_token": ig_token},
+    )
+    return True
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> int:
@@ -509,6 +585,17 @@ def main() -> int:
                     dry,
                 )
                 send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
+            try:
+                if publish_story(best, ig_user_id, ig_token, dry):
+                    alert_admin(token, cfg["admin_chat"], "📱 Story del día publicada ✅", dry)
+            except Exception as e:  # noqa: BLE001 — la story es best-effort
+                print(f"[warn] story falló: {e}")
+                alert_admin(
+                    token,
+                    cfg["admin_chat"],
+                    f"⚠️ La story de hoy no salió ({str(e)[:120]}). El post del feed sí está OK.",
+                    dry,
+                )
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 

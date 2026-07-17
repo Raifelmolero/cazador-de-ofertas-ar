@@ -365,7 +365,7 @@ def ig_caption(deal: dict) -> str:
         f"❌ Antes: {fmt_price(deal['price_prev'])}\n"
         f"✅ Ahora: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
-        f"👉 Link en la bio (canal de Telegram con el enlace directo)\n"
+        f"👉 Link en la bio: esta y todas las ofertas cazadas 🎯\n"
         f"⚡ Stock y precio pueden volar\n\n"
         f"#ofertas #descuentos #mercadolibre #argentina #ahorro "
         f"#cazadordeofertas #ofertasargentina"
@@ -487,7 +487,14 @@ def main() -> int:
                     alert_admin(
                         token,
                         cfg["admin_chat"],
-                        f"✅ Publicado en Instagram: {best['title'][:60]}\n{permalink}",
+                        f"✅ Publicado en Instagram: {best['title'][:60]}\n"
+                        f"{permalink}\n\n"
+                        f"📎 30 seg para sumarlo a tu vidriera de la bio:\n"
+                        f"1) Copiá esta URL:\n{best['url']}\n"
+                        f"2) Pegala en el Generador:\n"
+                        f"https://www.mercadolibre.com.ar/afiliados/linkbuilder#hub\n\n"
+                        f"💡 Tip: story con sticker de link directo al producto:\n"
+                        f"{best_link}",
                         dry,
                     )
                 else:

@@ -1,0 +1,48 @@
+name: IG Token Refresh
+
+# El token de Instagram (Instagram Login) dura 60 días.
+# Este workflow lo renueva todas las semanas y actualiza el secret,
+# así nunca expira y nadie tiene que tocar nada.
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # lunes 03:00 UTC (00:00 ART)
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ig-token-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Renovar token y actualizar secret
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ADMIN_CHAT: '8701191351'
+        run: |
+          set -e
+          if [ -z "$IG_ACCESS_TOKEN" ]; then
+            echo "::warning::IG_ACCESS_TOKEN no configurado todavía; nada que renovar."
+            exit 0
+          fi
+
+          RESP=$(curl -s "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}")
+          NEW_TOKEN=$(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('access_token',''))" 2>/dev/null || echo "")
+
+          if [ -z "$NEW_TOKEN" ]; then
+            echo "::error::La renovación del token de IG falló: $RESP"
+            curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              -H "Content-Type: application/json" \
+              -d "{\"chat_id\":${ADMIN_CHAT},\"text\":\"🔴 Falló la renovación del token de Instagram. Hay que regenerarlo a mano en developers.facebook.com (Instagram → Generar token) y actualizar el secret IG_ACCESS_TOKEN.\"}"
+            exit 1
+          fi
+
+          echo "::add-mask::$NEW_TOKEN"
+          gh secret set IG_ACCESS_TOKEN --repo "${GITHUB_REPOSITORY}" --body "$NEW_TOKEN"
+          echo "Token de IG renovado y secret actualizado."

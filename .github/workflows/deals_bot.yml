@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       force_ig_kit:
-        description: 'Mandar kit de Instagram al admin'
+        description: 'Forzar publicación de Instagram (o kit si no hay token)'
         type: boolean
         default: false
 
@@ -37,6 +37,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           FORCE_IG_KIT: ${{ inputs.force_ig_kit == true && '1' || '0' }}
         run: |
           if [ -z "$TELEGRAM_BOT_TOKEN" ]; then

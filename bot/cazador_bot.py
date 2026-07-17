@@ -14,8 +14,10 @@ Flujo:
 Env vars:
   TELEGRAM_BOT_TOKEN  (secreto, requerido para publicar)
   ML_AFFILIATE_ID     (secreto; si falta, los links salen sin tracking)
+  IG_USER_ID          (secreto; ID numérico de la cuenta de Instagram)
+  IG_ACCESS_TOKEN     (secreto; token de Instagram API with Instagram Login)
   DRY_RUN=1           (imprime en vez de publicar)
-  FORCE_IG_KIT=1      (manda el kit IG sin importar la hora)
+  FORCE_IG_KIT=1      (fuerza la publicación/kit de IG sin importar la hora)
 """
 
 import json
@@ -25,6 +27,7 @@ import re
 import ssl
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -327,6 +330,92 @@ def alert_admin(token: str, admin: str, text: str, dry: bool) -> None:
         print(f"[warn] alerta no enviada: {e}")
 
 
+# ---------------------------------------------------------------- instagram
+
+IG_GRAPH = "https://graph.instagram.com/v23.0"
+
+
+def ig_call(method: str, path: str, params: dict) -> dict:
+    """Llamada a la Instagram API (Instagram Login). Devuelve el JSON parseado."""
+    query = urllib.parse.urlencode(params)
+    if method == "GET":
+        req = urllib.request.Request(f"{IG_GRAPH}/{path}?{query}")
+    else:
+        req = urllib.request.Request(f"{IG_GRAPH}/{path}", data=query.encode())
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.load(resp)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", "replace")
+        raise RuntimeError(f"IG API {e.code} en /{path}: {body[:300]}") from e
+
+
+def ig_image_url(img: str) -> str:
+    """Tarjeta de ML (thumbnail .webp) → imagen grande en JPEG (IG exige JPEG)."""
+    out = img.replace("D_Q_NP_", "D_NQ_NP_")
+    out = re.sub(r"-[A-Z]{1,2}\.webp$", "-F.jpg", out)
+    out = re.sub(r"\.webp$", ".jpg", out)
+    return out
+
+
+def ig_caption(deal: dict) -> str:
+    ahorro = deal["price_prev"] - deal["price_cur"]
+    return (
+        f"🔥 ¡{deal['discount']}% OFF! {deal['title'][:80]}\n\n"
+        f"❌ Antes: {fmt_price(deal['price_prev'])}\n"
+        f"✅ Ahora: {fmt_price(deal['price_cur'])}\n"
+        f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
+        f"👉 Link en la bio (canal de Telegram con el enlace directo)\n"
+        f"⚡ Stock y precio pueden volar\n\n"
+        f"#ofertas #descuentos #mercadolibre #argentina #ahorro "
+        f"#cazadordeofertas #ofertasargentina"
+    )
+
+
+def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | None:
+    """Publica la oferta en el feed de IG. Devuelve el permalink o None si falló."""
+    if not deal.get("img"):
+        print("[warn] IG: la oferta no tiene imagen, salteo publicación")
+        return None
+    caption = ig_caption(deal)
+    image_url = ig_image_url(deal["img"])
+    if dry:
+        print("=" * 60)
+        print(f"[DRY] IG publish → {image_url}\n{caption}")
+        return "https://instagram.com/DRY_RUN"
+
+    container = ig_call(
+        "POST",
+        f"{ig_user_id}/media",
+        {"image_url": image_url, "caption": caption, "access_token": ig_token},
+    )
+    container_id = container["id"]
+
+    # esperar a que el container esté listo (imágenes: casi inmediato)
+    for _ in range(10):
+        status = ig_call(
+            "GET", container_id, {"fields": "status_code", "access_token": ig_token}
+        )
+        if status.get("status_code") == "FINISHED":
+            break
+        if status.get("status_code") == "ERROR":
+            raise RuntimeError(f"IG container en ERROR: {status}")
+        time.sleep(5)
+
+    media = ig_call(
+        "POST",
+        f"{ig_user_id}/media_publish",
+        {"creation_id": container_id, "access_token": ig_token},
+    )
+    try:
+        info = ig_call(
+            "GET", media["id"], {"fields": "permalink", "access_token": ig_token}
+        )
+        return info.get("permalink") or f"media_id {media['id']}"
+    except Exception:  # noqa: BLE001 — el post ya salió; el permalink es cosmético
+        return f"media_id {media['id']}"
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> int:
@@ -383,13 +472,38 @@ def main() -> int:
     state["posted_ids"] = state["posted_ids"] + published_ids
     save_state(state)
 
-    # kit de Instagram: en el run del mediodía ART (15h UTC) o forzado
+    # Instagram: en el run del mediodía ART (15h UTC) o forzado.
+    # Si hay credenciales de la API publica solo; si no (o si falla), manda el kit manual.
     hour_utc = datetime.now(timezone.utc).hour
     if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in (15, 16, 17)) and to_post:
         best = to_post[0]
-        send_ig_kit(
-            token, cfg["admin_chat"], best, affiliate_url(best["url"], affiliate_id), dry
-        )
+        best_link = affiliate_url(best["url"], affiliate_id)
+        ig_user_id = os.getenv("IG_USER_ID", "")
+        ig_token = os.getenv("IG_ACCESS_TOKEN", "")
+        if ig_user_id and ig_token:
+            try:
+                permalink = ig_publish(best, ig_user_id, ig_token, dry)
+                if permalink:
+                    alert_admin(
+                        token,
+                        cfg["admin_chat"],
+                        f"✅ Publicado en Instagram: {best['title'][:60]}\n{permalink}",
+                        dry,
+                    )
+                else:
+                    send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
+            except Exception as e:  # noqa: BLE001 — IG caído no frena el bot
+                print(f"[error] IG publish falló: {e}")
+                alert_admin(
+                    token,
+                    cfg["admin_chat"],
+                    f"⚠️ No pude publicar en Instagram ({str(e)[:150]}). "
+                    f"Te mando el kit manual.",
+                    dry,
+                )
+                send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
+        else:
+            send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 
     print(f"[done] publicadas {len(published_ids)} ofertas")
     return 0

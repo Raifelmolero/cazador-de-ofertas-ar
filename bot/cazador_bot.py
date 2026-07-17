@@ -16,6 +16,8 @@ Env vars:
   ML_AFFILIATE_ID     (secreto; si falta, los links salen sin tracking)
   IG_USER_ID          (secreto; ID numérico de la cuenta de Instagram)
   IG_ACCESS_TOKEN     (secreto; token de Instagram API with Instagram Login)
+  THREADS_USER_ID     (secreto; ID numérico de la cuenta de Threads)
+  THREADS_ACCESS_TOKEN (secreto; token de la Threads API)
   DRY_RUN=1           (imprime en vez de publicar)
   FORCE_IG_KIT=1      (fuerza la publicación/kit de IG sin importar la hora)
 """
@@ -333,21 +335,22 @@ def alert_admin(token: str, admin: str, text: str, dry: bool) -> None:
 # ---------------------------------------------------------------- instagram
 
 IG_GRAPH = "https://graph.instagram.com/v23.0"
+THREADS_GRAPH = "https://graph.threads.net/v1.0"
 
 
-def ig_call(method: str, path: str, params: dict) -> dict:
-    """Llamada a la Instagram API (Instagram Login). Devuelve el JSON parseado."""
+def ig_call(method: str, path: str, params: dict, base: str = IG_GRAPH) -> dict:
+    """Llamada a la Instagram/Threads API. Devuelve el JSON parseado."""
     query = urllib.parse.urlencode(params)
     if method == "GET":
-        req = urllib.request.Request(f"{IG_GRAPH}/{path}?{query}")
+        req = urllib.request.Request(f"{base}/{path}?{query}")
     else:
-        req = urllib.request.Request(f"{IG_GRAPH}/{path}", data=query.encode())
+        req = urllib.request.Request(f"{base}/{path}", data=query.encode())
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             return json.load(resp)
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", "replace")
-        raise RuntimeError(f"IG API {e.code} en /{path}: {body[:300]}") from e
+        raise RuntimeError(f"API {e.code} en /{path}: {body[:300]}") from e
 
 
 def ig_image_url(img: str) -> str:
@@ -372,32 +375,55 @@ def ig_caption(deal: dict) -> str:
     )
 
 
+def th_caption(deal: dict, link: str) -> str:
+    """Caption para Threads: a diferencia de IG, el link va clickeable directo en el texto."""
+    ahorro = deal["price_prev"] - deal["price_cur"]
+    return (
+        f"🔥 ¡{deal['discount']}% OFF! {deal['title'][:80]}\n\n"
+        f"❌ Antes: {fmt_price(deal['price_prev'])}\n"
+        f"✅ Ahora: {fmt_price(deal['price_cur'])}\n"
+        f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
+        f"🛒 {link}\n\n"
+        f"⚡ Stock y precio pueden volar"
+    )
+
+
+def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:
+    """Genera la placa 4:5, la sube al repo y devuelve su URL pública (o None)."""
+    if not deal.get("img"):
+        return None
+    try:
+        from story import render_feed  # requiere Pillow
+
+        req = urllib.request.Request(
+            ig_image_url(deal["img"]), headers={"User-Agent": UA}
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            image_bytes = resp.read()
+        suffix = f"-{tag}" if tag else ""
+        fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d')}{suffix}.jpg"
+        out = BASE_DIR / "feed" / fname
+        render_feed(deal, image_bytes, out)
+        if dry:
+            print(f"[DRY] placa renderizada en {out}")
+            return None
+        if _git_push_file(out, "bot: placa del día [skip ci]"):
+            repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
+            time.sleep(5)
+            return f"https://raw.githubusercontent.com/{repo}/main/bot/feed/{fname}"
+    except Exception as e:  # noqa: BLE001 — la placa es opcional, la foto no
+        print(f"[warn] placa falló: {e}")
+    return None
+
+
 def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | None:
     """Publica la oferta en el feed de IG. Devuelve el permalink o None si falló."""
     if not deal.get("img"):
         print("[warn] IG: la oferta no tiene imagen, salteo publicación")
         return None
     caption = ig_caption(deal)
-    image_url = ig_image_url(deal["img"])  # fallback: foto del producto
-
-    # placa diseñada 4:5 para el feed (best-effort; si falla va la foto)
-    try:
-        from story import render_feed  # requiere Pillow
-
-        req = urllib.request.Request(image_url, headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            image_bytes = resp.read()
-        fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d')}.jpg"
-        out = BASE_DIR / "feed" / fname
-        render_feed(deal, image_bytes, out)
-        if dry:
-            print(f"[DRY] placa del feed renderizada en {out}")
-        elif _git_push_file(out, "bot: placa del feed del día [skip ci]"):
-            repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/seo-pasivo-ml")
-            image_url = f"https://raw.githubusercontent.com/{repo}/main/bot/feed/{fname}"
-            time.sleep(5)
-    except Exception as e:  # noqa: BLE001 — la placa es opcional, la foto no
-        print(f"[warn] placa del feed falló, uso la foto del producto: {e}")
+    # placa diseñada 4:5 (best-effort); si falla va la foto del producto
+    image_url = prepare_placa(deal, dry) or ig_image_url(deal["img"])
 
     if dry:
         print("=" * 60)
@@ -436,6 +462,59 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | N
         return f"media_id {media['id']}"
 
 
+def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool) -> str | None:
+    """Publica la oferta en Threads con el link de afiliado clickeable. Devuelve el permalink o None."""
+    caption = th_caption(deal, link)
+    image_url = prepare_placa(deal, dry, tag="th") or (ig_image_url(deal["img"]) if deal.get("img") else None)
+
+    if dry:
+        print("=" * 60)
+        print(f"[DRY] Threads publish → {image_url}\n{caption}")
+        return "https://threads.net/DRY_RUN"
+
+    params = {"text": caption, "access_token": threads_token}
+    if image_url:
+        params["media_type"] = "IMAGE"
+        params["image_url"] = image_url
+    else:
+        params["media_type"] = "TEXT"
+
+    container = ig_call(
+        "POST", f"{threads_user_id}/threads", params, base=THREADS_GRAPH
+    )
+    container_id = container["id"]
+
+    for _ in range(10):
+        status = ig_call(
+            "GET",
+            container_id,
+            {"fields": "status", "access_token": threads_token},
+            base=THREADS_GRAPH,
+        )
+        if status.get("status") == "FINISHED":
+            break
+        if status.get("status") == "ERROR":
+            raise RuntimeError(f"Threads container en ERROR: {status}")
+        time.sleep(5)
+
+    media = ig_call(
+        "POST",
+        f"{threads_user_id}/threads_publish",
+        {"creation_id": container_id, "access_token": threads_token},
+        base=THREADS_GRAPH,
+    )
+    try:
+        info = ig_call(
+            "GET",
+            media["id"],
+            {"fields": "permalink", "access_token": threads_token},
+            base=THREADS_GRAPH,
+        )
+        return info.get("permalink") or f"media_id {media['id']}"
+    except Exception:  # noqa: BLE001 — el post ya salió; el permalink es cosmético
+        return f"media_id {media['id']}"
+
+
 def _git_push_file(path: Path, message: str) -> bool:
     """Commitea y pushea un archivo desde el runner (usa las credenciales del checkout)."""
     import subprocess
@@ -447,11 +526,16 @@ def _git_push_file(path: Path, message: str) -> bool:
     ]
     try:
         subprocess.run(["git", "-C", str(repo_root), "add", str(path)], check=True)
+        staged = subprocess.run(
+            ["git", "-C", str(repo_root), "diff", "--cached", "--quiet"]
+        )
+        if staged.returncode == 0:
+            return True  # el archivo ya está en el repo sin cambios
         subprocess.run(
             ["git", "-C", str(repo_root), *ident, "commit", "-m", message], check=True
         )
         subprocess.run(
-            ["git", "-C", str(repo_root), "pull", "--rebase", "--autostash", "origin", "main"],
+            ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
             check=True,
         )
         subprocess.run(["git", "-C", str(repo_root), "push", "origin", "main"], check=True)
@@ -486,7 +570,7 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
 
     if not _git_push_file(out, "bot: placa de story del día [skip ci]"):
         return False
-    repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/seo-pasivo-ml")
+    repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
     public_url = f"https://raw.githubusercontent.com/{repo}/main/bot/stories/{fname}"
     time.sleep(5)  # margen para que raw.githubusercontent sirva el archivo
 
@@ -568,9 +652,10 @@ def main() -> int:
     state["posted_ids"] = state["posted_ids"] + published_ids
     save_state(state)
 
+    hour_utc = datetime.now(timezone.utc).hour
+
     # Instagram: en el run del mediodía ART (15h UTC) o forzado.
     # Si hay credenciales de la API publica solo; si no (o si falla), manda el kit manual.
-    hour_utc = datetime.now(timezone.utc).hour
     if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in (15, 16, 17)) and to_post:
         best = to_post[0]
         best_link = affiliate_url(best["url"], affiliate_id)
@@ -618,6 +703,32 @@ def main() -> int:
                 )
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
+
+    # Threads: 2/día, reutilizando los runs de mediodía (12hs ART) y noche (21hs ART).
+    # Best-effort total: nunca frena Telegram/IG, si falla solo avisa al admin.
+    if (os.getenv("FORCE_THREADS") == "1" or hour_utc in (15, 16, 17, 0, 1, 2)) and to_post:
+        threads_user_id = os.getenv("THREADS_USER_ID", "")
+        threads_token = os.getenv("THREADS_ACCESS_TOKEN", "")
+        if threads_user_id and threads_token:
+            th_deal = to_post[0]
+            th_link = affiliate_url(th_deal["url"], affiliate_id)
+            try:
+                permalink = publish_threads(th_deal, th_link, threads_user_id, threads_token, dry)
+                if permalink:
+                    alert_admin(
+                        token,
+                        cfg["admin_chat"],
+                        f"🧵 Publicado en Threads: {th_deal['title'][:60]}\n{permalink}",
+                        dry,
+                    )
+            except Exception as e:  # noqa: BLE001 — Threads caído no frena el bot
+                print(f"[warn] Threads publish falló: {e}")
+                alert_admin(
+                    token,
+                    cfg["admin_chat"],
+                    f"⚠️ No pude publicar en Threads ({str(e)[:150]}).",
+                    dry,
+                )
 
     print(f"[done] publicadas {len(published_ids)} ofertas")
     return 0

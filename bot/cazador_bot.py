@@ -231,13 +231,14 @@ def write_site_data(deals: list[dict], affiliate_id: str) -> None:
 
 # ---------------------------------------------------------------- afiliados
 
-def affiliate_url(url: str, affiliate_id: str, tool: str | None = None) -> str:
-    """Link con tracking. `tool` = etiqueta del linkbuilder por canal (atribución);
-    si no hay etiqueta específica usa la general."""
+def affiliate_url(url: str, affiliate_id: str, word: str | None = None) -> str:
+    """Link con tracking. En ML la etiqueta de atribución va en matt_word
+    (verificado en el linkbuilder: matt_word=telegram/instagram/threads);
+    matt_tool es fijo. Sin etiqueta específica usa la general (affiliate_id)."""
     if not affiliate_id:
         return url
     sep = "&" if "?" in url else "?"
-    return f"{url}{sep}matt_word={affiliate_id}&matt_tool={tool or '37267219'}"
+    return f"{url}{sep}matt_word={word or affiliate_id}&matt_tool=37267219"
 
 
 # ---------------------------------------------------------------- telegram
@@ -709,11 +710,11 @@ def main() -> int:
     if not affiliate_id:
         print("[warn] ML_AFFILIATE_ID vacío — links sin tracking de afiliado")
 
-    # Etiquetas del linkbuilder por canal (atribución de clics/ventas).
-    # Si el secret no está seteado, cae a la etiqueta general.
-    tool_tg = os.getenv("ML_TOOL_TELEGRAM") or None
-    tool_ig = os.getenv("ML_TOOL_IG") or None
-    tool_th = os.getenv("ML_TOOL_THREADS") or None
+    # Etiquetas de atribución por canal (creadas en el Administrador de
+    # etiquetas del panel de afiliados con estos nombres exactos).
+    tool_tg = os.getenv("ML_WORD_TELEGRAM", "telegram")
+    tool_ig = os.getenv("ML_WORD_IG", "instagram")
+    tool_th = os.getenv("ML_WORD_THREADS", "threads")
 
     state = load_state()
     posted = set(state["posted_ids"])

@@ -486,6 +486,18 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         f"{ig_user_id}/media_publish",
         {"creation_id": container_id, "access_token": ig_token},
     )
+
+    # primer comentario propio con CTA (best-effort; requiere permiso de comentarios)
+    try:
+        ig_call(
+            "POST",
+            f"{media['id']}/comments",
+            {"message": "🛒 Lo conseguís en el link de mi bio → «Mis recomendaciones» ⚡",
+             "access_token": ig_token},
+        )
+    except Exception as e:  # noqa: BLE001 — el post ya salió; el comentario es un plus
+        print(f"[warn] primer comentario falló: {e}")
+
     try:
         info = ig_call(
             "GET", media["id"], {"fields": "permalink", "access_token": ig_token}

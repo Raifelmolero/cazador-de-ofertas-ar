@@ -231,11 +231,13 @@ def write_site_data(deals: list[dict], affiliate_id: str) -> None:
 
 # ---------------------------------------------------------------- afiliados
 
-def affiliate_url(url: str, affiliate_id: str) -> str:
+def affiliate_url(url: str, affiliate_id: str, tool: str | None = None) -> str:
+    """Link con tracking. `tool` = etiqueta del linkbuilder por canal (atribución);
+    si no hay etiqueta específica usa la general."""
     if not affiliate_id:
         return url
     sep = "&" if "?" in url else "?"
-    return f"{url}{sep}matt_word={affiliate_id}&matt_tool=37267219"
+    return f"{url}{sep}matt_word={affiliate_id}&matt_tool={tool or '37267219'}"
 
 
 # ---------------------------------------------------------------- telegram
@@ -707,6 +709,12 @@ def main() -> int:
     if not affiliate_id:
         print("[warn] ML_AFFILIATE_ID vacío — links sin tracking de afiliado")
 
+    # Etiquetas del linkbuilder por canal (atribución de clics/ventas).
+    # Si el secret no está seteado, cae a la etiqueta general.
+    tool_tg = os.getenv("ML_TOOL_TELEGRAM") or None
+    tool_ig = os.getenv("ML_TOOL_IG") or None
+    tool_th = os.getenv("ML_TOOL_THREADS") or None
+
     state = load_state()
     posted = set(state["posted_ids"])
 
@@ -737,7 +745,7 @@ def main() -> int:
 
     published_ids = []
     for deal in to_post:
-        link = affiliate_url(deal["url"], affiliate_id)
+        link = affiliate_url(deal["url"], affiliate_id, tool_tg)
         if post_deal(token, cfg["channel"], deal, link, dry):
             published_ids.append(deal["id"])
             log_post(deal, "telegram")
@@ -752,7 +760,7 @@ def main() -> int:
     # Si hay credenciales de la API publica solo; si no (o si falla), manda el kit manual.
     if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in (15, 16, 17)) and to_post:
         best = to_post[0]
-        best_link = affiliate_url(best["url"], affiliate_id)
+        best_link = affiliate_url(best["url"], affiliate_id, tool_ig)
         ig_user_id = os.getenv("IG_USER_ID", "")
         ig_token = os.getenv("IG_ACCESS_TOKEN", "")
         if ig_user_id and ig_token:
@@ -811,7 +819,7 @@ def main() -> int:
         threads_token = os.getenv("THREADS_ACCESS_TOKEN", "")
         if threads_user_id and threads_token:
             th_deal = to_post[0]
-            th_link = affiliate_url(th_deal["url"], affiliate_id)
+            th_link = affiliate_url(th_deal["url"], affiliate_id, tool_th)
             try:
                 permalink = publish_threads(
                     th_deal, th_link, threads_user_id, threads_token, dry,

@@ -13,7 +13,18 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 
-from cazador_bot import POSTS_LOG_PATH, alert_admin, fmt_price, load_config
+from cazador_bot import (
+    BASE_DIR,
+    POSTS_LOG_PATH,
+    THREADS_GRAPH,
+    alert_admin,
+    fmt_price,
+    ig_call,
+    load_config,
+    tg_call,
+)
+
+METRICS_LOG_PATH = BASE_DIR / "state" / "metrics_log.jsonl"
 
 CH_LABELS = {
     "telegram": "Telegram",
@@ -22,6 +33,67 @@ CH_LABELS = {
     "threads": "Threads",
     "threads_texto": "Threads (texto)",
 }
+
+
+def collect_metrics(cfg: dict) -> dict:
+    """Junta seguidores/miembros vía las APIs que el bot ya tiene. Best-effort."""
+    m = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+
+    token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    if token:
+        try:
+            m["tg"] = tg_call(token, "getChatMemberCount", {"chat_id": cfg["channel"]})["result"]
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] miembros de Telegram: {e}")
+
+    ig_user_id = os.getenv("IG_USER_ID", "")
+    ig_token = os.getenv("IG_ACCESS_TOKEN", "")
+    if ig_user_id and ig_token:
+        try:
+            r = ig_call("GET", ig_user_id, {"fields": "followers_count", "access_token": ig_token})
+            m["ig"] = r.get("followers_count")
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] seguidores de IG: {e}")
+
+    th_id = os.getenv("THREADS_USER_ID", "")
+    th_token = os.getenv("THREADS_ACCESS_TOKEN", "")
+    if th_id and th_token:
+        try:
+            r = ig_call(
+                "GET", f"{th_id}/threads_insights",
+                {"metric": "followers_count", "access_token": th_token},
+                base=THREADS_GRAPH,
+            )
+            m["th"] = r["data"][0]["total_value"]["value"]
+        except Exception as e:  # noqa: BLE001 — requiere el permiso threads_manage_insights
+            print(f"[warn] seguidores de Threads (¿falta permiso de insights?): {e}")
+
+    return m
+
+
+def load_prev_metrics() -> dict:
+    try:
+        with open(METRICS_LOG_PATH, encoding="utf-8") as f:
+            lines = [ln for ln in f.read().splitlines() if ln.strip()]
+        return json.loads(lines[-1]) if lines else {}
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def save_metrics(m: dict) -> None:
+    METRICS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(METRICS_LOG_PATH, "a", encoding="utf-8") as f:
+        f.write(json.dumps(m, ensure_ascii=False) + "\n")
+
+
+def fmt_metric(label: str, cur, prev) -> str:
+    if cur is None:
+        return f"  • {label}: s/d"
+    delta = ""
+    if isinstance(prev, int):
+        diff = cur - prev
+        delta = f" ({'+' if diff >= 0 else ''}{diff} vs sem. pasada)"
+    return f"  • {label}: {cur}{delta}"
 
 
 def load_week() -> list[dict]:
@@ -44,10 +116,21 @@ def load_week() -> list[dict]:
     return entries
 
 
-def build_report(entries: list[dict]) -> str:
+def build_report(entries: list[dict], metrics: dict | None = None, prev: dict | None = None) -> str:
+    metrics = metrics or {}
+    prev = prev or {}
+    metrics_block = ""
+    if any(k in metrics for k in ("tg", "ig", "th")):
+        metrics_block = (
+            "📈 Cuentas:\n"
+            + fmt_metric("Telegram", metrics.get("tg"), prev.get("tg")) + "\n"
+            + fmt_metric("Instagram", metrics.get("ig"), prev.get("ig")) + "\n"
+            + fmt_metric("Threads", metrics.get("th"), prev.get("th")) + "\n\n"
+        )
+
     if not entries:
         return (
-            "📊 REPORTE SEMANAL\n\n"
+            "📊 REPORTE SEMANAL\n\n" + metrics_block +
             "Sin publicaciones registradas esta semana (el log arranca a acumular "
             "desde que se activó — la semana que viene ya hay datos completos)."
         )
@@ -68,11 +151,11 @@ def build_report(entries: list[dict]) -> str:
     ]
 
     return (
-        "📊 REPORTE SEMANAL\n\n"
+        "📊 REPORTE SEMANAL\n\n" + metrics_block +
         f"Publicaciones ({len(entries)} total):\n" + "\n".join(lines) + "\n\n"
         "🏆 Top de la semana:\n" + "\n".join(top_lines) + "\n\n"
         "✅ Checklist de 10 min:\n"
-        "  1. Panel de afiliados ML: ¿cuántos clics/comisiones por canal?\n"
+        "  1. Panel de afiliados ML: ¿cuántos clics/comisiones por canal? (mandá captura al chat de Claude)\n"
         "  2. IG Insights: ¿qué post tuvo más alcance y guardados?\n"
         "  3. ¿Hiciste stories con sticker esta semana? (2-3 recomendadas)\n"
         "  4. Vidriera de la bio: ¿están las ofertas de la semana cargadas?"
@@ -85,7 +168,11 @@ def main() -> int:
     dry = os.getenv("DRY_RUN", "0") == "1"
     cfg = load_config()
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
-    report = build_report(load_week())
+    metrics = collect_metrics(cfg)
+    prev = load_prev_metrics()
+    report = build_report(load_week(), metrics, prev)
+    if not dry and any(k in metrics for k in ("tg", "ig", "th")):
+        save_metrics(metrics)
     alert_admin(token, cfg["admin_chat"], report, dry)
     print(report)
     return 0

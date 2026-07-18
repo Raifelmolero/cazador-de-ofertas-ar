@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: weekly-report
+  group: deals-bot
   cancel-in-progress: false
 
 jobs:
@@ -32,4 +32,21 @@ jobs:
         working-directory: bot
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
         run: python weekly_report.py
+
+      - name: Guardar historial de métricas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bot/state
+          if git diff --cached --quiet; then
+            echo "Sin métricas nuevas."
+          else
+            git commit -m "bot: métricas semanales [skip ci]"
+            git -c rebase.autoStash=true pull --rebase origin main
+            git push origin main
+          fi

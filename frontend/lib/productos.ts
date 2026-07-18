@@ -6,6 +6,9 @@ export interface ProductWithMargins {
   titulo: string
   categoria_principal: string
   precio_actual: number
+  precio_anterior?: number
+  descuento_pct?: number
+  minimo_historico?: boolean
   moneda: string
   ventas_estimadas: number | string | null
   url_producto: string
@@ -30,6 +33,16 @@ export function getProductos(): ProductWithMargins[] {
 
 export function getProductoById(id: string): ProductWithMargins | undefined {
   return getProductos().find(p => p.id_ml === id)
+}
+
+// Ofertas para compradores (/hoy): mínimos históricos primero, después por % OFF.
+export function getOfertas(): ProductWithMargins[] {
+  const items = readJson().items as ProductWithMargins[]
+  return items.sort(
+    (a, b) =>
+      Number(b.minimo_historico ?? false) - Number(a.minimo_historico ?? false) ||
+      (b.descuento_pct ?? 0) - (a.descuento_pct ?? 0)
+  )
 }
 
 export function getScrapedAt(): Date {

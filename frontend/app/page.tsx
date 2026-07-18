@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getProductos, getScrapedAt } from '@/lib/productos'
 import ProductsGrid from '@/components/ProductsGrid'
 import Footer from '@/components/Footer'
@@ -26,9 +27,17 @@ export default function HomePage() {
             <span className="text-lg font-extrabold text-yellow-400 tracking-tight">CalculadoraML</span>
             <span className="hidden sm:inline text-xs text-zinc-600 ml-2">Mercado Libre Argentina</span>
           </div>
-          <span className="text-xs font-bold text-black bg-yellow-400 px-3 py-1.5 rounded-full">
-            {productos.length} productos hoy
-          </span>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/hoy"
+              className="text-xs font-semibold text-yellow-400 border border-yellow-400/30 hover:bg-yellow-400/10 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+            >
+              🎯 Ofertas de hoy
+            </Link>
+            <span className="hidden sm:inline text-xs font-bold text-black bg-yellow-400 px-3 py-1.5 rounded-full whitespace-nowrap">
+              {productos.length} productos hoy
+            </span>
+          </div>
         </div>
       </header>
 

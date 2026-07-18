@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: BASE, lastModified, changeFrequency: 'daily', priority: 1 },
+    { url: `${BASE}/hoy`, lastModified, changeFrequency: 'hourly', priority: 1 },
     ...productos.map(p => ({
       url: `${BASE}/calculadora/${p.id_ml}`,
       lastModified,

@@ -248,6 +248,7 @@ SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.js
 
 def write_site_data(deals: list[dict], affiliate_id: str) -> None:
     """Actualiza el JSON de CalculadoraML con las ofertas del día."""
+    word_web = os.getenv("ML_WORD_WEB", "web")
     items = []
     for d in deals:
         precio = float(d["price_cur"])
@@ -263,9 +264,12 @@ def write_site_data(deals: list[dict], affiliate_id: str) -> None:
                 "titulo": d["title"],
                 "categoria_principal": "ofertas del día",
                 "precio_actual": round(precio, 2),
+                "precio_anterior": d["price_prev"],
+                "descuento_pct": d["discount"],
+                "minimo_historico": bool(d.get("hist_low")),
                 "moneda": "ARS",
                 "ventas_estimadas": None,
-                "url_producto": affiliate_url(d["url"], affiliate_id),
+                "url_producto": affiliate_url(d["url"], affiliate_id, word_web),
                 "url_imagen": d["img"],
                 "comision_clasica_pct": COMISION_CLASICA_PCT,
                 "comision_premium_pct": COMISION_PREMIUM_PCT,

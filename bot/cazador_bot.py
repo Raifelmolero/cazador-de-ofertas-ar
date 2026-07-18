@@ -39,6 +39,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = BASE_DIR / "config.json"
 STATE_PATH = BASE_DIR / "state" / "posted_ids.json"
+POSTS_LOG_PATH = BASE_DIR / "state" / "posts_log.jsonl"
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -69,6 +70,21 @@ def save_state(state: dict) -> None:
     state["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with open(STATE_PATH, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=1)
+
+
+def log_post(deal: dict, channel: str) -> None:
+    """Registra una publicación en el log semanal (jsonl, un evento por línea)."""
+    entry = {
+        "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "ch": channel,
+        "id": deal["id"],
+        "title": deal["title"][:80],
+        "discount": deal["discount"],
+        "price": deal["price_cur"],
+    }
+    POSTS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(POSTS_LOG_PATH, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 def http_get(url: str, timeout: int = 30) -> bytes:
@@ -397,6 +413,31 @@ def ig_caption(deal: dict) -> str:
     )
 
 
+# Posts de solo texto para Threads (el algoritmo premia lo conversacional).
+TH_CONVO = [
+    "¿{price} por esto está bien o espero? 🤔\n\n{title}\nHoy con {discount}% OFF.\n\n🛒 {link}\n\nYo digo que estos precios no suelen repetirse, pero se aceptan opiniones.",
+    "Debate: {title} a {price} ({discount}% OFF).\n\n¿Se compra o se espera al Black Friday? 👀\n\n🛒 {link}",
+    "Si estabas esperando una señal para comprar {title}, es esta:\n\n{discount}% OFF → {price}.\n\n🛒 {link}",
+    "Regla del cazador: cuando algo que querías baja {discount}%, no se duda.\n\n{title} → {price}\n\n🛒 {link}",
+]
+
+
+def th_text_caption(deal: dict, link: str) -> str:
+    """Post conversacional de solo texto para Threads (máx 500 chars)."""
+    caption = random.choice(TH_CONVO).format(
+        title=deal["title"][:60],
+        price=fmt_price(deal["price_cur"]),
+        discount=deal["discount"],
+        link=link,
+    )
+    if len(caption) > 500:
+        caption = (
+            f"{deal['discount']}% OFF en {deal['title'][:60]} → "
+            f"{fmt_price(deal['price_cur'])}\n\n🛒 {link}"
+        )
+    return caption
+
+
 def th_caption(deal: dict, link: str) -> str:
     """Caption para Threads: a diferencia de IG, el link va clickeable directo en el texto.
 
@@ -508,10 +549,15 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
 
 
 def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool,
-                    caption: str | None = None, tag: str = "th") -> str | None:
+                    caption: str | None = None, tag: str = "th",
+                    text_only: bool = False) -> str | None:
     """Publica la oferta en Threads con el link de afiliado clickeable. Devuelve el permalink o None."""
-    caption = caption or th_caption(deal, link)
-    image_url = prepare_placa(deal, dry, tag=tag) or (ig_image_url(deal["img"]) if deal.get("img") else None)
+    if text_only:
+        caption = caption or th_text_caption(deal, link)
+        image_url = None
+    else:
+        caption = caption or th_caption(deal, link)
+        image_url = prepare_placa(deal, dry, tag=tag) or (ig_image_url(deal["img"]) if deal.get("img") else None)
 
     if dry:
         print("=" * 60)
@@ -694,6 +740,7 @@ def main() -> int:
         link = affiliate_url(deal["url"], affiliate_id)
         if post_deal(token, cfg["channel"], deal, link, dry):
             published_ids.append(deal["id"])
+            log_post(deal, "telegram")
             time.sleep(2)
 
     state["posted_ids"] = state["posted_ids"] + published_ids
@@ -712,6 +759,7 @@ def main() -> int:
             try:
                 permalink = ig_publish(best, ig_user_id, ig_token, dry)
                 if permalink:
+                    log_post(best, "ig")
                     alert_admin(
                         token,
                         cfg["admin_chat"],
@@ -739,6 +787,7 @@ def main() -> int:
                 send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
             try:
                 if publish_story(best, ig_user_id, ig_token, dry):
+                    log_post(best, "story")
                     alert_admin(token, cfg["admin_chat"], "📱 Story del día publicada ✅", dry)
             except Exception as e:  # noqa: BLE001 — la story es best-effort
                 print(f"[warn] story falló: {e}")
@@ -751,17 +800,25 @@ def main() -> int:
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 
-    # Threads: 2/día, reutilizando los runs de mediodía (12hs ART) y noche (21hs ART).
+    # Threads: 3/día reutilizando los runs existentes.
+    #   mediodía (15-17 UTC) y noche (0-2 UTC): post con placa
+    #   tarde (20-22 UTC): post de solo texto conversacional (el algoritmo lo premia)
     # Best-effort total: nunca frena Telegram/IG, si falla solo avisa al admin.
-    if (os.getenv("FORCE_THREADS") == "1" or hour_utc in (15, 16, 17, 0, 1, 2)) and to_post:
+    th_text_mode = hour_utc in (20, 21, 22) and os.getenv("FORCE_THREADS") != "1"
+    th_hours = (15, 16, 17, 20, 21, 22, 0, 1, 2)
+    if (os.getenv("FORCE_THREADS") == "1" or hour_utc in th_hours) and to_post:
         threads_user_id = os.getenv("THREADS_USER_ID", "")
         threads_token = os.getenv("THREADS_ACCESS_TOKEN", "")
         if threads_user_id and threads_token:
             th_deal = to_post[0]
             th_link = affiliate_url(th_deal["url"], affiliate_id)
             try:
-                permalink = publish_threads(th_deal, th_link, threads_user_id, threads_token, dry)
+                permalink = publish_threads(
+                    th_deal, th_link, threads_user_id, threads_token, dry,
+                    text_only=th_text_mode,
+                )
                 if permalink:
+                    log_post(th_deal, "threads_texto" if th_text_mode else "threads")
                     alert_admin(
                         token,
                         cfg["admin_chat"],

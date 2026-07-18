@@ -174,6 +174,66 @@ def parse_cards(html: str) -> list[dict]:
     return out
 
 
+# ---------------------------------------------------------------- historial de precios
+
+PRICE_HISTORY_PATH = BASE_DIR / "state" / "price_history.json"
+HIST_MIN_AGE_DAYS = 3        # historia mínima antes de declarar "precio más bajo"
+HIST_INFLATED_MARGIN = 0.95  # lo vimos ≥5% más barato → el descuento está inflado
+HIST_MAX_ITEMS = 6000
+
+
+def load_price_history() -> dict:
+    try:
+        with open(PRICE_HISTORY_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def save_price_history(history: dict) -> None:
+    if len(history) > HIST_MAX_ITEMS:
+        keep = sorted(history.items(), key=lambda kv: kv[1]["last_ts"], reverse=True)
+        history = dict(keep[:HIST_MAX_ITEMS])
+    PRICE_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(PRICE_HISTORY_PATH, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, separators=(",", ":"))
+
+
+def _days_between(a: str, b: str) -> int:
+    return abs((datetime.fromisoformat(b) - datetime.fromisoformat(a)).days)
+
+
+def annotate_price_history(deals: list[dict], history: dict) -> None:
+    """Cruza cada oferta con la historia previa y registra los precios de hoy.
+
+    hist_low: hay ≥ HIST_MIN_AGE_DAYS de historia del producto y el precio de
+    hoy es el más bajo que vimos (habilita el badge en las captions).
+    inflada: lo vimos ≥5% más barato antes — el descuento contra price_prev
+    no es real y la oferta se descarta del ranking.
+    """
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    for d in deals:
+        price = d["price_cur"]
+        h = history.get(d["id"])
+        if h:
+            d["hist_low"] = (
+                _days_between(h["first_ts"], today) >= HIST_MIN_AGE_DAYS
+                and price <= h["min"]
+            )
+            d["inflada"] = h["min"] < price * HIST_INFLATED_MARGIN
+            if price < h["min"]:
+                h["min"], h["min_ts"] = price, today
+            h["last"], h["last_ts"] = price, today
+        else:
+            d["hist_low"] = False
+            d["inflada"] = False
+            history[d["id"]] = {
+                "min": price, "min_ts": today,
+                "first_ts": today,
+                "last": price, "last_ts": today,
+            }
+
+
 # ---------------------------------------------------------------- sitio web
 
 # Réplica exacta de scraper/calculator.py — márgenes para revendedores.
@@ -260,11 +320,17 @@ def esc(s: str) -> str:
 
 def deal_caption(deal: dict, link: str) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
+    badge = (
+        "📉 <b>El precio más bajo que registramos</b>\n"
+        if deal.get("hist_low")
+        else ""
+    )
     return (
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
         f"✅ Ahora: <b>{fmt_price(deal['price_cur'])}</b>\n"
-        f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
+        f"💸 Te ahorrás {fmt_price(ahorro)}\n"
+        f"{badge}\n"
         f"🛒 {link}"
     )
 
@@ -400,13 +466,19 @@ TH_HOOKS = [
 
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = random.choice(IG_HOOKS)
+    hook = "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
+    badge = (
+        "📉 Nunca lo registramos más barato que hoy\n"
+        if deal.get("hist_low")
+        else ""
+    )
     return (
         f"{hook}\n\n"
         f"{deal['discount']}% OFF en {deal['title'][:80]}\n\n"
         f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
-        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"
+        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
+        f"{badge}\n"
         f"🛒 ¿Lo querés? Tocá el link de mi bio → lista «Mis recomendaciones» y listo.\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
@@ -433,6 +505,8 @@ def th_text_caption(deal: dict, link: str) -> str:
         discount=deal["discount"],
         link=link,
     )
+    if deal.get("hist_low"):
+        caption = "📉 Mínimo histórico según nuestro registro.\n\n" + caption
     if len(caption) > 500:
         caption = (
             f"{deal['discount']}% OFF en {deal['title'][:60]} → "
@@ -447,13 +521,20 @@ def th_caption(deal: dict, link: str) -> str:
     Threads corta en 500 caracteres — si el link es largo, va la versión corta.
     """
     ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = random.choice(TH_HOOKS)
+    hook = (
+        "📉 Mínimo histórico:" if deal.get("hist_low") else random.choice(TH_HOOKS)
+    )
+    remate = (
+        "📉 Nunca lo registramos más barato que hoy."
+        if deal.get("hist_low")
+        else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
+    )
     caption = (
         f"{hook} {deal['discount']}% OFF en {deal['title'][:70]}\n\n"
         f"Estaba {fmt_price(deal['price_prev'])} → hoy {fmt_price(deal['price_cur'])}.\n"
         f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
-        f"⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
+        f"{remate}"
     )
     if len(caption) > 500:
         caption = (
@@ -722,6 +803,13 @@ def main() -> int:
     deals = fetch_deals(pages=cfg.get("pages", 3))
     print(f"[info] {len(deals)} ofertas únicas parseadas")
 
+    history = load_price_history()
+    annotate_price_history(deals, history)
+    save_price_history(history)
+    n_low = sum(d["hist_low"] for d in deals)
+    n_inf = sum(d["inflada"] for d in deals)
+    print(f"[info] historial: {len(history)} productos | {n_low} en mínimo | {n_inf} infladas")
+
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         write_site_data(deals, affiliate_id)
 
@@ -739,8 +827,10 @@ def main() -> int:
         if d["discount"] >= cfg.get("min_discount", 25)
         and d["price_cur"] >= cfg.get("min_price", 10000)
         and d["id"] not in posted
+        and not d["inflada"]
     ]
-    candidates.sort(key=lambda d: d["discount"], reverse=True)
+    # mínimos históricos primero, después por % OFF
+    candidates.sort(key=lambda d: (d["hist_low"], d["discount"]), reverse=True)
     to_post = candidates[: cfg.get("max_posts", 3)]
     print(f"[info] {len(candidates)} candidatas nuevas, publico {len(to_post)}")
 

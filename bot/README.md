@@ -8,14 +8,22 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 ## Qué hace en cada corrida
 
 1. Descarga `mercadolibre.com.ar/ofertas` (3 páginas, ~115 productos)
-2. Filtra: descuento ≥ 25%, precio ≥ $10.000, no publicado antes
-3. Arma el link de afiliado con etiqueta de atribución **por canal**
+2. Registra el precio de cada producto en `bot/state/price_history.json`
+   (historial de precios propio, se alimenta solo 3 veces por día)
+3. Filtra: descuento ≥ 25%, precio ≥ $10.000, no publicado antes, y
+   **descarta ofertas infladas** (productos que vimos ≥5% más baratos antes:
+   el "descuento" contra el precio tachado no es real)
+4. Rankea: primero las ofertas en **mínimo histórico** (precio más bajo que
+   registramos, con al menos 3 días de historia), después por % OFF —
+   esos posts llevan el badge «📉 El precio más bajo que registramos»
+   en Telegram, IG y Threads
+5. Arma el link de afiliado con etiqueta de atribución **por canal**
    (`matt_word=telegram/instagram/threads` + `matt_tool` fijo, formato real
    del linkbuilder — así el panel de afiliados te dice qué canal vende)
-4. Publica las 3 mejores en el canal de Telegram con foto, precios y botón de compra
-5. Actualiza `frontend/data/productos_rentables.json` (las ofertas del día
+6. Publica las 3 mejores en el canal de Telegram con foto, precios y botón de compra
+7. Actualiza `frontend/data/productos_rentables.json` (las ofertas del día
    aparecen en CalculadoraML con margen calculado)
-6. Registra cada publicación en `bot/state/posts_log.jsonl` (alimenta el reporte semanal)
+8. Registra cada publicación en `bot/state/posts_log.jsonl` (alimenta el reporte semanal)
 
 ### Instagram (corrida del mediodía)
 

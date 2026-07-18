@@ -81,9 +81,26 @@ def log_post(deal: dict, channel: str) -> None:
         "title": deal["title"][:80],
         "discount": deal["discount"],
         "price": deal["price_cur"],
+        "low": bool(deal.get("hist_low")),
     }
     POSTS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(POSTS_LOG_PATH, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
+SCAN_LOG_PATH = BASE_DIR / "state" / "scan_log.jsonl"
+
+
+def log_scan(scanned: int, minimos: int, infladas: int) -> None:
+    """Registra el resumen de cada corrida (alimenta el reporte semanal)."""
+    entry = {
+        "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "scanned": scanned,
+        "minimos": minimos,
+        "infladas": infladas,
+    }
+    SCAN_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(SCAN_LOG_PATH, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
@@ -813,6 +830,8 @@ def main() -> int:
     n_low = sum(d["hist_low"] for d in deals)
     n_inf = sum(d["inflada"] for d in deals)
     print(f"[info] historial: {len(history)} productos | {n_low} en mínimo | {n_inf} infladas")
+    if deals:
+        log_scan(len(deals), n_low, n_inf)
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         write_site_data(deals, affiliate_id)
@@ -868,10 +887,8 @@ def main() -> int:
                         cfg["admin_chat"],
                         f"✅ Publicado en Instagram: {best['title'][:60]}\n"
                         f"{permalink}\n\n"
-                        f"📎 30 seg para sumarlo a tu vidriera de la bio:\n"
-                        f"1) Copiá esta URL:\n{best['url']}\n"
-                        f"2) Pegala en el Generador:\n"
-                        f"https://www.mercadolibre.com.ar/afiliados/linkbuilder#hub\n\n"
+                        f"🌐 La página de la bio ya tiene esta oferta "
+                        f"(calculadoraml.com.ar/hoy se actualiza sola).\n\n"
                         f"💡 Tip: story con sticker de link directo al producto:\n"
                         f"{best_link}",
                         dry,

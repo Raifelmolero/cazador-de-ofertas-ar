@@ -16,6 +16,7 @@ from datetime import datetime, timedelta, timezone
 from cazador_bot import (
     BASE_DIR,
     POSTS_LOG_PATH,
+    SCAN_LOG_PATH,
     THREADS_GRAPH,
     alert_admin,
     fmt_price,
@@ -96,11 +97,11 @@ def fmt_metric(label: str, cur, prev) -> str:
     return f"  • {label}: {cur}{delta}"
 
 
-def load_week() -> list[dict]:
+def _load_jsonl_week(path) -> list[dict]:
     cutoff = datetime.now(timezone.utc) - timedelta(days=7)
     entries = []
     try:
-        with open(POSTS_LOG_PATH, encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line:
@@ -116,9 +117,23 @@ def load_week() -> list[dict]:
     return entries
 
 
-def build_report(entries: list[dict], metrics: dict | None = None, prev: dict | None = None) -> str:
+def load_week() -> list[dict]:
+    return _load_jsonl_week(POSTS_LOG_PATH)
+
+
+def load_scans_week() -> list[dict]:
+    return _load_jsonl_week(SCAN_LOG_PATH)
+
+
+def build_report(
+    entries: list[dict],
+    metrics: dict | None = None,
+    prev: dict | None = None,
+    scans: list[dict] | None = None,
+) -> str:
     metrics = metrics or {}
     prev = prev or {}
+    scans = scans or []
     metrics_block = ""
     if any(k in metrics for k in ("tg", "ig", "th")):
         metrics_block = (
@@ -128,9 +143,21 @@ def build_report(entries: list[dict], metrics: dict | None = None, prev: dict | 
             + fmt_metric("Threads", metrics.get("th"), prev.get("th")) + "\n\n"
         )
 
+    scan_block = ""
+    if scans:
+        scanned = sum(s.get("scanned", 0) for s in scans)
+        infladas = sum(s.get("infladas", 0) for s in scans)
+        lows_pub = sum(1 for e in entries if e.get("low"))
+        scan_block = (
+            "🎯 Cacería de la semana:\n"
+            f"  • {scanned} ofertas escaneadas en {len(scans)} corridas\n"
+            f"  • {infladas} descartadas por descuento inflado 🚫\n"
+            f"  • {lows_pub} publicaciones en mínimo histórico 📉\n\n"
+        )
+
     if not entries:
         return (
-            "📊 REPORTE SEMANAL\n\n" + metrics_block +
+            "📊 REPORTE SEMANAL\n\n" + metrics_block + scan_block +
             "Sin publicaciones registradas esta semana (el log arranca a acumular "
             "desde que se activó — la semana que viene ya hay datos completos)."
         )
@@ -147,18 +174,19 @@ def build_report(entries: list[dict], metrics: dict | None = None, prev: dict | 
     top3 = sorted(best.values(), key=lambda e: e["discount"], reverse=True)[:3]
     top_lines = [
         f"  {i}. {e['discount']}% OFF — {e['title'][:55]} ({fmt_price(e['price'])})"
+        + (" 📉" if e.get("low") else "")
         for i, e in enumerate(top3, 1)
     ]
 
     return (
-        "📊 REPORTE SEMANAL\n\n" + metrics_block +
+        "📊 REPORTE SEMANAL\n\n" + metrics_block + scan_block +
         f"Publicaciones ({len(entries)} total):\n" + "\n".join(lines) + "\n\n"
         "🏆 Top de la semana:\n" + "\n".join(top_lines) + "\n\n"
         "✅ Checklist de 10 min:\n"
         "  1. Panel de afiliados ML: ¿cuántos clics/comisiones por canal? (mandá captura al chat de Claude)\n"
         "  2. IG Insights: ¿qué post tuvo más alcance y guardados?\n"
         "  3. ¿Hiciste stories con sticker esta semana? (2-3 recomendadas)\n"
-        "  4. Vidriera de la bio: ¿están las ofertas de la semana cargadas?"
+        "  4. ¿El link de la bio apunta a la página de ofertas? (se actualiza sola)"
     )
 
 
@@ -170,7 +198,7 @@ def main() -> int:
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     metrics = collect_metrics(cfg)
     prev = load_prev_metrics()
-    report = build_report(load_week(), metrics, prev)
+    report = build_report(load_week(), metrics, prev, load_scans_week())
     if not dry and any(k in metrics for k in ("tg", "ig", "th")):
         save_metrics(metrics)
     alert_admin(token, cfg["admin_chat"], report, dry)

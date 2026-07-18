@@ -45,10 +45,12 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 ## Reporte semanal (domingos 23:00 ART)
 
 `weekly_report.py` te manda por Telegram un resumen de los últimos 7 días:
-publicaciones por canal, las 3 mejores ofertas de la semana y **métricas
-automáticas** (miembros de Telegram, seguidores de IG y Threads) con la
-variación contra la semana anterior. El historial queda en
-`bot/state/metrics_log.jsonl`.
+publicaciones por canal, las 3 mejores ofertas de la semana (con marca 📉 si
+salieron en mínimo histórico), la **cacería de la semana** (ofertas escaneadas,
+descartadas por descuento inflado, mínimos históricos publicados — sale de
+`bot/state/scan_log.jsonl`) y **métricas automáticas** (miembros de Telegram,
+seguidores de IG y Threads) con la variación contra la semana anterior.
+El historial queda en `bot/state/metrics_log.jsonl`.
 
 ## Post especial manual (Mundial, Hot Sale, Black Friday...)
 

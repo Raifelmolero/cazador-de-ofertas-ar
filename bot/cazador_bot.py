@@ -361,31 +361,63 @@ def ig_image_url(img: str) -> str:
     return out
 
 
+# Ganchos rotativos para que los posts no salgan siempre con el mismo formato.
+IG_HOOKS = [
+    "🚨 ALERTA DE PRECIO",
+    "🎯 CAZADA DEL DÍA",
+    "🔥 OFERTA REAL, CERO HUMO",
+    "⚡ BAJÓN DE PRECIO",
+    "👀 ESTO NO DURA NADA",
+]
+
+TH_HOOKS = [
+    "🚨 Alerta de precio:",
+    "🎯 Cazada del día:",
+    "🔥 Encontré esto y tuve que compartirlo:",
+    "⚡ Bajó de verdad, no es humo:",
+    "👀 Ojo con esto antes de que vuelva a subir:",
+]
+
+
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
+    hook = random.choice(IG_HOOKS)
     return (
-        f"🔥 ¡{deal['discount']}% OFF! {deal['title'][:80]}\n\n"
-        f"❌ Antes: {fmt_price(deal['price_prev'])}\n"
-        f"✅ Ahora: {fmt_price(deal['price_cur'])}\n"
-        f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
-        f"👉 Link en la bio: esta y todas las ofertas cazadas 🎯\n"
-        f"⚡ Stock y precio pueden volar\n\n"
+        f"{hook}\n\n"
+        f"{deal['discount']}% OFF en {deal['title'][:80]}\n\n"
+        f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
+        f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
+        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"
+        f"🛒 ¿Lo querés? Tocá el link de mi bio → lista «Mis recomendaciones» y listo.\n"
+        f"💾 Guardá este post si lo estás pensando.\n"
+        f"📤 Mandáselo a quien lo estaba buscando.\n\n"
+        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
         f"#ofertas #descuentos #mercadolibre #argentina #ahorro "
         f"#cazadordeofertas #ofertasargentina"
     )
 
 
 def th_caption(deal: dict, link: str) -> str:
-    """Caption para Threads: a diferencia de IG, el link va clickeable directo en el texto."""
+    """Caption para Threads: a diferencia de IG, el link va clickeable directo en el texto.
+
+    Threads corta en 500 caracteres — si el link es largo, va la versión corta.
+    """
     ahorro = deal["price_prev"] - deal["price_cur"]
-    return (
-        f"🔥 ¡{deal['discount']}% OFF! {deal['title'][:80]}\n\n"
-        f"❌ Antes: {fmt_price(deal['price_prev'])}\n"
-        f"✅ Ahora: {fmt_price(deal['price_cur'])}\n"
-        f"💸 Te ahorrás {fmt_price(ahorro)}\n\n"
+    hook = random.choice(TH_HOOKS)
+    caption = (
+        f"{hook} {deal['discount']}% OFF en {deal['title'][:70]}\n\n"
+        f"Estaba {fmt_price(deal['price_prev'])} → hoy {fmt_price(deal['price_cur'])}.\n"
+        f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
-        f"⚡ Stock y precio pueden volar"
+        f"⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
     )
+    if len(caption) > 500:
+        caption = (
+            f"{hook} {deal['discount']}% OFF en {deal['title'][:60]}\n\n"
+            f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 💸\n\n"
+            f"🛒 {link}"
+        )
+    return caption
 
 
 def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:

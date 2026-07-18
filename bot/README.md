@@ -1,25 +1,65 @@
-# Cazador de Ofertas AR — Bot de Telegram
+# Cazador de Ofertas AR — Bot multicanal
 
-Bot que publica automáticamente las mejores ofertas de Mercado Libre en el canal
-de Telegram, con link de afiliado. Corre solo en GitHub Actions 3 veces por día
-(12:00, 17:00 y 21:00 hora Argentina). **No requiere mantenimiento.**
+Bot que caza las mejores ofertas de Mercado Libre y las publica solo en
+**Telegram, Instagram y Threads**, con links de afiliado etiquetados por canal.
+Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
+**No requiere mantenimiento**: hasta los tokens de IG/Threads se renuevan solos.
 
-## Cómo funciona
+## Qué hace en cada corrida
 
 1. Descarga `mercadolibre.com.ar/ofertas` (3 páginas, ~115 productos)
 2. Filtra: descuento ≥ 25%, precio ≥ $10.000, no publicado antes
-3. Inyecta tu ID de afiliado (`matt_tool`) en cada link
-4. Publica las 3 mejores en el canal con foto, precios y botón de compra
-5. En el run del mediodía te manda por privado el "Kit Instagram": imagen,
-   caption y link listos para hacer una story en 2 minutos
-6. Si el scraper trae menos de 5 ofertas (ML cambió el HTML), te avisa por privado
+3. Arma el link de afiliado con etiqueta de atribución **por canal**
+   (`matt_word=telegram/instagram/threads` + `matt_tool` fijo, formato real
+   del linkbuilder — así el panel de afiliados te dice qué canal vende)
+4. Publica las 3 mejores en el canal de Telegram con foto, precios y botón de compra
+5. Actualiza `frontend/data/productos_rentables.json` (las ofertas del día
+   aparecen en CalculadoraML con margen calculado)
+6. Registra cada publicación en `bot/state/posts_log.jsonl` (alimenta el reporte semanal)
+
+### Instagram (corrida del mediodía)
+
+- Publica solo en el feed vía API: genera una **placa diseñada 4:5**
+  (la sube al repo en `bot/feed/`), caption vendedora con ganchos rotativos
+  y **primer comentario automático con CTA** («link en mi bio»)
+- Publica también la **story del día** con placa 9:16 (`bot/stories/`)
+- Te avisa por privado con el permalink + recordatorio de sumar el producto
+  a la vidriera de la bio
+- Si no hay credenciales de la API (o falla), te manda el **kit IG manual**:
+  imagen, caption y link listos para publicar en 2 minutos
+
+### Threads (3 posts por día)
+
+- Mediodía y noche: post con placa + link de afiliado clickeable en el texto
+- Tarde: post de **solo texto conversacional** (el algoritmo lo premia) con
+  formatos rotativos tipo debate/pregunta
+
+## Reporte semanal (domingos 23:00 ART)
+
+`weekly_report.py` te manda por Telegram un resumen de los últimos 7 días:
+publicaciones por canal, las 3 mejores ofertas de la semana y **métricas
+automáticas** (miembros de Telegram, seguidores de IG y Threads) con la
+variación contra la semana anterior. El historial queda en
+`bot/state/metrics_log.jsonl`.
+
+## Post especial manual (Mundial, Hot Sale, Black Friday...)
+
+Pestaña **Actions → Post Especial → Run workflow**, pegando el JSON del deal
+con captions personalizadas (formato en el docstring de `bot/special_post.py`).
+Publica en IG + Threads y te confirma por Telegram. Tiene modo `dry_run`.
+
+## Renovación automática de tokens
+
+Los tokens de IG y Threads vencen a los 60 días. `ig_token_refresh.yml` los
+renueva todos los lunes y actualiza los secrets solo. Si alguna renovación
+falla, te llega alerta por Telegram con los pasos para regenerarlo a mano.
 
 ## Configuración (bot/config.json)
 
 | Campo | Qué hace | Valor actual |
 |---|---|---|
 | `channel` | Canal donde publica | `@cazadordeofertasar` |
-| `admin_chat` | Tu chat privado (kit IG + alertas) | `8701191351` |
+| `admin_chat` | Tu chat privado (alertas + reportes) | `8701191351` |
 | `min_discount` | Descuento mínimo % | 25 |
 | `min_price` | Precio mínimo ARS | 10000 |
 | `max_posts` | Posts por corrida | 3 |
@@ -29,15 +69,36 @@ Editás el JSON, hacés commit y push, y la próxima corrida usa los valores nue
 
 ## Secretos requeridos (Settings → Secrets and variables → Actions)
 
-- `TELEGRAM_BOT_TOKEN` — token de @cazador_ofertas_ar_bot (BotFather)
-- `ML_AFFILIATE_ID` — ya estaba configurado para el sitio
+| Secreto | Para qué |
+|---|---|
+| `TELEGRAM_BOT_TOKEN` | Token de @cazador_ofertas_ar_bot (BotFather) |
+| `ML_AFFILIATE_ID` | Etiqueta general de afiliado (fallback de `matt_word`) |
+| `IG_USER_ID` / `IG_ACCESS_TOKEN` | Instagram API with Instagram Login |
+| `THREADS_USER_ID` / `THREADS_ACCESS_TOKEN` | Threads API |
+| `GH_PAT` | PAT con permiso de secrets (para la renovación automática de tokens) |
+
+Sin credenciales de IG/Threads el bot igual funciona: publica en Telegram y
+manda el kit manual de IG.
+
+## Etiquetas de atribución
+
+Creadas en el **Administrador de etiquetas** del panel de afiliados con estos
+nombres exactos: `telegram`, `instagram`, `threads`. Se pueden pisar con las
+env vars `ML_WORD_TELEGRAM`, `ML_WORD_IG` y `ML_WORD_THREADS`.
 
 ## Correr a mano
 
-Pestaña **Actions → Cazador Deals Bot → Run workflow** (opcionalmente con kit IG).
+Pestaña **Actions → Cazador Deals Bot → Run workflow** (opcional: forzar IG
+y/o Threads aunque no sea el horario).
 
 Local (prueba sin publicar):
 
 ```bash
 DRY_RUN=1 python bot/cazador_bot.py
 ```
+
+## Alertas automáticas al admin
+
+- Scraper trae < 5 ofertas (ML cambió el HTML)
+- Falla de publicación en IG o Threads (con el error)
+- Falla en la renovación de tokens

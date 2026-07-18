@@ -1,0 +1,53 @@
+name: Post Especial
+
+# Post manual para eventos (Mundial, Hot Sale, Black Friday...).
+# Se dispara a mano pasando el JSON del deal + captions personalizadas.
+
+on:
+  workflow_dispatch:
+    inputs:
+      deal_json:
+        description: 'JSON del deal (ver docstring de bot/special_post.py)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Solo simular (no publica)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  special-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install pillow
+
+      - name: Publicar post especial
+        working-directory: bot
+        env:
+          DEAL_JSON: ${{ inputs.deal_json }}
+          DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: python special_post.py

@@ -448,14 +448,15 @@ def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:
     return None
 
 
-def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | None:
+def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
+               caption: str | None = None, tag: str = "") -> str | None:
     """Publica la oferta en el feed de IG. Devuelve el permalink o None si falló."""
     if not deal.get("img"):
         print("[warn] IG: la oferta no tiene imagen, salteo publicación")
         return None
-    caption = ig_caption(deal)
+    caption = caption or ig_caption(deal)
     # placa diseñada 4:5 (best-effort); si falla va la foto del producto
-    image_url = prepare_placa(deal, dry) or ig_image_url(deal["img"])
+    image_url = prepare_placa(deal, dry, tag=tag) or ig_image_url(deal["img"])
 
     if dry:
         print("=" * 60)
@@ -494,10 +495,11 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | N
         return f"media_id {media['id']}"
 
 
-def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool) -> str | None:
+def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool,
+                    caption: str | None = None, tag: str = "th") -> str | None:
     """Publica la oferta en Threads con el link de afiliado clickeable. Devuelve el permalink o None."""
-    caption = th_caption(deal, link)
-    image_url = prepare_placa(deal, dry, tag="th") or (ig_image_url(deal["img"]) if deal.get("img") else None)
+    caption = caption or th_caption(deal, link)
+    image_url = prepare_placa(deal, dry, tag=tag) or (ig_image_url(deal["img"]) if deal.get("img") else None)
 
     if dry:
         print("=" * 60)

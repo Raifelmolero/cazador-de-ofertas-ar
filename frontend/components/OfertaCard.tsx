@@ -1,11 +1,23 @@
 import Image from 'next/image'
-import type { ProductWithMargins } from '@/lib/productos'
+
+/** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
+ *  necesita, y mantiene liviano el payload que viaja al cliente. */
+export interface OfertaLight {
+  id_ml: string
+  titulo: string
+  precio_actual: number
+  precio_anterior?: number
+  descuento_pct?: number
+  minimo_historico?: boolean
+  url_producto: string
+  url_imagen: string | null
+}
 
 function precio(n: number) {
   return `$${Math.round(n).toLocaleString('es-AR')}`
 }
 
-function Badges({ producto, className = '' }: { producto: ProductWithMargins; className?: string }) {
+function Badges({ producto, className = '' }: { producto: OfertaLight; className?: string }) {
   return (
     <div className={`absolute top-2 left-2 flex flex-col items-start gap-1.5 ${className}`}>
       {producto.descuento_pct != null && (
@@ -32,7 +44,7 @@ export default function OfertaCard({
   featured = false,
   priority = false,
 }: {
-  producto: ProductWithMargins
+  producto: OfertaLight
   featured?: boolean
   priority?: boolean
 }) {

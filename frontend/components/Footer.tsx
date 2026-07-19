@@ -26,7 +26,7 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
           </a>
         </div>
         <p className="text-center sm:text-right leading-relaxed">
-          {b.legal}
+          {b.legal}{' '}
           <br className="hidden sm:block" />
           Este sitio usa links de afiliado de Mercado Libre.
         </p>

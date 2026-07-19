@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
-import OfertaCard from '@/components/OfertaCard'
+import type { OfertaLight } from '@/components/OfertaCard'
+import OfertasGrid from '@/components/OfertasGrid'
+import BackToTop from '@/components/BackToTop'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 
@@ -31,6 +33,18 @@ export default function HoyPage() {
   const ofertas = getOfertas()
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
+
+  // Solo los campos que la grilla usa: mantiene chico el payload del cliente
+  const ofertasLight: OfertaLight[] = ofertas.map(o => ({
+    id_ml: o.id_ml,
+    titulo: o.titulo,
+    precio_actual: o.precio_actual,
+    precio_anterior: o.precio_anterior,
+    descuento_pct: o.descuento_pct,
+    minimo_historico: o.minimo_historico,
+    url_producto: o.url_producto,
+    url_imagen: o.url_imagen,
+  }))
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
   // el resto no aporta y agranda el HTML).
@@ -103,40 +117,14 @@ export default function HoyPage() {
         </p>
       </section>
 
-      {/* Grid */}
+      {/* Grid con búsqueda y filtros */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {ofertas.length === 0 ? (
           <p className="text-center text-zinc-500 py-16">
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯
           </p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            <OfertaCard producto={ofertas[0]} featured priority />
-            {ofertas.slice(1, 7).map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 3} />
-            ))}
-
-            {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}
-            {ofertas.length > 7 && (
-              <div className="col-span-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow-400 rounded-2xl px-5 py-4 sm:px-6 my-1">
-                <p className="text-black font-extrabold text-sm sm:text-base text-center sm:text-left [text-wrap:balance]">
-                  📲 Las 3 mejores del día van directo al canal de Telegram, gratis
-                </p>
-                <a
-                  href={TELEGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 bg-black text-yellow-400 font-bold text-sm rounded-xl px-5 py-2.5 transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-                >
-                  Unirme al canal ✈️
-                </a>
-              </div>
-            )}
-
-            {ofertas.slice(7).map(o => (
-              <OfertaCard key={o.id_ml} producto={o} />
-            ))}
-          </div>
+          <OfertasGrid ofertas={ofertasLight} telegramUrl={TELEGRAM_URL} />
         )}
       </section>
 
@@ -170,6 +158,7 @@ export default function HoyPage() {
       </section>
 
       <Footer brand="ofertas" />
+      <BackToTop />
     </main>
   )
 }

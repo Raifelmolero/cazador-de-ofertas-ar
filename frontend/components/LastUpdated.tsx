@@ -25,7 +25,7 @@ export default function LastUpdated({ scrapedAt }: { scrapedAt: string }) {
 
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isStale ? 'bg-red-400' : 'bg-yellow-400 animate-pulse'}`} />
+      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isStale ? 'bg-red-400' : 'bg-yellow-400 motion-safe:animate-pulse'}`} />
       <span className={isStale ? 'text-red-400' : undefined}>
         Actualizado {label}
       </span>

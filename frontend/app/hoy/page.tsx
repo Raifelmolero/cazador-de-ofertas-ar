@@ -85,18 +85,18 @@ export default function HoyPage() {
 
       {/* Hero */}
       <section
-        className="border-b border-zinc-900 text-center px-4 py-10 sm:py-14"
+        className="border-b border-zinc-900 text-center px-4 py-7 sm:py-12"
         style={{ background: 'radial-gradient(ellipse 80% 50% at 50% -10%, rgba(250,204,21,0.07) 0%, transparent 70%)' }}
       >
-        <div className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
+        <div className="inline-flex flex-wrap justify-center items-center gap-x-2 gap-y-1 bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[11px] sm:text-xs font-semibold px-4 py-1.5 rounded-full mb-4 sm:mb-5">
           <LastUpdated scrapedAt={scrapedAt} /> · {ofertas.length} ofertas
           {minimos > 0 && <> · {minimos} en mínimo histórico</>}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mb-3">
+        <h1 className="text-[1.7rem] sm:text-4xl font-black tracking-tight leading-tight mb-2.5 sm:mb-3 [text-wrap:balance]">
           Las ofertas <span className="text-yellow-400">reales</span> de hoy
         </h1>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed [text-wrap:pretty]">
           Cazadas en Mercado Libre 3 veces por día. Registramos el historial de
           precios y <strong className="text-zinc-200">descartamos los descuentos inflados</strong> —
           lo que ves acá bajó de verdad.
@@ -104,14 +104,36 @@ export default function HoyPage() {
       </section>
 
       {/* Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {ofertas.length === 0 ? (
           <p className="text-center text-zinc-500 py-16">
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯
           </p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertas.map(o => (
+            <OfertaCard producto={ofertas[0]} featured priority />
+            {ofertas.slice(1, 7).map((o, i) => (
+              <OfertaCard key={o.id_ml} producto={o} priority={i < 3} />
+            ))}
+
+            {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}
+            {ofertas.length > 7 && (
+              <div className="col-span-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow-400 rounded-2xl px-5 py-4 sm:px-6 my-1">
+                <p className="text-black font-extrabold text-sm sm:text-base text-center sm:text-left [text-wrap:balance]">
+                  📲 Las 3 mejores del día van directo al canal de Telegram, gratis
+                </p>
+                <a
+                  href={TELEGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 bg-black text-yellow-400 font-bold text-sm rounded-xl px-5 py-2.5 transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                >
+                  Unirme al canal ✈️
+                </a>
+              </div>
+            )}
+
+            {ofertas.slice(7).map(o => (
               <OfertaCard key={o.id_ml} producto={o} />
             ))}
           </div>

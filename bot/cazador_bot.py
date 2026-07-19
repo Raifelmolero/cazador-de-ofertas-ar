@@ -581,7 +581,9 @@ def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:
         with urllib.request.urlopen(req, timeout=30) as resp:
             image_bytes = resp.read()
         suffix = f"-{tag}" if tag else ""
-        fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d')}{suffix}.jpg"
+        # Con hora: hay varias corridas por día y cada una publica un producto
+        # distinto — sin la hora, la segunda pisaría el archivo de la primera.
+        fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}{suffix}.jpg"
         out = BASE_DIR / "feed" / fname
         render_feed(deal, image_bytes, out)
         if dry:
@@ -761,7 +763,7 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
     with urllib.request.urlopen(req, timeout=30) as resp:
         image_bytes = resp.read()
 
-    fname = f"story-{datetime.now(timezone.utc).strftime('%Y%m%d')}.jpg"
+    fname = f"story-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}.jpg"
     out = BASE_DIR / "stories" / fname
     render_story(deal, image_bytes, out)
     if dry:

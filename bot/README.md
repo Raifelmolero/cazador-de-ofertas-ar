@@ -25,11 +25,11 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
    aparecen en CalculadoraML con margen calculado)
 8. Registra cada publicación en `bot/state/posts_log.jsonl` (alimenta el reporte semanal)
 
-### Instagram (corrida del mediodía)
+### Instagram (3 posts por día, en cada corrida)
 
-- Publica solo en el feed vía API: genera una **placa diseñada 4:5**
-  (la sube al repo en `bot/feed/`), caption vendedora con ganchos rotativos
-  y **primer comentario automático con CTA** («link en mi bio»)
+- Publica en el feed vía API: genera una **placa diseñada 4:5** con el
+  sello «CAZADO» (la sube al repo en `bot/feed/`), caption vendedora con
+  ganchos rotativos y **primer comentario automático con CTA** («link en mi bio»)
 - Publica también la **story del día** con placa 9:16 (`bot/stories/`)
 - Te avisa por privado con el permalink + recordatorio de sumar el producto
   a la vidriera de la bio

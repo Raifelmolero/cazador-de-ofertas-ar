@@ -503,7 +503,9 @@ def ig_caption(deal: dict) -> str:
         f"🛒 ¿Lo querés? Tocá el link de mi bio → lista «Mis recomendaciones» y listo.\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
-        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
+        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n"
+        f"📲 Por eso tengo un canal de Telegram (@cazadordeofertasar) donde mando "
+        f"las ofertas apenas las encuentro, antes que acá.\n\n"
         f"#ofertas #descuentos #mercadolibre #argentina #ahorro "
         f"#cazadordeofertas #ofertasargentina"
     )

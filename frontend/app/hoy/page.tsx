@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import OfertaCard from '@/components/OfertaCard'
 import Footer from '@/components/Footer'
@@ -8,15 +7,23 @@ import LastUpdated from '@/components/LastUpdated'
 export const revalidate = 3600
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
+// Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
+// next.config.mjs), así que el canonical consolida todo ahí.
+const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
 export const metadata: Metadata = {
   title: 'Ofertas de hoy — Cazador de Ofertas AR',
   description:
     'Las mejores ofertas reales de Mercado Libre Argentina, cazadas y verificadas 3 veces por día. Sin humo: filtramos los descuentos inflados.',
+  alternates: { canonical: DEALS_URL },
   openGraph: {
     title: 'Ofertas de hoy — Cazador de Ofertas AR',
     description:
       'Las mejores ofertas reales de Mercado Libre Argentina, actualizadas 3 veces por día.',
+    url: DEALS_URL,
+    siteName: 'Cazador de Ofertas AR',
+    locale: 'es_AR',
+    type: 'website',
   },
 }
 
@@ -103,13 +110,14 @@ export default function HoyPage() {
 
         <p className="text-xs text-zinc-600 mt-6">
           ¿Revendés en Mercado Libre?{' '}
-          <Link href="/" className="text-yellow-400/80 hover:text-yellow-400 transition-colors">
+          {/* Absoluto a propósito: en cazadordeofertas.com.ar la raíz vuelve a esta misma página */}
+          <a href="https://www.calculadoraml.com.ar" className="text-yellow-400/80 hover:text-yellow-400 transition-colors">
             Mirá el margen de estos productos en CalculadoraML →
-          </Link>
+          </a>
         </p>
       </section>
 
-      <Footer />
+      <Footer brand="ofertas" />
     </main>
   )
 }

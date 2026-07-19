@@ -892,7 +892,7 @@ def main() -> int:
                         f"✅ Publicado en Instagram: {best['title'][:60]}\n"
                         f"{permalink}\n\n"
                         f"🌐 La página de la bio ya tiene esta oferta "
-                        f"(calculadoraml.com.ar/hoy se actualiza sola).\n\n"
+                        f"(cazadordeofertas.com.ar se actualiza sola).\n\n"
                         f"💡 Tip: story con sticker de link directo al producto:\n"
                         f"{best_link}",
                         dry,

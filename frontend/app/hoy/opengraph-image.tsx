@@ -10,6 +10,13 @@ function fmtPrice(n: number) {
   return `$${Math.round(n).toLocaleString('es-AR')}`
 }
 
+function jpgImage(url: string) {
+  return url
+    .replace('D_Q_NP_', 'D_NQ_NP_')
+    .replace(/-[A-Z]{1,2}\.webp$/, '-F.jpg')
+    .replace(/\.webp$/, '.jpg')
+}
+
 export default async function Image() {
   const ofertas = getOfertas()
   const top = ofertas[0]
@@ -36,7 +43,7 @@ export default async function Image() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 48 }}>
               {top.url_imagen ? (
                 <img
-                  src={top.url_imagen}
+                  src={jpgImage(top.url_imagen)}
                   width={340}
                   height={340}
                   style={{ objectFit: 'contain', borderRadius: 24, background: 'white' }}
@@ -53,7 +60,7 @@ export default async function Image() {
                       fontSize: 32,
                       padding: '8px 24px',
                       borderRadius: 999,
-                      width: 'fit-content',
+                      alignSelf: 'flex-start',
                     }}
                   >
                     {top.descuento_pct}% OFF

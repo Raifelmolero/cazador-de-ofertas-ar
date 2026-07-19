@@ -32,8 +32,38 @@ export default function HoyPage() {
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
 
+  // Datos estructurados para rich results de Google (top 20 alcanza:
+  // el resto no aporta y agranda el HTML).
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Ofertas de hoy — Cazador de Ofertas AR',
+    url: DEALS_URL,
+    numberOfItems: ofertas.length,
+    itemListElement: ofertas.slice(0, 20).map((o, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Product',
+        name: o.titulo,
+        ...(o.url_imagen ? { image: o.url_imagen } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: Math.round(o.precio_actual),
+          priceCurrency: 'ARS',
+          availability: 'https://schema.org/InStock',
+          url: o.url_producto,
+        },
+      },
+    })),
+  }
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">

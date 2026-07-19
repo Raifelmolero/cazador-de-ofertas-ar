@@ -872,9 +872,11 @@ def main() -> int:
 
     hour_utc = datetime.now(timezone.utc).hour
 
-    # Instagram: en el run del mediodía ART (15h UTC) o forzado.
-    # Si hay credenciales de la API publica solo; si no (o si falla), manda el kit manual.
-    if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in (15, 16, 17)) and to_post:
+    # Instagram: en los 3 runs diarios (12/17/21hs ART, mismos horarios que
+    # Telegram y Threads) o forzado. Si hay credenciales de la API publica
+    # solo; si no (o si falla), manda el kit manual.
+    ig_hours = (15, 16, 17, 20, 21, 22, 0, 1, 2)
+    if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in ig_hours) and to_post:
         best = to_post[0]
         best_link = affiliate_url(best["url"], affiliate_id, tool_ig)
         ig_user_id = os.getenv("IG_USER_ID", "")

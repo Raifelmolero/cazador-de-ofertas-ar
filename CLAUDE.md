@@ -51,18 +51,29 @@ tecnicismos innecesarios.**
 - Correr el bot a mano: Actions → Cazador Deals Bot → Run workflow (inputs
   para forzar IG/Threads). Los logs del job muestran el resumen de la corrida.
 
-## Estado al 2026-07-18 (última sesión)
+## Estado al 2026-07-19 (última sesión)
 
 Hecho y en producción: bot multicanal completo, atribución por canal,
-historial de precios, página `/hoy`, reporte semanal enriquecido, multi-dominio
-preparado. No queda tarea manual diaria.
+historial de precios, reporte semanal enriquecido. No queda tarea manual
+diaria. Novedades de esta sesión:
 
-Pendientes del dueño (no de código):
-1. Registrar `cazadordeofertas.com.ar` (o similar) en nic.ar y agregarlo al
-   proyecto de Vercel — el código ya lo soporta.
-2. Crear la etiqueta `web` en el panel de afiliados de ML.
-3. Apuntar la bio de IG a la página de ofertas (`calculadoraml.com.ar/hoy`
-   hasta que exista el dominio nuevo).
+- **`cazadordeofertas.com.ar` VIVO**: registrado en nic.ar, delegado a los
+  nameservers de Vercel (ns1/ns2.vercel-dns.com), agregado al proyecto
+  (apex + www). La raíz sirve la página de ofertas vía el rewrite.
+- SEO: canonical de `/hoy` → raíz del dominio nuevo, `robots.ts`, sitemap
+  con el dominio de ofertas, footer con marca propia, imagen OG dinámica
+  (`opengraph-image.tsx`; ojo: `@vercel/og` NO prerenderiza en Windows —
+  falla local con `TypeError: Invalid URL` en cualquier ruta, no es por
+  espacios — el build real de Vercel/Linux compila bien).
+- IG ahora publica **3×/día** (mismos runs que Telegram/Threads), antes 1×.
+- Placas de feed y story llevan el **sello rojo "CAZADO"** (guiño a la
+  estética original de la cuenta).
+- La mención al canal de Telegram en `ig_caption()` quedó pusheada.
+
+Pendientes del dueño (checklist detallado en
+`../checklist-dominio-nuevo.md`): bio IG/Threads y fijado de Telegram →
+dominio nuevo; etiqueta `web` en el panel ML; (opcional) Search Console
+del dominio nuevo.
 
 Próximo hito: el reporte del domingo trae los primeros números por canal →
 decidir dónde invertir (SEO de CalculadoraML vs. crecimiento de audiencia).

@@ -16,6 +16,7 @@ AMBER = (255, 199, 0)
 WHITE = (255, 255, 255)
 GRAY = (168, 168, 176)
 BLACK = (12, 12, 14)
+STAMP_RED = (206, 43, 43)
 
 _BOLD_FONTS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -57,6 +58,22 @@ def _wrap(draw: ImageDraw.ImageDraw, text: str, font, max_w: int, max_lines: int
     return lines[:max_lines]
 
 
+def _stamp_cazado(img: Image.Image, center: tuple[int, int], scale: float = 1.0) -> None:
+    """Sello tipo goma "CAZADO" rotado, pisando la esquina de la tarjeta."""
+    f = _font(int(58 * scale))
+    tmp = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
+    tw = int(tmp.textlength("CAZADO", font=f))
+    pad_x, pad_y = int(28 * scale), int(16 * scale)
+    w, h = tw + pad_x * 2, int(58 * scale) + pad_y * 2
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(layer)
+    ink = STAMP_RED + (235,)
+    ld.rounded_rectangle([0, 0, w - 1, h - 1], radius=int(12 * scale), outline=ink, width=int(6 * scale))
+    ld.text((w // 2, h // 2 + 1), "CAZADO", font=f, fill=ink, anchor="mm")
+    layer = layer.rotate(11, expand=True, resample=Image.BICUBIC)
+    img.paste(layer, (center[0] - layer.width // 2, center[1] - layer.height // 2), layer)
+
+
 def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     """Placa 4:5 (1080x1350) para el post del feed."""
     FW, FH = 1080, 1350
@@ -83,6 +100,8 @@ def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, fill=AMBER)
     d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
+
+    _stamp_cazado(img, (320, 900), 0.95)
 
     title_f = _font(44)
     y = 995
@@ -142,6 +161,9 @@ def render_story(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.rounded_rectangle([bx0, byc - 58, bx1, byc + 58], radius=44, fill=AMBER)
     d.rounded_rectangle([bx0, byc - 58, bx1, byc + 58], radius=44, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
+
+    # sello CAZADO pisando la esquina inferior izquierda de la tarjeta
+    _stamp_cazado(img, (310, 1080), 1.1)
 
     # título (máx. 2 líneas)
     title_f = _font(50)

@@ -14,13 +14,23 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    const dealsHosts = [DEALS_HOST, `www.${DEALS_HOST}`]
     return {
       // beforeFiles: si no, la página estática "/" gana antes de mirar el host
-      beforeFiles: [DEALS_HOST, `www.${DEALS_HOST}`].map(host => ({
-        source: '/',
-        has: [{ type: 'host', value: host }],
-        destination: '/hoy',
-      })),
+      beforeFiles: [
+        ...dealsHosts.map(host => ({
+          source: '/',
+          has: [{ type: 'host', value: host }],
+          destination: '/hoy',
+        })),
+        // Los navegadores piden /favicon.ico a ciegas; en el dominio de
+        // ofertas tiene que ser el ícono de esa marca, no el de la raíz.
+        ...dealsHosts.map(host => ({
+          source: '/favicon.ico',
+          has: [{ type: 'host', value: host }],
+          destination: '/favicon-ofertas.png',
+        })),
+      ],
     }
   },
 }

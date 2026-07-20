@@ -36,6 +36,15 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 - Si no hay credenciales de la API (o falla), te manda el **kit IG manual**:
   imagen, caption y link listos para publicar en 2 minutos
 
+### Reel diario (experimental, apagado por defecto)
+
+- `bot/reel.py` genera un MP4 9:16 de ~8,5 s con la estética de la marca:
+  gancho «LA CAZA DEL DÍA» → producto con zoom y sello CAZADO → revelación
+  de precio + LINK EN BIO
+- Solo se publica forzándolo: **Actions → Run workflow → `force_reel`**
+  (sube el video al repo en `bot/reels/` y lo publica vía `media_type=REELS`)
+- Cuando el formato esté aprobado, se le suma un horario fijo en `main()`
+
 ### Threads (3 posts por día)
 
 - Mediodía y noche: post con placa + link de afiliado clickeable en el texto

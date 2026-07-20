@@ -657,6 +657,74 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         return f"media_id {media['id']}"
 
 
+def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | None:
+    """Genera el reel del día (bot/reel.py) y lo publica como REELS en IG.
+
+    Experimental: solo corre con FORCE_REEL=1 (workflow_dispatch) hasta que
+    el dueño apruebe el formato. Requiere ffmpeg en el runner.
+    """
+    if not deal.get("img"):
+        print("[warn] Reel: la oferta no tiene imagen, salteo")
+        return None
+    from reel import render_reel  # requiere Pillow + ffmpeg
+
+    req = urllib.request.Request(ig_image_url(deal["img"]), headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        image_bytes = resp.read()
+
+    fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}.mp4"
+    out = BASE_DIR / "reels" / fname
+    render_reel(deal, image_bytes, out)
+    if dry:
+        print(f"[DRY] reel renderizado en {out}")
+        return None
+
+    if not _git_push_file(out, "bot: reel del día [skip ci]"):
+        return None
+    repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
+    time.sleep(5)
+    video_url = f"https://raw.githubusercontent.com/{repo}/main/bot/reels/{fname}"
+
+    container = ig_call(
+        "POST",
+        f"{ig_user_id}/media",
+        {
+            "media_type": "REELS",
+            "video_url": video_url,
+            "caption": ig_caption(deal),
+            "share_to_feed": "true",
+            "access_token": ig_token,
+        },
+    )
+    container_id = container["id"]
+
+    # el procesamiento de video tarda más que el de imágenes: hasta ~5 min
+    for _ in range(30):
+        status = ig_call(
+            "GET", container_id, {"fields": "status_code", "access_token": ig_token}
+        )
+        if status.get("status_code") == "FINISHED":
+            break
+        if status.get("status_code") == "ERROR":
+            raise RuntimeError(f"Reel container en ERROR: {status}")
+        time.sleep(10)
+    else:
+        raise RuntimeError("Reel: timeout esperando el procesamiento del video")
+
+    media = ig_call(
+        "POST",
+        f"{ig_user_id}/media_publish",
+        {"creation_id": container_id, "access_token": ig_token},
+    )
+    try:
+        info = ig_call(
+            "GET", media["id"], {"fields": "permalink", "access_token": ig_token}
+        )
+        return info.get("permalink") or f"media_id {media['id']}"
+    except Exception:  # noqa: BLE001 — el reel ya salió; el permalink es cosmético
+        return f"media_id {media['id']}"
+
+
 def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool,
                     caption: str | None = None, tag: str = "th",
                     text_only: bool = False) -> str | None:
@@ -925,6 +993,26 @@ def main() -> int:
                 )
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
+
+    # Reel diario (experimental): solo con FORCE_REEL=1 vía workflow_dispatch.
+    # Cuando el dueño apruebe el formato, sumarle un horario fijo acá.
+    if os.getenv("FORCE_REEL") == "1" and to_post:
+        r_deal = to_post[0]
+        r_user_id = os.getenv("IG_USER_ID", "")
+        r_token = os.getenv("IG_ACCESS_TOKEN", "")
+        if r_user_id and r_token:
+            try:
+                permalink = publish_reel(r_deal, r_user_id, r_token, dry)
+                if permalink:
+                    log_post(r_deal, "reel")
+                    alert_admin(
+                        token, cfg["admin_chat"], f"🎬 Reel publicado ✅\n{permalink}", dry
+                    )
+            except Exception as e:  # noqa: BLE001 — experimental, jamás frena el resto
+                print(f"[error] reel falló: {e}")
+                alert_admin(
+                    token, cfg["admin_chat"], f"⚠️ El reel no salió ({str(e)[:150]}).", dry
+                )
 
     # Threads: 3/día reutilizando los runs existentes.
     #   mediodía (15-17 UTC) y noche (0-2 UTC): post con placa

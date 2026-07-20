@@ -15,6 +15,10 @@ on:
         description: 'Forzar publicación de Threads'
         type: boolean
         default: false
+      force_reel:
+        description: 'Publicar el reel del día (experimental)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -40,6 +44,10 @@ jobs:
       - name: Instalar dependencias
         run: pip install pillow
 
+      - name: Instalar ffmpeg (solo para el reel)
+        if: ${{ inputs.force_reel == true }}
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
       - name: Publicar ofertas
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -50,6 +58,7 @@ jobs:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           FORCE_IG_KIT: ${{ inputs.force_ig_kit == true && '1' || '0' }}
           FORCE_THREADS: ${{ inputs.force_threads == true && '1' || '0' }}
+          FORCE_REEL: ${{ inputs.force_reel == true && '1' || '0' }}
         run: |
           if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
             echo "::warning::Falta el secreto TELEGRAM_BOT_TOKEN — agregalo en Settings → Secrets → Actions. Salgo sin publicar."

@@ -24,7 +24,9 @@ from story import AMBER, BG, BLACK, GRAY, STAMP_RED, WHITE, _font, _fmt, _stamp_
 
 W, H = 1080, 1920
 FPS = 30
-DUR_HOOK, DUR_PROD, DUR_PRICE = 2.0, 3.5, 3.0
+# gancho corto (el que no enganchó en 2 s ya se fue) y más aire para el
+# contador de precio del cierre
+DUR_HOOK, DUR_PROD, DUR_PRICE = 1.6, 3.4, 3.5
 FADE = 0.18  # segundos de fundido en los cortes
 
 
@@ -52,9 +54,14 @@ def _scene_hook(deal: dict, t: float) -> Image.Image:
     d.text((W // 2, 920), "DEL DÍA", font=_font(150), fill=AMBER, anchor="mm")
 
     if deal.get("discount") is not None:
-        # punch-in: arranca grande y asienta (ease-out en los primeros 0,6 s)
+        # punch-in: arranca grande y asienta (ease-out en los primeros 0,6 s);
+        # después late suave para que el frame nunca quede estático
+        import math
+
         k = _ease_out(min(t / 0.6, 1.0))
         scale = 1.6 - 0.6 * k
+        if t > 0.6:
+            scale = 1.0 + 0.02 * math.sin(2 * math.pi * 1.3 * (t - 0.6))
         _badge(d, W // 2, 1250, f"-{deal['discount']}%", scale)
 
     d.text((W // 2, 1700), "esperá que la veas…", font=_font(40, bold=False), fill=GRAY, anchor="mm")
@@ -100,27 +107,33 @@ def _scene_producto(deal: dict, card: Image.Image, t: float) -> Image.Image:
     return img
 
 
-def _scene_precio(deal: dict, t: float) -> Image.Image:
+def _scene_precio(deal: dict, thumb: Image.Image, t: float) -> Image.Image:
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
-    d.text((W // 2, 210), "CAZADOR DE OFERTAS AR", font=_font(46), fill=AMBER, anchor="mm")
+    d.text((W // 2, 150), "CAZADOR DE OFERTAS AR", font=_font(42), fill=AMBER, anchor="mm")
 
-    prev_f = _font(58, bold=False)
+    # el producto sigue presente durante la revelación (continuidad visual)
+    mask = Image.new("L", thumb.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, *thumb.size], radius=36, fill=255)
+    img.paste(thumb, ((W - thumb.width) // 2, 240), mask)
+
+    prev_f = _font(54, bold=False)
     prev_txt = f"Antes {_fmt(deal['price_prev'])}"
     pw = d.textlength(prev_txt, font=prev_f)
-    d.text((W // 2, 640), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
-    d.line([(W - pw) // 2 - 10, 640, (W + pw) // 2 + 10, 640], fill=GRAY, width=6)
+    d.text((W // 2, 830), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
+    d.line([(W - pw) // 2 - 10, 830, (W + pw) // 2 + 10, 830], fill=GRAY, width=6)
 
-    # pop del precio: escala 1,45 → 1,0 con ease-out en 0,5 s
-    k = _ease_out(min(t / 0.5, 1.0))
-    d.text((W // 2, 860), _fmt(deal["price_cur"]), font=_font(int(190 - 60 * k + 60)), fill=AMBER, anchor="mm")
+    # contador: el precio "cae" desde el anterior hasta el real en 0,9 s
+    k = _ease_out(min(t / 0.9, 1.0))
+    valor = int(deal["price_prev"] - (deal["price_prev"] - deal["price_cur"]) * k)
+    color = AMBER if k >= 1.0 else WHITE
+    d.text((W // 2, 1010), _fmt(valor), font=_font(170), fill=color, anchor="mm")
 
-    if t > 0.45:
+    if t > 1.0:
         ahorro = deal["price_prev"] - deal["price_cur"]
-        d.text((W // 2, 1060), f"Te ahorrás {_fmt(ahorro)}", font=_font(52), fill=WHITE, anchor="mm")
-
-    if deal.get("discount") is not None:
-        _badge(d, W // 2, 1270, f"-{deal['discount']}%", 1.0)
+        d.text((W // 2, 1190), f"Te ahorrás {_fmt(ahorro)}", font=_font(52), fill=WHITE, anchor="mm")
+    if t > 1.3 and deal.get("discount") is not None:
+        _badge(d, W // 2, 1390, f"-{deal['discount']}%", 0.9)
 
     d.rectangle([0, 1560, W, 1720], fill=AMBER)
     banner_f = _font(66)
@@ -132,7 +145,8 @@ def _scene_precio(deal: dict, t: float) -> Image.Image:
     d.polygon([(ax, 1612), (ax - 27, 1652), (ax + 27, 1652)], fill=BLACK)
     d.rectangle([ax - 10, 1652, ax + 10, 1674], fill=BLACK)
 
-    d.text((W // 2, 1800), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
+    d.text((W // 2, 1790), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
+    d.text((W // 2, 1852), "Seguime para la caza de mañana", font=_font(34), fill=WHITE, anchor="mm")
     return img
 
 
@@ -166,6 +180,7 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     black = Image.new("RGB", (W, H), (0, 0, 0))
+    thumb = card.resize((520, 520), Image.LANCZOS)
     bounds = (DUR_HOOK, DUR_HOOK + DUR_PROD)  # cortes de escena
     for i in range(n_frames):
         ts = i / FPS
@@ -174,12 +189,11 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
         elif ts < bounds[1]:
             frame = _scene_producto(deal, card, ts - bounds[0])
         else:
-            frame = _scene_precio(deal, ts - bounds[1])
+            frame = _scene_precio(deal, thumb, ts - bounds[1])
 
-        # fundidos: entrada del video y ±FADE alrededor de cada corte
+        # fundidos SOLO en los cortes de escena — sin fade inicial: el frame 0
+        # es la portada del reel en el feed y tiene que verse completo
         alpha = 1.0
-        if ts < 0.3:
-            alpha = ts / 0.3
         for b in bounds:
             if abs(ts - b) < FADE:
                 alpha = min(alpha, abs(ts - b) / FADE)

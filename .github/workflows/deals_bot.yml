@@ -44,8 +44,7 @@ jobs:
       - name: Instalar dependencias
         run: pip install pillow
 
-      - name: Instalar ffmpeg (solo para el reel)
-        if: ${{ inputs.force_reel == true }}
+      - name: Instalar ffmpeg (para el reel del run nocturno)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
       - name: Publicar ofertas

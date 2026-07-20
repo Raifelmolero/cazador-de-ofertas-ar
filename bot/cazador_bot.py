@@ -953,10 +953,11 @@ def main() -> int:
 
     hour_utc = datetime.now(timezone.utc).hour
 
-    # Instagram: en los 3 runs diarios (12/17/21hs ART, mismos horarios que
-    # Telegram y Threads) o forzado. Si hay credenciales de la API publica
+    # Instagram: post de feed + story en los runs de mediodía y tarde
+    # (12/17hs ART). El run de la noche (21hs ART) publica el reel en vez
+    # del feed — ver bloque de abajo. Si hay credenciales de la API publica
     # solo; si no (o si falla), manda el kit manual.
-    ig_hours = (15, 16, 17, 20, 21, 22, 0, 1, 2)
+    ig_hours = (15, 16, 17, 20, 21, 22)
     if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in ig_hours) and to_post:
         best = to_post[0]
         best_link = affiliate_url(best["url"], affiliate_id, tool_ig)
@@ -1005,9 +1006,11 @@ def main() -> int:
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 
-    # Reel diario (experimental): solo con FORCE_REEL=1 vía workflow_dispatch.
-    # Cuando el dueño apruebe el formato, sumarle un horario fijo acá.
-    if os.getenv("FORCE_REEL") == "1" and to_post:
+    # Reel diario: reemplaza el post de feed en el run de la noche (21hs ART
+    # = 0-2 UTC), para no sumar volumen total sobre el feed. FORCE_REEL=1
+    # lo fuerza en cualquier horario (test manual vía workflow_dispatch).
+    reel_hours = (0, 1, 2)
+    if (os.getenv("FORCE_REEL") == "1" or hour_utc in reel_hours) and to_post:
         r_deal = to_post[0]
         r_user_id = os.getenv("IG_USER_ID", "")
         r_token = os.getenv("IG_ACCESS_TOKEN", "")

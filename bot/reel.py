@@ -7,8 +7,10 @@ Tres escenas con la estética de la marca (negro/ámbar, sello CAZADO):
   3. Precio (3,0 s): precio anterior tachado → precio actual con pop +
      ahorro + banner LINK EN BIO
 
-Requiere ffmpeg en el PATH (o env FFMPEG_BIN). El MP4 sale con pista de
-audio silenciosa AAC (Instagram procesa mejor los videos con audio).
+Requiere ffmpeg en el PATH (o env FFMPEG_BIN). Audio: si existe
+`bot/assets/reel_music.m4a` se usa como pista (con fade final) — para
+cambiar la música alcanza con reemplazar ese archivo por cualquier track
+con licencia. Si no existe, sale con pista silenciosa AAC.
 """
 
 import io
@@ -143,13 +145,21 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     n_frames = int(total * FPS)
 
     ffmpeg = os.getenv("FFMPEG_BIN", "ffmpeg")
+    music = Path(__file__).parent / "assets" / "reel_music.m4a"
+    if music.exists():
+        audio_in = ["-stream_loop", "-1", "-i", str(music)]
+        audio_opts = ["-af", f"afade=t=out:st={total - 1.0:.2f}:d=1.0", "-b:a", "128k"]
+    else:
+        audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+        audio_opts = ["-b:a", "64k"]
     cmd = [
         ffmpeg, "-y",
         "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-        "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
+        *audio_in,
+        "-map", "0:v", "-map", "1:a",
         "-shortest",
         "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", "-b:a", "64k",
+        "-c:a", "aac", *audio_opts,
         "-movflags", "+faststart",
         str(out_path),
     ]

@@ -403,7 +403,7 @@ def send_ig_kit(token: str, admin: str, deal: dict, link: str, dry: bool) -> Non
         f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 😱\n"
         f"Stock y precio pueden volar 🏃\n"
         f"👉 Link en historias y en el canal de Telegram (bio)\n\n"
-        f"#ofertas #descuentos #mercadolibre #argentina #cazadordeofertas"
+        f"{ig_hashtags()}"
     )
     msg = (
         f"📸 <b>KIT INSTAGRAM DE HOY</b>\n\n"
@@ -484,6 +484,18 @@ TH_HOOKS = [
     "👀 Ojo con esto antes de que vuelva a subir:",
 ]
 
+# Pool de hashtags: cada post lleva una mezcla distinta — hashtags idénticos
+# en todos los posts son señal de contenido repetitivo para el filtro de IG.
+IG_HASHTAG_POOL = [
+    "#ofertas", "#descuentos", "#mercadolibre", "#argentina", "#ahorro",
+    "#ofertasargentina", "#promos", "#ofertasdeldia", "#preciosbajos",
+    "#compras", "#descuentosargentina", "#ahorrar",
+]
+
+
+def ig_hashtags(n: int = 6) -> str:
+    return " ".join(["#cazadordeofertas"] + random.sample(IG_HASHTAG_POOL, n - 1))
+
 
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
@@ -500,14 +512,13 @@ def ig_caption(deal: dict) -> str:
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
         f"{badge}\n"
-        f"🛒 ¿Lo querés? Tocá el link de mi bio → lista «Mis recomendaciones» y listo.\n"
+        f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo ves ahí.\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
         f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n"
         f"📲 Por eso tengo un canal de Telegram (@cazadordeofertasar) donde mando "
         f"las ofertas apenas las encuentro, antes que acá.\n\n"
-        f"#ofertas #descuentos #mercadolibre #argentina #ahorro "
-        f"#cazadordeofertas #ofertasargentina"
+        f"{ig_hashtags()}"
     )
 
 
@@ -642,7 +653,7 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         ig_call(
             "POST",
             f"{media['id']}/comments",
-            {"message": "🛒 Lo conseguís en el link de mi bio → «Mis recomendaciones» ⚡",
+            {"message": "🛒 Lo conseguís tocando el link de mi bio → cazadordeofertas.com.ar ⚡",
              "access_token": ig_token},
         )
     except Exception as e:  # noqa: BLE001 — el post ya salió; el comentario es un plus

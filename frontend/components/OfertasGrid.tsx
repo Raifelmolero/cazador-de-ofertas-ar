@@ -26,6 +26,23 @@ function pasaChip(o: OfertaLight, chip: ChipId) {
   return true
 }
 
+const ORDENES = [
+  { id: 'relevancia', label: 'Más relevantes' },
+  { id: 'precio_asc', label: 'Precio: menor a mayor' },
+  { id: 'precio_desc', label: 'Precio: mayor a menor' },
+] as const
+
+type OrdenId = (typeof ORDENES)[number]['id']
+
+function ordenar(ofertas: OfertaLight[], orden: OrdenId) {
+  if (orden === 'relevancia') return ofertas
+  const copia = [...ofertas]
+  copia.sort((a, b) =>
+    orden === 'precio_asc' ? a.precio_actual - b.precio_actual : b.precio_actual - a.precio_actual
+  )
+  return copia
+}
+
 export default function OfertasGrid({
   ofertas,
   telegramUrl,
@@ -35,6 +52,7 @@ export default function OfertasGrid({
 }) {
   const [q, setQ] = useState('')
   const [chip, setChip] = useState<ChipId>('all')
+  const [orden, setOrden] = useState<OrdenId>('relevancia')
 
   const counts = useMemo(() => {
     const c: Record<ChipId, number> = { all: ofertas.length, low: 0, half: 0, cheap: 0 }
@@ -47,27 +65,41 @@ export default function OfertasGrid({
   }, [ofertas])
 
   const nq = normalizar(q.trim())
-  const filtrando = chip !== 'all' || nq !== ''
-  const visibles = useMemo(
-    () =>
-      filtrando
+  const filtrando = chip !== 'all' || nq !== '' || orden !== 'relevancia'
+  const visibles = useMemo(() => {
+    const base =
+      chip !== 'all' || nq !== ''
         ? ofertas.filter(o => pasaChip(o, chip) && (!nq || normalizar(o.titulo).includes(nq)))
-        : ofertas,
-    [ofertas, chip, nq, filtrando]
-  )
+        : ofertas
+    return ordenar(base, orden)
+  }, [ofertas, chip, nq, orden])
 
   return (
     <>
       {/* Búsqueda + filtros */}
       <div className="mb-4 sm:mb-5 space-y-3">
-        <input
-          type="search"
-          value={q}
-          onChange={e => setQ(e.target.value)}
-          placeholder="Buscar entre las ofertas de hoy… (ej: colchón, aire, bici)"
-          aria-label="Buscar ofertas"
-          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
-        />
+        <div className="flex flex-col sm:flex-row gap-2">
+          <input
+            type="search"
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            placeholder="Buscar entre las ofertas de hoy… (ej: colchón, aire, bici)"
+            aria-label="Buscar ofertas"
+            className="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+          />
+          <select
+            value={orden}
+            onChange={e => setOrden(e.target.value as OrdenId)}
+            aria-label="Ordenar ofertas"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+          >
+            {ORDENES.map(o => (
+              <option key={o.id} value={o.id}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {CHIPS.map(c => {
             const activo = chip === c.id
@@ -100,6 +132,7 @@ export default function OfertasGrid({
             onClick={() => {
               setQ('')
               setChip('all')
+              setOrden('relevancia')
             }}
             className="text-sm font-bold bg-zinc-900 border border-zinc-700 hover:border-yellow-400/60 text-white rounded-xl px-5 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
           >

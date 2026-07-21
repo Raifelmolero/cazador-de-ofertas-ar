@@ -512,12 +512,13 @@ def ig_caption(deal: dict) -> str:
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
         f"{badge}\n"
+        f"📲 Esta la vi primero en mi canal de Telegram (@cazadordeofertasar) — "
+        f"ahí mando las ofertas apenas las encuentro, antes que acá. Unite si no "
+        f"querés perderte la próxima.\n\n"
         f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo ves ahí.\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
-        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n"
-        f"📲 Por eso tengo un canal de Telegram (@cazadordeofertasar) donde mando "
-        f"las ofertas apenas las encuentro, antes que acá.\n\n"
+        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
         f"{ig_hashtags()}"
     )
 
@@ -653,7 +654,8 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         ig_call(
             "POST",
             f"{media['id']}/comments",
-            {"message": "🛒 Lo conseguís tocando el link de mi bio → cazadordeofertas.com.ar ⚡",
+            {"message": "📲 ¿Querés verlas apenas las encuentro, antes que en el feed? "
+                        "Canal de Telegram: @cazadordeofertasar. El link también está en mi bio ⚡",
              "access_token": ig_token},
         )
     except Exception as e:  # noqa: BLE001 — el post ya salió; el comentario es un plus

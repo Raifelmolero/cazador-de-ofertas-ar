@@ -67,6 +67,8 @@ def load_state() -> dict:
 def save_state(state: dict) -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     state["posted_ids"] = state["posted_ids"][-600:]
+    if "exclusive_ids" in state:
+        state["exclusive_ids"] = state["exclusive_ids"][-300:]
     state["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with open(STATE_PATH, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=1)
@@ -263,11 +265,19 @@ UMBRAL_ENVIO_GRATIS_ARS = 30000.0
 SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.json"
 
 
-def write_site_data(deals: list[dict], affiliate_id: str) -> None:
-    """Actualiza el JSON de CalculadoraML con las ofertas del día."""
+def write_site_data(deals: list[dict], affiliate_id: str,
+                    exclusive_ids: set[str] | None = None) -> None:
+    """Actualiza el JSON de CalculadoraML con las ofertas del día.
+
+    Las ofertas exclusivas del canal de Telegram se excluyen de la web para
+    que el "SOLO EN EL CANAL" sea verdad — es el gancho para sumar miembros.
+    """
+    exclusive_ids = exclusive_ids or set()
     word_web = os.getenv("ML_WORD_WEB", "web")
     items = []
     for d in deals:
+        if d["id"] in exclusive_ids:
+            continue
         precio = float(d["price_cur"])
         envio = COSTO_ENVIO_BASE_ARS if precio >= UMBRAL_ENVIO_GRATIS_ARS else 0.0
         iibb = precio * RETENCION_IIBB_PCT
@@ -341,12 +351,19 @@ def esc(s: str) -> str:
 
 def deal_caption(deal: dict, link: str) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
+    # Sello de exclusiva: la razón para estar en el canal y no solo en IG/web.
+    exclusiva = (
+        "🔒 <b>SOLO EN EL CANAL</b> — esta no la publicamos ni en Instagram ni en la web\n\n"
+        if deal.get("canal_exclusiva")
+        else ""
+    )
     badge = (
         "📉 <b>El precio más bajo que registramos</b>\n"
         if deal.get("hist_low")
         else ""
     )
     return (
+        f"{exclusiva}"
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
         f"✅ Ahora: <b>{fmt_price(deal['price_cur'])}</b>\n"
@@ -512,9 +529,9 @@ def ig_caption(deal: dict) -> str:
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
         f"{badge}\n"
-        f"📲 Esta la vi primero en mi canal de Telegram (@cazadordeofertasar) — "
-        f"ahí mando las ofertas apenas las encuentro, antes que acá. Unite si no "
-        f"querés perderte la próxima.\n\n"
+        f"📲 En mi canal de Telegram (@cazadordeofertasar) mando MÁS ofertas por "
+        f"día y algunas exclusivas que no subo ni acá ni a la web. Unite si no "
+        f"querés perderte las que no llegan al feed.\n\n"
         f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo ves ahí.\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
@@ -948,9 +965,6 @@ def main() -> int:
     if deals:
         log_scan(len(deals), n_low, n_inf)
 
-    if deals and os.getenv("SKIP_SITE_DATA") != "1":
-        write_site_data(deals, affiliate_id)
-
     if len(deals) < 5:
         alert_admin(
             token,
@@ -969,8 +983,25 @@ def main() -> int:
     ]
     # mínimos históricos primero, después por % OFF
     candidates.sort(key=lambda d: (d["hist_low"], d["discount"]), reverse=True)
-    to_post = candidates[: cfg.get("max_posts", 3)]
-    print(f"[info] {len(candidates)} candidatas nuevas, publico {len(to_post)}")
+    to_post = candidates[: cfg.get("max_posts", 5)]
+
+    # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en
+    # IG (que siempre usa to_post[0], el producto estrella) ni en la web. Es el
+    # motivo concreto para sumarse al canal. Se persisten para que sigan fuera
+    # de la web en corridas futuras (si no, reaparecerían al día siguiente).
+    n_excl = min(cfg.get("exclusive_posts", 0), max(0, len(to_post) - 1))
+    for d in to_post[len(to_post) - n_excl:] if n_excl else []:
+        d["canal_exclusiva"] = True  # marca para el caption y el filtro de la web
+    exclusive_ids = set(state.get("exclusive_ids", []))
+    exclusive_ids.update(d["id"] for d in to_post if d.get("canal_exclusiva"))
+    state["exclusive_ids"] = list(exclusive_ids)
+    print(
+        f"[info] {len(candidates)} candidatas nuevas, publico {len(to_post)} "
+        f"({n_excl} exclusivas del canal)"
+    )
+
+    if deals and os.getenv("SKIP_SITE_DATA") != "1":
+        write_site_data(deals, affiliate_id, exclusive_ids)
 
     published_ids = []
     for deal in to_post:

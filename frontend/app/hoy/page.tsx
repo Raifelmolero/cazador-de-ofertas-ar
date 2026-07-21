@@ -47,7 +47,13 @@ export default function HoyPage() {
   }))
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
-  // el resto no aporta y agranda el HTML).
+  // el resto no aporta y agranda el HTML). priceValidUntil = fin del día
+  // de hoy (las ofertas se refrescan 3 veces al día, ninguna es eterna) —
+  // sin este campo Search Console tira warning en cada Offer.
+  const validUntil = new Date()
+  validUntil.setHours(23, 59, 59, 0)
+  const priceValidUntil = validUntil.toISOString().slice(0, 10)
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -66,6 +72,8 @@ export default function HoyPage() {
           price: Math.round(o.precio_actual),
           priceCurrency: 'ARS',
           availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          priceValidUntil,
           url: o.url_producto,
         },
       },

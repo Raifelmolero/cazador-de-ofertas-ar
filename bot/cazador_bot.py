@@ -668,15 +668,16 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         return f"media_id {media['id']}"
 
 
-def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str | None:
+def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple[str | None, bool]:
     """Genera el reel del día (bot/reel.py) y lo publica como REELS en IG.
 
-    Experimental: solo corre con FORCE_REEL=1 (workflow_dispatch) hasta que
-    el dueño apruebe el formato. Requiere ffmpeg en el runner.
+    También republica el mismo video como story (best-effort). Devuelve
+    (permalink del reel o None, si la story del reel salió).
+    Requiere ffmpeg en el runner.
     """
     if not deal.get("img"):
         print("[warn] Reel: la oferta no tiene imagen, salteo")
-        return None
+        return None, False
     from reel import render_reel  # requiere Pillow + ffmpeg
 
     req = urllib.request.Request(ig_image_url(deal["img"]), headers={"User-Agent": UA})
@@ -688,10 +689,10 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str |
     render_reel(deal, image_bytes, out)
     if dry:
         print(f"[DRY] reel renderizado en {out}")
-        return None
+        return None, False
 
     if not _git_push_file(out, "bot: reel del día [skip ci]"):
-        return None
+        return None, False
     repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
     time.sleep(5)
     video_url = f"https://raw.githubusercontent.com/{repo}/main/bot/reels/{fname}"
@@ -727,13 +728,42 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> str |
         f"{ig_user_id}/media_publish",
         {"creation_id": container_id, "access_token": ig_token},
     )
+
+    story_ok = False
+    try:
+        story_container = ig_call(
+            "POST",
+            f"{ig_user_id}/media",
+            {"media_type": "STORIES", "video_url": video_url, "access_token": ig_token},
+        )
+        story_id = story_container["id"]
+        for _ in range(30):
+            status = ig_call(
+                "GET", story_id, {"fields": "status_code", "access_token": ig_token}
+            )
+            if status.get("status_code") == "FINISHED":
+                break
+            if status.get("status_code") == "ERROR":
+                raise RuntimeError(f"Story del reel en ERROR: {status}")
+            time.sleep(10)
+        else:
+            raise RuntimeError("Story del reel: timeout esperando el procesamiento")
+        ig_call(
+            "POST",
+            f"{ig_user_id}/media_publish",
+            {"creation_id": story_id, "access_token": ig_token},
+        )
+        story_ok = True
+    except Exception as e:  # noqa: BLE001 — el reel ya salió; la story es un plus
+        print(f"[warn] story del reel falló: {e}")
+
     try:
         info = ig_call(
             "GET", media["id"], {"fields": "permalink", "access_token": ig_token}
         )
-        return info.get("permalink") or f"media_id {media['id']}"
+        return info.get("permalink") or f"media_id {media['id']}", story_ok
     except Exception:  # noqa: BLE001 — el reel ya salió; el permalink es cosmético
-        return f"media_id {media['id']}"
+        return f"media_id {media['id']}", story_ok
 
 
 def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: str, dry: bool,
@@ -1016,12 +1046,14 @@ def main() -> int:
         r_token = os.getenv("IG_ACCESS_TOKEN", "")
         if r_user_id and r_token:
             try:
-                permalink = publish_reel(r_deal, r_user_id, r_token, dry)
+                permalink, story_ok = publish_reel(r_deal, r_user_id, r_token, dry)
                 if permalink:
                     log_post(r_deal, "reel")
-                    alert_admin(
-                        token, cfg["admin_chat"], f"🎬 Reel publicado ✅\n{permalink}", dry
-                    )
+                    msg = f"🎬 Reel publicado ✅\n{permalink}"
+                    if story_ok:
+                        log_post(r_deal, "story")
+                        msg += "\n📱 También salió como story."
+                    alert_admin(token, cfg["admin_chat"], msg, dry)
             except Exception as e:  # noqa: BLE001 — experimental, jamás frena el resto
                 print(f"[error] reel falló: {e}")
                 alert_admin(

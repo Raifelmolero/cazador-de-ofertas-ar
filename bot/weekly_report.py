@@ -148,11 +148,13 @@ def build_report(
         scanned = sum(s.get("scanned", 0) for s in scans)
         infladas = sum(s.get("infladas", 0) for s in scans)
         lows_pub = sum(1 for e in entries if e.get("low"))
+        excl_pub = sum(1 for e in entries if e.get("ch") == "telegram" and e.get("excl"))
         scan_block = (
             "🎯 Cacería de la semana:\n"
             f"  • {scanned} ofertas escaneadas en {len(scans)} corridas\n"
             f"  • {infladas} descartadas por descuento inflado 🚫\n"
-            f"  • {lows_pub} publicaciones en mínimo histórico 📉\n\n"
+            f"  • {lows_pub} publicaciones en mínimo histórico 📉\n"
+            f"  • {excl_pub} exclusivas solo del canal 🔒\n\n"
         )
 
     if not entries:

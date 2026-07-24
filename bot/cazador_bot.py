@@ -84,6 +84,7 @@ def log_post(deal: dict, channel: str) -> None:
         "discount": deal["discount"],
         "price": deal["price_cur"],
         "low": bool(deal.get("hist_low")),
+        "excl": bool(deal.get("canal_exclusiva")),
     }
     POSTS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(POSTS_LOG_PATH, "a", encoding="utf-8") as f:

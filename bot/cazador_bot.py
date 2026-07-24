@@ -514,6 +514,36 @@ def ig_hashtags(n: int = 6) -> str:
     return " ".join(["#cazadordeofertas"] + random.sample(IG_HASHTAG_POOL, n - 1))
 
 
+# Destacados que el dueño ya armó a mano en el perfil de IG. Es solo una
+# sugerencia para la alerta de Telegram — no hay API de Meta para destacados,
+# así que el paso de arrastrar la story sigue siendo 100% manual.
+DESTACADO_KEYWORDS = {
+    "Tecnología": ["smart tv", "auricular", "notebook", "celular", "smartphone",
+                   "tablet", "parlante", "bocina", "cámara", "camara", "airpods",
+                   "mouse", "teclado", "monitor", "impresora", "router"],
+    "Hogar": ["aire acondicionado", "colchón", "colchon", "sommier", "lavarropas",
+              "secarropas", "heladera", "microondas", "cafetera", "pava",
+              "aspiradora", "ventilador", "licuadora", "freidora", "plancha"],
+    "Herramientas": ["taladro", "amoladora", "compresor", "soldadora", "sierra",
+                      "atornillador", "hidrolavadora", "generador"],
+    "Deportes": ["bicicleta", "cinta", "mancuerna", "pesa", "gimnasio", "spinning",
+                 "bici", "pelota", "running"],
+    "Salud": ["tensiómetro", "tensiometro", "termómetro", "termometro", "masajeador",
+              "báscula", "bascula", "balanza"],
+    "Cuidado Personal": ["afeitadora", "secador", "planchita", "depiladora",
+                          "cepillo eléctrico", "cepillo electrico"],
+    "Invierno": ["calefactor", "estufa", "frazada", "manta"],
+}
+
+
+def sugerir_destacado(title: str) -> str | None:
+    t = title.lower()
+    for destacado, keywords in DESTACADO_KEYWORDS.items():
+        if any(k in t for k in keywords):
+            return destacado
+    return None
+
+
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
     hook = "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
@@ -1057,7 +1087,11 @@ def main() -> int:
             try:
                 if publish_story(best, ig_user_id, ig_token, dry):
                     log_post(best, "story")
-                    alert_admin(token, cfg["admin_chat"], "📱 Story del día publicada ✅", dry)
+                    destacado = sugerir_destacado(best["title"])
+                    msg = "📱 Story del día publicada ✅"
+                    if destacado:
+                        msg += f"\n💡 Destacado sugerido: {destacado}"
+                    alert_admin(token, cfg["admin_chat"], msg, dry)
             except Exception as e:  # noqa: BLE001 — la story es best-effort
                 print(f"[warn] story falló: {e}")
                 alert_admin(
@@ -1086,6 +1120,9 @@ def main() -> int:
                     if story_ok:
                         log_post(r_deal, "story")
                         msg += "\n📱 También salió como story."
+                        destacado = sugerir_destacado(r_deal["title"])
+                        if destacado:
+                            msg += f"\n💡 Destacado sugerido: {destacado}"
                     alert_admin(token, cfg["admin_chat"], msg, dry)
             except Exception as e:  # noqa: BLE001 — experimental, jamás frena el resto
                 print(f"[error] reel falló: {e}")

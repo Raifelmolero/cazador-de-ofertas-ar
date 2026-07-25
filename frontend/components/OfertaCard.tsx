@@ -96,7 +96,7 @@ export default function OfertaCard({
               alt={producto.titulo}
               fill
               priority={priority}
-              sizes="(max-width: 768px) 40vw, 288px"
+              unoptimized
               className="object-contain p-3"
             />
           ) : (
@@ -165,7 +165,7 @@ export default function OfertaCard({
             alt={producto.titulo}
             fill
             priority={priority}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            unoptimized
             className="object-contain p-3"
           />
         ) : (

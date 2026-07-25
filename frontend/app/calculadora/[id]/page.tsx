@@ -66,6 +66,7 @@ export default function CalculadoraPage({ params }: { params: { id: string } }) 
                 src={producto.url_imagen}
                 alt={producto.titulo}
                 fill
+                unoptimized
                 className="object-contain p-3"
                 priority
               />

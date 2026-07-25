@@ -4,8 +4,6 @@ import ProductsGrid from '@/components/ProductsGrid'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 
-export const revalidate = 3600
-
 export default function HomePage() {
   const productos = getProductos()
   const scrapedAt = getScrapedAt().toISOString()

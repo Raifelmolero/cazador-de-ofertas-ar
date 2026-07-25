@@ -6,8 +6,6 @@ import BackToTop from '@/components/BackToTop'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 
-export const revalidate = 3600
-
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
 // next.config.mjs), así que el canonical consolida todo ahí.

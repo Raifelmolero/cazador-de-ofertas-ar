@@ -51,30 +51,57 @@ tecnicismos innecesarios.**
 - Correr el bot a mano: Actions → Cazador Deals Bot → Run workflow (inputs
   para forzar IG/Threads). Los logs del job muestran el resumen de la corrida.
 
-## Estado al 2026-07-19 (última sesión)
+## Historia previa (sesión del 2026-07-19)
 
-Hecho y en producción: bot multicanal completo, atribución por canal,
-historial de precios, reporte semanal enriquecido. No queda tarea manual
-diaria. Novedades de esta sesión:
+Bot multicanal completo, atribución por canal, historial de precios y reporte
+semanal enriquecido, todo en producción. **`cazadordeofertas.com.ar` VIVO**:
+registrado en nic.ar, delegado a los nameservers de Vercel, apex + www en el
+proyecto; la raíz sirve la página de ofertas vía el rewrite. SEO armado
+(canonical de `/hoy` → dominio nuevo, `robots.ts`, sitemap, footer con marca
+propia, imagen OG dinámica). IG pasó a publicar 3×/día. Placas con el sello
+rojo "CAZADO".
 
-- **`cazadordeofertas.com.ar` VIVO**: registrado en nic.ar, delegado a los
-  nameservers de Vercel (ns1/ns2.vercel-dns.com), agregado al proyecto
-  (apex + www). La raíz sirve la página de ofertas vía el rewrite.
-- SEO: canonical de `/hoy` → raíz del dominio nuevo, `robots.ts`, sitemap
-  con el dominio de ofertas, footer con marca propia, imagen OG dinámica
-  (`opengraph-image.tsx`; ojo: `@vercel/og` NO prerenderiza en Windows —
-  falla local con `TypeError: Invalid URL` en cualquier ruta, no es por
-  espacios — el build real de Vercel/Linux compila bien).
-- IG ahora publica **3×/día** (mismos runs que Telegram/Threads), antes 1×.
-- Placas de feed y story llevan el **sello rojo "CAZADO"** (guiño a la
-  estética original de la cuenta).
-- La mención al canal de Telegram en `ig_caption()` quedó pusheada.
+Ojo con `opengraph-image.tsx`: `@vercel/og` NO prerenderiza en Windows —
+falla local con `TypeError: Invalid URL` en cualquier ruta, no es por
+espacios. El build real de Vercel/Linux compila bien.
 
-Pendientes del dueño (checklist detallado en
-`../checklist-dominio-nuevo.md`): bio IG/Threads y fijado de Telegram →
-dominio nuevo; etiqueta `web` en el panel ML; (opcional) Search Console
-del dominio nuevo.
+Los pendientes manuales de esa sesión (bios → dominio nuevo, etiqueta `web`
+en el panel de ML) ya los hizo el dueño.
 
-Próximo hito: el reporte del domingo trae los primeros números por canal →
-decidir dónde invertir (SEO de CalculadoraML vs. crecimiento de audiencia).
+## Estado al 2026-07-26 (última sesión)
+
+Sesión de optimización y deuda técnica, disparada por un mail de Vercel
+avisando 75% de la cuota gratis de Image Optimization.
+
+- **Fotos de producto sin optimizador de Vercel**: las imágenes de ML ya
+  vienen comprimidas del CDN de ML, así que re-optimizarlas solo gastaba
+  transformaciones (el bot trae fotos nuevas 3×/día, cada una es una
+  transformación que nunca se cacheó). Van con `unoptimized`.
+- **Sin ISR en `/` ni `/hoy`**: los datos son estáticos y cada push del bot
+  ya redeploya, así que el `revalidate=3600` regeneraba sin nada nuevo que
+  mostrar, gastando invocaciones.
+- **Retención de 14 días para la media** (`_prune_old_media`). Cuidado: las
+  placas/stories/reels se commitean **a propósito**, porque las APIs de
+  IG/Threads exigen una URL pública y se usa `raw.githubusercontent`. NO
+  gitignorearlas: rompe la publicación. Una vez publicado, IG sirve su copia
+  y el archivo del repo ya no hace falta. La fecha se saca del **nombre**,
+  no del mtime: en el runner todo tiene la fecha del checkout.
+- **Frontend en Next 16 + React 19** (venía de Next 14.2.35). `params` ahora
+  es `Promise` (se await-ea en `calculadora/[id]`); `next lint` ya no existe,
+  se usa `eslint` directo con flat config en `eslint.config.mjs`.
+
+El `npm audit` sigue marcando 4 highs: son `postcss` y `sharp` empaquetados
+dentro de Next, más `brace-expansion` del herramental de dev. No se pueden
+arreglar sin romper Next y ninguna corre en este sitio (estático, sin
+optimizador de imágenes). No perder tiempo ahí.
+
+**Números por canal** (de `bot/state/metrics_log.jsonl`, 20/07): Instagram
+1475 seguidores, Threads 7, **Telegram 2**. El sistema está diseñado con
+Telegram como canal principal e IG como best-effort, pero la audiencia real
+está en IG — vale replantearlo con los datos de clicks del panel de ML.
+
+Pendiente de deuda: el shuffle de `ProductsGrid` y el reloj de `LastUpdated`
+son patrones "solo cliente" que las reglas nuevas de React desaconsejan; el
+primero quedó con un `eslint-disable` explicado. Reescribirlos con el
+patrón moderno es una tarea aparte, no urgente.
 Los badges de mínimo histórico empiezan ~21/07 (3 días de historia).

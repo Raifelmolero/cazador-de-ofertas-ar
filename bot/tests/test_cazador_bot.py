@@ -259,6 +259,15 @@ class TestIgCaption(unittest.TestCase):
     def test_menciona_el_dominio_propio(self):
         self.assertIn("cazadordeofertas.com.ar", bot.ig_caption(self.DEAL))
 
+    def test_el_handle_de_telegram_no_lleva_arroba(self):
+        # En IG cualquier "@algo" es una mención clickeable a un perfil de
+        # Instagram, no a Telegram — y existe una cuenta de IG homónima que
+        # no tiene nada que ver. Con arroba, el link termina ahí en vez de
+        # en el canal real.
+        cap = bot.ig_caption(self.DEAL)
+        self.assertIn("t.me/cazadordeofertasar", cap)
+        self.assertNotIn("@cazadordeofertasar", cap)
+
     def test_el_badge_de_minimo_historico_aparece_solo_cuando_corresponde(self):
         sin = bot.ig_caption({**self.DEAL, "hist_low": False})
         con = bot.ig_caption({**self.DEAL, "hist_low": True})

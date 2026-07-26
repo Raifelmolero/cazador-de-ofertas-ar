@@ -571,8 +571,11 @@ def ig_caption(deal: dict) -> str:
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
         f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
+        # Sin @: en IG cualquier "@algo" es una mención clickeable a un perfil
+        # de Instagram (si existe una cuenta con ese nombre, va ahí, no a
+        # Telegram) — pasó de verdad con una cuenta random homónima.
         f"📲 Más ofertas por día (y algunas exclusivas) en mi Telegram: "
-        f"@cazadordeofertasar\n\n"
+        f"t.me/cazadordeofertasar\n\n"
         f"{ig_hashtags()}"
     )
 
@@ -708,8 +711,10 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         ig_call(
             "POST",
             f"{media['id']}/comments",
+            # Sin @: ver el comentario del caption sobre por qué (mención de IG
+            # secuestra el link hacia otro perfil, no hacia Telegram).
             {"message": "📲 ¿Querés verlas apenas las encuentro, antes que en el feed? "
-                        "Canal de Telegram: @cazadordeofertasar. El link también está en mi bio ⚡",
+                        "Canal de Telegram: t.me/cazadordeofertasar. El link también está en mi bio ⚡",
              "access_token": ig_token},
         )
     except Exception as e:  # noqa: BLE001 — el post ya salió; el comentario es un plus

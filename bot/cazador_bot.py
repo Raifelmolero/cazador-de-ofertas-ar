@@ -32,7 +32,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from html import unescape
 from pathlib import Path
 
@@ -47,6 +47,9 @@ UA = (
 )
 
 OFERTAS_URL = "https://www.mercadolibre.com.ar/ofertas?page={page}"
+
+# Días que se conserva la media (placas, stories, reels) antes de borrarla.
+MEDIA_RETENTION_DAYS = 14
 
 
 # ---------------------------------------------------------------- utilidades
@@ -875,6 +878,36 @@ def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: 
         return f"media_id {media['id']}"
 
 
+def _prune_old_media(directory: Path, keep_days: int = MEDIA_RETENTION_DAYS) -> int:
+    """Borra la media que IG/Threads ya consumió, y devuelve cuántos archivos sacó.
+
+    Las APIs descargan el archivo al crear el contenedor y después sirven su
+    propia copia, así que la URL de raw.githubusercontent solo hace falta unos
+    minutos; guardar dos semanas es margen de sobra. Sin esto el árbol crece
+    ~1,5 MB por día para siempre y cada corrida se lo baja entero.
+
+    La fecha sale del nombre (feed-20260726-02.jpg) y no del mtime: en el runner
+    todos los archivos quedan con la fecha del checkout. Nombre que no matchea,
+    nombre que no se toca.
+    """
+    limite = (datetime.now(timezone.utc) - timedelta(days=keep_days)).date()
+    borrados = 0
+    for archivo in sorted(directory.glob("*")):
+        if not archivo.is_file():
+            continue
+        m = re.search(r"(\d{8})", archivo.name)
+        if not m:
+            continue
+        try:
+            fecha = datetime.strptime(m.group(1), "%Y%m%d").date()
+        except ValueError:
+            continue
+        if fecha < limite:
+            archivo.unlink()
+            borrados += 1
+    return borrados
+
+
 def _git_push_file(path: Path, message: str) -> bool:
     """Commitea y pushea un archivo desde el runner (usa las credenciales del checkout)."""
     import subprocess
@@ -885,7 +918,14 @@ def _git_push_file(path: Path, message: str) -> bool:
         "-c", "user.email=github-actions[bot]@users.noreply.github.com",
     ]
     try:
-        subprocess.run(["git", "-C", str(repo_root), "add", str(path)], check=True)
+        borrados = _prune_old_media(path.parent)
+        if borrados:
+            print(f"[info] limpieza: {borrados} archivo(s) viejo(s) de {path.parent.name}")
+        # -A sobre el directorio para que las bajas de la limpieza viajen en el
+        # mismo commit que el archivo nuevo.
+        subprocess.run(
+            ["git", "-C", str(repo_root), "add", "-A", str(path.parent)], check=True
+        )
         staged = subprocess.run(
             ["git", "-C", str(repo_root), "diff", "--cached", "--quiet"]
         )

@@ -18,7 +18,11 @@ export default function ProductsGrid({ productos }: { productos: ProductWithMarg
   const [shuffled, setShuffled] = useState(productos)
 
   // Shuffle aleatorio en cada carga de página (client-side, post-hydration).
+  // El setState en el efecto es a propósito: si el orden se sorteara durante el
+  // render, el HTML prerenderizado no coincidiría con la hidratación. Next 16
+  // trajo una regla que lo desaconseja en general; acá el post-mount es el punto.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShuffled([...productos].sort(() => Math.random() - 0.5))
   }, [productos])
 

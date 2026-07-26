@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-function formatRelative(date: Date): string {
-  const diffMin = Math.floor((Date.now() - date.getTime()) / 60000)
+function formatRelative(date: Date, ahora: number): string {
+  const diffMin = Math.floor((ahora - date.getTime()) / 60000)
   if (diffMin < 1) return 'hace menos de 1 minuto'
   if (diffMin < 60) return `hace ${diffMin} min`
   const h = Math.floor(diffMin / 60)
@@ -14,14 +14,18 @@ function formatRelative(date: Date): string {
 
 export default function LastUpdated({ scrapedAt }: { scrapedAt: string }) {
   const date = useMemo(() => new Date(scrapedAt), [scrapedAt])
-  const [label, setLabel] = useState(formatRelative(date))
+  // Un solo "ahora" en estado, que el intervalo refresca: leer el reloj durante
+  // el render es impuro (Next 16 lo marca) y además daba dos lecturas distintas
+  // para el texto y para el semáforo.
+  const [ahora, setAhora] = useState(() => Date.now())
 
   useEffect(() => {
-    const id = setInterval(() => setLabel(formatRelative(date)), 60_000)
+    const id = setInterval(() => setAhora(Date.now()), 60_000)
     return () => clearInterval(id)
-  }, [date])
+  }, [])
 
-  const isStale = Date.now() - date.getTime() > 48 * 3_600_000
+  const label = formatRelative(date, ahora)
+  const isStale = ahora - date.getTime() > 48 * 3_600_000
 
   return (
     <span className="inline-flex items-center gap-1.5">

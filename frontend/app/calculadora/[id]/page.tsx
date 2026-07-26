@@ -15,9 +15,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }): Promise<Metadata> {
-  const producto = getProductoById(params.id)
+  const { id } = await params
+  const producto = getProductoById(id)
   if (!producto) return { title: 'Producto no encontrado' }
 
   return {
@@ -31,8 +32,9 @@ export async function generateMetadata({
   }
 }
 
-export default function CalculadoraPage({ params }: { params: { id: string } }) {
-  const producto = getProductoById(params.id)
+export default async function CalculadoraPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const producto = getProductoById(id)
   if (!producto) notFound()
 
   const comisionArs = producto.precio_actual * producto.comision_clasica_pct

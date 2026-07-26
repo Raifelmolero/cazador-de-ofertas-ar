@@ -135,6 +135,15 @@ IG es la bio. El caption tenía el link de la bio **tercero**, después de tres
 líneas promocionando Telegram. Reordenado: la bio va primero y sola: Telegram
 queda en una línea al final (`ig_caption()`, con test que fija el orden).
 
+**Bug real encontrado con captura de un post**: el caption y el primer
+comentario automático escribían `@cazadordeofertasar` pensando en el canal de
+Telegram, pero en Instagram cualquier `@algo` es una mención clickeable a un
+perfil de Instagram — y existe una cuenta de IG homónima sin relación (18
+seguidores, 0 posts). El click terminaba ahí, no en Telegram. Arreglado:
+ahora dice `t.me/cazadordeofertasar` (sin `@`, no se autolinkea a ningún
+perfil). **Ojo con esto en cualquier texto nuevo que mencione el handle de
+Telegram** — nunca escribirlo con `@` en contenido que se publique en IG.
+
 **Search Console** (ya conectado, no hace falta configurarlo — el dueño lo
 hizo por su cuenta): 12 impresiones y 0 clicks en 7 días, posición promedio
 12,7. Es lo esperable para un dominio con ~1 semana de vida — no hay atajo

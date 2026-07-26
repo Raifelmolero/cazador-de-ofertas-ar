@@ -1,0 +1,51 @@
+name: Frontend CI
+
+# Red de contención del sitio: si el build o el lint se rompen, que se sepa acá
+# y no cuando Vercel falla el deploy (o peor, cuando el sitio sale roto).
+# Solo corre si cambió algo del frontend — los commits de estado del bot llevan
+# [skip ci] y no disparan nada.
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend_ci.yml'
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend_ci.yml'
+
+permissions:
+  contents: read
+
+# Si llegan varios pushes seguidos, solo importa el último.
+concurrency:
+  group: frontend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # `next build` también corre el chequeo de tipos, así que esto cubre
+      # TypeScript sin un paso aparte.
+      - name: Build
+        run: npm run build

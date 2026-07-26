@@ -13,6 +13,8 @@ on:
     paths:
       - 'frontend/**'
       - '.github/workflows/frontend_ci.yml'
+  # Para correrlo a mano desde Actions → Frontend CI → Run workflow.
+  workflow_dispatch:
 
 permissions:
   contents: read

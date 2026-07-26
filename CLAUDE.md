@@ -96,13 +96,59 @@ dentro de Next, más `brace-expansion` del herramental de dev. No se pueden
 arreglar sin romper Next y ninguna corre en este sitio (estático, sin
 optimizador de imágenes). No perder tiempo ahí.
 
-**Números por canal** (de `bot/state/metrics_log.jsonl`, 20/07): Instagram
-1475 seguidores, Threads 7, **Telegram 2**. El sistema está diseñado con
-Telegram como canal principal e IG como best-effort, pero la audiencia real
-está en IG — vale replantearlo con los datos de clicks del panel de ML.
+`LastUpdated` ya no lee el reloj durante el render (leía `Date.now()` dos
+veces, con lecturas distintas para el texto y el semáforo de "datos viejos");
+ahora hay un solo `ahora` en estado que el intervalo refresca. El shuffle de
+`ProductsGrid` sigue con un `eslint-disable` puntual y explicado — sortear
+durante el render rompería la hidratación, que es justo lo que el efecto
+evita. No es deuda pendiente, es intencional.
 
-Pendiente de deuda: el shuffle de `ProductsGrid` y el reloj de `LastUpdated`
-son patrones "solo cliente" que las reglas nuevas de React desaconsejan; el
-primero quedó con un `eslint-disable` explicado. Reescribirlos con el
-patrón moderno es una tarea aparte, no urgente.
-Los badges de mínimo histórico empiezan ~21/07 (3 días de historia).
+**CI nuevo**: `frontend_ci.yml` (build + lint, dispara con cambios en
+`frontend/`) y `bot_tests.yml` (corre `bot/tests/`, dispara con cambios en
+`bot/`). Ambos con `workflow_dispatch` para correrlos a mano. Los commits de
+estado del bot llevan `[skip ci]` y no los despiertan.
+
+**`scraper/` + `main.py` + `requirements.txt` borrados**: era la versión vieja
+del scraper (playwright), reemplazada por el bot hace tiempo pero seguía
+duplicando la fórmula de márgenes (mismas constantes copiadas en
+`scraper/calculator.py` y `cazador_bot.py` — riesgo de desincronizarse en
+silencio). `.env.example` estaba desactualizado (documentaba variables del
+scraper muerto y le faltaban casi todas las del bot); reescrito con las 19
+que el bot realmente lee.
+
+### Los números de ML: cero tráfico orgánico, no es cosa del código
+
+**Posts vs. audiencia (últimos 7 días, `bot/state/posts_log.jsonl`)**:
+Telegram 100 posts (2 suscriptores), IG 42 entre feed/story/reel (1475
+seguidores), Threads 21 (7 seguidores). El 61% del esfuerzo de publicación va
+al canal más chico.
+
+**Panel de afiliados de ML, mismos 7 días**: Telegram e Instagram con **0
+clicks** cada uno. La única actividad fue la etiqueta `web` (7 clicks, 2
+ventas) — y esas ventas las generó un amigo del dueño con un link pasado a
+mano, no tráfico real. Ingreso orgánico real de la semana: **$0**.
+
+Causa técnica identificada: Instagram no permite links clickeables en el
+caption, y las stories del bot van sin link sticker (no se puede agregar por
+API — no es algo para "arreglar" en código). El único camino clickeable desde
+IG es la bio. El caption tenía el link de la bio **tercero**, después de tres
+líneas promocionando Telegram. Reordenado: la bio va primero y sola: Telegram
+queda en una línea al final (`ig_caption()`, con test que fija el orden).
+
+**Search Console** (ya conectado, no hace falta configurarlo — el dueño lo
+hizo por su cuenta): 12 impresiones y 0 clicks en 7 días, posición promedio
+12,7. Es lo esperable para un dominio con ~1 semana de vida — no hay atajo
+técnico, la autoridad se construye en meses. Sin acción por ahora; revisar de
+nuevo con más historia (3-4 semanas).
+
+**Sitemap recortado**: sacadas las ~96 páginas `/calculadora/[id]` — rotan
+~50% por corrida del bot (de 118 URLs vivas el 20/07, solo 29 seguían
+respondiendo 6 días después) y apuntan a consultas sin volumen. Quedan las 2
+URLs estables (`calculadoraml.com.ar` y `cazadordeofertas.com.ar`), que son
+las que tienen que ganar las búsquedas genéricas. Las páginas de calculadora
+siguen existiendo y navegables desde el sitio, solo se dejó de anunciarlas.
+
+**Próximo hito**: con más historia en ML (30 días) y Search Console (3-4
+semanas), decidir si vale la pena bajarle la cadencia a Telegram — hoy es
+puro costo de mantenimiento sin contrapartida — y si Instagram empieza a
+mover clicks reales a la bio con el caption reordenado.

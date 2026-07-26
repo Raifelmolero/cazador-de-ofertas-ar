@@ -18,8 +18,9 @@ tecnicismos innecesarios.**
   por hostname en `next.config.mjs` hace que la raíz del dominio de ofertas
   (default `cazadordeofertas.com.ar`, configurable con env `DEALS_HOST`)
   sirva `/hoy`.
-- `scraper/` + `main.py` — versión vieja del scraper del sitio; el bot es
-  quien actualiza `frontend/data/productos_rentables.json` ahora.
+- `bot/tests/` — tests de la lógica pura (link de afiliado, ofertas infladas,
+  márgenes, parseo de ML, retención de media). Corren solos en Actions y a
+  mano con `python -m unittest discover -s bot/tests -v`.
 - Estado en `bot/state/` (posted_ids, posts_log, scan_log, price_history,
   metrics_log): lo commitean los workflows con `[skip ci]`. Cada push a main
   redeploya Vercel, así el sitio siempre tiene datos frescos.

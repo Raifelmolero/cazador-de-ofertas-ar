@@ -1,0 +1,39 @@
+name: Bot Tests
+
+# Cubre la lógica que cuesta plata si se rompe: el link de afiliado, el filtro
+# de ofertas infladas, los márgenes del sitio y el parseo de las tarjetas de ML.
+# Son tests puros (sin red, sin git, sin APIs), así que no necesitan secretos.
+on:
+  push:
+    paths:
+      - 'bot/**'
+      - '.github/workflows/bot_tests.yml'
+  pull_request:
+    paths:
+      - 'bot/**'
+      - '.github/workflows/bot_tests.yml'
+  # Para correrlo a mano desde Actions → Bot Tests → Run workflow.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bot-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Sin pip install: el bot es stdlib pura y los tests también.
+      - name: Correr tests
+        run: python -m unittest discover -s bot/tests -v

@@ -244,6 +244,36 @@ class TestParseCards(unittest.TestCase):
         self.assertEqual(bot.parse_cards("<html><body>nada</body></html>"), [])
 
 
+class TestIgCaption(unittest.TestCase):
+    """El caption de IG: el link de la bio es el único camino clickeable."""
+
+    DEAL = {"title": "Producto de Prueba", "price_prev": 100000, "price_cur": 50000,
+            "discount": 50, "hist_low": False}
+
+    def test_el_link_de_la_bio_va_antes_que_telegram(self):
+        # En IG los links del caption no son clickeables: la bio es lo único
+        # que puede terminar en una compra, así que va primero.
+        cap = bot.ig_caption(self.DEAL)
+        self.assertLess(cap.index("bio"), cap.index("Telegram"))
+
+    def test_menciona_el_dominio_propio(self):
+        self.assertIn("cazadordeofertas.com.ar", bot.ig_caption(self.DEAL))
+
+    def test_el_badge_de_minimo_historico_aparece_solo_cuando_corresponde(self):
+        sin = bot.ig_caption({**self.DEAL, "hist_low": False})
+        con = bot.ig_caption({**self.DEAL, "hist_low": True})
+        self.assertNotIn("MÍNIMO HISTÓRICO", sin)
+        self.assertIn("MÍNIMO HISTÓRICO", con)
+
+    def test_muestra_los_dos_precios_y_el_ahorro(self):
+        # Precios que dan un ahorro distinto de ambos, para que las tres
+        # aserciones sean independientes.
+        cap = bot.ig_caption({**self.DEAL, "price_prev": 100000, "price_cur": 70000})
+        self.assertIn(bot.fmt_price(100000), cap)  # estaba
+        self.assertIn(bot.fmt_price(70000), cap)   # hoy
+        self.assertIn(bot.fmt_price(30000), cap)   # ahorro
+
+
 class TestPruneOldMedia(unittest.TestCase):
     """Retención de placas/stories/reels ya publicados."""
 

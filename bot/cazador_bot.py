@@ -563,13 +563,16 @@ def ig_caption(deal: dict) -> str:
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
         f"{badge}\n"
-        f"📲 En mi canal de Telegram (@cazadordeofertasar) mando MÁS ofertas por "
-        f"día y algunas exclusivas que no subo ni acá ni a la web. Unite si no "
-        f"querés perderte las que no llegan al feed.\n\n"
-        f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo ves ahí.\n"
+        # El link de la bio va primero y solo: en IG los links del caption no
+        # son clickeables, así que es el único camino que puede terminar en una
+        # compra. Telegram queda al final, en una línea.
+        f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo "
+        f"comprás desde ahí.\n\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
         f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
+        f"📲 Más ofertas por día (y algunas exclusivas) en mi Telegram: "
+        f"@cazadordeofertasar\n\n"
         f"{ig_hashtags()}"
     )
 

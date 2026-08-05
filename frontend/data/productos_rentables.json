@@ -1,8 +1,8 @@
 {
  "metadata": {
-  "scraped_at": "2026-08-04T21:20:26+00:00",
+  "scraped_at": "2026-08-05T02:07:25+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 101
+  "total_items": 94
  },
  "items": [
   {
@@ -180,9 +180,9 @@
    "id_ml": "MLA53657592",
    "titulo": "Auriculares Jbl Wave Beam 2 Tws In-ear Negro",
    "categoria_principal": "ofertas del día",
-   "precio_actual": 97759.0,
+   "precio_actual": 129999.0,
    "precio_anterior": 155999,
-   "descuento_pct": 37,
+   "descuento_pct": 16,
    "minimo_historico": false,
    "moneda": "ARS",
    "ventas_estimadas": null,
@@ -192,8 +192,8 @@
    "comision_premium_pct": 0.3,
    "retencion_iibb_pct": 0.03,
    "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 72162.38,
-   "margen_neto_premium_ars": 57498.53
+   "margen_neto_clasico_ars": 98599.18,
+   "margen_neto_premium_ars": 79099.33
   },
   {
    "id_ml": "MLA58899696",
@@ -256,9 +256,9 @@
    "id_ml": "MLA15705812",
    "titulo": "Cafetera Moulinex Dolce Gusto Nescafé Piccolo XS Blanca 1 litro",
    "categoria_principal": "ofertas del día",
-   "precio_actual": 103549.0,
+   "precio_actual": 108999.0,
    "precio_anterior": 272490,
-   "descuento_pct": 62,
+   "descuento_pct": 60,
    "minimo_historico": false,
    "moneda": "ARS",
    "ventas_estimadas": null,
@@ -268,8 +268,8 @@
    "comision_premium_pct": 0.3,
    "retencion_iibb_pct": 0.03,
    "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 76910.18,
-   "margen_neto_premium_ars": 61377.83
+   "margen_neto_clasico_ars": 81379.18,
+   "margen_neto_premium_ars": 65029.33
   },
   {
    "id_ml": "MLA22826188",
@@ -392,7 +392,7 @@
    "precio_actual": 267234.0,
    "precio_anterior": 399999,
    "descuento_pct": 33,
-   "minimo_historico": false,
+   "minimo_historico": true,
    "moneda": "ARS",
    "ventas_estimadas": null,
    "url_producto": "https://www.mercadolibre.com.ar/tablet-con-teclado-android-15-10p-18gb-ram-128gb-rom-negro/p/MLA59090938?matt_word=web&matt_tool=37267219",
@@ -427,9 +427,9 @@
    "id_ml": "MLA25356509",
    "titulo": "Potente Deshumidificador Seklou Compresor Extrae Humedad 35m Color Blanco",
    "categoria_principal": "ofertas del día",
-   "precio_actual": 833109.0,
+   "precio_actual": 842165.0,
    "precio_anterior": 905554,
-   "descuento_pct": 8,
+   "descuento_pct": 7,
    "minimo_historico": false,
    "moneda": "ARS",
    "ventas_estimadas": null,
@@ -439,8 +439,8 @@
    "comision_premium_pct": 0.3,
    "retencion_iibb_pct": 0.03,
    "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 675149.38,
-   "margen_neto_premium_ars": 550183.03
+   "margen_neto_clasico_ars": 682575.3,
+   "margen_neto_premium_ars": 556250.55
   },
   {
    "id_ml": "MLA67710796",
@@ -462,25 +462,6 @@
    "margen_neto_premium_ars": 360499.33
   },
   {
-   "id_ml": "MLA62939827",
-   "titulo": "Bicicleta Mtb Slp 5 Pro Niñas Rodado 24 Shimano 7v Blanco Xs",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 289999.0,
-   "precio_anterior": 494172,
-   "descuento_pct": 41,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/bicicleta-mtb-slp-5-pro-ninas-rodado-24-shimano-7v-blanco-xs/p/MLA62939827?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_695119-MLA100662968331_122025-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 229799.18,
-   "margen_neto_premium_ars": 186299.33
-  },
-  {
    "id_ml": "MLA63934515",
    "titulo": "Tablet Lenovo Idea Tab 8gb 128gb Android 15 Con Teclado + Lápiz, Color Polar Blue",
    "categoria_principal": "ofertas del día",
@@ -498,25 +479,6 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 596503.18,
    "margen_neto_premium_ars": 485923.33
-  },
-  {
-   "id_ml": "MLA7477379",
-   "titulo": "Secador de pelo Remington Silk AC9096 rojo",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 83884.0,
-   "precio_anterior": 153429,
-   "descuento_pct": 45,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/secador-de-pelo-remington-silk-ac9096-rojo/p/MLA7477379?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_919060-MLA99972139297_112025-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 60784.88,
-   "margen_neto_premium_ars": 48202.28
   },
   {
    "id_ml": "MLA41505819",
@@ -555,25 +517,6 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 128626.76,
    "margen_neto_premium_ars": 103634.06
-  },
-  {
-   "id_ml": "MLA34283459",
-   "titulo": "Cafetera Nespresso Citiz & Milk Negra",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 312549.0,
-   "precio_anterior": 781400,
-   "descuento_pct": 60,
-   "minimo_historico": true,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/cafetera-nespresso-citiz-milk-negra/p/MLA34283459?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_936701-MLA112360380012_062026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 248290.18,
-   "margen_neto_premium_ars": 201407.83
   },
   {
    "id_ml": "MLA62410553",
@@ -650,44 +593,6 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 90874.78,
    "margen_neto_premium_ars": 72787.93
-  },
-  {
-   "id_ml": "MLA61390405",
-   "titulo": "Purificador De Agua Hidrolit Senic Out Classic - Blanco",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 169220.0,
-   "precio_anterior": 295000,
-   "descuento_pct": 42,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/purificador-de-agua-hidrolit-senic-out-classic-blanco/p/MLA61390405?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_761788-MLA111902183361_052026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 130760.4,
-   "margen_neto_premium_ars": 105377.4
-  },
-  {
-   "id_ml": "MLA14061787",
-   "titulo": "Cochecito de paseo travel system Mega Baby 3 en 1 Lanin Travel System negro",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 290607.0,
-   "precio_anterior": 352465,
-   "descuento_pct": 17,
-   "minimo_historico": true,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/cochecito-de-paseo-travel-system-mega-baby-3-en-1-lanin-travel-system-negro/p/MLA14061787?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_815819-MLA108087261890_032026-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 230297.74,
-   "margen_neto_premium_ars": 186706.69
   },
   {
    "id_ml": "MLA52666606",
@@ -1013,25 +918,6 @@
    "margen_neto_premium_ars": 96970.24
   },
   {
-   "id_ml": "MLA51491460",
-   "titulo": "Silla Ergonomica Oficina Gamer Reclinable Escritorio S10 Pro Color Negro Material del tapizado Tela Mesh",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 215785.0,
-   "precio_anterior": 310000,
-   "descuento_pct": 30,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/silla-ergonomica-oficina-gamer-reclinable-escritorio-s10-pro-color-negro-material-del-tapizado-tela-mesh/p/MLA51491460?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_862180-MLA95843750511_102025-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 168943.7,
-   "margen_neto_premium_ars": 136575.95
-  },
-  {
    "id_ml": "MLA22917227",
    "titulo": "Liliana PPV200 convector blanco 1200W calefactor 53x51cm",
    "categoria_principal": "ofertas del día",
@@ -1068,25 +954,6 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 75066.0,
    "margen_neto_premium_ars": 59871.0
-  },
-  {
-   "id_ml": "MLA47080512",
-   "titulo": "Silla Gamer Alpina Ergonómica Giratoria Reclinable ft-088 Color Negro/Blanco Material del tapizado Cuero sintético",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 147052.0,
-   "precio_anterior": 250000,
-   "descuento_pct": 41,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/silla-gamer-alpina-ergonomica-giratoria-reclinableft-088-color-negroblanco-material-del-tapizado-cuero-sintetico/p/MLA47080512?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_860216-MLA99903594075_112025-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 112582.64,
-   "margen_neto_premium_ars": 90524.84
   },
   {
    "id_ml": "MLA58993326",
@@ -1391,25 +1258,6 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 48206.08,
    "margen_neto_premium_ars": 37924.48
-  },
-  {
-   "id_ml": "MLA46088820",
-   "titulo": "Máquina Donas Suono Mini Donut Maker 7 Unidades Mini Donas Antiadherente 1200w Color Negro",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 37299.0,
-   "precio_anterior": 56279,
-   "descuento_pct": 33,
-   "minimo_historico": false,
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/maquina-donas-suono-mini-donut-maker-7-unidades-mini-donas-antiadherente-1200w-color-negro/p/MLA46088820?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_979924-MLA95709705470_102025-AB.webp",
-   "comision_clasica_pct": 0.15,
-   "comision_premium_pct": 0.3,
-   "retencion_iibb_pct": 0.03,
-   "costo_envio_base_ars": 8000.0,
-   "margen_neto_clasico_ars": 22585.18,
-   "margen_neto_premium_ars": 16990.33
   },
   {
    "id_ml": "MLA69809119",
@@ -1828,6 +1676,25 @@
    "costo_envio_base_ars": 8000.0,
    "margen_neto_clasico_ars": 217499.18,
    "margen_neto_premium_ars": 176249.33
+  },
+  {
+   "id_ml": "MLA26336368",
+   "titulo": "Impresora HP Smart Tank 210 Sistema Continuo Color Wi-Fi",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 304999.0,
+   "precio_anterior": 379999,
+   "descuento_pct": 19,
+   "minimo_historico": false,
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/impresora-hp-smart-tank-210-sistema-continuo-color-wi-fi/p/MLA26336368?matt_word=web&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_804138-MLA114374992867_072026-AB.webp",
+   "comision_clasica_pct": 0.15,
+   "comision_premium_pct": 0.3,
+   "retencion_iibb_pct": 0.03,
+   "costo_envio_base_ars": 8000.0,
+   "margen_neto_clasico_ars": 242099.18,
+   "margen_neto_premium_ars": 196349.33
   },
   {
    "id_ml": "MLA45845303",

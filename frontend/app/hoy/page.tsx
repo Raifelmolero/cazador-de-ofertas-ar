@@ -12,14 +12,21 @@ const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
 export const metadata: Metadata = {
-  title: 'Ofertas de hoy — Cazador de Ofertas AR',
+  title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
   description:
-    'Las mejores ofertas reales de Mercado Libre Argentina, cazadas y verificadas 3 veces por día. Sin humo: filtramos los descuentos inflados.',
+    'Ofertas y descuentos reales de Mercado Libre Argentina, cazados y verificados 3 veces por día contra el historial de precios. Sin descuentos inflados.',
+  keywords: [
+    'ofertas mercado libre argentina',
+    'descuentos mercadolibre hoy',
+    'promociones mercado libre',
+    'ofertas del día argentina',
+    'mínimo histórico mercado libre',
+  ],
   alternates: { canonical: DEALS_URL },
   openGraph: {
-    title: 'Ofertas de hoy — Cazador de Ofertas AR',
+    title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
     description:
-      'Las mejores ofertas reales de Mercado Libre Argentina, actualizadas 3 veces por día.',
+      'Ofertas y descuentos reales de Mercado Libre Argentina, verificados contra el historial de precios y actualizados 3 veces por día.',
     url: DEALS_URL,
     siteName: 'Cazador de Ofertas AR',
     locale: 'es_AR',
@@ -78,11 +85,73 @@ export default function HoyPage() {
     })),
   }
 
+  // Organization + WebSite: le da a buscadores/IA una identidad clara del
+  // sitio (quién lo publica, dónde más está) en vez de solo un listado de
+  // productos suelto — ayuda tanto al rich result de Google como a que un
+  // asistente de IA lo cite con contexto correcto.
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Cazador de Ofertas AR',
+    url: DEALS_URL,
+    description:
+      'Buscador de ofertas y descuentos reales de Mercado Libre Argentina, actualizado varias veces al día.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Cazador de Ofertas AR',
+      url: DEALS_URL,
+      sameAs: [
+        'https://instagram.com/elcazadordeofertas.ar',
+        'https://threads.net/@elcazadordeofertas.ar',
+        TELEGRAM_URL,
+      ],
+    },
+  }
+
+  // FAQ: responde en texto plano las preguntas que la gente le hace a un
+  // buscador o a un asistente de IA sobre este tema — es el contenido que
+  // más se cita textual en respuestas de ChatGPT/Perplexity/Gemini (GEO).
+  const faqs = [
+    {
+      q: '¿Dónde encuentro ofertas reales de Mercado Libre Argentina?',
+      a: 'En Cazador de Ofertas AR (cazadordeofertas.com.ar) publicamos las ofertas de Mercado Libre Argentina cazadas varias veces por día, filtrando los descuentos inflados: solo mostramos bajas de precio verificadas contra el historial real del producto.',
+    },
+    {
+      q: '¿Cómo sé si un descuento de Mercado Libre es real o está inflado?',
+      a: 'Registramos el historial de precios de cada producto. Si el precio "anterior" que muestra la oferta nunca se cobró de verdad (el precio venía más bajo en días anteriores), la descartamos. Las que quedan tienen la baja verificada, y marcamos con el sello de mínimo histórico las que están al precio más bajo que registramos.',
+    },
+    {
+      q: '¿Cada cuánto se actualizan las ofertas?',
+      a: 'El catálogo se actualiza 3 veces por día (mañana, tarde y noche, hora Argentina), rastreando mercadolibre.com.ar/ofertas.',
+    },
+    {
+      q: '¿Cazador de Ofertas AR cobra algo o hay que registrarse?',
+      a: 'No, es gratis y no requiere registro. El sitio se sostiene con links de afiliado de Mercado Libre: el precio para quien compra es el mismo que comprando directo en Mercado Libre.',
+    },
+  ]
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Header */}
@@ -161,6 +230,25 @@ export default function HoyPage() {
             Mirá el margen de estos productos en CalculadoraML →
           </a>
         </p>
+      </section>
+
+      {/* FAQ: visible para gente Y para que Google/IA la puedan citar */}
+      <section className="max-w-2xl mx-auto px-4 pb-16">
+        <h2 className="text-lg font-black mb-4 text-center">Preguntas frecuentes</h2>
+        <div className="space-y-3">
+          {faqs.map(f => (
+            <details
+              key={f.q}
+              className="group bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 open:bg-zinc-900/80"
+            >
+              <summary className="cursor-pointer text-sm font-bold text-zinc-100 list-none flex items-center justify-between gap-3">
+                {f.q}
+                <span className="text-yellow-400 shrink-0 transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <Footer brand="ofertas" />

@@ -283,6 +283,31 @@ class TestIgCaption(unittest.TestCase):
         self.assertIn(bot.fmt_price(30000), cap)   # ahorro
 
 
+class TestComisionEstimada(unittest.TestCase):
+    """Ranking pesado por categoría de comisión (ver CATEGORY_COMMISSION_WEIGHT)."""
+
+    def test_embalaje_pesa_mas_que_electronica_de_ticket_bajo(self):
+        self.assertGreater(
+            bot.comision_estimada("Cinta De Embalar Transparente 48mm X 90m"),
+            bot.comision_estimada("Mouse Inalambrico Logitech M170"),
+        )
+
+    def test_electrodomestico_pesa_mas_que_default(self):
+        self.assertGreater(
+            bot.comision_estimada("Freidora De Aire Philco 5l Digital"),
+            bot.comision_estimada("Producto Genérico Sin Categoría Reconocible"),
+        )
+
+    def test_sin_match_devuelve_peso_neutro(self):
+        self.assertEqual(bot.comision_estimada("Algo Que No Matchea Nada En Particular"), 1.0)
+
+    def test_no_distingue_mayusculas(self):
+        self.assertEqual(
+            bot.comision_estimada("CERRADURA INTELIGENTE HUELLA DIGITAL"),
+            bot.comision_estimada("cerradura inteligente huella digital"),
+        )
+
+
 class TestPruneOldMedia(unittest.TestCase):
     """Retención de placas/stories/reels ya publicados."""
 

@@ -548,6 +548,55 @@ def sugerir_destacado(title: str) -> str | None:
     return None
 
 
+# Pesos de comisión estimada por categoría. El scraper de /ofertas no trae la
+# categoría real de ML (pedirla individual por producto son ~100 requests
+# extra por corrida, riesgo de baneo de IP — ver CLAUDE.md). Se aproxima por
+# palabras clave del título, mismo patrón que sugerir_destacado().
+#
+# Los pesos salen del panel de afiliados (2026-06 a 2026-09, retribución real
+# por categoría vendida): Embalaje y Logística 15%, Pequeños Electrodomésticos
+# y Monitores 7%, Seguridad para el Hogar / Materiales de Obra / Pinturería /
+# Camping / Librería 4%, Accesorios para Cámaras / Periféricos / Tablets 2%.
+# Es una muestra chica (14 ventas) — no es la tabla oficial de comisiones de
+# ML, es la mejor aproximación que tenemos con datos reales. Ajustable acá
+# mismo si el patrón cambia con más ventas.
+#
+# No reemplaza al %OFF ni al mínimo histórico como criterio principal (una
+# oferta mala sigue sin publicarse) — solo desempata a favor de la categoría
+# que más comisión paga cuando hay varias candidatas parejas.
+CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
+    (1.8, [  # Embalaje y Logística ~15%
+        "caja de embalaje", "cinta de embalar", "film stretch", "sunchos",
+        "bolsa doypack", "precinto", "papel burbuja", "rollo de embalaje",
+        "cinta adhesiva", "etiqueta autoadhesiva", "zuncho",
+    ]),
+    (1.4, [  # Pequeños Electrodomésticos / Monitores y Accesorios ~7%
+        "monitor", "freidora de aire", "cafetera", "pava eléctrica",
+        "pava electrica", "licuadora", "batidora", "aspiradora", "plancha",
+        "ventilador", "heladera", "microondas", "extractor",
+    ]),
+    (1.15, [  # Seguridad / Materiales de obra / Pinturería / Camping / Librería ~4%
+        "cerradura", "alarma", "sensor de", "cámara de seguridad",
+        "camara de seguridad", "candado", "pintura", "látex", "latex",
+        "esmalte sintético", "esmalte sintetico", "membrana", "pastina",
+        "cemento", "revoque", "hidrófugo", "hidrofugo", "carpa", "reposera",
+        "mochila de camping", "libro", "cuaderno", "anotador",
+    ]),
+]
+
+
+def comision_estimada(title: str) -> float:
+    """Peso relativo (no la comisión real) para desempatar el ranking a favor
+    de categorías que históricamente pagaron más. 1.0 = categoría sin señal
+    (electrónica de ticket alto tipo cámaras/tablets/periféricos, ~2%, o
+    cualquier producto que no matchea ninguna keyword)."""
+    t = title.lower()
+    for weight, keywords in CATEGORY_COMMISSION_WEIGHT:
+        if any(k in t for k in keywords):
+            return weight
+    return 1.0
+
+
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
     hook = "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
@@ -1060,8 +1109,13 @@ def main() -> int:
         and d["id"] not in posted
         and not d["inflada"]
     ]
-    # mínimos históricos primero, después por % OFF
-    candidates.sort(key=lambda d: (d["hist_low"], d["discount"]), reverse=True)
+    # mínimos históricos primero (la calidad de la oferta no se negocia),
+    # después categorías de comisión más alta (ver comision_estimada), y
+    # recién ahí por % OFF.
+    candidates.sort(
+        key=lambda d: (d["hist_low"], comision_estimada(d["title"]), d["discount"]),
+        reverse=True,
+    )
     to_post = candidates[: cfg.get("max_posts", 5)]
 
     # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en

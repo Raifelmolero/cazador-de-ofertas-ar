@@ -18,6 +18,8 @@ Env vars:
   IG_ACCESS_TOKEN     (secreto; token de Instagram API with Instagram Login)
   THREADS_USER_ID     (secreto; ID numérico de la cuenta de Threads)
   THREADS_ACCESS_TOKEN (secreto; token de la Threads API)
+  FB_PAGE_ID          (secreto; ID numérico de la página de Facebook)
+  FB_PAGE_ACCESS_TOKEN (secreto; token de página de la Facebook Graph API)
   DRY_RUN=1           (imprime en vez de publicar)
   FORCE_IG_KIT=1      (fuerza la publicación/kit de IG sin importar la hora)
 """
@@ -463,6 +465,7 @@ def alert_admin(token: str, admin: str, text: str, dry: bool) -> None:
 
 IG_GRAPH = "https://graph.instagram.com/v23.0"
 THREADS_GRAPH = "https://graph.threads.net/v1.0"
+FB_GRAPH = "https://graph.facebook.com/v23.0"
 
 
 def ig_call(method: str, path: str, params: dict, base: str = IG_GRAPH) -> dict:
@@ -684,6 +687,31 @@ def th_caption(deal: dict, link: str) -> str:
             f"🛒 {link}"
         )
     return caption
+
+
+def fb_caption(deal: dict, link: str) -> str:
+    """Caption para Facebook: igual que Threads, el link va clickeable directo
+    en el texto — a diferencia de Instagram. Facebook no tiene el límite de
+    500 caracteres de Threads, así que no hace falta versión corta."""
+    ahorro = deal["price_prev"] - deal["price_cur"]
+    hook = (
+        "📉 MÍNIMO HISTÓRICO:" if deal.get("hist_low") else random.choice(TH_HOOKS)
+    )
+    remate = (
+        "📉 Nunca lo registramos más barato que hoy."
+        if deal.get("hist_low")
+        else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
+    )
+    return (
+        f"{hook} {deal['discount']}% OFF en {deal['title'][:90]}\n\n"
+        f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
+        f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
+        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"
+        f"🛒 Comprá acá: {link}\n\n"
+        f"{remate}\n\n"
+        f"Más ofertas todos los días en cazadordeofertas.com.ar y en nuestro "
+        f"canal de Telegram: t.me/cazadordeofertasar"
+    )
 
 
 def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:
@@ -935,6 +963,46 @@ def publish_threads(deal: dict, link: str, threads_user_id: str, threads_token: 
         return f"media_id {media['id']}"
 
 
+def publish_facebook(deal: dict, link: str, page_id: str, page_token: str, dry: bool,
+                     caption: str | None = None, tag: str = "fb") -> str | None:
+    """Publica la oferta en la página de Facebook con el link de afiliado
+    clickeable directo en el texto. Devuelve el permalink o None si falló.
+
+    A diferencia de IG/Threads, la API de páginas de Facebook publica una
+    foto en un solo POST (sin contenedor + polling): /{page_id}/photos con
+    la imagen y el caption ya la deja publicada.
+    """
+    caption = caption or fb_caption(deal, link)
+    image_url = prepare_placa(deal, dry, tag=tag) or (ig_image_url(deal["img"]) if deal.get("img") else None)
+
+    if dry:
+        print("=" * 60)
+        print(f"[DRY] Facebook publish → {image_url}\n{caption}")
+        return "https://facebook.com/DRY_RUN"
+
+    if not image_url:
+        print("[warn] Facebook: la oferta no tiene imagen, salteo publicación")
+        return None
+
+    post = ig_call(
+        "POST",
+        f"{page_id}/photos",
+        {"url": image_url, "caption": caption, "access_token": page_token},
+        base=FB_GRAPH,
+    )
+    post_id = post.get("post_id") or post.get("id")
+    if not post_id:
+        return None
+    try:
+        info = ig_call(
+            "GET", post_id, {"fields": "permalink_url", "access_token": page_token},
+            base=FB_GRAPH,
+        )
+        return info.get("permalink_url") or f"post_id {post_id}"
+    except Exception:  # noqa: BLE001 — el post ya salió; el permalink es cosmético
+        return f"post_id {post_id}"
+
+
 def _prune_old_media(directory: Path, keep_days: int = MEDIA_RETENTION_DAYS) -> int:
     """Borra la media que IG/Threads ya consumió, y devuelve cuántos archivos sacó.
 
@@ -1077,6 +1145,7 @@ def main() -> int:
     tool_tg = os.getenv("ML_WORD_TELEGRAM", "telegram")
     tool_ig = os.getenv("ML_WORD_IG", "instagram")
     tool_th = os.getenv("ML_WORD_THREADS", "threads")
+    tool_fb = os.getenv("ML_WORD_FACEBOOK", "facebook")
 
     state = load_state()
     posted = set(state["posted_ids"])
@@ -1264,6 +1333,36 @@ def main() -> int:
                     token,
                     cfg["admin_chat"],
                     f"⚠️ No pude publicar en Threads ({str(e)[:150]}).",
+                    dry,
+                )
+
+    # Facebook: mismo horario que el post de feed de IG (15-17-20-21-22 UTC),
+    # siempre el producto estrella (to_post[0]). Best-effort total: nunca
+    # frena Telegram/IG/Threads, si falla solo avisa al admin. Sin secrets
+    # seteados (mientras no exista la página) esto no hace nada, no hace
+    # falta un flag de gateo aparte — FORCE_FACEBOOK es solo para testear.
+    if (os.getenv("FORCE_FACEBOOK") == "1" or hour_utc in ig_hours) and to_post:
+        fb_page_id = os.getenv("FB_PAGE_ID", "")
+        fb_page_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
+        if fb_page_id and fb_page_token:
+            fb_deal = to_post[0]
+            fb_link = affiliate_url(fb_deal["url"], affiliate_id, tool_fb)
+            try:
+                permalink = publish_facebook(fb_deal, fb_link, fb_page_id, fb_page_token, dry)
+                if permalink:
+                    log_post(fb_deal, "facebook")
+                    alert_admin(
+                        token,
+                        cfg["admin_chat"],
+                        f"📘 Publicado en Facebook: {fb_deal['title'][:60]}\n{permalink}",
+                        dry,
+                    )
+            except Exception as e:  # noqa: BLE001 — Facebook caído no frena el bot
+                print(f"[warn] Facebook publish falló: {e}")
+                alert_admin(
+                    token,
+                    cfg["admin_chat"],
+                    f"⚠️ No pude publicar en Facebook ({str(e)[:150]}).",
                     dry,
                 )
 

@@ -283,6 +283,34 @@ class TestIgCaption(unittest.TestCase):
         self.assertIn(bot.fmt_price(30000), cap)   # ahorro
 
 
+class TestFbCaption(unittest.TestCase):
+    """El caption de Facebook: a diferencia de IG, el link va clickeable directo."""
+
+    DEAL = {"title": "Producto de Prueba", "price_prev": 100000, "price_cur": 50000,
+            "discount": 50, "hist_low": False}
+    LINK = "https://mercadolibre.com.ar/producto-p123?matt_word=facebook&matt_tool=37267219"
+
+    def test_el_link_va_clickeable_en_el_texto(self):
+        self.assertIn(self.LINK, bot.fb_caption(self.DEAL, self.LINK))
+
+    def test_menciona_el_dominio_propio_y_telegram(self):
+        cap = bot.fb_caption(self.DEAL, self.LINK)
+        self.assertIn("cazadordeofertas.com.ar", cap)
+        self.assertIn("t.me/cazadordeofertasar", cap)
+
+    def test_el_badge_de_minimo_historico_aparece_solo_cuando_corresponde(self):
+        sin = bot.fb_caption({**self.DEAL, "hist_low": False}, self.LINK)
+        con = bot.fb_caption({**self.DEAL, "hist_low": True}, self.LINK)
+        self.assertNotIn("MÍNIMO HISTÓRICO", sin)
+        self.assertIn("MÍNIMO HISTÓRICO", con)
+
+    def test_muestra_los_dos_precios_y_el_ahorro(self):
+        cap = bot.fb_caption({**self.DEAL, "price_prev": 100000, "price_cur": 70000}, self.LINK)
+        self.assertIn(bot.fmt_price(100000), cap)
+        self.assertIn(bot.fmt_price(70000), cap)
+        self.assertIn(bot.fmt_price(30000), cap)
+
+
 class TestComisionEstimada(unittest.TestCase):
     """Ranking pesado por categoría de comisión (ver CATEGORY_COMMISSION_WEIGHT)."""
 

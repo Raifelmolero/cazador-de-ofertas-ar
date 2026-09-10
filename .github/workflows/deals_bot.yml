@@ -19,6 +19,10 @@ on:
         description: 'Publicar el reel del día (experimental)'
         type: boolean
         default: false
+      force_facebook:
+        description: 'Forzar publicación de Facebook'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -55,9 +59,12 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
           FORCE_IG_KIT: ${{ inputs.force_ig_kit == true && '1' || '0' }}
           FORCE_THREADS: ${{ inputs.force_threads == true && '1' || '0' }}
           FORCE_REEL: ${{ inputs.force_reel == true && '1' || '0' }}
+          FORCE_FACEBOOK: ${{ inputs.force_facebook == true && '1' || '0' }}
         run: |
           if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
             echo "::warning::Falta el secreto TELEGRAM_BOT_TOKEN — agregalo en Settings → Secrets → Actions. Salgo sin publicar."

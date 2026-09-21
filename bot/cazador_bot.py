@@ -862,6 +862,7 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple
     fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}.mp4"
     out = BASE_DIR / "reels" / fname
     render_reel(deal, image_bytes, out)
+    deal["_reel_path"] = str(out)  # lo usa shorts.cross_post (YouTube/TikTok)
     if dry:
         print(f"[DRY] reel renderizado en {out}")
         return None, False
@@ -1332,6 +1333,19 @@ def main() -> int:
                         destacado = sugerir_destacado(r_deal["title"])
                         if destacado:
                             msg += f"\n💡 Destacado sugerido: {destacado}"
+                    try:  # YouTube Shorts / TikTok: solo con credenciales cargadas
+                        import shorts
+                        extra = shorts.cross_post(
+                            Path(r_deal["_reel_path"]), r_deal, site_url("youtube"),
+                            {"youtube": affiliate_url(
+                                r_deal["url"], affiliate_id,
+                                os.getenv("ML_WORD_YOUTUBE", "youtube"))},
+                            dry,
+                        )
+                        if extra:
+                            msg += "\n" + "\n".join(extra)
+                    except Exception as e:  # noqa: BLE001 — jamás frena el resto
+                        print(f"[warn] cross-post de shorts: {e}")
                     alert_admin(token, cfg["admin_chat"], msg, dry)
             except Exception as e:  # noqa: BLE001 — experimental, jamás frena el resto
                 print(f"[error] reel falló: {e}")

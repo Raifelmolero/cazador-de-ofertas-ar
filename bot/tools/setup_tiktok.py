@@ -81,8 +81,8 @@ def set_secret(name: str, value: str, token: str) -> None:
 
 
 def main() -> None:
-    client_key = input("Client Key: ").strip()
-    client_secret = getpass.getpass("Client Secret (oculto): ").strip()
+    client_key = os.environ.get("TIKTOK_CLIENT_KEY", "").strip() or input("Client Key: ").strip()
+    client_secret = os.environ.get("TIKTOK_CLIENT_SECRET", "").strip() or getpass.getpass("Client Secret (oculto): ").strip()
     half = len(client_secret) // 2
     if len(client_secret) % 2 == 0 and client_secret[:half] == client_secret[half:]:
         client_secret = client_secret[:half]  # se pegó dos veces: nos quedamos con una

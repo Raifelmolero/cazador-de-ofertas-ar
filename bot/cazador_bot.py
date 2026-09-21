@@ -338,6 +338,21 @@ def affiliate_url(url: str, affiliate_id: str, word: str | None = None) -> str:
     return f"{url}{sep}matt_word={word or affiliate_id}&matt_tool=37267219"
 
 
+def run_slot(hour_utc: int) -> str:
+    """En cuál de los 3 runs diarios estamos: 'midday', 'evening' o 'night'.
+
+    Los crons de GitHub Actions llegan atrasados por horas (el de las 15 UTC
+    arranca ~18:xx, el de las 00 ~03:xx), así que se usan ventanas anchas que
+    no se pisan en vez de la hora exacta."""
+    if 15 <= hour_utc <= 19:
+        return "midday"
+    if 20 <= hour_utc <= 23:
+        return "evening"
+    if 0 <= hour_utc <= 4:
+        return "night"
+    return "other"
+
+
 SITE_DOMAIN = "cazadordeofertas.com.ar"
 
 
@@ -1236,8 +1251,9 @@ def main() -> int:
     # (12/17hs ART). El run de la noche (21hs ART) publica el reel en vez
     # del feed — ver bloque de abajo. Si hay credenciales de la API publica
     # solo; si no (o si falla), manda el kit manual.
-    ig_hours = (15, 16, 17, 20, 21, 22)
-    if (os.getenv("FORCE_IG_KIT") == "1" or hour_utc in ig_hours) and to_post:
+    slot = run_slot(hour_utc)
+    ig_slot = slot in ("midday", "evening")
+    if (os.getenv("FORCE_IG_KIT") == "1" or ig_slot) and to_post:
         best = to_post[0]
         best_link = affiliate_url(best["url"], affiliate_id, tool_ig)
         ig_user_id = os.getenv("IG_USER_ID", "")
@@ -1292,8 +1308,7 @@ def main() -> int:
     # Reel diario: reemplaza el post de feed en el run de la noche (21hs ART
     # = 0-2 UTC), para no sumar volumen total sobre el feed. FORCE_REEL=1
     # lo fuerza en cualquier horario (test manual vía workflow_dispatch).
-    reel_hours = (0, 1, 2)
-    if (os.getenv("FORCE_REEL") == "1" or hour_utc in reel_hours) and to_post:
+    if (os.getenv("FORCE_REEL") == "1" or slot == "night") and to_post:
         r_deal = to_post[0]
         r_user_id = os.getenv("IG_USER_ID", "")
         r_token = os.getenv("IG_ACCESS_TOKEN", "")
@@ -1320,9 +1335,8 @@ def main() -> int:
     #   mediodía (15-17 UTC) y noche (0-2 UTC): post con placa
     #   tarde (20-22 UTC): post de solo texto conversacional (el algoritmo lo premia)
     # Best-effort total: nunca frena Telegram/IG, si falla solo avisa al admin.
-    th_text_mode = hour_utc in (20, 21, 22) and os.getenv("FORCE_THREADS") != "1"
-    th_hours = (15, 16, 17, 20, 21, 22, 0, 1, 2)
-    if (os.getenv("FORCE_THREADS") == "1" or hour_utc in th_hours) and to_post:
+    th_text_mode = slot == "evening" and os.getenv("FORCE_THREADS") != "1"
+    if (os.getenv("FORCE_THREADS") == "1" or slot != "other") and to_post:
         threads_user_id = os.getenv("THREADS_USER_ID", "")
         threads_token = os.getenv("THREADS_ACCESS_TOKEN", "")
         if threads_user_id and threads_token:
@@ -1355,7 +1369,7 @@ def main() -> int:
     # frena Telegram/IG/Threads, si falla solo avisa al admin. Sin secrets
     # seteados (mientras no exista la página) esto no hace nada, no hace
     # falta un flag de gateo aparte — FORCE_FACEBOOK es solo para testear.
-    if (os.getenv("FORCE_FACEBOOK") == "1" or hour_utc in ig_hours) and to_post:
+    if (os.getenv("FORCE_FACEBOOK") == "1" or ig_slot) and to_post:
         fb_page_id = os.getenv("FB_PAGE_ID", "")
         fb_page_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
         if fb_page_id and fb_page_token:

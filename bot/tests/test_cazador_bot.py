@@ -434,5 +434,29 @@ class TestPruneOldMedia(unittest.TestCase):
             self.assertEqual(bot._prune_old_media(d), 0)
 
 
+class TestRunSlot(unittest.TestCase):
+    """Los crons de Actions llegan atrasados: el slot no puede depender de la
+    hora exacta."""
+
+    def test_horas_nominales(self):
+        self.assertEqual(bot.run_slot(15), "midday")
+        self.assertEqual(bot.run_slot(20), "evening")
+        self.assertEqual(bot.run_slot(0), "night")
+
+    def test_horas_con_atraso_real(self):
+        # Observadas en septiembre: mediodía ~18:xx, tarde 23:02, noche 03:xx
+        self.assertEqual(bot.run_slot(18), "midday")
+        self.assertEqual(bot.run_slot(23), "evening")
+        self.assertEqual(bot.run_slot(3), "night")
+
+    def test_todas_las_horas_de_los_runs_caen_en_un_slot(self):
+        for h in (15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4):
+            self.assertNotEqual(bot.run_slot(h), "other", h)
+
+    def test_horas_fuera_de_los_runs(self):
+        for h in range(5, 15):
+            self.assertEqual(bot.run_slot(h), "other", h)
+
+
 if __name__ == "__main__":
     unittest.main()

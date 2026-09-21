@@ -87,7 +87,7 @@ export default function OfertaCard({
         href={producto.url_producto}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className="group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+        className="rise-in group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
       >
         <div className="relative w-[38%] max-w-72 shrink-0 self-stretch bg-white min-h-36">
           {producto.url_imagen ? (
@@ -120,7 +120,7 @@ export default function OfertaCard({
                 {precio(producto.precio_anterior)}
               </span>
             )}
-            <span className="text-2xl sm:text-3xl font-black text-yellow-400 leading-tight">
+            <span className="font-display text-2xl sm:text-3xl font-black text-yellow-400 leading-tight">
               {precio(producto.precio_actual)}
             </span>
           </div>
@@ -137,7 +137,7 @@ export default function OfertaCard({
         {/* Desktop: el % en grande llena el espacio con el dato que importa */}
         {producto.descuento_pct != null && (
           <div className="hidden lg:flex flex-col items-center justify-center shrink-0 px-10 border-l border-zinc-800">
-            <span className="text-6xl font-black text-yellow-400 leading-none tabular-nums">
+            <span className="font-display text-6xl font-black text-yellow-400 leading-none tabular-nums">
               -{producto.descuento_pct}%
             </span>
             {producto.minimo_historico && (
@@ -156,7 +156,7 @@ export default function OfertaCard({
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="group flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+      className="rise-in group flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
     >
       <div className="relative aspect-square bg-white">
         {producto.url_imagen ? (
@@ -186,7 +186,7 @@ export default function OfertaCard({
               {precio(producto.precio_anterior)}
             </div>
           )}
-          <div className="text-lg sm:text-xl font-black text-white leading-tight">
+          <div className="font-display text-lg sm:text-xl font-black text-white leading-tight">
             {precio(producto.precio_actual)}
           </div>
           {ahorro != null && ahorro > 0 && (

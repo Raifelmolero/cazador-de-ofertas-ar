@@ -10,6 +10,36 @@ body {
   background-color: #09090b;
 }
 
+/* Textura de grano sutil: le saca lo "plano" al fondo oscuro */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Entrada escalonada de las tarjetas */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.rise-in {
+  animation: rise-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Sello rojo "CAZADO" (mismo del que salen las placas de IG) */
+@keyframes stamp-in {
+  0% { opacity: 0; transform: rotate(-9deg) scale(1.7); }
+  60% { opacity: 1; transform: rotate(-9deg) scale(0.94); }
+  100% { opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+.stamp {
+  animation: stamp-in 0.55s 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 /* Custom scrollbar (paleta zinc, como el resto del sitio) */
 ::-webkit-scrollbar {
   width: 6px;

@@ -5,6 +5,7 @@ import OfertasGrid from '@/components/OfertasGrid'
 import BackToTop from '@/components/BackToTop'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
+import { GUIAS } from '@/lib/guias'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
@@ -22,7 +23,10 @@ export const metadata: Metadata = {
     'ofertas del día argentina',
     'mínimo histórico mercado libre',
   ],
-  alternates: { canonical: DEALS_URL },
+  alternates: {
+    canonical: DEALS_URL,
+    types: { 'text/markdown': `${DEALS_URL}/llms-full.txt` },
+  },
   openGraph: {
     title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
     description:
@@ -65,6 +69,7 @@ export default function HoyPage() {
     name: 'Ofertas de hoy — Cazador de Ofertas AR',
     url: DEALS_URL,
     numberOfItems: ofertas.length,
+    dateModified: scrapedAt,
     itemListElement: ofertas.slice(0, 20).map((o, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -96,10 +101,18 @@ export default function HoyPage() {
     url: DEALS_URL,
     description:
       'Buscador de ofertas y descuentos reales de Mercado Libre Argentina, actualizado varias veces al día.',
+    inLanguage: 'es-AR',
     publisher: {
       '@type': 'Organization',
       name: 'Cazador de Ofertas AR',
       url: DEALS_URL,
+      logo: `${DEALS_URL}/favicon-ofertas.png`,
+      areaServed: { '@type': 'Country', name: 'Argentina' },
+      knowsAbout: [
+        'Ofertas de Mercado Libre Argentina',
+        'Descuentos reales y mínimos históricos de precios',
+        'Historial de precios',
+      ],
       sameAs: [
         'https://instagram.com/elcazadordeofertas.ar',
         'https://threads.net/@elcazadordeofertas.ar',
@@ -123,6 +136,18 @@ export default function HoyPage() {
     {
       q: '¿Cada cuánto se actualizan las ofertas?',
       a: 'El catálogo se actualiza 3 veces por día (mañana, tarde y noche, hora Argentina), rastreando mercadolibre.com.ar/ofertas.',
+    },
+    {
+      q: '¿Cuáles son las mejores ofertas de Mercado Libre Argentina hoy?',
+      a: 'Las de hoy están arriba en esta página, ordenadas por relevancia: primero las que están en su mínimo histórico y después las de mayor descuento real. Se actualizan 3 veces por día, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
+    },
+    {
+      q: '¿Cuándo conviene comprar en Mercado Libre: Hot Sale, Cyber Monday o un día común?',
+      a: 'Depende del producto. En eventos como Hot Sale o Cyber Monday muchos descuentos se calculan sobre un precio de lista inflado. Lo más seguro es comparar contra el historial de precios: si el producto ya estuvo más barato en días comunes, esperar no aporta. Acá marcamos con el sello de mínimo histórico los que están en su precio más bajo registrado.',
+    },
+    {
+      q: '¿Cómo encuentro cupones y descuentos extra en Mercado Libre?',
+      a: 'Además del precio en oferta, Mercado Libre suele tener cupones, cuotas sin interés y beneficios de Mercado Puntos o Meli+ que se aplican al pagar. Las ofertas de esta página muestran el precio publicado; el descuento extra de un cupón se ve recién en el carrito, así que revisá la sección Cupones de Mercado Libre antes de pagar.',
     },
     {
       q: '¿Cazador de Ofertas AR cobra algo o hay que registrarse?',
@@ -182,14 +207,38 @@ export default function HoyPage() {
           {minimos > 0 && <> · {minimos} en mínimo histórico</>}
         </div>
 
-        <h1 className="text-[1.7rem] sm:text-4xl font-black tracking-tight leading-tight mb-2.5 sm:mb-3 [text-wrap:balance]">
-          Las ofertas <span className="text-yellow-400">reales</span> de hoy
+        <h1 className="font-display text-[1.9rem] sm:text-5xl font-black tracking-tight leading-[1.05] mb-3 [text-wrap:balance]">
+          Las ofertas{' '}
+          <span className="relative inline-block text-yellow-400">
+            reales
+            <span
+              aria-hidden="true"
+              className="stamp absolute -right-9 -top-4 sm:-right-14 sm:-top-6 rotate-[-9deg] border-2 border-red-500 text-red-500 rounded-md px-1.5 py-0.5 text-[9px] sm:text-xs font-black tracking-widest"
+            >
+              CAZADO
+            </span>
+          </span>{' '}
+          de hoy
         </h1>
         <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed [text-wrap:pretty]">
           Cazadas en Mercado Libre 3 veces por día. Registramos el historial de
           precios y <strong className="text-zinc-200">descartamos los descuentos inflados</strong> —
           lo que ves acá bajó de verdad.
         </p>
+
+        <ul className="mt-6 sm:mt-8 mx-auto max-w-3xl grid grid-cols-3 gap-2 sm:gap-4 text-left">
+          {[
+            ['📉', 'Historial de precios', 'Comparamos con lo que costaba de verdad'],
+            ['🚫', 'Cero descuentos inflados', 'Descartamos los falsos automáticamente'],
+            ['⏱️', '3 actualizaciones por día', 'Mañana, tarde y noche'],
+          ].map(([icon, t, d]) => (
+            <li key={t} className="rounded-xl border border-zinc-800 bg-zinc-900/60 px-2.5 py-2.5 sm:px-4 sm:py-3.5">
+              <div className="text-base sm:text-xl mb-1">{icon}</div>
+              <div className="text-[11px] sm:text-sm font-bold text-zinc-100 leading-tight">{t}</div>
+              <div className="hidden sm:block text-xs text-zinc-500 mt-0.5">{d}</div>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Grid con búsqueda y filtros */}
@@ -249,6 +298,23 @@ export default function HoyPage() {
             </details>
           ))}
         </div>
+      </section>
+
+      {/* Guías: contenido citable + enlazado interno */}
+      <section className="max-w-2xl mx-auto px-4 pb-12">
+        <h2 className="font-display text-lg font-black mb-4 text-center">Guías para comprar mejor</h2>
+        <ul className="space-y-2">
+          {GUIAS.map(g => (
+            <li key={g.slug}>
+              <a
+                href={`/guias/${g.slug}`}
+                className="block rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-sm font-semibold text-zinc-200 hover:border-yellow-400/40 hover:text-yellow-300 transition-colors"
+              >
+                {g.titulo} <span className="text-yellow-400">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <Footer brand="ofertas" />

@@ -24,6 +24,12 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'Bingbot', allow: '/' },
       { userAgent: 'Applebot-Extended', allow: '/' },
       { userAgent: 'meta-externalagent', allow: '/' },
+      { userAgent: 'Amazonbot', allow: '/' },
+      { userAgent: 'DuckAssistBot', allow: '/' },
+      { userAgent: 'MistralAI-User', allow: '/' },
+      { userAgent: 'YouBot', allow: '/' },
+      { userAgent: 'cohere-ai', allow: '/' },
+      { userAgent: 'CCBot', allow: '/' },
     ],
     sitemap: [
       'https://www.calculadoraml.com.ar/sitemap.xml',

@@ -31,6 +31,13 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
 - [Ofertas de hoy](https://cazadordeofertas.com.ar): listado completo,
   actualizado varias veces al día, con buscador y filtros (mínimo histórico,
   50%+ OFF, hasta cierto precio).
+- [Catálogo actual en texto plano](https://cazadordeofertas.com.ar/llms-full.txt):
+  las ofertas del momento con precio, descuento y mínimo histórico, más las
+  guías, en Markdown (ideal para citar datos concretos).
+- [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
+  [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre)
+  y [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina):
+  guías con respuesta corta citable.
 - [Canal de Telegram](https://t.me/cazadordeofertasar): mismas ofertas más
   ofertas exclusivas que no se publican en el sitio ni en redes.
 - [Instagram](https://instagram.com/elcazadordeofertas.ar) y

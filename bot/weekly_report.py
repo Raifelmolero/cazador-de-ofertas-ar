@@ -15,6 +15,7 @@ from datetime import datetime, timedelta, timezone
 
 from cazador_bot import (
     BASE_DIR,
+    FB_GRAPH,
     POSTS_LOG_PATH,
     SCAN_LOG_PATH,
     THREADS_GRAPH,
@@ -33,6 +34,8 @@ CH_LABELS = {
     "story": "IG stories",
     "threads": "Threads",
     "threads_texto": "Threads (texto)",
+    "reel": "IG reels",
+    "facebook": "Facebook",
 }
 
 
@@ -68,6 +71,19 @@ def collect_metrics(cfg: dict) -> dict:
             m["th"] = r["data"][0]["total_value"]["value"]
         except Exception as e:  # noqa: BLE001 — requiere el permiso threads_manage_insights
             print(f"[warn] seguidores de Threads (¿falta permiso de insights?): {e}")
+
+    fb_id = os.getenv("FB_PAGE_ID", "")
+    fb_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
+    if fb_id and fb_token:
+        try:
+            r = ig_call(
+                "GET", fb_id,
+                {"fields": "followers_count", "access_token": fb_token},
+                base=FB_GRAPH,
+            )
+            m["fb"] = r.get("followers_count")
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] seguidores de Facebook: {e}")
 
     return m
 
@@ -135,12 +151,13 @@ def build_report(
     prev = prev or {}
     scans = scans or []
     metrics_block = ""
-    if any(k in metrics for k in ("tg", "ig", "th")):
+    if any(k in metrics for k in ("tg", "ig", "th", "fb")):
         metrics_block = (
             "📈 Cuentas:\n"
             + fmt_metric("Telegram", metrics.get("tg"), prev.get("tg")) + "\n"
             + fmt_metric("Instagram", metrics.get("ig"), prev.get("ig")) + "\n"
-            + fmt_metric("Threads", metrics.get("th"), prev.get("th")) + "\n\n"
+            + fmt_metric("Threads", metrics.get("th"), prev.get("th")) + "\n"
+            + fmt_metric("Facebook", metrics.get("fb"), prev.get("fb")) + "\n\n"
         )
 
     scan_block = ""
@@ -185,10 +202,12 @@ def build_report(
         f"Publicaciones ({len(entries)} total):\n" + "\n".join(lines) + "\n\n"
         "🏆 Top de la semana:\n" + "\n".join(top_lines) + "\n\n"
         "✅ Checklist de 10 min:\n"
-        "  1. Panel de afiliados ML: ¿cuántos clics/comisiones por canal? (mandá captura al chat de Claude)\n"
+        "  1. Panel de afiliados ML → pestaña Redes, últimos 7 días: mandá captura "
+        "al chat de Claude (clics, unidades y ganancia por canal: web, instagram, "
+        "threads, telegram, facebook)\n"
         "  2. IG Insights: ¿qué post tuvo más alcance y guardados?\n"
         "  3. ¿Hiciste stories con sticker esta semana? (2-3 recomendadas)\n"
-        "  4. ¿El link de la bio apunta a la página de ofertas? (se actualiza sola)"
+        "  4. Clarity: ¿cuántas visitas tuvo el sitio y de dónde vinieron?"
     )
 
 
@@ -201,7 +220,7 @@ def main() -> int:
     metrics = collect_metrics(cfg)
     prev = load_prev_metrics()
     report = build_report(load_week(), metrics, prev, load_scans_week())
-    if not dry and any(k in metrics for k in ("tg", "ig", "th")):
+    if not dry and any(k in metrics for k in ("tg", "ig", "th", "fb")):
         save_metrics(metrics)
     alert_admin(token, cfg["admin_chat"], report, dry)
     print(report)

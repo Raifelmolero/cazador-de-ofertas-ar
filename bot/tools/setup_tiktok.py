@@ -90,7 +90,9 @@ def main() -> None:
     print("\nAbrí este link en el navegador donde tenés abierta la cuenta @cazadordeofertas.ar y aceptá:\n")
     print(auth_url(client_key, state) + "\n")
     print("Al terminar, la página cazadordeofertas.com.ar te muestra un código. Copialo completo.")
-    code = urllib.parse.unquote(input("Código: ").strip())
+    code = ""
+    while not code:
+        code = urllib.parse.unquote(input("Código (pegalo con clic derecho y Enter): ").strip())
     refresh = exchange(client_key, client_secret, code)
     token = gh_token()
     set_secret("TIKTOK_CLIENT_KEY", client_key, token)

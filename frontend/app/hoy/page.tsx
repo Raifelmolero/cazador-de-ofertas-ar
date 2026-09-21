@@ -6,6 +6,7 @@ import BackToTop from '@/components/BackToTop'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
+import { CATEGORIAS } from '@/lib/categorias'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
@@ -298,6 +299,23 @@ export default function HoyPage() {
             </details>
           ))}
         </div>
+      </section>
+
+      {/* Categorías: enlazado interno hacia las páginas por rubro */}
+      <section className="max-w-2xl mx-auto px-4 pb-10">
+        <h2 className="font-display text-lg font-black mb-4 text-center">Ofertas por categoría</h2>
+        <ul className="flex flex-wrap justify-center gap-2">
+          {CATEGORIAS.map(c => (
+            <li key={c.slug}>
+              <a
+                href={`/categoria/${c.slug}`}
+                className="block rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm font-bold text-zinc-200 hover:border-yellow-400/40 hover:text-yellow-300 transition-colors"
+              >
+                {c.nombre}
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Guías: contenido citable + enlazado interno */}

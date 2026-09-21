@@ -34,6 +34,12 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
 - [Catálogo actual en texto plano](https://cazadordeofertas.com.ar/llms-full.txt):
   las ofertas del momento con precio, descuento y mínimo histórico, más las
   guías, en Markdown (ideal para citar datos concretos).
+- Ofertas por categoría, con guía de compra y preguntas frecuentes:
+  [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
+  [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),
+  [heladeras](https://cazadordeofertas.com.ar/categoria/heladeras),
+  [aspiradoras](https://cazadordeofertas.com.ar/categoria/aspiradoras) y
+  [ventiladores](https://cazadordeofertas.com.ar/categoria/ventiladores).
 - [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
   [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre)
   y [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina):

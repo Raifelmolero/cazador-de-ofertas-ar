@@ -1,5 +1,6 @@
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
+import { CATEGORIAS } from '@/lib/categorias'
 
 // Versión "completa" de llms.txt: el catálogo de ofertas del momento en texto
 // plano (Markdown) más las guías, pensado para que un asistente de IA pueda
@@ -39,6 +40,10 @@ Los links de "ver oferta" del sitio son de afiliado; el precio para quien compra
 ${lineas.join('\n')}
 
 Listado completo con fotos, buscador y filtros: ${DEALS_URL}
+
+## Categorías
+
+${CATEGORIAS.map(c => `- [${c.nombre}](${DEALS_URL}/categoria/${c.slug}): ${c.descripcion}`).join('\n')}
 
 ## Guías
 

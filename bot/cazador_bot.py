@@ -338,6 +338,15 @@ def affiliate_url(url: str, affiliate_id: str, word: str | None = None) -> str:
     return f"{url}{sep}matt_word={word or affiliate_id}&matt_tool=37267219"
 
 
+SITE_DOMAIN = "cazadordeofertas.com.ar"
+
+
+def site_url(source: str) -> str:
+    """Link al sitio propio con utm_source, para ver desde qué canal llega la
+    gente en Clarity (Telegram no manda referrer desde su app)."""
+    return f"https://{SITE_DOMAIN}/?utm_source={source}"
+
+
 # ---------------------------------------------------------------- telegram
 
 def tg_call(token: str, method: str, payload: dict) -> dict:
@@ -382,7 +391,10 @@ def deal_caption(deal: dict, link: str) -> str:
 def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool) -> bool:
     caption = deal_caption(deal, link)
     keyboard = {
-        "inline_keyboard": [[{"text": "🛒 Ver oferta en ML", "url": link}]]
+        "inline_keyboard": [
+            [{"text": "🛒 Ver oferta en ML", "url": link}],
+            [{"text": "🔎 Más ofertas en el sitio", "url": site_url("telegram")}],
+        ]
     }
     if dry:
         print("=" * 60)
@@ -678,13 +690,15 @@ def th_caption(deal: dict, link: str) -> str:
         f"Estaba {fmt_price(deal['price_prev'])} → hoy {fmt_price(deal['price_cur'])}.\n"
         f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
-        f"{remate}"
+        f"{remate}\n\n"
+        f"🔎 Más ofertas: {SITE_DOMAIN}"
     )
     if len(caption) > 500:
         caption = (
             f"{hook} {deal['discount']}% OFF en {deal['title'][:60]}\n\n"
             f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 💸\n\n"
-            f"🛒 {link}"
+            f"🛒 {link}\n\n"
+            f"🔎 {SITE_DOMAIN}"
         )
     return caption
 

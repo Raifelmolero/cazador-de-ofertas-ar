@@ -311,6 +311,45 @@ class TestFbCaption(unittest.TestCase):
         self.assertIn(bot.fmt_price(30000), cap)
 
 
+class TestSitioEnLosPosts(unittest.TestCase):
+    """Todos los canales tienen que ofrecer también el sitio propio, sin sacar
+    el link directo de afiliado (que tiene un paso menos hasta la compra)."""
+
+    DEAL = {"title": "Producto de Prueba", "price_prev": 100000, "price_cur": 50000,
+            "discount": 50, "hist_low": False, "img": None}
+    LINK = "https://mercadolibre.com.ar/producto-p123?matt_word=threads&matt_tool=37267219"
+
+    def test_site_url_lleva_utm_source_del_canal(self):
+        self.assertEqual(
+            bot.site_url("telegram"),
+            "https://cazadordeofertas.com.ar/?utm_source=telegram",
+        )
+
+    def test_threads_mantiene_el_link_directo_y_suma_el_sitio(self):
+        cap = bot.th_caption(self.DEAL, self.LINK)
+        self.assertIn(self.LINK, cap)
+        self.assertIn("cazadordeofertas.com.ar", cap)
+
+    def test_threads_no_pasa_los_500_caracteres_ni_con_titulo_largo(self):
+        deal = {**self.DEAL, "title": "X" * 200}
+        link = self.LINK + "&extra=" + "y" * 120
+        cap = bot.th_caption(deal, link)
+        self.assertLessEqual(len(cap), 500)
+        self.assertIn(link, cap)
+        self.assertIn("cazadordeofertas.com.ar", cap)
+
+    def test_telegram_tiene_boton_de_oferta_y_boton_del_sitio(self):
+        enviados = []
+        with unittest.mock.patch.object(
+            bot, "tg_call", side_effect=lambda t, m, p: enviados.append(p) or {}
+        ):
+            bot.post_deal("tok", "@canal", self.DEAL, self.LINK, dry=False)
+        filas = enviados[0]["reply_markup"]["inline_keyboard"]
+        urls = [b["url"] for fila in filas for b in fila]
+        self.assertEqual(urls[0], self.LINK)
+        self.assertIn("https://cazadordeofertas.com.ar/?utm_source=telegram", urls)
+
+
 class TestComisionEstimada(unittest.TestCase):
     """Ranking pesado por categoría de comisión (ver CATEGORY_COMMISSION_WEIGHT)."""
 

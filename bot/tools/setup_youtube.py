@@ -106,8 +106,11 @@ def main() -> None:
     half = len(client_secret) // 2
     if len(client_secret) % 2 == 0 and client_secret[:half] == client_secret[half:]:
         client_secret = client_secret[:half]  # se pegó dos veces: nos quedamos con una
-    print("Se abre el navegador: elegí la cuenta del canal y aceptá.")
-    webbrowser.open(auth_url(client_id))
+    url = auth_url(client_id)
+    print("\nAbrí este link en una VENTANA PRIVADA (Ctrl+Shift+N), elegí la cuenta del canal y aceptá:\n")
+    print(url + "\n")
+    if input("¿Abrirlo automáticamente en el navegador normal? (s/N): ").strip().lower() == "s":
+        webbrowser.open(url)
     refresh = exchange(client_id, client_secret, wait_for_code())
     token = gh_token()
     set_secret("YT_CLIENT_ID", client_id, token)

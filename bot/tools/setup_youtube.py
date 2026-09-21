@@ -18,6 +18,7 @@ import getpass
 import json
 import subprocess
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 import webbrowser
@@ -67,8 +68,15 @@ def exchange(client_id: str, client_secret: str, code: str) -> str:
         "code": code, "client_id": client_id, "client_secret": client_secret,
         "redirect_uri": REDIRECT, "grant_type": "authorization_code",
     }).encode()
-    with urllib.request.urlopen(urllib.request.Request("https://oauth2.googleapis.com/token", data=body)) as r:
-        j = json.loads(r.read())
+    try:
+        with urllib.request.urlopen(urllib.request.Request("https://oauth2.googleapis.com/token", data=body)) as r:
+            j = json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(
+            f"Google rechazó el canje ({e.code}): {e.read().decode('utf-8', 'replace')[:200]}\n"
+            f"Largo del secret recibido: {len(client_secret)} caracteres (un secret normal tiene ~35, "
+            "empieza con GOCSPX-). Si es 0 o muy distinto, el pegado falló."
+        )
     if "refresh_token" not in j:
         sys.exit("Google no devolvió refresh_token. Revocá el acceso en myaccount.google.com/permissions y repetí.")
     return j["refresh_token"]

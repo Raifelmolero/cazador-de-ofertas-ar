@@ -578,6 +578,8 @@ def sugerir_destacado(title: str) -> str | None:
     return None
 
 
+# Actualización 2026-09-21 (panel, 180 días): Gastronomía y Hotelería también
+# paga 15% — se agregó al tramo alto.
 # Pesos de comisión estimada por categoría. El scraper de /ofertas no trae la
 # categoría real de ML (pedirla individual por producto son ~100 requests
 # extra por corrida, riesgo de baneo de IP — ver CLAUDE.md). Se aproxima por
@@ -599,6 +601,12 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
         "caja de embalaje", "cinta de embalar", "film stretch", "sunchos",
         "bolsa doypack", "precinto", "papel burbuja", "rollo de embalaje",
         "cinta adhesiva", "etiqueta autoadhesiva", "zuncho",
+    ]),
+    (1.8, [  # Gastronomía y Hotelería ~15% (freidora industrial: $23.8k de un pedido)
+        "freidora industrial", "freidora doble", "horno industrial",
+        "cocina industrial", "horno pizzero", "amasadora", "cortadora de fiambre",
+        "exhibidora", "plancha industrial", "procesadora industrial",
+        "cafetera industrial", "mesa de acero inoxidable", "campana industrial",
     ]),
     (1.4, [  # Pequeños Electrodomésticos / Monitores y Accesorios ~7%
         "monitor", "freidora de aire", "cafetera", "pava eléctrica",

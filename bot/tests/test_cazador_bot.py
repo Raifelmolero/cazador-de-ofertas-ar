@@ -365,6 +365,11 @@ class TestComisionEstimada(unittest.TestCase):
             bot.comision_estimada("Producto Genérico Sin Categoría Reconocible"),
         )
 
+    def test_gastronomia_industrial_pesa_lo_mismo_que_embalaje(self):
+        freidora = bot.comision_estimada("Freidora Industrial Doble Daewoo Inox 20lt")
+        self.assertEqual(freidora, 1.8)
+        self.assertGreater(freidora, bot.comision_estimada("Freidora De Aire Philco 5l"))
+
     def test_sin_match_devuelve_peso_neutro(self):
         self.assertEqual(bot.comision_estimada("Algo Que No Matchea Nada En Particular"), 1.0)
 

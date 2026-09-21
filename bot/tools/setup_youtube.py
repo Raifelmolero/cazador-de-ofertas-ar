@@ -103,6 +103,9 @@ def set_secret(name: str, value: str, token: str) -> None:
 def main() -> None:
     client_id = input("Client ID: ").strip()
     client_secret = getpass.getpass("Client Secret (oculto): ").strip()
+    half = len(client_secret) // 2
+    if len(client_secret) % 2 == 0 and client_secret[:half] == client_secret[half:]:
+        client_secret = client_secret[:half]  # se pegó dos veces: nos quedamos con una
     print("Se abre el navegador: elegí la cuenta del canal y aceptá.")
     webbrowser.open(auth_url(client_id))
     refresh = exchange(client_id, client_secret, wait_for_code())

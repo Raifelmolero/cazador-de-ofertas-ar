@@ -57,7 +57,39 @@ export default function PrivacidadPage() {
             videos al canal de Cazador de Ofertas. Solo accedemos a esa cuenta propia, únicamente para subir
             videos, y no leemos, almacenamos ni compartimos datos de otras personas. El uso de la información
             recibida de las APIs de Google respeta la Política de datos de usuario de los servicios de API de
-            Google.
+            Google, incluidos los requisitos de uso limitado.
+          </p>
+          <p className="mt-3">
+            Al usar los servicios de API de YouTube, quedamos sujetos a las{' '}
+            <a
+              className="text-yellow-400 underline"
+              href="https://www.youtube.com/t/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Condiciones del Servicio de YouTube
+            </a>{' '}
+            y a la{' '}
+            <a
+              className="text-yellow-400 underline"
+              href="http://www.google.com/policies/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Política de Privacidad de Google
+            </a>
+            . El acceso que se le da a la aplicación a la cuenta de Google se puede revocar en cualquier
+            momento desde la{' '}
+            <a
+              className="text-yellow-400 underline"
+              href="https://security.google.com/settings/security/permissions"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              página de permisos de seguridad de Google
+            </a>
+            . No almacenamos datos de usuarios de YouTube: si en algún momento se guardara alguno, se
+            eliminaría al revocar el acceso o al pedirlo por escrito a elcazadordeofertas.ar@gmail.com.
           </p>
         </section>
 

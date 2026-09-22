@@ -51,6 +51,23 @@ export default function TerminosPage() {
         </section>
 
         <section>
+          <h2 className="font-display text-xl font-black text-white mb-2">Servicios de API de YouTube</h2>
+          <p>
+            Publicamos videos cortos de ofertas en nuestro propio canal de YouTube mediante los servicios de
+            API de YouTube. Al usarlos quedamos sujetos a las{' '}
+            <a
+              className="text-yellow-400 underline"
+              href="https://www.youtube.com/t/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Condiciones del Servicio de YouTube
+            </a>
+            . Los visitantes del sitio no necesitan cuenta de Google ni conectan ninguna cuenta.
+          </p>
+        </section>
+
+        <section>
           <h2 className="font-display text-xl font-black text-white mb-2">Uso del sitio y responsabilidad</h2>
           <p>
             El sitio se ofrece &quot;tal como está&quot;, sin garantías. No somos responsables por decisiones de

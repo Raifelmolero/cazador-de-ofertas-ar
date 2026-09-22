@@ -29,6 +29,14 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
           {b.legal}{' '}
           <br className="hidden sm:block" />
           Este sitio usa links de afiliado de Mercado Libre.
+          <br />
+          <a href="/privacidad" className="underline hover:text-yellow-400 transition-colors">
+            Política de privacidad
+          </a>
+          {' · '}
+          <a href="/terminos" className="underline hover:text-yellow-400 transition-colors">
+            Términos de servicio
+          </a>
         </p>
       </div>
     </footer>

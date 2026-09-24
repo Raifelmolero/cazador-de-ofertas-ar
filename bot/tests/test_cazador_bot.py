@@ -353,7 +353,7 @@ class TestSitioEnLosPosts(unittest.TestCase):
 
     def test_telegram_tiene_boton_de_oferta_y_boton_del_sitio(self):
         enviados = []
-        with unittest.mock.patch.object(
+        with mock.patch.object(
             bot, "tg_call", side_effect=lambda t, m, p: enviados.append(p) or {}
         ):
             bot.post_deal("tok", "@canal", self.DEAL, self.LINK, dry=False)
@@ -572,3 +572,29 @@ class TestSeguimiento(unittest.TestCase):
             bot.update_seguimiento([aire], {}, "aff", p, today="2026-07-01")
             data = bot.update_seguimiento([], {}, "aff", p, today="2026-09-24")
         self.assertEqual(data["items"], {})
+
+
+class TestSelloTemporada(unittest.TestCase):
+    OCT = datetime(2026, 10, 5)
+    NOV = datetime(2026, 11, 10)
+
+    def test_regalo_madre_en_ventana(self):
+        self.assertIn("Día de la Madre", bot.sello_temporada("Perfume Carolina Herrera 100ml", self.OCT))
+
+    def test_fuera_de_ventana_sin_sello(self):
+        self.assertEqual(bot.sello_temporada("Perfume Carolina Herrera 100ml", self.NOV), "")
+
+    def test_no_matchea_dentro_de_otra_palabra(self):
+        self.assertEqual(bot.sello_temporada("Kit Faros Led Auto H4", self.OCT), "")
+        self.assertEqual(bot.temporada_boost("Kit Faros Led Auto H4", self.OCT), 1.0)
+
+    def test_primavera_no_tiene_sello(self):
+        self.assertEqual(bot.sello_temporada("Ventilador de pie 20 pulgadas", self.OCT), "")
+
+    def test_caption_telegram_incluye_sello(self):
+        deal = {"title": "Cafetera Nespresso", "price_prev": 200000, "price_cur": 150000,
+                "discount": 25, "img": None}
+        with mock.patch.object(bot, "sello_temporada", return_value="🎁 Idea de regalo para el Día de la Madre"):
+            self.assertIn("Día de la Madre", bot.deal_caption(deal, "https://x"))
+            self.assertTrue(bot.ig_caption(deal).startswith("🎁 IDEA DE REGALO"))
+

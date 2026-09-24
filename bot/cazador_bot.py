@@ -524,8 +524,10 @@ def deal_caption(deal: dict, link: str) -> str:
         if deal.get("relampago")
         else ""
     )
+    sello = sello_temporada(deal["title"])
+    regalo = f"<b>{sello}</b>\n\n" if sello else ""
     return (
-        f"{exclusiva}{relampago}"
+        f"{exclusiva}{relampago}{regalo}"
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
         f"✅ Ahora: <b>{fmt_price(deal['price_cur'])}</b>\n"
@@ -855,13 +857,39 @@ def _en_ventana(hoy: datetime, desde: tuple[int, int], hasta: tuple[int, int]) -
     return md >= desde or md <= hasta  # cruza fin de año
 
 
+# Sello visible en los posts cuando el producto entra en una fecha de regalo
+# (la clave es el inicio de la ventana en TEMPORADAS).
+SELLOS_TEMPORADA = {
+    (9, 25): "🎁 Idea de regalo para el Día de la Madre",
+    (12, 1): "🎄 Idea de regalo para Navidad",
+    (6, 1): "🎁 Idea de regalo para el Día del Padre",
+    (7, 25): "🎁 Idea de regalo para el Día de las Infancias",
+}
+
+
+def _menciona(t: str, keywords: list[str]) -> bool:
+    """Palabra que EMPIEZA con la keyword ("aros" no matchea "faros")."""
+    return any(re.search(r"\b" + re.escape(k), t) for k in keywords)
+
+
+def sello_temporada(title: str, hoy: datetime | None = None) -> str:
+    """Texto del sello de regalo vigente para este producto, o ""."""
+    hoy = hoy or datetime.now(timezone.utc) - timedelta(hours=3)
+    t = title.lower()
+    for desde, hasta, _peso, keywords in TEMPORADAS:
+        sello = SELLOS_TEMPORADA.get(desde)
+        if sello and _en_ventana(hoy, desde, hasta) and _menciona(t, keywords):
+            return sello
+    return ""
+
+
 def temporada_boost(title: str, hoy: datetime | None = None) -> float:
     """Multiplicador por fecha comercial vigente (1.0 si no aplica)."""
     hoy = hoy or datetime.now(timezone.utc) - timedelta(hours=3)
     t = title.lower()
     boost = 1.0
     for desde, hasta, peso, keywords in TEMPORADAS:
-        if _en_ventana(hoy, desde, hasta) and any(k in t for k in keywords):
+        if _en_ventana(hoy, desde, hasta) and _menciona(t, keywords):
             boost = max(boost, peso)
     return boost
 
@@ -891,11 +919,15 @@ def ganancia_esperada(deal: dict) -> float:
 
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = (
-        "⚡ OFERTA RELÁMPAGO: dura pocas horas"
-        if deal.get("relampago")
-        else "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
-    )
+    sello = sello_temporada(deal["title"])
+    if deal.get("relampago"):
+        hook = "⚡ OFERTA RELÁMPAGO: dura pocas horas"
+    elif sello:
+        hook = sello.upper()
+    elif deal.get("hist_low"):
+        hook = "📉 MÍNIMO HISTÓRICO"
+    else:
+        hook = random.choice(IG_HOOKS)
     badge = (
         "📉 Nunca lo registramos más barato que hoy\n"
         if deal.get("hist_low")

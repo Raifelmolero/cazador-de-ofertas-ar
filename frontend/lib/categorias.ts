@@ -580,6 +580,136 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'cocinas-y-hornos',
+    nombre: 'Cocinas y hornos',
+    titulo: 'Ofertas de cocinas y hornos en Mercado Libre Argentina',
+    descripcion:
+      'Cocinas a gas, multigas y eléctricas, hornos eléctricos y anafes en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Cocinas, hornos eléctricos y anafes con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['cocina a gas', 'cocina multigas', 'cocina electrica', 'cocina industrial', 'horno electrico', 'anafe', 'horno empotrable'],
+    excluir: ['repuesto', 'perilla', 'quemador', 'termocupla', 'burlete', 'bandeja', 'utensilio', 'set de', 'juego de'],
+    guia: [
+      {
+        h: 'Gas, multigas o eléctrica',
+        p: [
+          'A gas natural es la opción más barata de usar si tenés red de gas. Multigas sirve para gas natural y envasado (garrafa), con el cambio de picos que hace el gasista. Las eléctricas o de inducción no necesitan gas, pero piden una instalación eléctrica que banque el consumo.',
+          'La conexión de una cocina a gas la tiene que hacer un gasista matriculado; casi nunca está incluida en el precio.',
+        ],
+      },
+      {
+        h: 'Horno eléctrico: litros y potencia',
+        p: [
+          'Como referencia: 30 a 45 litros para 1-2 personas, 60 litros o más para familia o para hornear pizzas y asaderas grandes. Más potencia (W) calienta más rápido; la función convector cocina más parejo.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene una cocina multigas?',
+        a: 'Sí, si hoy usás garrafa o pensás mudarte: funciona con gas natural y envasado, solo hay que cambiar los picos.',
+      },
+      {
+        q: '¿De cuántos litros tiene que ser un horno eléctrico?',
+        a: 'Como referencia, 30 a 45 litros para una o dos personas y 60 litros o más para una familia.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'parrillas',
+    nombre: 'Parrillas',
+    titulo: 'Ofertas de parrillas en Mercado Libre Argentina',
+    descripcion:
+      'Parrillas, asadores y parrillas eléctricas en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Cuál elegir para balcón, patio o quincho.',
+    intro:
+      'Parrillas y asadores con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['parrilla', 'asador', 'fogonero', 'brasero'],
+    excluir: ['repuesto', 'rejilla', 'cepillo', 'set de', 'kit de', 'funda', 'guante', 'pinza', 'tabla'],
+    guia: [
+      {
+        h: 'Qué parrilla elegir',
+        p: [
+          'Para balcón o departamento, una parrilla eléctrica o a gas evita el humo y las brasas. Para patio o quincho, una parrilla de carbón/leña con brasero da el asado de siempre. Las portátiles plegables sirven para camping y escapadas.',
+          'Fijate el tamaño de la superficie (define para cuántas personas alcanza), el material (hierro o acero inoxidable) y si la altura de la rejilla se regula.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué parrilla conviene para un balcón?',
+        a: 'Una parrilla eléctrica o a gas: no hace brasas ni tanto humo. Revisá antes el reglamento del edificio.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'bicicletas',
+    nombre: 'Bicicletas',
+    titulo: 'Ofertas de bicicletas en Mercado Libre Argentina',
+    descripcion:
+      'Bicicletas mountain bike, urbanas, de paseo e infantiles en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Qué rodado elegir.',
+    intro:
+      'Bicicletas con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['bicicleta'],
+    excluir: ['repuesto', 'cubierta', 'camara', 'inflador', 'candado', 'casco', 'soporte', 'porta', 'luz', 'asiento', 'guardabarro', 'rodillo', 'funda', 'cadena', 'pedal', 'timbre'],
+    guia: [
+      {
+        h: 'Qué rodado elegir',
+        p: [
+          'Como referencia orientativa: rodado 12 a 16 para chicos de 3 a 6 años, 20 para 6 a 9, 24 para 9 a 12, y 26, 27,5 o 29 para adultos. En adultos, el talle del cuadro depende de la altura: pedí la tabla del vendedor.',
+          'Mountain bike (rodado 29 o 27,5) para calle rota y tierra; urbana o de paseo para ciudad; los frenos a disco frenan mejor con lluvia que los V-brake.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué rodado de bicicleta necesito?',
+        a: 'Para adultos, rodado 26, 27,5 o 29; el talle del cuadro va según tu altura. Para chicos, del 12 al 24 según la edad.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'perfumes',
+    nombre: 'Perfumes',
+    titulo: 'Ofertas de perfumes en Mercado Libre Argentina',
+    descripcion:
+      'Perfumes de mujer y hombre en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Cómo evitar imitaciones.',
+    intro:
+      'Perfumes con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto. Ideal para regalar.',
+    keywords: ['perfume', 'eau de parfum', 'eau de toilette'],
+    excluir: ['difusor', 'aromatizante', 'textil', 'ambiente', 'auto', 'vela'],
+    guia: [
+      {
+        h: 'Cómo comprar un perfume original',
+        p: [
+          'Preferí tiendas oficiales de la marca o vendedores MercadoLíder con muchas ventas y buena reputación. Un precio muy por debajo del resto suele ser señal de imitación ("inspirado en").',
+          'Eau de parfum dura más en la piel que eau de toilette. Si es para regalar, fijate que venga sellado y con fecha de entrega antes de la fecha especial.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cómo sé si un perfume de Mercado Libre es original?',
+        a: 'Comprando en la tienda oficial de la marca o a vendedores con muy buena reputación, y desconfiando de precios muy por debajo del resto.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

@@ -772,6 +772,9 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
         # grande (estimado igual que heladera). Tienen página /categoria/*.
         "smart tv", "televisor", "google tv", "lavarropas", "lavasecarropas",
         "secarropas", "lavavajillas", "freezer", "termotanque", "calefon", "calefón",
+        # Cocinas/hornos: mismo tramo estimado que línea blanca (sin ventas aún).
+        "cocina a gas", "cocina multigas", "cocina electrica", "cocina eléctrica",
+        "horno electrico", "horno eléctrico", "anafe",
     ]),
     (1.15, [  # Seguridad / Materiales de obra / Pinturería / Camping / Librería ~4%
         "cerradura", "alarma", "sensor de", "cámara de seguridad",

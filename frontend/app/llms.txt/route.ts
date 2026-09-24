@@ -45,8 +45,12 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [colchones](https://cazadordeofertas.com.ar/categoria/colchones),
   [smart TV](https://cazadordeofertas.com.ar/categoria/smart-tv),
   [lavarropas](https://cazadordeofertas.com.ar/categoria/lavarropas),
-  [freezers](https://cazadordeofertas.com.ar/categoria/freezers) y
-  [termotanques](https://cazadordeofertas.com.ar/categoria/termotanques).
+  [freezers](https://cazadordeofertas.com.ar/categoria/freezers),
+  [termotanques](https://cazadordeofertas.com.ar/categoria/termotanques),
+  [cocinas y hornos](https://cazadordeofertas.com.ar/categoria/cocinas-y-hornos),
+  [parrillas](https://cazadordeofertas.com.ar/categoria/parrillas),
+  [bicicletas](https://cazadordeofertas.com.ar/categoria/bicicletas) y
+  [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes).
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
   [smart TV](https://cazadordeofertas.com.ar/mejores/mejores-smart-tv),

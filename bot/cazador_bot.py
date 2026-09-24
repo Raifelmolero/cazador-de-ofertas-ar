@@ -780,6 +780,12 @@ def temporada_boost(title: str, hoy: datetime | None = None) -> float:
     return boost
 
 
+# % de comisión aproximado de cada tramo de peso (panel de afiliados). El peso
+# sirve para desempatar; la ganancia esperada necesita el % real, porque un
+# celular de $1,7M al ~2,5% deja menos que un aire de $880k al 7%.
+COMISION_PCT_POR_PESO = {1.8: 0.15, 1.4: 0.07, 1.15: 0.04, 1.0: 0.025}
+
+
 def ganancia_esperada(deal: dict) -> float:
     """Pesos que deja una venta, en relativo: precio × peso de comisión.
     Una venta de un aire de $800k deja ~100 veces más que un juguete de $8k,
@@ -787,7 +793,7 @@ def ganancia_esperada(deal: dict) -> float:
     porque convierten más (precio verificado / urgencia real de ML)."""
     score = (
         deal["price_cur"]
-        * comision_estimada(deal["title"])
+        * COMISION_PCT_POR_PESO.get(comision_estimada(deal["title"]), 0.025)
         * temporada_boost(deal["title"])
     )
     if deal.get("hist_low"):

@@ -541,3 +541,10 @@ class TestTemporadas(unittest.TestCase):
 
     def test_verano_cruza_fin_de_anio(self):
         self.assertEqual(bot.temporada_boost("Pileta estructural 3x2", datetime(2027, 1, 15)), 1.3)
+
+
+class TestGananciaPorComision(unittest.TestCase):
+    def test_aire_le_gana_a_celular_mas_caro(self):
+        aire = {"title": "Aire Acondicionado Split Inverter 3000 Frig", "price_cur": 880000}
+        cel = {"title": "Apple iPhone 16e 512 Gb", "price_cur": 1700000, "relampago": True}
+        self.assertGreater(bot.ganancia_esperada(aire), bot.ganancia_esperada(cel))

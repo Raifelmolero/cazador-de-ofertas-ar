@@ -1,0 +1,170 @@
+// Comparativas "Mejores X en oferta" (/mejores/[slug]). Apuntan a la búsqueda
+// que se hace justo antes de comprar algo caro ("mejor aire acondicionado
+// 2026", "qué smart tv comprar") en los rubros que más comisión dejan por venta.
+//
+// La tabla sale del catálogo del momento (ordenado por ganancia esperada, ver
+// ganancia_esperada en bot/cazador_bot.py); lo fijo es la lista de criterios.
+// No son reseñas: no probamos productos, comparamos precio, descuento y el
+// historial de precios que registramos. La página lo dice explícitamente.
+
+import { CATEGORIAS, getCategoria, normalizar, ofertasDeCategoria, type Categoria } from '@/lib/categorias'
+import type { ProductWithMargins } from '@/lib/productos'
+
+export interface Comparativa {
+  slug: string
+  nombre: string // "aires acondicionados"
+  titulo: string
+  descripcion: string
+  intro: string
+  categoria?: string // slug de /categoria/* de donde salen los productos
+  keywords?: string[] // o palabras propias (para comparativas que cruzan rubros)
+  criterios: string[]
+  guia?: string // slug de /guias/* relacionada
+}
+
+const AÑO = 2026
+
+export const COMPARATIVAS: Comparativa[] = [
+  {
+    slug: 'mejores-aires-acondicionados',
+    nombre: 'aires acondicionados',
+    titulo: `Mejores aires acondicionados en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de los aires acondicionados split en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
+    intro:
+      'Los aires acondicionados en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'aire-acondicionado',
+    criterios: [
+      'Frigorías según el ambiente: volumen (m² × altura) × 50. Un cuarto de 20 m² necesita unas 2.600 frigorías.',
+      'Inverter si lo vas a usar muchas horas: consume menos y hace menos ruido.',
+      'Frío/calor: calefacciona con bomba de calor, más eficiente que una estufa eléctrica.',
+      'Instalación: casi nunca está incluida en el precio; sumala al presupuesto.',
+      'Etiqueta de eficiencia energética: A o superior.',
+    ],
+    guia: 'cuantas-frigorias-necesito-aire-acondicionado',
+  },
+  {
+    slug: 'mejores-smart-tv',
+    nombre: 'smart TV',
+    titulo: `Mejores smart TV en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de smart TV en oferta hoy en Mercado Libre Argentina: 32 a 75 pulgadas, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los smart TV en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'smart-tv',
+    criterios: [
+      'Tamaño según la distancia: a 2 metros va bien uno de 50 a 55 pulgadas.',
+      '4K desde 43 pulgadas; en 32 alcanza con HD o Full HD.',
+      'Panel: QLED y OLED dan mejores colores y contraste que un LED común.',
+      'Sistema (Google TV, webOS, Tizen): que tenga las apps que usás.',
+      'Garantía oficial de la marca en Argentina.',
+    ],
+  },
+  {
+    slug: 'mejores-lavarropas',
+    nombre: 'lavarropas',
+    titulo: `Mejores lavarropas en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de lavarropas y lavasecarropas en oferta hoy en Mercado Libre Argentina: carga, centrifugado, precio y precio mínimo registrado.',
+    intro:
+      'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'lavarropas',
+    criterios: [
+      'Capacidad: 6-7 kg para 1-2 personas, 8 kg o más para familias.',
+      'Carga frontal: lava mejor y gasta menos agua; carga superior: más barato.',
+      'Centrifugado: 1000 rpm o más deja la ropa más seca.',
+      'Inverter: menos ruido y consumo.',
+      'Medidas: confirmá el espacio y la puerta de acceso antes de comprar.',
+    ],
+  },
+  {
+    slug: 'mejores-heladeras',
+    nombre: 'heladeras',
+    titulo: `Mejores heladeras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de heladeras en oferta hoy en Mercado Libre Argentina: no frost o cíclica, litros, precio y precio mínimo registrado.',
+    intro:
+      'Las heladeras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'heladeras',
+    criterios: [
+      'No frost: no junta hielo; cíclica: más barata y gasta menos.',
+      'Litros: unos 100 a 150 L por persona como referencia.',
+      'Freezer: arriba, abajo o side by side según cuánto congeles.',
+      'Eficiencia energética A o superior: la heladera está prendida las 24 h.',
+      'Medidas del hueco y apertura de la puerta.',
+    ],
+  },
+  {
+    slug: 'mejores-colchones',
+    nombre: 'colchones',
+    titulo: `Mejores colchones en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de colchones en oferta hoy en Mercado Libre Argentina: espuma, resortes o viscoelástico, medidas, precio y precio mínimo registrado.',
+    intro:
+      'Los colchones en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'colchones',
+    criterios: [
+      'Firmeza según tu peso y postura: de costado, algo menos firme.',
+      'Espuma de alta densidad (mirá el número), resortes pocket o viscoelástico.',
+      'Medida exacta de tu base: 1 plaza, 2 plazas, queen o king.',
+      'Colchón "en caja": tarda 24-48 h en tomar su forma.',
+      'Garantía del fabricante.',
+    ],
+    guia: 'que-colchon-comprar-firmeza-y-material',
+  },
+  {
+    slug: 'mejores-taladros',
+    nombre: 'taladros y herramientas',
+    titulo: `Mejores taladros y herramientas eléctricas en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de taladros, atornilladores y herramientas eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Taladros, atornilladores, amoladoras y más herramientas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos.',
+    categoria: 'herramientas-electricas',
+    criterios: [
+      'Para la casa: percutor de 500-750 W o atornillador 18 V con percutor.',
+      'Rotomartillo solo para hormigón u obra.',
+      'A batería: fijate si incluye batería y cargador (muchos vienen "sin batería").',
+      'Mandril de 13 mm acepta más mechas que uno de 10 mm.',
+      'Kits con maletín y accesorios suelen salir más baratos que por separado.',
+    ],
+    guia: 'que-taladro-comprar-para-la-casa',
+  },
+  {
+    slug: 'regalos-dia-de-la-madre',
+    nombre: 'regalos para el Día de la Madre',
+    titulo: `Regalos para el Día de la Madre ${AÑO} en oferta`,
+    descripcion:
+      'Ideas de regalo para el Día de la Madre (domingo 18 de octubre de 2026) en oferta en Mercado Libre Argentina: perfumes, cuidado personal, cocina, smartwatch y más.',
+    intro:
+      'El Día de la Madre en Argentina es el domingo 18 de octubre de 2026. Estos son los regalos en oferta hoy, con el descuento verificado contra el historial de precios.',
+    keywords: [
+      'perfume', 'secador de pelo', 'planchita', 'alisadora', 'rizador', 'smartwatch',
+      'cartera', 'masajeador', 'cafetera', 'freidora de aire', 'robot aspiradora',
+      'aspiradora robot', 'batidora', 'maquina de coser', 'auriculares', 'depiladora',
+    ],
+    criterios: [
+      'Comprá con al menos 5-7 días de margen: mirá la fecha de entrega en Mercado Libre.',
+      'Envío Full llega más rápido y tiene devolución simple si hay que cambiar.',
+      'Perfumes: elegí vendedores oficiales o tiendas oficiales de la marca.',
+      'Si no estás seguro del gusto, un electrodoméstico útil (cafetera, freidora) rara vez falla.',
+    ],
+  },
+]
+
+export function getComparativa(slug: string) {
+  return COMPARATIVAS.find(c => c.slug === slug)
+}
+
+export function categoriaDe(c: Comparativa): Categoria | undefined {
+  return c.categoria ? getCategoria(c.categoria) : undefined
+}
+
+export function productosDe(c: Comparativa): ProductWithMargins[] {
+  const cat = categoriaDe(c)
+  if (cat) return ofertasDeCategoria(cat)
+  const kws = (c.keywords ?? []).map(normalizar)
+  // Reusa el catálogo completo vía cualquier categoría: ofertasDeCategoria
+  // con una categoría "virtual" sin exclusiones.
+  return ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte'] })
+}

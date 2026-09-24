@@ -47,6 +47,14 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [lavarropas](https://cazadordeofertas.com.ar/categoria/lavarropas),
   [freezers](https://cazadordeofertas.com.ar/categoria/freezers) y
   [termotanques](https://cazadordeofertas.com.ar/categoria/termotanques).
+- Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
+  [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
+  [smart TV](https://cazadordeofertas.com.ar/mejores/mejores-smart-tv),
+  [lavarropas](https://cazadordeofertas.com.ar/mejores/mejores-lavarropas),
+  [heladeras](https://cazadordeofertas.com.ar/mejores/mejores-heladeras),
+  [colchones](https://cazadordeofertas.com.ar/mejores/mejores-colchones),
+  [taladros y herramientas](https://cazadordeofertas.com.ar/mejores/mejores-taladros) y
+  [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre).
 - [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
   [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre),
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),

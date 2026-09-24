@@ -586,7 +586,7 @@ export function getCategoria(slug: string): Categoria | undefined {
   return CATEGORIAS.find(c => c.slug === slug)
 }
 
-function normalizar(s: string) {
+export function normalizar(s: string) {
   return s
     .toLowerCase()
     .normalize('NFD')

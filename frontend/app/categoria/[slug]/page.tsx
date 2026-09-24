@@ -6,6 +6,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
+import { COMPARATIVAS } from '@/lib/comparativas'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -225,6 +226,14 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </div>
           </section>
         )}
+
+        {COMPARATIVAS.filter(x => x.categoria === c.slug).map(x => (
+          <p key={x.slug} className="mb-8">
+            <a href={`/mejores/${x.slug}`} className="font-bold text-yellow-400 hover:underline">
+              📊 {x.titulo} →
+            </a>
+          </p>
+        ))}
 
         {c.guia.map(s => (
           <section key={s.h} className="mb-8">

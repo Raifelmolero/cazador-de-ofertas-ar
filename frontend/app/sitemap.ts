@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
+import { COMPARATIVAS } from '@/lib/comparativas'
 
 const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
 // La página de ofertas canonicaliza a la raíz de su propio dominio (ver
@@ -32,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // /calculadora/[id] no se caen del sitio, así que sí se anuncian.
     ...CATEGORIAS.map(c => ({
       url: `${DEALS_URL}/categoria/${c.slug}`,
+      lastModified,
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    })),
+    ...COMPARATIVAS.map(c => ({
+      url: `${DEALS_URL}/mejores/${c.slug}`,
       lastModified,
       changeFrequency: 'daily' as const,
       priority: 0.8,

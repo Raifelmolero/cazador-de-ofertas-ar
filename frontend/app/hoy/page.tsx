@@ -1,3 +1,4 @@
+import { slugPorId } from '@/lib/seguimiento'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
@@ -47,6 +48,7 @@ export default function HoyPage() {
   const minimos = ofertas.filter(o => o.minimo_historico).length
 
   // Solo los campos que la grilla usa: mantiene chico el payload del cliente
+  const historial = slugPorId()
   const ofertasLight: OfertaLight[] = ofertas.map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
@@ -57,6 +59,7 @@ export default function HoyPage() {
     relampago: o.relampago,
     url_producto: o.url_producto,
     url_imagen: o.url_imagen,
+    historial: historial[o.id_ml],
   }))
 
   // Datos estructurados para rich results de Google (top 20 alcanza:

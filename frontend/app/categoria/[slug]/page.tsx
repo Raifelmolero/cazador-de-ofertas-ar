@@ -7,7 +7,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS } from '@/lib/comparativas'
-import { seguidosDeCategoria } from '@/lib/seguimiento'
+import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -50,6 +50,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
     .filter(o => o.precio_minimo_registrado && o.seguimiento_desde && o.seguimiento_desde < scrapedAt.slice(0, 10))
     .slice(0, 15)
 
+  const historial = slugPorId()
   const ofertasLight: OfertaLight[] = ofertas.map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
@@ -60,6 +61,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
     relampago: o.relampago,
     url_producto: o.url_producto,
     url_imagen: o.url_imagen,
+    historial: historial[o.id_ml],
   }))
 
   // Igual que /hoy: las ofertas se refrescan 3 veces por día, así que valen hasta hoy

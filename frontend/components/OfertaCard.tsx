@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 /** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
  *  necesita, y mantiene liviano el payload que viaja al cliente. */
@@ -14,6 +15,8 @@ export interface OfertaLight {
   relampago?: boolean
   url_producto: string
   url_imagen: string | null
+  /** slug de /precio/[slug] si el producto tiene historial propio */
+  historial?: string
 }
 
 function precio(n: number) {
@@ -73,7 +76,28 @@ function Badges({ producto, className = '' }: { producto: OfertaLight; className
  * es visual. Fondo blanco en la foto: las imágenes de ML son JPG de fondo
  * blanco, así quedan integradas en vez de flotar como rectángulos.
  */
-export default function OfertaCard({
+/** El link al historial va FUERA de la tarjeta (no se anidan <a>). */
+export default function OfertaCard(props: {
+  producto: OfertaLight
+  featured?: boolean
+  priority?: boolean
+}) {
+  const slug = props.producto.historial
+  if (!slug) return <Tarjeta {...props} />
+  return (
+    <div className={`flex flex-col ${props.featured ? 'col-span-full' : ''}`}>
+      <Tarjeta {...props} />
+      <Link
+        href={`/precio/${slug}`}
+        className="mt-1.5 text-center text-xs font-semibold text-zinc-400 hover:text-yellow-400 transition-colors"
+      >
+        📈 Historial de precio: ¿conviene hoy?
+      </Link>
+    </div>
+  )
+}
+
+function Tarjeta({
   producto,
   featured = false,
   priority = false,
@@ -162,7 +186,7 @@ export default function OfertaCard({
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="rise-in group flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+      className="rise-in group flex-1 flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
     >
       <div className="relative aspect-square bg-white">
         {producto.url_imagen ? (

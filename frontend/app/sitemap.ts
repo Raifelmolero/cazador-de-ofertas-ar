@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { headers } from 'next/headers'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
@@ -8,7 +9,8 @@ import { getSeguidos } from '@/lib/seguimiento'
 const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
 // La página de ofertas canonicaliza a la raíz de su propio dominio (ver
 // app/hoy/page.tsx); acá va esa URL y no BASE/hoy para no listar un duplicado.
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
+const DEALS_HOST = process.env.DEALS_HOST ?? 'cazadordeofertas.com.ar'
+const DEALS_URL = `https://${DEALS_HOST}`
 
 /**
  * Solo las dos páginas estables, a propósito.
@@ -24,11 +26,18 @@ const DEALS_URL = 'https://cazadordeofertas.com.ar'
  * el anuncio. Si algún día se persisten (que no se borren al salir del JSON),
  * ahí sí tiene sentido volver a listarlas.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = getScrapedAt()
 
+  // El mismo deploy sirve los dos dominios. Google marca error si un sitemap
+  // lista URLs de otro dominio (le pasaba al de cazadordeofertas: 1 error y
+  // solo 23 páginas descubiertas), así que cada host lista solo lo suyo.
+  const host = ((await headers()).get('host') ?? '').replace(/^www\./, '')
+  if (!host.startsWith(DEALS_HOST)) {
+    return [{ url: BASE, lastModified, changeFrequency: 'daily', priority: 1 }]
+  }
+
   return [
-    { url: BASE, lastModified, changeFrequency: 'daily', priority: 1 },
     { url: DEALS_URL, lastModified, changeFrequency: 'hourly', priority: 1 },
     // URLs estables (el listado de adentro rota, la página no): a diferencia de
     // /calculadora/[id] no se caen del sitio, así que sí se anuncian.

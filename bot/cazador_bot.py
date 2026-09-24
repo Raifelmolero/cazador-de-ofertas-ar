@@ -494,6 +494,14 @@ def tg_call(token: str, method: str, payload: dict) -> dict:
         return json.load(resp)
 
 
+def tg_error(e: "urllib.error.HTTPError") -> str:
+    """Motivo que devuelve Telegram (el 400 pelado no dice nada)."""
+    try:
+        return f"{e.code} {json.load(e).get('description', '')}"
+    except Exception:  # noqa: BLE001
+        return str(e)
+
+
 def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
@@ -542,31 +550,37 @@ def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool) -> boo
         return True
     try:
         if deal["img"]:
-            tg_call(
-                token,
-                "sendPhoto",
-                {
-                    "chat_id": channel,
-                    "photo": deal["img"],
-                    "caption": caption,
-                    "parse_mode": "HTML",
-                    "reply_markup": keyboard,
-                },
-            )
-        else:
-            tg_call(
-                token,
-                "sendMessage",
-                {
-                    "chat_id": channel,
-                    "text": caption,
-                    "parse_mode": "HTML",
-                    "reply_markup": keyboard,
-                },
-            )
+            try:
+                tg_call(
+                    token,
+                    "sendPhoto",
+                    {
+                        "chat_id": channel,
+                        "photo": deal["img"],
+                        "caption": caption,
+                        "parse_mode": "HTML",
+                        "reply_markup": keyboard,
+                    },
+                )
+                return True
+            except urllib.error.HTTPError as e:
+                # Foto que Telegram no puede bajar o caption > 1024: no perder
+                # la oferta, mandarla como texto (límite 4096).
+                print(f"[warn] sendPhoto {deal['id']} falló ({tg_error(e)}), va como texto")
+        tg_call(
+            token,
+            "sendMessage",
+            {
+                "chat_id": channel,
+                "text": caption,
+                "parse_mode": "HTML",
+                "reply_markup": keyboard,
+            },
+        )
         return True
     except Exception as e:  # noqa: BLE001
-        print(f"[error] no pude publicar {deal['id']}: {e}")
+        detalle = tg_error(e) if isinstance(e, urllib.error.HTTPError) else e
+        print(f"[error] no pude publicar {deal['id']}: {detalle}")
         return False
 
 

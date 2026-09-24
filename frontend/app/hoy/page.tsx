@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
+import { COMPARATIVAS } from '@/lib/comparativas'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
@@ -245,6 +246,19 @@ export default function HoyPage() {
         </ul>
       </section>
 
+      {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
+      {new Date() < new Date('2026-10-19T03:00:00Z') && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+          <a
+            href="/mejores/regalos-dia-de-la-madre"
+            className="block rounded-2xl border border-pink-400/30 bg-pink-500/10 px-5 py-4 text-center hover:border-pink-400/60 transition-colors"
+          >
+            <span className="font-display font-black text-pink-200">🎁 Día de la Madre: domingo 18 de octubre</span>
+            <span className="block text-sm text-zinc-300 mt-1">Regalos en oferta con el descuento verificado → ver los regalos</span>
+          </a>
+        </section>
+      )}
+
       {/* Grid con búsqueda y filtros */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {ofertas.length === 0 ? (
@@ -318,6 +332,25 @@ export default function HoyPage() {
               </a>
             </li>
           ))}
+        </ul>
+      </section>
+
+      {/* Comparativas de ticket alto */}
+      <section className="max-w-2xl mx-auto px-4 pb-10">
+        <h2 className="font-display text-lg font-black mb-4 text-center">Comparativas antes de comprar</h2>
+        <ul className="space-y-2 text-center">
+          {COMPARATIVAS.map(c => (
+            <li key={c.slug}>
+              <a href={`/mejores/${c.slug}`} className="text-sm font-bold text-yellow-400/90 hover:text-yellow-300">
+                📊 {c.titulo}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/precio" className="text-sm font-bold text-yellow-400/90 hover:text-yellow-300">
+              📈 Historial de precios de productos de ticket alto
+            </a>
+          </li>
         </ul>
       </section>
 

@@ -77,6 +77,7 @@ export default function HoyPage() {
       item: {
         '@type': 'Product',
         name: o.titulo,
+        description: `${o.titulo} en oferta en Mercado Libre Argentina${o.descuento_pct ? ` con ${o.descuento_pct}% OFF` : ''}${o.minimo_historico ? ', en su precio más bajo registrado' : ''}.`,
         ...(o.url_imagen ? { image: o.url_imagen } : {}),
         offers: {
           '@type': 'Offer',
@@ -85,6 +86,7 @@ export default function HoyPage() {
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
           priceValidUntil,
+          validFrom: scrapedAt,
           url: o.url_producto,
         },
       },

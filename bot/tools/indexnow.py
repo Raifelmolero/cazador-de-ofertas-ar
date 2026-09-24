@@ -35,7 +35,7 @@ def main() -> int:
     )
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
-            print(f"[indexnow] {len(urls)} URLs enviadas → HTTP {r.status}")
+            print(f"[indexnow] {len(urls)} URLs enviadas -> HTTP {r.status}")
     except urllib.error.HTTPError as e:
         print(f"[indexnow] HTTP {e.code}: {e.read()[:300]!r}")
         return 0 if e.code == 202 else 1

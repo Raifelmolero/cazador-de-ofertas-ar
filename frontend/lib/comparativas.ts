@@ -20,6 +20,8 @@ export interface Comparativa {
   keywords?: string[] // o palabras propias (para comparativas que cruzan rubros)
   criterios: string[]
   guia?: string // slug de /guias/* relacionada
+  /** Cortes de precio para la sección "por presupuesto" (regalos) */
+  presupuestos?: number[]
 }
 
 const AÑO = 2026
@@ -132,10 +134,11 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'regalos-dia-de-la-madre',
+    presupuestos: [50000, 150000],
     nombre: 'regalos para el Día de la Madre',
     titulo: `Regalos para el Día de la Madre ${AÑO} en oferta`,
     descripcion:
-      'Ideas de regalo para el Día de la Madre (domingo 18 de octubre de 2026) en oferta en Mercado Libre Argentina: perfumes, cuidado personal, cocina, smartwatch y más.',
+      'Ideas de regalo para el Día de la Madre (domingo 18 de octubre de 2026) en oferta en Mercado Libre Argentina, por presupuesto (hasta $50.000, hasta $150.000 y más): perfumes, cuidado personal, cocina, smartwatch y más.',
     intro:
       'El Día de la Madre en Argentina es el domingo 18 de octubre de 2026. Estos son los regalos en oferta hoy, con el descuento verificado contra el historial de precios.',
     keywords: [

@@ -1,3 +1,4 @@
+import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -41,7 +42,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
 
   const url = `${DEALS_URL}/mejores/${c.slug}`
   // Ya vienen ordenados por ganancia esperada (ticket × comisión), igual que /hoy.
-  const productos = productosDe(c).slice(0, MAX_FILAS)
+  const todos = productosDe(c)
+  const productos = todos.slice(0, MAX_FILAS)
+  const tramos = c.presupuestos ? armarTramos(todos, c.presupuestos) : []
   const scrapedAt = getScrapedAt().toISOString()
   const cat = categoriaDe(c)
   const guia = c.guia ? getGuia(c.guia) : undefined
@@ -170,6 +173,32 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </p>
         </section>
 
+        {tramos.length > 0 && (
+          <section className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Por presupuesto</h2>
+            <div className="space-y-6">
+              {tramos.map(t => (
+                <div key={t.titulo}>
+                  <h3 className="font-bold text-zinc-200 mb-2">{t.titulo}</h3>
+                  <ul className="space-y-1.5">
+                    {t.items.map(p => (
+                      <li key={p.id_ml} className="flex items-baseline justify-between gap-3 text-sm">
+                        <a href={p.url_producto} rel="sponsored nofollow" target="_blank" className="text-zinc-300 hover:text-yellow-400 line-clamp-1">
+                          {p.titulo}
+                        </a>
+                        <span className="whitespace-nowrap font-semibold text-zinc-100">
+                          {precio(p.precio_actual)}
+                          {p.descuento_pct != null && <span className="ml-2 text-red-400">-{p.descuento_pct}%</span>}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué comparar antes de comprar</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">
@@ -224,4 +253,18 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
 
 function precio(n: number) {
   return '$' + Math.round(n).toLocaleString('es-AR')
+}
+
+/** Top 4 por tramo de precio (ya vienen ordenados por ganancia esperada). */
+function armarTramos(todos: ProductWithMargins[], cortes: number[]) {
+  const limites = [0, ...cortes, Infinity]
+  return limites.slice(0, -1).map((desde, i) => {
+    const hasta = limites[i + 1]
+    const titulo =
+      desde === 0 ? `Hasta ${precio(hasta)}`
+      : hasta === Infinity ? `Más de ${precio(desde)}`
+      : `De ${precio(desde)} a ${precio(hasta)}`
+    const items = todos.filter(p => p.precio_actual > desde && p.precio_actual <= hasta).slice(0, 4)
+    return { titulo, items }
+  }).filter(t => t.items.length > 0)
 }

@@ -1,0 +1,25 @@
+name: IndexNow ping
+
+# Avisa a Bing/Copilot (y demás buscadores IndexNow) que el sitio cambió.
+# Una vez por día alcanza: los precios cambian 3x/día pero las URLs son
+# las mismas, y IndexNow penaliza el reenvío excesivo de URLs sin cambios.
+on:
+  schedule:
+    - cron: "30 16 * * *"  # 13:30 ART, después de la corrida del mediodía
+  push:
+    branches: [main]
+    paths: ["frontend/lib/**", "frontend/app/**"]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Esperar el deploy de Vercel (solo en push)
+        if: github.event_name == 'push'
+        run: sleep 180
+      - run: python bot/tools/indexnow.py

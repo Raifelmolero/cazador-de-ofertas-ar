@@ -652,6 +652,11 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
         "pava electrica", "licuadora", "batidora", "aspiradora", "plancha",
         "ventilador", "heladera", "microondas", "extractor",
     ]),
+    (1.4, [  # Televisores 7% (smart TV: $28.3k de un pedido) y línea blanca
+        # grande (estimado igual que heladera). Tienen página /categoria/*.
+        "smart tv", "televisor", "google tv", "lavarropas", "lavasecarropas",
+        "secarropas", "lavavajillas", "freezer", "termotanque", "calefon", "calefón",
+    ]),
     (1.15, [  # Seguridad / Materiales de obra / Pinturería / Camping / Librería ~4%
         "cerradura", "alarma", "sensor de", "cámara de seguridad",
         "camara de seguridad", "candado", "pintura", "látex", "latex",

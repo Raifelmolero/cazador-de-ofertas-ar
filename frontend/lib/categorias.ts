@@ -400,6 +400,186 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  // Actualización 2026-09-23 (noche): con el scrape de las 20 páginas de
+  // /ofertas, estos rubros de ticket alto aparecen todos los días (smart TV
+  // ~19, freezers ~11, lavarropas ~9, termotanques ~8 por corrida).
+  {
+    slug: 'smart-tv',
+    nombre: 'Smart TV',
+    titulo: 'Ofertas de Smart TV en Mercado Libre Argentina',
+    descripcion:
+      'Smart TV en oferta en Mercado Libre Argentina con el descuento verificado contra el historial de precios. Qué tamaño, resolución y sistema elegir.',
+    intro:
+      'Los televisores Smart TV que hoy tienen descuento real en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['smart tv', 'televisor', 'google tv'],
+    excluir: [
+      'soporte', 'control remoto', 'control para', 'funda', 'cable', 'antena',
+      'rack', 'mesa', 'modulo', 'repuesto', 'tira led', 'tiras led', 'stick', 'box',
+    ],
+    guia: [
+      {
+        h: 'Qué tamaño y resolución elegir',
+        p: [
+          'Tamaño según la distancia: como referencia orientativa, a 2 metros del sillón un televisor de 50 a 55 pulgadas se ve cómodo; a menos de 1,5 metros (un dormitorio chico) alcanza con 32 a 43 pulgadas. Más grande no siempre es mejor si lo vas a mirar muy de cerca.',
+          'Resolución: desde 43 pulgadas conviene 4K (UHD); en 32 pulgadas, HD o Full HD alcanza porque a ese tamaño la diferencia casi no se nota. El 4K rinde de verdad con contenido 4K (plataformas de streaming con plan que lo incluya).',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Sistema operativo: Google TV, webOS (LG), Tizen (Samsung) y otros traen las apps principales de streaming; fijate que tenga las que usás y que el fabricante lo siga actualizando.',
+          'Conexiones: cantidad de entradas HDMI (dos o más si conectás consola o decodificador), wifi y bluetooth para auriculares o barra de sonido.',
+          'Precio: los televisores son de los productos con más "descuentos" inflados sobre un precio de lista que nunca se cobró. Por eso marcamos los que están en su mínimo histórico registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿De cuántas pulgadas me conviene el Smart TV?',
+        a: 'Depende de la distancia a la que lo mires. Como referencia orientativa, a unos 2 metros un televisor de 50 a 55 pulgadas se ve cómodo; para un ambiente chico, de 32 a 43 pulgadas.',
+      },
+      {
+        q: '¿Vale la pena un televisor 4K?',
+        a: 'Desde 43 pulgadas sí, sobre todo si mirás contenido en 4K en plataformas de streaming. En 32 pulgadas la diferencia con Full HD casi no se nota.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un Smart TV es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'lavarropas',
+    nombre: 'Lavarropas',
+    titulo: 'Ofertas de lavarropas en Mercado Libre Argentina',
+    descripcion:
+      'Lavarropas y lavasecarropas en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Carga frontal o superior y qué capacidad elegir.',
+    intro:
+      'Lavarropas, lavasecarropas y secarropas con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['lavarropas', 'lavasecarropas', 'secarropas', 'lavavajillas'],
+    excluir: [
+      'repuesto', 'funda', 'cubre', 'base para', 'bomba', 'tapa', 'plaqueta',
+      'manguera', 'correa', 'rueda', 'soporte',
+    ],
+    guia: [
+      {
+        h: 'Carga frontal o superior',
+        p: [
+          'Carga frontal: suele gastar menos agua y energía y cuidar más la ropa; entra debajo de una mesada, pero hay que agacharse para cargarlo. Carga superior: más cómodo para cargar y en general más económico; ocupa más alto y usa algo más de agua.',
+          'Automático o semiautomático: el automático hace todo el ciclo solo; el semiautomático es más barato pero requiere pasar la ropa a mano entre lavado y centrifugado.',
+        ],
+      },
+      {
+        h: 'Qué capacidad elegir',
+        p: [
+          'Como referencia orientativa: 6 a 7 kg para una o dos personas, 8 kg para una familia de 3 o 4, y 9 kg o más para familias grandes o si lavás acolchados en casa.',
+          'Revisá las medidas del hueco donde va a ir (alto, ancho y profundidad, más el espacio para abrir la puerta) y la eficiencia energética de la etiqueta: A o superior gasta menos luz.',
+          'Centrifugado: más revoluciones (rpm) sacan más agua y la ropa se seca antes.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene un lavarropas de carga frontal o superior?',
+        a: 'El de carga frontal suele consumir menos agua y energía y cuidar más la ropa; el de carga superior es más cómodo de cargar y en general más barato. Depende del espacio y del presupuesto.',
+      },
+      {
+        q: '¿De cuántos kilos tiene que ser el lavarropas?',
+        a: 'Como referencia orientativa, 6 a 7 kg para una o dos personas, 8 kg para una familia de 3 o 4 y 9 kg o más para familias grandes.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un lavarropas es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'freezers',
+    nombre: 'Freezers',
+    titulo: 'Ofertas de freezers en Mercado Libre Argentina',
+    descripcion:
+      'Freezers horizontales y verticales en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Qué capacidad y tipo elegir.',
+    intro:
+      'Freezers horizontales y verticales con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['freezer'],
+    excluir: ['heladera', 'set ', 'taper', 'hermetico', 'repuesto', 'burlete', 'bolsa', 'bolsas', 'molde', 'funda', 'cubetera', 'termostato'],
+    guia: [
+      {
+        h: 'Horizontal o vertical',
+        p: [
+          'Horizontal (tipo baúl): más capacidad por el mismo precio y conserva mejor el frío cuando se abre, ideal para stock grande o para comercios. Ocupa más superficie y cuesta más encontrar lo que está en el fondo.',
+          'Vertical: ocupa menos lugar en el piso y se ordena por estantes o cajones como una heladera. Suele costar más por litro de capacidad.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Capacidad: se mide en litros. Como referencia orientativa, 100 a 200 litros alcanzan para una familia; para un comercio o para comprar por mayor, 300 litros o más.',
+          'Dual (freezer/heladera): muchos horizontales se pueden usar como freezer o como heladera con una perilla, útil si el uso cambia según la temporada.',
+          'Consumo: el freezer funciona las 24 horas, así que la etiqueta de eficiencia energética pesa en la factura de luz.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene un freezer horizontal o vertical?',
+        a: 'El horizontal da más capacidad por el mismo precio y conserva mejor el frío; el vertical ocupa menos lugar y es más fácil de ordenar. Depende del espacio y de cuánto vas a guardar.',
+      },
+      {
+        q: '¿Qué capacidad de freezer necesito?',
+        a: 'Como referencia orientativa, entre 100 y 200 litros para una familia, y 300 litros o más para un comercio o para comprar por mayor.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un freezer es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'termotanques',
+    nombre: 'Termotanques',
+    titulo: 'Ofertas de termotanques en Mercado Libre Argentina',
+    descripcion:
+      'Termotanques eléctricos y a gas en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Qué capacidad y tipo elegir.',
+    intro:
+      'Termotanques eléctricos y a gas con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['termotanque', 'calefon', 'calefón'],
+    excluir: [
+      'repuesto', 'resistencia', 'termostato', 'anodo', 'valvula', 'piloto',
+      'termocupla', 'flexible', 'kit', 'membrana',
+    ],
+    guia: [
+      {
+        h: 'Eléctrico, a gas o calefón',
+        p: [
+          'A gas: calienta más rápido y suele ser más barato de usar si tenés gas natural. Necesita ventilación y conexión de gas hecha por un gasista matriculado.',
+          'Eléctrico: se instala en cualquier lado (no necesita salida de gases) y es la opción cuando no hay gas natural, pero tarda más en recuperar el agua caliente y el consumo de luz es alto.',
+          'Calefón: calienta el agua en el momento, sin tanque, así que no se "acaba" el agua caliente, pero depende del caudal y la presión de agua de la casa.',
+        ],
+      },
+      {
+        h: 'Qué capacidad elegir',
+        p: [
+          'Como referencia orientativa: 50 a 65 litros para una o dos personas, 80 a 120 litros para una familia de 3 o 4, y más de 120 litros si hay varios baños o duchas seguidas.',
+          'Verificá el espacio de instalación (alto y diámetro del equipo), el tipo de conexión (pie o colgar) y que el precio no incluye la instalación, que se cotiza aparte.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene un termotanque eléctrico o a gas?',
+        a: 'Si tenés gas natural, el termotanque a gas suele ser más barato de usar y calienta más rápido. El eléctrico conviene cuando no hay gas o no se puede sacar una salida de gases.',
+      },
+      {
+        q: '¿De cuántos litros tiene que ser el termotanque?',
+        a: 'Como referencia orientativa, 50 a 65 litros para una o dos personas y 80 a 120 litros para una familia de 3 o 4. Con varios baños conviene más capacidad.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un termotanque es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

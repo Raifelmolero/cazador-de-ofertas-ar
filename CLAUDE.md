@@ -10,7 +10,9 @@ tecnicismos innecesarios.**
 
 - `bot/` — el corazón. `cazador_bot.py` corre en GitHub Actions 3×/día
   (12:00, 17:00, 21:00 ART; ver `.github/workflows/deals_bot.yml`): scrapea
-  `mercadolibre.com.ar/ofertas` (~100 productos, stdlib pura), filtra, publica.
+  `mercadolibre.com.ar/ofertas` (20 páginas, ~600-700 productos, stdlib pura),
+  filtra, publica. A la web van las de categoría de comisión alta + las 150
+  mejores del resto, sin infladas (`select_site_deals`, ~280 productos).
   Leé `bot/README.md` — está al día y explica todo el sistema.
 - `frontend/` — Next.js en Vercel. Dos caras en un deploy:
   `calculadoraml.com.ar` = calculadora de márgenes para revendedores;

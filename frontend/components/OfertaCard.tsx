@@ -11,6 +11,7 @@ export interface OfertaLight {
   precio_anterior?: number
   descuento_pct?: number
   minimo_historico?: boolean
+  relampago?: boolean
   url_producto: string
   url_imagen: string | null
 }
@@ -56,6 +57,11 @@ function Badges({ producto, className = '' }: { producto: OfertaLight; className
       {producto.minimo_historico && (
         <span className="text-xs font-extrabold bg-yellow-400 text-black px-2.5 py-0.5 rounded-full shadow-sm">
           📉 Mínimo histórico
+        </span>
+      )}
+      {producto.relampago && (
+        <span className="text-xs font-extrabold bg-blue-600 text-white px-2.5 py-0.5 rounded-full shadow-sm">
+          ⚡ Relámpago: dura pocas horas
         </span>
       )}
     </div>

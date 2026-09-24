@@ -12,6 +12,7 @@ function normalizar(s: string) {
 
 const CHIPS = [
   { id: 'all', label: 'Todas' },
+  { id: 'flash', label: '⚡ Relámpago' },
   { id: 'low', label: '📉 Mínimo histórico' },
   { id: 'half', label: '50% OFF o más' },
   { id: 'cheap', label: 'Hasta $100.000' },
@@ -20,6 +21,7 @@ const CHIPS = [
 type ChipId = (typeof CHIPS)[number]['id']
 
 function pasaChip(o: OfertaLight, chip: ChipId) {
+  if (chip === 'flash') return !!o.relampago
   if (chip === 'low') return !!o.minimo_historico
   if (chip === 'half') return (o.descuento_pct ?? 0) >= 50
   if (chip === 'cheap') return o.precio_actual <= 100_000
@@ -55,8 +57,9 @@ export default function OfertasGrid({
   const [orden, setOrden] = useState<OrdenId>('relevancia')
 
   const counts = useMemo(() => {
-    const c: Record<ChipId, number> = { all: ofertas.length, low: 0, half: 0, cheap: 0 }
+    const c: Record<ChipId, number> = { all: ofertas.length, flash: 0, low: 0, half: 0, cheap: 0 }
     for (const o of ofertas) {
+      if (pasaChip(o, 'flash')) c.flash++
       if (pasaChip(o, 'low')) c.low++
       if (pasaChip(o, 'half')) c.half++
       if (pasaChip(o, 'cheap')) c.cheap++

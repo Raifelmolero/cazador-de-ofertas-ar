@@ -49,6 +49,12 @@ UA = (
 )
 
 OFERTAS_URL = "https://www.mercadolibre.com.ar/ofertas?page={page}"
+# Ofertas relámpago: tienen cuenta regresiva (urgencia real, la pone ML) y el
+# listado está lleno de ticket alto (celulares, TV, aires).
+RELAMPAGO_URL = (
+    "https://www.mercadolibre.com.ar/ofertas"
+    "?container_id=MLA779357-1&promotion_type=lightning&page={page}"
+)
 
 # Días que se conserva la media (placas, stories, reels) antes de borrarla.
 MEDIA_RETENTION_DAYS = 14
@@ -131,17 +137,21 @@ def fmt_price(n: int) -> str:
 
 # ---------------------------------------------------------------- scraping
 
-def fetch_deals(pages: int = 3) -> list[dict]:
-    """Baja y parsea las páginas de ofertas. Devuelve lista de deals."""
+def fetch_deals(pages: int = 3, relampago_pages: int = 0) -> list[dict]:
+    """Baja y parsea las páginas de ofertas (y las de ofertas relámpago)."""
     deals, seen = [], set()
-    for page in range(1, pages + 1):
+    urls = [(OFERTAS_URL, p) for p in range(1, pages + 1)]
+    urls += [(RELAMPAGO_URL, p) for p in range(1, relampago_pages + 1)]
+    for base, page in urls:
         try:
-            html = http_get(OFERTAS_URL.format(page=page)).decode("utf-8", "replace")
+            html = http_get(base.format(page=page)).decode("utf-8", "replace")
         except Exception as e:  # noqa: BLE001 — red hostil, seguimos con lo que haya
             print(f"[warn] página {page} falló: {e}")
             continue
         page_deals = parse_cards(html)
         for d in page_deals:
+            if base is RELAMPAGO_URL:
+                d["relampago"] = True
             if d["id"] not in seen:
                 seen.add(d["id"])
                 deals.append(d)
@@ -187,6 +197,8 @@ def parse_cards(html: str) -> list[dict]:
             continue
         out.append(
             {
+                # La tarjeta trae el contador de ML → oferta relámpago.
+                "relampago": "highlight-countdown" in c,
                 "id": deal_id,
                 "title": unescape(title.group(1)).strip(),
                 "url": url.split("?")[0].split("#")[0],
@@ -278,15 +290,24 @@ SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.js
 SITE_GENERAL_LIMIT = 150
 
 
+def _prioritario(d: dict) -> bool:
+    """Siempre va a la web: comisión alta, fecha comercial vigente o relámpago."""
+    return (
+        comision_estimada(d["title"]) > 1.0
+        or temporada_boost(d["title"]) > 1.0
+        or bool(d.get("relampago"))
+    )
+
+
 def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> list[dict]:
     """Ofertas que van a la web: sin infladas, todas las de categoría con
     peso de comisión y los `limit` mejores del resto (mínimos históricos
     primero, después % OFF). Conserva el orden original del scrape."""
     reales = [d for d in deals if not d.get("inflada")]
-    resto = [d for d in reales if comision_estimada(d["title"]) <= 1.0]
+    resto = [d for d in reales if not _prioritario(d)]
     resto.sort(key=lambda d: (bool(d.get("hist_low")), d["discount"]), reverse=True)
     elegidos = {d["id"] for d in resto[:limit]}
-    elegidos.update(d["id"] for d in reales if comision_estimada(d["title"]) > 1.0)
+    elegidos.update(d["id"] for d in reales if _prioritario(d))
     return [d for d in reales if d["id"] in elegidos]
 
 
@@ -321,6 +342,10 @@ def write_site_data(deals: list[dict], affiliate_id: str,
                 "precio_anterior": d["price_prev"],
                 "descuento_pct": d["discount"],
                 "minimo_historico": bool(d.get("hist_low")),
+                "relampago": bool(d.get("relampago")),
+                # Ganancia esperada relativa (precio × peso de comisión): la
+                # web ordena por esto para mostrar primero el ticket alto.
+                "prioridad": round(ganancia_esperada(d)),
                 # Dato propio para la web (tabla "precios de referencia"):
                 # el mínimo que registramos y desde cuándo seguimos el precio.
                 "precio_minimo_registrado": history.get(d["id"], {}).get("min"),
@@ -417,8 +442,13 @@ def deal_caption(deal: dict, link: str) -> str:
         if deal.get("hist_low")
         else ""
     )
+    relampago = (
+        "⚡ <b>OFERTA RELÁMPAGO</b> — dura pocas horas o hasta agotar stock\n\n"
+        if deal.get("relampago")
+        else ""
+    )
     return (
-        f"{exclusiva}"
+        f"{exclusiva}{relampago}"
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
         f"✅ Ahora: <b>{fmt_price(deal['price_cur'])}</b>\n"
@@ -658,6 +688,17 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
         "pava electrica", "licuadora", "batidora", "aspiradora", "plancha",
         "ventilador", "heladera", "microondas", "extractor",
     ]),
+    (1.4, [  # Accesorios para Vehículos (ESTIMADO, sin ventas aún: validar
+        # en el panel de afiliados → Categorías y ajustar el peso).
+        "neumatico", "neumático", "cubierta rodado", "llanta", "amortiguador",
+        "pastillas de freno", "kit de distribucion", "kit de distribución",
+        "bateria para auto", "batería para auto", "bateria 12v", "batería 12v",
+        "estereo", "estéreo", "autoestereo", "stereo para auto",
+        "camara de retroceso", "cámara de retroceso", "cubre asiento",
+        "portaequipaje", "barras de techo", "arrancador", "booster",
+        "compresor 12v", "optica", "óptica", "faro led", "cubre volante",
+        "alfombra para auto", "cera para auto", "lustradora",
+    ]),
     (1.4, [  # Televisores 7% (smart TV: $28.3k de un pedido) y línea blanca
         # grande (estimado igual que heladera). Tienen página /categoria/*.
         "smart tv", "televisor", "google tv", "lavarropas", "lavasecarropas",
@@ -685,9 +726,84 @@ def comision_estimada(title: str) -> float:
     return 1.0
 
 
+# Fechas comerciales de Argentina: en cada ventana, los rubros que la gente
+# sale a comprar pesan más. (mes, día) inclusivo. El Día de la Madre es el
+# 3er domingo de octubre; la ventana cubre las 3 semanas previas de compra.
+TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
+    ((9, 25), (10, 19), 1.5, [  # Día de la Madre (18/10/2026)
+        "perfume", "secador de pelo", "planchita", "alisadora", "rizador",
+        "smartwatch", "reloj", "cartera", "bata", "masajeador", "cafetera",
+        "freidora de aire", "robot aspiradora", "aspiradora robot", "batidora",
+        "licuadora", "mixer", "maquina de coser", "máquina de coser",
+        "auriculares", "celular", "tablet", "anteojos de sol", "set de cuidado",
+        "depiladora", "joya", "aros", "colgante", "pulsera",
+    ]),
+    ((9, 21), (2, 28), 1.3, [  # Primavera-verano: calor y aire libre
+        "aire acondicionado", "ventilador", "pileta", "piscina", "reposera",
+        "parrilla", "heladera portatil", "heladera portátil", "conservadora",
+        "bicicleta", "carpa", "sombrilla", "climatizador",
+    ]),
+    ((11, 1), (12, 2), 1.3, [  # Black Friday / Cyber Monday: ticket alto
+        "smart tv", "notebook", "celular", "consola", "playstation",
+        "lavarropas", "heladera", "monitor",
+    ]),
+    ((12, 1), (12, 24), 1.4, [  # Navidad
+        "consola", "playstation", "nintendo", "bicicleta", "monopatin",
+        "monopatín", "auriculares", "smartwatch", "perfume", "parlante",
+        "lego", "tablet",
+    ]),
+    ((6, 1), (6, 21), 1.5, [  # Día del Padre (3er domingo de junio)
+        "taladro", "atornillador", "parrilla", "smartwatch", "reloj",
+        "perfume", "herramienta", "cafetera", "afeitadora", "barbero",
+    ]),
+    ((7, 25), (8, 17), 1.4, [  # Día de las Infancias (3er domingo de agosto)
+        "bicicleta", "monopatin", "monopatín", "consola", "lego", "tablet",
+    ]),
+]
+
+
+def _en_ventana(hoy: datetime, desde: tuple[int, int], hasta: tuple[int, int]) -> bool:
+    md = (hoy.month, hoy.day)
+    if desde <= hasta:
+        return desde <= md <= hasta
+    return md >= desde or md <= hasta  # cruza fin de año
+
+
+def temporada_boost(title: str, hoy: datetime | None = None) -> float:
+    """Multiplicador por fecha comercial vigente (1.0 si no aplica)."""
+    hoy = hoy or datetime.now(timezone.utc) - timedelta(hours=3)
+    t = title.lower()
+    boost = 1.0
+    for desde, hasta, peso, keywords in TEMPORADAS:
+        if _en_ventana(hoy, desde, hasta) and any(k in t for k in keywords):
+            boost = max(boost, peso)
+    return boost
+
+
+def ganancia_esperada(deal: dict) -> float:
+    """Pesos que deja una venta, en relativo: precio × peso de comisión.
+    Una venta de un aire de $800k deja ~100 veces más que un juguete de $8k,
+    así que el ticket manda. Mínimo histórico y relámpago suman un plus
+    porque convierten más (precio verificado / urgencia real de ML)."""
+    score = (
+        deal["price_cur"]
+        * comision_estimada(deal["title"])
+        * temporada_boost(deal["title"])
+    )
+    if deal.get("hist_low"):
+        score *= 1.3
+    if deal.get("relampago"):
+        score *= 1.2
+    return score
+
+
 def ig_caption(deal: dict) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
+    hook = (
+        "⚡ OFERTA RELÁMPAGO: dura pocas horas"
+        if deal.get("relampago")
+        else "📉 MÍNIMO HISTÓRICO" if deal.get("hist_low") else random.choice(IG_HOOKS)
+    )
     badge = (
         "📉 Nunca lo registramos más barato que hoy\n"
         if deal.get("hist_low")
@@ -1238,7 +1354,9 @@ def main() -> int:
     state = load_state()
     posted = set(state["posted_ids"])
 
-    deals = fetch_deals(pages=cfg.get("pages", 3))
+    deals = fetch_deals(
+        pages=cfg.get("pages", 3), relampago_pages=cfg.get("relampago_pages", 0)
+    )
     print(f"[info] {len(deals)} ofertas únicas parseadas")
 
     history = load_price_history()
@@ -1266,13 +1384,9 @@ def main() -> int:
         and d["id"] not in posted
         and not d["inflada"]
     ]
-    # mínimos históricos primero (la calidad de la oferta no se negocia),
-    # después categorías de comisión más alta (ver comision_estimada), y
-    # recién ahí por % OFF.
-    candidates.sort(
-        key=lambda d: (d["hist_low"], comision_estimada(d["title"]), d["discount"]),
-        reverse=True,
-    )
+    # Ganancia esperada primero (ticket × comisión, con plus por mínimo
+    # histórico y relámpago): pocas ventas grandes valen más que muchas chicas.
+    candidates.sort(key=ganancia_esperada, reverse=True)
     to_post = candidates[: cfg.get("max_posts", 5)]
 
     # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en

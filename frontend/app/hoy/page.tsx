@@ -52,6 +52,7 @@ export default function HoyPage() {
     precio_anterior: o.precio_anterior,
     descuento_pct: o.descuento_pct,
     minimo_historico: o.minimo_historico,
+    relampago: o.relampago,
     url_producto: o.url_producto,
     url_imagen: o.url_imagen,
   }))

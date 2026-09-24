@@ -519,3 +519,25 @@ class TestSelectSiteDeals(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestGananciaEsperada(unittest.TestCase):
+    def test_ticket_alto_le_gana_al_descuento_alto_barato(self):
+        aire = {"title": "Aire Acondicionado Split Inverter", "price_cur": 800000, "discount": 20}
+        juguete = {"title": "Juego Encastre Didactico", "price_cur": 8000, "discount": 60, "hist_low": True}
+        self.assertGreater(bot.ganancia_esperada(aire), bot.ganancia_esperada(juguete))
+
+    def test_relampago_suma(self):
+        base = {"title": "Neumatico 175/65 R14", "price_cur": 100000}
+        self.assertGreater(bot.ganancia_esperada({**base, "relampago": True}), bot.ganancia_esperada(base))
+        self.assertEqual(bot.comision_estimada(base["title"]), 1.4)
+
+
+class TestTemporadas(unittest.TestCase):
+    def test_dia_de_la_madre(self):
+        oct10 = datetime(2026, 10, 10)
+        self.assertEqual(bot.temporada_boost("Perfume Carolina Herrera 100ml", oct10), 1.5)
+        self.assertEqual(bot.temporada_boost("Perfume Carolina Herrera 100ml", datetime(2026, 4, 1)), 1.0)
+
+    def test_verano_cruza_fin_de_anio(self):
+        self.assertEqual(bot.temporada_boost("Pileta estructural 3x2", datetime(2027, 1, 15)), 1.3)

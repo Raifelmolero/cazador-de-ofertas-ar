@@ -2,8 +2,9 @@
   "channel": "@cazadordeofertasar",
   "admin_chat": "8701191351",
   "min_discount": 25,
-  "min_price": 10000,
+  "min_price": 40000,
   "max_posts": 5,
   "exclusive_posts": 2,
-  "pages": 20
+  "pages": 20,
+  "relampago_pages": 6
 }

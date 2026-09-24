@@ -9,6 +9,8 @@ export interface ProductWithMargins {
   precio_anterior?: number
   descuento_pct?: number
   minimo_historico?: boolean
+  relampago?: boolean
+  prioridad?: number
   precio_minimo_registrado?: number | null
   seguimiento_desde?: string | null
   moneda: string
@@ -37,11 +39,13 @@ export function getProductoById(id: string): ProductWithMargins | undefined {
   return getProductos().find(p => p.id_ml === id)
 }
 
-// Ofertas para compradores (/hoy): mínimos históricos primero, después por % OFF.
+// Ofertas para compradores (/hoy): primero las de mayor ganancia esperada
+// (ticket × comisión, calculada por el bot), después por % OFF.
 export function getOfertas(): ProductWithMargins[] {
   const items = readJson().items as ProductWithMargins[]
   return items.sort(
     (a, b) =>
+      (b.prioridad ?? 0) - (a.prioridad ?? 0) ||
       Number(b.minimo_historico ?? false) - Number(a.minimo_historico ?? false) ||
       (b.descuento_pct ?? 0) - (a.descuento_pct ?? 0)
   )

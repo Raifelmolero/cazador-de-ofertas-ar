@@ -52,7 +52,10 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),
   [dónde encontrar las mejores ofertas de Mercado Libre Argentina](https://cazadordeofertas.com.ar/guias/donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina),
   [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre)
-  y [cupones y códigos de descuento](https://cazadordeofertas.com.ar/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina):
+  [cupones y códigos de descuento](https://cazadordeofertas.com.ar/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina),
+  [cuántas frigorías necesito](https://cazadordeofertas.com.ar/guias/cuantas-frigorias-necesito-aire-acondicionado),
+  [qué colchón comprar](https://cazadordeofertas.com.ar/guias/que-colchon-comprar-firmeza-y-material)
+  y [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa):
   guías con respuesta corta citable.
 - [Canal de Telegram](https://t.me/cazadordeofertasar): mismas ofertas más
   ofertas exclusivas que no se publican en el sitio ni en redes.

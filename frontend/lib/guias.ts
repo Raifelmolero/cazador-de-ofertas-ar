@@ -10,6 +10,9 @@ export interface Guia {
   pregunta: string
   respuestaCorta: string // el párrafo que una IA puede citar textual
   secciones: { h: string; p: string[] }[]
+  // Si la guía responde una pregunta previa a comprar un rubro, el botón
+  // final lleva a esa categoría (donde están las ofertas) en vez de la home.
+  categoria?: { slug: string; nombre: string }
 }
 
 export const GUIAS: Guia[] = [
@@ -197,6 +200,96 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+  },
+  {
+    slug: 'cuantas-frigorias-necesito-aire-acondicionado',
+    titulo: 'Cuántas frigorías necesito: cómo calcular el aire acondicionado para tu ambiente',
+    descripcion:
+      'Cálculo simple de frigorías para elegir el aire acondicionado según los metros del ambiente, la altura del techo y el sol. Tabla orientativa de 2.250 a 6.000 frigorías.',
+    pregunta: '¿Cuántas frigorías necesito para mi ambiente?',
+    respuestaCorta:
+      'Una regla práctica muy usada en Argentina es multiplicar el volumen del ambiente (metros cuadrados × altura del techo) por 50 frigorías. Un cuarto de 20 m² con techo de 2,60 m da unas 2.600 frigorías, así que conviene un equipo de 2.750 a 3.000. Si el ambiente tiene mucho sol, es último piso o suelen estar varias personas, sumá entre 10% y 20%.',
+    secciones: [
+      {
+        h: 'El cálculo en 3 pasos',
+        p: [
+          '1) Medí el ambiente: largo × ancho = metros cuadrados. 2) Multiplicá por la altura del techo (normalmente 2,50 a 2,70 m) para tener el volumen. 3) Multiplicá el volumen por 50: el resultado son las frigorías aproximadas que necesitás.',
+          'Después elegí el equipo de capacidad inmediatamente superior al resultado. Un equipo más chico que lo necesario trabaja al máximo todo el tiempo, gasta más luz y no llega a enfriar en los días de calor fuerte.',
+        ],
+      },
+      {
+        h: 'Tabla orientativa',
+        p: [
+          'Hasta unos 15 m²: 2.250 a 2.600 frigorías. De 15 a 22 m²: 2.750 a 3.000 frigorías. De 22 a 35 m²: 4.500 frigorías. De 35 a 45 m²: 5.500 a 6.000 frigorías. Son valores de referencia para techo de altura normal y exposición al sol media.',
+          'Ajustes: sumá 10% a 20% si el ambiente da al oeste o al norte con ventanales, si es último piso con techo expuesto, o si suelen estar varias personas o equipos que generan calor (computadoras, cocina integrada).',
+        ],
+      },
+      {
+        h: 'Inverter, frío/calor y consumo',
+        p: [
+          'Un equipo inverter regula la potencia en vez de prenderse y apagarse, así que consume menos luz y hace menos ruido. Si lo vas a usar muchas horas por día, la diferencia de precio se recupera en la factura.',
+          'Los equipos frío/calor también calefaccionan con bomba de calor, que suele ser más eficiente que una estufa eléctrica común. La instalación (con gas refrigerante y mano de obra especializada) casi nunca está incluida en el precio.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+  },
+  {
+    slug: 'que-colchon-comprar-firmeza-y-material',
+    titulo: 'Qué colchón comprar: firmeza, material y medidas explicados simple',
+    descripcion:
+      'Guía para elegir colchón en Argentina: espuma de alta densidad, resortes o viscoelástico, qué firmeza según tu peso y postura, y medidas de 1 plaza a king.',
+    pregunta: '¿Qué colchón me conviene comprar?',
+    respuestaCorta:
+      'Depende sobre todo de tu peso y de cómo dormís. Como referencia orientativa: contextura liviana va mejor con firmeza media a blanda y contextura más pesada con uno firme; quien duerme de costado suele preferir algo menos firme. La espuma de alta densidad da buena relación precio-calidad, los resortes son más frescos y el viscoelástico alivia puntos de presión.',
+    secciones: [
+      {
+        h: 'Materiales: qué cambia en la práctica',
+        p: [
+          'Espuma de alta densidad: sostiene bien y dura años si la densidad es alta (fijate el número, no solo la palabra "espuma"). Resortes (bonell o pocket): reparten el peso y ventilan mejor; los pocket, con resortes individuales, transmiten menos el movimiento de la otra persona. Viscoelástico: se adapta al cuerpo, pero retiene más calor en verano.',
+        ],
+      },
+      {
+        h: 'Medidas en Argentina',
+        p: [
+          'Las medidas más comunes son 1 plaza (80 × 190 cm), 1 plaza y media (100 × 190 cm), 2 plazas (140 × 190 cm), queen (160 × 200 cm) y king (180 o 200 × 200 cm). Confirmá que coincida exactamente con tu base o sommier antes de comprar.',
+          'Muchos colchones vienen comprimidos "en caja": es normal y tardan 24 a 48 horas en tomar su forma y firmeza reales.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene comprar',
+        p: [
+          'Los colchones tienen descuentos frecuentes, pero muchos se calculan sobre un precio de lista inflado. Compará contra el historial de precios del producto: si hoy está en su mínimo registrado, es un buen momento.',
+        ],
+      },
+    ],
+    categoria: { slug: 'colchones', nombre: 'colchones' },
+  },
+  {
+    slug: 'que-taladro-comprar-para-la-casa',
+    titulo: 'Qué taladro comprar para la casa: percutor, atornillador o rotomartillo',
+    descripcion:
+      'Cómo elegir taladro en Argentina: diferencias entre taladro percutor, atornillador a batería y rotomartillo, y qué potencia o voltaje conviene para uso hogareño.',
+    pregunta: '¿Qué taladro me conviene comprar para la casa?',
+    respuestaCorta:
+      'Para colgar cuadros, estantes y armar muebles en una casa típica alcanza un taladro percutor de 500 a 750 W o un atornillador/taladro a batería de 18V con función percutor. El rotomartillo solo hace falta para perforar mucho hormigón o hacer trabajos de obra.',
+    secciones: [
+      {
+        h: 'Los tres tipos, sin vueltas',
+        p: [
+          'Taladro percutor (con cable): perfora madera, metal y ladrillo, y con percusión también paredes de material. Es la opción más económica para uso hogareño.',
+          'Atornillador/taladro a batería: cómodo para armar muebles y trabajos sin enchufe cerca. Los de 18V con percutor también perforan paredes, aunque con menos fuerza que uno con cable.',
+          'Rotomartillo: golpea con mucha más energía; es para hormigón armado y trabajos de obra. Para una casa suele ser más de lo necesario.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Potencia (W) o torque (Nm): más valor, más facilidad para perforar materiales duros. Mandril: el de 13 mm acepta más mechas que el de 10 mm. Si es a batería, fijate si la batería y el cargador vienen incluidos: muchas ofertas son "sin batería".',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
   },
 ]
 

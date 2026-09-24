@@ -270,6 +270,25 @@ UMBRAL_ENVIO_GRATIS_ARS = 30000.0
 
 SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.json"
 
+# El bot lee las 20 páginas de /ofertas (~700 productos) para encontrar los de
+# ticket alto (aires, colchones, herramientas), que en las 3 primeras casi no
+# aparecen. A la web van TODOS los de categoría con peso (alimentan las
+# páginas /categoria/*) más los mejores N del resto, para que /hoy no se
+# vuelva una lista de 700 tarjetas ni el build genere 700 calculadoras.
+SITE_GENERAL_LIMIT = 150
+
+
+def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> list[dict]:
+    """Ofertas que van a la web: sin infladas, todas las de categoría con
+    peso de comisión y los `limit` mejores del resto (mínimos históricos
+    primero, después % OFF). Conserva el orden original del scrape."""
+    reales = [d for d in deals if not d.get("inflada")]
+    resto = [d for d in reales if comision_estimada(d["title"]) <= 1.0]
+    resto.sort(key=lambda d: (bool(d.get("hist_low")), d["discount"]), reverse=True)
+    elegidos = {d["id"] for d in resto[:limit]}
+    elegidos.update(d["id"] for d in reales if comision_estimada(d["title"]) > 1.0)
+    return [d for d in reales if d["id"] in elegidos]
+
 
 def write_site_data(deals: list[dict], affiliate_id: str,
                     exclusive_ids: set[str] | None = None) -> None:
@@ -1261,7 +1280,7 @@ def main() -> int:
     )
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
-        write_site_data(deals, affiliate_id, exclusive_ids)
+        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids)
 
     published_ids = []
     for deal in to_post:

@@ -477,5 +477,32 @@ class TestRunSlot(unittest.TestCase):
             self.assertEqual(bot.run_slot(h), "other", h)
 
 
+class TestSelectSiteDeals(unittest.TestCase):
+    """Qué ofertas del scrape de 20 páginas llegan a la web."""
+
+    @staticmethod
+    def deal(id_, title="Producto genérico", discount=30, hist_low=False, inflada=False):
+        return {"id": id_, "title": title, "discount": discount,
+                "hist_low": hist_low, "inflada": inflada}
+
+    def test_las_de_comision_alta_entran_siempre(self):
+        genericos = [self.deal(f"G{i}", discount=60) for i in range(5)]
+        aire = self.deal("A1", "Aire Acondicionado Split 3000 Frigorías", discount=10)
+        ids = [d["id"] for d in bot.select_site_deals(genericos + [aire], limit=2)]
+        self.assertIn("A1", ids)
+        self.assertEqual(len(ids), 3)
+
+    def test_el_resto_se_recorta_por_minimo_y_descuento(self):
+        deals = [self.deal("G1", discount=20), self.deal("G2", discount=50),
+                 self.deal("G3", discount=10, hist_low=True)]
+        ids = [d["id"] for d in bot.select_site_deals(deals, limit=2)]
+        self.assertEqual(ids, ["G2", "G3"])  # orden original del scrape
+
+    def test_las_infladas_no_van_a_la_web(self):
+        deals = [self.deal("C1", "Colchón 2 plazas", inflada=True), self.deal("G1")]
+        ids = [d["id"] for d in bot.select_site_deals(deals)]
+        self.assertEqual(ids, ["G1"])
+
+
 if __name__ == "__main__":
     unittest.main()

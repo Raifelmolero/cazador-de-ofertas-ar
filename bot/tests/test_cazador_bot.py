@@ -176,6 +176,19 @@ class TestWriteSiteData(unittest.TestCase):
         data = self.escribir([self.deal("MLA1", int(bot.UMBRAL_ENVIO_GRATIS_ARS))])
         self.assertEqual(data["items"][0]["costo_envio_base_ars"], 8000.0)
 
+    def test_exporta_el_minimo_registrado_y_desde_cuando(self):
+        hist = {"MLA1": {"min": 45000, "min_ts": "2026-09-01", "first_ts": "2026-08-10",
+                         "last": 50000, "last_ts": "2026-09-23"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            destino = Path(tmp) / "productos.json"
+            with mock.patch.object(bot, "SITE_DATA_PATH", destino):
+                bot.write_site_data([self.deal("MLA1", 50000), self.deal("MLA2", 40000)],
+                                    "general", None, hist)
+            items = json.loads(destino.read_text(encoding="utf-8"))["items"]
+        self.assertEqual(items[0]["precio_minimo_registrado"], 45000)
+        self.assertEqual(items[0]["seguimiento_desde"], "2026-08-10")
+        self.assertIsNone(items[1]["precio_minimo_registrado"])  # sin historia
+
     def test_las_exclusivas_del_canal_no_van_a_la_web(self):
         deals = [self.deal("MLA1", 50000), self.deal("MLA2", 40000)]
         data = self.escribir(deals, exclusive={"MLA1"})

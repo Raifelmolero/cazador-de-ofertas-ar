@@ -42,6 +42,11 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
   const ofertas = ofertasDeCategoria(c)
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
+  // Tabla de precios de referencia: solo productos con ≥1 día de historia
+  // propia (el dato que nadie más tiene y que buscadores/IAs pueden citar).
+  const conHistoria = ofertas
+    .filter(o => o.precio_minimo_registrado && o.seguimiento_desde && o.seguimiento_desde < scrapedAt.slice(0, 10))
+    .slice(0, 15)
 
   const ofertasLight: OfertaLight[] = ofertas.map(o => ({
     id_ml: o.id_ml,
@@ -176,6 +181,50 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
+        {conHistoria.length > 0 && (
+          <section className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-2">
+              Precios de referencia: {c.nombre.toLowerCase()}
+            </h2>
+            <p className="text-sm text-zinc-500 mb-4">
+              Precio de hoy contra el más bajo que registramos desde que seguimos cada producto
+              (revisamos Mercado Libre 3 veces por día). Si el precio de hoy es igual al mínimo, es
+              el mejor momento que vimos para comprarlo.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-zinc-800">
+              <table className="w-full text-sm">
+                <thead className="bg-zinc-900 text-zinc-400 text-left">
+                  <tr>
+                    <th className="px-3 py-2 font-semibold">Producto</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Hoy</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Mínimo registrado</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Seguido desde</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {conHistoria.map(o => (
+                    <tr key={o.id_ml} className="border-t border-zinc-800">
+                      <td className="px-3 py-2 text-zinc-300">
+                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="hover:text-yellow-400">
+                          {o.titulo}
+                        </a>
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-100 font-semibold">{precio(o.precio_actual)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
+                        {precio(o.precio_minimo_registrado!)}
+                        {o.precio_actual <= o.precio_minimo_registrado! && (
+                          <span className="ml-1 text-emerald-400 text-xs font-bold">← hoy</span>
+                        )}
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-500">{fecha(o.seguimiento_desde!)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
         {c.guia.map(s => (
           <section key={s.h} className="mb-8">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{s.h}</h2>
@@ -235,4 +284,13 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
       <Footer brand="ofertas" />
     </main>
   )
+}
+
+function precio(n: number) {
+  return '$' + Math.round(n).toLocaleString('es-AR')
+}
+
+function fecha(iso: string) {
+  const [y, m, d] = iso.split('-')
+  return `${d}/${m}/${y}`
 }

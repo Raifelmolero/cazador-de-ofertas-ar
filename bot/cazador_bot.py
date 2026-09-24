@@ -291,13 +291,15 @@ def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> lis
 
 
 def write_site_data(deals: list[dict], affiliate_id: str,
-                    exclusive_ids: set[str] | None = None) -> None:
+                    exclusive_ids: set[str] | None = None,
+                    history: dict | None = None) -> None:
     """Actualiza el JSON de CalculadoraML con las ofertas del día.
 
     Las ofertas exclusivas del canal de Telegram se excluyen de la web para
     que el "SOLO EN EL CANAL" sea verdad — es el gancho para sumar miembros.
     """
     exclusive_ids = exclusive_ids or set()
+    history = history or {}
     word_web = os.getenv("ML_WORD_WEB", "web")
     items = []
     for d in deals:
@@ -319,6 +321,10 @@ def write_site_data(deals: list[dict], affiliate_id: str,
                 "precio_anterior": d["price_prev"],
                 "descuento_pct": d["discount"],
                 "minimo_historico": bool(d.get("hist_low")),
+                # Dato propio para la web (tabla "precios de referencia"):
+                # el mínimo que registramos y desde cuándo seguimos el precio.
+                "precio_minimo_registrado": history.get(d["id"], {}).get("min"),
+                "seguimiento_desde": history.get(d["id"], {}).get("first_ts"),
                 "moneda": "ARS",
                 "ventas_estimadas": None,
                 "url_producto": affiliate_url(d["url"], affiliate_id, word_web),
@@ -1285,7 +1291,7 @@ def main() -> int:
     )
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
-        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids)
+        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history)
 
     published_ids = []
     for deal in to_post:

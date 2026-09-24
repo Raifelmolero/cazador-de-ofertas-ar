@@ -9,6 +9,8 @@ export interface ProductWithMargins {
   precio_anterior?: number
   descuento_pct?: number
   minimo_historico?: boolean
+  precio_minimo_registrado?: number | null
+  seguimiento_desde?: string | null
   moneda: string
   ventas_estimadas: number | string | null
   url_producto: string

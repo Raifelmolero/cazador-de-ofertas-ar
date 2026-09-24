@@ -3,6 +3,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { getSeguidos } from '@/lib/seguimiento'
 
 const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
 // La página de ofertas canonicaliza a la raíz de su propio dominio (ver
@@ -42,6 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'daily' as const,
       priority: 0.8,
+    })),
+    { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
+    ...getSeguidos().map(s => ({
+      url: `${DEALS_URL}/precio/${s.slug}`,
+      lastModified: new Date(s.ultimo_visto),
+      changeFrequency: 'daily' as const,
+      priority: 0.5,
     })),
     ...GUIAS.map(g => ({
       url: `${DEALS_URL}/guias/${g.slug}`,

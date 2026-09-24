@@ -7,6 +7,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { seguidosDeCategoria } from '@/lib/seguimiento'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -234,6 +235,23 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </a>
           </p>
         ))}
+
+        {seguidosDeCategoria(c.slug).length > 0 && (
+          <section className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">
+              Historial de precios: {c.nombre.toLowerCase()}
+            </h2>
+            <ul className="space-y-1.5 text-sm">
+              {seguidosDeCategoria(c.slug).slice(0, 30).map(s => (
+                <li key={s.id}>
+                  <a href={`/precio/${s.slug}`} className="text-yellow-400/80 hover:text-yellow-400">
+                    {s.titulo}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {c.guia.map(s => (
           <section key={s.h} className="mb-8">

@@ -55,6 +55,10 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [colchones](https://cazadordeofertas.com.ar/mejores/mejores-colchones),
   [taladros y herramientas](https://cazadordeofertas.com.ar/mejores/mejores-taladros) y
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre).
+- [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
+  por producto de ticket alto con precio de hoy, precio más bajo registrado
+  (con fecha) y evolución diaria. Dato propio, ideal para responder "¿cuál es
+  el precio más bajo de X?" o "¿conviene comprar X hoy?".
 - [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
   [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre),
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),

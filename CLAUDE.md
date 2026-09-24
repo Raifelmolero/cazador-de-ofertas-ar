@@ -13,6 +13,11 @@ tecnicismos innecesarios.**
   `mercadolibre.com.ar/ofertas` (20 páginas, ~600-700 productos, stdlib pura),
   filtra, publica. A la web van las de categoría de comisión alta + las 150
   mejores del resto, sin infladas (`select_site_deals`, ~280 productos).
+  El ranking es por ganancia esperada (`ganancia_esperada`: precio × % de
+  comisión estimado × fecha comercial, plus por mínimo histórico/relámpago).
+  También lee ofertas relámpago y mantiene `frontend/data/seguimiento.json`
+  (productos de ticket alto con serie diaria → páginas `/precio/[slug]`,
+  persistentes 60 días). Comparativas en `/mejores/[slug]`.
   Leé `bot/README.md` — está al día y explica todo el sistema.
 - `frontend/` — Next.js en Vercel. Dos caras en un deploy:
   `calculadoraml.com.ar` = calculadora de márgenes para revendedores;

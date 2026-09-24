@@ -311,6 +311,75 @@ def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> lis
     return [d for d in reales if d["id"] in elegidos]
 
 
+# ---------------------------------------------------------------- páginas de precio
+
+# Productos de ticket alto que seguimos con serie diaria de precios para las
+# páginas /precio/[slug] del sitio. A diferencia de productos_rentables.json
+# (que rota 3×/día), este archivo es persistente: la URL de cada producto
+# sigue viva aunque hoy no esté en oferta, y la serie crece con el tiempo.
+SEGUIMIENTO_PATH = BASE_DIR.parent / "frontend" / "data" / "seguimiento.json"
+SEGUIMIENTO_MIN_GANANCIA = 12000   # ganancia esperada mínima para abrir página
+SEGUIMIENTO_MAX_ITEMS = 500
+SEGUIMIENTO_MAX_DIAS = 60          # sin verlo en /ofertas por más → se borra
+SEGUIMIENTO_MAX_PUNTOS = 180
+
+
+def slug_producto(title: str, deal_id: str) -> str:
+    t = unescape(title).lower()
+    for a, b in zip("áéíóúüñ", "aeiouun"):
+        t = t.replace(a, b)
+    t = re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+    t = "-".join(t.split("-")[:9])
+    return f"{t}-{deal_id.lower()}"
+
+
+def update_seguimiento(deals: list[dict], history: dict, affiliate_id: str,
+                       path: Path = SEGUIMIENTO_PATH, today: str | None = None) -> dict:
+    today = today or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {"items": {}}
+    items = data.setdefault("items", {})
+    word_web = os.getenv("ML_WORD_WEB", "web")
+    for d in deals:
+        nuevo = d["id"] not in items
+        if nuevo and (d.get("inflada") or ganancia_esperada(d) < SEGUIMIENTO_MIN_GANANCIA):
+            continue
+        it = items.setdefault(d["id"], {
+            "slug": slug_producto(d["title"], d["id"]),
+            "serie": [],
+        })
+        it.update({
+            "titulo": d["title"],
+            "url": affiliate_url(d["url"], affiliate_id, word_web),
+            "img": d.get("img") or it.get("img"),
+            "precio_lista": d["price_prev"],
+            "ultimo_visto": today,
+            "relampago": bool(d.get("relampago")),
+        })
+        h = history.get(d["id"], {})
+        it["min"] = h.get("min", d["price_cur"])
+        it["min_ts"] = h.get("min_ts", today)
+        it["desde"] = h.get("first_ts", today)
+        serie = it["serie"]
+        if serie and serie[-1][0] == today:
+            serie[-1][1] = min(serie[-1][1], d["price_cur"])
+        else:
+            serie.append([today, d["price_cur"]])
+        del serie[:-SEGUIMIENTO_MAX_PUNTOS]
+    limite = (datetime.fromisoformat(today) - timedelta(days=SEGUIMIENTO_MAX_DIAS)).strftime("%Y-%m-%d")
+    vivos = [(k, v) for k, v in items.items() if v["ultimo_visto"] >= limite]
+    vivos.sort(key=lambda kv: kv[1]["ultimo_visto"], reverse=True)
+    data["items"] = dict(vivos[:SEGUIMIENTO_MAX_ITEMS])
+    data["actualizado"] = today
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    return data
+
+
 def write_site_data(deals: list[dict], affiliate_id: str,
                     exclusive_ids: set[str] | None = None,
                     history: dict | None = None) -> None:
@@ -1412,6 +1481,7 @@ def main() -> int:
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history)
+        update_seguimiento(deals, history, affiliate_id)
 
     published_ids = []
     for deal in to_post:

@@ -5,6 +5,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, categoriaDe, getComparativa, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
+import { slugPorId } from '@/lib/seguimiento'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -44,6 +45,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   const scrapedAt = getScrapedAt().toISOString()
   const cat = categoriaDe(c)
   const guia = c.guia ? getGuia(c.guia) : undefined
+  const historial = slugPorId()
 
   const jsonLd = [
     {
@@ -138,6 +140,11 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                         </a>
                         <span className="block mt-1 space-x-2">
                           {p.relampago && <span className="text-[11px] font-bold text-blue-400">⚡ Relámpago</span>}
+                          {historial[p.id_ml] && (
+                            <a href={`/precio/${historial[p.id_ml]}`} className="text-[11px] font-bold text-zinc-400 hover:text-yellow-400">
+                              📈 Historial
+                            </a>
+                          )}
                           {p.minimo_historico && (
                             <span className="text-[11px] font-bold text-yellow-400">📉 Mínimo histórico</span>
                           )}

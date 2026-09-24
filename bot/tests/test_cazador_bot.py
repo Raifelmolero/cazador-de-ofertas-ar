@@ -548,3 +548,27 @@ class TestGananciaPorComision(unittest.TestCase):
         aire = {"title": "Aire Acondicionado Split Inverter 3000 Frig", "price_cur": 880000}
         cel = {"title": "Apple iPhone 16e 512 Gb", "price_cur": 1700000, "relampago": True}
         self.assertGreater(bot.ganancia_esperada(aire), bot.ganancia_esperada(cel))
+
+
+class TestSeguimiento(unittest.TestCase):
+    def test_abre_pagina_solo_ticket_alto_y_acumula_serie(self):
+        aire = {"id": "MLA1", "title": "Aire Acondicionado Split Inverter", "url": "https://x/p/MLA1",
+                "price_prev": 1000000, "price_cur": 800000, "discount": 20, "img": None}
+        barato = {"id": "MLA2", "title": "Juego Encastre", "url": "https://x/p/MLA2",
+                  "price_prev": 10000, "price_cur": 8000, "discount": 20, "img": None}
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "seg.json"
+            bot.update_seguimiento([aire, barato], {}, "aff", p, today="2026-09-24")
+            data = bot.update_seguimiento([{**aire, "price_cur": 750000}], {}, "aff", p, today="2026-09-25")
+        self.assertEqual(list(data["items"]), ["MLA1"])
+        self.assertEqual(data["items"]["MLA1"]["serie"], [["2026-09-24", 800000], ["2026-09-25", 750000]])
+        self.assertTrue(data["items"]["MLA1"]["slug"].startswith("aire-acondicionado-split"))
+
+    def test_borra_los_que_no_vemos_hace_60_dias(self):
+        aire = {"id": "MLA1", "title": "Aire Acondicionado Split", "url": "u",
+                "price_prev": 1000000, "price_cur": 800000, "discount": 20, "img": None}
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "seg.json"
+            bot.update_seguimiento([aire], {}, "aff", p, today="2026-07-01")
+            data = bot.update_seguimiento([], {}, "aff", p, today="2026-09-24")
+        self.assertEqual(data["items"], {})

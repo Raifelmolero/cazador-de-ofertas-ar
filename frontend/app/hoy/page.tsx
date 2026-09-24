@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import type { OfertaLight } from '@/components/OfertaCard'
@@ -249,13 +250,13 @@ export default function HoyPage() {
       {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
       {new Date() < new Date('2026-10-19T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-          <a
+          <Link
             href="/mejores/regalos-dia-de-la-madre"
             className="block rounded-2xl border border-pink-400/30 bg-pink-500/10 px-5 py-4 text-center hover:border-pink-400/60 transition-colors"
           >
             <span className="font-display font-black text-pink-200">🎁 Día de la Madre: domingo 18 de octubre</span>
             <span className="block text-sm text-zinc-300 mt-1">Regalos en oferta con el descuento verificado → ver los regalos</span>
-          </a>
+          </Link>
         </section>
       )}
 
@@ -347,9 +348,9 @@ export default function HoyPage() {
             </li>
           ))}
           <li>
-            <a href="/precio" className="text-sm font-bold text-yellow-400/90 hover:text-yellow-300">
+            <Link href="/precio" className="text-sm font-bold text-yellow-400/90 hover:text-yellow-300">
               📈 Historial de precios de productos de ticket alto
-            </a>
+            </Link>
           </li>
         </ul>
       </section>

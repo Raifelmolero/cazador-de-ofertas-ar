@@ -373,6 +373,20 @@ class TestComisionEstimada(unittest.TestCase):
     def test_sin_match_devuelve_peso_neutro(self):
         self.assertEqual(bot.comision_estimada("Algo Que No Matchea Nada En Particular"), 1.0)
 
+    def test_herramientas_electricas_pesa_lo_mismo_que_embalaje(self):
+        taladro = bot.comision_estimada("Set 166 Piezas Taladro Percutor Y Atornillador Inalambrico")
+        self.assertEqual(taladro, 1.8)
+
+    def test_colchon_pesa_lo_mismo_que_embalaje(self):
+        colchon = bot.comision_estimada("Colchon 1 Plaza 80cm x 190cm Espuma Alta Densidad")
+        self.assertEqual(colchon, 1.8)
+
+    def test_climatizacion_pesa_mas_que_default(self):
+        self.assertGreater(
+            bot.comision_estimada("Aire Acondicionado Split Surrey Inverter Wifi 9000 Btu"),
+            bot.comision_estimada("Producto Genérico Sin Categoría Reconocible"),
+        )
+
     def test_no_distingue_mayusculas(self):
         self.assertEqual(
             bot.comision_estimada("CERRADURA INTELIGENTE HUELLA DIGITAL"),

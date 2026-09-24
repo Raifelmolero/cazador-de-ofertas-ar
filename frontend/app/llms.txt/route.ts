@@ -38,8 +38,11 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),
   [heladeras](https://cazadordeofertas.com.ar/categoria/heladeras),
-  [aspiradoras](https://cazadordeofertas.com.ar/categoria/aspiradoras) y
-  [ventiladores](https://cazadordeofertas.com.ar/categoria/ventiladores).
+  [aspiradoras](https://cazadordeofertas.com.ar/categoria/aspiradoras),
+  [ventiladores](https://cazadordeofertas.com.ar/categoria/ventiladores),
+  [aire acondicionado](https://cazadordeofertas.com.ar/categoria/aire-acondicionado),
+  [herramientas eléctricas](https://cazadordeofertas.com.ar/categoria/herramientas-electricas) y
+  [colchones](https://cazadordeofertas.com.ar/categoria/colchones).
 - [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
   [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre)
   y [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina):

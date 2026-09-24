@@ -580,18 +580,25 @@ def sugerir_destacado(title: str) -> str | None:
 
 # Actualización 2026-09-21 (panel, 180 días): Gastronomía y Hotelería también
 # paga 15% — se agregó al tramo alto.
+# Actualización 2026-09-23 (panel, 30 días 24/ago-22/sep): el mes lo hicieron
+# ventas de Climatización ($52k, 1 unidad, 7%), Herramientas Eléctricas ($28k,
+# 15%) y Camas/Colchones ($25k, 15%) — categorías que hasta ahora no tenían
+# peso propio y competían en igualdad con cualquier producto sin señal. Se
+# agregan acá. El patrón se repite: pocas ventas de ticket alto en categorías
+# de comisión alta valen más que muchos clics en productos baratos.
 # Pesos de comisión estimada por categoría. El scraper de /ofertas no trae la
 # categoría real de ML (pedirla individual por producto son ~100 requests
 # extra por corrida, riesgo de baneo de IP — ver CLAUDE.md). Se aproxima por
 # palabras clave del título, mismo patrón que sugerir_destacado().
 #
 # Los pesos salen del panel de afiliados (2026-06 a 2026-09, retribución real
-# por categoría vendida): Embalaje y Logística 15%, Pequeños Electrodomésticos
-# y Monitores 7%, Seguridad para el Hogar / Materiales de Obra / Pinturería /
-# Camping / Librería 4%, Accesorios para Cámaras / Periféricos / Tablets 2%.
-# Es una muestra chica (14 ventas) — no es la tabla oficial de comisiones de
-# ML, es la mejor aproximación que tenemos con datos reales. Ajustable acá
-# mismo si el patrón cambia con más ventas.
+# por categoría vendida): Embalaje y Logística / Gastronomía y Hotelería /
+# Herramientas Eléctricas / Camas y Colchones 15%, Climatización / Pequeños
+# Electrodomésticos y Monitores 7%, Seguridad para el Hogar / Materiales de
+# Obra / Pinturería / Camping / Librería 4%, Accesorios para Cámaras /
+# Periféricos / Tablets 2%. Es una muestra chica (~26 ventas) — no es la tabla
+# oficial de comisiones de ML, es la mejor aproximación que tenemos con datos
+# reales. Ajustable acá mismo si el patrón cambia con más ventas.
 #
 # No reemplaza al %OFF ni al mínimo histórico como criterio principal (una
 # oferta mala sigue sin publicarse) — solo desempata a favor de la categoría
@@ -607,6 +614,19 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
         "cocina industrial", "horno pizzero", "amasadora", "cortadora de fiambre",
         "exhibidora", "plancha industrial", "procesadora industrial",
         "cafetera industrial", "mesa de acero inoxidable", "campana industrial",
+    ]),
+    (1.8, [  # Herramientas Eléctricas ~15% (taladro+atornillador: $28.4k de un pedido)
+        "taladro", "atornillador", "amoladora", "esmeril angular", "lijadora",
+        "rotomartillo", "sierra circular", "sierra caladora", "soldadora",
+        "compresor de aire", "motosierra", "desmalezadora", "bordeadora",
+        "hidrolavadora",
+    ]),
+    (1.8, [  # Camas, Colchones y Accesorios ~15% (colchón: $24.8k de un pedido)
+        "colchon", "colchón", "sommier", "sommiers",
+    ]),
+    (1.4, [  # Climatización ~7% (aire acondicionado split: $52k de un pedido)
+        "aire acondicionado", "acondicionado split", "split frio calor",
+        "split frío calor", "split inverter",
     ]),
     (1.4, [  # Pequeños Electrodomésticos / Monitores y Accesorios ~7%
         "monitor", "freidora de aire", "cafetera", "pava eléctrica",

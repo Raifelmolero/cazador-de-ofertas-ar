@@ -4,10 +4,18 @@
 // (guía de compra + preguntas frecuentes) es lo que no cambia y le da a la
 // página algo que ofrecer aunque hoy no haya ofertas del rubro.
 //
-// Se eligieron rubros que aparecen todos los días en /ofertas de ML y que están
-// en el tramo de comisión media (~7%, ver CATEGORY_COMMISSION_WEIGHT en
-// bot/cazador_bot.py). Los rubros de ~15% (embalaje, gastronomía) casi nunca
-// aparecen en las ofertas del día, así que una página de esos quedaría vacía.
+// Primero se eligieron rubros que aparecen todos los días en /ofertas de ML y
+// que están en el tramo de comisión media (~7%, ver CATEGORY_COMMISSION_WEIGHT
+// en bot/cazador_bot.py): monitores, freidoras de aire, heladeras, aspiradoras,
+// ventiladores.
+//
+// Actualización 2026-09-23: el panel de afiliados (30 días) mostró que
+// Climatización (7%), Herramientas Eléctricas (15%) y Camas/Colchones (15%)
+// generaron más plata en un mes que todo lo demás junto, aunque aparecen
+// pocas veces en /ofertas — se agregan igual: la página no queda "vacía"
+// (ofertasDeCategoria devuelve [] y el componente ya maneja ese caso con un
+// mensaje + CTA a /), y son justo las búsquedas de alta intención de compra
+// que le interesan a Google/las IAs para citar el sitio.
 //
 // ML no trae la categoría real en el scraper, así que se infiere por palabras
 // clave del título (igual que el bot), con una lista de exclusiones para que
@@ -243,6 +251,152 @@ export const CATEGORIAS: Categoria[] = [
       {
         q: '¿Cómo sé si el descuento de un ventilador es real?',
         a: 'Comparando con el historial de precios. Descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'aire-acondicionado',
+    nombre: 'Aire acondicionado',
+    titulo: 'Ofertas de aire acondicionado en Mercado Libre Argentina',
+    descripcion:
+      'Aires acondicionados split en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Cómo elegir frigorías, inverter o no y qué revisar antes de comprar.',
+    intro:
+      'Aires acondicionados split con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['aire acondicionado', 'acondicionado split'],
+    excluir: [
+      'funda', 'soporte', 'control remoto', 'filtro', 'repuesto', 'cargador',
+      'ventilador', 'portatil', 'camping',
+    ],
+    guia: [
+      {
+        h: 'Cuántas frigorías necesitás',
+        p: [
+          'Se calcula por el tamaño del ambiente: como referencia orientativa se usan unas 600 a 700 frigorías por metro cuadrado en un ambiente bien aislado, algo más si el techo es de chapa, recibe sol directo o tiene poco aislamiento. Para un dormitorio de 12 a 15 m² suele alcanzar un equipo de 2250 a 3000 frigorías; para un living más grande, hay que subir a 3500 o más. Ante la duda, conviene quedarse corto con el gasto pero no con la potencia: un equipo justo trabaja forzado todo el verano.',
+        ],
+      },
+      {
+        h: 'Inverter o no, y frío/calor o solo frío',
+        p: [
+          'Los equipos inverter regulan la velocidad del compresor en lugar de prenderse y apagarse todo el tiempo: consumen menos luz y son más silenciosos, aunque cuestan más de entrada. Para uso diario varias horas por día, la diferencia en la factura de luz suele justificar la inversión.',
+          'Frío/calor sirve como calefacción en invierno además de enfriar en verano; frío solo es más barato pero solo cubre el verano. Si no tenés otra calefacción en ese ambiente, frío/calor suele convenir más en el total del año.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Instalación: un split necesita instalación con gas y mano de obra especializada, que en general se cotiza aparte del precio del equipo. Pedí el presupuesto de instalación antes de decidir por el precio del aire solo.',
+          'Wifi y control por app: es una comodidad, no algo indispensable; fijate que no infle el precio de un equipo que por lo demás no te convence.',
+          'Precio: comprobá que el descuento sea real contra el historial de precios. En climatización los descuentos "de lista" suelen ser los más inflados del año, sobre todo antes del verano.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cuántas frigorías necesito para mi ambiente?',
+        a: 'Como referencia orientativa, unas 600 a 700 frigorías por metro cuadrado en un ambiente bien aislado; más si el techo es de chapa, recibe sol directo o está poco aislado. Para un dormitorio de 12 a 15 m² suele alcanzar un equipo de 2250 a 3000 frigorías.',
+      },
+      {
+        q: '¿Vale la pena pagar más por un equipo inverter?',
+        a: 'Si lo vas a usar varias horas por día, sí: consume menos luz y es más silencioso que uno convencional. Para uso muy esporádico, la diferencia de precio tarda más en amortizarse.',
+      },
+      {
+        q: '¿El precio del aire acondicionado incluye la instalación?',
+        a: 'No, casi nunca. La instalación con gas y mano de obra especializada se cotiza aparte y varía según el instalador y la distancia entre la unidad interior y la exterior.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un aire acondicionado es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'herramientas-electricas',
+    nombre: 'Herramientas eléctricas',
+    titulo: 'Ofertas de herramientas eléctricas en Mercado Libre Argentina',
+    descripcion:
+      'Taladros, amoladoras, soldadoras y demás herramientas eléctricas en oferta en Mercado Libre Argentina, con descuento verificado. Qué mirar antes de comprar.',
+    intro:
+      'Taladros, atornilladores, amoladoras y otras herramientas eléctricas con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios.',
+    keywords: [
+      'taladro', 'atornillador', 'amoladora', 'esmeril angular', 'lijadora',
+      'rotomartillo', 'sierra circular', 'sierra caladora', 'soldadora',
+      'compresor de aire', 'motosierra', 'desmalezadora', 'bordeadora',
+      'hidrolavadora',
+    ],
+    excluir: [
+      'funda', 'repuesto', 'accesorio', 'broca', 'disco de corte', 'mecha',
+      'maletin', 'valija para',
+    ],
+    guia: [
+      {
+        h: 'Con cable, a batería o neumática',
+        p: [
+          'Con cable: más potencia sostenida y sin límite de autonomía, ideal para uso frecuente en un taller fijo. A batería: se mueven a cualquier lado sin buscar un enchufe, cómodas para changas y uso ocasional, pero la autonomía y la potencia dependen de la batería (más volts e ínamperios, más rinde). Neumáticas (compresor): más potencia por menos peso en la herramienta, pero necesitás el compresor y la manguera, así que solo conviene si ya lo tenés o vas a usar varias herramientas neumáticas.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Potencia y torque: en taladros y atornilladores, más torque (Nm) significa que perforan o atornillan materiales más duros sin trabarse. En amoladoras y sierras, los watts indican la potencia del motor.',
+          'Batería: si es a batería, fijate el voltaje (18V es un estándar cómodo para uso general) y si el fabricante vende baterías y cargadores compatibles con otras herramientas de la misma línea, para no comprar una batería distinta por cada aparato.',
+          'Accesorios incluidos: maletín, mechas o discos incluidos cambian el precio real de la compra. Compará lo que incluye cada oferta, no solo el precio de la herramienta sola.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene una herramienta con cable o a batería?',
+        a: 'Con cable rinde más para uso frecuente en un lugar fijo, sin límite de autonomía. A batería es más práctica para moverte y para changas, aunque la potencia y la duración dependen de la batería.',
+      },
+      {
+        q: '¿Qué voltaje de batería conviene para taladros y atornilladores?',
+        a: '18V es un estándar cómodo para uso general en el hogar y changas. Si ya tenés otras herramientas de una marca, conviene mantener el mismo voltaje y línea para compartir baterías y cargador.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de una herramienta eléctrica es real?',
+        a: 'Mirando el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'colchones',
+    nombre: 'Colchones',
+    titulo: 'Ofertas de colchones en Mercado Libre Argentina',
+    descripcion:
+      'Colchones en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Cómo elegir firmeza, material y tamaño.',
+    intro:
+      'Colchones con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['colchon', 'colchón', 'sommier', 'sommiers'],
+    excluir: ['funda', 'protector', 'cubre colchon', 'cubre colchón', 'forro'],
+    guia: [
+      {
+        h: 'Qué firmeza y material elegir',
+        p: [
+          'Firmeza: depende del peso y la postura de quien duerme, no hay una respuesta única. Como referencia orientativa, alguien de contextura liviana suele estar más cómodo en un colchón medio a blando, y alguien de contextura más pesada en uno firme, que sostenga mejor la columna. Los que duermen de costado suelen preferir algo menos firme que los que duermen boca arriba.',
+          'Espuma de alta densidad: buena relación precio-calidad, sostiene bien y dura varios años si la densidad es alta (fijate el número de densidad, no solo "espuma"). Resortes: reparten el peso en toda la superficie y suelen sentirse más frescos. Viscoelástico o "memory foam": se adapta al cuerpo y alivia puntos de presión, pero retiene más calor.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Medidas: confirmá que la medida (1 plaza, 1 plaza y media, 2 plazas, queen, king) coincida exactamente con tu sommier o base de cama; unos centímetros de diferencia ya generan un colchón que sobra o que queda corto.',
+          '"En caja": muchos colchones se envían comprimidos y enrollados en una caja chica; es normal y no afecta la calidad, pero tarda un tiempo en expandirse del todo (generalmente 24 a 48 horas) antes de dar su firmeza real.',
+          'Garantía: los colchones de espuma de buena calidad suelen traer varios años de garantía contra hundimiento. Un colchón muy barato sin garantía especificada suele avisar sobre su durabilidad real.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué firmeza de colchón me conviene?',
+        a: 'Depende de tu peso y de cómo dormís. Como referencia orientativa, contextura liviana va mejor con firmeza media a blanda, contextura más pesada con uno firme; dormir de costado suele pedir algo menos firme que dormir boca arriba.',
+      },
+      {
+        q: '¿Un colchón "en caja" es de menor calidad?',
+        a: 'No, es solo la forma de envío: viene comprimido y enrollado para que entre en una caja chica, y se expande a su tamaño y firmeza reales en 24 a 48 horas. No afecta la calidad del colchón.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un colchón es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
       },
     ],
   },

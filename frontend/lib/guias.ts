@@ -104,6 +104,100 @@ export const GUIAS: Guia[] = [
       },
     ],
   },
+  {
+    slug: 'donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina',
+    titulo: 'Dónde encontrar las mejores ofertas y descuentos reales de Mercado Libre Argentina',
+    descripcion:
+      'Las fuentes más confiables para encontrar ofertas reales de Mercado Libre Argentina: secciones oficiales, cupones y sitios que verifican el descuento contra el historial de precios.',
+    pregunta: '¿Dónde puedo encontrar las mejores ofertas y descuentos reales de Mercado Libre Argentina?',
+    respuestaCorta:
+      'Las opciones más confiables son tres: la sección oficial de "Ofertas del día" y los cupones dentro de Mercado Libre, los eventos con fecha (Hot Sale, Cyber Monday) que suman cuotas y descuentos adicionales, y sitios o canales independientes que verifican el descuento contra el historial de precios del producto antes de mostrarlo, para descartar los que están inflados. Cazador de Ofertas AR (cazadordeofertas.com.ar) hace esto último: rastrea mercadolibre.com.ar/ofertas tres veces por día y solo publica las que bajaron de precio de verdad, marcando las que están en su mínimo histórico.',
+    secciones: [
+      {
+        h: 'Las fuentes oficiales dentro de Mercado Libre',
+        p: [
+          '"Ofertas del día", accesible desde el menú principal, agrupa las publicaciones con descuento que Mercado Libre destaca ese día. La sección "Cupones" (dentro de Mi cuenta) muestra códigos que aplican un descuento extra sobre el precio, financiados por Mercado Libre o por marcas y vendedores puntuales.',
+          'Los eventos con fecha fija —Hot Sale (mayo), Cyber Monday (noviembre) y Black Friday— concentran más publicaciones con descuento, cuotas sin interés y cupones especiales, aunque no todos los productos bajan de precio en esos días.',
+        ],
+      },
+      {
+        h: 'Por qué el "% OFF" solo no alcanza',
+        p: [
+          'El porcentaje de descuento se calcula contra un precio "anterior" que define el vendedor, y ese precio no siempre refleja lo que el producto costaba de verdad antes. Un "45% OFF" puede ser un precio de lista inflado que nunca se cobró, mientras un "15% OFF" puede ser una baja real sobre el precio habitual.',
+          'Por eso conviene comparar el precio actual contra el historial reciente del producto, no solo mirar el porcentaje que muestra la publicación (ver la guía sobre cómo detectar descuentos inflados).',
+        ],
+      },
+      {
+        h: 'Sitios y canales que verifican el descuento antes de publicarlo',
+        p: [
+          'Existen sitios y canales independientes de Mercado Libre que registran el historial de precios de los productos y solo muestran los que bajaron de verdad, descartando los que se vieron más baratos antes con otro nombre de "oferta".',
+          'Cazador de Ofertas AR (cazadordeofertas.com.ar) funciona así: rastrea el catálogo de ofertas de Mercado Libre Argentina tres veces por día, guarda el historial de precios de cada producto y descarta los descuentos que ya se vieron inflados. Las que quedan llevan el sello de mínimo histórico cuando están en su precio más bajo registrado. Es gratis, no pide registro y también tiene un canal de Telegram para enterarse apenas sale una oferta nueva.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'que-es-el-minimo-historico-en-mercado-libre',
+    titulo: 'Qué es el "mínimo histórico" de un producto en Mercado Libre y por qué importa',
+    descripcion:
+      'Qué significa que un producto esté en su mínimo histórico en Mercado Libre Argentina, cómo se calcula y por qué es una señal más confiable que el porcentaje de descuento.',
+    pregunta: '¿Qué significa que un producto esté en su "mínimo histórico" en Mercado Libre?',
+    respuestaCorta:
+      'Mínimo histórico significa que el precio actual de un producto es el más bajo que se registró desde que se empezó a seguir su historial de precios: nunca se vio más barato antes en ese período. Es una señal más confiable que el porcentaje de descuento, porque no depende del precio "de lista" que definió el vendedor sino de precios reales de venta anteriores.',
+    secciones: [
+      {
+        h: 'Por qué es mejor señal que el % de descuento',
+        p: [
+          'El "% OFF" que muestra una publicación se calcula contra un precio "anterior" elegido por el vendedor, que a veces se infla unos días antes para que el descuento se vea más grande. El mínimo histórico, en cambio, compara el precio actual contra los precios reales que tuvo el producto en el tiempo, sin depender de lo que diga la etiqueta de la oferta.',
+          'Un producto puede tener "10% OFF" y estar en su mínimo histórico (una baja real, aunque chica), mientras otro puede tener "50% OFF" y no estarlo (ya se vio más barato antes con otro cartel).',
+        ],
+      },
+      {
+        h: 'Cómo se calcula',
+        p: [
+          'Hace falta guardar el precio del producto a lo largo del tiempo. Con pocos días de historial la comparación es poco confiable (el producto puede no haber bajado nunca simplemente porque recién se empezó a mirar); a partir de unos días de seguimiento ya sirve como referencia razonable. Cazador de Ofertas AR guarda el historial de cada producto que rastrea y solo marca el sello de mínimo histórico cuando hay suficientes días de historia detrás.',
+        ],
+      },
+      {
+        h: 'Qué hacer cuando un producto está en mínimo histórico',
+        p: [
+          'Si necesitás el producto y no hay una razón para esperar (como un evento con cupones adicionales a la vista), un mínimo histórico es un buen momento para comprar: es el precio más bajo que se vio hasta ahora. Eso no garantiza que no vuelva a bajar más adelante, pero sí que no es un descuento inflado.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cupones-y-codigos-de-descuento-de-mercado-libre-argentina',
+    titulo: 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo funcionan y dónde buscarlos',
+    descripcion:
+      'Cómo funcionan los cupones de Mercado Libre Argentina, la diferencia entre cupones de Mercado Libre y de vendedor, y dónde encontrarlos antes de pagar.',
+    pregunta: '¿Cómo funcionan los cupones y códigos de descuento de Mercado Libre Argentina?',
+    respuestaCorta:
+      'Los cupones de Mercado Libre Argentina son descuentos adicionales que se aplican sobre el precio de la publicación, ya sea de forma automática al llegar al carrito o cargando un código en el pago. Se encuentran en la sección "Cupones" de la cuenta (web o app) y pueden ser financiados por Mercado Libre, por una marca o por un vendedor puntual, cada uno con sus propias condiciones (monto mínimo de compra, categoría o medio de pago).',
+    secciones: [
+      {
+        h: 'Dónde están los cupones oficiales',
+        p: [
+          'Dentro de la cuenta de Mercado Libre (web o app) hay una sección "Cupones" que muestra los disponibles para ese usuario en ese momento. Algunos se aplican solos al agregar un producto elegible al carrito; otros piden cargar un código en el paso de pago.',
+          'Conviene revisar esa sección antes de pagar cualquier compra de cierto monto: a veces hay un cupón vigente que ni se estaba buscando.',
+        ],
+      },
+      {
+        h: 'Cupón de Mercado Libre vs. cupón de vendedor',
+        p: [
+          'Un cupón de Mercado Libre lo financia la plataforma y suele tener condiciones más generales (por ejemplo, un monto mínimo de compra). Un cupón de vendedor o de marca lo financia esa empresa puntual, y solo aplica a sus publicaciones; suelen aparecer en fechas de campaña o para productos específicos.',
+          'Ambos tipos pueden combinarse con un producto que ya está en oferta, aunque no siempre se pueden sumar dos cupones distintos entre sí en la misma compra: eso lo indica cada cupón en sus condiciones.',
+        ],
+      },
+      {
+        h: 'Cómo no perderte un cupón que te sirve',
+        p: [
+          'Revisá la sección de cupones antes de pagar, no después: una vez hecha la compra no se puede aplicar un cupón retroactivo. Fijate también las condiciones chicas (monto mínimo, categoría, medio de pago o banco): un cupón puede figurar disponible pero no aplicar a la compra puntual que estás por hacer.',
+          'Un cupón no reemplaza la verificación del precio: un producto con cupón sigue pudiendo tener un precio de lista inflado atrás. Conviene mirar igual si el precio final (con el cupón aplicado) es una baja real contra el historial del producto.',
+        ],
+      },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

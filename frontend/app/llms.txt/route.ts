@@ -44,8 +44,11 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   [herramientas eléctricas](https://cazadordeofertas.com.ar/categoria/herramientas-electricas) y
   [colchones](https://cazadordeofertas.com.ar/categoria/colchones).
 - [Cómo saber si un descuento es real](https://cazadordeofertas.com.ar/guias/como-saber-si-un-descuento-de-mercado-libre-es-real),
-  [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre)
-  y [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina):
+  [Hot Sale/Cyber Monday: cuándo comprar](https://cazadordeofertas.com.ar/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre),
+  [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),
+  [dónde encontrar las mejores ofertas de Mercado Libre Argentina](https://cazadordeofertas.com.ar/guias/donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina),
+  [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre)
+  y [cupones y códigos de descuento](https://cazadordeofertas.com.ar/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina):
   guías con respuesta corta citable.
 - [Canal de Telegram](https://t.me/cazadordeofertasar): mismas ofertas más
   ofertas exclusivas que no se publican en el sitio ni en redes.

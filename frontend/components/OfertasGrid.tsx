@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 
 function normalizar(s: string) {
@@ -8,6 +8,29 @@ function normalizar(s: string) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+}
+
+/** Búsqueda de ML con el link de afiliado (misma etiqueta `web` del sitio):
+ *  si lo que buscás hoy no está en oferta, igual comprás por nuestro link. */
+export function busquedaML(q: string) {
+  const slug = normalizar(q.trim()).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return `https://listado.mercadolibre.com.ar/${slug}?matt_word=web&matt_tool=37267219`
+}
+
+function BuscarEnML({ q }: { q: string }) {
+  return (
+    <a
+      href={busquedaML(q)}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className="flex items-center justify-between gap-3 bg-zinc-900 border border-zinc-800 hover:border-yellow-400/60 rounded-xl px-4 py-3 text-sm transition-colors"
+    >
+      <span className="text-zinc-300">
+        ¿No está lo que buscás? Buscá <b className="text-white">«{q.trim()}»</b> en todo Mercado Libre
+      </span>
+      <span className="shrink-0 font-bold text-yellow-400">Buscar en ML ↗</span>
+    </a>
+  )
 }
 
 const CHIPS = [
@@ -55,6 +78,13 @@ export default function OfertasGrid({
   const [q, setQ] = useState('')
   const [chip, setChip] = useState<ChipId>('all')
   const [orden, setOrden] = useState<OrdenId>('relevancia')
+
+  // ?q=heladera en la URL: búsquedas compartibles (y que una IA pueda linkear).
+  useEffect(() => {
+    const inicial = new URLSearchParams(window.location.search).get('q')
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- leer la URL solo existe en el cliente
+    if (inicial) setQ(inicial)
+  }, [])
 
   const counts = useMemo(() => {
     const c: Record<ChipId, number> = { all: ofertas.length, flash: 0, low: 0, half: 0, cheap: 0 }
@@ -125,6 +155,12 @@ export default function OfertasGrid({
           })}
         </div>
       </div>
+
+      {nq.length >= 3 && (
+        <div className="mb-4">
+          <BuscarEnML q={q} />
+        </div>
+      )}
 
       {visibles.length === 0 ? (
         <div className="text-center py-16">

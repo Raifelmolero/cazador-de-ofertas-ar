@@ -196,6 +196,54 @@ export const COMPARATIVAS: Comparativa[] = [
       'Bicicletas y monopatines: chequeá el rodado o la edad recomendada según quién lo va a usar.',
     ],
   },
+  {
+    slug: 'mejores-cocinas-y-hornos',
+    nombre: 'cocinas y hornos',
+    titulo: `Mejores cocinas y hornos en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de cocinas a gas, multigas, eléctricas y hornos en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las cocinas y hornos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'cocinas-y-hornos',
+    criterios: [
+      'Tipo de gas: si tenés gas natural o envasado (garrafa), elegí una multigas o confirmá que trae los picos para tu instalación.',
+      'Medidas: la mayoría mide 50 a 56 cm de ancho; medí el hueco antes de comprar.',
+      'Horno: con visor y luz es más cómodo; el encendido electrónico y la válvula de seguridad suman seguridad.',
+      'Instalación de gas: la tiene que hacer un gasista matriculado.',
+    ],
+  },
+  {
+    slug: 'mejores-termotanques',
+    nombre: 'termotanques',
+    titulo: `Mejores termotanques en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de termotanques a gas y eléctricos en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
+    intro:
+      'Los termotanques en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'termotanques',
+    criterios: [
+      'Capacidad según cuántos viven: como referencia, 50 litros para 1-2 personas, 80 litros para 3-4 y 120 litros o más para familias grandes.',
+      'Gas o eléctrico: el eléctrico no necesita salida de gases, pero suele gastar más; el de gas recupera más rápido.',
+      'Recuperación (litros por hora): cuanto más alta, menos esperás entre una ducha y otra.',
+      'La instalación a gas la tiene que hacer un gasista matriculado.',
+    ],
+  },
+  {
+    slug: 'mejores-freezers',
+    nombre: 'freezers',
+    titulo: `Mejores freezers en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de freezers horizontales y verticales en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
+    intro:
+      'Los freezers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'freezers',
+    criterios: [
+      'Horizontal o vertical: el horizontal guarda más por el mismo precio; el vertical ocupa menos piso y es más fácil de ordenar.',
+      'Capacidad: medí el lugar y dejá unos centímetros atrás y a los costados para que ventile.',
+      'Dual (freezer/heladera): algunos horizontales se pueden usar como conservadora; útil si lo querés para bebidas.',
+      'Eficiencia energética: la etiqueta A o superior se nota en la factura porque funciona todo el día.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

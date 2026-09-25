@@ -176,6 +176,26 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
     guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
   },
+  {
+    slug: 'regalos-de-navidad',
+    nombre: 'regalos de Navidad',
+    titulo: `Regalos de Navidad ${AÑO} en oferta: ideas por presupuesto`,
+    descripcion:
+      'Regalos de Navidad 2026 en oferta en Mercado Libre Argentina, por presupuesto: consolas, bicicletas, monopatines, auriculares, smartwatch, perfumes, parlantes y más, con el descuento verificado.',
+    intro:
+      'Regalos para Navidad en oferta hoy, ordenados por presupuesto y con el descuento comparado contra el precio más bajo que registramos. Para que llegue antes del 24 de diciembre, comprá con al menos una semana de margen.',
+    keywords: [
+      'consola', 'playstation', 'nintendo', 'bicicleta', 'monopatin', 'monopatín',
+      'auriculares', 'smartwatch', 'perfume', 'parlante', 'lego', 'tablet',
+    ],
+    presupuestos: [50000, 150000],
+    criterios: [
+      'Comprá con al menos 7 días de margen: la semana previa al 24 los envíos se cargan. Mirá la fecha de entrega antes de pagar.',
+      'Envío Full llega más rápido y simplifica el cambio si el regalo no convence.',
+      'Consolas y tecnología: preferí tiendas oficiales y revisá la garantía (oficial o del vendedor).',
+      'Bicicletas y monopatines: chequeá el rodado o la edad recomendada según quién lo va a usar.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

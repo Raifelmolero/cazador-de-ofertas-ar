@@ -251,6 +251,17 @@ export default function HoyPage() {
       </section>
 
       {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
+      {new Date() >= new Date('2026-12-01T03:00:00Z') && new Date() < new Date('2026-12-25T03:00:00Z') && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+          <Link
+            href="/mejores/regalos-de-navidad"
+            className="block rounded-2xl border border-green-400/30 bg-green-500/10 px-5 py-4 text-center hover:border-green-400/60 transition-colors"
+          >
+            <span className="font-display font-black text-green-200">🎄 Regalos de Navidad en oferta</span>
+            <span className="block text-sm text-zinc-300 mt-1">Por presupuesto y con el descuento verificado → ver los regalos</span>
+          </Link>
+        </section>
+      )}
       {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-12-01T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
           <Link

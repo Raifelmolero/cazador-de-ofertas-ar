@@ -60,6 +60,33 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         { '@type': 'ListItem', position: 2, name: c.titulo, item: url },
       ],
     },
+    {
+      // Preguntas que un buscador o una IA puede citar textual.
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `¿Qué conviene mirar antes de comprar ${c.nombre}?`,
+          acceptedAnswer: { '@type': 'Answer', text: c.criterios.join(' ') },
+        },
+        ...(productos.length > 0
+          ? [
+              {
+                '@type': 'Question',
+                name: `¿Cuál es la mejor oferta de ${c.nombre} hoy en Mercado Libre?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text:
+                    `Hoy la primera de nuestra comparativa es ${productos[0].titulo} a ${precio(productos[0].precio_actual)}` +
+                    (productos[0].descuento_pct != null ? ` (${productos[0].descuento_pct}% OFF)` : '') +
+                    `. Comparamos ${productos.length} ${c.nombre} en oferta por precio, descuento y precio mínimo registrado; la tabla se actualiza 3 veces por día.`,
+                },
+              },
+            ]
+          : []),
+      ],
+    },
     ...(productos.length > 0
       ? [
           {

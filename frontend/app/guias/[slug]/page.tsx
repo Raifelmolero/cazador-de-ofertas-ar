@@ -96,16 +96,18 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
 
         <div className="rounded-2xl bg-zinc-900 border border-zinc-800 px-6 py-7 text-center mt-10">
           <p className="font-display text-xl font-black mb-2">
-            {g.categoria
+            {g.cta
+              ? g.cta.titulo
+              : g.categoria
               ? `Ofertas de ${g.categoria.nombre} de hoy, ya verificadas`
               : 'Las ofertas reales de hoy, ya verificadas'}
           </p>
           <p className="text-sm text-zinc-400 mb-5">Sin registro, sin costo, actualizadas 3 veces por día.</p>
           <a
-            href={g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL}
+            href={g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL}
             className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-8 py-3"
           >
-            {g.categoria ? `Ver ${g.categoria.nombre} en oferta 🎯` : 'Ver las ofertas de hoy 🎯'}
+            {g.cta ? g.cta.boton : g.categoria ? `Ver ${g.categoria.nombre} en oferta 🎯` : 'Ver las ofertas de hoy 🎯'}
           </a>
         </div>
 

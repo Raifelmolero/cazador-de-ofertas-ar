@@ -135,6 +135,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'regalos-dia-de-la-madre',
     presupuestos: [50000, 150000],
+    guia: 'que-regalar-el-dia-de-la-madre',
     nombre: 'regalos para el Día de la Madre',
     titulo: `Regalos para el Día de la Madre ${AÑO} en oferta`,
     descripcion:

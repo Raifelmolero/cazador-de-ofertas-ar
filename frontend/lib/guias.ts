@@ -13,6 +13,8 @@ export interface Guia {
   // Si la guía responde una pregunta previa a comprar un rubro, el botón
   // final lleva a esa categoría (donde están las ofertas) en vez de la home.
   categoria?: { slug: string; nombre: string }
+  // Botón final a medida (ej. a una comparativa); pisa al de categoría.
+  cta?: { href: string; titulo: string; boton: string }
 }
 
 export const GUIAS: Guia[] = [
@@ -290,6 +292,48 @@ export const GUIAS: Guia[] = [
       },
     ],
     categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+  },
+  {
+    slug: 'que-regalar-el-dia-de-la-madre',
+    titulo: 'Qué regalar el Día de la Madre 2026: ideas por presupuesto y cuándo comprar',
+    descripcion:
+      'Ideas de regalo para el Día de la Madre 2026 (domingo 18 de octubre) según presupuesto, qué conviene según los gustos de tu mamá y con cuánta anticipación comprar en Mercado Libre.',
+    pregunta: '¿Qué le regalo a mi mamá el Día de la Madre?',
+    respuestaCorta:
+      'El Día de la Madre 2026 en Argentina es el domingo 18 de octubre. Lo más elegido son perfumes, cuidado personal (secador, planchita), pequeños electrodomésticos de cocina (cafetera, freidora de aire) y tecnología (smartwatch, auriculares). Conviene comprar al menos una semana antes para que llegue a tiempo y revisar que el descuento sea real mirando el historial de precios.',
+    secciones: [
+      {
+        h: 'Ideas según presupuesto',
+        p: [
+          'Hasta $50.000: perfumes de marcas nacionales, sets de cuidado personal, secador o planchita de gama de entrada, auriculares.',
+          'De $50.000 a $150.000: perfumes importados, cafeteras de cápsulas, freidoras de aire, smartwatch, masajeadores.',
+          'Más de $150.000: robot aspiradora, cafetera espresso, celular o tablet, electrodomésticos de cocina de mayor gama.',
+          'En nuestra comparativa de regalos los productos en oferta de hoy están ordenados por estos mismos rangos, con el descuento verificado.',
+        ],
+      },
+      {
+        h: 'Según qué le gusta',
+        p: [
+          'Si le gusta arreglarse: perfume, secador, planchita o rizador. En perfumes, comprá en tiendas oficiales o vendedores con muy buena reputación.',
+          'Si le gusta cocinar o el café: freidora de aire, cafetera, batidora o mixer. Es el regalo "útil" que rara vez falla.',
+          'Si está siempre con el celular o sale a caminar: smartwatch o auriculares inalámbricos.',
+          'Si no tiene tiempo para limpiar: una robot aspiradora es de los regalos más valorados, aunque es de ticket alto.',
+        ],
+      },
+      {
+        h: 'Cuándo comprar para que llegue',
+        p: [
+          'Comprá con al menos 5 a 7 días de margen y mirá la fecha de entrega que muestra Mercado Libre antes de pagar. La semana previa al 18 de octubre los envíos se cargan.',
+          'Los productos con envío Full suelen llegar más rápido y tienen devolución simple si hay que cambiar el talle, el color o el modelo.',
+          'Antes de comprar, fijate si el descuento es real: muchos precios "antes" están inflados. En cada producto seguido mostramos el precio más bajo que registramos.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/regalos-dia-de-la-madre',
+      titulo: 'Regalos para el Día de la Madre en oferta hoy',
+      boton: 'Ver regalos por presupuesto 🎁',
+    },
   },
 ]
 

@@ -278,6 +278,54 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
     guia: 'que-regalar-el-dia-de-la-madre',
   },
+  {
+    slug: 'mejores-freidoras-de-aire',
+    nombre: 'freidoras de aire',
+    titulo: `Mejores freidoras de aire en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de freidoras de aire (air fryer) en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
+    intro:
+      'Las freidoras de aire en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+    categoria: 'freidoras-de-aire',
+    criterios: [
+      'Capacidad: 3 a 4 litros alcanza para 1-2 personas; para familias conviene 5 litros o más (o doble canasto).',
+      'Potencia: entre 1.400 y 1.800 W cocina parejo y rápido.',
+      'Canasto antiadherente y apto lavavajillas: se nota en el uso diario.',
+      'Con ventana o luz interior podés ver la cocción sin abrir.',
+    ],
+  },
+  {
+    slug: 'mejores-ventiladores',
+    nombre: 'ventiladores',
+    titulo: `Mejores ventiladores en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de ventiladores de pie, de techo, turbo y de pared en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los ventiladores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Conviene comprar antes de la ola de calor: en pleno verano los precios suben y el stock baja.',
+    categoria: 'ventiladores',
+    criterios: [
+      'De techo para ambientes grandes y uso diario; de pie o turbo si lo querés mover de una habitación a otra.',
+      'Tamaño: 16 a 20 pulgadas para dormitorios, 20 o más para livings.',
+      'Motor: los de 3 o más velocidades y bajo ruido son mejores para dormir.',
+      'Si te sobra presupuesto y el calor es fuerte, compará con un aire acondicionado: enfría, no solo mueve el aire.',
+    ],
+  },
+  {
+    slug: 'mejores-monitores',
+    nombre: 'monitores',
+    titulo: `Mejores monitores en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de monitores para PC, gamer y oficina en oferta hoy en Mercado Libre Argentina: precio, descuento, pulgadas, Hz y precio mínimo registrado.',
+    intro:
+      'Los monitores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'monitores',
+    criterios: [
+      'Para oficina: 24 pulgadas Full HD con panel IPS alcanza y cuida la vista.',
+      'Para juegos: 144 Hz o más y 1 ms; fijate que tu placa de video llegue a esos cuadros.',
+      '27 pulgadas o más: conviene resolución 2K (QHD) para que no se vea "pixelado".',
+      'Revisá las entradas (HDMI, DisplayPort) y si trae el cable que necesitás.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

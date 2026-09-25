@@ -244,6 +244,40 @@ export const COMPARATIVAS: Comparativa[] = [
       'Eficiencia energética: la etiqueta A o superior se nota en la factura porque funciona todo el día.',
     ],
   },
+  {
+    slug: 'mejores-aspiradoras',
+    nombre: 'aspiradoras',
+    titulo: `Mejores aspiradoras y robots aspiradores en oferta ${AÑO}: comparativa`,
+    descripcion:
+      'Comparativa de aspiradoras, robots aspiradores y aspiradoras de mano en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las aspiradoras en oferta hoy (robots, verticales, de mano y de arrastre), comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'aspiradoras',
+    criterios: [
+      'Robot: sirve para el mantenimiento diario sin esfuerzo; fijate si tiene mapeo (recorre ordenado) o navegación aleatoria, y si también pasa el trapo.',
+      'Vertical o de mano a batería: práctica para pasadas rápidas; mirá la autonomía en minutos y si la batería es reemplazable.',
+      'Con mascotas: buscá cepillo antienredos y buen filtro (HEPA si hay alergias).',
+      'Potencia de succión (Pa o W): a mayor número, mejor en alfombras.',
+    ],
+  },
+  {
+    slug: 'mejores-perfumes',
+    nombre: 'perfumes',
+    titulo: `Perfumes en oferta ${AÑO}: comparativa de precios en Mercado Libre`,
+    descripcion:
+      'Comparativa de perfumes de mujer y hombre en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Consejos para comprar originales.',
+    intro:
+      'Los perfumes en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'perfumes',
+    presupuestos: [50000, 150000],
+    criterios: [
+      'Originalidad: comprá en tiendas oficiales de la marca o vendedores con reputación verde y muchas ventas; desconfiá de precios muy por debajo del resto.',
+      'Eau de parfum dura más en la piel que eau de toilette; por eso suele costar más por mililitro.',
+      'Compará por mililitro: el frasco grande casi siempre sale más barato por ml.',
+      'Para regalo, si no conocés el gusto, las fragancias frescas o florales suaves son las más seguras.',
+    ],
+    guia: 'que-regalar-el-dia-de-la-madre',
+  },
 ]
 
 export function getComparativa(slug: string) {

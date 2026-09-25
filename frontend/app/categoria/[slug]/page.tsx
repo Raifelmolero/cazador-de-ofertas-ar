@@ -8,6 +8,7 @@ import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
+import { busquedaML } from '@/lib/afiliado'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -183,6 +184,17 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             ))}
           </div>
         )}
+
+        <div className="mt-6 text-center">
+          <a
+            href={busquedaML(c.keywords[0])}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-6 py-2.5 transition-colors"
+          >
+            Ver todos los modelos de {c.nombre.toLowerCase()} en Mercado Libre ↗
+          </a>
+        </div>
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">

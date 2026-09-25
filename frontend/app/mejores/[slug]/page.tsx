@@ -1,3 +1,4 @@
+import { busquedaML } from '@/lib/afiliado'
 import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -165,6 +166,16 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                 </tbody>
               </table>
             </div>
+          )}
+          {cat && (
+            <a
+              href={busquedaML(cat.keywords[0])}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="mt-4 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-300"
+            >
+              ¿Ninguno te convence? Ver todos los modelos en Mercado Libre ↗
+            </a>
           )}
           <p className="text-xs text-zinc-500 mt-3">
             Cómo armamos esta comparativa: no probamos los productos. Comparamos precio, descuento e historial de

@@ -2,19 +2,13 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
+import { busquedaML } from '@/lib/afiliado'
 
 function normalizar(s: string) {
   return s
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-}
-
-/** Búsqueda de ML con el link de afiliado (misma etiqueta `web` del sitio):
- *  si lo que buscás hoy no está en oferta, igual comprás por nuestro link. */
-export function busquedaML(q: string) {
-  const slug = normalizar(q.trim()).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-  return `https://listado.mercadolibre.com.ar/${slug}?matt_word=web&matt_tool=37267219`
 }
 
 function BuscarEnML({ q }: { q: string }) {

@@ -14,6 +14,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'https://calculadoraml.com.ar'),
+  // Verificación del sitio en Pinterest (cuenta de empresa, auto-pines desde /feed.xml)
+  other: { 'p:domain_verify': '3c5e4d7f4737f0be87f52b88e610cc68' },
   title: 'CalculadoraML — Productos rentables de Mercado Libre',
   description: 'Descubrí los 50 productos más rentables de Mercado Libre hoy. Calculadora de ganancia incluida, gratis y actualizada a diario.',
 }

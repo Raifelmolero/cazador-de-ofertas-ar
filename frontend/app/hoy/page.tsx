@@ -251,6 +251,17 @@ export default function HoyPage() {
       </section>
 
       {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
+      {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-12-01T03:00:00Z') && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+          <Link
+            href="/mejores/ofertas-black-friday"
+            className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/10 px-5 py-4 text-center hover:border-yellow-400/60 transition-colors"
+          >
+            <span className="font-display font-black text-yellow-200">🖤 Black Friday: viernes 27 de noviembre</span>
+            <span className="block text-sm text-zinc-300 mt-1">Ofertas comparadas contra el historial de precios → ver cuáles son reales</span>
+          </Link>
+        </section>
+      )}
       {new Date() < new Date('2026-10-19T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
           <Link

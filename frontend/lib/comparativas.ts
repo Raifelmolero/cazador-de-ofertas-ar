@@ -154,6 +154,28 @@ export const COMPARATIVAS: Comparativa[] = [
       'Si no estás seguro del gusto, un electrodoméstico útil (cafetera, freidora) rara vez falla.',
     ],
   },
+  {
+    slug: 'ofertas-black-friday',
+    nombre: 'ofertas de Black Friday',
+    titulo: `Black Friday ${AÑO} en Mercado Libre: ofertas con descuento verificado`,
+    descripcion:
+      'Ofertas de Black Friday 2026 en Mercado Libre Argentina (viernes 27 de noviembre): smart TV, notebooks, celulares, consolas y electrodomésticos, con el descuento comparado contra el historial de precios.',
+    intro:
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben los precios las semanas previas para anunciar descuentos más grandes: por eso acá cada oferta se compara contra el precio más bajo que registramos. La tabla se actualiza 3 veces por día, también antes del evento.',
+    keywords: [
+      'smart tv', 'notebook', 'celular', 'consola', 'playstation', 'nintendo',
+      'lavarropas', 'heladera', 'monitor', 'tablet', 'aire acondicionado',
+      'auriculares', 'smartwatch',
+    ],
+    presupuestos: [150000, 500000],
+    criterios: [
+      'Mirá el precio de hoy contra el mínimo registrado: si el "antes" está inflado, el descuento es de mentira.',
+      'Si lo que querés ya está en su precio mínimo, no hace falta esperar al viernes: los mejores precios a veces aparecen antes.',
+      'Compará cuotas sin interés y el costo de envío: a igual precio, eso define cuál conviene.',
+      'En productos caros, preferí tiendas oficiales o vendedores con reputación verde y garantía oficial.',
+    ],
+    guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
+  },
 ]
 
 export function getComparativa(slug: string) {

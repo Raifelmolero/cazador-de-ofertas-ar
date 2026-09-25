@@ -618,6 +618,32 @@ def send_ig_kit(token: str, admin: str, deal: dict, link: str, dry: bool) -> Non
         print(f"[warn] IG kit no enviado: {e}")
 
 
+def wa_kit(deals: list[dict], affiliate_id: str, word: str) -> str:
+    """Mensaje listo para copiar y pegar en el canal de WhatsApp.
+
+    WhatsApp no tiene API para publicar en canales (y las librerías no
+    oficiales arriesgan el número), así que el bot se lo manda al admin por
+    Telegram y él lo pega a mano. Texto plano: WhatsApp usa *negrita*."""
+    lineas = ["🎯 *Ofertas cazadas de hoy*", ""]
+    for d in deals[:3]:
+        sello = sello_temporada(d["title"])
+        if d.get("relampago"):
+            lineas.append("⚡ Relámpago: dura pocas horas")
+        elif sello:
+            lineas.append(sello)
+        elif d.get("hist_low"):
+            lineas.append("📉 El precio más bajo que registramos")
+        lineas += [
+            f"*{d['discount']}% OFF* {d['title'][:80]}",
+            f"Antes {fmt_price(d['price_prev'])} → *{fmt_price(d['price_cur'])}*",
+            affiliate_url(d["url"], affiliate_id, word),
+            "",
+        ]
+    lineas.append(f"🔎 Todas las de hoy: {site_url('whatsapp')}")
+    lineas.append("(Links de afiliado: el precio para vos es el mismo)")
+    return "\n".join(lineas)
+
+
 def alert_admin(token: str, admin: str, text: str, dry: bool) -> None:
     if dry:
         print(f"[DRY] alerta admin: {text}")
@@ -1474,6 +1500,7 @@ def main() -> int:
     tool_ig = os.getenv("ML_WORD_IG", "instagram")
     tool_th = os.getenv("ML_WORD_THREADS", "threads")
     tool_fb = os.getenv("ML_WORD_FACEBOOK", "facebook")
+    tool_wa = os.getenv("ML_WORD_WHATSAPP", "whatsapp")
 
     state = load_state()
     posted = set(state["posted_ids"])
@@ -1704,6 +1731,17 @@ def main() -> int:
                     f"⚠️ No pude publicar en Facebook ({str(e)[:150]}).",
                     dry,
                 )
+
+    # Canal de WhatsApp (sin API): 2 veces por día el admin recibe el texto
+    # armado por privado para copiarlo y pegarlo en el canal.
+    if (os.getenv("FORCE_WHATSAPP") == "1" or slot in ("midday", "night")) and to_post:
+        alert_admin(
+            token,
+            cfg["admin_chat"],
+            "📋 Para el canal de WhatsApp (copiá y pegá el mensaje de abajo):",
+            dry,
+        )
+        alert_admin(token, cfg["admin_chat"], wa_kit(to_post, affiliate_id, tool_wa), dry)
 
     print(f"[done] publicadas {len(published_ids)} ofertas")
     return 0

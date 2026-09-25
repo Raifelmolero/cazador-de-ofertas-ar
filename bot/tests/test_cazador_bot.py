@@ -598,3 +598,17 @@ class TestSelloTemporada(unittest.TestCase):
             self.assertIn("Día de la Madre", bot.deal_caption(deal, "https://x"))
             self.assertTrue(bot.ig_caption(deal).startswith("🎁 IDEA DE REGALO"))
 
+
+class TestWaKit(unittest.TestCase):
+    def test_arma_tres_ofertas_con_link_whatsapp(self):
+        deals = [
+            {"title": f"Producto {i}", "discount": 30, "price_prev": 100000,
+             "price_cur": 70000, "url": f"https://ml.com/p/MLA{i}"}
+            for i in range(5)
+        ]
+        txt = bot.wa_kit(deals, "aff", "whatsapp")
+        self.assertEqual(txt.count("matt_word=whatsapp"), 3)
+        self.assertIn("utm_source=whatsapp", txt)
+        self.assertIn("afiliado", txt)
+        self.assertNotIn("Producto 3", txt)
+

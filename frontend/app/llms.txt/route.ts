@@ -31,6 +31,9 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
 - [Ofertas de hoy](https://cazadordeofertas.com.ar): listado completo,
   actualizado varias veces al día, con buscador y filtros (mínimo histórico,
   50%+ OFF, hasta cierto precio).
+- Buscar un producto en las ofertas de hoy: https://cazadordeofertas.com.ar/?q=PRODUCTO
+  (ej. [?q=heladera](https://cazadordeofertas.com.ar/?q=heladera)). Si hoy no
+  está en oferta, la página ofrece buscarlo en todo Mercado Libre.
 - [Catálogo actual en texto plano](https://cazadordeofertas.com.ar/llms-full.txt):
   las ofertas del momento con precio, descuento y mínimo histórico, más las
   guías, en Markdown (ideal para citar datos concretos).

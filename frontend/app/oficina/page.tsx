@@ -31,6 +31,7 @@ interface Depto {
   ultimo_trabajo?: string | null
   entregas?: { fecha: string; titulo: string }[]
   proximamente?: boolean
+  ventana_horas?: number
 }
 
 const deptos = oficina.departamentos as Depto[]
@@ -76,7 +77,7 @@ export default function OficinaPage() {
             </div>
 
             <div className="mt-3">
-              <Estado ultima={d.ultima_actividad} automatico={d.automatico} proximamente={d.proximamente} />
+              <Estado ultima={d.ultima_actividad} automatico={d.automatico} proximamente={d.proximamente} ventanaHoras={d.ventana_horas} />
               <p className="mt-1 text-xs text-zinc-500">Frecuencia: {d.frecuencia}</p>
             </div>
 

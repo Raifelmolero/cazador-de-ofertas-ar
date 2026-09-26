@@ -1,0 +1,59 @@
+name: Auditoría diaria
+
+# Departamento de Auditoría de la oficina de agentes (tarjeta #21). Sin IA:
+# tests del bot, npm audit, páginas clave del sitio y que el bot siga
+# publicando. Si algo falla, avisa por Telegram al admin. El resultado queda en
+# bot/state/auditoria_log.jsonl y se ve en /oficina.
+on:
+  schedule:
+    - cron: '0 11 * * *'  # 08:00 ART
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auditoria
+  cancel-in-progress: false
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Tests del bot
+        id: tests
+        run: |
+          if python -m unittest discover -s bot/tests; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "ok=0" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Vulnerabilidades de dependencias
+        id: audit
+        working-directory: frontend
+        run: |
+          if npm audit --audit-level=high; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "ok=0" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Chequeo del bot y del sitio
+        env:
+          TESTS_OK: ${{ steps.tests.outputs.ok }}
+          NPM_AUDIT_OK: ${{ steps.audit.outputs.ok }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python bot/tools/auditoria.py
+
+      - name: Guardar resultado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bot/state/auditoria_log.jsonl
+          git commit -m "auditoria: chequeo diario [skip ci]" || exit 0
+          git pull --rebase origin main
+          git push origin main

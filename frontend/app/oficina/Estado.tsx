@@ -3,7 +3,12 @@
 // El sitio es estático: el "hace X" y el semáforo se calculan en el navegador
 // para que no queden congelados en la hora del último deploy.
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
+
+function suscribirMinuto(onChange: () => void) {
+  const t = setInterval(onChange, 60000)
+  return () => clearInterval(t)
+}
 
 function haceCuanto(ms: number): string {
   const min = Math.round(ms / 60000)
@@ -17,17 +22,19 @@ export default function Estado({
   ultima,
   automatico,
   proximamente,
+  ventanaHoras = 12,
 }: {
   ultima: string | null
   automatico: boolean
   proximamente?: boolean
+  ventanaHoras?: number
 }) {
-  const [ahora, setAhora] = useState<number | null>(null)
-  useEffect(() => {
-    setAhora(Date.now())
-    const t = setInterval(() => setAhora(Date.now()), 60000)
-    return () => clearInterval(t)
-  }, [])
+  // Reloj de minuto en minuto; en el server es null para no romper la hidratación.
+  const ahora = useSyncExternalStore(
+    suscribirMinuto,
+    () => Math.floor(Date.now() / 60000) * 60000,
+    () => null,
+  )
 
   let color = 'bg-zinc-500'
   let texto = 'En espera'
@@ -40,8 +47,8 @@ export default function Estado({
     const ms = ahora - new Date(ultima).getTime()
     detalle = `Última actividad ${haceCuanto(ms)}`
     if (automatico) {
-      // El bot corre cada ~5 h de día: más de 12 h sin actividad es señal de falla.
-      const ok = ms < 12 * 3600 * 1000
+      // Pasada la ventana esperada (12 h el bot, 26 h la auditoría) es una falla.
+      const ok = ms < ventanaHoras * 3600 * 1000
       color = ok ? 'bg-emerald-400' : 'bg-red-500'
       texto = ok ? 'Trabajando' : 'Revisar: sin actividad'
     } else {

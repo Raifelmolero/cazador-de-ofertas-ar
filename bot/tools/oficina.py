@@ -168,17 +168,21 @@ def analisis() -> dict:
 
 
 def auditoria() -> dict:
+    ult = (_tail_jsonl(STATE / "auditoria_log.jsonl", 1) or [None])[-1]
+    checks = (ult or {}).get("checks", {})
     return {
         "id": "auditoria",
         "nombre": "Auditoría",
         "emoji": "🛡️",
-        "descripcion": "Revisa tests, links rotos y errores todos los días.",
-        "automatico": False,
-        "frecuencia": "Próximamente",
-        "ultima_actividad": None,
-        "agentes": [],
+        "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
+        "automatico": True,
+        "frecuencia": "Diario (08:00)",
+        # Corre 1 vez por día: el semáforo tolera 26 h antes de ponerse en rojo.
+        "ultima_actividad": ult["ts"] if ult else None,
+        "ventana_horas": 26,
+        "agentes": [{"nombre": "Auditor diario", "tarea": "Todo OK" if ult and ult["ok"] else ("Encontró problemas" if ult else "Primer chequeo pendiente")}],
         "metricas": [],
-        "proximamente": True,
+        "entregas": [{"fecha": "", "titulo": ("✔ " if v["ok"] else "✖ ") + v["detalle"]} for v in checks.values()],
     }
 
 

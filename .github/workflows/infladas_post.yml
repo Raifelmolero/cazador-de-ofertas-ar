@@ -1,0 +1,44 @@
+name: Post semanal de descuentos truchos
+
+# Domingos 11:00 ART: los 3 descuentos inflados más escandalosos de
+# frontend/data/infladas.json, con link a /descuentos-inflados (sin afiliado).
+
+on:
+  schedule:
+    - cron: '0 14 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Solo simular (no publica)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  truchos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install pillow
+
+      - name: Publicar
+        working-directory: bot
+        env:
+          DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: python infladas_post.py

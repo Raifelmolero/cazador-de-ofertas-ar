@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -5,7 +6,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
-import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe } from '@/lib/preciohoy'
+import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!p) return {}
   const url = `${DEALS_URL}/precio-hoy/${p.slug}`
   const t = titulo(p.nombre)
-  const description = `Cuánto sale un ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de las ofertas con descuento real, más el historial de precios que registramos.`
+  const description = `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de las ofertas con descuento real, más el historial de precios que registramos.`
   return {
     title: `${t} — Cazador de Ofertas AR`,
     description,
@@ -54,7 +55,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
 
   // El párrafo que un buscador o una IA puede citar tal cual
   const respuesta = ofertas.length
-    ? `Hoy (${hoy}) el ${p.nombre} más barato en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
+    ? `Hoy (${hoy}) ${art(p, true)} ${p.nombre} más barat${p.fem ? "a" : "o"} en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
       (ofertas.length > 1
         ? `Entre las ${ofertas.length} ofertas con descuento real que relevamos, el precio va de ${precio(min)} a ${precio(max)}, con una mediana de ${precio(med)}.`
         : 'Es la única oferta con descuento real de este producto que relevamos hoy.')
@@ -63,8 +64,8 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
       : `Hoy (${hoy}) no hay ${p.nombre} con descuento real en mercadolibre.com.ar/ofertas.`
 
   const faqs = [
-    { q: `¿Cuánto sale un ${p.nombre} hoy en Argentina?`, a: respuesta },
-    { q: `¿Qué mirar antes de comprar un ${p.nombre}?`, a: p.consejo },
+    { q: `¿Cuánto sale ${art(p, false)} ${p.nombre} hoy en Argentina?`, a: respuesta },
+    { q: `¿Qué mirar antes de comprar ${art(p, false)} ${p.nombre}?`, a: p.consejo },
     {
       q: '¿De dónde salen estos precios?',
       a: 'Revisamos las ofertas de mercadolibre.com.ar/ofertas tres veces por día y guardamos el precio de cada producto. Acá solo aparecen ofertas con descuento real: descartamos las que ya habíamos visto más baratas antes.',
@@ -121,7 +122,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> /{' '}
-          <a href="/precio-hoy" className="hover:text-yellow-400">Precio hoy</a> / <span className="text-zinc-300">{p.nombre}</span>
+          <Link href="/precio-hoy" className="hover:text-yellow-400">Precio hoy</Link> / <span className="text-zinc-300">{p.nombre}</span>
         </nav>
         <h1 className="font-display text-3xl sm:text-4xl font-black leading-[1.1] tracking-tight mb-4 [text-wrap:balance]">
           {titulo(p.nombre)}

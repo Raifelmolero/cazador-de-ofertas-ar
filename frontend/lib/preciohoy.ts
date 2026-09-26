@@ -12,6 +12,7 @@ import { normalizar } from '@/lib/categorias'
 import { getSeguidos, type Seguido } from '@/lib/seguimiento'
 
 export interface PrecioHoy {
+  fem?: boolean // femenino: "la notebook", "una heladera"
   slug: string
   nombre: string // "smart TV de 55 pulgadas"
   patron: RegExp // sobre el título normalizado (minúsculas, sin tildes)
@@ -30,15 +31,18 @@ export const PRECIOS_HOY: PrecioHoy[] = [
   { slug: 'smart-tv-55-pulgadas', nombre: 'smart TV de 55 pulgadas', patron: /(tv|televisor).*\b55\b/, excluir: TV_EXCLUIR, busqueda: 'smart tv 55 4k', categoria: 'smart-tv', consejo: 'En 55" pedí 4K con HDR. QLED u OLED mejoran color y contraste; LED es la opción más barata.' },
   { slug: 'smart-tv-65-pulgadas', nombre: 'smart TV de 65 pulgadas', patron: /(tv|televisor).*\b65\b/, excluir: TV_EXCLUIR, busqueda: 'smart tv 65', categoria: 'smart-tv', consejo: 'Medí el espacio: un 65" ocupa cerca de 1,45 m de ancho. A esa medida el panel (QLED/OLED) se nota mucho.' },
   { slug: 'aire-acondicionado-inverter', nombre: 'aire acondicionado inverter', patron: /aire acondicionado.*inverter|inverter.*aire acondicionado/, excluir: ['soporte', 'control', 'cano', 'kit'], busqueda: 'aire acondicionado inverter', categoria: 'aire-acondicionado', consejo: 'Calculá las frigorías según los m² del ambiente y sumá la instalación al presupuesto: casi nunca viene incluida.' },
-  { slug: 'heladera-no-frost', nombre: 'heladera no frost', patron: /heladera.*no ?frost/, excluir: ['burlete', 'repuesto', 'filtro'], busqueda: 'heladera no frost', categoria: 'heladeras', consejo: 'Compará la capacidad en litros y la etiqueta de eficiencia energética (A o mejor).' },
+  { slug: 'heladera-no-frost', fem: true, nombre: 'heladera no frost', patron: /heladera.*no ?frost/, excluir: ['burlete', 'repuesto', 'filtro'], busqueda: 'heladera no frost', categoria: 'heladeras', consejo: 'Compará la capacidad en litros y la etiqueta de eficiencia energética (A o mejor).' },
   { slug: 'lavarropas-automatico', nombre: 'lavarropas automático', patron: /lavarropas/, excluir: ['repuesto', 'bomba', 'correa', 'funda', 'plaqueta'], busqueda: 'lavarropas automatico', categoria: 'lavarropas', consejo: 'Carga frontal lava mejor y gasta menos agua; carga superior es más barata. Mirá los kilos y las RPM del centrifugado.' },
   { slug: 'colchon-2-plazas', nombre: 'colchón de 2 plazas', patron: /colchon.*(2 plazas|dos plazas|140 ?x|160 ?x)/, excluir: ['protector', 'funda', 'cubre'], busqueda: 'colchon 2 plazas', categoria: 'colchones', consejo: 'Resortes pocket o espuma de alta densidad duran más. Fijate la medida exacta (140x190 o 160x200) y la garantía.' },
-  { slug: 'freidora-de-aire', nombre: 'freidora de aire', patron: /freidora.*aire|air ?fryer/, excluir: ['papel', 'molde', 'accesorio', 'repuesto'], busqueda: 'freidora de aire', categoria: 'freidoras-de-aire', consejo: 'Para 1-2 personas alcanza con 3-4 litros; para una familia, 5 litros o más.' },
+  { slug: 'freidora-de-aire', fem: true, nombre: 'freidora de aire', patron: /freidora.*aire|air ?fryer/, excluir: ['papel', 'molde', 'accesorio', 'repuesto'], busqueda: 'freidora de aire', categoria: 'freidoras-de-aire', consejo: 'Para 1-2 personas alcanza con 3-4 litros; para una familia, 5 litros o más.' },
   { slug: 'taladro', nombre: 'taladro', patron: /taladro/, excluir: ['mecha', 'broca', 'soporte', 'mandril', 'carbones'], busqueda: 'taladro percutor', categoria: 'herramientas-electricas', consejo: 'Para la casa alcanza un percutor de 500-750 W o un atornillador 18 V; fijate si incluye batería y cargador.' },
-  { slug: 'notebook', nombre: 'notebook', patron: /notebook/, excluir: ['funda', 'mochila', 'cargador', 'soporte', 'bateria', 'teclado'], busqueda: 'notebook', consejo: 'Para estudiar o trabajar pedí al menos 8 GB de RAM y disco SSD; el procesador importa menos que esas dos cosas.' },
+  { slug: 'notebook', fem: true, nombre: 'notebook', patron: /notebook/, excluir: ['funda', 'mochila', 'cargador', 'soporte', 'bateria', 'teclado'], busqueda: 'notebook', consejo: 'Para estudiar o trabajar pedí al menos 8 GB de RAM y disco SSD; el procesador importa menos que esas dos cosas.' },
   { slug: 'monitor', nombre: 'monitor', patron: /monitor/, excluir: ['arterial', 'presion', 'bebe', 'soporte', 'brazo', 'tensiometro'], busqueda: 'monitor', categoria: 'monitores', consejo: '24" Full HD sirve para casi todo; para jugar, 144 Hz o más. IPS da mejores colores.' },
   { slug: 'termotanque', nombre: 'termotanque', patron: /termotanque/, excluir: ['resistencia', 'termostato', 'anodo', 'repuesto'], busqueda: 'termotanque', categoria: 'termotanques', consejo: 'Elegí gas o eléctrico según tu instalación, y los litros según cuántas personas se bañan seguido.' },
 ]
+
+/** Artículo según el género: el/la, un/una. */
+export const art = (p: PrecioHoy, def: boolean) => (def ? (p.fem ? 'la' : 'el') : p.fem ? 'una' : 'un')
 
 export const getPrecioHoy = (slug: string) => PRECIOS_HOY.find(p => p.slug === slug)
 

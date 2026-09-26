@@ -5,6 +5,9 @@ import { getOfertas, getScrapedAt } from '@/lib/productos'
 import type { OfertaLight } from '@/components/OfertaCard'
 import OfertasGrid from '@/components/OfertasGrid'
 import BackToTop from '@/components/BackToTop'
+import Verificador from '@/components/Verificador'
+import { getEstudio } from '@/lib/estudio'
+import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
@@ -48,6 +51,8 @@ export default function HoyPage() {
   const ofertas = getOfertas()
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
+  const estudio = getEstudio()
+  const conHistorial = Object.keys(getHistorial()).length
 
   // Solo los campos que la grilla usa: mantiene chico el payload del cliente
   const historial = slugPorId()
@@ -191,65 +196,102 @@ export default function HoyPage() {
       />
 
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <span className="text-lg font-extrabold tracking-tight">
+      <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/85 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+          <span className="font-display text-lg font-extrabold tracking-tight">
             🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
-            <span className="hidden sm:inline text-zinc-500 font-semibold text-sm ml-1.5">AR</span>
           </span>
+          <nav aria-label="Rubros" className="hidden md:flex items-center gap-5 text-sm font-semibold text-zinc-400">
+            {NICHOS.map(n => (
+              <a key={n.slug} href={`/${n.slug}`} className="hover:text-yellow-300 transition-colors">
+                {n.marca.replace('Cazador de ', '')}
+              </a>
+            ))}
+            <Link href="/precio-hoy" className="hover:text-yellow-300 transition-colors">Precio hoy</Link>
+          </nav>
           <a
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
           >
-            Unite al canal ✈️
+            Alertas gratis
           </a>
         </div>
       </header>
 
-      {/* Hero */}
+      {/* Hero: el verificador es lo primero que se ve */}
       <section
-        className="border-b border-zinc-900 text-center px-4 py-7 sm:py-12"
-        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% -10%, rgba(250,204,21,0.07) 0%, transparent 70%)' }}
+        className="border-b border-zinc-900 px-4 pt-10 pb-8 sm:pt-16 sm:pb-12"
+        style={{ background: 'radial-gradient(ellipse 70% 60% at 50% -20%, rgba(250,204,21,0.09) 0%, transparent 70%)' }}
       >
-        <div className="inline-flex flex-wrap justify-center items-center gap-x-2 gap-y-1 bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[11px] sm:text-xs font-semibold px-4 py-1.5 rounded-full mb-4 sm:mb-5">
-          <LastUpdated scrapedAt={scrapedAt} /> · {ofertas.length} ofertas
-          {minimos > 0 && <> · {minimos} en mínimo histórico</>}
+        <div className="max-w-3xl mx-auto">
+          <h1 className="font-display text-[2.2rem] sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
+            ¿Ese descuento de Mercado Libre es real?
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]">
+            Pegá el link y te lo decimos con el historial de precios que registramos desde julio.
+            Según nuestro estudio, {estudio.pctInfladas.toLocaleString('es-AR')}% de las ofertas tiene el precio tachado inflado.
+          </p>
+          <div className="mt-7">
+            <Verificador />
+          </div>
         </div>
 
-        <h1 className="font-display text-[1.9rem] sm:text-5xl font-black tracking-tight leading-[1.05] mb-3 [text-wrap:balance]">
-          Las ofertas{' '}
-          <span className="relative inline-block text-yellow-400">
-            reales
-            <span
-              aria-hidden="true"
-              className="stamp absolute -right-9 -top-4 sm:-right-14 sm:-top-6 rotate-[-9deg] border-2 border-red-500 text-red-500 rounded-md px-1.5 py-0.5 text-[9px] sm:text-xs font-black tracking-widest"
-            >
-              CAZADO
-            </span>
-          </span>{' '}
-          de hoy
-        </h1>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed [text-wrap:pretty]">
-          Cazadas en Mercado Libre 3 veces por día. Registramos el historial de
-          precios y <strong className="text-zinc-200">descartamos los descuentos inflados</strong> —
-          lo que ves acá bajó de verdad.
+        {/* Contadores en vivo: salen del registro del bot y del catálogo del día */}
+        <dl className="max-w-5xl mx-auto mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-4 border-y border-zinc-800 divide-zinc-800 sm:divide-x">
+          {[
+            [estudio.revisadas.toLocaleString('es-AR'), 'ofertas revisadas', `desde el ${estudio.desde.split('-').reverse().join('/')}`],
+            [estudio.infladas.toLocaleString('es-AR'), 'descuentos inflados', 'detectados y descartados'],
+            [conHistorial.toLocaleString('es-AR'), 'productos con historial', 'precio registrado 3 veces por día'],
+            [ofertas.length.toLocaleString('es-AR'), 'ofertas reales hoy', minimos > 0 ? `${minimos} en su mínimo histórico` : 'verificadas contra el historial'],
+          ].map(([n, t, d]) => (
+            <div key={t} className="px-4 py-4 sm:py-5">
+              <dt className="sr-only">{t}</dt>
+              <dd className="font-display text-2xl sm:text-3xl font-black tabular-nums text-zinc-50">{n}</dd>
+              <dd className="text-sm font-semibold text-zinc-300">{t}</dd>
+              <dd className="text-xs text-zinc-500">{d}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="max-w-5xl mx-auto mt-3 px-4 text-xs text-zinc-500 flex items-center gap-2">
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+          </span>
+          Actualizado <LastUpdated scrapedAt={scrapedAt} />
         </p>
 
-        <ul className="mt-6 sm:mt-8 mx-auto max-w-3xl grid grid-cols-3 gap-2 sm:gap-4 text-left">
-          {[
-            ['📉', 'Historial de precios', 'Comparamos con lo que costaba de verdad'],
-            ['🚫', 'Cero descuentos inflados', 'Descartamos los falsos automáticamente'],
-            ['⏱️', '3 actualizaciones por día', 'Mañana, tarde y noche'],
-          ].map(([icon, t, d]) => (
-            <li key={t} className="rounded-xl border border-zinc-800 bg-zinc-900/60 px-2.5 py-2.5 sm:px-4 sm:py-3.5">
-              <div className="text-base sm:text-xl mb-1">{icon}</div>
-              <div className="text-[11px] sm:text-sm font-bold text-zinc-100 leading-tight">{t}</div>
-              <div className="hidden sm:block text-xs text-zinc-500 mt-0.5">{d}</div>
-            </li>
+        {/* Rubros + los dos atajos con datos propios */}
+        <div className="max-w-5xl mx-auto mt-8 grid gap-3 sm:grid-cols-5">
+          {NICHOS.map(n => (
+            <a
+              key={n.slug}
+              href={`/${n.slug}`}
+              className="group rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3.5 transition-colors hover:border-yellow-400/50"
+            >
+              <span className="text-xl" aria-hidden="true">{n.emoji}</span>
+              <span className="mt-1 block font-bold text-zinc-100 group-hover:text-yellow-300">{n.marca.replace('Cazador de ', '')}</span>
+              <span className="block text-xs text-zinc-500">{n.busquedas.slice(0, 3).join(', ')}</span>
+            </a>
           ))}
-        </ul>
+          <a
+            href="/estudio/descuentos-inflados-mercado-libre"
+            className="group rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3.5 transition-colors hover:border-red-400/60"
+          >
+            <span className="font-display text-xl font-black text-red-400">{estudio.pctInfladas.toLocaleString('es-AR')}%</span>
+            <span className="mt-1 block font-bold text-zinc-100 group-hover:text-red-300">El estudio</span>
+            <span className="block text-xs text-zinc-500">Cuántos descuentos de ML están inflados</span>
+          </a>
+          <Link
+            href="/precio-hoy"
+            className="group rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-4 py-3.5 transition-colors hover:border-emerald-400/60"
+          >
+            <span className="font-display text-xl font-black text-emerald-400">$</span>
+            <span className="mt-1 block font-bold text-zinc-100 group-hover:text-emerald-300">Precio hoy</span>
+            <span className="block text-xs text-zinc-500">Cuánto sale un TV, un aire, una heladera</span>
+          </Link>
+        </div>
       </section>
 
       {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
@@ -385,19 +427,6 @@ export default function HoyPage() {
             </li>
           ))}
         </ul>
-      </section>
-
-      {/* Estudio con datos propios (dato citable, #19 GEO) */}
-      <section className="max-w-2xl mx-auto px-4 pb-10 text-center">
-        <a
-          href="/estudio/descuentos-inflados-mercado-libre"
-          className="inline-block rounded-xl border border-yellow-400/30 bg-yellow-400/10 px-5 py-3 text-sm font-bold text-yellow-300 hover:bg-yellow-400/20 transition-colors"
-        >
-          📊 Estudio: 1 de cada 4 ofertas de Mercado Libre tiene el descuento inflado →
-        </a>
-        <p className="mt-3 text-sm">
-          <a href="/precio-hoy" className="text-yellow-400/80 hover:text-yellow-400">💲 Precio hoy: cuánto sale un smart TV, un aire, una heladera… →</a>
-        </p>
       </section>
 
       {/* Comparativas de ticket alto */}

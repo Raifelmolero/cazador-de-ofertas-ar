@@ -64,3 +64,6 @@ body::before {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* En el verificador el sello responde a una acción: sin demora */
+.verdict .stamp { animation-delay: 0s; }

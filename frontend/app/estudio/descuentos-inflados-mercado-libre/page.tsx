@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
@@ -156,9 +157,9 @@ export default function EstudioPage() {
           <a href={DEALS_URL} className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-2.5">
             Ver las ofertas de hoy con descuento real
           </a>
-          <a href="/guias/como-saber-si-un-descuento-de-mercado-libre-es-real" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 rounded-xl px-6 py-2.5">
+          <Link href="/guias/como-saber-si-un-descuento-de-mercado-libre-es-real" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 rounded-xl px-6 py-2.5">
             Cómo detectar un descuento inflado
-          </a>
+          </Link>
         </div>
       </article>
 

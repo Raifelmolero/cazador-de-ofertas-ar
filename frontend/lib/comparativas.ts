@@ -173,6 +173,37 @@ export const COMPARATIVAS: Comparativa[] = [
       'Si no estás seguro del gusto, un electrodoméstico útil (cafetera, freidora) rara vez falla.',
     ],
   },
+  // Fechas del Cyber Monday 2026 (verificadas el 2026-09-26): lunes 2 al
+  // miércoles 4 de noviembre. Fuentes: home de cybermonday.com.ar (sitio oficial
+  // de la CACE: "CyberMonday 2, 3 y 4 de Noviembre de 2026"), Ámbito (24/09/2026)
+  // y C5N (06/05/2026), ambos citando a la CACE. Ojo: el cuerpo de
+  // cybermonday.com.ar/cuando-es-cybermonday todavía dice "3 al 5", pero el
+  // encabezado de esa misma página y la home dicen 2-4 (y el 2/11 es lunes).
+  // Si la CACE las cambia, actualizar acá, en la guía hot-sale de lib/guias.ts
+  // y en el banner de app/hoy/page.tsx.
+  {
+    slug: 'ofertas-cyber-monday',
+    nombre: 'productos para el Cyber Monday',
+    titulo: `Cyber Monday ${AÑO} en Mercado Libre Argentina: qué ofertas son reales`,
+    descripcion:
+      'Ofertas del Cyber Monday 2026 en Mercado Libre Argentina (lunes 2 al miércoles 4 de noviembre, fechas de la CACE): notebooks, celulares, smart TV, aires, electrodomésticos y herramientas, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas oficiales de la CACE) y muchas tiendas estiran las promos toda esa semana. Antes y durante el evento, cada producto de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un "antes" inflado. Se actualiza 3 veces por día.',
+    keywords: [
+      'notebook', 'celular', 'smart tv', 'aire acondicionado', 'heladera',
+      'lavarropas', 'colchon', 'freidora de aire', 'taladro', 'amoladora',
+      'hidrolavadora', 'parlante', 'tablet',
+    ],
+    presupuestos: [100000, 400000],
+    criterios: [
+      'Armá tu lista antes del lunes 2 y anotá cuánto sale cada cosa hoy: así, cuando arranque el evento, sabés en dos segundos si bajó o si solo le cambiaron el cartel.',
+      'El "% OFF" no dice nada si el precio de referencia subió las semanas previas. Lo que cuenta es el precio de hoy contra el mínimo registrado de ese mismo producto.',
+      'Hacé la cuenta del precio final: envío, cuotas sin interés de verdad (no con recargo escondido) y reintegros o cupones del banco, que muchas veces tienen tope y fecha de acreditación.',
+      'Si lo que buscás ya está en su mínimo histórico, no hace falta esperar al evento. Y si se te pasa, el Black Friday (viernes 27 de noviembre) es otra oportunidad, aunque ahí cada tienda arma sus promos por su cuenta.',
+      'En compras grandes, priorizá tiendas oficiales o vendedores con reputación verde, y fijate que la garantía sea oficial en Argentina.',
+    ],
+    guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
+  },
   {
     slug: 'ofertas-black-friday',
     nombre: 'ofertas de Black Friday',

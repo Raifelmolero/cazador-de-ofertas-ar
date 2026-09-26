@@ -306,7 +306,9 @@ export default function HoyPage() {
           </Link>
         </section>
       )}
-      {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-12-01T03:00:00Z') && (
+      {/* Ventanas sin solaparse (horas UTC-3): Madre hasta el 19/10 → Cyber Monday
+          (CACE: 2 al 4/11) hasta el 05/11 → Black Friday hasta el 01/12 → Navidad hasta el 25/12 */}
+      {new Date() >= new Date('2026-11-05T03:00:00Z') && new Date() < new Date('2026-12-01T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
           <Link
             href="/mejores/ofertas-black-friday"
@@ -314,6 +316,17 @@ export default function HoyPage() {
           >
             <span className="font-display font-black text-yellow-200">🖤 Black Friday: viernes 27 de noviembre</span>
             <span className="block text-sm text-zinc-300 mt-1">Ofertas comparadas contra el historial de precios → ver cuáles son reales</span>
+          </Link>
+        </section>
+      )}
+      {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-11-05T03:00:00Z') && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+          <Link
+            href="/mejores/ofertas-cyber-monday"
+            className="block rounded-2xl border border-cyan-400/30 bg-cyan-500/10 px-5 py-4 text-center hover:border-cyan-400/60 transition-colors"
+          >
+            <span className="font-display font-black text-cyan-200">💻 Cyber Monday: del lunes 2 al miércoles 4 de noviembre</span>
+            <span className="block text-sm text-zinc-300 mt-1">Cada oferta contra su precio más bajo registrado → ver cuáles bajaron de verdad</span>
           </Link>
         </section>
       )}

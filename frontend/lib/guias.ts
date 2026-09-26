@@ -64,6 +64,7 @@ export const GUIAS: Guia[] = [
         h: 'Qué suele pasar en las fechas especiales',
         p: [
           'En eventos como Hot Sale o Cyber Monday aumentan las publicaciones con descuento, las cuotas sin interés y los cupones. Eso es una ventaja real, pero también hay más precios "de lista" inflados para que el descuento se vea grande.',
+          'En 2026, el Cyber Monday argentino (lo organiza la Cámara Argentina de Comercio Electrónico, CACE) va del lunes 2 al miércoles 4 de noviembre, y el Black Friday cae el viernes 27 de noviembre. Al final de esta guía tenés las ofertas del Cyber Monday comparadas contra el historial de precios.',
         ],
       },
       {
@@ -80,6 +81,11 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+    cta: {
+      href: '/mejores/ofertas-cyber-monday',
+      titulo: 'Cyber Monday 2026: qué ofertas bajaron de verdad',
+      boton: 'Ver las ofertas de Cyber Monday 🎯',
+    },
   },
   {
     slug: 'como-ahorrar-en-mercado-libre-argentina',

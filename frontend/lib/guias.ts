@@ -483,6 +483,89 @@ export const GUIAS: Guia[] = [
     categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
     cta: { href: '/herramientas', titulo: 'Herramientas eléctricas en oferta hoy', boton: 'Ver herramientas en oferta' },
   },
+  {
+    slug: 'que-horno-pizzero-comprar-para-mi-negocio',
+    titulo: 'Qué horno pizzero comprar para mi negocio: gas, eléctrico o leña',
+    descripcion:
+      'Cómo elegir horno pizzero para local o foodtruck en Argentina: gas vs. eléctrico vs. leña, cuántas pizzas por hora rinde cada uno, tamaño de piedra y pisos, consumo y habilitación.',
+    pregunta: '¿Qué horno pizzero me conviene comprar para mi local o foodtruck?',
+    respuestaCorta:
+      'Para arrancar un local chico o un foodtruck, un horno pizzero a gas de un piso con piedra refractaria es la opción más práctica: llega a temperaturas altas más rápido que el eléctrico, no depende de una instalación trifásica y cocina una pizza en 2 a 4 minutos. El eléctrico rinde parecido pero pide más potencia de tablero; el de leña da el sabor distintivo pero exige más espacio, más práctica del pizzero y trámites de habilitación por el humo.',
+    secciones: [
+      {
+        h: 'Gas vs. eléctrico vs. leña',
+        p: [
+          'A gas: es el más elegido para arrancar un negocio. Calienta rápido, el consumo se paga con garrafa o gas de red (más barato que la luz en la mayoría de los casos) y no necesita instalación eléctrica especial. Buena parte de los hornos pizzeros a gas para uso comercial que se consiguen en el país traen piedra refractaria de fábrica.',
+          'Eléctrico: más simple de instalar donde no hay gas natural ni se puede tener garrafa (algunos locales y shoppings lo exigen por seguridad), pero un horno de uso comercial pide bastante potencia y casi siempre una conexión trifásica — hay que confirmarlo con un electricista antes de comprar.',
+          'A leña: el que más sabor le da a la pizza y el que más diferencia un local, pero es el que más espacio ocupa, necesita salida de humos propia y un pizzero con más práctica para manejar la temperatura a ojo. También es el que más trámites de habilitación municipal suele pedir por el tema humo y seguridad contra incendio.',
+        ],
+      },
+      {
+        h: 'Cuántas pizzas por hora rinde',
+        p: [
+          'A las temperaturas de un horno pizzero comercial (400-500°C en la piedra) una pizza se cocina en 60 a 90 segundos apenas el horno está a régimen, así que el límite real no es el horno sino cuántas entran juntas en la piedra y cuánto tarda el pizzero en armarlas y sacarlas. Un horno de un piso chico (para foodtruck o local con poco espacio) suele entrar 1 a 2 pizzas por vez; uno de uso comercial más grande puede tener capacidad para varias pizzas de 30-35 cm en simultáneo.',
+          'Para calcular cuánto necesitás, pensá en el pico de un sábado a la noche, no en un día común: si vendés 40 pizzas en 3 horas de pico, con pizzas de 2-3 minutos y espacio para 2 a la vez, el horno no es el cuello de botella — el armado sí.',
+        ],
+      },
+      {
+        h: 'Tamaño de piedra y pisos',
+        p: [
+          'La piedra refractaria (o cordierita) es la que retiene el calor y le da el piso crocante a la pizza; cuanto más gruesa, mejor mantiene la temperatura entre pizza y pizza, pero tarda más en precalentar. Para el diámetro de pizza que vendés, la piedra tiene que ser un poco más grande que la pizza más grande de tu carta.',
+          'Los hornos de un piso (una sola cámara) alcanzan para la mayoría de los locales chicos y foodtrucks. Los de dos o más pisos sirven para separar pizzas de distintos tiempos de cocción o para duplicar producción sin ocupar más superficie de mostrador — conviene evaluarlos cuando el local ya tiene volumen probado, no para arrancar.',
+        ],
+      },
+      {
+        h: 'Consumo y habilitación',
+        p: [
+          'El consumo real depende del modelo y de cuántas horas por día lo tenés prendido, pero en general el gas sale más barato de sostener por hora de uso que el eléctrico a la misma temperatura, mientras que el eléctrico es más previsible si el precio del gas envasado varía en tu zona.',
+          'Antes de comprar, confirmá con el municipio qué habilitación te van a pedir para el rubro (gastronómico con cocción) y si el horno que elegís necesita instalación por gasista matriculado (a gas) o certificación de instalación eléctrica (eléctrico) — varía según partido/localidad y es un paso obligatorio para poder operar, no un trámite opcional.',
+        ],
+      },
+    ],
+    cta: { href: '/', titulo: 'Ofertas de equipamiento para tu negocio, todos los días', boton: 'Ver ofertas de hoy' },
+  },
+  {
+    slug: 'que-freidora-industrial-comprar',
+    titulo: 'Qué freidora industrial comprar según el volumen de tu negocio',
+    descripcion:
+      'Cómo elegir freidora industrial para local o foodtruck en Argentina: litros según volumen de ventas, gas vs. eléctrica, cuba simple o doble, termostato y acero inoxidable.',
+    pregunta: '¿Qué freidora industrial me conviene comprar para mi negocio?',
+    respuestaCorta:
+      'La capacidad se elige por litros de aceite, no por tamaño de la cuba a simple vista: para un local chico o foodtruck con volumen bajo a medio alcanza con 7 a 12 litros; para un local con más movimiento o que fríe seguido en el pico conviene 15 litros o más, o directamente dos cubas para freír dos productos distintos (por ejemplo papas y algo rebozado) sin mezclar sabores ni tener que esperar a que se vacíe una.',
+    secciones: [
+      {
+        h: 'Litros según volumen de ventas',
+        p: [
+          'De 7 a 10 litros: alcanza para un foodtruck o un local con producción baja, con tandas chicas y seguidas.',
+          'De 12 a 18 litros: el rango más común para un local gastronómico de volumen medio, que fríe en tandas más grandes y no quiere estar recargando aceite cada rato en el pico.',
+          'De 18 litros para arriba, o varias cubas: para volumen alto y sostenido, donde una sola cuba chica obligaría a esperar entre tanda y tanda y se pierden ventas en el pico.',
+        ],
+      },
+      {
+        h: 'Gas vs. eléctrica',
+        p: [
+          'A gas: recupera la temperatura más rápido entre tanda y tanda (importante si freís seguido en el pico) y no depende de la potencia del tablero. Es la opción más elegida en locales que ya tienen instalación de gas para la cocina.',
+          'Eléctrica: más simple de instalar en locales sin gas o donde no se permite garrafa, con temperatura más estable y control más preciso, pero una freidora industrial eléctrica de buena capacidad puede pedir bastante potencia — confirmá con un electricista si tu instalación la soporta antes de comprar.',
+        ],
+      },
+      {
+        h: 'Cuba simple o doble, y termostato',
+        p: [
+          'Cuba simple: más barata y suficiente si freís un solo tipo de producto o no te molesta que se mezclen sabores (papas y milanesas, por ejemplo).',
+          'Cuba doble: dos compartimentos con calentamiento independiente, para freír dos productos sin que uno tome el sabor del otro, o para no perder producción si una cuba está en limpieza.',
+          'Termostato: buscá que sea regulable (no solo on/off) para poder bajar la temperatura en horas flojas y cuidar el aceite, y que tenga corte de seguridad si se pasa de temperatura — casi todos los modelos de uso comercial lo traen, pero conviene confirmarlo en la publicación.',
+        ],
+      },
+      {
+        h: 'Acero inoxidable y qué más mirar',
+        p: [
+          'El acero inoxidable en la cuba y el cuerpo es el estándar para uso comercial: no se oxida con el contacto diario de aceite y agua de limpieza, y es lo que suelen pedir las habilitaciones bromatológicas municipales para equipamiento gastronómico.',
+          'Revisá si trae canasta extra (para tener una lista mientras la otra escurre), grifo de vaciado de aceite (facilita muchísimo la limpieza diaria) y si el filtro de aceite viene incluido o se compra aparte.',
+        ],
+      },
+    ],
+    cta: { href: '/', titulo: 'Ofertas de equipamiento para tu negocio, todos los días', boton: 'Ver ofertas de hoy' },
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

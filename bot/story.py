@@ -17,6 +17,7 @@ WHITE = (255, 255, 255)
 GRAY = (168, 168, 176)
 BLACK = (12, 12, 14)
 STAMP_RED = (206, 43, 43)
+RIBBON_GREEN = (0, 143, 107)  # cinta de regalo: contrasta con ámbar/rojo
 
 _BOLD_FONTS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -74,6 +75,22 @@ def _stamp_cazado(img: Image.Image, center: tuple[int, int], scale: float = 1.0)
     img.paste(layer, (center[0] - layer.width // 2, center[1] - layer.height // 2), layer)
 
 
+def _ribbon_temporada(d: ImageDraw.ImageDraw, cx: int, cy: int, text: str, font_size: int = 34) -> int:
+    """Cinta de regalo de temporada (texto en mayúsculas, SIN emoji — las
+    fuentes locales no lo renderizan). Devuelve el alto en px que ocupó."""
+    if not text:
+        return 0
+    f = _font(font_size)
+    tw = d.textlength(text, font=f)
+    pad_x, pad_y = 28, 12
+    w, h = tw + pad_x * 2, font_size + pad_y * 2
+    x0 = cx - w / 2
+    y0 = cy - h / 2
+    d.rounded_rectangle([x0, y0, x0 + w, y0 + h], radius=10, fill=RIBBON_GREEN)
+    d.text((cx, cy + 1), text, font=f, fill=WHITE, anchor="mm")
+    return int(h)
+
+
 def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     """Placa 4:5 (1080x1350) para el post del feed."""
     FW, FH = 1080, 1350
@@ -83,25 +100,38 @@ def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.text((FW // 2, 78), "CAZADOR DE OFERTAS AR", font=_font(40), fill=AMBER, anchor="mm")
     d.text((FW // 2, 128), "ofertas verificadas de MercadoLibre", font=_font(27, bold=False), fill=GRAY, anchor="mm")
 
+    sello = (deal.get("sello_temporada") or "").strip()
+    card_top = 175
     card_w = 760
+    ribbon_h = 0
+    if sello:
+        # la cinta reemplaza el espacio que la tarjeta cede (achicada), sin
+        # mover título/precio/banner de sus coordenadas de siempre
+        ribbon_h = 54
+        card_w -= ribbon_h
     card = Image.new("RGB", (card_w, card_w), WHITE)
     prod = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     prod = ImageOps.contain(prod, (card_w - 80, card_w - 80))
     card.paste(prod, ((card_w - prod.width) // 2, (card_w - prod.height) // 2))
     mask = Image.new("L", (card_w, card_w), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, card_w, card_w], radius=42, fill=255)
-    img.paste(card, ((FW - card_w) // 2, 175), mask)
+    card_left = (FW - card_w) // 2
+    card_bottom = card_top + card_w
+    img.paste(card, (card_left, card_top), mask)
 
     badge_f = _font(56)
     badge_txt = f"-{deal['discount']}%"
     tw = d.textlength(badge_txt, font=badge_f)
-    bx1, byc = 945, 205
+    bx1, byc = card_left + card_w + 25, 205
     bx0 = bx1 - tw - 66
     d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, fill=AMBER)
     d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
 
-    _stamp_cazado(img, (320, 900), 0.95)
+    _stamp_cazado(img, (card_left + 160, card_bottom - 35), 0.95)
+
+    if sello:
+        _ribbon_temporada(d, FW // 2, card_bottom + ribbon_h // 2, sello, font_size=30)
 
     title_f = _font(44)
     y = 995
@@ -143,27 +173,38 @@ def render_story(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.text((W // 2, 172), "ofertas verificadas de MercadoLibre", font=_font(30, bold=False), fill=GRAY, anchor="mm")
 
     # tarjeta blanca con la foto
+    sello = (deal.get("sello_temporada") or "").strip()
+    card_top = 235
     card_w = 880
+    ribbon_h = 0
+    if sello:
+        ribbon_h = 64
+        card_w -= ribbon_h  # la cinta ocupa el espacio que la tarjeta cede
     card = Image.new("RGB", (card_w, card_w), WHITE)
     prod = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     prod = ImageOps.contain(prod, (card_w - 90, card_w - 90))
     card.paste(prod, ((card_w - prod.width) // 2, (card_w - prod.height) // 2))
     mask = Image.new("L", (card_w, card_w), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, card_w, card_w], radius=48, fill=255)
-    img.paste(card, ((W - card_w) // 2, 235), mask)
+    card_left = (W - card_w) // 2
+    card_bottom = card_top + card_w
+    img.paste(card, (card_left, card_top), mask)
 
     # badge % OFF pisando la esquina superior derecha de la tarjeta
     badge_f = _font(66)
     badge_txt = f"-{deal['discount']}%"
     tw = d.textlength(badge_txt, font=badge_f)
-    bx1, byc = 1005, 268
+    bx1, byc = card_left + card_w + 25, 268
     bx0 = bx1 - tw - 78
     d.rounded_rectangle([bx0, byc - 58, bx1, byc + 58], radius=44, fill=AMBER)
     d.rounded_rectangle([bx0, byc - 58, bx1, byc + 58], radius=44, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
 
     # sello CAZADO pisando la esquina inferior izquierda de la tarjeta
-    _stamp_cazado(img, (310, 1080), 1.1)
+    _stamp_cazado(img, (card_left + 210, card_bottom - 35), 1.1)
+
+    if sello:
+        _ribbon_temporada(d, W // 2, card_bottom + ribbon_h // 2, sello, font_size=34)
 
     # título (máx. 2 líneas)
     title_f = _font(50)

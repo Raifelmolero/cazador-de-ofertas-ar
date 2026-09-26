@@ -1114,6 +1114,7 @@ def prepare_placa(deal: dict, dry: bool, tag: str = "") -> str | None:
         # distinto — sin la hora, la segunda pisaría el archivo de la primera.
         fname = f"feed-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}{suffix}.jpg"
         out = BASE_DIR / "feed" / fname
+        deal["sello_temporada"] = sello_temporada(deal["title"]).lstrip("🎁🎄 ").upper()
         render_feed(deal, image_bytes, out)
         if dry:
             print(f"[DRY] placa renderizada en {out}")
@@ -1211,6 +1212,7 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple
     deal["_reel_version"] = version
     fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}-{version}.mp4"
     out = BASE_DIR / "reels" / fname
+    deal["sello_temporada"] = sello_temporada(deal["title"]).lstrip("🎁🎄 ").upper()
     (render_reel_v2 if version == "v2" else render_reel)(deal, image_bytes, out)
     deal["_reel_path"] = str(out)  # lo usa shorts.cross_post (YouTube/TikTok)
     if dry:
@@ -1477,6 +1479,7 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
 
     fname = f"story-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}.jpg"
     out = BASE_DIR / "stories" / fname
+    deal["sello_temporada"] = sello_temporada(deal["title"]).lstrip("🎁🎄 ").upper()
     render_story(deal, image_bytes, out)
     if dry:
         print(f"[DRY] story renderizada en {out}")

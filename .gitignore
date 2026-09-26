@@ -27,7 +27,8 @@ frontend/.env*.local
 Thumbs.db
 
 # Claude Code (configuración local del IDE)
-.claude/
+.claude/*
+!.claude/agents/
 
 # IDEs
 .vscode/

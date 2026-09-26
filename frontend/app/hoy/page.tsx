@@ -387,6 +387,16 @@ export default function HoyPage() {
         </ul>
       </section>
 
+      {/* Estudio con datos propios (dato citable, #19 GEO) */}
+      <section className="max-w-2xl mx-auto px-4 pb-10 text-center">
+        <a
+          href="/estudio/descuentos-inflados-mercado-libre"
+          className="inline-block rounded-xl border border-yellow-400/30 bg-yellow-400/10 px-5 py-3 text-sm font-bold text-yellow-300 hover:bg-yellow-400/20 transition-colors"
+        >
+          📊 Estudio: 1 de cada 4 ofertas de Mercado Libre tiene el descuento inflado →
+        </a>
+      </section>
+
       {/* Comparativas de ticket alto */}
       <section className="max-w-2xl mx-auto px-4 pb-10">
         <h2 className="font-display text-lg font-black mb-4 text-center">Comparativas antes de comprar</h2>

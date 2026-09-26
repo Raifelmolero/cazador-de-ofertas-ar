@@ -46,6 +46,7 @@ export const GUIAS: Guia[] = [
         h: 'Cómo lo resolvemos en Cazador de Ofertas AR',
         p: [
           'Guardamos el historial de precios de los productos que rastreamos en mercadolibre.com.ar/ofertas. Si detectamos que el producto ya se vio más barato antes, lo descartamos. Los que quedan tienen la baja verificada, y a los que están en su precio más bajo registrado les ponemos el sello de mínimo histórico.',
+          'En nuestros datos, alrededor de 1 de cada 4 ofertas de mercadolibre.com.ar/ofertas tiene el descuento inflado. El detalle, la metodología y los números mes a mes están en el estudio de descuentos inflados (cazadordeofertas.com.ar/estudio/descuentos-inflados-mercado-libre).',
         ],
       },
     ],

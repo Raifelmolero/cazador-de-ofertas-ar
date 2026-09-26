@@ -31,6 +31,24 @@ const fecha = (s: string) => {
 }
 const dias = (a: string, b: string) => Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000)
 
+// Medición en Clarity (eventos y etiquetas personalizadas, gratis en el plan
+// actual): cuánta gente usa el verificador, qué veredicto le sale y si después
+// toca "Ir a Mercado Libre". Solo corre en el dominio de ofertas (clarity.tsx).
+type Tipo = 'inflado' | 'cazado' | 'normal' | 'sin_datos' | 'link_invalido' | 'error'
+function medir(evento: string, tipo?: Tipo) {
+  const c = (window as unknown as { clarity?: (...a: unknown[]) => void }).clarity
+  if (!c) return
+  if (tipo) c('set', 'verificador_veredicto', tipo)
+  c('event', tipo ? `${evento}_${tipo}` : evento)
+}
+
+function clasificar(fila: Fila, precio: number): Tipo {
+  const [min, , desde, , lastTs] = fila
+  if (min < precio * 0.95) return 'inflado'
+  if (precio <= min * 1.01 && dias(desde, lastTs) >= 3) return 'cazado'
+  return 'normal'
+}
+
 export function idsDeLink(link: string) {
   return [...link.matchAll(/MLA-?(\d{6,13})/gi)].map(m => `MLA${m[1]}`)
 }
@@ -56,6 +74,7 @@ export default function Verificador() {
     e.preventDefault()
     const ids = idsDeLink(link)
     if (!ids.length) {
+      medir('verificador', 'link_invalido')
       setEstado({ tipo: 'error', msg: 'Ese link no parece de un producto de Mercado Libre. Copialo desde la página del producto (tiene “MLA” en la dirección).' })
       return
     }
@@ -65,10 +84,17 @@ export default function Verificador() {
       const id = ids.find(i => h[i])
       const url = link.trim().startsWith('http') ? link.trim() : `https://${link.trim()}`
       const p = Number(precio.replace(/\D/g, ''))
-      if (!id) setEstado({ tipo: 'nuevo', url })
-      else setEstado({ tipo: 'ok', url, fila: h[id], precio: p || h[id][3], ingresado: p > 0 })
+      if (!id) {
+        medir('verificador', 'sin_datos')
+        setEstado({ tipo: 'nuevo', url })
+      } else {
+        medir('verificador', clasificar(h[id], p || h[id][3]))
+        if (p > 0) medir('verificador_con_precio')
+        setEstado({ tipo: 'ok', url, fila: h[id], precio: p || h[id][3], ingresado: p > 0 })
+      }
       requestAnimationFrame(() => resultado.current?.focus())
     } catch {
+      medir('verificador', 'error')
       setEstado({ tipo: 'error', msg: 'No pudimos cargar el historial. Probá de nuevo en un momento.' })
     }
   }
@@ -112,7 +138,7 @@ export default function Verificador() {
           <Resultado sello="SIN DATOS" tono="zinc" titulo="Todavía no seguimos este producto">
             Registramos los productos que pasan por las ofertas de Mercado Libre desde julio. Este no apareció
             todavía, así que no podemos confirmar el descuento. Mirá abajo las ofertas que sí verificamos.
-            <Comprar url={estado.url} />
+            <Comprar url={estado.url} tipo="sin_datos" />
           </Resultado>
         )}
         {estado.tipo === 'ok' && <Veredicto {...estado} />}
@@ -123,7 +149,6 @@ export default function Verificador() {
 
 function Veredicto({ url, fila, precio, ingresado }: { url: string; fila: Fila; precio: number; ingresado: boolean }) {
   const [min, minTs, desde, last, lastTs, slug] = fila
-  const seguido = dias(desde, lastTs)
   const base = ingresado
     ? `Con el precio que ves hoy (${pesos(precio)})`
     : `El último precio que vimos fue ${pesos(last)} (${fecha(lastTs)})` +
@@ -142,27 +167,28 @@ function Veredicto({ url, fila, precio, ingresado }: { url: string; fila: Fila; 
       )}
     </>
   )
-  if (min < precio * 0.95) {
+  const tipo = clasificar(fila, precio)
+  if (tipo === 'inflado') {
     const pct = Math.round((1 - min / precio) * 100)
     return (
       <Resultado sello="INFLADO" tono="red" titulo={`Ojo: ya estuvo ${pct}% más barato`}>
         {base}. {historia} Si no te apura, conviene esperar.
-        <Comprar url={url} />
+        <Comprar url={url} tipo={tipo} />
       </Resultado>
     )
   }
-  if (precio <= min * 1.01 && seguido >= 3) {
+  if (tipo === 'cazado') {
     return (
       <Resultado sello="CAZADO" tono="green" titulo="Es el precio más bajo que registramos">
         {base}. {historia} El descuento es real.
-        <Comprar url={url} />
+        <Comprar url={url} tipo={tipo} />
       </Resultado>
     )
   }
   return (
     <Resultado sello="NORMAL" tono="yellow" titulo="Precio normal: ni inflado ni mínimo">
       {base}. {historia}
-      <Comprar url={url} />
+      <Comprar url={url} tipo={tipo} />
     </Resultado>
   )
 }
@@ -189,11 +215,12 @@ function Resultado({ sello, tono, titulo, children }: { sello: string; tono: key
   )
 }
 
-function Comprar({ url }: { url: string }) {
+function Comprar({ url, tipo }: { url: string; tipo: Tipo }) {
   return (
     <p className="mt-4">
       <a
         href={conEtiqueta(url)}
+        onClick={() => medir('verificador_click_ml', tipo)}
         target="_blank"
         rel="noopener noreferrer sponsored"
         className="inline-block rounded-lg border border-zinc-700 px-4 py-2 text-sm font-bold text-zinc-100 transition-colors hover:border-yellow-400 hover:text-yellow-300"

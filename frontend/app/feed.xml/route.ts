@@ -32,7 +32,11 @@ export async function GET() {
     .map(s => {
       const hoy = precioActual(s)
       const off = s.precio_lista > hoy ? Math.round((1 - hoy / s.precio_lista) * 100) : 0
-      const titulo = `${s.titulo.slice(0, 80)} — ${precio(hoy)}${off ? ` (${off}% OFF)` : ''}`
+      // Pinterest corta el título en 100 caracteres: el precio va siempre entero
+      const cola = ` — ${precio(hoy)}${off ? ` (${off}% OFF)` : ''}`
+      const max = 100 - cola.length
+      const nombre = s.titulo.length <= max ? s.titulo : s.titulo.slice(0, max - 1).replace(/\s+\S*$/, '') + '…'
+      const titulo = nombre + cola
       const desc =
         `${s.titulo}. Hoy ${precio(hoy)} en Mercado Libre` +
         (off ? `, ${off}% menos que el precio de lista` : '') +

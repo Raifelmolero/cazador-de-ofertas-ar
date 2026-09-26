@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-26T03:24:15+00:00",
+  "generado": "2026-09-26T18:32:44+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,37 +8,37 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-25T23:16:20+00:00",
+      "ultima_actividad": "2026-09-26T18:32:43+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 780 productos en la última corrida"
+          "tarea": "Revisó 889 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Historias IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Threads",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Facebook",
-          "valor": 2
+          "valor": 3
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Electrolux No Frost Inverter Multidoor Im7s 523 litros Gris"
+      "ultimo_trabajo": "Heladera Exhibidora Vertical Inelro MT - 450 437 Lts 1 Puerta"
     },
     {
       "id": "investigacion",
@@ -63,11 +63,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },
@@ -125,7 +125,7 @@
       "descripcion": "Mejora placas, historias y reels. Propone y vos aprobás.",
       "automatico": false,
       "frecuencia": "A demanda",
-      "ultima_actividad": "2026-09-25",
+      "ultima_actividad": "2026-09-26",
       "agentes": [
         {
           "nombre": "diseno",
@@ -135,10 +135,14 @@
       "metricas": [
         {
           "label": "Propuestas",
-          "valor": 1
+          "valor": 2
         }
       ],
       "entregas": [
+        {
+          "fecha": "2026-09-26",
+          "titulo": "sello temporada"
+        },
         {
           "fecha": "2026-09-25",
           "titulo": "reel"
@@ -190,19 +194,19 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-09-26T03:23:34+00:00",
+      "ultima_actividad": "2026-09-26T14:52:56+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
           "nombre": "Auditor diario",
-          "tarea": "Todo OK"
+          "tarea": "Encontró problemas"
         }
       ],
       "metricas": [],
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✔ Última publicación hace 4 h"
+          "titulo": "✖ Última publicación hace 16 h"
         },
         {
           "fecha": "",

@@ -247,7 +247,7 @@ def _scene_hook_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     k = _ease_out(min(t / 0.35, 1.0))
     scale = 1.35 - 0.35 * k
     cy = (SAFE_TOP + SAFE_BOTTOM) // 2
-    if deal.get("low"):
+    if deal.get("hist_low") or deal.get("low"):
         d.text((W // 2, cy - 260), "MÍNIMO", font=_font(int(110 * scale)), fill=WHITE, anchor="mm")
         d.text((W // 2, cy - 130), "HISTÓRICO", font=_font(int(110 * scale)), fill=AMBER, anchor="mm")
         d.text((W // 2, cy + 90), f"-{deal['discount']}% OFF" if deal.get("discount") is not None else "",
@@ -322,7 +322,7 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
 
     title_f = _font(46)
     title_lines = _shorten_title_v2(d, deal["title"], title_f, 940)
-    is_low = bool(deal.get("low"))
+    is_low = bool(deal.get("hist_low") or deal.get("low"))
 
     # bloque título+precio centrado en el espacio oscuro que queda debajo
     # del producto (respetando el 20% inferior, reservado para la UI de IG)

@@ -97,6 +97,8 @@ def log_post(deal: dict, channel: str) -> None:
         "low": bool(deal.get("hist_low")),
         "excl": bool(deal.get("canal_exclusiva")),
     }
+    if deal.get("_reel_version") and channel.startswith("reel"):
+        entry["v"] = deal["_reel_version"]
     POSTS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(POSTS_LOG_PATH, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
@@ -1169,15 +1171,19 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple
     if not deal.get("img"):
         print("[warn] Reel: la oferta no tiene imagen, salteo")
         return None, False
-    from reel import render_reel  # requiere Pillow + ffmpeg
+    from reel import render_reel, render_reel_v2  # requiere Pillow + ffmpeg
 
     req = urllib.request.Request(ig_image_url(deal["img"]), headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=30) as resp:
         image_bytes = resp.read()
 
-    fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}.mp4"
+    # A/B del diseño (tarjeta #21): días pares v2, impares v1. La versión
+    # queda en el nombre del archivo y en posts_log ("v") para compararlas.
+    version = "v2" if datetime.now(timezone.utc).toordinal() % 2 == 0 else "v1"
+    deal["_reel_version"] = version
+    fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}-{version}.mp4"
     out = BASE_DIR / "reels" / fname
-    render_reel(deal, image_bytes, out)
+    (render_reel_v2 if version == "v2" else render_reel)(deal, image_bytes, out)
     deal["_reel_path"] = str(out)  # lo usa shorts.cross_post (YouTube/TikTok)
     if dry:
         print(f"[DRY] reel renderizado en {out}")

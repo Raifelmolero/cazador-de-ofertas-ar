@@ -780,3 +780,15 @@ class TestWaKit(unittest.TestCase):
         self.assertIn("afiliado", txt)
         self.assertNotIn("Producto 3", txt)
 
+
+
+class TestVerificadorCTA(unittest.TestCase):
+    def test_threads_lleva_al_verificador_sin_pasar_500(self):
+        d = {"price_prev": 500000, "price_cur": 350000, "discount": 30,
+             "title": "Aire acondicionado split inverter 3000 frigorías", "hist_low": False}
+        t = bot.th_caption(d, "https://mercadolibre.com.ar/MLA-123456789")
+        self.assertIn("es real", t)
+        self.assertLessEqual(len(t), 500)
+
+    def test_url_del_verificador(self):
+        self.assertTrue(bot.verificador_url("telegram").endswith("#verificador"))

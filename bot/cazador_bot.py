@@ -580,6 +580,16 @@ def site_url(source: str) -> str:
     return f"https://{SITE_DOMAIN}/?utm_source={source}"
 
 
+def verificador_url(source: str) -> str:
+    """Link directo al verificador de la home (pegás un link de ML y te dice
+    si el descuento es real). utm_campaign lo separa del resto en Clarity."""
+    return f"https://{SITE_DOMAIN}/?utm_source={source}&utm_campaign=verificador#verificador"
+
+
+# Línea para sumar a los posts: lleva gente al verificador del sitio.
+VERIF_CTA = "🔍 ¿Viste otro descuento en ML y no sabés si es real? Pegá el link en {url} y fijate."
+
+
 # ---------------------------------------------------------------- telegram
 
 def tg_call(token: str, method: str, payload: dict) -> dict:
@@ -642,6 +652,7 @@ def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool) -> boo
         "inline_keyboard": [
             [{"text": "🛒 Ver oferta en ML", "url": link}],
             [{"text": "🔎 Más ofertas en el sitio", "url": site_url("telegram")}],
+            [{"text": "🔍 ¿Otro descuento es real? Verificalo", "url": verificador_url("telegram")}],
         ]
     }
     if dry:
@@ -1070,6 +1081,8 @@ def ig_caption(deal: dict) -> str:
         # compra. Telegram queda al final, en una línea.
         f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo "
         f"comprás desde ahí.\n\n"
+        f"🔍 ¿Otro descuento de ML te parece raro? En la web pegás el link y te "
+        f"decimos si es real.\n\n"
         f"💾 Guardá este post si lo estás pensando.\n"
         f"📤 Mandáselo a quien lo estaba buscando.\n\n"
         f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
@@ -1129,7 +1142,7 @@ def th_caption(deal: dict, link: str) -> str:
         f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
         f"{remate}\n\n"
-        f"🔎 Más ofertas: {SITE_DOMAIN}"
+        f"{VERIF_CTA.format(url=SITE_DOMAIN)}"
     )
     if len(caption) > 500:
         caption = (
@@ -1161,6 +1174,7 @@ def fb_caption(deal: dict, link: str) -> str:
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"
         f"🛒 Comprá acá: {link}\n\n"
         f"{remate}\n\n"
+        f"{VERIF_CTA.format(url=verificador_url('facebook'))}\n\n"
         f"Más ofertas todos los días en cazadordeofertas.com.ar y en nuestro "
         f"canal de Telegram: t.me/cazadordeofertasar"
     )

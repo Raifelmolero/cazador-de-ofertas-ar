@@ -133,6 +133,25 @@ export const COMPARATIVAS: Comparativa[] = [
     guia: 'que-taladro-comprar-para-la-casa',
   },
   {
+    slug: 'mejores-amoladoras',
+    nombre: 'amoladoras',
+    titulo: `Mejores amoladoras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de amoladoras angulares en oferta hoy en Mercado Libre Argentina: 115 y 230 mm, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las amoladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'herramientas-electricas',
+    keywords: ['amoladora', 'esmeril angular', 'amoladora angular'],
+    criterios: [
+      'Para uso general (cortar hierro, cerámica, desbastar): 115 mm con 700-900 W alcanza y sobra.',
+      '230 mm es para obra: corta más profundo pero pesa el doble y es más difícil de controlar.',
+      'Protector de disco regulable y empuñadura lateral no son opcionales.',
+      'A batería: cómoda para changas, pero fijate si incluye batería y cargador.',
+      'Sumale el precio de discos de repuesto si no los tenés: se gastan rápido.',
+    ],
+    guia: 'que-amoladora-comprar',
+  },
+  {
     slug: 'regalos-dia-de-la-madre',
     presupuestos: [50000, 150000],
     guia: 'que-regalar-el-dia-de-la-madre',

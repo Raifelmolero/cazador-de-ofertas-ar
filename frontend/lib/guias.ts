@@ -364,6 +364,119 @@ export const GUIAS: Guia[] = [
       boton: 'Ver regalos por presupuesto 🎁',
     },
   },
+  {
+    slug: 'que-soldadora-comprar',
+    titulo: 'Qué soldadora comprar: inverter o transformador, y qué amperaje',
+    descripcion:
+      'Cómo elegir soldadora en Argentina: diferencia entre soldadora inverter y de transformador, qué amperaje alcanza para uso hogareño y qué mirar antes de comprar.',
+    pregunta: '¿Qué soldadora me conviene comprar, inverter o transformador?',
+    respuestaCorta:
+      'Para uso hogareño y changas, una soldadora inverter de 120 a 160 A alcanza para la mayoría de los trabajos con electrodo (chapa, caños, estructuras livianas), pesa mucho menos que una de transformador y tiene mejor control del arco. La de transformador es más barata y resistente, pero pesa el triple y consume más luz por el mismo trabajo.',
+    secciones: [
+      {
+        h: 'Inverter vs. transformador',
+        p: [
+          'Soldadora inverter: usa electrónica de potencia para convertir la corriente, así que pesa 3 a 5 kg en vez de 20 o 30. Da un arco más estable, más fácil de manejar para quien recién empieza, y varias permiten usar electrodo y también TIG o MIG según el modelo. Consume menos energía para la misma corriente de soldado.',
+          'Soldadora de transformador: la tecnología clásica, pesada y sin electrónica que se pueda romper fácil. Es más barata a igual amperaje y muy resistente al maltrato de obra, pero el arco es menos parejo y consume bastante más luz.',
+        ],
+      },
+      {
+        h: 'Qué amperaje elegir',
+        p: [
+          'Chapa fina y trabajos livianos (rejas chicas, soportes): 100-120 A alcanza con electrodo de 2,5 mm.',
+          'Uso general hogareño y changas (portones, estructuras de caño, chapa media): 140-160 A cubre electrodos de 3,25 mm, el más usado.',
+          'Estructuras más gruesas o uso más seguido: 180-200 A o más, con electrodos de 4 mm.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Ciclo de trabajo (duty cycle): el porcentaje de tiempo que puede soldar seguido antes de tener que enfriarse, a una corriente dada. Para uso hogareño no hace falta uno alto, pero conviene que el dato esté publicado (desconfiá de las que no lo informan).',
+          'Voltaje de entrada: la mayoría de las inverter domésticas van a 220V monofásico; confirmá que coincide con tu instalación.',
+          'Accesorios incluidos: pinza porta electrodo, pinza de masa y máscara no siempre vienen en la caja — fijate en la publicación.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Soldadoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
+  },
+  {
+    slug: 'que-hidrolavadora-comprar',
+    titulo: 'Qué hidrolavadora comprar: presión, caudal y para qué alcanza cada una',
+    descripcion:
+      'Cómo elegir hidrolavadora en Argentina: qué significa la presión en bar, el caudal en litros por hora, y qué potencia conviene para lavar auto, patio o pisos.',
+    pregunta: '¿Qué hidrolavadora me conviene comprar para casa?',
+    respuestaCorta:
+      'Para lavar auto, moto, patio o el frente de la casa alcanza una hidrolavadora doméstica de 100 a 130 bar de presión. Solo hace falta más presión (150 bar o más) si vas a sacar pintura, moho incrustado o suciedad muy pegada en superficies grandes con uso frecuente.',
+    secciones: [
+      {
+        h: 'Presión (bar) y caudal (L/h): qué significa cada uno',
+        p: [
+          'La presión (medida en bar o PSI) es la fuerza del chorro: más presión saca suciedad más pegada. El caudal (litros por hora) es cuánta agua mueve la máquina: más caudal enjuaga más rápido una superficie grande, aunque la presión sea la misma.',
+          'Para tareas domésticas conviene mirar los dos datos, no solo la presión: una máquina con mucha presión pero poco caudal tarda más en cubrir un patio entero.',
+        ],
+      },
+      {
+        h: 'Cuánta presión hace falta según la tarea',
+        p: [
+          'Auto, moto, bici, muebles de jardín: 90-110 bar sobra.',
+          'Patio, vereda, rejas, frente de la casa: 110-130 bar, que es el rango más común en las hidrolavadoras domésticas.',
+          'Sacar pintura vieja, moho muy incrustado o uso semi-frecuente (changas): 140-150 bar o más, con motor más robusto.',
+        ],
+      },
+      {
+        h: 'Motor: inducción vs. universal',
+        p: [
+          'Motor de inducción: más silencioso, dura más y soporta mejor el uso seguido, pero las máquinas son más caras y algo más pesadas.',
+          'Motor universal (a escobillas): más económico y liviano, ideal para uso ocasional de fin de semana; las escobillas se gastan con el uso frecuente.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Accesorios incluidos: lanza turbo (más rápida que la chorro/abanico común), cepillo para autos y kit para sacar espuma dan más uso a la misma máquina.',
+          'Manguera de succión de agua: revisá si trae la conexión para tanque o solo para canilla de red.',
+          'Peso y ruedas: si la vas a mover seguido por el patio, pesa más de lo que parece en la foto.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Hidrolavadoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
+  },
+  {
+    slug: 'herramientas-electricas-black-friday',
+    titulo: 'Herramientas eléctricas en Black Friday: cuándo conviene comprar',
+    descripcion:
+      'Cuándo conviene comprar taladros, amoladoras, soldadoras e hidrolavadoras en el Black Friday argentino (viernes 27 de noviembre de 2026) y cómo evitar los descuentos inflados.',
+    pregunta: '¿Conviene esperar al Black Friday para comprar herramientas eléctricas?',
+    respuestaCorta:
+      'Herramientas es uno de los rubros donde el Black Friday argentino sí suele traer bajas reales, porque muchas marcas y vendedores especializados participan con stock propio. Pero no todos los descuentos son reales: conviene comparar el precio del viernes contra el historial de cada producto, no confiar solo en el cartel de "% OFF".',
+    secciones: [
+      {
+        h: 'Por qué herramientas es un rubro fuerte en Black Friday',
+        p: [
+          'A diferencia de categorías con pocos vendedores grandes, en herramientas eléctricas compiten muchas marcas (nacionales e importadas) y ferreterías online, lo que genera más presión de precio real en fechas de campaña como el Black Friday.',
+          'Es además la época en la que muchos arrancan changas de fin de año (pintura, arreglos, jardín) antes del verano, así que la demanda ayuda a que las marcas saquen stock con descuentos genuinos.',
+        ],
+      },
+      {
+        h: 'Qué mirar para no caer en un descuento inflado',
+        p: [
+          'El mismo mecanismo de otras fechas especiales: algunos vendedores suben el precio "de lista" los días previos para que el descuento del viernes se vea más grande. Comparar contra el historial de precios de cada producto (no contra el % que muestra la publicación) es la única forma confiable de saber si hay una baja real.',
+          'Si una herramienta que necesitás ya está en su mínimo histórico antes del Black Friday, no hay motivo para esperar al viernes: puede no bajar más, o incluso subir por la demanda del evento.',
+        ],
+      },
+      {
+        h: 'Cuándo esperar y cuándo comprar ya',
+        p: [
+          'Esperá al Black Friday si buscás algo de ticket alto (amoladora grande, soldadora, hidrolavadora) y podés programar la compra: el evento suele sumar cuotas sin interés además del precio.',
+          'Comprá antes si el precio actual ya es el mínimo histórico o si la herramienta se agota rápido en tu zona: el Black Friday 2026 es el viernes 27 de noviembre, y las mejores unidades de stock limitado a veces se agotan antes del evento.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Herramientas eléctricas en oferta hoy', boton: 'Ver herramientas en oferta' },
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

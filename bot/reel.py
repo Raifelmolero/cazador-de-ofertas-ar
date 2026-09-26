@@ -15,6 +15,7 @@ con licencia. Si no existe, sale con pista silenciosa AAC.
 
 import io
 import os
+import re
 import subprocess
 from pathlib import Path
 
@@ -258,6 +259,47 @@ def _scene_hook_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     return img
 
 
+_TITLE_FILLER = {
+    "blanco", "blanca", "negro", "negra", "gris", "plateado", "plateada",
+    "plata", "azul", "rojo", "roja", "verde", "wifi", "wi-fi",
+}
+
+
+def _wrap_no_ellipsis(draw: ImageDraw.ImageDraw, text: str, font, max_w: int, max_lines: int = 2):
+    """Como `_wrap` pero corta en la última palabra completa, sin agregar
+    puntos suspensivos (nada de "-…")."""
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        cand = (cur + " " + w).strip()
+        if draw.textlength(cand, font=font) <= max_w:
+            cur = cand
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+            if len(lines) == max_lines:
+                return lines
+    if cur:
+        lines.append(cur)
+    return lines[:max_lines]
+
+
+def _shorten_title_v2(draw: ImageDraw.ImageDraw, title: str, font, max_w: int, max_lines: int = 2):
+    """Acorta el título de forma inteligente para el reel: corta en el
+    primer separador fuerte (" - ", " | ", ","), y si igual no entra en
+    `max_lines` saca relleno (colores, "WiFi") antes de cortar por palabra."""
+    short = re.split(r"\s[-|]\s|,", title, maxsplit=1)[0].strip()
+
+    lines = _wrap_no_ellipsis(draw, short, font, max_w, max_lines)
+    fits = sum(len(line.split()) for line in lines) >= len(short.split())
+    if not fits:
+        words = [w for w in short.split() if w.lower() not in _TITLE_FILLER]
+        trimmed = " ".join(words)
+        if trimmed and trimmed != short:
+            lines = _wrap_no_ellipsis(draw, trimmed, font, max_w, max_lines)
+    return lines
+
+
 def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     img = Image.new("RGB", (W, H), BG)
     # producto a pantalla completa arriba (protagonista, sin marco blanco);
@@ -279,10 +321,23 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     d = ImageDraw.Draw(img)
 
     title_f = _font(46)
-    y = ph + 70
-    for line in _wrap(d, deal["title"], title_f, 940, max_lines=2):
+    title_lines = _shorten_title_v2(d, deal["title"], title_f, 940)
+    is_low = bool(deal.get("low"))
+
+    # bloque título+precio centrado en el espacio oscuro que queda debajo
+    # del producto (respetando el 20% inferior, reservado para la UI de IG)
+    line_h, gap_title_prev, prev_h = 58, 34, 46
+    gap_prev_price, price_h, gap_price_ahorro, ahorro_h = 34, 150, 34, 40
+    low_gap, low_h = (30, 44) if is_low else (0, 0)
+    block_h = (len(title_lines) * line_h + gap_title_prev + prev_h + gap_prev_price
+               + price_h + gap_price_ahorro + ahorro_h + low_gap + low_h)
+    avail_top, avail_bottom = ph, SAFE_BOTTOM
+    y = avail_top + max(20, (avail_bottom - avail_top - block_h) // 2)
+
+    for line in title_lines:
         d.text((W // 2, y), line, font=title_f, fill=WHITE, anchor="mm")
-        y += 58
+        y += line_h
+    y += gap_title_prev
 
     # precio: entra con pop apenas arranca la escena (más rápido que v1).
     # único badge %OFF de esta escena, pegado al precio (nunca dos a la vez)
@@ -290,21 +345,28 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     prev_f = _font(42, bold=False)
     prev_txt = f"Antes {_fmt(deal['price_prev'])}"
     pw = d.textlength(prev_txt, font=prev_f)
-    py = y + 28
-    d.text((W // 2, py), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
-    d.line([(W - pw) // 2 - 8, py, (W + pw) // 2 + 8, py], fill=GRAY, width=5)
+    d.text((W // 2, y), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
+    d.line([(W - pw) // 2 - 8, y, (W + pw) // 2 + 8, y], fill=GRAY, width=5)
+    y += gap_prev_price
 
     price_scale = 1.12 - 0.12 * k
     price_f = _font(int(132 * price_scale))
     price_txt = _fmt(deal["price_cur"])
-    price_y = py + 110
+    price_y = y + price_h // 2
     d.text((W // 2, price_y), price_txt, font=price_f, fill=AMBER, anchor="mm")
     if deal.get("discount") is not None:
         pw2 = d.textlength(price_txt, font=price_f)
         _badge(d, W // 2 + pw2 / 2 + 90, price_y - 10, f"-{deal['discount']}%", 0.55)
+    y += price_h + gap_price_ahorro
 
     ahorro = deal["price_prev"] - deal["price_cur"]
-    d.text((W // 2, price_y + 100), f"Te ahorrás {_fmt(ahorro)}", font=_font(38), fill=WHITE, anchor="mm")
+    d.text((W // 2, y), f"Te ahorrás {_fmt(ahorro)}", font=_font(38), fill=WHITE, anchor="mm")
+    if is_low:
+        y += low_gap
+        # DejaVu Sans / Arial (las fuentes locales que usa `_font`) no traen
+        # glifo de emoji a color: mejor texto solo que un tofu roto
+        d.text((W // 2, y), "Precio más bajo que registramos",
+               font=_font(34, bold=False), fill=AMBER, anchor="mm")
     return img
 
 

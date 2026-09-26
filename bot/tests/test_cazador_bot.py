@@ -603,6 +603,19 @@ class TestSelloTemporada(unittest.TestCase):
     def test_primavera_no_tiene_sello(self):
         self.assertEqual(bot.sello_temporada("Ventilador de pie 20 pulgadas", self.OCT), "")
 
+    def test_deal_sin_temporada_no_lleva_sello(self):
+        deal = {"title": "Ventilador de pie 20 pulgadas", "price_prev": 50000,
+                "price_cur": 40000, "discount": 20, "img": None}
+        deal["sello_temporada"] = bot.sello_temporada(deal["title"], self.OCT).lstrip("🎁🎄 ").upper()
+        self.assertEqual(deal["sello_temporada"], "")
+
+    def test_deal_con_temporada_lleva_sello_en_mayusculas_sin_emoji(self):
+        deal = {"title": "Cafetera Nespresso Original", "price_prev": 200000,
+                "price_cur": 150000, "discount": 25, "img": None}
+        hoy = datetime(2026, 10, 10)
+        deal["sello_temporada"] = bot.sello_temporada(deal["title"], hoy).lstrip("🎁🎄 ").upper()
+        self.assertEqual(deal["sello_temporada"], "IDEA DE REGALO PARA EL DÍA DE LA MADRE")
+
     def test_caption_telegram_incluye_sello(self):
         deal = {"title": "Cafetera Nespresso", "price_prev": 200000, "price_cur": 150000,
                 "discount": 25, "img": None}

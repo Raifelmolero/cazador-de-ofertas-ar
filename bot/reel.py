@@ -21,7 +21,10 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageOps
 
-from story import AMBER, BG, BLACK, GRAY, STAMP_RED, WHITE, _font, _fmt, _stamp_cazado, _wrap
+from story import (
+    AMBER, BG, BLACK, GRAY, STAMP_RED, WHITE,
+    _font, _fmt, _ribbon_temporada, _stamp_cazado, _wrap,
+)
 
 W, H = 1080, 1920
 FPS = 30
@@ -323,14 +326,22 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     title_f = _font(46)
     title_lines = _shorten_title_v2(d, deal["title"], title_f, 940)
     is_low = bool(deal.get("hist_low") or deal.get("low"))
+    sello = (deal.get("sello_temporada") or "").strip()
+    # con mínimo histórico el bloque ya casi no tiene margen (safe area
+    # chica): en ese combo puntual se prioriza el sello de mínimo y se
+    # salta la cinta de temporada para no desbordar
+    show_ribbon = bool(sello) and not is_low
 
     # bloque título+precio centrado en el espacio oscuro que queda debajo
     # del producto (respetando el 20% inferior, reservado para la UI de IG)
-    line_h, gap_title_prev, prev_h = 58, 34, 46
-    gap_prev_price, price_h, gap_price_ahorro, ahorro_h = 34, 150, 34, 40
+    line_h = 58
+    gap_title_prev, gap_prev_price, gap_price_ahorro = (14, 14, 14) if show_ribbon else (34, 34, 34)
+    prev_h, price_h, ahorro_h = 46, 150, 40
     low_gap, low_h = (30, 44) if is_low else (0, 0)
+    ribbon_gap, ribbon_h = (16, 46) if show_ribbon else (0, 0)
     block_h = (len(title_lines) * line_h + gap_title_prev + prev_h + gap_prev_price
-               + price_h + gap_price_ahorro + ahorro_h + low_gap + low_h)
+               + price_h + gap_price_ahorro + ahorro_h + low_gap + low_h
+               + ribbon_gap + ribbon_h)
     avail_top, avail_bottom = ph, SAFE_BOTTOM
     y = avail_top + max(20, (avail_bottom - avail_top - block_h) // 2)
 
@@ -367,6 +378,9 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
         # glifo de emoji a color: mejor texto solo que un tofu roto
         d.text((W // 2, y), "Precio más bajo que registramos",
                font=_font(34, bold=False), fill=AMBER, anchor="mm")
+    if show_ribbon:
+        y += ahorro_h // 2 + ribbon_gap + ribbon_h // 2
+        _ribbon_temporada(d, W // 2, y, sello, font_size=32)
     return img
 
 

@@ -37,6 +37,9 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
 - [Catálogo actual en texto plano](https://cazadordeofertas.com.ar/llms-full.txt):
   las ofertas del momento con precio, descuento y mínimo histórico, más las
   guías, en Markdown (ideal para citar datos concretos).
+- Secciones por rubro (ofertas + comparativas + guías + historial):
+  [herramientas](https://cazadordeofertas.com.ar/herramientas),
+  [hogar](https://cazadordeofertas.com.ar/hogar).
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),

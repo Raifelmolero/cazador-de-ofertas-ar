@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
+import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -360,6 +361,18 @@ export default function HoyPage() {
       {/* Categorías: enlazado interno hacia las páginas por rubro */}
       <section className="max-w-2xl mx-auto px-4 pb-10">
         <h2 className="font-display text-lg font-black mb-4 text-center">Ofertas por categoría</h2>
+        <ul className="flex flex-wrap justify-center gap-2 mb-3">
+          {NICHOS.map(n => (
+            <li key={n.slug}>
+              <a
+                href={`/${n.slug}`}
+                className="block rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-2 text-sm font-bold text-yellow-300 hover:bg-yellow-400/20 transition-colors"
+              >
+                {n.emoji} {n.marca.replace('Cazador de ', '')}
+              </a>
+            </li>
+          ))}
+        </ul>
         <ul className="flex flex-wrap justify-center gap-2">
           {CATEGORIAS.map(c => (
             <li key={c.slug}>

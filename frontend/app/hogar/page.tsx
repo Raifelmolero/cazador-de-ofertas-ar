@@ -1,11 +1,10 @@
-// Nicho piloto (Fase 1 de la tarjeta #21). Config en lib/nichos.ts.
 import NichoHub, { nichoMetadata } from '@/components/NichoHub'
 import { getNicho } from '@/lib/nichos'
 
-const nicho = getNicho('herramientas')!
+const nicho = getNicho('hogar')!
 
 export const metadata = nichoMetadata(nicho)
 
-export default function HerramientasPage() {
+export default function HogarPage() {
   return <NichoHub nicho={nicho} />
 }

@@ -9,6 +9,7 @@ import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
+import { NICHOS } from '@/lib/nichos'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -242,11 +243,11 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
           </section>
         )}
 
-        {c.slug === 'herramientas-electricas' && (
-          <p className="mb-4">
-            <a href="/herramientas" className="font-bold text-yellow-400 hover:underline">🔧 Todo para el taller: el hub de herramientas →</a>
+        {NICHOS.filter(n => n.categorias.includes(c.slug)).map(n => (
+          <p key={n.slug} className="mb-4">
+            <a href={`/${n.slug}`} className="font-bold text-yellow-400 hover:underline">{n.emoji} Todo en un lugar: {n.marca} →</a>
           </p>
-        )}
+        ))}
         {COMPARATIVAS.filter(x => x.categoria === c.slug).map(x => (
           <p key={x.slug} className="mb-8">
             <a href={`/mejores/${x.slug}`} className="font-bold text-yellow-400 hover:underline">

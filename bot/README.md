@@ -7,7 +7,11 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 
 ## Qué hace en cada corrida
 
-1. Descarga `mercadolibre.com.ar/ofertas` (3 páginas, ~115 productos)
+1. Descarga `mercadolibre.com.ar/ofertas` (20 páginas + 6 de relámpago) y la
+   misma página filtrada por 6 categorías de ticket alto (`CATEGORIAS_TICKET_ALTO`,
+   `categoria_pages` en config.json): herramientas, gastronomía/embalaje,
+   electro y aires, hogar/colchones, TV y vehículos. El buscador de ML
+   (`listado.mercadolibre...`) NO se usa: devuelve "tráfico sospechoso".
 2. Registra el precio de cada producto en `bot/state/price_history.json`
    (historial de precios propio, se alimenta solo 3 veces por día)
 3. Filtra: descuento ≥ 25%, precio ≥ $10.000, no publicado antes, y

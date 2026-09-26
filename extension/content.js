@@ -21,6 +21,9 @@
     const hist = `Lo seguimos desde el ${fecha(desde)}. Mínimo registrado: ${pesos(min)} (${fecha(minTs)}).`
     if (min < p * 0.95)
       return { sello: 'INFLADO', color: '#f87171', titulo: `Ya estuvo ${Math.round((1 - min / p) * 100)}% más barato`, hist }
+    const dias = (Date.parse(lastTs) - Date.parse(desde)) / 86400000
+    if (p <= min * 1.01 && dias < 3)
+      return { sello: 'NUEVO', color: '#a1a1aa', titulo: 'Lo empezamos a seguir hace poco', hist: hist + ' Todavía no alcanza para confirmar el mínimo.' }
     if (p <= min * 1.01) return { sello: 'CAZADO', color: '#34d399', titulo: 'Es el precio más bajo que registramos', hist }
     return { sello: 'NORMAL', color: '#facc15', titulo: 'Precio normal: ni inflado ni mínimo', hist }
   }

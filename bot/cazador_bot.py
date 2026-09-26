@@ -69,6 +69,9 @@ CATEGORIAS_TICKET_ALTO = {
     "MLA1574": "Hogar, Muebles y Jardín",  # colchones
     "MLA1000": "Electrónica, Audio y Video",  # TV
     "MLA5725": "Accesorios para Vehículos",
+    # Regalos (perfumes, secadores, planchitas): comisión baja, pero es lo que
+    # más se busca en Día de la Madre/Navidad y alimenta /mejores/regalos-*.
+    "MLA1246": "Belleza y Cuidado Personal",
 }
 
 # Días que se conserva la media (placas, stories, reels) antes de borrarla.

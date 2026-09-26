@@ -383,9 +383,8 @@ export const GUIAS: Guia[] = [
       {
         h: 'Qué amperaje elegir',
         p: [
-          'Chapa fina y trabajos livianos (rejas chicas, soportes): 100-120 A alcanza con electrodo de 2,5 mm.',
-          'Uso general hogareño y changas (portones, estructuras de caño, chapa media): 140-160 A cubre electrodos de 3,25 mm, el más usado.',
-          'Estructuras más gruesas o uso más seguido: 180-200 A o más, con electrodos de 4 mm.',
+          'La regla práctica más usada es calcular 30 a 40 A por cada milímetro de diámetro del electrodo (varía según posición y tipo de recubrimiento): un electrodo de 2,5 mm ronda 75-100 A, uno de 3,25 mm ronda 100-130 A (el más usado para changas y uso general) y uno de 4 mm ronda 120-160 A.',
+          'Con eso, una soldadora de 120-140 A cubre electrodos de 2,5 y 3,25 mm para chapa y estructuras livianas a medias. Para trabajar cómodo con electrodo de 4 mm en piezas más gruesas conviene una de 160-200 A.',
         ],
       },
       {
@@ -407,7 +406,7 @@ export const GUIAS: Guia[] = [
       'Cómo elegir hidrolavadora en Argentina: qué significa la presión en bar, el caudal en litros por hora, y qué potencia conviene para lavar auto, patio o pisos.',
     pregunta: '¿Qué hidrolavadora me conviene comprar para casa?',
     respuestaCorta:
-      'Para lavar auto, moto, patio o el frente de la casa alcanza una hidrolavadora doméstica de 100 a 130 bar de presión. Solo hace falta más presión (150 bar o más) si vas a sacar pintura, moho incrustado o suciedad muy pegada en superficies grandes con uso frecuente.',
+      'Para lavar auto, moto, patio o el frente de la casa alcanza una hidrolavadora doméstica de 110 a 140 bar de presión, con un caudal de 350 a 450 litros por hora. Solo hace falta más presión (150-200 bar y 450-600 l/h) si vas a sacar pintura, moho incrustado o suciedad muy pegada en superficies grandes con uso más seguido.',
     secciones: [
       {
         h: 'Presión (bar) y caudal (L/h): qué significa cada uno',
@@ -419,9 +418,9 @@ export const GUIAS: Guia[] = [
       {
         h: 'Cuánta presión hace falta según la tarea',
         p: [
-          'Auto, moto, bici, muebles de jardín: 90-110 bar sobra.',
-          'Patio, vereda, rejas, frente de la casa: 110-130 bar, que es el rango más común en las hidrolavadoras domésticas.',
-          'Sacar pintura vieja, moho muy incrustado o uso semi-frecuente (changas): 140-150 bar o más, con motor más robusto.',
+          'Auto, moto, bici, muebles de jardín: modelos de entrada de 100-110 bar y unos 350 l/h de caudal sobran (es el rango de las hidrolavadoras domésticas más chicas del mercado).',
+          'Patio, vereda, rejas, frente de la casa: 110-140 bar con 350-450 l/h, el rango más común en las hidrolavadoras domésticas de uso general.',
+          'Sacar pintura vieja, moho muy incrustado o uso más seguido (changas): 150-200 bar con 450-600 l/h, con motor más robusto.',
         ],
       },
       {
@@ -444,33 +443,40 @@ export const GUIAS: Guia[] = [
     cta: { href: '/herramientas', titulo: 'Hidrolavadoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
   },
   {
-    slug: 'herramientas-electricas-black-friday',
-    titulo: 'Herramientas eléctricas en Black Friday: cuándo conviene comprar',
+    slug: 'herramientas-electricas-cyber-monday-black-friday',
+    titulo: 'Cyber Monday y Black Friday: cuándo conviene comprar herramientas eléctricas',
     descripcion:
-      'Cuándo conviene comprar taladros, amoladoras, soldadoras e hidrolavadoras en el Black Friday argentino (viernes 27 de noviembre de 2026) y cómo evitar los descuentos inflados.',
-    pregunta: '¿Conviene esperar al Black Friday para comprar herramientas eléctricas?',
+      'Cuándo conviene comprar taladros, amoladoras, soldadoras e hidrolavadoras en el Cyber Monday argentino (CACE, 2 al 4 de noviembre de 2026) y en el Black Friday, y cómo evitar los descuentos inflados.',
+    pregunta: '¿Conviene esperar al Cyber Monday o al Black Friday para comprar herramientas eléctricas?',
     respuestaCorta:
-      'Herramientas es uno de los rubros donde el Black Friday argentino sí suele traer bajas reales, porque muchas marcas y vendedores especializados participan con stock propio. Pero no todos los descuentos son reales: conviene comparar el precio del viernes contra el historial de cada producto, no confiar solo en el cartel de "% OFF".',
+      'En Argentina el evento fuerte para herramientas es el Cyber Monday organizado por la CACE (2 al 4 de noviembre de 2026), no el Black Friday: reúne a muchas más marcas y ferreterías locales participando con stock propio. El Black Friday (fin de noviembre) suma descuentos puntuales de algunos vendedores, pero con menos participación. En ambos casos, conviene comparar el precio contra el historial de cada producto, no confiar solo en el cartel de "% OFF".',
     secciones: [
       {
-        h: 'Por qué herramientas es un rubro fuerte en Black Friday',
+        h: 'Cyber Monday: el evento que importa para herramientas',
         p: [
-          'A diferencia de categorías con pocos vendedores grandes, en herramientas eléctricas compiten muchas marcas (nacionales e importadas) y ferreterías online, lo que genera más presión de precio real en fechas de campaña como el Black Friday.',
+          'El Cyber Monday argentino lo organiza la Cámara Argentina de Comercio Electrónico (CACE) y en 2026 va del lunes 2 al miércoles 4 de noviembre. A diferencia del Black Friday (que en Argentina lo replica cada tienda por su cuenta, sin fecha ni organizador único), el Cyber Monday tiene un sitio oficial y convoca a cientos de marcas y comercios, incluidas ferreterías y marcas de herramientas.',
           'Es además la época en la que muchos arrancan changas de fin de año (pintura, arreglos, jardín) antes del verano, así que la demanda ayuda a que las marcas saquen stock con descuentos genuinos.',
+        ],
+      },
+      {
+        h: 'Y el Black Friday, ¿qué lugar tiene?',
+        p: [
+          'El Black Friday llega a Argentina unas semanas después del Cyber Monday (fin de noviembre) y cada tienda lo arma por su cuenta, sin un organizador central como la CACE. En herramientas suele traer descuentos puntuales de algunas marcas o vendedores, pero con menos participación que el Cyber Monday.',
+          'Si ya compraste en el Cyber Monday y el precio estaba en su mínimo histórico, no hace falta esperar también al Black Friday: es difícil que baje más en pocas semanas.',
         ],
       },
       {
         h: 'Qué mirar para no caer en un descuento inflado',
         p: [
-          'El mismo mecanismo de otras fechas especiales: algunos vendedores suben el precio "de lista" los días previos para que el descuento del viernes se vea más grande. Comparar contra el historial de precios de cada producto (no contra el % que muestra la publicación) es la única forma confiable de saber si hay una baja real.',
-          'Si una herramienta que necesitás ya está en su mínimo histórico antes del Black Friday, no hay motivo para esperar al viernes: puede no bajar más, o incluso subir por la demanda del evento.',
+          'El mismo mecanismo de otras fechas especiales: algunos vendedores suben el precio "de lista" los días previos para que el descuento se vea más grande. Comparar contra el historial de precios de cada producto (no contra el % que muestra la publicación) es la única forma confiable de saber si hay una baja real.',
+          'Si una herramienta que necesitás ya está en su mínimo histórico antes del evento, no hay motivo para esperar: puede no bajar más, o incluso subir por la demanda.',
         ],
       },
       {
         h: 'Cuándo esperar y cuándo comprar ya',
         p: [
-          'Esperá al Black Friday si buscás algo de ticket alto (amoladora grande, soldadora, hidrolavadora) y podés programar la compra: el evento suele sumar cuotas sin interés además del precio.',
-          'Comprá antes si el precio actual ya es el mínimo histórico o si la herramienta se agota rápido en tu zona: el Black Friday 2026 es el viernes 27 de noviembre, y las mejores unidades de stock limitado a veces se agotan antes del evento.',
+          'Esperá al Cyber Monday (2 al 4 de noviembre de 2026) si buscás algo de ticket alto (amoladora grande, soldadora, hidrolavadora) y podés programar la compra: el evento suele sumar cuotas sin interés además del precio.',
+          'Comprá antes si el precio actual ya es el mínimo histórico o si la herramienta se agota rápido en tu zona: las mejores unidades de stock limitado a veces se agotan antes del evento.',
         ],
       },
     ],

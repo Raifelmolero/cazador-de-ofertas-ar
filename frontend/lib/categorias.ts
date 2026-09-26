@@ -91,7 +91,7 @@ export const CATEGORIAS: Categoria[] = [
     intro:
       'Freidoras de aire y hornos air fryer que hoy tienen descuento real en Mercado Libre Argentina, verificado contra el historial de precios.',
     keywords: ['freidora de aire', 'freidora electrica', 'freidora sin aceite', 'air fryer', 'airfryer'],
-    excluir: ['repuesto', 'accesorio', 'papel', 'molde', 'bandeja', 'canasta para', 'funda'],
+    excluir: ['repuesto', 'accesorio', 'papel', 'molde', 'bandeja', 'canasta para', 'funda', 'industrial'],
     guia: [
       {
         h: 'Qué capacidad elegir',
@@ -703,6 +703,61 @@ export const CATEGORIAS: Categoria[] = [
       {
         q: '¿Cómo sé si un perfume de Mercado Libre es original?',
         a: 'Comprando en la tienda oficial de la marca o a vendedores con muy buena reputación, y desconfiando de precios muy por debajo del resto.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'equipamiento-gastronomico',
+    nombre: 'Equipamiento gastronómico',
+    titulo: 'Ofertas de equipamiento gastronómico en Mercado Libre Argentina',
+    descripcion:
+      'Hornos pizzeros, freidoras industriales, anafes, cortadoras de fiambre, batidoras planetarias y más equipamiento gastronómico en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Equipos para cocinas de locales, rotiserías, panaderías y foodtrucks con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: [
+      'horno pizzero', 'horno convector', 'horno industrial', 'freidora industrial', 'anafe industrial',
+      'cortadora de fiambre', 'fiambrera electrica', 'heladera exhibidora', 'exhibidora de bebidas',
+      'plancha bifera', 'bifera', 'batidora planetaria', 'amasadora', 'sobadora', 'balanza comercial',
+      'licuadora industrial', 'cafetera industrial', 'cafetera espresso profesional',
+    ],
+    excluir: [
+      // Solo arranques típicos de repuestos: "Termostato para freidora…", no
+      // palabras sueltas que un equipo completo nombra ("con termostato").
+      'repuesto', 'accesorio para', 'accesorios para', 'funda', 'juguete', 'termocupla',
+      'filtro para', 'filtro de aceite', 'termostato para', 'resistencia para', 'etiquetas para',
+      'rollo de', 'pala para', 'piedra para', 'canasto para', 'canasta para', 'cuchilla para',
+      'correa para', 'motor para', 'tapa para', 'gancho para',
+    ],
+    guia: [
+      {
+        h: 'Antes de comprar un equipo para tu negocio',
+        p: [
+          'Instalación: los equipos a gas los tiene que conectar un gasista matriculado, y muchos eléctricos de uso comercial piden más potencia de la que banca un tablero común (algunos, conexión trifásica). Confirmalo con un electricista o gasista antes de comprar, no después.',
+          'Material: para uso diario en una cocina que se limpia con agua y desengrasante, el acero inoxidable es lo más durable y suele ser lo que piden las inspecciones bromatológicas del municipio.',
+          'Capacidad: dimensioná pensando en tu hora pico, no en un día tranquilo. Un equipo chico que no da abasto en el pico te hace perder ventas; uno sobredimensionado es plata inmovilizada.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          'Garantía y service: preguntá si el vendedor o la marca tienen service en tu zona y si hay repuestos (resistencias, termostatos, cuchillas). En un negocio, un equipo parado cuesta más que el equipo.',
+          'Factura: si vas a deducir la compra, fijate que el vendedor emita factura A o B según tu condición fiscal.',
+          'Precio: estos equipos cambian mucho de precio entre vendedores. Compará contra el historial antes de confiar en el porcentaje de descuento que muestra la publicación.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene un horno pizzero a gas o eléctrico para un local?',
+        a: 'A gas suele ser lo más práctico para arrancar porque no depende de la potencia del tablero; el eléctrico es más simple donde no se permite gas, pero muchas veces pide conexión trifásica. En la guía de horno pizzero comparamos gas, eléctrico y leña.',
+      },
+      {
+        q: '¿De cuántos litros tiene que ser una freidora industrial?',
+        a: 'Depende del volumen: para un foodtruck o local chico alcanza con una de menos litros, y para un local con mucho movimiento en el pico conviene más capacidad o dos cubas. En la guía de freidora industrial está el detalle por rango de litros.',
       },
       {
         q: '¿Cómo sé si el descuento es real?',

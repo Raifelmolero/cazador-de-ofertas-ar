@@ -56,7 +56,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),
-  [tecno](https://cazadordeofertas.com.ar/tecno).
+  [tecno](https://cazadordeofertas.com.ar/tecno),
+  [gastronomía](https://cazadordeofertas.com.ar/gastronomia).
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),
@@ -72,8 +73,9 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [termotanques](https://cazadordeofertas.com.ar/categoria/termotanques),
   [cocinas y hornos](https://cazadordeofertas.com.ar/categoria/cocinas-y-hornos),
   [parrillas](https://cazadordeofertas.com.ar/categoria/parrillas),
-  [bicicletas](https://cazadordeofertas.com.ar/categoria/bicicletas) y
-  [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes).
+  [bicicletas](https://cazadordeofertas.com.ar/categoria/bicicletas),
+  [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes) y
+  [equipamiento gastronómico](https://cazadordeofertas.com.ar/categoria/equipamiento-gastronomico).
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
   [smart TV](https://cazadordeofertas.com.ar/mejores/mejores-smart-tv),

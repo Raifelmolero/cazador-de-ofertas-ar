@@ -523,7 +523,8 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
-    cta: { href: '/', titulo: 'Ofertas de equipamiento para tu negocio, todos los días', boton: 'Ver ofertas de hoy' },
+    categoria: { slug: 'equipamiento-gastronomico', nombre: 'equipamiento gastronómico' },
+    cta: { href: '/gastronomia', titulo: 'Equipamiento gastronómico en oferta hoy', boton: 'Ver equipamiento en oferta' },
   },
   {
     slug: 'que-freidora-industrial-comprar',
@@ -565,7 +566,8 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
-    cta: { href: '/', titulo: 'Ofertas de equipamiento para tu negocio, todos los días', boton: 'Ver ofertas de hoy' },
+    categoria: { slug: 'equipamiento-gastronomico', nombre: 'equipamiento gastronómico' },
+    cta: { href: '/gastronomia', titulo: 'Equipamiento gastronómico en oferta hoy', boton: 'Ver equipamiento en oferta' },
   },
 ]
 

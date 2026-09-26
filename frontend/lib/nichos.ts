@@ -72,6 +72,23 @@ export const NICHOS: Nicho[] = [
       'barra de sonido', 'chromecast', 'proyector',
     ],
   },
+  {
+    slug: 'gastronomia',
+    marca: 'Cazador de Gastronomía',
+    emoji: '🍳',
+    titulo: 'Equipamiento gastronómico en oferta: hornos pizzeros, freidoras industriales y más',
+    descripcion:
+      'Hornos pizzeros, freidoras industriales, anafes, cortadoras de fiambre, batidoras planetarias y heladeras exhibidoras en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Para equipar la cocina de un local, una rotisería, una panadería o un foodtruck: los equipos que hoy tienen descuento real en Mercado Libre (lo chequeamos contra el historial de precios, 3 veces por día) y guías para no comprar de más ni de menos. Antes de comprar, confirmá con tu gasista o electricista que la instalación banca el equipo.',
+    etiqueta: 'gastronomia',
+    categorias: ['equipamiento-gastronomico'],
+    busquedas: [
+      'horno pizzero', 'freidora industrial', 'anafe industrial', 'cortadora de fiambre',
+      'heladera exhibidora', 'plancha bifera', 'batidora planetaria', 'amasadora',
+      'balanza comercial', 'licuadora industrial', 'cafetera industrial', 'horno convector',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

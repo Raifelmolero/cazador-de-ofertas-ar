@@ -263,7 +263,7 @@ export default function HoyPage() {
         </p>
 
         {/* Rubros + los dos atajos con datos propios */}
-        <div className="max-w-5xl mx-auto mt-8 grid gap-3 sm:grid-cols-5">
+        <div className="max-w-5xl mx-auto mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {NICHOS.map(n => (
             <a
               key={n.slug}

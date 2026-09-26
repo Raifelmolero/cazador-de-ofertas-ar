@@ -47,5 +47,5 @@ Aviso de afiliado: el panel tiene un botón opcional "Comprar con Cazador". Si l
 
 ## Antes de publicar
 
-- Crear la etiqueta `extension` en el panel de afiliados de ML y cambiar `matt_word` de `web` a `extension` en `content.js`, así la extensión se mide aparte.
+- Etiqueta `extension` creada en ML el 26/09; content.js ya la usa desde la v0.1.1.
 - Subir la versión en `manifest.json` en cada actualización.

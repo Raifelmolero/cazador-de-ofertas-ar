@@ -30,7 +30,7 @@
 
   function comprarConCazador() {
     const u = new URL(location.href)
-    u.searchParams.set('matt_word', 'web')
+    u.searchParams.set('matt_word', 'extension')
     u.searchParams.set('matt_tool', '37267219')
     location.href = u.toString()
   }

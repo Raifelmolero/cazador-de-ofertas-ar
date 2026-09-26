@@ -212,7 +212,7 @@ def parse_cards(html: str) -> list[dict]:
         if not (title and href and prev and cur and off):
             continue
         url = href.group(1)
-        mla = re.search(r"MLA-?(\d{6,13})", url)
+        mla = re.search(r"MLA-?(\d{6,13})", url.split("?")[0].split("#")[0])
         deal_id = f"MLA{mla.group(1)}" if mla else f"T{abs(hash(title.group(1)))}"
         try:
             price_prev = parse_price(prev.group(1))

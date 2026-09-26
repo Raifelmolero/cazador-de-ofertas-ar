@@ -5,6 +5,7 @@ import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { NICHOS } from '@/lib/nichos'
+import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidos } from '@/lib/seguimiento'
 
 const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
@@ -56,6 +57,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...NICHOS.map(n => ({ url: `${DEALS_URL}/${n.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 })),
     { url: `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${DEALS_URL}/precio-hoy`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
+    ...PRECIOS_HOY.map(p => ({ url: `${DEALS_URL}/precio-hoy/${p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
     ...getSeguidos().map(s => ({
       url: `${DEALS_URL}/precio/${s.slug}`,

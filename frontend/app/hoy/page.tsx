@@ -395,6 +395,9 @@ export default function HoyPage() {
         >
           📊 Estudio: 1 de cada 4 ofertas de Mercado Libre tiene el descuento inflado →
         </a>
+        <p className="mt-3 text-sm">
+          <a href="/precio-hoy" className="text-yellow-400/80 hover:text-yellow-400">💲 Precio hoy: cuánto sale un smart TV, un aire, una heladera… →</a>
+        </p>
       </section>
 
       {/* Comparativas de ticket alto */}

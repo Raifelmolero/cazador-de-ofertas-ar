@@ -273,12 +273,20 @@ def annotate_price_history(deals: list[dict], history: dict) -> None:
     hoy es el más bajo que vimos (habilita el badge en las captions).
     inflada: lo vimos ≥5% más barato antes — el descuento contra price_prev
     no es real y la oferta se descarta del ranking.
+
+    Antes de pisar el historial con el precio de hoy, deja en la oferta el
+    mínimo previo, su fecha y desde cuándo seguimos el producto
+    (hist_min_prev, hist_min_prev_ts, hist_first_ts): es la evidencia de por
+    qué quedó inflada, y después de esta función el historial ya no la tiene.
     """
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     for d in deals:
         price = d["price_cur"]
         h = history.get(d["id"])
         if h:
+            d["hist_min_prev"] = h["min"]
+            d["hist_min_prev_ts"] = h["min_ts"]
+            d["hist_first_ts"] = h["first_ts"]
             d["hist_low"] = (
                 _days_between(h["first_ts"], today) >= HIST_MIN_AGE_DAYS
                 and price <= h["min"]
@@ -295,6 +303,67 @@ def annotate_price_history(deals: list[dict], history: dict) -> None:
                 "first_ts": today,
                 "last": price, "last_ts": today,
             }
+
+
+# ---------------------------------------------------------------- descuentos inflados del día
+
+# Muestra de las ofertas marcadas como infladas en cada corrida, para la página
+# /descuentos-inflados del sitio y el bloque de la home. Es un dato, no un
+# juicio: el precio tachado que muestra ML contra el mínimo que registramos
+# antes. Los links van SIN afiliado a propósito: no se gana plata con un
+# descuento que el sitio dice que no es real.
+INFLADAS_PATH = BASE_DIR.parent / "frontend" / "data" / "infladas.json"
+INFLADAS_MAX = 12
+# Un mínimo previo de menos de la mitad del precio de hoy casi siempre es otra
+# variante o publicación bajo el mismo código, o una lectura mal hecha: no se
+# muestra como caso (el conteo del estudio no cambia).
+INFLADAS_MIN_RATIO = 0.5
+
+
+def build_infladas(deals: list[dict], limit: int = INFLADAS_MAX,
+                   now: datetime | None = None) -> dict:
+    """Arma el payload de infladas.json: las `limit` ofertas infladas con más
+    diferencia relativa entre el precio de hoy y el mínimo registrado ANTES de
+    esta corrida (hist_min_prev, que deja annotate_price_history)."""
+    now = now or datetime.now(timezone.utc)
+    infladas = [d for d in deals if d.get("inflada")]
+    casos = []
+    for d in infladas:
+        precio, minimo = d.get("price_cur"), d.get("hist_min_prev")
+        if not precio or not minimo or minimo < precio * INFLADAS_MIN_RATIO:
+            continue
+        casos.append({
+            "id": d["id"],
+            "titulo": d["title"],
+            "url": d["url"].split("?")[0].split("#")[0],
+            "img": d.get("img"),
+            "precio_hoy": precio,
+            "precio_tachado": d["price_prev"],
+            "descuento_anunciado": d["discount"],
+            "minimo_registrado": minimo,
+            "minimo_fecha": d.get("hist_min_prev_ts"),
+            "visto_desde": d.get("hist_first_ts"),
+            "diferencia_pct": round((1 - minimo / precio) * 100),
+        })
+    casos.sort(key=lambda c: (-(1 - c["minimo_registrado"] / c["precio_hoy"]),
+                              -c["precio_hoy"], c["id"]))
+    return {
+        "actualizado": now.isoformat(timespec="seconds"),
+        "fecha": now.strftime("%Y-%m-%d"),
+        "infladas_detectadas": len(infladas),
+        "items": casos[:limit],
+    }
+
+
+def write_infladas(deals: list[dict], path: Path = INFLADAS_PATH,
+                   now: datetime | None = None) -> dict:
+    payload = build_infladas(deals, now=now)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    print(f"[info] sitio: {len(payload['items'])} infladas de muestra en {path.name} "
+          f"({payload['infladas_detectadas']} detectadas)")
+    return payload
 
 
 # ---------------------------------------------------------------- sitio web
@@ -1597,6 +1666,10 @@ def main() -> int:
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history)
         update_seguimiento(deals, history, affiliate_id)
+        try:  # best-effort: la muestra de infladas nunca frena la publicación
+            write_infladas(deals)
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] infladas.json no se pudo escribir: {e}")
 
     published_ids = []
     for deal in to_post:

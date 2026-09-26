@@ -36,6 +36,9 @@ ${E.desde} y el ${E.hasta} (${E.pasadas} pasadas), el ${E.pctInfladas.toLocaleSt
 inflado: el producto ya se había vendido al menos 5% más barato antes.
 Estudio completo con metodología y datos mes a mes:
 [Descuentos inflados en Mercado Libre Argentina](https://cazadordeofertas.com.ar/estudio/descuentos-inflados-mercado-libre).
+Cómo se mide (fuentes, umbral del 5% contra el mínimo registrado, limitaciones y
+por qué otros sitios dan porcentajes distintos):
+[Metodología](https://cazadordeofertas.com.ar/metodologia).
 Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los datos.
 
 ## Páginas
@@ -49,6 +52,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
 - [Catálogo actual en texto plano](https://cazadordeofertas.com.ar/llms-full.txt):
   las ofertas del momento con precio, descuento y mínimo histórico, más las
   guías, en Markdown (ideal para citar datos concretos).
+- [Descuentos inflados de hoy](https://cazadordeofertas.com.ar/descuentos-inflados):
+  ofertas de la última pasada cuyo precio tachado anuncia un descuento, pero que
+  ya registramos al menos 5% más baratas antes (precio tachado, % anunciado,
+  mínimo registrado y su fecha). Dato propio, se actualiza 3 veces por día.
 - [Precio hoy](https://cazadordeofertas.com.ar/precio-hoy): cuánto sale hoy un smart TV
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre

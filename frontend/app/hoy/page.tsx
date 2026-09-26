@@ -1,4 +1,5 @@
 import { slugPorId } from '@/lib/seguimiento'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
@@ -14,6 +15,7 @@ import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { diaMes, getInfladas, pesos } from '@/lib/infladas'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL
@@ -53,6 +55,7 @@ export default function HoyPage() {
   const minimos = ofertas.filter(o => o.minimo_historico).length
   const estudio = getEstudio()
   const conHistorial = Object.keys(getHistorial()).length
+  const infladas = getInfladas()
 
   // Solo los campos que la grilla usa: mantiene chico el payload del cliente
   const historial = slugPorId()
@@ -147,7 +150,8 @@ export default function HoyPage() {
     },
     {
       q: '¿Cómo sé si un descuento de Mercado Libre es real o está inflado?',
-      a: 'Registramos el historial de precios de cada producto. Si el precio "anterior" que muestra la oferta nunca se cobró de verdad (el precio venía más bajo en días anteriores), la descartamos. Las que quedan tienen la baja verificada, y marcamos con el sello de mínimo histórico las que están al precio más bajo que registramos.',
+      a: 'Registramos el historial de precios de cada producto. Si el precio "anterior" que muestra la oferta nunca se cobró de verdad (el precio venía más bajo en días anteriores), la descartamos. Las que quedan tienen la baja verificada, y marcamos con el sello de mínimo histórico las que están al precio más bajo que registramos. El criterio completo (umbral del 5%, qué páginas revisamos y limitaciones) está en la página de metodología.',
+      link: { href: '/metodologia', texto: 'Ver la metodología completa →' },
     },
     {
       q: '¿Cada cuánto se actualizan las ofertas?',
@@ -233,7 +237,7 @@ export default function HoyPage() {
             Pegá el link y te lo decimos con el historial de precios que registramos desde julio.
             Según nuestro estudio, {estudio.pctInfladas.toLocaleString('es-AR')}% de las ofertas tiene el precio tachado inflado.
           </p>
-          <div className="mt-7">
+          <div id="verificador" className="mt-7 scroll-mt-24">
             <Verificador />
           </div>
         </div>
@@ -353,6 +357,51 @@ export default function HoyPage() {
         )}
       </section>
 
+      {/* Descuentos inflados de hoy: después de la grilla (el verificador y los
+          contadores van primero). Sin link de afiliado: lleva a la página propia. */}
+      {infladas.casos.length > 0 && (
+        <section aria-labelledby="infladas-hoy" className="max-w-3xl mx-auto px-4 pb-10">
+          <div className="overflow-hidden rounded-2xl border border-red-500/30 bg-red-500/[0.04] p-5 sm:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 id="infladas-hoy" className="font-display text-xl sm:text-2xl font-black">Descuentos inflados de hoy</h2>
+                <p className="mt-1 text-sm text-zinc-400">
+                  Ofertas con precio tachado que ya registramos más baratas. Por eso no están en la grilla de arriba.
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="stamp hidden shrink-0 rotate-[-9deg] rounded-md border-[3px] border-red-500 px-2 py-0.5 font-display text-sm font-black tracking-widest text-red-400 sm:block"
+              >
+                INFLADO
+              </span>
+            </div>
+            <ul className="mt-4 divide-y divide-zinc-800 border-y border-zinc-800">
+              {infladas.casos.slice(0, 3).map(c => (
+                <li key={c.id}>
+                  <Link href={`/descuentos-inflados#${c.id}`} className="group flex items-center gap-3 py-3">
+                    <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-white">
+                      {c.img && <Image src={c.img} alt="" fill unoptimized className="object-contain p-1" />}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-semibold text-zinc-200 group-hover:text-red-300">{c.titulo}</span>
+                      <span className="block text-xs text-zinc-400 tabular-nums">
+                        Tachado {pesos(c.precio_tachado)} (-{c.descuento_anunciado}% anunciado) · el{' '}
+                        {diaMes(c.minimo_fecha, infladas.fecha)} lo registramos a{' '}
+                        <span className="font-semibold text-zinc-200">{pesos(c.minimo_registrado)}</span>
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link href="/descuentos-inflados" className="mt-4 inline-block text-sm font-bold text-red-400 hover:text-red-300">
+              Ver {infladas.casos.length > 3 ? `los ${infladas.casos.length} casos` : 'los casos'} de hoy y cómo los medimos →
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* CTA canal */}
       <section className="max-w-2xl mx-auto px-4 pb-4 text-center">
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-8">
@@ -408,6 +457,11 @@ export default function HoyPage() {
                 <span className="text-yellow-400 shrink-0 transition-transform group-open:rotate-45">+</span>
               </summary>
               <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{f.a}</p>
+              {f.link && (
+                <Link href={f.link.href} className="mt-2 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-300">
+                  {f.link.texto}
+                </Link>
+              )}
             </details>
           ))}
         </div>

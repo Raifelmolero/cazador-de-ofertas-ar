@@ -1,6 +1,7 @@
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
+import { getInfladas } from '@/lib/infladas'
 
 // Versión "completa" de llms.txt: el catálogo de ofertas del momento en texto
 // plano (Markdown) más las guías, pensado para que un asistente de IA pueda
@@ -16,6 +17,24 @@ export const dynamic = 'force-static'
 export async function GET() {
   const ofertas = getOfertas().slice(0, 40)
   const actualizado = getScrapedAt().toISOString()
+  const infladas = getInfladas()
+  const lineasInfladas = infladas.casos.map(
+    c =>
+      `- ${c.titulo}: precio tachado ${ars(c.precio_tachado)} (-${c.descuento_anunciado}% anunciado), hoy ${ars(c.precio_hoy)}; el ${c.minimo_fecha} lo registramos a ${ars(c.minimo_registrado)}`
+  )
+  const seccionInfladas = lineasInfladas.length
+    ? `## Descuentos inflados de hoy (${infladas.fecha ?? ''})
+
+Ofertas cuyo precio tachado anuncia un descuento, pero que ya registramos al
+menos 5% más baratas antes. Es un dato, no un juicio sobre el vendedor.
+Metodología: ${DEALS_URL}/metodologia
+
+${lineasInfladas.join('\n')}
+
+Detalle: ${DEALS_URL}/descuentos-inflados
+
+`
+    : ''
 
   const lineas = ofertas.map(o => {
     const partes = [`${ars(o.precio_actual)}`]
@@ -41,7 +60,7 @@ ${lineas.join('\n')}
 
 Listado completo con fotos, buscador y filtros: ${DEALS_URL}
 
-## Categorías
+${seccionInfladas}## Categorías
 
 ${CATEGORIAS.map(c => `- [${c.nombre}](${DEALS_URL}/categoria/${c.slug}): ${c.descripcion}`).join('\n')}
 

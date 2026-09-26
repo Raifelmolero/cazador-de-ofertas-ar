@@ -141,6 +141,149 @@ class TestAnnotatePriceHistory(unittest.TestCase):
         self.assertEqual(hist["MLA1"]["last_ts"], hoy)
         self.assertEqual(hist["MLA1"]["min"], 1000)  # el mínimo no se toca
 
+    def test_deja_en_la_oferta_el_minimo_previo_antes_de_pisarlo(self):
+        # Después de anotar, el historial ya tiene el precio de hoy: la
+        # evidencia de por qué quedó inflada tiene que viajar en la oferta.
+        d = self.deal(800)
+        hist = {"MLA1": {"min": 1000, "min_ts": "2026-08-01", "first_ts": "2026-07-20",
+                         "last": 1000, "last_ts": hace(1)}}
+        bot.annotate_price_history([d], hist)
+        self.assertEqual(hist["MLA1"]["min"], 800)  # el historial ya se actualizó
+        self.assertEqual(d["hist_min_prev"], 1000)
+        self.assertEqual(d["hist_min_prev_ts"], "2026-08-01")
+        self.assertEqual(d["hist_first_ts"], "2026-07-20")
+
+    def test_producto_nuevo_no_tiene_minimo_previo(self):
+        d = self.deal(1000)
+        bot.annotate_price_history([d], {})
+        self.assertNotIn("hist_min_prev", d)
+
+
+class TestInfladas(unittest.TestCase):
+    """Muestra de infladas para /descuentos-inflados: dato real, sin afiliado."""
+
+    AHORA = datetime(2026, 9, 26, 18, 30, tzinfo=timezone.utc)
+
+    @staticmethod
+    def deal(id_, precio, prev=None):
+        return {
+            "id": id_, "title": f"Producto {id_}",
+            "url": f"https://www.mercadolibre.com.ar/producto/p/{id_}",
+            "img": f"https://http2.mlstatic.com/D_{id_}.webp",
+            "price_cur": precio, "price_prev": prev or precio * 2, "discount": 50,
+        }
+
+    def anotado(self, id_, precio, minimo, prev=None, min_ts="2026-09-01", first_ts="2026-07-20"):
+        """Oferta pasada por annotate_price_history con un historial previo."""
+        d = self.deal(id_, precio, prev)
+        hist = {id_: {"min": minimo, "min_ts": min_ts, "first_ts": first_ts,
+                      "last": minimo, "last_ts": "2026-09-25"}}
+        bot.annotate_price_history([d], hist)
+        return d
+
+    def test_arma_el_caso_con_el_minimo_previo_y_sus_fechas(self):
+        d = self.anotado("MLA1", 100000, 80000, prev=150000, min_ts="2026-09-02", first_ts="2026-07-19")
+        data = bot.build_infladas([d], now=self.AHORA)
+        self.assertEqual(data["fecha"], "2026-09-26")
+        self.assertEqual(data["actualizado"], "2026-09-26T18:30:00+00:00")
+        self.assertEqual(data["infladas_detectadas"], 1)
+        self.assertEqual(data["items"], [{
+            "id": "MLA1",
+            "titulo": "Producto MLA1",
+            "url": "https://www.mercadolibre.com.ar/producto/p/MLA1",
+            "img": "https://http2.mlstatic.com/D_MLA1.webp",
+            "precio_hoy": 100000,
+            "precio_tachado": 150000,
+            "descuento_anunciado": 50,
+            "minimo_registrado": 80000,
+            "minimo_fecha": "2026-09-02",
+            "visto_desde": "2026-07-19",
+            "diferencia_pct": 20,
+        }])
+
+    def test_solo_entran_las_infladas(self):
+        inflada = self.anotado("MLA1", 100000, 80000)
+        real = self.anotado("MLA2", 100000, 99000)   # <5% de diferencia
+        nueva = self.deal("MLA3", 100000)
+        bot.annotate_price_history([nueva], {})
+        data = bot.build_infladas([inflada, real, nueva], now=self.AHORA)
+        self.assertEqual([c["id"] for c in data["items"]], ["MLA1"])
+        self.assertEqual(data["infladas_detectadas"], 1)
+
+    def test_ordena_por_diferencia_relativa_y_recorta(self):
+        deals = [self.anotado(f"MLA{i}", 100000, 100000 - i * 2000) for i in range(3, 20)]
+        data = bot.build_infladas(deals, limit=12, now=self.AHORA)
+        self.assertEqual(len(data["items"]), 12)
+        self.assertEqual(data["items"][0]["id"], "MLA19")  # estuvo 38% más barato
+        difs = [c["diferencia_pct"] for c in data["items"]]
+        self.assertEqual(difs, sorted(difs, reverse=True))
+        self.assertEqual(data["infladas_detectadas"], 17)
+
+    def test_la_diferencia_es_relativa_no_absoluta(self):
+        # $1.000.000 → visto a $900.000 (10%) pierde contra $50.000 → $35.000 (30%)
+        caro = self.anotado("MLA1", 1000000, 900000)
+        barato = self.anotado("MLA2", 50000, 35000)
+        data = bot.build_infladas([caro, barato], now=self.AHORA)
+        self.assertEqual([c["id"] for c in data["items"]], ["MLA2", "MLA1"])
+
+    def test_la_url_va_sin_parametros_de_afiliado(self):
+        d = self.anotado("MLA1", 100000, 80000)
+        d["url"] = "https://www.mercadolibre.com.ar/x/p/MLA1?matt_word=web&matt_tool=37267219#foto"
+        caso = bot.build_infladas([d], now=self.AHORA)["items"][0]
+        self.assertEqual(caso["url"], "https://www.mercadolibre.com.ar/x/p/MLA1")
+        self.assertNotIn("matt_", json.dumps(caso))
+
+    def test_descarta_minimos_de_menos_de_la_mitad_del_precio(self):
+        # Mismo código con un precio 10 veces menor: otra variante o un error
+        # de lectura, no se publica como caso (pero cuenta como detectada).
+        raro = self.anotado("MLA1", 380000, 26841)
+        normal = self.anotado("MLA2", 100000, 80000)
+        data = bot.build_infladas([raro, normal], now=self.AHORA)
+        self.assertEqual([c["id"] for c in data["items"]], ["MLA2"])
+        self.assertEqual(data["infladas_detectadas"], 2)
+
+    def test_sin_infladas_escribe_lista_vacia_valida(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "data" / "infladas.json"
+            with mock.patch("builtins.print"):
+                bot.write_infladas([], p, now=self.AHORA)
+            data = json.loads(p.read_text(encoding="utf-8"))
+        self.assertEqual(data, {"actualizado": "2026-09-26T18:30:00+00:00", "fecha": "2026-09-26",
+                                "infladas_detectadas": 0, "items": []})
+
+    def test_write_infladas_escribe_el_archivo(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "infladas.json"
+            with mock.patch("builtins.print"):
+                bot.write_infladas([self.anotado("MLA1", 100000, 80000)], p, now=self.AHORA)
+            data = json.loads(p.read_text(encoding="utf-8"))
+        self.assertEqual(data["items"][0]["minimo_registrado"], 80000)
+
+    def test_el_archivo_commiteado_es_valido(self):
+        # El workflow hace `git add frontend/data/infladas.json`: si no
+        # existe, el paso de commit falla. Y el build de Next lo lee.
+        data = json.loads(bot.INFLADAS_PATH.read_text(encoding="utf-8"))
+        self.assertIsInstance(data["items"], list)
+        self.assertIn("fecha", data)
+
+    def test_una_falla_al_escribir_no_frena_la_corrida(self):
+        from contextlib import ExitStack
+        with ExitStack() as st:
+            escribir = st.enter_context(
+                mock.patch.object(bot, "write_infladas", side_effect=OSError("disco lleno")))
+            for nombre in ("write_site_data", "update_seguimiento", "save_price_history",
+                           "log_scan", "save_state", "alert_admin"):
+                st.enter_context(mock.patch.object(bot, nombre))
+            st.enter_context(mock.patch.object(bot, "fetch_deals", return_value=[self.deal("MLA1", 100000)]))
+            st.enter_context(mock.patch.object(bot, "load_price_history", return_value={}))
+            st.enter_context(mock.patch.object(bot, "load_state", return_value={"posted_ids": []}))
+            st.enter_context(mock.patch.object(bot, "post_deal", return_value=False))
+            st.enter_context(mock.patch.object(bot, "run_slot", return_value="other"))
+            st.enter_context(mock.patch.dict("os.environ", {"DRY_RUN": "1", "SKIP_SITE_DATA": "0"}))
+            st.enter_context(mock.patch("builtins.print"))
+            self.assertEqual(bot.main(), 0)
+            escribir.assert_called_once()
+
 
 class TestWriteSiteData(unittest.TestCase):
     """Márgenes del sitio y qué productos llegan a la web."""

@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: '¿Cómo se hizo el estudio?',
-    a: 'Un programa recorre las 20 páginas de mercadolibre.com.ar/ofertas tres veces por día y guarda el precio de cada producto. Cada oferta se compara contra el precio más bajo que registramos antes de ese producto. Los datos se actualizan solos con cada pasada.',
+    a: 'Un programa recorre mercadolibre.com.ar/ofertas (páginas generales, ofertas relámpago y algunas categorías) tres veces por día y guarda el precio de cada producto. Cada oferta se compara contra el precio más bajo que registramos antes de ese producto. Los datos se actualizan solos con cada pasada. La metodología completa está en cazadordeofertas.com.ar/metodologia.',
   },
   {
     q: '¿Cómo sé si una oferta puntual es real?',
@@ -123,8 +123,8 @@ export default function EstudioPage() {
         <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Metodología</h2>
         <div className="space-y-3 text-zinc-400 leading-relaxed mb-8">
           <p>
-            Tres veces por día recorremos las 20 páginas de mercadolibre.com.ar/ofertas y guardamos el precio de cada
-            producto. Cada oferta se compara contra el precio más bajo que habíamos registrado antes de ese mismo producto.
+            Tres veces por día recorremos mercadolibre.com.ar/ofertas (las páginas generales, las de ofertas relámpago y
+            las de algunas categorías) y guardamos el precio de cada producto. Cada oferta se compara contra el precio más bajo que habíamos registrado antes de ese mismo producto.
             Si ya lo habíamos visto al menos 5% más barato, la contamos como inflada: el &quot;antes&quot; que muestra la
             publicación no es un ahorro real.
           </p>
@@ -132,6 +132,17 @@ export default function EstudioPage() {
             Límites: contamos apariciones de ofertas, así que un mismo producto que sigue en oferta varios días se cuenta
             en cada pasada. Un producto nuevo para nosotros no tiene historia y nunca se cuenta como inflado, por eso el
             número real probablemente es más alto. Los datos se recalculan solos con cada pasada.
+          </p>
+          <p>
+            <Link href="/metodologia" className="font-bold text-yellow-400 hover:text-yellow-300">
+              Metodología completa: qué páginas revisamos, el umbral del 5%, limitaciones y por qué otros sitios dan
+              porcentajes distintos →
+            </Link>
+          </p>
+          <p>
+            <Link href="/descuentos-inflados" className="font-bold text-yellow-400 hover:text-yellow-300">
+              Ver los descuentos inflados de hoy, caso por caso →
+            </Link>
           </p>
         </div>
 

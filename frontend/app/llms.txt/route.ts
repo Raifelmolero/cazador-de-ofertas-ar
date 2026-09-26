@@ -39,7 +39,8 @@ de MercadoLibre Argentina, ofertas del día en Argentina.
   guías, en Markdown (ideal para citar datos concretos).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
-  [hogar](https://cazadordeofertas.com.ar/hogar).
+  [hogar](https://cazadordeofertas.com.ar/hogar),
+  [tecno](https://cazadordeofertas.com.ar/tecno).
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),

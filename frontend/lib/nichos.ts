@@ -55,6 +55,23 @@ export const NICHOS: Nicho[] = [
       'cocina a gas', 'horno electrico', 'termotanque', 'freezer', 'purificador de aire',
     ],
   },
+  {
+    slug: 'tecno',
+    marca: 'Cazador de Tecno',
+    emoji: '📺',
+    titulo: 'Ofertas de tecnología: smart TV y monitores',
+    descripcion:
+      'Smart TV y monitores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Comparativas y guías para elegir pulgadas, panel y frecuencia.',
+    intro:
+      'Pantallas en un solo lugar: los smart TV y monitores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día), con comparativas para elegir tamaño, resolución y panel.',
+    etiqueta: 'tecno',
+    categorias: ['smart-tv', 'monitores'],
+    busquedas: [
+      'smart tv 50 pulgadas', 'smart tv 55 4k', 'smart tv 65', 'google tv', 'monitor 24 pulgadas',
+      'monitor 27 pulgadas', 'monitor gamer 144hz', 'monitor curvo', 'soporte tv pared',
+      'barra de sonido', 'chromecast', 'proyector',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

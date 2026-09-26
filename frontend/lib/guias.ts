@@ -364,6 +364,125 @@ export const GUIAS: Guia[] = [
       boton: 'Ver regalos por presupuesto 🎁',
     },
   },
+  {
+    slug: 'que-soldadora-comprar',
+    titulo: 'Qué soldadora comprar: inverter o transformador, y qué amperaje',
+    descripcion:
+      'Cómo elegir soldadora en Argentina: diferencia entre soldadora inverter y de transformador, qué amperaje alcanza para uso hogareño y qué mirar antes de comprar.',
+    pregunta: '¿Qué soldadora me conviene comprar, inverter o transformador?',
+    respuestaCorta:
+      'Para uso hogareño y changas, una soldadora inverter de 120 a 160 A alcanza para la mayoría de los trabajos con electrodo (chapa, caños, estructuras livianas), pesa mucho menos que una de transformador y tiene mejor control del arco. La de transformador es más barata y resistente, pero pesa el triple y consume más luz por el mismo trabajo.',
+    secciones: [
+      {
+        h: 'Inverter vs. transformador',
+        p: [
+          'Soldadora inverter: usa electrónica de potencia para convertir la corriente, así que pesa 3 a 5 kg en vez de 20 o 30. Da un arco más estable, más fácil de manejar para quien recién empieza, y varias permiten usar electrodo y también TIG o MIG según el modelo. Consume menos energía para la misma corriente de soldado.',
+          'Soldadora de transformador: la tecnología clásica, pesada y sin electrónica que se pueda romper fácil. Es más barata a igual amperaje y muy resistente al maltrato de obra, pero el arco es menos parejo y consume bastante más luz.',
+        ],
+      },
+      {
+        h: 'Qué amperaje elegir',
+        p: [
+          'La regla práctica más usada es calcular 30 a 40 A por cada milímetro de diámetro del electrodo (varía según posición y tipo de recubrimiento): un electrodo de 2,5 mm ronda 75-100 A, uno de 3,25 mm ronda 100-130 A (el más usado para changas y uso general) y uno de 4 mm ronda 120-160 A.',
+          'Con eso, una soldadora de 120-140 A cubre electrodos de 2,5 y 3,25 mm para chapa y estructuras livianas a medias. Para trabajar cómodo con electrodo de 4 mm en piezas más gruesas conviene una de 160-200 A.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Ciclo de trabajo (duty cycle): el porcentaje de tiempo que puede soldar seguido antes de tener que enfriarse, a una corriente dada. Para uso hogareño no hace falta uno alto, pero conviene que el dato esté publicado (desconfiá de las que no lo informan).',
+          'Voltaje de entrada: la mayoría de las inverter domésticas van a 220V monofásico; confirmá que coincide con tu instalación.',
+          'Accesorios incluidos: pinza porta electrodo, pinza de masa y máscara no siempre vienen en la caja — fijate en la publicación.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Soldadoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
+  },
+  {
+    slug: 'que-hidrolavadora-comprar',
+    titulo: 'Qué hidrolavadora comprar: presión, caudal y para qué alcanza cada una',
+    descripcion:
+      'Cómo elegir hidrolavadora en Argentina: qué significa la presión en bar, el caudal en litros por hora, y qué potencia conviene para lavar auto, patio o pisos.',
+    pregunta: '¿Qué hidrolavadora me conviene comprar para casa?',
+    respuestaCorta:
+      'Para lavar auto, moto, patio o el frente de la casa alcanza una hidrolavadora doméstica de 110 a 140 bar de presión, con un caudal de 350 a 450 litros por hora. Solo hace falta más presión (150-200 bar y 450-600 l/h) si vas a sacar pintura, moho incrustado o suciedad muy pegada en superficies grandes con uso más seguido.',
+    secciones: [
+      {
+        h: 'Presión (bar) y caudal (L/h): qué significa cada uno',
+        p: [
+          'La presión (medida en bar o PSI) es la fuerza del chorro: más presión saca suciedad más pegada. El caudal (litros por hora) es cuánta agua mueve la máquina: más caudal enjuaga más rápido una superficie grande, aunque la presión sea la misma.',
+          'Para tareas domésticas conviene mirar los dos datos, no solo la presión: una máquina con mucha presión pero poco caudal tarda más en cubrir un patio entero.',
+        ],
+      },
+      {
+        h: 'Cuánta presión hace falta según la tarea',
+        p: [
+          'Auto, moto, bici, muebles de jardín: modelos de entrada de 100-110 bar y unos 350 l/h de caudal sobran (es el rango de las hidrolavadoras domésticas más chicas del mercado).',
+          'Patio, vereda, rejas, frente de la casa: 110-140 bar con 350-450 l/h, el rango más común en las hidrolavadoras domésticas de uso general.',
+          'Sacar pintura vieja, moho muy incrustado o uso más seguido (changas): 150-200 bar con 450-600 l/h, con motor más robusto.',
+        ],
+      },
+      {
+        h: 'Motor: inducción vs. universal',
+        p: [
+          'Motor de inducción: más silencioso, dura más y soporta mejor el uso seguido, pero las máquinas son más caras y algo más pesadas.',
+          'Motor universal (a escobillas): más económico y liviano, ideal para uso ocasional de fin de semana; las escobillas se gastan con el uso frecuente.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Accesorios incluidos: lanza turbo (más rápida que la chorro/abanico común), cepillo para autos y kit para sacar espuma dan más uso a la misma máquina.',
+          'Manguera de succión de agua: revisá si trae la conexión para tanque o solo para canilla de red.',
+          'Peso y ruedas: si la vas a mover seguido por el patio, pesa más de lo que parece en la foto.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Hidrolavadoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
+  },
+  {
+    slug: 'herramientas-electricas-cyber-monday-black-friday',
+    titulo: 'Cyber Monday y Black Friday: cuándo conviene comprar herramientas eléctricas',
+    descripcion:
+      'Cuándo conviene comprar taladros, amoladoras, soldadoras e hidrolavadoras en el Cyber Monday argentino (CACE, 2 al 4 de noviembre de 2026) y en el Black Friday, y cómo evitar los descuentos inflados.',
+    pregunta: '¿Conviene esperar al Cyber Monday o al Black Friday para comprar herramientas eléctricas?',
+    respuestaCorta:
+      'En Argentina el evento fuerte para herramientas es el Cyber Monday organizado por la CACE (2 al 4 de noviembre de 2026), no el Black Friday: reúne a muchas más marcas y ferreterías locales participando con stock propio. El Black Friday (fin de noviembre) suma descuentos puntuales de algunos vendedores, pero con menos participación. En ambos casos, conviene comparar el precio contra el historial de cada producto, no confiar solo en el cartel de "% OFF".',
+    secciones: [
+      {
+        h: 'Cyber Monday: el evento que importa para herramientas',
+        p: [
+          'El Cyber Monday argentino lo organiza la Cámara Argentina de Comercio Electrónico (CACE) y en 2026 va del lunes 2 al miércoles 4 de noviembre. A diferencia del Black Friday (que en Argentina lo replica cada tienda por su cuenta, sin fecha ni organizador único), el Cyber Monday tiene un sitio oficial y convoca a cientos de marcas y comercios, incluidas ferreterías y marcas de herramientas.',
+          'Es además la época en la que muchos arrancan changas de fin de año (pintura, arreglos, jardín) antes del verano, así que la demanda ayuda a que las marcas saquen stock con descuentos genuinos.',
+        ],
+      },
+      {
+        h: 'Y el Black Friday, ¿qué lugar tiene?',
+        p: [
+          'El Black Friday llega a Argentina unas semanas después del Cyber Monday (fin de noviembre) y cada tienda lo arma por su cuenta, sin un organizador central como la CACE. En herramientas suele traer descuentos puntuales de algunas marcas o vendedores, pero con menos participación que el Cyber Monday.',
+          'Si ya compraste en el Cyber Monday y el precio estaba en su mínimo histórico, no hace falta esperar también al Black Friday: es difícil que baje más en pocas semanas.',
+        ],
+      },
+      {
+        h: 'Qué mirar para no caer en un descuento inflado',
+        p: [
+          'El mismo mecanismo de otras fechas especiales: algunos vendedores suben el precio "de lista" los días previos para que el descuento se vea más grande. Comparar contra el historial de precios de cada producto (no contra el % que muestra la publicación) es la única forma confiable de saber si hay una baja real.',
+          'Si una herramienta que necesitás ya está en su mínimo histórico antes del evento, no hay motivo para esperar: puede no bajar más, o incluso subir por la demanda.',
+        ],
+      },
+      {
+        h: 'Cuándo esperar y cuándo comprar ya',
+        p: [
+          'Esperá al Cyber Monday (2 al 4 de noviembre de 2026) si buscás algo de ticket alto (amoladora grande, soldadora, hidrolavadora) y podés programar la compra: el evento suele sumar cuotas sin interés además del precio.',
+          'Comprá antes si el precio actual ya es el mínimo histórico o si la herramienta se agota rápido en tu zona: las mejores unidades de stock limitado a veces se agotan antes del evento.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Herramientas eléctricas en oferta hoy', boton: 'Ver herramientas en oferta' },
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

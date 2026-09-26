@@ -215,6 +215,12 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
 # ---------------------------------------------------------------------------
 
 DUR_HOOK_V2, DUR_MAIN_V2, DUR_CLOSE_V2 = 1.0, 4.5, 1.5
+FADE_V2 = 0.28  # fundidos un poco más largos que v1 para que se sientan suaves
+
+# safe area de reels/stories de IG: la UI tapa ~14% arriba y ~20% abajo.
+# Todo texto/badge/sello relevante va entre SAFE_TOP y SAFE_BOTTOM.
+SAFE_TOP = int(H * 0.14)
+SAFE_BOTTOM = int(H * 0.80)
 
 
 def _hero_crop(image_bytes: bytes, size: int) -> Image.Image:
@@ -235,33 +241,34 @@ def _scene_hook_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     img = Image.blend(overlay, img, 0.85)
     d = ImageDraw.Draw(img)
 
-    # texto gancho: mínimo histórico si aplica, si no el % OFF gigante
+    # único elemento de esta escena: el %OFF gigante (o mínimo histórico),
+    # centrado dentro del área segura — un solo mensaje, sin badge chico acá
     k = _ease_out(min(t / 0.35, 1.0))
     scale = 1.35 - 0.35 * k
+    cy = (SAFE_TOP + SAFE_BOTTOM) // 2
     if deal.get("low"):
-        d.text((W // 2, H // 2 - 260), "MÍNIMO", font=_font(int(120 * scale)), fill=WHITE, anchor="mm")
-        d.text((W // 2, H // 2 - 120), "HISTÓRICO", font=_font(int(120 * scale)), fill=AMBER, anchor="mm")
-    if deal.get("discount") is not None:
-        txt = f"-{deal['discount']}%"
-        d.text((W // 2, H // 2 + (60 if deal.get('low') else 0)), txt,
-               font=_font(int(230 * scale)), fill=AMBER, anchor="mm")
-        d.text((W // 2, H // 2 + (280 if deal.get('low') else 220)), "OFF",
-               font=_font(int(90 * scale)), fill=WHITE, anchor="mm")
-    d.text((W // 2, 120), "CAZADOR DE OFERTAS AR", font=_font(38), fill=GRAY, anchor="mm")
+        d.text((W // 2, cy - 260), "MÍNIMO", font=_font(int(110 * scale)), fill=WHITE, anchor="mm")
+        d.text((W // 2, cy - 130), "HISTÓRICO", font=_font(int(110 * scale)), fill=AMBER, anchor="mm")
+        d.text((W // 2, cy + 90), f"-{deal['discount']}% OFF" if deal.get("discount") is not None else "",
+               font=_font(90), fill=WHITE, anchor="mm")
+    elif deal.get("discount") is not None:
+        d.text((W // 2, cy - 40), f"-{deal['discount']}%",
+               font=_font(int(220 * scale)), fill=AMBER, anchor="mm")
+        d.text((W // 2, cy + 200), "OFF", font=_font(int(80 * scale)), fill=WHITE, anchor="mm")
     return img
 
 
 def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     img = Image.new("RGB", (W, H), BG)
-    # producto a pantalla completa arriba (protagonista, sin marco blanco)
-    ph = 1180
+    # producto a pantalla completa arriba (protagonista, sin marco blanco);
+    # puede pisar el 14% superior porque ahí solo hay imagen, sin texto
+    ph = 1000
     zoom = 1.0 + 0.06 * (t / DUR_MAIN_V2)
     crop = int(hero.width / zoom)
     off = (hero.width - crop) // 2
     frame = hero.crop((off, off, off + crop, off + crop)).resize((W, ph), Image.BILINEAR)
     img.paste(frame, (0, 0))
 
-    d = ImageDraw.Draw(img)
     # velo inferior para que el precio se lea siempre, sobre cualquier foto
     grad = Image.new("L", (1, ph), 0)
     for y in range(ph):
@@ -271,47 +278,50 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     img.paste(Image.composite(dark, img.crop((0, 0, W, ph)), grad), (0, 0))
     d = ImageDraw.Draw(img)
 
-    if deal.get("discount") is not None:
-        _badge(d, W - 190, 130, f"-{deal['discount']}%", 1.05)
-    _stamp_cazado(img, (170, 210), 1.15)
-
     title_f = _font(46)
-    y = ph + 60
-    for line in _wrap(d, deal["title"], title_f, 980, max_lines=2):
+    y = ph + 70
+    for line in _wrap(d, deal["title"], title_f, 940, max_lines=2):
         d.text((W // 2, y), line, font=title_f, fill=WHITE, anchor="mm")
-        y += 60
+        y += 58
 
-    # precio: entra con pop apenas arranca la escena (más rápido que v1)
+    # precio: entra con pop apenas arranca la escena (más rápido que v1).
+    # único badge %OFF de esta escena, pegado al precio (nunca dos a la vez)
     k = _ease_out(min(t / 0.4, 1.0))
-    prev_f = _font(46, bold=False)
+    prev_f = _font(42, bold=False)
     prev_txt = f"Antes {_fmt(deal['price_prev'])}"
     pw = d.textlength(prev_txt, font=prev_f)
-    py = y + 30
+    py = y + 28
     d.text((W // 2, py), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
     d.line([(W - pw) // 2 - 8, py, (W + pw) // 2 + 8, py], fill=GRAY, width=5)
 
-    price_scale = 1.15 - 0.15 * k
-    price_f = _font(int(150 * price_scale))
-    d.text((W // 2, py + 130), _fmt(deal["price_cur"]), font=price_f, fill=AMBER, anchor="mm")
+    price_scale = 1.12 - 0.12 * k
+    price_f = _font(int(132 * price_scale))
+    price_txt = _fmt(deal["price_cur"])
+    price_y = py + 110
+    d.text((W // 2, price_y), price_txt, font=price_f, fill=AMBER, anchor="mm")
+    if deal.get("discount") is not None:
+        pw2 = d.textlength(price_txt, font=price_f)
+        _badge(d, W // 2 + pw2 / 2 + 90, price_y - 10, f"-{deal['discount']}%", 0.55)
 
     ahorro = deal["price_prev"] - deal["price_cur"]
-    d.text((W // 2, py + 250), f"Te ahorrás {_fmt(ahorro)}", font=_font(42), fill=WHITE, anchor="mm")
+    d.text((W // 2, price_y + 100), f"Te ahorrás {_fmt(ahorro)}", font=_font(38), fill=WHITE, anchor="mm")
     return img
 
 
 def _scene_close_v2(deal: dict, t: float) -> Image.Image:
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
-    _stamp_cazado(img, (W // 2, 560), 1.9)
 
-    d.rectangle([0, 900, W, 1160], fill=AMBER)
-    banner_f = _font(58)
-    line1 = "LINK EN BIO"
-    d.text((W // 2, 985), line1, font=banner_f, fill=BLACK, anchor="mm")
-    d.text((W // 2, 1065), "cazadordeofertas.com.ar", font=_font(42), fill=BLACK, anchor="mm")
+    # único sello CAZADO de todo el video, en el cierre
+    _stamp_cazado(img, (W // 2, SAFE_TOP + 220), 1.7)
 
-    d.text((W // 2, 1300), "@elcazadordeofertas.ar", font=_font(38, bold=False), fill=GRAY, anchor="mm")
-    d.text((W // 2, 1370), "seguime para la próxima caza", font=_font(36), fill=WHITE, anchor="mm")
+    banner_top, banner_bot = 900, 1140
+    d.rectangle([0, banner_top, W, banner_bot], fill=AMBER)
+    d.text((W // 2, banner_top + 85), "LINK EN BIO", font=_font(56), fill=BLACK, anchor="mm")
+    d.text((W // 2, banner_top + 165), "cazadordeofertas.com.ar", font=_font(40), fill=BLACK, anchor="mm")
+
+    d.text((W // 2, banner_bot + 100), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
+    d.text((W // 2, banner_bot + 165), "seguime para la próxima caza", font=_font(34), fill=WHITE, anchor="mm")
     return img
 
 
@@ -360,8 +370,8 @@ def render_reel_v2(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path
 
         alpha = 1.0
         for b in bounds:
-            if abs(ts - b) < FADE:
-                alpha = min(alpha, abs(ts - b) / FADE)
+            if abs(ts - b) < FADE_V2:
+                alpha = min(alpha, abs(ts - b) / FADE_V2)
         if alpha < 1.0:
             frame = Image.blend(black, frame, alpha)
 

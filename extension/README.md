@@ -20,7 +20,9 @@ No pide permisos de cookies, pestañas ni historial: solo lee
 
 ## Publicarla (lo hace Raifel)
 Chrome Web Store pide una cuenta de desarrollador (pago único USD 5) a nombre
-del dueño. Subir el zip de esta carpeta, categoría *Shopping*, y en la ficha
-declarar el uso de links de afiliado solo a pedido del usuario. Pendiente:
-crear la etiqueta `extension` en el panel de afiliados para medirla aparte
-(hoy usa `web`).
+del dueño. El zip se arma con `python extension/empaquetar.py` y todos los
+textos de la ficha (descripción, propósito único, justificación de permisos,
+privacidad) están listos para copiar en `FICHA-CHROME-WEB-STORE.md`. La
+política de privacidad es https://cazadordeofertas.com.ar/privacidad#extension.
+Pendiente: crear la etiqueta `extension` en el panel de afiliados para medirla
+aparte (hoy usa `web`).

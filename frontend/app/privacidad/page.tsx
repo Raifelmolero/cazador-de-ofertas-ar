@@ -22,7 +22,7 @@ export default function PrivacidadPage() {
 
       <article className="max-w-3xl mx-auto px-4 py-10 space-y-6 text-zinc-400 leading-relaxed">
         <h1 className="font-display text-3xl sm:text-4xl font-black text-white">Política de privacidad</h1>
-        <p className="text-xs text-zinc-500">Última actualización: 21 de septiembre de 2026</p>
+        <p className="text-xs text-zinc-500">Última actualización: 26 de septiembre de 2026</p>
 
         <section>
           <h2 className="font-display text-xl font-black text-white mb-2">Quiénes somos</h2>
@@ -90,6 +90,25 @@ export default function PrivacidadPage() {
             </a>
             . No almacenamos datos de usuarios de YouTube: si en algún momento se guardara alguno, se
             eliminaría al revocar el acceso o al pedirlo por escrito a elcazadordeofertas.ar@gmail.com.
+          </p>
+        </section>
+
+        <section id="extension">
+          <h2 className="font-display text-xl font-black text-white mb-2">Extensión de navegador</h2>
+          <p>
+            La extensión &quot;Cazador de Ofertas&quot; funciona solo en las páginas de mercadolibre.com.ar. Para
+            mostrar el veredicto lee, dentro de tu navegador, la dirección del producto que estás mirando y el
+            precio publicado, y los compara con nuestro historial de precios, que descarga de{' '}
+            {DEALS_URL.replace('https://', '')}/historial.json (un archivo público, igual para todos).
+          </p>
+          <p className="mt-3">
+            No recopila ni envía datos personales, no guarda tu historial de navegación, no lee cookies ni
+            formularios y no usa herramientas de medición. No le manda a nuestro servidor qué productos mirás.
+          </p>
+          <p className="mt-3">
+            Nunca agrega ni cambia links de afiliado por su cuenta. Solo si tocás el botón &quot;Comprar con
+            Cazador&quot;, abre ese mismo producto con nuestro identificador de afiliado de Mercado Libre; si
+            comprás, podemos recibir una comisión, sin costo extra para vos.
           </p>
         </section>
 

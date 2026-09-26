@@ -12,6 +12,7 @@ import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS } from '@/lib/comparativas'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
+const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
 // next.config.mjs), así que el canonical consolida todo ahí.
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -303,9 +304,21 @@ export default function HoyPage() {
             ¿Querés las ofertas apenas salen? 🔥
           </h2>
           <p className="text-sm text-zinc-400 mb-5">
-            En el canal de Telegram publicamos las mejores 3 veces por día,
-            con alerta de mínimos históricos.
+            Publicamos las mejores 3 veces por día, con alerta de mínimos
+            históricos.
           </p>
+          {/* WhatsApp primero: en Argentina casi todos lo tienen; Telegram no.
+              Aparece solo cuando el link del canal está cargado en Vercel. */}
+          {WHATSAPP_URL && (
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm font-bold bg-green-500 hover:bg-green-400 text-black rounded-xl px-8 py-3 mb-3 sm:mb-0 sm:mr-3 transition-colors"
+            >
+              Seguir en WhatsApp 💬
+            </a>
+          )}
           <a
             href={TELEGRAM_URL}
             target="_blank"

@@ -5,6 +5,11 @@
 // (Pinterest ignora los guid repetidos) y no se spamea el mismo pin a diario.
 import { actualizadoSeguimiento, getSeguidos, precioActual, vigente } from '@/lib/seguimiento'
 
+// Pinterest solo acepta JPG/PNG: el bot guarda la miniatura WebP de ML
+// (D_Q_NP_2X_…-AB.webp); la misma foto grande en JPG es D_NQ_NP_2X_…-F.jpg.
+const jpg = (url: string) =>
+  url.replace(/\/D_Q_NP_(?:2X_)?(.+)-[A-Z]{1,2}\.webp$/, '/D_NQ_NP_2X_$1-F.jpg')
+
 export const dynamic = 'force-static'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -39,8 +44,8 @@ export async function GET() {
       <guid isPermaLink="false">${xml(s.slug)}</guid>
       <description>${xml(desc)}</description>
       <pubDate>${fecha}</pubDate>
-      <enclosure url="${xml(s.img!)}" type="image/jpeg" length="0" />
-      <media:content url="${xml(s.img!)}" medium="image" />
+      <enclosure url="${xml(jpg(s.img!))}" type="image/jpeg" length="0" />
+      <media:content url="${xml(jpg(s.img!))}" medium="image" />
     </item>`
     })
 

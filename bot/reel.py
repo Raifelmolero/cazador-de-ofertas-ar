@@ -15,6 +15,7 @@ con licencia. Si no existe, sale con pista silenciosa AAC.
 
 import io
 import os
+import re
 import subprocess
 from pathlib import Path
 
@@ -206,6 +207,242 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     proc.wait()
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg salió con código {proc.returncode}")
+    return out_path
+
+
+# ---------------------------------------------------------------------------
+# v2: hook más agresivo (para en el 1er segundo), ritmo rápido (7 s totales),
+# producto protagonista y precio gigante. Variante nueva, no toca render_reel.
+# ---------------------------------------------------------------------------
+
+DUR_HOOK_V2, DUR_MAIN_V2, DUR_CLOSE_V2 = 1.0, 4.5, 1.5
+FADE_V2 = 0.28  # fundidos un poco más largos que v1 para que se sientan suaves
+
+# safe area de reels/stories de IG: la UI tapa ~14% arriba y ~20% abajo.
+# Todo texto/badge/sello relevante va entre SAFE_TOP y SAFE_BOTTOM.
+SAFE_TOP = int(H * 0.14)
+SAFE_BOTTOM = int(H * 0.80)
+
+
+def _hero_crop(image_bytes: bytes, size: int) -> Image.Image:
+    """Foto recortada a cuadrado y llena el frame (sin marco blanco): el
+    producto ocupa el máximo espacio posible, como en @directoalcarrito.ok."""
+    prod = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    prod = ImageOps.fit(prod, (size, size), Image.LANCZOS)
+    return prod
+
+
+def _scene_hook_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
+    img = Image.new("RGB", (W, H), BLACK)
+    # producto de fondo, oscurecido, para que el ojo ya reconozca qué es
+    bg = hero.resize((W, W), Image.LANCZOS)
+    bg = Image.eval(bg, lambda p: int(p * 0.35))
+    img.paste(bg, (0, (H - W) // 2))
+    overlay = Image.new("RGB", (W, H), BLACK)
+    img = Image.blend(overlay, img, 0.85)
+    d = ImageDraw.Draw(img)
+
+    # único elemento de esta escena: el %OFF gigante (o mínimo histórico),
+    # centrado dentro del área segura — un solo mensaje, sin badge chico acá
+    k = _ease_out(min(t / 0.35, 1.0))
+    scale = 1.35 - 0.35 * k
+    cy = (SAFE_TOP + SAFE_BOTTOM) // 2
+    if deal.get("low"):
+        d.text((W // 2, cy - 260), "MÍNIMO", font=_font(int(110 * scale)), fill=WHITE, anchor="mm")
+        d.text((W // 2, cy - 130), "HISTÓRICO", font=_font(int(110 * scale)), fill=AMBER, anchor="mm")
+        d.text((W // 2, cy + 90), f"-{deal['discount']}% OFF" if deal.get("discount") is not None else "",
+               font=_font(90), fill=WHITE, anchor="mm")
+    elif deal.get("discount") is not None:
+        d.text((W // 2, cy - 40), f"-{deal['discount']}%",
+               font=_font(int(220 * scale)), fill=AMBER, anchor="mm")
+        d.text((W // 2, cy + 200), "OFF", font=_font(int(80 * scale)), fill=WHITE, anchor="mm")
+    return img
+
+
+_TITLE_FILLER = {
+    "blanco", "blanca", "negro", "negra", "gris", "plateado", "plateada",
+    "plata", "azul", "rojo", "roja", "verde", "wifi", "wi-fi",
+}
+
+
+def _wrap_no_ellipsis(draw: ImageDraw.ImageDraw, text: str, font, max_w: int, max_lines: int = 2):
+    """Como `_wrap` pero corta en la última palabra completa, sin agregar
+    puntos suspensivos (nada de "-…")."""
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        cand = (cur + " " + w).strip()
+        if draw.textlength(cand, font=font) <= max_w:
+            cur = cand
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+            if len(lines) == max_lines:
+                return lines
+    if cur:
+        lines.append(cur)
+    return lines[:max_lines]
+
+
+def _shorten_title_v2(draw: ImageDraw.ImageDraw, title: str, font, max_w: int, max_lines: int = 2):
+    """Acorta el título de forma inteligente para el reel: corta en el
+    primer separador fuerte (" - ", " | ", ","), y si igual no entra en
+    `max_lines` saca relleno (colores, "WiFi") antes de cortar por palabra."""
+    short = re.split(r"\s[-|]\s|,", title, maxsplit=1)[0].strip()
+
+    lines = _wrap_no_ellipsis(draw, short, font, max_w, max_lines)
+    fits = sum(len(line.split()) for line in lines) >= len(short.split())
+    if not fits:
+        words = [w for w in short.split() if w.lower() not in _TITLE_FILLER]
+        trimmed = " ".join(words)
+        if trimmed and trimmed != short:
+            lines = _wrap_no_ellipsis(draw, trimmed, font, max_w, max_lines)
+    return lines
+
+
+def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
+    img = Image.new("RGB", (W, H), BG)
+    # producto a pantalla completa arriba (protagonista, sin marco blanco);
+    # puede pisar el 14% superior porque ahí solo hay imagen, sin texto
+    ph = 1000
+    zoom = 1.0 + 0.06 * (t / DUR_MAIN_V2)
+    crop = int(hero.width / zoom)
+    off = (hero.width - crop) // 2
+    frame = hero.crop((off, off, off + crop, off + crop)).resize((W, ph), Image.BILINEAR)
+    img.paste(frame, (0, 0))
+
+    # velo inferior para que el precio se lea siempre, sobre cualquier foto
+    grad = Image.new("L", (1, ph), 0)
+    for y in range(ph):
+        grad.putpixel((0, y), int(255 * max(0.0, (y - ph * 0.55) / (ph * 0.45))))
+    grad = grad.resize((W, ph))
+    dark = Image.new("RGB", (W, ph), BG)
+    img.paste(Image.composite(dark, img.crop((0, 0, W, ph)), grad), (0, 0))
+    d = ImageDraw.Draw(img)
+
+    title_f = _font(46)
+    title_lines = _shorten_title_v2(d, deal["title"], title_f, 940)
+    is_low = bool(deal.get("low"))
+
+    # bloque título+precio centrado en el espacio oscuro que queda debajo
+    # del producto (respetando el 20% inferior, reservado para la UI de IG)
+    line_h, gap_title_prev, prev_h = 58, 34, 46
+    gap_prev_price, price_h, gap_price_ahorro, ahorro_h = 34, 150, 34, 40
+    low_gap, low_h = (30, 44) if is_low else (0, 0)
+    block_h = (len(title_lines) * line_h + gap_title_prev + prev_h + gap_prev_price
+               + price_h + gap_price_ahorro + ahorro_h + low_gap + low_h)
+    avail_top, avail_bottom = ph, SAFE_BOTTOM
+    y = avail_top + max(20, (avail_bottom - avail_top - block_h) // 2)
+
+    for line in title_lines:
+        d.text((W // 2, y), line, font=title_f, fill=WHITE, anchor="mm")
+        y += line_h
+    y += gap_title_prev
+
+    # precio: entra con pop apenas arranca la escena (más rápido que v1).
+    # único badge %OFF de esta escena, pegado al precio (nunca dos a la vez)
+    k = _ease_out(min(t / 0.4, 1.0))
+    prev_f = _font(42, bold=False)
+    prev_txt = f"Antes {_fmt(deal['price_prev'])}"
+    pw = d.textlength(prev_txt, font=prev_f)
+    d.text((W // 2, y), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
+    d.line([(W - pw) // 2 - 8, y, (W + pw) // 2 + 8, y], fill=GRAY, width=5)
+    y += gap_prev_price
+
+    price_scale = 1.12 - 0.12 * k
+    price_f = _font(int(132 * price_scale))
+    price_txt = _fmt(deal["price_cur"])
+    price_y = y + price_h // 2
+    d.text((W // 2, price_y), price_txt, font=price_f, fill=AMBER, anchor="mm")
+    if deal.get("discount") is not None:
+        pw2 = d.textlength(price_txt, font=price_f)
+        _badge(d, W // 2 + pw2 / 2 + 90, price_y - 10, f"-{deal['discount']}%", 0.55)
+    y += price_h + gap_price_ahorro
+
+    ahorro = deal["price_prev"] - deal["price_cur"]
+    d.text((W // 2, y), f"Te ahorrás {_fmt(ahorro)}", font=_font(38), fill=WHITE, anchor="mm")
+    if is_low:
+        y += low_gap
+        # DejaVu Sans / Arial (las fuentes locales que usa `_font`) no traen
+        # glifo de emoji a color: mejor texto solo que un tofu roto
+        d.text((W // 2, y), "Precio más bajo que registramos",
+               font=_font(34, bold=False), fill=AMBER, anchor="mm")
+    return img
+
+
+def _scene_close_v2(deal: dict, t: float) -> Image.Image:
+    img = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(img)
+
+    # único sello CAZADO de todo el video, en el cierre
+    _stamp_cazado(img, (W // 2, SAFE_TOP + 220), 1.7)
+
+    banner_top, banner_bot = 900, 1140
+    d.rectangle([0, banner_top, W, banner_bot], fill=AMBER)
+    d.text((W // 2, banner_top + 85), "LINK EN BIO", font=_font(56), fill=BLACK, anchor="mm")
+    d.text((W // 2, banner_top + 165), "cazadordeofertas.com.ar", font=_font(40), fill=BLACK, anchor="mm")
+
+    d.text((W // 2, banner_bot + 100), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
+    d.text((W // 2, banner_bot + 165), "seguime para la próxima caza", font=_font(34), fill=WHITE, anchor="mm")
+    return img
+
+
+def render_reel_v2(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
+    """Variante rápida y agresiva del reel (7 s): hook en 1 s, producto
+    protagonista a pantalla completa, precio gigante y cierre con CTA fuerte.
+    No reemplaza a `render_reel`."""
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    hero = _hero_crop(image_bytes, 1400)
+    total = DUR_HOOK_V2 + DUR_MAIN_V2 + DUR_CLOSE_V2
+    n_frames = int(total * FPS)
+
+    ffmpeg = os.getenv("FFMPEG_BIN", "ffmpeg")
+    music = Path(__file__).parent / "assets" / "reel_music.m4a"
+    if music.exists():
+        audio_in = ["-stream_loop", "-1", "-i", str(music)]
+        audio_opts = ["-af", f"afade=t=out:st={total - 0.6:.2f}:d=0.6", "-b:a", "128k"]
+    else:
+        audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+        audio_opts = ["-b:a", "64k"]
+    cmd = [
+        ffmpeg, "-y",
+        "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+        *audio_in,
+        "-map", "0:v", "-map", "1:a",
+        "-shortest",
+        "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
+        "-c:a", "aac", *audio_opts,
+        "-movflags", "+faststart",
+        str(out_path),
+    ]
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    black = Image.new("RGB", (W, H), (0, 0, 0))
+    bounds = (DUR_HOOK_V2, DUR_HOOK_V2 + DUR_MAIN_V2)
+    for i in range(n_frames):
+        ts = i / FPS
+        if ts < bounds[0]:
+            frame = _scene_hook_v2(deal, hero, ts)
+        elif ts < bounds[1]:
+            frame = _scene_main_v2(deal, hero, ts - bounds[0])
+        else:
+            frame = _scene_close_v2(deal, ts - bounds[1])
+
+        alpha = 1.0
+        for b in bounds:
+            if abs(ts - b) < FADE_V2:
+                alpha = min(alpha, abs(ts - b) / FADE_V2)
+        if alpha < 1.0:
+            frame = Image.blend(black, frame, alpha)
+
+        proc.stdin.write(frame.tobytes())
+
+    proc.stdin.close()
+    proc.wait()
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg (v2) salió con código {proc.returncode}")
     return out_path
 
 

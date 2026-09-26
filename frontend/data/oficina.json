@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-26T03:09:23+00:00",
+  "generado": "2026-09-26T03:24:15+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -18,27 +18,23 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 15
-        },
-        {
-          "label": "Historias IG",
-          "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 3
+          "valor": 10
         },
         {
           "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Facebook",
+          "label": "Historias IG",
           "valor": 2
         },
         {
-          "label": "Reels IG",
-          "valor": 1
+          "label": "Threads",
+          "valor": 2
+        },
+        {
+          "label": "Facebook",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
@@ -92,7 +88,7 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 14
+          "valor": 16
         },
         {
           "label": "Comparativas",
@@ -110,15 +106,15 @@
         },
         {
           "fecha": "",
+          "titulo": "que freidora industrial comprar"
+        },
+        {
+          "fecha": "",
+          "titulo": "que horno pizzero comprar para mi negocio"
+        },
+        {
+          "fecha": "",
           "titulo": "herramientas electricas cyber monday black friday"
-        },
-        {
-          "fecha": "",
-          "titulo": "que hidrolavadora comprar"
-        },
-        {
-          "fecha": "",
-          "titulo": "que soldadora comprar"
         }
       ]
     },
@@ -129,7 +125,7 @@
       "descripcion": "Mejora placas, historias y reels. Propone y vos aprobás.",
       "automatico": false,
       "frecuencia": "A demanda",
-      "ultima_actividad": null,
+      "ultima_actividad": "2026-09-25",
       "agentes": [
         {
           "nombre": "diseno",
@@ -139,10 +135,15 @@
       "metricas": [
         {
           "label": "Propuestas",
-          "valor": 0
+          "valor": 1
         }
       ],
-      "entregas": []
+      "entregas": [
+        {
+          "fecha": "2026-09-25",
+          "titulo": "reel"
+        }
+      ]
     },
     {
       "id": "analisis",
@@ -186,13 +187,36 @@
       "id": "auditoria",
       "nombre": "Auditoría",
       "emoji": "🛡️",
-      "descripcion": "Revisa tests, links rotos y errores todos los días.",
-      "automatico": false,
-      "frecuencia": "Próximamente",
-      "ultima_actividad": null,
-      "agentes": [],
+      "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
+      "automatico": true,
+      "frecuencia": "Diario (08:00)",
+      "ultima_actividad": "2026-09-26T03:23:34+00:00",
+      "ventana_horas": 26,
+      "agentes": [
+        {
+          "nombre": "Auditor diario",
+          "tarea": "Todo OK"
+        }
+      ],
       "metricas": [],
-      "proximamente": true
+      "entregas": [
+        {
+          "fecha": "",
+          "titulo": "✔ Última publicación hace 4 h"
+        },
+        {
+          "fecha": "",
+          "titulo": "✔ 19 páginas OK"
+        },
+        {
+          "fecha": "",
+          "titulo": "✔ Tests del bot OK"
+        },
+        {
+          "fecha": "",
+          "titulo": "✔ Sin vulnerabilidades altas"
+        }
+      ]
     }
   ]
 }

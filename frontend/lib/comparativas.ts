@@ -152,6 +152,44 @@ export const COMPARATIVAS: Comparativa[] = [
     guia: 'que-amoladora-comprar',
   },
   {
+    slug: 'mejores-soldadoras',
+    nombre: 'soldadoras',
+    titulo: `Mejores soldadoras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de soldadoras inverter y MIG en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las soldadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'herramientas-electricas',
+    keywords: ['soldadora'],
+    criterios: [
+      'Para arrancar en casa: inverter de electrodo (MMA) de 120-160 A anda con el enchufe común.',
+      'MIG sin gas (alambre tubular) suelda chapa fina más prolijo, pero el consumible es más caro.',
+      'Fijate el ciclo de trabajo: dice cuántos minutos de cada 10 puede soldar al amperaje máximo.',
+      'Máscara fotosensible, guantes y pinza de masa: revisá si vienen incluidos o sumalos al precio.',
+      'Si la instalación es vieja, confirmá con un electricista que la térmica banca el consumo.',
+    ],
+    guia: 'que-soldadora-comprar',
+  },
+  {
+    slug: 'mejores-hidrolavadoras',
+    nombre: 'hidrolavadoras',
+    titulo: `Mejores hidrolavadoras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de hidrolavadoras en oferta hoy en Mercado Libre Argentina: presión, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las hidrolavadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'herramientas-electricas',
+    keywords: ['hidrolavadora'],
+    criterios: [
+      'Para auto, vereda y patio: 100-140 bar alcanza; más presión es para uso intensivo.',
+      'Mirá el caudal (litros por hora): con más caudal se enjuaga más rápido, no solo la presión.',
+      'Manguera larga y lanza con boquillas intercambiables ahorran mucho tiempo.',
+      'Motor de inducción dura más que uno universal, pero pesa y cuesta más.',
+      'No la uses con agua caliente si el fabricante no lo indica.',
+    ],
+    guia: 'que-hidrolavadora-comprar',
+  },
+  {
     slug: 'regalos-dia-de-la-madre',
     presupuestos: [50000, 150000],
     guia: 'que-regalar-el-dia-de-la-madre',

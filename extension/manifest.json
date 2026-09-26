@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Cazador de Ofertas: ¿el descuento es real?",
+  "short_name": "Cazador",
+  "version": "0.1.0",
+  "description": "En cada producto de Mercado Libre Argentina te muestra el historial de precios y si el descuento es real o está inflado.",
+  "homepage_url": "https://cazadordeofertas.com.ar",
+  "permissions": [],
+  "host_permissions": ["https://cazadordeofertas.com.ar/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://*.mercadolibre.com.ar/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": { "128": "icon128.png" }
+}

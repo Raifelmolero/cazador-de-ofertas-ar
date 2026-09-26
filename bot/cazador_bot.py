@@ -56,6 +56,21 @@ RELAMPAGO_URL = (
     "?container_id=MLA779357-1&promotion_type=lightning&page={page}"
 )
 
+# Palanca nº1 del plan maestro (#00): /ofertas general casi no trae ticket
+# alto (gastronomía, embalaje, herramientas aparecen 1 cada varios días). La
+# misma página filtrada por categoría sí los trae, y no pasa por el filtro de
+# "tráfico sospechoso" que ML aplica al buscador (listado.mercadolibre...).
+# Categorías = las de comisión alta de CATEGORY_COMMISSION_WEIGHT.
+OFERTAS_CATEGORIA_URL = "https://www.mercadolibre.com.ar/ofertas?category={cat}&page={page}"
+CATEGORIAS_TICKET_ALTO = {
+    "MLA407134": "Herramientas",
+    "MLA1499": "Industrias y Oficinas",  # gastronomía, embalaje
+    "MLA5726": "Electrodomésticos y Aires Ac.",
+    "MLA1574": "Hogar, Muebles y Jardín",  # colchones
+    "MLA1000": "Electrónica, Audio y Video",  # TV
+    "MLA5725": "Accesorios para Vehículos",
+}
+
 # Días que se conserva la media (placas, stories, reels) antes de borrarla.
 MEDIA_RETENTION_DAYS = 14
 
@@ -139,14 +154,20 @@ def fmt_price(n: int) -> str:
 
 # ---------------------------------------------------------------- scraping
 
-def fetch_deals(pages: int = 3, relampago_pages: int = 0) -> list[dict]:
-    """Baja y parsea las páginas de ofertas (y las de ofertas relámpago)."""
+def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0) -> list[dict]:
+    """Baja y parsea las páginas de ofertas (y las de ofertas relámpago y las
+    de categorías de ticket alto)."""
     deals, seen = [], set()
-    urls = [(OFERTAS_URL, p) for p in range(1, pages + 1)]
-    urls += [(RELAMPAGO_URL, p) for p in range(1, relampago_pages + 1)]
-    for base, page in urls:
+    urls = [(OFERTAS_URL, OFERTAS_URL.format(page=p), p) for p in range(1, pages + 1)]
+    urls += [(RELAMPAGO_URL, RELAMPAGO_URL.format(page=p), p) for p in range(1, relampago_pages + 1)]
+    urls += [
+        (OFERTAS_CATEGORIA_URL, OFERTAS_CATEGORIA_URL.format(cat=cat, page=p), f"{nombre} {p}")
+        for cat, nombre in CATEGORIAS_TICKET_ALTO.items()
+        for p in range(1, categoria_pages + 1)
+    ]
+    for base, url, page in urls:
         try:
-            html = http_get(base.format(page=page)).decode("utf-8", "replace")
+            html = http_get(url).decode("utf-8", "replace")
         except Exception as e:  # noqa: BLE001 — red hostil, seguimos con lo que haya
             print(f"[warn] página {page} falló: {e}")
             continue
@@ -290,6 +311,9 @@ SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.js
 # páginas /categoria/*) más los mejores N del resto, para que /hoy no se
 # vuelva una lista de 700 tarjetas ni el build genere 700 calculadoras.
 SITE_GENERAL_LIMIT = 150
+# Con las páginas por categoría los prioritarios pasan de ~20 a ~300 por
+# corrida: tope por ganancia esperada para que el build no se dispare.
+SITE_PRIORITARIO_LIMIT = 300
 
 
 def _prioritario(d: dict) -> bool:
@@ -309,7 +333,8 @@ def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> lis
     resto = [d for d in reales if not _prioritario(d)]
     resto.sort(key=lambda d: (bool(d.get("hist_low")), d["discount"]), reverse=True)
     elegidos = {d["id"] for d in resto[:limit]}
-    elegidos.update(d["id"] for d in reales if _prioritario(d))
+    prioritarios = sorted((d for d in reales if _prioritario(d)), key=ganancia_esperada, reverse=True)
+    elegidos.update(d["id"] for d in prioritarios[:SITE_PRIORITARIO_LIMIT])
     return [d for d in reales if d["id"] in elegidos]
 
 
@@ -1512,7 +1537,9 @@ def main() -> int:
     posted = set(state["posted_ids"])
 
     deals = fetch_deals(
-        pages=cfg.get("pages", 3), relampago_pages=cfg.get("relampago_pages", 0)
+        pages=cfg.get("pages", 3),
+        relampago_pages=cfg.get("relampago_pages", 0),
+        categoria_pages=cfg.get("categoria_pages", 0),
     )
     print(f"[info] {len(deals)} ofertas únicas parseadas")
 

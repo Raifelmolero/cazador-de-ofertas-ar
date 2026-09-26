@@ -10,6 +10,7 @@ import json
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest import mock
@@ -494,9 +495,20 @@ class TestSelectSiteDeals(unittest.TestCase):
     """Qué ofertas del scrape de 20 páginas llegan a la web."""
 
     @staticmethod
-    def deal(id_, title="Producto genérico", discount=30, hist_low=False, inflada=False):
-        return {"id": id_, "title": title, "discount": discount,
+    def deal(id_, title="Producto genérico", discount=30, hist_low=False, inflada=False,
+             price=100000):
+        return {"id": id_, "title": title, "discount": discount, "price_cur": price,
                 "hist_low": hist_low, "inflada": inflada}
+
+    def test_los_prioritarios_se_recortan_por_ganancia_esperada(self):
+        # Con las páginas por categoría hay cientos de prioritarios: entran los
+        # que más plata dejan, no los primeros que aparecieron.
+        baratos = [self.deal(f"T{i}", "Taladro percutor", price=50000) for i in range(3)]
+        caro = self.deal("T9", "Taladro percutor", price=900000)
+        with unittest.mock.patch.object(bot, "SITE_PRIORITARIO_LIMIT", 2):
+            ids = [d["id"] for d in bot.select_site_deals(baratos + [caro], limit=0)]
+        self.assertIn("T9", ids)
+        self.assertEqual(len(ids), 2)
 
     def test_las_de_comision_alta_entran_siempre(self):
         genericos = [self.deal(f"G{i}", discount=60) for i in range(5)]

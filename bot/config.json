@@ -6,5 +6,6 @@
   "max_posts": 5,
   "exclusive_posts": 2,
   "pages": 20,
-  "relampago_pages": 6
+  "relampago_pages": 6,
+  "categoria_pages": 3
 }

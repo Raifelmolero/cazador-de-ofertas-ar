@@ -392,5 +392,11 @@ export function productosDe(c: Comparativa): ProductWithMargins[] {
   const kws = (c.keywords ?? []).map(normalizar)
   // Reusa el catálogo completo vía cualquier categoría: ofertasDeCategoria
   // con una categoría "virtual" sin exclusiones.
-  return ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte'] })
+  const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte'] })
+  // Las de temporada y regalos son para compradores comunes: sin equipamiento
+  // de negocio ("heladera" traía una exhibidora comercial primera en la tabla).
+  const gastro = getCategoria('equipamiento-gastronomico')
+  if (!gastro) return todos
+  const comerciales = new Set(ofertasDeCategoria(gastro).map(p => p.id_ml))
+  return todos.filter(p => !comerciales.has(p.id_ml))
 }

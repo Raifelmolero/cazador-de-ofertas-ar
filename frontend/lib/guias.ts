@@ -292,6 +292,35 @@ export const GUIAS: Guia[] = [
       },
     ],
     categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Todo para el taller, en un solo lugar', boton: 'Ver herramientas en oferta' },
+  },
+  {
+    slug: 'que-amoladora-comprar',
+    titulo: 'Qué amoladora comprar: 115 o 230 mm, potencia y seguridad',
+    descripcion:
+      'Cómo elegir amoladora en Argentina: diferencia entre disco de 115 y 230 mm, cuánta potencia hace falta, con cable o a batería y qué seguridad mirar.',
+    pregunta: '¿Qué amoladora me conviene comprar?',
+    respuestaCorta:
+      'Para la casa y trabajos generales (cortar hierro, caños, cerámica o desbastar) alcanza una amoladora angular de 115 mm con 700 a 900 W. La de 230 mm es para cortes profundos y uso de obra: pesa más, es más difícil de controlar y conviene solo si la vas a usar seguido.',
+    secciones: [
+      {
+        h: '115 mm vs 230 mm',
+        p: [
+          'Amoladora de 115 mm (4½"): liviana y fácil de manejar con una mano en la empuñadura y otra en el cuerpo. Los discos son baratos y se consiguen en cualquier ferretería. Es la que conviene para la mayoría de los usos hogareños.',
+          'Amoladora de 230 mm (9"): corta más profundo (hormigón, adoquines, perfiles gruesos), pero pesa el doble y el arranque es brusco. Es una herramienta de obra.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Potencia: 700-900 W para 115 mm es suficiente; más watts sostienen mejor las RPM en cortes largos.',
+          'Seguridad: protector del disco regulable, empuñadura lateral y, si podés, arranque suave y traba de interruptor. Usá siempre anteojos y guantes.',
+          'A batería: cómodas para changas, pero la autonomía en corte continuo es corta. Fijate si incluye batería y cargador.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
+    cta: { href: '/herramientas', titulo: 'Amoladoras y todo para el taller, en oferta', boton: 'Ver herramientas en oferta' },
   },
   {
     slug: 'que-regalar-el-dia-de-la-madre',

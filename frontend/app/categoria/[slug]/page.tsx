@@ -242,6 +242,11 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
           </section>
         )}
 
+        {c.slug === 'herramientas-electricas' && (
+          <p className="mb-4">
+            <a href="/herramientas" className="font-bold text-yellow-400 hover:underline">🔧 Todo para el taller: el hub de herramientas →</a>
+          </p>
+        )}
         {COMPARATIVAS.filter(x => x.categoria === c.slug).map(x => (
           <p key={x.slug} className="mb-8">
             <a href={`/mejores/${x.slug}`} className="font-bold text-yellow-400 hover:underline">

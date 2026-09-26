@@ -1,0 +1,198 @@
+{
+  "generado": "2026-09-26T03:09:23+00:00",
+  "departamentos": [
+    {
+      "id": "publicacion",
+      "nombre": "Publicación",
+      "emoji": "📤",
+      "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
+      "automatico": true,
+      "frecuencia": "3 veces por día",
+      "ultima_actividad": "2026-09-25T23:16:20+00:00",
+      "agentes": [
+        {
+          "nombre": "Cazador (bot)",
+          "tarea": "Revisó 780 productos en la última corrida"
+        }
+      ],
+      "metricas": [
+        {
+          "label": "Telegram",
+          "valor": 15
+        },
+        {
+          "label": "Historias IG",
+          "valor": 3
+        },
+        {
+          "label": "Threads",
+          "valor": 3
+        },
+        {
+          "label": "Instagram",
+          "valor": 2
+        },
+        {
+          "label": "Facebook",
+          "valor": 2
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        }
+      ],
+      "metricas_titulo": "Publicaciones en las últimas 24 h",
+      "ultimo_trabajo": "Heladera Electrolux No Frost Inverter Multidoor Im7s 523 litros Gris"
+    },
+    {
+      "id": "investigacion",
+      "nombre": "Investigación de nichos",
+      "emoji": "🔎",
+      "descripcion": "Encuentra rubros de comisión alta con demanda y poca competencia.",
+      "automatico": false,
+      "frecuencia": "A demanda",
+      "ultima_actividad": "2026-09-25",
+      "agentes": [
+        {
+          "nombre": "investigador-nichos",
+          "tarea": "Informe de nicho"
+        }
+      ],
+      "metricas": [
+        {
+          "label": "Informes",
+          "valor": 2
+        }
+      ],
+      "entregas": [
+        {
+          "fecha": "2026-09-25",
+          "titulo": "gastronomia hoteleria"
+        },
+        {
+          "fecha": "2026-09-25",
+          "titulo": "piloto fase1"
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "nombre": "Marketing / SEO",
+      "emoji": "📣",
+      "descripcion": "Escribe guías y comparativas para traer tráfico de Google y de las IA.",
+      "automatico": false,
+      "frecuencia": "A demanda",
+      "ultima_actividad": null,
+      "agentes": [
+        {
+          "nombre": "marketing-seo",
+          "tarea": "Guías y comparativas del sitio"
+        }
+      ],
+      "metricas": [
+        {
+          "label": "Guías publicadas",
+          "valor": 14
+        },
+        {
+          "label": "Comparativas",
+          "valor": 18
+        }
+      ],
+      "entregas": [
+        {
+          "fecha": "",
+          "titulo": "mejores monitores"
+        },
+        {
+          "fecha": "",
+          "titulo": "mejores ventiladores"
+        },
+        {
+          "fecha": "",
+          "titulo": "herramientas electricas cyber monday black friday"
+        },
+        {
+          "fecha": "",
+          "titulo": "que hidrolavadora comprar"
+        },
+        {
+          "fecha": "",
+          "titulo": "que soldadora comprar"
+        }
+      ]
+    },
+    {
+      "id": "diseno",
+      "nombre": "Diseño",
+      "emoji": "🎨",
+      "descripcion": "Mejora placas, historias y reels. Propone y vos aprobás.",
+      "automatico": false,
+      "frecuencia": "A demanda",
+      "ultima_actividad": null,
+      "agentes": [
+        {
+          "nombre": "diseno",
+          "tarea": "Rediseño de reel (v2)"
+        }
+      ],
+      "metricas": [
+        {
+          "label": "Propuestas",
+          "valor": 0
+        }
+      ],
+      "entregas": []
+    },
+    {
+      "id": "analisis",
+      "nombre": "Análisis",
+      "emoji": "📊",
+      "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
+      "automatico": true,
+      "frecuencia": "Semanal (domingo)",
+      "ultima_actividad": "2026-09-21T07:32:42+00:00",
+      "agentes": [
+        {
+          "nombre": "Reporte semanal",
+          "tarea": "Métricas y cacería de la semana"
+        }
+      ],
+      "metricas": [
+        {
+          "label": "Seguidores IG",
+          "valor": 1491,
+          "delta": -2
+        },
+        {
+          "label": "Seguidores Threads",
+          "valor": 97,
+          "delta": 4
+        },
+        {
+          "label": "Suscriptores TG",
+          "valor": 2,
+          "delta": 0
+        },
+        {
+          "label": "Seguidores FB",
+          "valor": 0,
+          "delta": 0
+        }
+      ],
+      "metricas_titulo": "Última medición (vs. la anterior)"
+    },
+    {
+      "id": "auditoria",
+      "nombre": "Auditoría",
+      "emoji": "🛡️",
+      "descripcion": "Revisa tests, links rotos y errores todos los días.",
+      "automatico": false,
+      "frecuencia": "Próximamente",
+      "ultima_actividad": null,
+      "agentes": [],
+      "metricas": [],
+      "proximamente": true
+    }
+  ]
+}

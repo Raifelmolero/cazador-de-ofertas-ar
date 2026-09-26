@@ -90,9 +90,11 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [heladeras](https://cazadordeofertas.com.ar/mejores/mejores-heladeras),
   [colchones](https://cazadordeofertas.com.ar/mejores/mejores-colchones),
   [taladros y herramientas](https://cazadordeofertas.com.ar/mejores/mejores-taladros),
-  [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre) y
+  [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas del Cyber Monday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday)
-  (CACE: lunes 2 al miércoles 4 de noviembre de 2026).
+  (CACE: lunes 2 al miércoles 4 de noviembre de 2026),
+  [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday) y
+  [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
   por producto de ticket alto con precio de hoy, precio más bajo registrado
   (con fecha) y evolución diaria. Dato propio, ideal para responder "¿cuál es

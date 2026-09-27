@@ -19,6 +19,10 @@ export interface Comparativa {
   categoria?: string // slug de /categoria/* de donde salen los productos
   keywords?: string[] // o palabras propias (para comparativas que cruzan rubros)
   excluir?: string[] // palabras que sacan un producto de la tabla (en cualquier parte del título)
+  /** Palabras de accesorio que se toleran en combos ("Tablet + Funda"): anulan
+   *  las exclusiones fijas y las de `excluir`, pero el accesorio suelto sigue
+   *  afuera (título que empieza con la palabra o dice "<palabra> para"). */
+  permitir?: string[]
   criterios: string[]
   guia?: string // slug de /guias/* relacionada
   /** Cortes de precio para la sección "por presupuesto" (regalos) */
@@ -654,6 +658,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Los celulares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
     excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
+    permitir: ['funda', 'cargador'],
     criterios: [
       'Almacenamiento: 128 GB como mínimo; las fotos, videos y WhatsApp llenan 64 GB rápido.',
       'RAM: 4 GB alcanza para lo básico; 6 u 8 GB si usás muchas apps a la vez o jugás.',
@@ -671,6 +676,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Las tablets en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
     keywords: ['tablet', 'tableta', 'ipad'],
     excluir: ['funda', 'vidrio templado', 'protector', 'soporte', 'teclado para', 'cargador', 'grafica', 'digitalizadora'],
+    permitir: ['funda'],
     criterios: [
       'Pantalla: 8 pulgadas para leer y llevar; 10 u 11 pulgadas para series, clases o trabajar.',
       'RAM y almacenamiento: 4 GB y 64 GB como mínimo; si la vas a usar para estudiar o dibujar, mejor 8 GB y 128 GB.',
@@ -697,10 +703,14 @@ export function indexable(c: Comparativa): boolean {
 }
 
 export function productosDe(c: Comparativa): ProductWithMargins[] {
-  const fuera = (c.excluir ?? []).map(normalizar)
-  const sinExcluidos = (ps: ProductWithMargins[]) =>
-    fuera.length ? ps.filter(p => !fuera.some(x => normalizar(p.titulo).includes(x))) : ps
-  return sinExcluidos(productosBase(c))
+  const ok = (c.permitir ?? []).map(normalizar)
+  const fuera = (c.excluir ?? []).map(normalizar).filter(x => !ok.includes(x))
+  // Accesorio suelto: el título arranca con la palabra permitida o dice "<palabra> para".
+  const suelto = (t: string) => ok.some(x => t.startsWith(x) || t.includes(`${x} para`))
+  return productosBase(c).filter(p => {
+    const t = normalizar(p.titulo)
+    return !fuera.some(x => t.includes(x)) && !suelto(t)
+  })
 }
 
 function productosBase(c: Comparativa): ProductWithMargins[] {
@@ -714,7 +724,9 @@ function productosBase(c: Comparativa): ProductWithMargins[] {
   }
   // Reusa el catálogo completo vía cualquier categoría: ofertasDeCategoria
   // con una categoría "virtual" sin exclusiones.
-  const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte', 'mochila', 'cargador', 'protector', 'vidrio templado', 'base para'] })
+  const ok = (c.permitir ?? []).map(normalizar)
+  const fijas = ['repuesto', 'funda', 'soporte', 'mochila', 'cargador', 'protector', 'vidrio templado', 'base para']
+  const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: fijas.filter(x => !ok.includes(x)) })
   // Las de temporada y regalos son para compradores comunes: sin equipamiento
   // de negocio ("heladera" traía una exhibidora comercial primera en la tabla).
   const gastro = getCategoria('equipamiento-gastronomico')

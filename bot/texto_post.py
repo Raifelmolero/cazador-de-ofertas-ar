@@ -26,15 +26,22 @@ def main() -> int:
             results.append("Telegram (dry)")
         else:
             try:
-                tg_call(token, "sendMessage", {"chat_id": cfg["channel"], "text": texto})
+                msg = tg_call(token, "sendMessage", {"chat_id": cfg["channel"], "text": texto})
                 results.append("Telegram ✅")
+                if os.getenv("FIJAR") == "1":
+                    mid = (msg.get("result") or msg).get("message_id")
+                    tg_call(token, "pinChatMessage", {
+                        "chat_id": cfg["channel"], "message_id": mid, "disable_notification": True,
+                    })
+                    results.append("Telegram 📌 fijado")
             except Exception as e:  # noqa: BLE001 — que un canal no frene al otro
                 results.append(f"Telegram ❌ {str(e)[:150]}")
-    try:
-        permalink = publish_threads({}, "", th_user, th_token, dry, caption=texto, text_only=True)
-        results.append(f"Threads ✅ {permalink}")
-    except Exception as e:  # noqa: BLE001
-        results.append(f"Threads ❌ {str(e)[:150]}")
+    if os.getenv("THREADS", "1") == "1":
+        try:
+            permalink = publish_threads({}, "", th_user, th_token, dry, caption=texto, text_only=True)
+            results.append(f"Threads ✅ {permalink}")
+        except Exception as e:  # noqa: BLE001
+            results.append(f"Threads ❌ {str(e)[:150]}")
     res = "\n".join(results)
     alert_admin(token, cfg["admin_chat"], "📝 Post de texto:\n" + res, dry)
     print(res)

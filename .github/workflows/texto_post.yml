@@ -7,8 +7,16 @@ on:
         description: 'Texto del post (máx. 500 caracteres)'
         required: true
         type: string
+      threads:
+        description: 'Publicar en Threads'
+        type: boolean
+        default: true
       telegram:
         description: 'Publicar también en el canal de Telegram'
+        type: boolean
+        default: false
+      fijar:
+        description: 'Fijar el mensaje en el canal de Telegram'
         type: boolean
         default: false
       dry_run:
@@ -42,6 +50,8 @@ jobs:
         env:
           TEXTO: ${{ inputs.texto }}
           TELEGRAM: ${{ inputs.telegram == true && '1' || '0' }}
+          FIJAR: ${{ inputs.fijar == true && '1' || '0' }}
+          THREADS: ${{ inputs.threads == true && '1' || '0' }}
           DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}

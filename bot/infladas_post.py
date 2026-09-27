@@ -52,7 +52,9 @@ def elegir(data: dict, hoy: date) -> list[dict]:
 
 
 def linea(c: dict, html: bool) -> str:
-    titulo = c["titulo"][:60].rstrip()
+    titulo = c["titulo"]
+    if len(titulo) > 60:  # corta en la última palabra entera, sin "| " colgando
+        titulo = titulo[:60].rsplit(" ", 1)[0].rstrip(" |-,/") + "…"
     if html:
         titulo = f"<b>{esc(titulo)}</b>"
     cuando = fecha_corta(c.get("minimo_fecha"))

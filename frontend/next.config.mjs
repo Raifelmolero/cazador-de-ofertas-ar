@@ -30,6 +30,12 @@ const nextConfig = {
           has: [{ type: 'host', value: host }],
           destination: '/favicon-ofertas.png',
         })),
+        // llms.txt propio para calculadoraml (public/llms.txt es el del Cazador)
+        ...['calculadoraml.com.ar', 'www.calculadoraml.com.ar'].map(host => ({
+          source: '/llms.txt',
+          has: [{ type: 'host', value: host }],
+          destination: '/llms-calc.txt',
+        })),
       ],
     }
   },

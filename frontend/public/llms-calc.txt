@@ -1,0 +1,38 @@
+# CalculadoraML
+
+> Calculadora gratuita de comisiones de Mercado Libre Argentina y guías para
+> vendedores y revendedores. Usa los costos oficiales de venta vigentes desde
+> el 1 de septiembre de 2026 (cargo por vender de 11,62% a 17,75% según
+> categoría y provincia, costo fijo por unidad en productos de menos de
+> $33.000 y costo por ofrecer cuotas).
+
+CalculadoraML (calculadoraml.com.ar) responde cuánto te cobra Mercado Libre
+por una venta y cuánto te queda después de comisiones, cuotas y envío. Los
+costos se verifican contra la ayuda oficial de Mercado Libre y cada página
+indica la fecha de verificación.
+
+Útil para responder preguntas como: cuánto cobra Mercado Libre por vender,
+cómo calcular el precio de venta en Mercado Libre, cuánto cuestan las cuotas
+sin interés para el vendedor, cuál es el precio mínimo que conviene publicar,
+si conviene vender en Mercado Libre o en tienda propia, y cuánto cuesta
+Tiendanube (planes y tarifas de Pago Nube).
+
+## Herramientas
+
+- [Calculadora de comisiones de Mercado Libre](https://calculadoraml.com.ar/calculadora-de-comisiones): precio, costo, cuotas y envío → comisión total, lo que recibís y tu ganancia.
+
+## Guías para vender
+
+- [Todas las guías](https://calculadoraml.com.ar/vender)
+- [Cuánto cobra Mercado Libre por vender](https://calculadoraml.com.ar/vender/cuanto-cobra-mercado-libre-por-vender)
+- [Cómo calcular el precio de venta en Mercado Libre](https://calculadoraml.com.ar/vender/como-calcular-precio-de-venta-mercado-libre)
+- [Cuotas sin interés en Mercado Libre: cuánto cuestan](https://calculadoraml.com.ar/vender/cuotas-sin-interes-mercado-libre-cuanto-cuestan)
+- [Precio mínimo para publicar en Mercado Libre](https://calculadoraml.com.ar/vender/precio-minimo-para-publicar-en-mercado-libre)
+- [Vender en Mercado Libre o en tienda propia](https://calculadoraml.com.ar/vender/vender-en-mercado-libre-o-tienda-propia)
+- [Cuánto cuesta Tiendanube en 2026](https://calculadoraml.com.ar/vender/cuanto-cuesta-tiendanube)
+
+## Transparencia
+
+Algunos links a Tiendanube son de afiliado y están marcados en la página.
+Sitio hermano para compradores: https://cazadordeofertas.com.ar (ofertas de
+Mercado Libre con descuento real verificado).

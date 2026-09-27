@@ -27,8 +27,20 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-2">
             <Link
+              href="/calculadora-de-comisiones"
+              className="text-xs font-semibold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+            >
+              🧮 <span className="hidden sm:inline">Calcular </span>comisiones
+            </Link>
+            <Link
+              href="/vender"
+              className="hidden sm:inline text-xs font-semibold text-zinc-300 hover:text-yellow-400 px-2 py-1.5 whitespace-nowrap"
+            >
+              Guías para vender
+            </Link>
+            <Link
               href="/hoy"
-              className="text-xs font-semibold text-yellow-400 border border-yellow-400/30 hover:bg-yellow-400/10 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+              className="hidden sm:inline-block text-xs font-semibold text-yellow-400 border border-yellow-400/30 hover:bg-yellow-400/10 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
             >
               🎯 Ofertas de hoy
             </Link>

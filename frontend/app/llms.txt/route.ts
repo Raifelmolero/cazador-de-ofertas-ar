@@ -76,6 +76,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   domingo 18 de octubre de 2026 (tercer domingo de octubre); regalos en oferta
   hoy en Mercado Libre por presupuesto (hasta $30.000, $30.000-$80.000 y más de
   $80.000), verificados contra el historial de precios.
+- [Regalos de Navidad 2026](https://cazadordeofertas.com.ar/regalos-navidad):
+  Navidad viernes 25 de diciembre de 2026 y Reyes miércoles 6 de enero de 2027;
+  regalos en oferta hoy en Mercado Libre por presupuesto y por destinatario
+  (chicos, gamers, papá y mamá, la casa), verificados contra el historial de precios.
 - [Precio hoy](https://cazadordeofertas.com.ar/precio-hoy): cuánto sale hoy un smart TV
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre

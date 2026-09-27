@@ -1,7 +1,7 @@
 const BRANDS = {
   calculadora: {
     name: 'CalculadoraML',
-    href: 'https://www.calculadoraml.com.ar',
+    href: 'https://calculadoraml.com.ar',
     domain: 'calculadoraml.com.ar',
     legal: 'Los márgenes son estimados. Verificá comisiones y costos en Mercado Libre antes de vender.',
   },

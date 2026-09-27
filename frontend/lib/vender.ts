@@ -10,7 +10,7 @@ import {
   UMBRAL_COSTO_FIJO,
 } from '@/lib/costosml'
 
-export const CALC_URL = 'https://www.calculadoraml.com.ar'
+export const CALC_URL = 'https://calculadoraml.com.ar'
 
 // Link de afiliado de Tiendanube (lo genera Raifel en su panel de afiliados).
 // Vacío = link común, sin comisión. Siempre se aclara en la página que es

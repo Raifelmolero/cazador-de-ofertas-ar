@@ -439,7 +439,7 @@ export default function HoyPage() {
         <p className="text-xs text-zinc-600 mt-6">
           ¿Revendés en Mercado Libre?{' '}
           {/* Absoluto a propósito: en cazadordeofertas.com.ar la raíz vuelve a esta misma página */}
-          <a href="https://www.calculadoraml.com.ar" className="text-yellow-400/80 hover:text-yellow-400 transition-colors">
+          <a href="https://calculadoraml.com.ar" className="text-yellow-400/80 hover:text-yellow-400 transition-colors">
             Mirá el margen de estos productos en CalculadoraML →
           </a>
         </p>

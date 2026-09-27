@@ -2,14 +2,16 @@ import type { MetadataRoute } from 'next'
 import { headers } from 'next/headers'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
-import { GUIAS_VENDER } from '@/lib/vender'
+import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidos } from '@/lib/seguimiento'
 
-const BASE = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.calculadoraml.com.ar').replace(/\/$/, '')
+// Sin www: Vercel redirige www → calculadoraml.com.ar (307), y un sitemap o
+// canónico que apunta a una redirección confunde a Google.
+const BASE = CALC_URL
 // La página de ofertas canonicaliza a la raíz de su propio dominio (ver
 // app/hoy/page.tsx); acá va esa URL y no BASE/hoy para no listar un duplicado.
 const DEALS_HOST = process.env.DEALS_HOST ?? 'cazadordeofertas.com.ar'

@@ -32,7 +32,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'CCBot', allow: '/' },
     ],
     sitemap: [
-      'https://www.calculadoraml.com.ar/sitemap.xml',
+      'https://calculadoraml.com.ar/sitemap.xml',
       'https://cazadordeofertas.com.ar/sitemap.xml',
     ],
   }

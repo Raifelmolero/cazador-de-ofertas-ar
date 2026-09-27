@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { COMPARATIVAS, categoriaDe, getComparativa, productosDe } from '@/lib/comparativas'
+import { COMPARATIVAS, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
 import { slugPorId } from '@/lib/seguimiento'
 
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: titulo,
     description: c.descripcion,
     alternates: { canonical: url },
+    ...(indexable(c) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: titulo,
       description: c.descripcion,

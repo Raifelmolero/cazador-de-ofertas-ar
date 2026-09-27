@@ -3,7 +3,7 @@ import { headers } from 'next/headers'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
-import { COMPARATIVAS } from '@/lib/comparativas'
+import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidos } from '@/lib/seguimiento'
@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily' as const,
       priority: 0.8,
     })),
-    ...COMPARATIVAS.map(c => ({
+    ...COMPARATIVAS.filter(indexable).map(c => ({
       url: `${DEALS_URL}/mejores/${c.slug}`,
       lastModified,
       changeFrequency: 'daily' as const,

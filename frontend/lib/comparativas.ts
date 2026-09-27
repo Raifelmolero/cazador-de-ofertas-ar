@@ -550,6 +550,14 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
   return c.categoria ? getCategoria(c.categoria) : undefined
 }
 
+// Con menos productos la página es flaca: no va al sitemap y lleva noindex
+// (vuelve sola cuando el catálogo del día tiene suficientes).
+export const MIN_PRODUCTOS_INDEXABLE = 3
+
+export function indexable(c: Comparativa): boolean {
+  return productosDe(c).length >= MIN_PRODUCTOS_INDEXABLE
+}
+
 export function productosDe(c: Comparativa): ProductWithMargins[] {
   const fuera = (c.excluir ?? []).map(normalizar)
   const sinExcluidos = (ps: ProductWithMargins[]) =>

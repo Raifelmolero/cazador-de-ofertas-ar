@@ -371,7 +371,7 @@ def build_report(
 
     return (
         "📊 REPORTE SEMANAL\n\n" + metrics_block + scan_block +
-        f"Publicaciones ({st['total']} total{flecha(st['total'], ant('total'))}):\n"
+        f"Publicaciones: {st['total']} en total{flecha(st['total'], ant('total'))}\n"
         + "\n".join(lines) + "\n\n" + resumen +
         "🏆 Top de la semana:\n" + "\n".join(top_lines) + "\n\n"
         "✅ Checklist de 10 min:\n"

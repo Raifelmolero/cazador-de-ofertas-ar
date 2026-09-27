@@ -8,6 +8,7 @@
 // a mano: no se genera del JSON de ofertas porque ese cambia 3×/día y este
 // archivo describe el SITIO, no el catálogo del momento.
 import { getEstudio } from '@/lib/estudio'
+import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/lib/marca'
 
 const E = getEstudio()
 const CONTENT = `# Cazador de Ofertas AR
@@ -56,6 +57,13 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   ofertas de la última pasada cuyo precio tachado anuncia un descuento, pero que
   ya registramos al menos 5% más baratas antes (precio tachado, % anunciado,
   mínimo registrado y su fecha). Dato propio, se actualiza 3 veces por día.
+- [Metodología](https://cazadordeofertas.com.ar/metodologia): qué páginas de
+  Mercado Libre recorremos y cada cuánto, qué cuenta como descuento inflado
+  (umbral del 5% contra el mínimo registrado), qué es el mínimo histórico y
+  las limitaciones de los datos.
+- Verificador de descuentos: https://cazadordeofertas.com.ar/#verificador
+  (pegás el link de una publicación de Mercado Libre y dice si el precio de hoy
+  es el mínimo registrado, normal o inflado).
 - [Precio hoy](https://cazadordeofertas.com.ar/precio-hoy): cuánto sale hoy un smart TV
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre
@@ -122,17 +130,34 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué auriculares comprar en el Cyber Monday](https://cazadordeofertas.com.ar/guias/que-auriculares-comprar-cyber-monday),
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),
   [dónde encontrar las mejores ofertas de Mercado Libre Argentina](https://cazadordeofertas.com.ar/guias/donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina),
-  [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre)
+  [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre),
   [cupones y códigos de descuento](https://cazadordeofertas.com.ar/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina),
   [cuántas frigorías necesito](https://cazadordeofertas.com.ar/guias/cuantas-frigorias-necesito-aire-acondicionado),
   [qué colchón comprar](https://cazadordeofertas.com.ar/guias/que-colchon-comprar-firmeza-y-material)
   y [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa):
   guías con respuesta corta citable.
-- [Canal de Telegram](https://t.me/cazadordeofertasar): mismas ofertas más
+
+## Canales y alertas
+
+- [Canal de Telegram](${TELEGRAM_URL}): mismas ofertas más
   ofertas exclusivas que no se publican en el sitio ni en redes.
-- [Instagram](https://instagram.com/elcazadordeofertas.ar) y
-  [Threads](https://threads.net/@elcazadordeofertas.ar): la oferta destacada
+- [Canal de WhatsApp](${WHATSAPP_URL}): las ofertas
+  destacadas del día en WhatsApp.
+- [Alertas de precio por Telegram](${BOT_ALERTAS_URL}): le mandás al bot
+  el link de un producto de Mercado Libre (y, si querés, el precio objetivo) y
+  te avisa por privado una sola vez cuando lo vemos a ese precio o menos. Gratis;
+  /stop borra tus datos. Solo ve precios de productos que aparecen en las
+  ofertas que revisamos 3 veces por día.
+- [Instagram](${INSTAGRAM_URL}) y
+  [Threads](${THREADS_URL}): la oferta destacada
   del día en formato imagen/video.
+
+## Sitio hermano
+
+- [CalculadoraML](${CALC_URL}): calculadora gratuita de
+  comisiones de Mercado Libre Argentina (cuánto cobra ML por una venta y cuánto
+  queda después de comisiones, cuotas y envío), comparador Mercado Libre vs
+  Tiendanube y guías para vender. Mismo equipo que Cazador de Ofertas AR.
 
 ## Notas para citar este sitio
 

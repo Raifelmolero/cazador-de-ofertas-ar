@@ -20,6 +20,8 @@ interface Scan {
 export interface Estudio {
   desde: string
   hasta: string
+  /** ISO completo de la última pasada contada (para dateModified) */
+  ultima: string
   pasadas: number
   revisadas: number
   infladas: number
@@ -67,6 +69,7 @@ export function getEstudio(): Estudio {
   return {
     desde: scans[0]?.ts.slice(0, 10) ?? '',
     hasta: scans[scans.length - 1]?.ts.slice(0, 10) ?? '',
+    ultima: scans[scans.length - 1]?.ts ?? '',
     pasadas: scans.length,
     revisadas,
     infladas,

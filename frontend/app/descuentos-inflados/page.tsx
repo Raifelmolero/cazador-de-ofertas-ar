@@ -13,8 +13,8 @@ import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
 import { categoriaDe, diaMes, getInfladas, pesos, type CasoInflado } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
+import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/descuentos-inflados`
 const TITULO = 'Descuentos inflados de hoy en Mercado Libre'
 const DESCRIPCION =
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }
+
+/** Fecha en que se publicó esta página (commit 8f857f4). */
+const PUBLICADA = '2026-09-26'
 
 const FAQS = [
   {
@@ -74,9 +77,24 @@ export default function DescuentosInfladosPage() {
     '@type': 'FAQPage',
     mainEntity: FAQS.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   }
+  // dateModified = hora de la corrida del bot que armó la lista (infladas.json)
+  const pageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: TITULO,
+    description: DESCRIPCION,
+    url: URL,
+    inLanguage: 'es-AR',
+    datePublished: PUBLICADA,
+    ...(actualizado ? { dateModified: actualizado } : {}),
+    isPartOf: { '@id': WEBSITE_ID },
+    publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+    about: 'Descuentos inflados en Mercado Libre Argentina',
+  }
 
   return (
     <main className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <header className="border-b border-zinc-900 bg-zinc-950/80">
@@ -89,7 +107,13 @@ export default function DescuentosInfladosPage() {
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <p className="text-xs font-bold uppercase tracking-wider text-red-400 mb-3">
-          Datos propios{cuando ? ` · última pasada ${cuando} hs` : ''}
+          Datos propios
+          {actualizado && cuando && (
+            <>
+              {' · última pasada '}
+              <time dateTime={actualizado}>{cuando} hs</time>
+            </>
+          )}
         </p>
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-5 [text-wrap:balance]">
           {TITULO}

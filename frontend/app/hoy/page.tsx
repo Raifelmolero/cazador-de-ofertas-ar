@@ -17,12 +17,11 @@ import { CATEGORIAS } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
+import { DEALS_URL, MARCA, ORG_ID, SAME_AS, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL as WHATSAPP_DEFAULT } from '@/lib/marca'
 
-const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
-const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
-// Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
-// next.config.mjs), así que el canonical consolida todo ahí.
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
+const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? WHATSAPP_DEFAULT
+// DEALS_URL: dominio propio de la marca de ofertas; su raíz sirve esta página
+// (rewrite en next.config.mjs), así que el canonical consolida todo ahí.
 
 export const metadata: Metadata = {
   title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
@@ -113,32 +112,47 @@ export default function HoyPage() {
   // Organization + WebSite: le da a buscadores/IA una identidad clara del
   // sitio (quién lo publica, dónde más está) en vez de solo un listado de
   // productos suelto — ayuda tanto al rich result de Google como a que un
-  // asistente de IA lo cite con contexto correcto.
+  // asistente de IA lo cite con contexto correcto. Va SOLO acá (la home del
+  // Cazador): el layout es compartido con calculadoraml.com.ar. Otras páginas
+  // referencian estos nodos por @id (ORG_ID / WEBSITE_ID).
+  // SearchAction: el buscador de la grilla lee ?q= de la URL (OfertasGrid).
   const orgJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Cazador de Ofertas AR',
-    url: DEALS_URL,
-    description:
-      'Buscador de ofertas y descuentos reales de Mercado Libre Argentina, actualizado varias veces al día.',
-    inLanguage: 'es-AR',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Cazador de Ofertas AR',
-      url: DEALS_URL,
-      logo: `${DEALS_URL}/favicon-ofertas.png`,
-      areaServed: { '@type': 'Country', name: 'Argentina' },
-      knowsAbout: [
-        'Ofertas de Mercado Libre Argentina',
-        'Descuentos reales y mínimos históricos de precios',
-        'Historial de precios',
-      ],
-      sameAs: [
-        'https://instagram.com/elcazadordeofertas.ar',
-        'https://threads.net/@elcazadordeofertas.ar',
-        TELEGRAM_URL,
-      ],
-    },
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: MARCA,
+        url: DEALS_URL,
+        logo: { '@type': 'ImageObject', url: `${DEALS_URL}/favicon-ofertas.png` },
+        description:
+          'Buscador de ofertas y descuentos reales de Mercado Libre Argentina: verifica cada descuento contra el historial de precios y publica cuáles están inflados.',
+        areaServed: { '@type': 'Country', name: 'Argentina' },
+        knowsAbout: [
+          'Ofertas de Mercado Libre Argentina',
+          'Descuentos reales y mínimos históricos de precios',
+          'Descuentos inflados',
+          'Historial de precios',
+        ],
+        sameAs: SAME_AS,
+      },
+      {
+        '@type': 'WebSite',
+        '@id': WEBSITE_ID,
+        name: MARCA,
+        alternateName: 'Cazador de Ofertas',
+        url: DEALS_URL,
+        description:
+          'Buscador de ofertas y descuentos reales de Mercado Libre Argentina, actualizado varias veces al día.',
+        inLanguage: 'es-AR',
+        publisher: { '@id': ORG_ID },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: { '@type': 'EntryPoint', urlTemplate: `${DEALS_URL}/?q={search_term_string}` },
+          'query-input': 'required name=search_term_string',
+        },
+      },
+    ],
   }
 
   // FAQ: responde en texto plano las preguntas que la gente le hace a un

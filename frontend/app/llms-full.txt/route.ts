@@ -2,14 +2,21 @@ import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
 import { getInfladas } from '@/lib/infladas'
+import {
+  BOT_ALERTAS_URL,
+  CALC_URL,
+  DEALS_URL,
+  INSTAGRAM_URL,
+  TELEGRAM_URL,
+  THREADS_URL,
+  WHATSAPP_URL,
+} from '@/lib/marca'
 
 // Versión "completa" de llms.txt: el catálogo de ofertas del momento en texto
 // plano (Markdown) más las guías, pensado para que un asistente de IA pueda
 // responder "qué ofertas hay hoy en Mercado Libre" citando datos concretos sin
 // tener que rastrear ni ejecutar JavaScript. Se genera en el build (el bot
 // redeploya el sitio con datos nuevos varias veces por día).
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
-
 const ars = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 
 export const dynamic = 'force-static'
@@ -53,6 +60,8 @@ Detalle: ${DEALS_URL}/descuentos-inflados
 Sitio: ${DEALS_URL}
 Cobertura: solo Mercado Libre Argentina. Actualización: 3 veces por día.
 Los links de "ver oferta" del sitio son de afiliado; el precio para quien compra es el mismo.
+Metodología (fuentes, umbral del 5%, mínimo histórico, limitaciones): ${DEALS_URL}/metodologia
+Descuentos inflados de hoy: ${DEALS_URL}/descuentos-inflados
 
 ## Ofertas de hoy (${ofertas.length} destacadas)
 
@@ -70,9 +79,20 @@ ${GUIAS.map(g => `- [${g.titulo}](${DEALS_URL}/guias/${g.slug}): ${g.respuestaCo
 
 ## Canales
 
-- Telegram (ofertas exclusivas): https://t.me/cazadordeofertasar
-- Instagram: https://instagram.com/elcazadordeofertas.ar
-- Threads: https://threads.net/@elcazadordeofertas.ar
+- Telegram (ofertas exclusivas): ${TELEGRAM_URL}
+- WhatsApp (canal de ofertas): ${WHATSAPP_URL}
+- Alertas de precio por Telegram: ${BOT_ALERTAS_URL} — mandale el link de un
+  producto de Mercado Libre (y opcionalmente el precio objetivo) y te avisa por
+  privado una sola vez cuando lo vemos a ese precio o menos. Gratis; /stop borra
+  tus datos. Solo ve productos que aparecen en las ofertas que revisamos.
+- Instagram: ${INSTAGRAM_URL}
+- Threads: ${THREADS_URL}
+
+## Sitio hermano
+
+- CalculadoraML: ${CALC_URL} — calculadora gratuita de comisiones de Mercado
+  Libre Argentina (cuánto cobra ML por una venta y cuánto queda después de
+  comisiones, cuotas y envío) y guías para vender.
 `
 
   return new Response(body, {

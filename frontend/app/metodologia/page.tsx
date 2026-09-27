@@ -11,8 +11,8 @@ import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
+import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/metodologia`
 const TITULO = 'Metodología: cómo medimos precios y descuentos inflados'
 const DESCRIPCION =
@@ -51,6 +51,16 @@ function paginasBot() {
 }
 
 const numero = (n: number) => n.toLocaleString('es-AR')
+/** Fecha en que se publicó esta página (commit 8f857f4). */
+const PUBLICADA = '2026-09-26'
+/** ISO → "27/09/2026" en hora argentina */
+const fechaAR = (iso: string) =>
+  new Intl.DateTimeFormat('es-AR', {
+    timeZone: 'America/Argentina/Buenos_Aires',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(iso))
 const fecha = (iso: string) => iso.split('-').reverse().join('/')
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
 const nombreMes = (ym: string) => `${MESES[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
@@ -68,9 +78,29 @@ export default function MetodologiaPage() {
   const e = getEstudio()
   const productos = Object.keys(getHistorial()).length
   const p = paginasBot()
+  // dateModified = última pasada del bot contada en las cifras de la página
+  // (se recalculan en cada build, que dispara cada corrida del bot).
+  const actualizada = e.ultima || null
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: TITULO,
+    description: DESCRIPCION,
+    url: URL,
+    mainEntityOfPage: URL,
+    inLanguage: 'es-AR',
+    datePublished: PUBLICADA,
+    ...(actualizada ? { dateModified: actualizada } : {}),
+    author: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+    publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+    isPartOf: { '@id': WEBSITE_ID },
+    about: ['Descuentos inflados en Mercado Libre Argentina', 'Historial de precios', 'Mínimo histórico de precio'],
+  }
 
   return (
     <main className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="border-b border-zinc-900 bg-zinc-950/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
@@ -106,6 +136,12 @@ export default function MetodologiaPage() {
         {e.desde && (
           <p className="-mt-7 mb-10 text-xs text-zinc-500">
             Datos del {fecha(e.desde)} al {fecha(e.hasta)}. Se recalculan solos con cada pasada.
+            {actualizada && (
+              <>
+                {' '}
+                Última actualización: <time dateTime={actualizada}>{fechaAR(actualizada)}</time>.
+              </>
+            )}
           </p>
         )}
 

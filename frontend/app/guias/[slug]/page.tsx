@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { GUIAS, getGuia } from '@/lib/guias'
-
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
+import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
@@ -41,8 +40,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       description: g.descripcion,
       inLanguage: 'es-AR',
       mainEntityOfPage: url,
-      author: { '@type': 'Organization', name: 'Cazador de Ofertas AR', url: DEALS_URL },
-      publisher: { '@type': 'Organization', name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      author: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      isPartOf: { '@id': WEBSITE_ID },
     },
     {
       '@context': 'https://schema.org',

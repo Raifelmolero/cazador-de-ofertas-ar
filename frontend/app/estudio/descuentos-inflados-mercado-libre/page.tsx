@@ -2,8 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
-
-const DEALS_URL = 'https://cazadordeofertas.com.ar'
+import { DEALS_URL, ORG_ID } from '@/lib/marca'
 const URL = `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`
 
 const e = getEstudio()
@@ -46,7 +45,8 @@ export default function EstudioPage() {
       name: 'Descuentos inflados en Mercado Libre Argentina',
       description: DATO,
       url: URL,
-      creator: { '@type': 'Organization', name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      creator: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      ...(e.ultima ? { dateModified: e.ultima } : {}),
       temporalCoverage: `${e.desde}/${e.hasta}`,
       spatialCoverage: 'Argentina',
       variableMeasured: ['ofertas revisadas', 'ofertas con descuento inflado'],

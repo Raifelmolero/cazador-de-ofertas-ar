@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { ProductWithMargins } from '@/lib/productos'
+import type { ProductoLight } from '@/lib/productos'
 
-export default function ProductCard({ producto }: { producto: ProductWithMargins }) {
+export default function ProductCard({ producto }: { producto: ProductoLight }) {
   // "Top" = oferta destacada del día (relámpago o mínimo histórico): con los
   // costos reales casi todos los productos dejan un neto parecido en %.
   const isTop = Boolean(producto.relampago || producto.minimo_historico)

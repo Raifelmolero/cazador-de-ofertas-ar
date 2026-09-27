@@ -49,6 +49,24 @@ function conCostosML(p: ProductWithMargins): ProductWithMargins {
   }
 }
 
+/** Solo los campos que usan ProductsGrid/ProductCard (la home de calculadoraml
+ *  mandaba los ~420 productos completos al cliente: 1,3 MB de HTML). */
+export type ProductoLight = Pick<
+  ProductWithMargins,
+  'id_ml' | 'titulo' | 'precio_actual' | 'margen_neto_clasico_ars' | 'minimo_historico' | 'relampago' | 'url_imagen' | 'url_producto'
+>
+
+export const aLight = (p: ProductWithMargins): ProductoLight => ({
+  id_ml: p.id_ml,
+  titulo: p.titulo,
+  precio_actual: p.precio_actual,
+  margen_neto_clasico_ars: p.margen_neto_clasico_ars,
+  minimo_historico: p.minimo_historico,
+  relampago: p.relampago,
+  url_imagen: p.url_imagen,
+  url_producto: p.url_producto,
+})
+
 export function getProductos(): ProductWithMargins[] {
   const items = (readJson().items as ProductWithMargins[]).map(conCostosML)
   return items.sort((a, b) => b.margen_neto_clasico_ars - a.margen_neto_clasico_ars)

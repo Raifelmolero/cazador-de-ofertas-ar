@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getProductos, getScrapedAt } from '@/lib/productos'
+import { aLight, getProductos, getScrapedAt } from '@/lib/productos'
 import { CARGO_MAX, CARGO_MIN, COSTOS_VIGENCIA } from '@/lib/costosml'
 import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import CalcHeader from '@/components/CalcHeader'
@@ -197,7 +197,7 @@ export default function HomePage() {
         </div>
 
         <div className="pb-8">
-          <ProductsGrid productos={productos} />
+          <ProductsGrid productos={productos.map(aLight)} />
         </div>
       </section>
 

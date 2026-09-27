@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import type { ProductWithMargins } from '@/lib/productos'
+import type { ProductoLight } from '@/lib/productos'
 import ProductCard from './ProductCard'
 
 function StatCard({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
@@ -13,8 +13,11 @@ function StatCard({ label, value, accent }: { label: string; value: string; acce
   )
 }
 
-export default function ProductsGrid({ productos }: { productos: ProductWithMargins[] }) {
+const PAGINA = 48
+
+export default function ProductsGrid({ productos }: { productos: ProductoLight[] }) {
   const [search, setSearch] = useState('')
+  const [visibles, setVisibles] = useState(PAGINA)
   const [shuffled, setShuffled] = useState(productos)
 
   // Shuffle aleatorio en cada carga de página (client-side, post-hydration).
@@ -92,9 +95,20 @@ export default function ProductsGrid({ productos }: { productos: ProductWithMarg
       {/* Grid */}
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filtered.map(p => (
+          {filtered.slice(0, visibles).map(p => (
             <ProductCard key={p.id_ml} producto={p} />
           ))}
+          {filtered.length > visibles && (
+            <div className="col-span-full text-center pt-2">
+              <button
+                type="button"
+                onClick={() => setVisibles(v => v + PAGINA)}
+                className="text-sm font-bold bg-gray-800 hover:bg-gray-700 text-white rounded-xl px-6 py-3 transition-colors"
+              >
+                Ver más productos ({filtered.length - visibles} restantes)
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-24 text-gray-500">

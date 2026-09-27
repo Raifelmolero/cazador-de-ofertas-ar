@@ -7,6 +7,10 @@ on:
         description: 'Texto del post (máx. 500 caracteres)'
         required: true
         type: string
+      telegram:
+        description: 'Publicar también en el canal de Telegram'
+        type: boolean
+        default: false
       dry_run:
         description: 'Solo simular (no publica)'
         type: boolean
@@ -37,6 +41,7 @@ jobs:
         working-directory: bot
         env:
           TEXTO: ${{ inputs.texto }}
+          TELEGRAM: ${{ inputs.telegram == true && '1' || '0' }}
           DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}

@@ -1,13 +1,14 @@
 """
-Post manual de solo texto en Threads (sin oferta de ML): para difundir
-guías o páginas propias, p. ej. las de calculadoraml.com.ar. Lo dispara
-texto_post.yml pasando TEXTO. Avisa al admin por Telegram.
+Post manual de solo texto en Threads y, opcionalmente, en el canal de
+Telegram (sin oferta de ML): para difundir guías, páginas propias o
+novedades como el canal de WhatsApp. Lo dispara texto_post.yml pasando
+TEXTO. Avisa al admin por Telegram.
 """
 
 import os
 import sys
 
-from cazador_bot import alert_admin, load_config, publish_threads
+from cazador_bot import alert_admin, load_config, publish_threads, tg_call
 
 
 def main() -> int:
@@ -18,11 +19,23 @@ def main() -> int:
     cfg = load_config()
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     th_user, th_token = os.getenv("THREADS_USER_ID", ""), os.getenv("THREADS_ACCESS_TOKEN", "")
+    results = []
+    if os.getenv("TELEGRAM") == "1":
+        if dry:
+            print("[DRY] Telegram\n" + texto)
+            results.append("Telegram (dry)")
+        else:
+            try:
+                tg_call(token, "sendMessage", {"chat_id": cfg["channel"], "text": texto})
+                results.append("Telegram ✅")
+            except Exception as e:  # noqa: BLE001 — que un canal no frene al otro
+                results.append(f"Telegram ❌ {str(e)[:150]}")
     try:
         permalink = publish_threads({}, "", th_user, th_token, dry, caption=texto, text_only=True)
-        res = f"Threads ✅ {permalink}"
+        results.append(f"Threads ✅ {permalink}")
     except Exception as e:  # noqa: BLE001
-        res = f"Threads ❌ {str(e)[:150]}"
+        results.append(f"Threads ❌ {str(e)[:150]}")
+    res = "\n".join(results)
     alert_admin(token, cfg["admin_chat"], "📝 Post de texto:\n" + res, dry)
     print(res)
     return 0

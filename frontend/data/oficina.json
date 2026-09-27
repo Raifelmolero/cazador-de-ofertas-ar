@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-26T18:32:44+00:00",
+  "generado": "2026-09-27T01:32:36+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,37 +8,41 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-26T18:32:43+00:00",
+      "ultima_actividad": "2026-09-27T01:32:35+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 889 productos en la última corrida"
+          "tarea": "Revisó 1464 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 15
-        },
-        {
-          "label": "Instagram",
-          "valor": 3
+          "valor": 10
         },
         {
           "label": "Historias IG",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         },
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 1
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Exhibidora Vertical Inelro MT - 450 437 Lts 1 Puerta"
+      "ultimo_trabajo": "Soldadora Inverter Mig Mag/mma/tig 200amp 3 En 1 Aleba Amarillo"
     },
     {
       "id": "investigacion",
@@ -92,17 +96,17 @@
         },
         {
           "label": "Comparativas",
-          "valor": 18
+          "valor": 28
         }
       ],
       "entregas": [
         {
           "fecha": "",
-          "titulo": "mejores monitores"
+          "titulo": "mejores monitores gamer"
         },
         {
           "fecha": "",
-          "titulo": "mejores ventiladores"
+          "titulo": "mejores monitores"
         },
         {
           "fecha": "",

@@ -1,0 +1,44 @@
+name: Post de texto en Threads
+
+on:
+  workflow_dispatch:
+    inputs:
+      texto:
+        description: 'Texto del post (máx. 500 caracteres)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Solo simular (no publica)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  texto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - run: pip install pillow
+
+      - name: Publicar
+        working-directory: bot
+        env:
+          TEXTO: ${{ inputs.texto }}
+          DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: python texto_post.py

@@ -68,6 +68,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   fechas oficiales (CACE: lunes 2 al miércoles 4 de noviembre de 2026, fuente
   cybermonday.com.ar), cómo detectar descuentos inflados en el evento y las
   ofertas de hoy en sus rubros, verificadas contra el historial de precios.
+- [Día de la Madre 2026 en Argentina](https://cazadordeofertas.com.ar/dia-de-la-madre):
+  domingo 18 de octubre de 2026 (tercer domingo de octubre); regalos en oferta
+  hoy en Mercado Libre por presupuesto (hasta $30.000, $30.000-$80.000 y más de
+  $80.000), verificados contra el historial de precios.
 - [Precio hoy](https://cazadordeofertas.com.ar/precio-hoy): cuánto sale hoy un smart TV
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre

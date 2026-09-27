@@ -353,7 +353,7 @@ export default function HoyPage() {
       {new Date() < new Date('2026-10-19T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
           <Link
-            href="/mejores/regalos-dia-de-la-madre"
+            href="/dia-de-la-madre"
             className="block rounded-2xl border border-pink-400/30 bg-pink-500/10 px-5 py-4 text-center hover:border-pink-400/60 transition-colors"
           >
             <span className="font-display font-black text-pink-200">🎁 Día de la Madre: domingo 18 de octubre</span>

@@ -508,6 +508,74 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
   },
   {
+    slug: 'mejores-cafeteras',
+    nombre: 'cafeteras',
+    titulo: `Mejores cafeteras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las cafeteras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+    categoria: 'electro-de-cocina',
+    keywords: ['cafetera'],
+    criterios: [
+      'Tipo: de filtro para hacer varias tazas juntas; espresso si te gusta el café concentrado; de cápsulas si priorizás la practicidad.',
+      'Espresso: fijate si trae vaporizador para espumar leche y si tiene molinillo integrado o necesitás café ya molido.',
+      'Cápsulas: la máquina suele ser barata, pero cada taza sale más cara; confirmá que consigas cápsulas compatibles.',
+      'Que el depósito de agua y la bandeja de goteo se saquen fácil: la limpieza diaria es lo que más se usa.',
+    ],
+  },
+  {
+    slug: 'mejores-microondas',
+    nombre: 'microondas',
+    titulo: `Mejores microondas en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de microondas en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
+    intro:
+      'Los microondas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'electro-de-cocina',
+    keywords: ['microondas'],
+    criterios: [
+      'Capacidad: 20 litros alcanza para calentar y descongelar; si vas a cocinar o usar fuentes grandes, conviene 25 litros o más.',
+      'Con grill podés gratinar y dorar; si solo calentás, el modelo básico alcanza.',
+      'Digital o mecánico: el digital trae programas automáticos; el de perilla es más simple y tiene menos que se rompa.',
+      'Medí el hueco donde va antes de comprar y dejá espacio para ventilación a los costados y arriba.',
+    ],
+  },
+  {
+    slug: 'mejores-licuadoras',
+    nombre: 'licuadoras y minipimers',
+    titulo: `Mejores licuadoras y minipimers en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de licuadoras y minipimers (mixers de mano) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las licuadoras y minipimers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'electro-de-cocina',
+    keywords: ['licuadora', 'minipimer', 'mixer de mano'],
+    criterios: [
+      'Licuadora de vaso para licuados, salsas y hielo; minipimer para sopas, purés y cantidades chicas directo en la olla.',
+      'Jarra de vidrio: no se raya ni toma olor; la plástica pesa menos y no se rompe si se cae.',
+      'Si vas a triturar hielo o frutas congeladas, buscá cuchillas de acero y que el fabricante lo indique.',
+      'Minipimer con accesorios (vaso, picador, batidor) reemplaza a varios aparatos en cocinas chicas.',
+    ],
+  },
+  {
+    slug: 'mejores-batidoras',
+    nombre: 'batidoras',
+    titulo: `Mejores batidoras en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de batidoras planetarias y de mano en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las batidoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+    categoria: 'electro-de-cocina',
+    keywords: ['batidora'],
+    criterios: [
+      'Planetaria si hacés masas, tortas o panes seguido: amasa sola y libera las manos. De mano si es para uso ocasional.',
+      'Bowl: 4 a 5 litros alcanza para una casa; bowl de acero dura más que el plástico.',
+      'Que traiga gancho amasador, batidor de globo y paleta: son los tres que se usan de verdad.',
+      'Varias velocidades y arranque suave evitan salpicar harina al empezar.',
+    ],
+  },
+  {
     slug: 'mejores-monitores',
     nombre: 'monitores',
     titulo: `Mejores monitores en oferta ${AÑO}: comparativa de precios`,

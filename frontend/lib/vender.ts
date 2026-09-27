@@ -526,6 +526,148 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
       afiliado: Boolean(TIENDANUBE_AFILIADO),
     },
   },
+  {
+    slug: 'como-vender-en-mercado-libre',
+    titulo: 'Cómo vender en Mercado Libre: paso a paso para empezar en 2026',
+    descripcion: `Guía para empezar a vender en Mercado Libre Argentina: cómo publicar, cuánto cobra (${pct(CARGO_MIN)}% a ${pct(CARGO_MAX)}%), envíos, reputación y cuándo cobrás.`,
+    pregunta: '¿Cómo empiezo a vender en Mercado Libre?',
+    respuestaCorta: `Con tu cuenta de Mercado Libre, tocás "Vender", buscás tu producto en el catálogo (o elegís la categoría si no está), cargás fotos, precio y forma de entrega, y listo: publicar es gratis. Cuando vendés, ML te cobra un cargo de entre ${pct(CARGO_MIN)}% y ${pct(CARGO_MAX)}% del precio, más un costo fijo por unidad en productos de menos de ${ars(UMBRAL_COSTO_FIJO)}. El dinero lo cobrás en Mercado Pago: con envíos de Mercado Libre y reputación, un producto nuevo queda disponible 8 días después de entregado (14 días si todavía no tenés reputación).`,
+    secciones: [
+      {
+        h: '1. Publicá tu producto',
+        p: [
+          'Entrá a "Vender" desde la página principal. Buscá tu producto en el catálogo por palabras clave, por foto o por código: cuanto más específica sea la búsqueda, más datos completa ML por vos.',
+          'Si no está en el catálogo, elegí bien la categoría (después no la podés cambiar), agregá características y fotos, y cargá variantes si tenés distintos talles o colores.',
+          'Si dejás una publicación a medias, queda un borrador guardado 14 días. Las publicaciones nuevas pueden tardar unos minutos en aparecer en las búsquedas.',
+        ],
+      },
+      {
+        h: '2. Conocé los costos antes de poner el precio',
+        p: [
+          `Cargo por vender: entre ${pct(CARGO_MIN)}% y ${pct(CARGO_MAX)}% del precio, según la categoría y tu provincia (vigente desde el ${COSTOS_VIGENCIA}).`,
+          `Costo por unidad: solo en productos de menos de ${ars(UMBRAL_COSTO_FIJO)}. Con Envíos Flex, acuerdo con el comprador o retiro va de ${ars(1330)} a ${ars(3320)} según el precio.`,
+          'Si ofrecés cuotas o envío gratis, pagás además esos costos. Hacé la cuenta con la calculadora antes de publicar para no vender a pérdida.',
+        ],
+      },
+      {
+        h: '3. Elegí cómo enviar',
+        p: [
+          'Al publicar elegís la forma de entrega: Envíos de Mercado Libre u otras opciones logísticas si están disponibles (como Envíos Flex o acordar con el comprador).',
+          `En productos nuevos desde ${ars(UMBRAL_COSTO_FIJO)} el envío gratis viene incluido y lo pagás vos con un descuento según tu reputación: con reputación verde o sin reputación, desde ${ars(ENVIO_03.de33a50)} por unidad hasta 0,3 kg.`,
+          'Más adelante, cuando ya tengas ventas, podés mandar tu stock a Envíos Full para que ML lo guarde, lo empaque y lo envíe.',
+        ],
+      },
+      {
+        h: '4. Cuidá tu reputación desde la primera venta',
+        p: [
+          'Tu reputación como vendedor se activa cuando completás tus primeras 10 ventas. Mientras tanto, cada venta cuenta: despachá a tiempo y describí bien el producto.',
+          'Con reputación verde pagás menos por el envío gratis y cobrás antes. Con naranja o roja el envío gratis no tiene descuento.',
+        ],
+      },
+      {
+        h: '5. Cuándo cobrás',
+        p: [
+          'Los pagos entran a tu cuenta de Mercado Pago y quedan disponibles un tiempo después de la entrega. La fecha exacta aparece en el detalle de cada venta.',
+          'Con envíos de Mercado Libre: si tenés reputación, 8 días para productos nuevos y 14 para usados; si todavía no tenés reputación, 14 días. Con Envíos Full, 6 días desde la entrega, nuevos o usados.',
+          'Si enviás por tu cuenta, marcá "Avisar entrega": si el comprador confirma que le llegó, el dinero está disponible en 8 días; si no avisás, puede tardar 28 o 29 días.',
+          `Datos verificados el ${COSTOS_VERIFICADOS} en la ayuda oficial de Mercado Libre.`,
+        ],
+      },
+    ],
+    herramienta: {
+      href: '/calculadora-envio-gratis',
+      texto: 'Si vas a ofrecer envío gratis, calculá cuánto te cuesta según el precio, el peso y tu reputación.',
+      boton: 'Calculadora de envío gratis 📦',
+    },
+    fuentes: [
+      { texto: 'Mercado Libre: Cómo publicar un producto', url: 'https://www.mercadolibre.com.ar/ayuda/25316' },
+      { texto: 'Mercado Libre: Costos por vender un producto y opciones de cuotas', url: 'https://www.mercadolibre.com.ar/ayuda/Costos-de-vender-un-producto_870' },
+      { texto: 'Mercado Libre: ¿Cuáles son los costos de ofrecer envíos gratis?', url: 'https://www.mercadolibre.com.ar/ayuda/3482' },
+      { texto: 'Mercado Libre: requisitos para empezar a vender con Full (reputación)', url: 'https://www.mercadolibre.com.ar/ayuda/31201' },
+      { texto: 'Mercado Libre: cuándo podés usar el dinero de una venta', url: 'https://www.mercadolibre.com.ar/ayuda/275' },
+    ],
+    verificado: COSTOS_VERIFICADOS,
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular mi ganancia 🧮',
+      texto: 'Antes de publicar, poné tu precio y tu costo y mirá cuánto te queda.',
+    },
+  },
+  {
+    slug: 'mercado-envios-full-conviene',
+    titulo: 'Mercado Envíos Full: qué es, cuánto cuesta y cuándo conviene',
+    descripcion:
+      'Qué es Envíos Full de Mercado Libre, requisitos, costos de almacenamiento, stock antiguo y retiro (tarifas oficiales) y en qué casos conviene usarlo.',
+    pregunta: '¿Conviene usar Mercado Envíos Full?',
+    respuestaCorta: 'Full conviene para productos chicos que rotan rápido: ML guarda tu stock, arma los paquetes y entrega al día siguiente, tus publicaciones aparecen más arriba con su propio filtro y cobrás 6 días después de la entrega. A cambio pagás almacenamiento diario por unidad (desde $0,75 un producto pequeño hasta $65 uno extragrande) y, si una unidad pasa más de 4 meses sin venderse, un cargo mensual por stock antiguo. Para productos grandes o de venta lenta, esos cargos pueden comerse la ganancia.',
+    secciones: [
+      {
+        h: 'Qué es Envíos Full',
+        p: [
+          'Es el servicio de Mercado Libre que guarda tu stock en sus centros de almacenamiento, imprime las etiquetas, embala y envía cada venta. Vos solo mandás la mercadería.',
+          'Beneficios según ML: publicaciones más arriba en los listados y con filtro propio, entregas al día siguiente, descuento en el costo del envío gratis y ML responde los reclamos de los compradores sobre la entrega o el producto entregado.',
+          'El dinero de las ventas con Full queda disponible 6 días después de la entrega, tanto en productos nuevos como usados.',
+        ],
+      },
+      {
+        h: 'Requisitos para usar Full',
+        p: [
+          'Tener reputación como vendedor (se activa al completar tus primeras 10 ventas) y vender productos aptos para Full, dentro de las dimensiones permitidas.',
+          'Si en Publicaciones te aparece la sección "Gestión de stock Full", ya podés usarlo; si no, completás un formulario de interés. La activación también depende del espacio disponible en los centros de almacenamiento.',
+          'No se aceptan, entre otros: productos usados o reacondicionados por el vendedor, medicamentos, inflamables, celulares sin IMEI visible, neumáticos (salvo de moto y bici) ni productos que necesitan control de temperatura.',
+          'El traslado del stock hasta el centro corre por tu cuenta, o podés usar la colecta a domicilio, que tiene un costo según la distancia y tu zona.',
+        ],
+      },
+      {
+        h: 'Cuánto cuesta el almacenamiento',
+        p: [
+          'Tarifa diaria por unidad guardada, según el tamaño: pequeño (hasta 15 x 20 x 20 cm y 12 kg) $0,75; mediano (hasta 28 x 36 x 51 cm y 12 kg) $2,40; grande (hasta 60 x 70 x 80 cm y 12 kg) $20; extragrande $65. Los productos de Supermercado no pagan esta tarifa.',
+          'Se suma día por día y se cobra a fin de mes. Cuando vendés o retirás una unidad, deja de generar cargo.',
+          'Si superás el 100% del espacio que te asignaron, pagás además $9,50 por día por unidad pequeña o mediana y $127,50 por unidad grande o extragrande que sobrepase.',
+        ],
+      },
+      {
+        h: 'Stock antiguo, retiros y descartes',
+        p: [
+          'Stock antiguo: si una unidad (fuera de Supermercado) lleva más de 4 meses sin venderse, pagás un cargo mensual. De 4 a 6 meses: $350 pequeño, $470 mediano, $1.355 grande y $4.680 extragrande. De 6 a 12 meses sube a $3.250, $4.485, $18.280 y $47.840; más de 12 meses, a $7.900, $10.930, $39.365 y $92.400.',
+          'Retirar stock cuesta por unidad $595 (pequeño), $910 (mediano), $3.500 (grande) o $4.050 (extragrande), con un mínimo de $16.200 si retirás menos de 5 unidades. Descartarlo cuesta $175, $230, $875 o $1.015.',
+          'Retirar unidades no aptas para la venta no tiene costo.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene y cuándo no',
+        p: [
+          'Conviene: productos pequeños o medianos que se venden seguido. Un producto pequeño que se vende en 30 días paga $22,50 de almacenamiento; uno mediano, $72. Frente al cargo por vender y el envío, es poco.',
+          'Cuidado: productos grandes o extragrandes de venta lenta. Un extragrande que tarda 5 meses paga unos $9.750 de almacenamiento (150 días a $65) más $4.680 por el quinto mes como stock antiguo.',
+          'Mandá a Full la cantidad que calculás vender en uno o dos meses, no todo tu stock: así evitás el stock antiguo y el cargo por sobrepasar espacio.',
+          'El cargo por vender y el costo del envío gratis se pagan igual que sin Full. Calculá tu margen con esos costos y restale el almacenamiento para ver si te sigue cerrando.',
+        ],
+      },
+    ],
+    herramienta: {
+      href: '/calculadora-envio-gratis',
+      texto: 'Calculá cuánto pagás de envío gratis según el precio, el peso del paquete y tu reputación.',
+      boton: 'Calculadora de envío gratis 📦',
+    },
+    fuentes: [
+      { texto: 'Mercado Libre: ¿Qué es Envíos Full?', url: 'https://www.mercadolibre.com.ar/ayuda/5162' },
+      { texto: 'Mercado Libre: requisitos para empezar a vender con Full', url: 'https://www.mercadolibre.com.ar/ayuda/31201' },
+      { texto: 'Mercado Libre: productos que no se pueden enviar a Full', url: 'https://www.mercadolibre.com.ar/ayuda/5200' },
+      { texto: 'Mercado Libre: costos por operar en Full', url: 'https://www.mercadolibre.com.ar/ayuda/20522' },
+      { texto: 'Mercado Libre: costo por almacenar stock en Full', url: 'https://www.mercadolibre.com.ar/ayuda/21793' },
+      { texto: 'Mercado Libre: cargos por stock antiguo', url: 'https://www.mercadolibre.com.ar/ayuda/15731' },
+      { texto: 'Mercado Libre: cargo por sobrepasar espacio en Full', url: 'https://www.mercadolibre.com.ar/ayuda/41483' },
+      { texto: 'Mercado Libre: costos por retirar o descartar stock', url: 'https://www.mercadolibre.com.ar/ayuda/16645' },
+      { texto: 'Mercado Libre: costos por enviar stock (colecta)', url: 'https://www.mercadolibre.com.ar/ayuda/38950' },
+      { texto: 'Mercado Libre: cuándo podés usar el dinero de una venta', url: 'https://www.mercadolibre.com.ar/ayuda/275' },
+    ],
+    verificado: COSTOS_VERIFICADOS,
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular mi margen 🧮',
+      texto: 'Poné tu precio, tu costo y el envío y mirá cuánto te queda antes de sumar Full.',
+    },
+  },
 ]
 
 export const getGuiaVendedor = (slug: string) => GUIAS_VENDER.find(g => g.slug === slug)

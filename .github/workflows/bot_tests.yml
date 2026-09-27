@@ -34,6 +34,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      # Sin pip install: el bot es stdlib pura y los tests también.
+      # El bot es stdlib pura salvo alertas.py, que cifra con Fernet.
+      - name: Dependencias
+        run: pip install cryptography
+
       - name: Correr tests
         run: python -m unittest discover -s bot/tests -v

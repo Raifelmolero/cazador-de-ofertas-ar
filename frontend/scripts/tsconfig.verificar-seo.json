@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "noEmit": false, "outDir": "../.verif-seo", "module": "commonjs", "moduleResolution": "node", "jsx": "react-jsx", "incremental": false, "plugins": [], "noEmitOnError": false, "allowJs": false, "isolatedModules": false },
+  "include": ["verificar-seo.ts"]
+}

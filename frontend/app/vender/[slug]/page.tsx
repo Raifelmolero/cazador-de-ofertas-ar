@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import CalcHeader from '@/components/CalcHeader'
@@ -14,10 +15,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!g) return {}
   const url = `${CALC_URL}/vender/${g.slug}`
   return {
-    title: `${g.titulo} — CalculadoraML`,
-    description: g.descripcion,
+    title: tituloSeo(g.titulo, [n => `${n} — CalculadoraML`, n => n]),
+    description: descripcionSeo(g.descripcion),
     alternates: { canonical: url },
-    openGraph: { title: g.titulo, description: g.descripcion, url, type: 'article', locale: 'es_AR', siteName: 'CalculadoraML' },
+    openGraph: { title: g.titulo, description: descripcionSeo(g.descripcion), url, type: 'article', locale: 'es_AR', siteName: 'CalculadoraML' },
   }
 }
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -28,10 +29,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = getPrecioHoy((await params).slug)
   if (!p) return {}
   const url = `${DEALS_URL}/precio-hoy/${p.slug}`
-  const t = titulo(p.nombre)
-  const description = `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de las ofertas con descuento real, más el historial de precios que registramos.`
+  const d = getScrapedAt()
+  const cuando = `${MESES[d.getMonth()]} ${d.getFullYear()}`
+  const t = tituloSeo(p.nombre, [
+    n => `Precio de ${n} hoy en Argentina (${cuando}) — Cazador de Ofertas AR`,
+    n => `Precio de ${n} hoy en Argentina (${cuando})`,
+    n => `Precio de ${n} hoy (${cuando})`,
+  ])
+  const description = descripcionSeo(`Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {
-    title: `${t} — Cazador de Ofertas AR`,
+    title: t,
     description,
     alternates: { canonical: url },
     openGraph: { title: t, description, url, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },

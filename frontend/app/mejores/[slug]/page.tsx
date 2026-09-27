@@ -1,4 +1,5 @@
 import { busquedaML } from '@/lib/afiliado'
+import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -21,15 +22,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = getComparativa((await params).slug)
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
-  const titulo = `${c.titulo} — Cazador de Ofertas AR`
+  const titulo = tituloSeo(c.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
+  const descripcion = descripcionSeo(c.descripcion)
   return {
     title: titulo,
-    description: c.descripcion,
+    description: descripcion,
     alternates: { canonical: url },
     ...(indexable(c) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: titulo,
-      description: c.descripcion,
+      description: descripcion,
       url,
       type: 'article',
       locale: 'es_AR',

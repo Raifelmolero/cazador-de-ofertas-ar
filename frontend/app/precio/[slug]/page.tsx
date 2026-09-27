@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -28,10 +29,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const s = getSeguido((await params).slug)
   if (!s) return {}
   const url = `${DEALS_URL}/precio/${s.slug}`
-  const titulo = `${nombreCorto(s)}: historial de precios y precio más bajo`
-  const descripcion = `Precio de hoy, precio más bajo registrado (${precio(s.min)} el ${fecha(s.min_ts)}) e historial de ${nombreCorto(s)} en Mercado Libre Argentina. Seguido desde ${fecha(s.desde)}.`
+  const titulo = tituloSeo(s.titulo, [
+    n => `Precio ${n}: historial y mínimo — Cazador de Ofertas AR`,
+    n => `Precio ${n}: historial y precio más bajo`,
+    n => `Precio ${n}: historial y mínimo`,
+    n => `Precio ${n}: historial`,
+  ])
+  const descripcion = tituloSeo(s.titulo, [
+    n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
+    n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
+  ], MAX_DESCRIPCION)
   return {
-    title: `${titulo} — Cazador de Ofertas AR`,
+    title: titulo,
     description: descripcion,
     alternates: { canonical: url },
     openGraph: {

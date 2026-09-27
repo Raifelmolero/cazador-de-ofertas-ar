@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { GUIAS, getGuia } from '@/lib/guias'
@@ -13,12 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!g) return {}
   const url = `${DEALS_URL}/guias/${g.slug}`
   return {
-    title: `${g.titulo} — Cazador de Ofertas AR`,
-    description: g.descripcion,
+    title: tituloSeo(g.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n]),
+    description: descripcionSeo(g.descripcion),
     alternates: { canonical: url },
     openGraph: {
       title: g.titulo,
-      description: g.descripcion,
+      description: descripcionSeo(g.descripcion),
       url,
       type: 'article',
       locale: 'es_AR',

@@ -1,4 +1,5 @@
 import { getProductos, getProductoById } from '@/lib/productos'
+import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -23,9 +24,16 @@ export async function generateMetadata({
   const producto = getProductoById(id)
   if (!producto) return { title: 'Producto no encontrado' }
 
+  const deposita = Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')
+  const precioMl = producto.precio_actual.toLocaleString('es-AR')
   return {
-    title: `Calculadora de Ganancia: ${producto.titulo} en Mercado Libre`,
-    description: `Calculá cuánto podés ganar vendiendo "${producto.titulo}". Precio ML: $${producto.precio_actual.toLocaleString('es-AR')}. Te deposita ML: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}.`,
+    title: tituloSeo(producto.titulo, [
+      n => `Calculadora de ganancia: ${n} en Mercado Libre`,
+      n => `Calculadora de ganancia: ${n}`,
+    ]),
+    description: tituloSeo(producto.titulo, [
+      n => `Calculá cuánto ganás vendiendo "${n}". Precio ML: $${precioMl}. Te deposita ML: $${deposita}.`,
+    ], MAX_DESCRIPCION),
     openGraph: {
       title: `Calculadora de Ganancia: ${producto.titulo}`,
       description: `Te deposita ML: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')} ARS por venta (costos oficiales 2026)`,

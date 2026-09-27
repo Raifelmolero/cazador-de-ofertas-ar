@@ -19,6 +19,7 @@ Lo corre alertas.yml cada 15 minutos. Uso: python bot/alertas.py
 """
 
 import json
+import urllib.request
 import os
 import re
 import subprocess
@@ -228,6 +229,11 @@ def main() -> int:
     if not token or not os.getenv("ALERTAS_KEY"):
         print("[alertas] faltan TELEGRAM_BOT_TOKEN o ALERTAS_KEY")
         return 1
+    try:  # dato público: el @usuario que va en el deep link del sitio
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/getMe", timeout=15) as r:
+            print(f"[alertas] bot: @{json.load(r)['result']['username']}")
+    except Exception as e:
+        print(f"[alertas] getMe falló: {e}")
     cfg = load_config()
     affiliate_id = os.getenv("ML_AFFILIATE_ID", "")
     data = cargar()

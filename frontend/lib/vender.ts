@@ -15,7 +15,7 @@ export const CALC_URL = 'https://calculadoraml.com.ar'
 // Link de afiliado de Tiendanube (lo genera Raifel en su panel de afiliados).
 // Vacío = link común, sin comisión. Siempre se aclara en la página que es
 // un link de afiliado cuando lo es.
-export const TIENDANUBE_AFILIADO = ''
+export const TIENDANUBE_AFILIADO = 'https://www.tiendanube.com/partners/cazador-de-ofertas-ar'
 export const TIENDANUBE_URL = TIENDANUBE_AFILIADO || 'https://www.tiendanube.com/'
 
 const pct = (n: number) => String(n).replace('.', ',')

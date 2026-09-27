@@ -26,6 +26,8 @@ import { getOfertas, type ProductWithMargins } from '@/lib/productos'
 export interface Categoria {
   slug: string
   nombre: string // "Monitores" — para chips y enlaces
+  /** Cómo se nombra dentro de una frase ("ofertas de ___"); por defecto, nombre en minúsculas */
+  enFrase?: string
   titulo: string // <title> y H1
   descripcion: string // meta description
   intro: string
@@ -48,6 +50,9 @@ export const CATEGORIAS: Categoria[] = [
     excluir: [
       'arterial', 'presion', 'bebe', 'baby', 'cardiac', 'glucosa', 'tensiometro',
       'soporte', 'brazo', 'base para', 'filtro', 'limpiador', 'repuesto',
+      // "Edifier R1100 Parlante Activo Monitor…", "Monitor de estudio Behringer…":
+      // parlantes de audio, no pantallas
+      'parlante activo', 'de estudio',
     ],
     guia: [
       {
@@ -257,6 +262,7 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'aire-acondicionado',
     nombre: 'Aire acondicionado',
+    enFrase: 'aires acondicionados',
     titulo: 'Ofertas de aire acondicionado en Mercado Libre Argentina',
     descripcion:
       'Aires acondicionados split en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Cómo elegir frigorías, inverter o no y qué revisar antes de comprar.',
@@ -406,6 +412,7 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'smart-tv',
     nombre: 'Smart TV',
+    enFrase: 'Smart TV',
     titulo: 'Ofertas de Smart TV en Mercado Libre Argentina',
     descripcion:
       'Smart TV en oferta en Mercado Libre Argentina con el descuento verificado contra el historial de precios. Qué tamaño, resolución y sistema elegir.',
@@ -638,11 +645,23 @@ export const CATEGORIAS: Categoria[] = [
           'Fijate el tamaño de la superficie (define para cuántas personas alcanza), el material (hierro o acero inoxidable) y si la altura de la rejilla se regula.',
         ],
       },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Material y mantenimiento: el acero inoxidable no se oxida y se limpia fácil, pero suele costar más; el hierro retiene bien el calor, aunque hay que curarlo y protegerlo de la humedad para que no se oxide. Si la parrilla va a quedar a la intemperie, una funda o un lugar techado le alarga la vida.',
+          'Parrilla eléctrica: fijate la potencia (W) y que el enchufe y la instalación de tu casa la banquen, sobre todo si vas a usar otros artefactos a la vez. A gas: confirmá si funciona con garrafa o con gas natural y qué conexión trae.',
+          'Medidas y traslado: en las portátiles, mirá el peso y cómo se pliegan. En las fijas o de pie, medí el espacio y pensá dónde va a salir el humo.',
+        ],
+      },
     ],
     faqs: [
       {
         q: '¿Qué parrilla conviene para un balcón?',
         a: 'Una parrilla eléctrica o a gas: no hace brasas ni tanto humo. Revisá antes el reglamento del edificio.',
+      },
+      {
+        q: '¿Parrilla de hierro o de acero inoxidable?',
+        a: 'El acero inoxidable no se oxida y se limpia más fácil, pero suele ser más caro. El hierro retiene bien el calor y es más económico, aunque hay que curarlo y cuidarlo de la humedad.',
       },
       {
         q: '¿Cómo sé si el descuento es real?',
@@ -668,11 +687,23 @@ export const CATEGORIAS: Categoria[] = [
           'Mountain bike (rodado 29 o 27,5) para calle rota y tierra; urbana o de paseo para ciudad; los frenos a disco frenan mejor con lluvia que los V-brake.',
         ],
       },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Cuadro: el de aluminio es más liviano y no se oxida; el de acero es más pesado pero más barato y resistente a los golpes. En la publicación tendría que figurar el material y el talle.',
+          'Cambios: más velocidades ayudan en subidas y trayectos largos; para andar por la ciudad en llano, pocas velocidades (o una sola) alcanzan y requieren menos mantenimiento.',
+          'Armado: muchas bicicletas llegan semiarmadas en caja. Fijate si incluye las herramientas y, si no tenés práctica, sumá el costo de que te la ajusten en una bicicletería (frenos y cambios bien regulados hacen a la seguridad).',
+        ],
+      },
     ],
     faqs: [
       {
         q: '¿Qué rodado de bicicleta necesito?',
         a: 'Para adultos, rodado 26, 27,5 o 29; el talle del cuadro va según tu altura. Para chicos, del 12 al 24 según la edad.',
+      },
+      {
+        q: '¿Frenos a disco o V-brake?',
+        a: 'Los frenos a disco frenan mejor con lluvia y barro y necesitan menos ajuste; los V-brake son más baratos y simples de reparar. Para uso urbano con clima seco, los V-brake cumplen.',
       },
       {
         q: '¿Cómo sé si el descuento es real?',
@@ -698,11 +729,23 @@ export const CATEGORIAS: Categoria[] = [
           'Eau de parfum dura más en la piel que eau de toilette. Si es para regalar, fijate que venga sellado y con fecha de entrega antes de la fecha especial.',
         ],
       },
+      {
+        h: 'Qué revisar en la publicación',
+        p: [
+          'Concentración y tamaño: compará el precio por mililitro, no el precio total. Un frasco más grande suele salir más barato por ml, y la misma fragancia puede venir en versión eau de toilette o eau de parfum a precios distintos.',
+          'Presentación: "tester" es el frasco que las marcas destinan a probar en perfumerías; suele venir sin caja o en una caja lisa. Si es para regalar, confirmá que la publicación diga caja original sellada.',
+          'Aromas: si no conocés la fragancia, buscá la familia olfativa (cítrica, floral, amaderada, oriental) y probala antes en una perfumería: el mismo perfume cambia según la piel de cada uno.',
+        ],
+      },
     ],
     faqs: [
       {
         q: '¿Cómo sé si un perfume de Mercado Libre es original?',
         a: 'Comprando en la tienda oficial de la marca o a vendedores con muy buena reputación, y desconfiando de precios muy por debajo del resto.',
+      },
+      {
+        q: '¿Qué diferencia hay entre eau de parfum y eau de toilette?',
+        a: 'La concentración de esencia: el eau de parfum tiene más, así que dura más en la piel y suele costar más. El eau de toilette es más liviano y se siente menos horas.',
       },
       {
         q: '¿Cómo sé si el descuento es real?',
@@ -713,6 +756,7 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'equipamiento-gastronomico',
     nombre: 'Equipamiento gastronómico',
+    enFrase: 'equipos gastronómicos',
     titulo: 'Ofertas de equipamiento gastronómico en Mercado Libre Argentina',
     descripcion:
       'Hornos pizzeros, freidoras industriales, anafes, cortadoras de fiambre, batidoras planetarias y más equipamiento gastronómico en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
@@ -768,6 +812,7 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'gamer',
     nombre: 'Gamer',
+    enFrase: 'productos gamer',
     titulo: 'Ofertas gamer en Mercado Libre Argentina: monitores, consolas, sillas y periféricos',
     descripcion:
       'Monitores gamer, notebooks gamer, consolas, joysticks, auriculares, teclados, mouse y sillas gamer en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
@@ -820,6 +865,7 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'bebes-y-jugueteria',
     nombre: 'Bebés y juguetería',
+    enFrase: 'productos para bebés y juguetes',
     titulo: 'Ofertas de bebés y juguetes en Mercado Libre Argentina: cochecitos, butacas, cunas y juguetes',
     descripcion:
       'Cochecitos, butacas para auto, cunas, sillitas, juguetes, juegos de mesa, camas elásticas y toboganes en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
@@ -945,9 +991,15 @@ export function normalizar(s: string) {
  *  monitor…"), mientras que un producto legítimo nombra esas palabras más
  *  adelante ("Ventilador de techo 4 aspas", "Aspiradora con 5 accesorios"). */
 export function ofertasDeCategoria(cat: Categoria): ProductWithMargins[] {
-  return getOfertas().filter(o => {
-    const t = normalizar(o.titulo)
-    const inicio = t.split(/\s+/).slice(0, 4).join(' ')
-    return cat.keywords.some(k => t.includes(k)) && !cat.excluir.some(x => inicio.includes(x))
-  })
+  return getOfertas().filter(o => enCategoria(cat, o.titulo))
 }
+
+/** ¿El título cae en la categoría? (keywords en todo el título, exclusiones en las 4 primeras palabras) */
+export function enCategoria(cat: Categoria, titulo: string): boolean {
+  const t = normalizar(titulo)
+  const inicio = t.split(/\s+/).slice(0, 4).join(' ')
+  return cat.keywords.some(k => t.includes(k)) && !cat.excluir.some(x => inicio.includes(x))
+}
+
+/** Nombre de la categoría para usar dentro de una frase ("ofertas de monitores"). */
+export const enFrase = (cat: Categoria) => cat.enFrase ?? cat.nombre.toLowerCase()

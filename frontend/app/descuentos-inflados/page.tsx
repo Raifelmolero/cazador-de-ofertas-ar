@@ -8,6 +8,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import ExtensionCTA from '@/components/ExtensionCTA'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
 import { categoriaDe, diaMes, getInfladas, pesos, type CasoInflado } from '@/lib/infladas'
@@ -102,6 +103,7 @@ export default function DescuentosInfladosPage() {
           Es un dato, no una acusación: los precios cambian por muchas razones y no sabemos cuál fue en cada caso. Por
           eso estos productos no llevan link de afiliado: no ganamos nada si los comprás.
         </p>
+        <ExtensionCTA className="-mt-4 mb-8" />
 
         {detectadas != null && detectadas > 0 && (
           <div className="grid grid-cols-2 gap-3 mb-8">

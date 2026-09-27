@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-27T03:30:55+00:00",
+  "generado": "2026-09-27T19:02:02+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,17 +8,21 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-27T03:30:53+00:00",
+      "ultima_actividad": "2026-09-27T19:02:02+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1418 productos en la última corrida"
+          "tarea": "Revisó 1459 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
           "valor": 15
+        },
+        {
+          "label": "whatsapp_kit",
+          "valor": 5
         },
         {
           "label": "Historias IG",
@@ -42,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora Inverter Mig Mag/mma/tig 200amp 3 En 1 Aleba Amarillo"
+      "ultimo_trabajo": "Hidrolavadora Alta Presion Ghp 220 Professional Bosch Azul 1700"
     },
     {
       "id": "investigacion",
@@ -96,17 +100,17 @@
         },
         {
           "label": "Comparativas",
-          "valor": 28
+          "valor": 36
         }
       ],
       "entregas": [
         {
           "fecha": "",
-          "titulo": "mejores monitores gamer"
+          "titulo": "mejores tablets"
         },
         {
           "fecha": "",
-          "titulo": "mejores monitores"
+          "titulo": "mejores celulares"
         },
         {
           "fecha": "",
@@ -198,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-09-26T14:52:56+00:00",
+      "ultima_actividad": "2026-09-27T15:30:52+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -210,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 16 h"
+          "titulo": "✔ Última publicación hace 12 h"
         },
         {
           "fecha": "",
@@ -218,7 +222,7 @@
         },
         {
           "fecha": "",
-          "titulo": "✔ Tests del bot OK"
+          "titulo": "✖ Tests del bot FALLAN"
         },
         {
           "fecha": "",

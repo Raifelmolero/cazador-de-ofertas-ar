@@ -5,7 +5,7 @@ name: Post semanal de descuentos truchos
 
 on:
   schedule:
-    - cron: '0 14 * * 0'
+    - cron: '17 14 * * 0'  # minuto 17: GitHub descarta crons en punto
   workflow_dispatch:
     inputs:
       dry_run:

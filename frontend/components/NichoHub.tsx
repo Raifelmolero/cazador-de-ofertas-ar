@@ -14,6 +14,7 @@ import type { Nicho } from '@/lib/nichos'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
+const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 
 export function nichoMetadata(n: Nicho): Metadata {
   const url = `${DEALS_URL}/${n.slug}`
@@ -80,6 +81,15 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
             {n.emoji} <span className="text-yellow-400">{n.marca}</span>
           </a>
+          <div className="flex items-center gap-2">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-bold text-black bg-green-500 hover:bg-green-400 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+          >
+            WhatsApp 💬
+          </a>
           <a
             href={TELEGRAM_URL}
             target="_blank"
@@ -88,6 +98,7 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
           >
             Unite al canal ✈️
           </a>
+          </div>
         </div>
       </header>
 

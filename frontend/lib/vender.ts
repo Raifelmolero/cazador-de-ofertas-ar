@@ -222,6 +222,48 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
       texto: 'Poné el precio del kit en la calculadora y compará con la venta por unidad.',
     },
   },
+  {
+    slug: 'cuanto-cuesta-tiendanube',
+    titulo: 'Cuánto cuesta Tiendanube en 2026: planes, comisiones y Pago Nube',
+    descripcion: 'Precios de los planes de Tiendanube en Argentina, el costo por transacción y las tarifas de Pago Nube, comparados con lo que cobra Mercado Libre por venta.',
+    pregunta: '¿Cuánto cuesta tener una tienda en Tiendanube?',
+    respuestaCorta: 'Hay un plan Inicial de $0 por mes y planes pagos de $27.999 (Esencial), $79.999 (Impulso) y $244.999 (Escala). Si cobrás con Pago Nube no pagás costo por transacción; con otros medios es 2%, 1% o 0,7% según el plan. Aparte, Pago Nube cobra su tarifa de procesamiento (por ejemplo, desde 3,49% + IVA con acreditación a 14 días en el plan Esencial).',
+    secciones: [
+      {
+        h: 'Planes y precios',
+        p: [
+          'Inicial: $0 por mes, pensado para arrancar. Esencial: $27.999 por mes. Impulso: $79.999 por mes. Escala: $244.999 por mes. Evolución: a consultar, para negocios grandes. Los planes pagos tienen 7 días de prueba gratis.',
+          'Costo por transacción cuando cobrás con otros medios (no Pago Nube): 2% en Esencial, 1% en Impulso y 0,7% en Escala. Con Pago Nube ese costo está bonificado.',
+        ],
+      },
+      {
+        h: 'Tarifas de Pago Nube',
+        p: [
+          'Con tarjeta de crédito o débito, la tarifa depende del plan y de cuándo querés cobrar. En el plan Esencial: desde 6,09% + IVA a 1 día, 4,39% + IVA a 7 días y 3,49% + IVA a 14 días. En el plan Inicial arranca en 6,40%, 4,45% y 3,50% + IVA respectivamente.',
+          'Con transferencia bancaria: 1,50% + IVA en Inicial y Esencial, 0,99% + IVA en Impulso y 0,85% + IVA en Escala, con acreditación en 1 día.',
+        ],
+      },
+      {
+        h: 'Comparado con Mercado Libre',
+        p: [
+          `En Mercado Libre el cargo por vender va de ${pct(CARGO_MIN)}% a ${pct(CARGO_MAX)}% del precio, más un costo fijo en productos de menos de ${ars(UMBRAL_COSTO_FIJO)}. En tu tienda propia el costo por venta suele ser bastante menor, pero pagás el plan mensual y el tráfico lo tenés que conseguir vos.`,
+          'La cuenta simple: si tus ventas por mes en tienda propia superan lo que te ahorrás de comisión frente al abono del plan, la tienda se paga sola. Muchos vendedores usan las dos cosas: ML para conseguir clientes nuevos y la tienda para los que vuelven.',
+        ],
+      },
+      {
+        h: 'Antes de elegir',
+        p: [
+          'Precios verificados en tiendanube.com el ' + COSTOS_VERIFICADOS + '. Pueden cambiar: confirmalos en su sitio antes de contratar. Si recién arrancás, el plan Inicial o la prueba de 7 días alcanzan para probar sin gastar.',
+        ],
+      },
+    ],
+    cta: {
+      href: TIENDANUBE_URL,
+      boton: 'Probar Tiendanube gratis →',
+      texto: 'Podés empezar con el plan Inicial o probar un plan pago 7 días sin costo.',
+      afiliado: Boolean(TIENDANUBE_AFILIADO),
+    },
+  },
 ]
 
 export const getGuiaVendedor = (slug: string) => GUIAS_VENDER.find(g => g.slug === slug)

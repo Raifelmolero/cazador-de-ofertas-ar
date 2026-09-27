@@ -98,6 +98,12 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas del Cyber Monday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday)
   (CACE: lunes 2 al miércoles 4 de noviembre de 2026),
+  y por rubro: [smart TV](https://cazadordeofertas.com.ar/mejores/cyber-monday-smart-tv),
+  [aires](https://cazadordeofertas.com.ar/mejores/cyber-monday-aires-acondicionados),
+  [notebooks](https://cazadordeofertas.com.ar/mejores/cyber-monday-notebooks),
+  [celulares](https://cazadordeofertas.com.ar/mejores/cyber-monday-celulares),
+  [lavarropas](https://cazadordeofertas.com.ar/mejores/cyber-monday-lavarropas),
+  [auriculares](https://cazadordeofertas.com.ar/mejores/cyber-monday-auriculares),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página

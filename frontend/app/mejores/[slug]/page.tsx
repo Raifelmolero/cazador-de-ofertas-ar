@@ -246,6 +246,23 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </ul>
         </section>
 
+        {(c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')) && (
+          <nav className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cyber Monday {new Date().getFullYear()} por rubro</h2>
+            <div className="flex flex-wrap gap-2">
+              {COMPARATIVAS.filter(x => (x.slug === 'ofertas-cyber-monday' || x.slug.startsWith('cyber-monday-')) && x.slug !== c.slug).map(x => (
+                <a
+                  key={x.slug}
+                  href={`/mejores/${x.slug}`}
+                  className="text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2"
+                >
+                  {x.slug === 'ofertas-cyber-monday' ? 'Todas las ofertas' : x.nombre.replace(' en el Cyber Monday', '')}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+
         {(cat || guia) && (
           <section className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center mb-10">
             <p className="font-display text-xl font-black mb-4">¿Querés ver todas las opciones?</p>

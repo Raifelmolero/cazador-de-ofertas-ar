@@ -18,6 +18,7 @@ export interface Comparativa {
   intro: string
   categoria?: string // slug de /categoria/* de donde salen los productos
   keywords?: string[] // o palabras propias (para comparativas que cruzan rubros)
+  excluir?: string[] // palabras que sacan un producto de la tabla (en cualquier parte del título)
   criterios: string[]
   guia?: string // slug de /guias/* relacionada
   /** Cortes de precio para la sección "por presupuesto" (regalos) */
@@ -243,6 +244,109 @@ export const COMPARATIVAS: Comparativa[] = [
     guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
   },
   {
+    slug: 'cyber-monday-smart-tv',
+    nombre: 'smart TV en el Cyber Monday',
+    titulo: `Smart TV en el Cyber Monday ${AÑO}: cuáles bajan de verdad`,
+    descripcion:
+      'Smart TV en oferta para el Cyber Monday 2026 en Mercado Libre Argentina (2 al 4 de noviembre): precio de hoy, descuento y mínimo registrado de cada modelo.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza 3 veces por día, antes y durante el evento.',
+    categoria: 'smart-tv',
+    excluir: ['monitor'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Tamaño según la distancia: a 2 metros va bien uno de 50 a 55 pulgadas; 4K desde 43.',
+      'Mirá el sistema operativo (Google TV, Tizen, webOS) y que tenga las apps que usás.',
+      'Cuotas sin interés: verificá que el precio en cuotas sea el mismo que en un pago.',
+    ],
+    guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
+  },
+  {
+    slug: 'cyber-monday-aires-acondicionados',
+    nombre: 'aires acondicionados en el Cyber Monday',
+    titulo: `Aires acondicionados en el Cyber Monday ${AÑO}: ofertas con precio verificado`,
+    descripcion:
+      'Aires acondicionados split en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: precio, descuento y mínimo registrado, justo antes del verano.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Cae justo antes del verano, cuando los aires suben: comprarlo en noviembre suele salir más barato que en diciembre. Cada equipo se compara contra el precio más bajo que registramos.',
+    categoria: 'aire-acondicionado',
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Frigorías según el ambiente: m² × altura × 50 (un cuarto de 20 m² necesita unas 2.600).',
+      'Inverter si lo vas a usar muchas horas: consume menos.',
+      'La instalación casi nunca está incluida: sumala al presupuesto y pedí turno con tiempo, en diciembre se satura.',
+    ],
+    guia: 'cuantas-frigorias-necesito-aire-acondicionado',
+  },
+  {
+    slug: 'cyber-monday-notebooks',
+    nombre: 'notebooks en el Cyber Monday',
+    titulo: `Notebooks en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Notebooks en oferta para el Cyber Monday 2026 en Mercado Libre Argentina (2 al 4 de noviembre), comparadas contra el precio mínimo registrado de cada modelo.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Las notebooks son la categoría estrella del evento. Esta tabla compara cada modelo contra el precio más bajo que registramos para que sepas si la baja es real.',
+    keywords: ['notebook', 'laptop', 'macbook'],
+    excluir: ['monitor', 'mochila', 'cargador'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Para uso diario: 8 GB de RAM como mínimo (mejor 16) y disco SSD.',
+      'Procesador: Ryzen 5 / Core i5 o superior si vas a trabajar o estudiar con varias cosas abiertas.',
+      'Revisá que la garantía sea oficial en Argentina y que el teclado sea en español si te importa la ñ.',
+    ],
+  },
+  {
+    slug: 'cyber-monday-celulares',
+    nombre: 'celulares en el Cyber Monday',
+    titulo: `Celulares en el Cyber Monday ${AÑO}: ofertas reales en Mercado Libre`,
+    descripcion:
+      'Celulares en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Cada celular de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un precio de lista inflado.',
+    keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto'],
+    excluir: ['funda', 'cargador para', 'soporte', 'smartwatch', 'reloj', 'tablet'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Mirá la memoria: 128 GB de almacenamiento y 6 GB de RAM alcanzan para la mayoría.',
+      'Preferí equipos liberados con garantía oficial; evitá los "importados" sin garantía local.',
+      'Compará el mismo modelo en tiendas oficiales: a veces la diferencia está en las cuotas, no en el precio.',
+    ],
+  },
+  {
+    slug: 'cyber-monday-lavarropas',
+    nombre: 'lavarropas en el Cyber Monday',
+    titulo: `Lavarropas en el Cyber Monday ${AÑO}: precios comparados`,
+    descripcion:
+      'Lavarropas en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: carga frontal y superior, con el descuento verificado contra el historial de precios.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los lavarropas son una de las compras grandes que más conviene hacer en el evento, siempre que la baja sea real: acá cada uno se compara contra el mínimo que registramos.',
+    categoria: 'lavarropas',
+    keywords: ['lavarropas'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Capacidad: 6 a 7 kg para 2 o 3 personas; 8 kg o más para familias.',
+      'Carga frontal: lava mejor y gasta menos agua; carga superior: más barato y más rápido.',
+      'Revisá las medidas del lugar y si incluye instalación o envío a domicilio.',
+    ],
+  },
+  {
+    slug: 'cyber-monday-auriculares',
+    nombre: 'auriculares en el Cyber Monday',
+    titulo: `Auriculares en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Auriculares en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: inalámbricos, in-ear y over-ear, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los auriculares son un regalo fácil y un clásico del evento. Cada modelo se compara contra el precio más bajo que registramos.',
+    keywords: ['auriculares', 'auricular'],
+    excluir: ['smartphone', 'celular', 'telefono', 'parlante'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Cancelación de ruido activa (ANC) si viajás o trabajás en lugares ruidosos.',
+      'Mirá la autonomía de batería y si el estuche carga por USB-C.',
+      'Desconfiá de las marcas famosas muy por debajo de su precio: preferí tiendas oficiales.',
+    ],
+  },
+  {
     slug: 'ofertas-black-friday',
     nombre: 'ofertas de Black Friday',
     titulo: `Black Friday ${AÑO} en Mercado Libre: ofertas con descuento verificado`,
@@ -443,6 +547,13 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
 }
 
 export function productosDe(c: Comparativa): ProductWithMargins[] {
+  const fuera = (c.excluir ?? []).map(normalizar)
+  const sinExcluidos = (ps: ProductWithMargins[]) =>
+    fuera.length ? ps.filter(p => !fuera.some(x => normalizar(p.titulo).includes(x))) : ps
+  return sinExcluidos(productosBase(c))
+}
+
+function productosBase(c: Comparativa): ProductWithMargins[] {
   const cat = categoriaDe(c)
   const kws = (c.keywords ?? []).map(normalizar)
   // Con categoría y keywords (soldadoras, amoladoras dentro de herramientas),
@@ -453,7 +564,7 @@ export function productosDe(c: Comparativa): ProductWithMargins[] {
   }
   // Reusa el catálogo completo vía cualquier categoría: ofertasDeCategoria
   // con una categoría "virtual" sin exclusiones.
-  const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte'] })
+  const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte', 'mochila', 'cargador', 'protector', 'vidrio templado', 'base para'] })
   // Las de temporada y regalos son para compradores comunes: sin equipamiento
   // de negocio ("heladera" traía una exhibidora comercial primera en la tabla).
   const gastro = getCategoria('equipamiento-gastronomico')

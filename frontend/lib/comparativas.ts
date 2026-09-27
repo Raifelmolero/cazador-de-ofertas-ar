@@ -218,8 +218,9 @@ export const COMPARATIVAS: Comparativa[] = [
   // y C5N (06/05/2026), ambos citando a la CACE. Ojo: el cuerpo de
   // cybermonday.com.ar/cuando-es-cybermonday todavía dice "3 al 5", pero el
   // encabezado de esa misma página y la home dicen 2-4 (y el 2/11 es lunes).
-  // Si la CACE las cambia, actualizar acá, en la guía hot-sale de lib/guias.ts
-  // y en el banner de app/hoy/page.tsx.
+  // Si la CACE las cambia, actualizar acá, en lib/cybermonday.ts (landing
+  // /cyber-monday), en las guías cyber de lib/guias.ts y en el banner de
+  // app/hoy/page.tsx.
   {
     slug: 'ofertas-cyber-monday',
     nombre: 'productos para el Cyber Monday',

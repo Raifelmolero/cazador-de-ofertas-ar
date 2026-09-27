@@ -64,6 +64,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
 - Verificador de descuentos: https://cazadordeofertas.com.ar/#verificador
   (pegás el link de una publicación de Mercado Libre y dice si el precio de hoy
   es el mínimo registrado, normal o inflado).
+- [Cyber Monday 2026 en Argentina](https://cazadordeofertas.com.ar/cyber-monday):
+  fechas oficiales (CACE: lunes 2 al miércoles 4 de noviembre de 2026, fuente
+  cybermonday.com.ar), cómo detectar descuentos inflados en el evento y las
+  ofertas de hoy en sus rubros, verificadas contra el historial de precios.
 - [Precio hoy](https://cazadordeofertas.com.ar/precio-hoy): cuánto sale hoy un smart TV
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre
@@ -128,6 +132,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [si conviene comprar el aire en el Cyber Monday](https://cazadordeofertas.com.ar/guias/conviene-comprar-aire-acondicionado-cyber-monday),
   [qué lavarropas comprar en el Cyber Monday](https://cazadordeofertas.com.ar/guias/que-lavarropas-comprar-cyber-monday),
   [qué auriculares comprar en el Cyber Monday](https://cazadordeofertas.com.ar/guias/que-auriculares-comprar-cyber-monday),
+  [herramientas eléctricas en el Cyber Monday y el Black Friday](https://cazadordeofertas.com.ar/guias/herramientas-electricas-cyber-monday-black-friday),
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),
   [dónde encontrar las mejores ofertas de Mercado Libre Argentina](https://cazadordeofertas.com.ar/guias/donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina),
   [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre),

@@ -342,7 +342,7 @@ export default function HoyPage() {
       {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-11-05T03:00:00Z') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
           <Link
-            href="/mejores/ofertas-cyber-monday"
+            href="/cyber-monday"
             className="block rounded-2xl border border-cyan-400/30 bg-cyan-500/10 px-5 py-4 text-center hover:border-cyan-400/60 transition-colors"
           >
             <span className="font-display font-black text-cyan-200">💻 Cyber Monday: del lunes 2 al miércoles 4 de noviembre</span>

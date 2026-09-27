@@ -1013,6 +1013,8 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "parrilla", "heladera portatil", "heladera portátil", "conservadora",
         "bicicleta", "carpa", "sombrilla", "climatizador",
     ]),
+    # Cyber Monday 2026 (CACE, oficial): lunes 2 al miércoles 4/11; Black
+    # Friday: viernes 27/11. La ventana cubre las dos y las semanas del medio.
     ((11, 1), (12, 2), 1.3, [  # Black Friday / Cyber Monday: ticket alto
         "smart tv", "notebook", "celular", "consola", "playstation",
         "lavarropas", "heladera", "monitor",

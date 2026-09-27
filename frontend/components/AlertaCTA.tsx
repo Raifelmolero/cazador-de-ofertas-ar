@@ -2,7 +2,7 @@
 // t.me/<bot>?start=MLA…, que crea la alerta de precio directo (bot/alertas.py).
 // Apagado hasta cargar el @usuario del bot en TELEGRAM_BOT (sin la @).
 
-export const TELEGRAM_BOT = ''
+export const TELEGRAM_BOT = 'cazador_ofertas_ar_bot'
 
 export function alertaUrl(id: string): string | null {
   if (!TELEGRAM_BOT || !/^MLA\d{6,13}$/.test(id)) return null

@@ -15,7 +15,7 @@ import LastUpdated from '@/components/LastUpdated'
 
 const URL = `${CALC_URL}/`
 const pct = (n: number) => String(n).replace('.', ',')
-const TITULO = 'Calculadora Mercado Libre 2026: comisiones, ganancia y productos rentables'
+const TITULO = 'Calculadora Mercado Libre 2026: comisiones y ganancia'
 const DESCRIPCION = `Calculadora de comisiones de Mercado Libre 2026 (cargo de ${pct(CARGO_MIN)}% a ${pct(CARGO_MAX)}%), ML vs Tiendanube, guías para vendedores y productos rentables.`
 
 export const metadata: Metadata = {

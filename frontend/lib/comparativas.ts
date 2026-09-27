@@ -426,8 +426,13 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
 
 export function productosDe(c: Comparativa): ProductWithMargins[] {
   const cat = categoriaDe(c)
-  if (cat) return ofertasDeCategoria(cat)
   const kws = (c.keywords ?? []).map(normalizar)
+  // Con categoría y keywords (soldadoras, amoladoras dentro de herramientas),
+  // la tabla es solo de ese producto, no de toda la categoría.
+  if (cat) {
+    const deCat = ofertasDeCategoria(cat)
+    return kws.length ? deCat.filter(p => kws.some(k => normalizar(p.titulo).includes(k))) : deCat
+  }
   // Reusa el catálogo completo vía cualquier categoría: ofertasDeCategoria
   // con una categoría "virtual" sin exclusiones.
   const todos = ofertasDeCategoria({ ...CATEGORIAS[0], keywords: kws, excluir: ['repuesto', 'funda', 'soporte'] })

@@ -794,3 +794,90 @@ class TestVerificadorCTA(unittest.TestCase):
 
     def test_url_del_verificador(self):
         self.assertTrue(bot.verificador_url("telegram").endswith("#verificador"))
+
+
+class TestMencionWhatsApp(unittest.TestCase):
+    """El canal de WhatsApp se menciona sobrio: 1 post de TG por día y el
+    post de texto de Threads, sin pasarse de los límites de caracteres."""
+
+    DEAL = {"id": "MLA1", "title": "Producto de Prueba", "price_prev": 100000,
+            "price_cur": 50000, "discount": 50, "hist_low": False,
+            "url": "https://www.mercadolibre.com.ar/MLA1", "img": ""}
+    LINK = "https://mercadolibre.com.ar/MLA-1?matt_word=telegram&matt_tool=37267219"
+
+    def test_la_url_es_una_constante_con_el_canal(self):
+        self.assertTrue(bot.WHATSAPP_CHANNEL_URL.startswith("https://whatsapp.com/channel/"))
+
+    def test_telegram_sin_flag_no_menciona_whatsapp(self):
+        self.assertNotIn("WhatsApp", bot.deal_caption(self.DEAL, self.LINK))
+
+    def test_telegram_con_flag_cierra_con_la_linea(self):
+        cap = bot.deal_caption(self.DEAL, self.LINK, whatsapp=True)
+        self.assertTrue(cap.endswith(
+            bot.WA_CTA.format(url=bot.WHATSAPP_CHANNEL_URL)))
+
+    def test_telegram_no_la_agrega_si_se_pasa_de_1024(self):
+        largo = {**self.DEAL, "title": "x" * 900}
+        cap = bot.deal_caption(largo, self.LINK, whatsapp=True)
+        self.assertNotIn("WhatsApp", cap)
+        self.assertEqual(cap, bot.deal_caption(largo, self.LINK))
+
+    def test_el_largo_de_telegram_ignora_los_tags_html(self):
+        self.assertEqual(bot.tg_visible_len("<b>ab</b> &amp;"), 4)
+        self.assertEqual(bot.tg_visible_len("🔥"), 2)  # UTF-16
+
+    def test_threads_texto_cierra_con_la_linea_sin_pasar_500(self):
+        cap = bot.th_text_caption(self.DEAL, self.LINK)
+        self.assertIn(bot.WHATSAPP_CHANNEL_URL, cap)
+        self.assertLessEqual(len(cap), 500)
+
+    def test_threads_texto_no_la_agrega_si_se_pasa_de_500(self):
+        link_largo = "https://mercadolibre.com.ar/" + "a" * 420
+        cap = bot.th_text_caption(self.DEAL, link_largo)
+        self.assertNotIn("WhatsApp", cap)
+
+    def test_threads_con_placa_no_menciona_whatsapp(self):
+        self.assertNotIn("WhatsApp", bot.th_caption(self.DEAL, self.LINK))
+
+    def test_instagram_no_menciona_whatsapp(self):
+        self.assertNotIn("WhatsApp", bot.ig_caption(self.DEAL))
+
+    def test_override_por_env_var(self):
+        import importlib
+        try:
+            with mock.patch.dict("os.environ", {"WHATSAPP_CHANNEL_URL": "https://wa.example/x"}):
+                self.assertEqual(importlib.reload(bot).WHATSAPP_CHANNEL_URL,
+                                 "https://wa.example/x")
+        finally:
+            importlib.reload(bot)  # vuelve al valor por defecto para el resto
+
+    def correr_main(self, slot, n=3):
+        from contextlib import ExitStack
+        deals = [{**self.DEAL, "id": f"MLA{i}", "url": f"https://www.mercadolibre.com.ar/MLA{i}",
+                  "inflada": False} for i in range(n)]
+        with ExitStack() as st:
+            for nombre in ("write_site_data", "update_seguimiento", "save_price_history",
+                           "log_scan", "save_state", "alert_admin", "write_infladas",
+                           "annotate_price_history", "log_post", "publish_reel"):
+                st.enter_context(mock.patch.object(bot, nombre))
+            st.enter_context(mock.patch.object(bot, "fetch_deals", return_value=deals))
+            st.enter_context(mock.patch.object(bot, "load_price_history", return_value={}))
+            st.enter_context(mock.patch.object(bot, "load_state", return_value={"posted_ids": []}))
+            st.enter_context(mock.patch.object(bot, "load_config", return_value={
+                "channel": "@c", "admin_chat": "1", "max_posts": n}))
+            post = st.enter_context(mock.patch.object(bot, "post_deal", return_value=True))
+            st.enter_context(mock.patch.object(bot, "run_slot", return_value=slot))
+            st.enter_context(mock.patch.object(bot.time, "sleep"))
+            st.enter_context(mock.patch.dict("os.environ", {
+                "DRY_RUN": "1", "SKIP_SITE_DATA": "1", "IG_USER_ID": "",
+                "THREADS_USER_ID": "", "FB_PAGE_ID": ""}))
+            st.enter_context(mock.patch("builtins.print"))
+            self.assertEqual(bot.main(), 0)
+        return [c.kwargs.get("whatsapp", False) for c in post.call_args_list]
+
+    def test_de_noche_solo_el_ultimo_post_de_telegram_la_lleva(self):
+        self.assertEqual(self.correr_main("night"), [False, False, True])
+
+    def test_en_los_otros_slots_ningun_post_de_telegram_la_lleva(self):
+        for slot in ("midday", "evening", "other"):
+            self.assertEqual(self.correr_main(slot), [False, False, False], slot)

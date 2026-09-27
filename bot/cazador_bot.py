@@ -22,6 +22,7 @@ Env vars:
   FB_PAGE_ACCESS_TOKEN (secreto; token de página de la Facebook Graph API)
   DRY_RUN=1           (imprime en vez de publicar)
   FORCE_IG_KIT=1      (fuerza la publicación/kit de IG sin importar la hora)
+  WHATSAPP_CHANNEL_URL (opcional; pisa el link del canal de WhatsApp)
 """
 
 import json
@@ -602,6 +603,34 @@ def verificador_url(source: str) -> str:
 # Línea para sumar a los posts: lleva gente al verificador del sitio.
 VERIF_CTA = "🔍 ¿Viste otro descuento en ML y no sabés si es real? Pegá el link en {url} y fijate."
 
+# Canal de WhatsApp: se menciona de forma sobria (1 post de Telegram por día,
+# el último del run de la noche, y el post de texto diario de Threads). Nunca
+# en todos los posts. Override por env var si el canal cambia.
+WHATSAPP_CHANNEL_URL = os.getenv(
+    "WHATSAPP_CHANNEL_URL", "https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z"
+)
+WA_CTA = "💬 También en WhatsApp: {url}"
+
+# Límites de largo: caption de foto en Telegram y post de Threads.
+TG_CAPTION_MAX = 1024
+THREADS_MAX = 500
+
+
+def tg_visible_len(html: str) -> int:
+    """Largo que cuenta Telegram para el caption: texto visible (sin tags
+    HTML, con entidades resueltas) en unidades UTF-16."""
+    texto = unescape(re.sub(r"<[^>]+>", "", html))
+    return len(texto.encode("utf-16-le")) // 2
+
+
+def con_whatsapp(texto: str, limite: int, medir=len) -> str:
+    """Suma la línea del canal de WhatsApp al final si entra en el límite;
+    si se pasa, devuelve el texto intacto (nunca se recorta la oferta)."""
+    if not WHATSAPP_CHANNEL_URL:
+        return texto
+    extendido = f"{texto}\n\n{WA_CTA.format(url=WHATSAPP_CHANNEL_URL)}"
+    return extendido if medir(extendido) <= limite else texto
+
 
 # ---------------------------------------------------------------- telegram
 
@@ -628,7 +657,7 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def deal_caption(deal: dict, link: str) -> str:
+def deal_caption(deal: dict, link: str, whatsapp: bool = False) -> str:
     ahorro = deal["price_prev"] - deal["price_cur"]
     # Sello de exclusiva: la razón para estar en el canal y no solo en IG/web.
     exclusiva = (
@@ -648,7 +677,7 @@ def deal_caption(deal: dict, link: str) -> str:
     )
     sello = sello_temporada(deal["title"])
     regalo = f"<b>{sello}</b>\n\n" if sello else ""
-    return (
+    caption = (
         f"{exclusiva}{relampago}{regalo}"
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
@@ -657,10 +686,14 @@ def deal_caption(deal: dict, link: str) -> str:
         f"{badge}\n"
         f"🛒 {link}"
     )
+    if whatsapp:
+        caption = con_whatsapp(caption, TG_CAPTION_MAX, medir=tg_visible_len)
+    return caption
 
 
-def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool) -> bool:
-    caption = deal_caption(deal, link)
+def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool,
+              whatsapp: bool = False) -> bool:
+    caption = deal_caption(deal, link, whatsapp=whatsapp)
     keyboard = {
         "inline_keyboard": [
             [{"text": "🛒 Ver oferta en ML", "url": link}],
@@ -1118,7 +1151,10 @@ TH_CONVO = [
 
 
 def th_text_caption(deal: dict, link: str) -> str:
-    """Post conversacional de solo texto para Threads (máx 500 chars)."""
+    """Post conversacional de solo texto para Threads (máx 500 chars).
+
+    Es el post diario de la tarde: cierra con la línea del canal de WhatsApp
+    solo si entra en los 500."""
     caption = random.choice(TH_CONVO).format(
         title=deal["title"][:60],
         price=fmt_price(deal["price_cur"]),
@@ -1132,7 +1168,7 @@ def th_text_caption(deal: dict, link: str) -> str:
             f"{deal['discount']}% OFF en {deal['title'][:60]} → "
             f"{fmt_price(deal['price_cur'])}\n\n🛒 {link}"
         )
-    return caption
+    return con_whatsapp(caption, THREADS_MAX)
 
 
 def th_caption(deal: dict, link: str) -> str:
@@ -1701,10 +1737,16 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             print(f"[warn] infladas.json no se pudo escribir: {e}")
 
+    hour_utc = datetime.now(timezone.utc).hour
+    slot = run_slot(hour_utc)
+
     published_ids = []
-    for deal in to_post:
+    for i, deal in enumerate(to_post):
         link = affiliate_url(deal["url"], affiliate_id, tool_tg)
-        if post_deal(token, cfg["channel"], deal, link, dry):
+        # Canal de WhatsApp: una sola mención por día, al pie del último post
+        # del run de la noche.
+        wa = slot == "night" and i == len(to_post) - 1
+        if post_deal(token, cfg["channel"], deal, link, dry, whatsapp=wa):
             published_ids.append(deal["id"])
             log_post(deal, "telegram")
             time.sleep(2)
@@ -1712,13 +1754,10 @@ def main() -> int:
     state["posted_ids"] = state["posted_ids"] + published_ids
     save_state(state)
 
-    hour_utc = datetime.now(timezone.utc).hour
-
     # Instagram: post de feed + story en los runs de mediodía y tarde
     # (12/17hs ART). El run de la noche (21hs ART) publica el reel en vez
     # del feed — ver bloque de abajo. Si hay credenciales de la API publica
     # solo; si no (o si falla), manda el kit manual.
-    slot = run_slot(hour_utc)
     ig_slot = slot in ("midday", "evening")
     if (os.getenv("FORCE_IG_KIT") == "1" or ig_slot) and to_post:
         best = to_post[0]

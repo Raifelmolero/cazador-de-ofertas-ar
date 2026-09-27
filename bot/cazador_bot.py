@@ -1541,6 +1541,9 @@ def _git_push_file(path: Path, message: str) -> bool:
         return True
     except subprocess.CalledProcessError as e:
         print(f"[warn] git push falló: {e}")
+        # Un rebase a medias traba el "Guardar estado" del final de la corrida.
+        subprocess.run(["git", "-C", str(repo_root), "rebase", "--abort"],
+                       capture_output=True)
         return False
 
 

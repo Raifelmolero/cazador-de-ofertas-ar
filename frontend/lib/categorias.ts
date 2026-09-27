@@ -868,6 +868,63 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'electro-de-cocina',
+    nombre: 'Electro de cocina',
+    titulo: 'Ofertas de cafeteras, microondas, licuadoras y batidoras en Mercado Libre Argentina',
+    descripcion:
+      'Cafeteras espresso y de cápsulas, microondas, licuadoras, batidoras y otros electrodomésticos de cocina en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Cafeteras, microondas, licuadoras, batidoras y el resto del electro chico de cocina que hoy tiene descuento real en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: [
+      'cafetera', 'microondas', 'licuadora', 'batidora', 'minipimer', 'pava electrica', 'tostadora',
+      'sandwichera', 'procesadora', 'picadora', 'yogurtera', 'maquina de helado', 'exprimidor',
+      'juguera', 'waflera', 'arrocera', 'olla electrica',
+    ],
+    excluir: [
+      // Los equipos industriales van a /categoria/equipamiento-gastronomico
+      'repuesto', 'accesorio', 'filtro para', 'capsula', 'jarra para', 'vaso para', 'cuchilla',
+      'industrial', 'funda', 'soporte', 'plato para', 'tapa para',
+    ],
+    guia: [
+      {
+        h: 'Cafeteras: de filtro, espresso o de cápsulas',
+        p: [
+          'De filtro (goteo): hacen varias tazas de una vez y son las más simples de usar y de limpiar. Espresso: preparan café concentrado y muchas traen vaporizador para espumar leche; además de la presión que anuncia el fabricante, fijate si tiene molinillo integrado o si vas a necesitar café ya molido. De cápsulas: son las más prácticas, pero cada taza sale más cara y dependés de conseguir cápsulas compatibles con esa máquina.',
+        ],
+      },
+      {
+        h: 'Microondas, licuadoras y batidoras',
+        p: [
+          'Microondas: la capacidad se mide en litros. Medí el lugar donde va a ir y dejá espacio para que ventile. Los que tienen grill, además de calentar y descongelar, doran y gratinan.',
+          'Licuadoras y mixers: para hielo, frutas congeladas o licuados espesos conviene más potencia y una jarra firme. El mixer de mano es más práctico para sopas, purés y cantidades chicas.',
+          'Batidoras: la de mano alcanza para crema o claras. La planetaria (de pie, con bowl) sirve para amasar y para recetas que piden batir mucho tiempo sin sostenerla.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Tensión: que funcione con 220 V y 50 Hz, que es la red de Argentina. Algunos productos importados vienen con otra ficha o para otra frecuencia; revisalo en la publicación.',
+          'Garantía y service: preferí marcas con servicio técnico en el país y mirá qué garantía ofrece el vendedor, sobre todo en cafeteras espresso, que tienen más piezas que se gastan.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Conviene una cafetera espresso o una de cápsulas?',
+        a: 'La de cápsulas es más rápida y práctica, pero cada taza sale más cara y dependés de las cápsulas compatibles. La espresso da más control sobre el café y usa café molido o en grano, así que a la larga cada taza sale más barata.',
+      },
+      {
+        q: '¿Microondas con grill o sin grill?',
+        a: 'El de grill, además de calentar y descongelar, dora y gratina. Si solo lo vas a usar para calentar comida, uno sin grill alcanza y suele ser más barato.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

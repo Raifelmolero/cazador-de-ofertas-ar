@@ -66,6 +66,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [tecno](https://cazadordeofertas.com.ar/tecno),
   [gamer](https://cazadordeofertas.com.ar/gamer),
   [bebés y juguetería](https://cazadordeofertas.com.ar/bebes-y-jugueteria),
+  [pequeños electrodomésticos](https://cazadordeofertas.com.ar/pequenos-electrodomesticos),
   [gastronomía](https://cazadordeofertas.com.ar/gastronomia).
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
@@ -85,7 +86,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [bicicletas](https://cazadordeofertas.com.ar/categoria/bicicletas),
   [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes),
   [gamer](https://cazadordeofertas.com.ar/categoria/gamer),
-  [bebés y juguetería](https://cazadordeofertas.com.ar/categoria/bebes-y-jugueteria) y
+  [bebés y juguetería](https://cazadordeofertas.com.ar/categoria/bebes-y-jugueteria),
+  [electro de cocina](https://cazadordeofertas.com.ar/categoria/electro-de-cocina) y
   [equipamiento gastronómico](https://cazadordeofertas.com.ar/categoria/equipamiento-gastronomico).
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),

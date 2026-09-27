@@ -122,6 +122,23 @@ export const NICHOS: Nicho[] = [
       'lego', 'juego de mesa', 'cama elastica', 'pileta inflable', 'bicicleta infantil', 'juguetes didacticos',
     ],
   },
+  {
+    slug: 'pequenos-electrodomesticos',
+    marca: 'Cazador de Electro',
+    emoji: '☕',
+    titulo: 'Pequeños electrodomésticos en oferta: freidoras de aire, aspiradoras, cafeteras y ventiladores',
+    descripcion:
+      'Freidoras de aire, aspiradoras y robots, cafeteras, microondas, licuadoras, batidoras y ventiladores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'El electro chico de la casa en un solo lugar: freidoras de aire, aspiradoras y robots, cafeteras, microondas, licuadoras, batidoras y ventiladores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Aparecen todos los días en las ofertas de ML, así que antes de comprar compará capacidad, potencia y garantía, no solo el % OFF.',
+    etiqueta: 'electro',
+    categorias: ['freidoras-de-aire', 'electro-de-cocina', 'aspiradoras', 'ventiladores'],
+    busquedas: [
+      'freidora de aire', 'horno air fryer', 'aspiradora robot', 'aspiradora inalambrica',
+      'cafetera espresso', 'cafetera de capsulas', 'microondas', 'licuadora', 'batidora planetaria',
+      'pava electrica', 'ventilador de techo', 'ventilador de pie',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

@@ -29,6 +29,16 @@ export function costoFijo(precio: number): number {
   return COSTO_FIJO_FLEX.find(t => precio <= t.hasta)?.costo ?? 0
 }
 
+/** Cargo de referencia cuando no sabemos la categoría exacta: el punto medio
+ *  del rango oficial. Lo usan las fichas de /calculadora/[id]. */
+export const CARGO_REFERENCIA = 14.69 // punto medio del rango (igual en bot/cazador_bot.py)
+
+/** Lo que te deposita ML por una venta sin cuotas propias, antes del envío y
+ *  de tus impuestos: precio − cargo de referencia − costo fijo. */
+export function netoML(precio: number, cargoPct: number = CARGO_REFERENCIA): number {
+  return precio - (precio * cargoPct) / 100 - costoFijo(precio)
+}
+
 export interface OpcionCuotas {
   id: string
   nombre: string

@@ -43,12 +43,12 @@ export default function ProductsGrid({ productos }: { productos: ProductWithMarg
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         <StatCard label="Total Productos" value={productos.length.toString()} />
         <StatCard
-          label="Margen Promedio"
+          label="Neto promedio"
           value={`$${avgMargen.toLocaleString('es-AR')}`}
           accent
         />
         <StatCard
-          label="Mayor Margen"
+          label="Mayor neto"
           value={`$${Math.round(maxMargen).toLocaleString('es-AR')}`}
           accent
         />

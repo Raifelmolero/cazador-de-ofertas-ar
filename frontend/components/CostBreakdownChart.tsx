@@ -16,11 +16,11 @@ interface BarItem {
 
 export default function CostBreakdownChart({ precio, comisionArs, iibbArs, envioArs, margenArs }: Props) {
   const items: BarItem[] = [
-    { label: 'Comisión ML', sublabel: '15%', value: comisionArs, color: 'bg-amber-500', textColor: 'text-amber-400' },
-    { label: 'Retención IIBB', sublabel: '3%', value: iibbArs, color: 'bg-orange-500', textColor: 'text-orange-400' },
-    { label: 'Costo de envío', sublabel: 'base', value: envioArs, color: 'bg-red-500', textColor: 'text-red-400' },
-    { label: 'Margen potencial', sublabel: 'neto', value: margenArs, color: 'bg-emerald-500', textColor: 'text-emerald-400' },
-  ]
+    { label: 'Cargo por vender', sublabel: `${String(Math.round((comisionArs / precio) * 10000) / 100).replace('.', ',')}% ref.`, value: comisionArs, color: 'bg-amber-500', textColor: 'text-amber-400' },
+    { label: 'Otros', sublabel: '', value: iibbArs, color: 'bg-orange-500', textColor: 'text-orange-400' },
+    { label: 'Costo fijo por unidad', sublabel: 'menos de $33.000', value: envioArs, color: 'bg-red-500', textColor: 'text-red-400' },
+    { label: 'Te deposita ML', sublabel: 'antes de tu costo', value: margenArs, color: 'bg-emerald-500', textColor: 'text-emerald-400' },
+  ].filter(i => i.value > 0)
 
   return (
     <section className="bg-gray-900 border border-gray-800 rounded-2xl p-6">

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { CARGO_REFERENCIA, costoFijo, netoML } from '@/lib/costosml'
 
 export interface ProductWithMargins {
   id_ml: string
@@ -30,8 +31,26 @@ function readJson() {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 }
 
+// Los márgenes se recalculan acá con los costos oficiales de ML (lib/costosml)
+// en vez de confiar en los que escribió el bot: así el sitio no depende de que
+// haya corrido una versión nueva del bot. "Margen" = lo que deposita ML (sin
+// restar el costo del producto, que cada vendedor pone en la calculadora).
+// costo_envio_base_ars pasa a ser el costo fijo por unidad (< $33.000).
+function conCostosML(p: ProductWithMargins): ProductWithMargins {
+  const fijo = costoFijo(p.precio_actual)
+  return {
+    ...p,
+    comision_clasica_pct: CARGO_REFERENCIA / 100,
+    comision_premium_pct: (CARGO_REFERENCIA + 13.4) / 100,
+    retencion_iibb_pct: 0,
+    costo_envio_base_ars: fijo,
+    margen_neto_clasico_ars: netoML(p.precio_actual),
+    margen_neto_premium_ars: netoML(p.precio_actual, CARGO_REFERENCIA + 13.4),
+  }
+}
+
 export function getProductos(): ProductWithMargins[] {
-  const items = readJson().items as ProductWithMargins[]
+  const items = (readJson().items as ProductWithMargins[]).map(conCostosML)
   return items.sort((a, b) => b.margen_neto_clasico_ars - a.margen_neto_clasico_ars)
 }
 

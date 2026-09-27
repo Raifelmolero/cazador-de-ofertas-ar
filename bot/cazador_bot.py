@@ -368,12 +368,25 @@ def write_infladas(deals: list[dict], path: Path = INFLADAS_PATH,
 
 # ---------------------------------------------------------------- sitio web
 
-# Réplica exacta de scraper/calculator.py — márgenes para revendedores.
-COMISION_CLASICA_PCT = 0.15
-COMISION_PREMIUM_PCT = 0.30
-RETENCION_IIBB_PCT = 0.03
-COSTO_ENVIO_BASE_ARS = 8000.0
-UMBRAL_ENVIO_GRATIS_ARS = 30000.0
+# Costos de vender en ML desde el 1/09/2026 (ayuda oficial, verificada el
+# 27/09/2026). Réplica de frontend/lib/costosml.ts, que es la fuente del sitio:
+# cargo por vender de 11,62% a 17,75% según categoría (se usa el punto medio),
+# costo fijo por unidad solo por debajo de $33.000 y, en "premium", 6 cuotas al
+# mismo precio (+13,40%). No incluye envío ni impuestos propios del vendedor.
+CARGO_MIN_PCT = 11.62
+CARGO_MAX_PCT = 17.75
+CARGO_REFERENCIA_PCT = 14.69  # punto medio del rango, igual que costosml.ts
+CUOTAS_6_PCT = 13.40
+COMISION_CLASICA_PCT = CARGO_REFERENCIA_PCT / 100
+COMISION_PREMIUM_PCT = (CARGO_REFERENCIA_PCT + CUOTAS_6_PCT) / 100
+UMBRAL_COSTO_FIJO_ARS = 33000.0
+COSTO_FIJO_FLEX = [(14999, 1330.0), (23999, 2740.0), (32999, 3320.0)]
+
+
+def costo_fijo(precio: float) -> float:
+    if precio >= UMBRAL_COSTO_FIJO_ARS:
+        return 0.0
+    return next((c for hasta, c in COSTO_FIJO_FLEX if precio <= hasta), 0.0)
 
 SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.json"
 
@@ -495,10 +508,9 @@ def write_site_data(deals: list[dict], affiliate_id: str,
         if d["id"] in exclusive_ids:
             continue
         precio = float(d["price_cur"])
-        envio = COSTO_ENVIO_BASE_ARS if precio >= UMBRAL_ENVIO_GRATIS_ARS else 0.0
-        iibb = precio * RETENCION_IIBB_PCT
-        margen_clasico = precio - precio * COMISION_CLASICA_PCT - iibb - envio
-        margen_premium = precio - precio * COMISION_PREMIUM_PCT - iibb - envio
+        fijo = costo_fijo(precio)
+        margen_clasico = precio - precio * COMISION_CLASICA_PCT - fijo
+        margen_premium = precio - precio * COMISION_PREMIUM_PCT - fijo
         if margen_clasico <= 0:
             continue
         items.append(
@@ -524,8 +536,9 @@ def write_site_data(deals: list[dict], affiliate_id: str,
                 "url_imagen": d["img"],
                 "comision_clasica_pct": COMISION_CLASICA_PCT,
                 "comision_premium_pct": COMISION_PREMIUM_PCT,
-                "retencion_iibb_pct": RETENCION_IIBB_PCT,
-                "costo_envio_base_ars": envio,
+                "retencion_iibb_pct": 0.0,
+                # Desde el 1/09/2026: costo fijo por unidad (< $33.000), no envío.
+                "costo_envio_base_ars": fijo,
                 "margen_neto_clasico_ars": round(margen_clasico, 2),
                 "margen_neto_premium_ars": round(margen_premium, 2),
             }

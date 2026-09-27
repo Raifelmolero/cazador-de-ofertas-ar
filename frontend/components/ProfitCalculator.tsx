@@ -92,20 +92,22 @@ export default function ProfitCalculator({ precioML, comisionArs, iibbArs, envio
               </span>
             </div>
             <div className="flex justify-between text-gray-400">
-              <span>Comisión ML (15%)</span>
+              <span>Cargo por vender (ref. {String(Math.round((comisionArs / precioML) * 10000) / 100).replace('.', ',')}%)</span>
               <span className="text-red-400 tabular-nums">
                 -${Math.round(comisionArs).toLocaleString('es-AR')}
               </span>
             </div>
-            <div className="flex justify-between text-gray-400">
-              <span>Retención IIBB (3%)</span>
-              <span className="text-red-400 tabular-nums">
-                -${Math.round(iibbArs).toLocaleString('es-AR')}
-              </span>
-            </div>
+            {iibbArs > 0 && (
+              <div className="flex justify-between text-gray-400">
+                <span>Otros cargos</span>
+                <span className="text-red-400 tabular-nums">
+                  -${Math.round(iibbArs).toLocaleString('es-AR')}
+                </span>
+              </div>
+            )}
             {envioArs > 0 && (
               <div className="flex justify-between text-gray-400">
-                <span>Costo de envío</span>
+                <span>Costo fijo por unidad</span>
                 <span className="text-red-400 tabular-nums">
                   -${Math.round(envioArs).toLocaleString('es-AR')}
                 </span>

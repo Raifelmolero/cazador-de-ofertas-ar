@@ -2,6 +2,7 @@ import { getProductos, getProductoById } from '@/lib/productos'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CARGO_REFERENCIA } from '@/lib/costosml'
 import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
@@ -24,10 +25,10 @@ export async function generateMetadata({
 
   return {
     title: `Calculadora de Ganancia: ${producto.titulo} en Mercado Libre`,
-    description: `Calculá cuánto podés ganar vendiendo "${producto.titulo}". Precio ML: $${producto.precio_actual.toLocaleString('es-AR')}. Margen estimado: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}.`,
+    description: `Calculá cuánto podés ganar vendiendo "${producto.titulo}". Precio ML: $${producto.precio_actual.toLocaleString('es-AR')}. Te deposita ML: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')}.`,
     openGraph: {
       title: `Calculadora de Ganancia: ${producto.titulo}`,
-      description: `Margen potencial: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')} ARS`,
+      description: `Te deposita ML: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')} ARS por venta (costos oficiales 2026)`,
       ...(producto.url_imagen ? { images: [{ url: producto.url_imagen }] } : {}),
     },
   }
@@ -113,6 +114,13 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
             <AlertaCTA id={producto.id_ml} className="mt-3" />
           </div>
         </section>
+
+        <p className="text-xs text-gray-500 [text-wrap:pretty]">
+          Calculado con los costos oficiales de Mercado Libre vigentes desde el 1/09/2026: cargo por vender de referencia de{' '}
+          {String(CARGO_REFERENCIA).replace('.', ',')}% (el real va de 11,62% a 17,75% según la categoría), costo fijo por unidad
+          si cuesta menos de $33.000 y sin cuotas propias. No incluye envío ni tus impuestos. Para tu caso exacto usá la{' '}
+          <Link href="/calculadora-de-comisiones" className="text-yellow-400 hover:underline">calculadora de comisiones</Link>.
+        </p>
 
         {/* Cost breakdown chart */}
         <CostBreakdownChart

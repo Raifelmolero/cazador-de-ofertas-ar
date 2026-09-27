@@ -80,7 +80,7 @@ export default function HomePage() {
           </div>
           <div>
             <span className="block text-2xl sm:text-3xl font-black text-yellow-400">{margenPromedio}%</span>
-            <span className="block text-xs text-zinc-600 mt-1">margen promedio</span>
+            <span className="block text-xs text-zinc-600 mt-1">te queda de ML (prom.)</span>
           </div>
           <div>
             <span className="block text-xl sm:text-2xl font-black text-yellow-400 leading-tight">
@@ -125,10 +125,10 @@ export default function HomePage() {
       <div id="productos" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4 flex items-end justify-between">
         <div>
           <h2 className="text-base font-bold text-white">Productos en tendencia</h2>
-          <p className="text-xs text-zinc-600 mt-0.5">Ordenados por margen de ganancia</p>
+          <p className="text-xs text-zinc-600 mt-0.5">Ordenados por lo que te deposita ML por venta</p>
         </div>
         <span className="text-xs text-yellow-400 border border-yellow-400/20 bg-yellow-400/5 px-3 py-1 rounded-full">
-          Mayor margen primero
+          Mayor neto primero
         </span>
       </div>
 

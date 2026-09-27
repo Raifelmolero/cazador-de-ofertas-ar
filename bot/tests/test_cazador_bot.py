@@ -301,24 +301,26 @@ class TestWriteSiteData(unittest.TestCase):
                 bot.write_site_data(deals, "general", exclusive)
             return json.loads(destino.read_text(encoding="utf-8"))
 
-    def test_margenes_con_envio_sobre_el_umbral(self):
-        # 50.000: comisión 15% = 7.500, iibb 3% = 1.500, envío 8.000.
+    def test_margenes_sin_costo_fijo_sobre_el_umbral(self):
+        # 50.000: cargo de referencia 14,69% = 7.345; 6 cuotas +13,40% = 6.700.
         data = self.escribir([self.deal("MLA1", 50000)])
         item = data["items"][0]
-        self.assertEqual(item["costo_envio_base_ars"], 8000.0)
-        self.assertEqual(item["margen_neto_clasico_ars"], 33000.0)
-        self.assertEqual(item["margen_neto_premium_ars"], 25500.0)
+        self.assertEqual(item["costo_envio_base_ars"], 0.0)
+        self.assertEqual(item["margen_neto_clasico_ars"], 42655.0)
+        self.assertEqual(item["margen_neto_premium_ars"], 35955.0)
 
-    def test_sin_envio_por_debajo_del_umbral(self):
-        # 20.000: comisión 3.000, iibb 600, envío 0.
+    def test_costo_fijo_por_debajo_del_umbral(self):
+        # 20.000: cargo 2.938 + costo fijo 2.740 (tramo $15.000-$23.999).
         data = self.escribir([self.deal("MLA1", 20000)])
         item = data["items"][0]
-        self.assertEqual(item["costo_envio_base_ars"], 0.0)
-        self.assertEqual(item["margen_neto_clasico_ars"], 16400.0)
+        self.assertEqual(item["costo_envio_base_ars"], 2740.0)
+        self.assertEqual(item["margen_neto_clasico_ars"], 14322.0)
 
-    def test_el_umbral_de_envio_es_inclusivo(self):
-        data = self.escribir([self.deal("MLA1", int(bot.UMBRAL_ENVIO_GRATIS_ARS))])
-        self.assertEqual(data["items"][0]["costo_envio_base_ars"], 8000.0)
+    def test_el_umbral_de_costo_fijo_es_inclusivo(self):
+        data = self.escribir([self.deal("MLA1", int(bot.UMBRAL_COSTO_FIJO_ARS))])
+        self.assertEqual(data["items"][0]["costo_envio_base_ars"], 0.0)
+        data = self.escribir([self.deal("MLA1", 32999)])
+        self.assertEqual(data["items"][0]["costo_envio_base_ars"], 3320.0)
 
     def test_exporta_el_minimo_registrado_y_desde_cuando(self):
         hist = {"MLA1": {"min": 45000, "min_ts": "2026-09-01", "first_ts": "2026-08-10",

@@ -106,6 +106,22 @@ export const NICHOS: Nicho[] = [
       'mouse gamer', 'silla gamer',
     ],
   },
+  {
+    slug: 'bebes-y-jugueteria',
+    marca: 'Cazador de Bebés y Juguetes',
+    emoji: '🧸',
+    titulo: 'Ofertas de bebés y juguetes: cochecitos, butacas, cunas y juguetes',
+    descripcion:
+      'Cochecitos, butacas, cunas, sillitas, juguetes y juegos de exterior en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Lo de bebés y chicos en un solo lugar: cochecitos, butacas, cunas, juguetes y juegos que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Se pone más movido antes de Navidad y Reyes: fijate el mínimo registrado antes de comprar.',
+    etiqueta: 'bebes',
+    categorias: ['bebes-y-jugueteria'],
+    busquedas: [
+      'cochecito bebe', 'butaca auto bebe', 'cuna', 'sillita de comer', 'practicuna', 'mochila portabebe',
+      'lego', 'juego de mesa', 'cama elastica', 'pileta inflable', 'bicicleta infantil', 'juguetes didacticos',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

@@ -817,6 +817,57 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'bebes-y-jugueteria',
+    nombre: 'Bebés y juguetería',
+    titulo: 'Ofertas de bebés y juguetes en Mercado Libre Argentina: cochecitos, butacas, cunas y juguetes',
+    descripcion:
+      'Cochecitos, butacas para auto, cunas, sillitas, juguetes, juegos de mesa, camas elásticas y toboganes en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Lo de bebés y chicos que hoy está en oferta en Mercado Libre Argentina: cochecitos, butacas, cunas, sillitas de comer, juguetes, juegos de mesa y juegos de exterior, con el descuento verificado contra el historial de precios del producto.',
+    keywords: [
+      'bebe', 'cochecito', 'huevito', 'butaca para auto', 'butaca infantil', 'cuna ', 'corralito',
+      'sillita de comer', 'silla de comer', 'mamadera', 'sacaleche', 'portabebe', 'cambiador',
+      'juguete', 'lego', 'muneca', 'peluche', 'hot wheels', 'playmobil', 'nerf', 'rompecabezas',
+      'juego de mesa', 'didactico', 'cama elastica', 'tobogan', 'triciclo', 'para ninos', 'infantil',
+    ],
+    excluir: [
+      'repuesto', 'funda', 'protector', 'repelente', 'toallitas', 'panales', 'crema', 'shampoo',
+      'babyliss', 'disfraz', 'sticker', 'vinilo',
+    ],
+    guia: [
+      {
+        h: 'Qué mirar en cochecitos, butacas y cunas',
+        p: [
+          'Butaca para auto: tiene que corresponder al peso y la edad del chico (grupo 0+, 1, 2 o 3) y, si es posible, tener sistema ISOFIX. Nunca conviene una usada sin saber si tuvo un choque.',
+          'Cochecito: mirá el peso, cómo se pliega y si entra en el baúl de tu auto. Los sistemas de viaje (cochecito + huevito) sirven desde el nacimiento.',
+          'Cuna: los barrotes no deberían estar separados más de 6 cm y el colchón tiene que calzar justo, sin huecos a los costados.',
+        ],
+      },
+      {
+        h: 'Juguetes y juegos',
+        p: [
+          'Respetá la edad recomendada del envase: las piezas chicas son un riesgo de asfixia para menores de 3 años.',
+          'En camas elásticas y toboganes, revisá el peso máximo y que la cama elástica tenga red de protección.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado; en Navidad y Reyes muchos juguetes suben antes de "bajar".',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cuándo conviene comprar juguetes en Argentina?',
+        a: 'Suele haber buenas ofertas en el Cyber Monday (principios de noviembre) y en el Black Friday, antes de Navidad y Reyes. Igual conviene mirar el historial: algunos precios suben antes de las fechas para mostrar un descuento más grande.',
+      },
+      {
+        q: '¿Qué butaca para auto necesito?',
+        a: 'Depende del peso y la edad: huevito o grupo 0+ hasta unos 13 kg, grupo 1 de 9 a 18 kg y grupo 2/3 de 15 a 36 kg. Revisá la etiqueta de homologación y, si tu auto lo tiene, preferí ISOFIX.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

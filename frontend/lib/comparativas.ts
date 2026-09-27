@@ -330,6 +330,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Carga frontal: lava mejor y gasta menos agua; carga superior: más barato y más rápido.',
       'Revisá las medidas del lugar y si incluye instalación o envío a domicilio.',
     ],
+    guia: 'que-lavarropas-comprar-cyber-monday',
   },
   {
     slug: 'cyber-monday-auriculares',
@@ -347,6 +348,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Mirá la autonomía de batería y si el estuche carga por USB-C.',
       'Desconfiá de las marcas famosas muy por debajo de su precio: preferí tiendas oficiales.',
     ],
+    guia: 'que-auriculares-comprar-cyber-monday',
   },
   {
     slug: 'ofertas-black-friday',

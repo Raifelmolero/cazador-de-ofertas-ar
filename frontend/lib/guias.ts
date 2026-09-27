@@ -727,6 +727,84 @@ export const GUIAS: Guia[] = [
       boton: 'Ver aires en oferta ❄️',
     },
   },
+  {
+    slug: 'que-lavarropas-comprar-cyber-monday',
+    titulo: 'Qué lavarropas comprar en el Cyber Monday 2026: capacidad, carga y consumo',
+    descripcion:
+      'Cómo elegir un lavarropas en el Cyber Monday 2026 de Argentina: capacidad según la familia, carga frontal o superior, inverter y medidas, y cómo saber si el descuento es real.',
+    pregunta: '¿Qué lavarropas conviene comprar en el Cyber Monday?',
+    respuestaCorta:
+      'Elegí la capacidad según cuántos son en casa (6 a 7 kg para 2 o 3 personas, 8 kg o más para familias), carga frontal si querés gastar menos agua y lavar mejor, o carga superior si buscás precio y rapidez. El motor inverter suele ser más silencioso y eficiente. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'Capacidad y tipo de carga',
+        p: [
+          'Capacidad: 6 a 7 kg alcanzan para 2 o 3 personas; con chicos o si lavás acolchados, 8 kg o más.',
+          'Carga frontal: usa menos agua y cuida más la ropa, pero los ciclos son más largos. Carga superior: más barato y rápido, y podés agregar ropa en medio del lavado.',
+          'Semiautomáticos: los más baratos, pero hay que pasar la ropa a mano al centrifugado.',
+        ],
+      },
+      {
+        h: 'Antes de comprar',
+        p: [
+          'Medí el lugar: ancho, profundidad y la puerta si es de carga frontal. Dejá unos centímetros atrás para las mangueras.',
+          'Mirá las revoluciones de centrifugado (1.000 rpm o más secan mejor) y la etiqueta de eficiencia energética.',
+          'Revisá si el envío incluye subirlo al piso y retirar el viejo, y la garantía oficial.',
+        ],
+      },
+      {
+        h: 'Cómo aprovechar el Cyber Monday',
+        p: [
+          'Antes del evento anotá el precio de hoy del modelo que te interesa: si el lunes 2 aparece con un "40% OFF" pero cuesta lo mismo que ahora, el descuento es de cartel. En cazadordeofertas.com.ar cada oferta se compara contra el precio más bajo que registramos.',
+          'Muchas publicaciones de lavarropas incluyen lavavajillas o secarropas en los resultados: fijate que el modelo sea el que buscás antes de comparar precios.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-lavarropas',
+      titulo: 'Lavarropas en el Cyber Monday 2026: precios comparados',
+      boton: 'Ver lavarropas en oferta 🧺',
+    },
+  },
+  {
+    slug: 'que-auriculares-comprar-cyber-monday',
+    titulo: 'Qué auriculares comprar en el Cyber Monday 2026: inalámbricos, in-ear u over-ear',
+    descripcion:
+      'Cómo elegir auriculares en el Cyber Monday 2026 de Argentina: in-ear u over-ear, cancelación de ruido, batería y micrófono, y cómo evitar descuentos inflados.',
+    pregunta: '¿Qué auriculares conviene comprar en el Cyber Monday?',
+    respuestaCorta:
+      'Para el día a día, unos inalámbricos in-ear (tipo TWS) son lo más práctico; para viajar o trabajar en lugares ruidosos, unos over-ear con cancelación de ruido activa (ANC). Mirá la autonomía de batería, que carguen por USB-C y la calidad del micrófono si hacés llamadas. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'In-ear u over-ear',
+        p: [
+          'In-ear (dentro del oído): chicos, livianos y cómodos para salir o entrenar. Probá que traigan varias medidas de gomitas.',
+          'Over-ear (vincha que cubre la oreja): más cómodos para muchas horas, mejor sonido y mejor cancelación de ruido, pero ocupan más.',
+          'Para jugar en la compu, unos con cable o con receptor USB tienen menos demora que los Bluetooth.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Cancelación de ruido activa (ANC): vale la pena si viajás en transporte público o trabajás en lugares ruidosos.',
+          'Batería: fijate las horas con ANC encendido, que suelen ser menos que las que anuncian sin ANC.',
+          'Micrófono y conexión multipunto si los usás para llamadas desde el celular y la compu.',
+        ],
+      },
+      {
+        h: 'Cómo aprovechar el Cyber Monday',
+        p: [
+          'Antes del evento anotá el precio de hoy del modelo que te interesa: si el lunes 2 aparece con un "40% OFF" pero cuesta lo mismo que ahora, el descuento es de cartel. En cazadordeofertas.com.ar cada oferta se compara contra el precio más bajo que registramos.',
+          'Desconfiá de marcas conocidas a un precio muy por debajo del habitual en vendedores sin reputación: preferí tiendas oficiales.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-auriculares',
+      titulo: 'Auriculares en el Cyber Monday 2026: ofertas verificadas',
+      boton: 'Ver auriculares en oferta 🎧',
+    },
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

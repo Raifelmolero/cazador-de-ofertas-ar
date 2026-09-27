@@ -11,6 +11,7 @@ import Verificador from '@/components/Verificador'
 import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
+import BannerTemporada from '@/components/BannerTemporada'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
@@ -314,53 +315,8 @@ export default function HoyPage() {
         </div>
       </section>
 
-      {/* Fecha comercial vigente (el sitio se rebuildea 3×/día con cada corrida del bot) */}
-      {new Date() >= new Date('2026-12-01T03:00:00Z') && new Date() < new Date('2026-12-25T03:00:00Z') && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-          <Link
-            href="/mejores/regalos-de-navidad"
-            className="block rounded-2xl border border-green-400/30 bg-green-500/10 px-5 py-4 text-center hover:border-green-400/60 transition-colors"
-          >
-            <span className="font-display font-black text-green-200">🎄 Regalos de Navidad en oferta</span>
-            <span className="block text-sm text-zinc-300 mt-1">Por presupuesto y con el descuento verificado → ver los regalos</span>
-          </Link>
-        </section>
-      )}
-      {/* Ventanas sin solaparse (horas UTC-3): Madre hasta el 19/10 → Cyber Monday
-          (CACE: 2 al 4/11) hasta el 05/11 → Black Friday hasta el 01/12 → Navidad hasta el 25/12 */}
-      {new Date() >= new Date('2026-11-05T03:00:00Z') && new Date() < new Date('2026-12-01T03:00:00Z') && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-          <Link
-            href="/mejores/ofertas-black-friday"
-            className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/10 px-5 py-4 text-center hover:border-yellow-400/60 transition-colors"
-          >
-            <span className="font-display font-black text-yellow-200">🖤 Black Friday: viernes 27 de noviembre</span>
-            <span className="block text-sm text-zinc-300 mt-1">Ofertas comparadas contra el historial de precios → ver cuáles son reales</span>
-          </Link>
-        </section>
-      )}
-      {new Date() >= new Date('2026-10-19T03:00:00Z') && new Date() < new Date('2026-11-05T03:00:00Z') && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-          <Link
-            href="/cyber-monday"
-            className="block rounded-2xl border border-cyan-400/30 bg-cyan-500/10 px-5 py-4 text-center hover:border-cyan-400/60 transition-colors"
-          >
-            <span className="font-display font-black text-cyan-200">💻 Cyber Monday: del lunes 2 al miércoles 4 de noviembre</span>
-            <span className="block text-sm text-zinc-300 mt-1">Cada oferta contra su precio más bajo registrado → ver cuáles bajaron de verdad</span>
-          </Link>
-        </section>
-      )}
-      {new Date() < new Date('2026-10-19T03:00:00Z') && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-          <Link
-            href="/dia-de-la-madre"
-            className="block rounded-2xl border border-pink-400/30 bg-pink-500/10 px-5 py-4 text-center hover:border-pink-400/60 transition-colors"
-          >
-            <span className="font-display font-black text-pink-200">🎁 Día de la Madre: domingo 18 de octubre</span>
-            <span className="block text-sm text-zinc-300 mt-1">Regalos en oferta con el descuento verificado → ver los regalos</span>
-          </Link>
-        </section>
-      )}
+      {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
+      <BannerTemporada />
 
       {/* Grid con búsqueda y filtros */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">

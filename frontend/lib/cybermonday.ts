@@ -11,7 +11,7 @@
 // Para el año que viene: cambiar las fechas acá, poner `oficial: false` hasta
 // que la CACE las anuncie (la página muestra "a confirmar" y saca el JSON-LD de
 // Event) y actualizar `verificado`. Los textos de lib/comparativas.ts,
-// lib/guias.ts y el banner de app/hoy/page.tsx tienen las fechas escritas a mano.
+// lib/guias.ts tienen las fechas escritas a mano.
 
 export interface EventoComercial {
   año: number

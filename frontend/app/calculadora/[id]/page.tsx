@@ -2,6 +2,7 @@ import { getProductos, getProductoById } from '@/lib/productos'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
@@ -109,6 +110,7 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
             >
               Ver Oferta y Stock en ML ↗
             </a>
+            <AlertaCTA id={producto.id_ml} className="mt-3" />
           </div>
         </section>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import AlertaCTA from '@/components/AlertaCTA'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { COMPARATIVAS } from '@/lib/comparativas'
@@ -191,6 +192,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           >
             {enOferta ? `Ver a ${precio(hoy)} en Mercado Libre 🛒` : 'Ver precio actual en Mercado Libre'}
           </a>
+          <AlertaCTA id={s.id} className="mt-4" />
         </section>
 
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">

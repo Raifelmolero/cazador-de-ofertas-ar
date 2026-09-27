@@ -19,7 +19,7 @@ import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
 
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
-const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL
+const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 // Dominio propio de la marca de ofertas: su raíz sirve esta página (rewrite en
 // next.config.mjs), así que el canonical consolida todo ahí.
 const DEALS_URL = 'https://cazadordeofertas.com.ar'

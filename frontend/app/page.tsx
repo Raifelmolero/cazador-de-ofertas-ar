@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: `${TITULO} | CalculadoraML`,
   description: DESCRIPCION,
   alternates: { canonical: URL },
-  openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'CalculadoraML' },
+  openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'CalculadoraML', images: [{ url: '/og-calculadoraml', width: 1200, height: 630, alt: 'CalculadoraML — calculadora de comisiones de Mercado Libre' }] },
 }
 
 const HERRAMIENTAS = [

@@ -48,6 +48,13 @@ const HERRAMIENTAS = [
     boton: 'Calcular envío',
   },
   {
+    href: '/calculadora-cuotas-sin-interes',
+    emoji: '💳',
+    nombre: '¿Cuánto me cuestan las cuotas sin interés?',
+    texto: 'Precio y cantidad de cuotas → el costo extra, cuánto te deposita ML y a qué precio publicar para cobrar lo mismo que sin cuotas.',
+    boton: 'Calcular cuotas',
+  },
+  {
     href: '/mercado-libre-vs-tiendanube',
     emoji: '⚖️',
     nombre: 'Mercado Libre vs Tiendanube',

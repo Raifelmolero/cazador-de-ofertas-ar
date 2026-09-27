@@ -20,6 +20,7 @@ Tiendanube (planes y tarifas de Pago Nube).
 ## Herramientas
 
 - [Calculadora de comisiones de Mercado Libre](https://calculadoraml.com.ar/calculadora-de-comisiones): precio, costo, cuotas y envío → comisión total, lo que recibís y tu ganancia.
+- [Mercado Libre vs Tiendanube: ¿dónde te queda más plata?](https://calculadoraml.com.ar/mercado-libre-vs-tiendanube): precio, costo, ventas por mes, plan de Tiendanube y medio de cobro con Pago Nube → ganancia por venta y por mes en cada uno, diferencia y ventas por mes para que el plan se pague solo. Tarifas de Tiendanube verificadas el 27 de septiembre de 2026.
 
 ## Guías para vender
 

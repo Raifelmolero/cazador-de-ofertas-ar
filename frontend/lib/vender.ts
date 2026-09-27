@@ -29,6 +29,14 @@ export interface GuiaVendedor {
   respuestaCorta: string
   secciones: { h: string; p: string[] }[]
   cta: { href: string; boton: string; texto: string; afiliado?: boolean }
+  /** Link interno a una herramienta relacionada (se muestra antes del CTA). */
+  herramienta?: { href: string; texto: string; boton: string }
+}
+
+const HERRAMIENTA_ML_VS_TN = {
+  href: '/mercado-libre-vs-tiendanube',
+  texto: 'Hacé la cuenta con tus números: precio, costo y ventas por mes en Mercado Libre y en Tiendanube, y cuántas ventas necesitás para que el plan se pague solo.',
+  boton: 'Calculadora Mercado Libre vs Tiendanube 🧮',
 }
 
 export const GUIAS_VENDER: GuiaVendedor[] = [
@@ -107,6 +115,7 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
         ],
       },
     ],
+    herramienta: HERRAMIENTA_ML_VS_TN,
     cta: {
       href: TIENDANUBE_URL,
       boton: 'Ver planes de Tiendanube →',
@@ -257,6 +266,7 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
         ],
       },
     ],
+    herramienta: HERRAMIENTA_ML_VS_TN,
     cta: {
       href: TIENDANUBE_URL,
       boton: 'Probar Tiendanube gratis →',

@@ -35,6 +35,15 @@ export default function VenderPage() {
               <span className="block text-sm text-zinc-400 mt-1">Cuánto te cobra ML y cuánto te queda por venta.</span>
             </Link>
           </li>
+          <li>
+            <Link
+              href="/mercado-libre-vs-tiendanube"
+              className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 p-5"
+            >
+              <span className="font-bold text-yellow-300">⚖️ Mercado Libre vs Tiendanube: ¿dónde te queda más plata?</span>
+              <span className="block text-sm text-zinc-400 mt-1">Tu ganancia por mes en cada uno y cuántas ventas necesitás para que el plan se pague solo.</span>
+            </Link>
+          </li>
           {GUIAS_VENDER.map(g => (
             <li key={g.slug}>
               <Link

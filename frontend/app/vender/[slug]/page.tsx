@@ -72,6 +72,14 @@ export default async function GuiaVendedorPage({ params }: { params: Promise<{ s
             </div>
           </section>
         ))}
+        {g.herramienta && (
+          <section className="rounded-2xl border border-yellow-400/25 bg-yellow-400/5 p-5 mb-6">
+            <p className="text-zinc-300 leading-relaxed mb-3">{g.herramienta.texto}</p>
+            <Link href={g.herramienta.href} className="font-bold text-yellow-300 hover:underline">
+              {g.herramienta.boton} →
+            </Link>
+          </section>
+        )}
         <section className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center">
           <p className="text-zinc-300 mb-4">{g.cta.texto}</p>
           <a
@@ -91,6 +99,7 @@ export default async function GuiaVendedorPage({ params }: { params: Promise<{ s
           <p className="font-bold text-zinc-300 mb-2">Otras guías</p>
           <ul className="space-y-1.5">
             <li><Link href="/calculadora-de-comisiones" className="text-yellow-400 hover:underline">Calculadora de comisiones de Mercado Libre</Link></li>
+            <li><Link href="/mercado-libre-vs-tiendanube" className="text-yellow-400 hover:underline">Calculadora Mercado Libre vs Tiendanube</Link></li>
             {GUIAS_VENDER.filter(x => x.slug !== g.slug).map(x => (
               <li key={x.slug}><Link href={`/vender/${x.slug}`} className="text-yellow-400 hover:underline">{x.titulo}</Link></li>
             ))}

@@ -19,7 +19,7 @@ const DEALS_URL = `https://${DEALS_HOST}`
 
 /**
  * Solo las páginas estables, a propósito (en la calculadora: la home, la
- * calculadora de comisiones y las guías de /vender).
+ * calculadora de comisiones, la de ML vs Tiendanube y las guías de /vender).
  *
  * Las de `/calculadora/[id]` salen del JSON que el bot reescribe 3×/día y rotan
  * ~50% por corrida: de 118 URLs vivas el 20/07, a los 6 días quedaban 29. Como
@@ -43,6 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       { url: BASE, lastModified, changeFrequency: 'daily', priority: 1 },
       { url: `${BASE}/calculadora-de-comisiones`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/mercado-libre-vs-tiendanube`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
       { url: `${BASE}/vender`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
       ...GUIAS_VENDER.map(g => ({ url: `${BASE}/vender/${g.slug}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.8 })),
     ]

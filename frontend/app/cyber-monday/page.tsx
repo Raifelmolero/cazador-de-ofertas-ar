@@ -210,7 +210,9 @@ export default function CyberMondayPage() {
                   <a href={CM.fuente.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-cyan-300 hover:underline">
                     {CM.fuente.nombre}
                   </a>{' '}
-                  (verificado el {fechaAR(CM.verificado)}). El Black Friday es el {BLACK_FRIDAY.fechasTexto}.
+                  (verificado el {fechaAR(CM.verificado)}). El{' '}
+                  <Link href="/black-friday" className="font-semibold text-cyan-300 hover:underline">Black Friday</Link> es el{' '}
+                  {BLACK_FRIDAY.fechasTexto}.
                 </>
               ) : (
                 <>
@@ -238,7 +240,7 @@ export default function CyberMondayPage() {
             <p>
               El nombre viene del lunes posterior al Black Friday de Estados Unidos, pero en Argentina la fecha es otra:{' '}
               {FECHAS}. El Black Friday, en cambio, no tiene organizador acá: cae el{' '}
-              {BLACK_FRIDAY.fechasTexto} y cada tienda arma sus promos por su cuenta.
+              {BLACK_FRIDAY.fechasTexto} y cada tienda arma sus promos por su cuenta (<Link href="/black-friday" className="text-yellow-400 hover:underline">todo sobre el Black Friday</Link>).
             </p>
             <p>
               Nosotros no somos parte del evento: revisamos las ofertas de Mercado Libre Argentina 3 veces por día, todo el

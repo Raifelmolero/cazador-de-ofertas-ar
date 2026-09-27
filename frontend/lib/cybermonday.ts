@@ -39,7 +39,19 @@ export const CYBER_MONDAY: EventoComercial = {
 
 /** El Black Friday en Argentina no tiene organizador: es el viernes siguiente
  *  al Día de Acción de Gracias de EE.UU. (27/11/2026). */
-export const BLACK_FRIDAY = { fecha: '2026-11-27', fechasTexto: 'viernes 27 de noviembre' }
+export const BLACK_FRIDAY = {
+  año: 2026,
+  fecha: '2026-11-27',
+  fechasTexto: 'viernes 27 de noviembre',
+  /** Día de Acción de Gracias de EE.UU. 2026: jueves 26/11 (feriado federal, OPM). */
+  fuente: { nombre: 'OPM (feriados federales de EE.UU. 2026: Thanksgiving, jueves 26 de noviembre)', url: 'https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/#url=2026' },
+  verificado: '2026-09-27',
+}
+
+/** Etapa del Black Friday (un solo día, hora argentina). */
+export function etapaBlackFriday(ahora = new Date()) {
+  return etapaCyber(ahora, { ...CYBER_MONDAY, inicio: BLACK_FRIDAY.fecha, fin: BLACK_FRIDAY.fecha })
+}
 
 const ms = (fecha: string, hora = '00:00:00') => new Date(`${fecha}T${hora}-03:00`).getTime()
 

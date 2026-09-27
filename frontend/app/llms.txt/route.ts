@@ -68,6 +68,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   fechas oficiales (CACE: lunes 2 al miércoles 4 de noviembre de 2026, fuente
   cybermonday.com.ar), cómo detectar descuentos inflados en el evento y las
   ofertas de hoy en sus rubros, verificadas contra el historial de precios.
+- [Black Friday 2026 en Argentina](https://cazadordeofertas.com.ar/black-friday):
+  viernes 27 de noviembre de 2026 (día siguiente al Thanksgiving de EE.UU.); en
+  Argentina no tiene organizador oficial: cada tienda arma sus promos. Cómo
+  detectar descuentos inflados y ofertas de hoy verificadas contra el historial.
 - [Día de la Madre 2026 en Argentina](https://cazadordeofertas.com.ar/dia-de-la-madre):
   domingo 18 de octubre de 2026 (tercer domingo de octubre); regalos en oferta
   hoy en Mercado Libre por presupuesto (hasta $30.000, $30.000-$80.000 y más de

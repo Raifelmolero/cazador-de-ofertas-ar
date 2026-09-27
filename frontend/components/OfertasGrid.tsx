@@ -62,6 +62,8 @@ function ordenar(ofertas: OfertaLight[], orden: OrdenId) {
   return copia
 }
 
+const PASO = 48
+
 export default function OfertasGrid({
   ofertas,
   telegramUrl,
@@ -91,6 +93,10 @@ export default function OfertasGrid({
     return c
   }, [ofertas])
 
+  // Render incremental: 423 tarjetas SSR pesaban 1,7 MB de HTML y ~1 s de
+  // hidratación en mobile. Se muestran de a PASO; búsqueda/filtros siguen
+  // corriendo sobre todas las ofertas.
+  const [limite, setLimite] = useState(PASO)
   const nq = normalizar(q.trim())
   const filtrando = chip !== 'all' || nq !== '' || orden !== 'relevancia'
   const visibles = useMemo(() => {
@@ -175,7 +181,7 @@ export default function OfertasGrid({
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {filtrando ? (
-            visibles.map(o => <OfertaCard key={o.id_ml} producto={o} />)
+            visibles.slice(0, limite).map(o => <OfertaCard key={o.id_ml} producto={o} />)
           ) : (
             <>
               <OfertaCard producto={visibles[0]} featured priority />
@@ -200,11 +206,22 @@ export default function OfertasGrid({
                 </div>
               )}
 
-              {visibles.slice(7).map(o => (
+              {visibles.slice(7, limite).map(o => (
                 <OfertaCard key={o.id_ml} producto={o} />
               ))}
             </>
           )}
+        </div>
+      )}
+
+      {visibles.length > limite && (
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setLimite(l => l + PASO)}
+            className="text-sm font-bold bg-zinc-900 border border-zinc-700 hover:border-yellow-400/60 text-white rounded-xl px-6 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+          >
+            Ver más ofertas ({visibles.length - limite} restantes)
+          </button>
         </div>
       )}
     </>

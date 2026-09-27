@@ -141,6 +141,11 @@ const GUIAS_NUEVAS: GuiaVendedor[] = [
   },
   {
     slug: 'envio-gratis-mercado-libre-cuanto-paga-el-vendedor',
+    herramienta: {
+      href: '/calculadora-envio-gratis',
+      texto: 'Calculalo con tus números: precio, peso del paquete y color de tu reputación, y te decimos cuánto pagás de envío y cuánto te queda.',
+      boton: 'Calculadora de envío gratis 📦',
+    },
     titulo: 'Envío gratis en Mercado Libre: cuánto paga el vendedor en 2026',
     descripcion:
       'Cuánto le cuesta al vendedor el envío gratis en Mercado Libre Argentina: desde qué precio viene incluido ($33.000), cómo se calcula por peso y reputación, tabla de costos y ejemplos.',

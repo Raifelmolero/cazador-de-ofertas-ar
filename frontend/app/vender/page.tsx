@@ -46,6 +46,15 @@ export default function VenderPage() {
           </li>
           <li>
             <Link
+              href="/calculadora-envio-gratis"
+              className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 p-5"
+            >
+              <span className="font-bold text-yellow-300">📦 ¿Cuánto me cuesta el envío gratis en Mercado Libre?</span>
+              <span className="block text-sm text-zinc-400 mt-1">Precio, peso y reputación → costo del envío y lo que te queda.</span>
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/mercado-libre-vs-tiendanube"
               className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 p-5"
             >

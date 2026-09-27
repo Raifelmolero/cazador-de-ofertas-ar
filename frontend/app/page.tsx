@@ -41,6 +41,13 @@ const HERRAMIENTAS = [
     boton: 'Calcular precio',
   },
   {
+    href: '/calculadora-envio-gratis',
+    emoji: '📦',
+    nombre: '¿Cuánto me cuesta el envío gratis?',
+    texto: 'Precio, peso y color de tu reputación → lo que pagás por el envío gratis y cuánto te deposita ML después de la comisión.',
+    boton: 'Calcular envío',
+  },
+  {
     href: '/mercado-libre-vs-tiendanube',
     emoji: '⚖️',
     nombre: 'Mercado Libre vs Tiendanube',

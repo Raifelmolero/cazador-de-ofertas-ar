@@ -24,6 +24,7 @@ reputación.
 
 - [Calculadora de comisiones de Mercado Libre](https://calculadoraml.com.ar/calculadora-de-comisiones): precio, costo, cuotas y envío → comisión total, lo que recibís y tu ganancia.
 - [¿A cuánto tengo que publicar en Mercado Libre? Calculadora de precio de venta](https://calculadoraml.com.ar/calculadora-precio-de-venta): costo, ganancia deseada (en $ o % sobre el costo), cargo por vender, cuotas y envío → precio exacto de publicación, resolviendo el costo fijo por franja de precio y avisando cuando conviene publicar a $33.000 para no pagarlo.
+- [¿Cuánto me cuesta el envío gratis en Mercado Libre? Calculadora](https://calculadoraml.com.ar/calculadora-envio-gratis): precio, peso del paquete (el mayor entre físico y volumétrico, hasta 10 kg) y color de reputación → si el envío gratis es obligatorio (desde $33.000), cuánto paga el vendedor por unidad y cuánto le deposita ML después del cargo por vender y el costo fijo. Tablas oficiales de ML verificadas el 27 de septiembre de 2026.
 - [Mercado Libre vs Tiendanube: ¿dónde te queda más plata?](https://calculadoraml.com.ar/mercado-libre-vs-tiendanube): precio, costo, ventas por mes, plan de Tiendanube y medio de cobro con Pago Nube → ganancia por venta y por mes en cada uno, diferencia y ventas por mes para que el plan se pague solo. Tarifas de Tiendanube verificadas el 27 de septiembre de 2026.
 
 ## Guías para vender

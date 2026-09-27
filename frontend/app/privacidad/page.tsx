@@ -112,6 +112,20 @@ export default function PrivacidadPage() {
           </p>
         </section>
 
+        <section id="alertas">
+          <h2 className="font-display text-xl font-black text-white mb-2">Alertas de precio por Telegram</h2>
+          <p>
+            Si le escribís a nuestro bot de Telegram para crear una alerta, guardamos tu número de chat de
+            Telegram, el link del producto y el precio que elegiste, solo para avisarte cuando baje. No
+            guardamos tu nombre ni tu usuario. Los datos se guardan cifrados y no se comparten con nadie.
+          </p>
+          <p className="mt-3">
+            Cada alerta se borra sola cuando te avisamos. Con el comando /stop borrás todas tus alertas y tus
+            datos en el momento. El aviso incluye un link de afiliado de Mercado Libre: si comprás, podemos
+            recibir una comisión, sin costo extra para vos.
+          </p>
+        </section>
+
         <section>
           <h2 className="font-display text-xl font-black text-white mb-2">Tus derechos</h2>
           <p>

@@ -1,0 +1,43 @@
+name: Alertas de precio (Telegram)
+
+# Responde los mensajes privados al bot (crear/ver/borrar alertas) y avisa
+# las bajas contra el último precio registrado por el bot de ofertas.
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alertas
+  cancel-in-progress: false
+
+jobs:
+  alertas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install cryptography
+
+      - name: Identidad de git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Procesar alertas
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALERTAS_KEY: ${{ secrets.ALERTAS_KEY }}
+          ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
+        run: python bot/alertas.py

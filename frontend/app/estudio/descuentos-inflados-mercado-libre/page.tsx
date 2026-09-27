@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
 import { DEALS_URL, ORG_ID } from '@/lib/marca'
@@ -16,8 +17,8 @@ const TITULO = `1 de cada ${unoCada} ofertas de Mercado Libre Argentina tiene el
 const DATO = `De ${numero(e.revisadas)} ofertas de mercadolibre.com.ar/ofertas que revisamos entre el ${fecha(e.desde)} y el ${fecha(e.hasta)}, el ${e.pctInfladas.toLocaleString('es-AR')}% tenía el descuento inflado: el mismo producto ya se había vendido al menos 5% más barato en días anteriores.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Estudio Cazador de Ofertas AR`,
-  description: DATO,
+  title: tituloSeo(TITULO, [t => `${t} — Estudio Cazador de Ofertas AR`, t => t, () => `1 de cada ${unoCada} ofertas de Mercado Libre tiene descuento inflado`]),
+  description: descripcionSeo(DATO),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DATO, url: URL, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

@@ -6,9 +6,9 @@ import { categoriaDeSeguido, getSeguidos, type Seguido } from '@/lib/seguimiento
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
 export const metadata: Metadata = {
-  title: 'Historial de precios de Mercado Libre Argentina — Cazador de Ofertas AR',
+  title: 'Historial de precios Mercado Libre — Cazador de Ofertas AR',
   description:
-    'Historial de precios y precio más bajo registrado de aires acondicionados, smart TV, heladeras, lavarropas, colchones, herramientas y más en Mercado Libre Argentina.',
+    'Historial de precios y precio más bajo registrado de aires, smart TV, heladeras, lavarropas, colchones, herramientas y más en Mercado Libre Argentina.',
   alternates: { canonical: `${DEALS_URL}/precio` },
 }
 

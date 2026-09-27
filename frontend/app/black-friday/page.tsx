@@ -7,6 +7,7 @@
 // datos inventados: productos y % de infladas salen del catálogo y del bot.
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -29,8 +30,8 @@ const TITULO = `Black Friday ${BF.año} en Argentina: fecha y ofertas reales`
 const DESCRIPCION = `El Black Friday ${BF.año} es el ${BF.fechasTexto}. En Argentina no tiene organizador oficial: cada tienda arma sus promos. Cómo detectar descuentos inflados y ofertas de Mercado Libre verificadas contra el historial.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   keywords: [
     `black friday ${BF.año}`,
     `black friday ${BF.año} argentina`,

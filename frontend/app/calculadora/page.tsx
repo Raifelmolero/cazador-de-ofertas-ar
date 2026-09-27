@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { getFichasPorPrecio } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
@@ -14,8 +15,8 @@ const TITULO = 'Calculadora de ganancia por producto de Mercado Libre'
 const DESCRIPCION = 'Todas las fichas de productos en tendencia de Mercado Libre con cuánto te deposita ML por venta, ordenadas por precio.'
 
 export const metadata: Metadata = {
-  title: `${TITULO} | CalculadoraML`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} | CalculadoraML`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'CalculadoraML' },
 }

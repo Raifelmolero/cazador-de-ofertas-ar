@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import { PRECIOS_HOY, ofertasDe } from '@/lib/preciohoy'
 
@@ -9,8 +10,8 @@ const DESC =
   'Precio de hoy de smart TV, aires, heladeras, lavarropas, colchones, notebooks y más en Mercado Libre Argentina, con el rango de las ofertas con descuento real y el historial de precios.'
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESC,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESC),
   alternates: { canonical: URL },
 }
 

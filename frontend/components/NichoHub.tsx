@@ -1,6 +1,7 @@
 // Hub de un nicho (ver lib/nichos.ts). Lo usan /herramientas, /hogar, etc.
 
 import type { Metadata } from 'next'
+import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
@@ -19,8 +20,8 @@ const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 export function nichoMetadata(n: Nicho): Metadata {
   const url = `${DEALS_URL}/${n.slug}`
   return {
-    title: `${n.titulo} — Cazador de Ofertas AR`,
-    description: n.descripcion,
+    title: tituloSeo(n.titulo, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+    description: descripcionSeo(n.descripcion),
     alternates: { canonical: url },
     openGraph: { title: n.titulo, description: n.descripcion, url, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
   }

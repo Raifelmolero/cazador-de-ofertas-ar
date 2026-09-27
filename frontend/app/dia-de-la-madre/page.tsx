@@ -9,6 +9,7 @@
 // Sin JSON-LD de Event: el Día de la Madre no es un evento con organizador.
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -49,8 +50,8 @@ const TITULO = `Regalos para el Día de la Madre ${AÑO}: ofertas reales por pre
 const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $30.000, hasta $80.000 y más), con el descuento verificado contra el historial.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   keywords: [
     `día de la madre ${AÑO}`,
     `regalos día de la madre ${AÑO}`,

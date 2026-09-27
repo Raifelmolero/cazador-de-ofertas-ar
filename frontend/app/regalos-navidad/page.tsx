@@ -9,6 +9,7 @@
 // Sin JSON-LD de Event: Navidad no es un evento con organizador.
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -70,8 +71,8 @@ const TITULO = `Regalos de Navidad ${AÑO}: ofertas reales por presupuesto`
 const DESCRIPCION = `Ideas de regalo para Navidad ${AÑO} y Reyes en Argentina: ofertas de Mercado Libre por presupuesto y por destinatario (chicos, gamers, papá y mamá, la casa), con el descuento verificado contra el historial de precios.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   keywords: [
     `regalos de navidad ${AÑO}`,
     'qué regalar en navidad',

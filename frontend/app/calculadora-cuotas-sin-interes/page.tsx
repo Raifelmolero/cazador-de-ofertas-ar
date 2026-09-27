@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraCuotas from '@/components/CalculadoraCuotas'
@@ -16,8 +17,8 @@ const TITULO = 'Calculadora de cuotas sin interés de Mercado Libre 2026'
 const DESCRIPCION = `¿Cuánto te cuesta ofrecer cuotas sin interés en Mercado Libre? Poné el precio y la cantidad de cuotas: te mostramos el costo extra, cuánto te deposita ML y a qué precio publicar para cobrar lo mismo que sin cuotas. Costos verificados el ${COSTOS_VERIFICADOS}.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — CalculadoraML`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — CalculadoraML`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'CalculadoraML' },
 }

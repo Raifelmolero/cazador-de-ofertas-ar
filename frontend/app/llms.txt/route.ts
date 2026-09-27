@@ -130,6 +130,16 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [batidoras](https://cazadordeofertas.com.ar/mejores/mejores-batidoras),
   [notebooks](https://cazadordeofertas.com.ar/mejores/mejores-notebooks),
   [celulares](https://cazadordeofertas.com.ar/mejores/mejores-celulares),
+  [tablets](https://cazadordeofertas.com.ar/mejores/mejores-tablets),
+  [freidoras de aire](https://cazadordeofertas.com.ar/mejores/mejores-freidoras-de-aire),
+  [aspiradoras y robots aspiradores](https://cazadordeofertas.com.ar/mejores/mejores-aspiradoras),
+  [ventiladores](https://cazadordeofertas.com.ar/mejores/mejores-ventiladores),
+  [cocinas y hornos](https://cazadordeofertas.com.ar/mejores/mejores-cocinas-y-hornos),
+  [termotanques](https://cazadordeofertas.com.ar/mejores/mejores-termotanques),
+  [amoladoras](https://cazadordeofertas.com.ar/mejores/mejores-amoladoras),
+  [soldadoras](https://cazadordeofertas.com.ar/mejores/mejores-soldadoras),
+  [hidrolavadoras](https://cazadordeofertas.com.ar/mejores/mejores-hidrolavadoras),
+  [perfumes](https://cazadordeofertas.com.ar/mejores/mejores-perfumes),
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas del Cyber Monday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday)
   (CACE: lunes 2 al miércoles 4 de noviembre de 2026),
@@ -138,7 +148,6 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [notebooks](https://cazadordeofertas.com.ar/mejores/cyber-monday-notebooks),
   [celulares](https://cazadordeofertas.com.ar/mejores/cyber-monday-celulares),
   [lavarropas](https://cazadordeofertas.com.ar/mejores/cyber-monday-lavarropas),
-  [auriculares](https://cazadordeofertas.com.ar/mejores/cyber-monday-auriculares),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página

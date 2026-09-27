@@ -7,6 +7,7 @@
 // productos, % de infladas y conteos salen del catálogo y del registro del bot.
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -32,8 +33,8 @@ const DESCRIPCION = CM.oficial
   : `Cuándo es el Cyber Monday ${CM.año} en Argentina (estimado: ${CM.fechasTexto}, a confirmar por la CACE), cómo detectar descuentos inflados y ofertas verificadas contra el historial de precios.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   keywords: [
     `cyber monday ${CM.año}`,
     `cyber monday ${CM.año} argentina`,

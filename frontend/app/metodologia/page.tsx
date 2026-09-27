@@ -8,6 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
@@ -19,8 +20,8 @@ const DESCRIPCION =
   'Cómo registra Cazador de Ofertas AR los precios de Mercado Libre Argentina: qué páginas recorre y cada cuánto, qué es un descuento inflado (umbral del 5% contra el mínimo registrado), qué es el mínimo histórico y qué limitaciones tienen los datos.'
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

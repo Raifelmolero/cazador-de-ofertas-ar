@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { tituloSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { aLight, getProductos, getScrapedAt } from '@/lib/productos'
 import { CARGO_MAX, CARGO_MIN, COSTOS_VIGENCIA } from '@/lib/costosml'
@@ -19,7 +20,7 @@ const TITULO = 'Calculadora Mercado Libre 2026: comisiones y ganancia'
 const DESCRIPCION = `Calculadora de comisiones de Mercado Libre 2026 (cargo de ${pct(CARGO_MIN)}% a ${pct(CARGO_MAX)}%), ML vs Tiendanube, guías para vendedores y productos rentables.`
 
 export const metadata: Metadata = {
-  title: `${TITULO} | CalculadoraML`,
+  title: tituloSeo(TITULO, [t => `${t} | CalculadoraML`, t => t]),
   description: DESCRIPCION,
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'CalculadoraML', images: [{ url: '/og-calculadoraml', width: 1200, height: 630, alt: 'CalculadoraML — calculadora de comisiones de Mercado Libre' }] },
@@ -235,7 +236,7 @@ export default function HomePage() {
             >
               📢 Canal de Telegram →
             </a>
-            <Link href="/hoy" className="font-semibold text-yellow-400 hover:text-yellow-300">
+            <Link href="https://cazadordeofertas.com.ar" className="font-semibold text-yellow-400 hover:text-yellow-300">
               🎯 Ofertas de hoy →
             </Link>
           </span>

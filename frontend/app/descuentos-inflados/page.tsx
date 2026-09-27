@@ -8,6 +8,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
@@ -21,8 +22,8 @@ const DESCRIPCION =
   'Ofertas de hoy en Mercado Libre Argentina cuyo precio tachado anuncia un descuento, pero que ya registramos al menos 5% más baratas antes. Datos propios, actualizados 3 veces por día.'
 
 export const metadata: Metadata = {
-  title: `${TITULO} — Cazador de Ofertas AR`,
-  description: DESCRIPCION,
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  description: descripcionSeo(DESCRIPCION),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

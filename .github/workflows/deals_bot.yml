@@ -111,3 +111,34 @@ jobs:
             done
             exit 1
           fi
+
+
+  # Respaldo del cron de alertas.yml (GitHub a veces saltea los de 15 min):
+  # después de guardar el historial, procesa pedidos y avisa bajas. Mismo grupo
+  # de concurrencia que alertas.yml para no responder dos veces un mensaje.
+  alertas:
+    needs: post-deals
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: alertas
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install cryptography
+      - name: Identidad de git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Procesar alertas
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALERTAS_KEY: ${{ secrets.ALERTAS_KEY }}
+          ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
+        run: python bot/alertas.py

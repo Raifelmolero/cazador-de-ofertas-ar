@@ -44,14 +44,34 @@ CH_LABELS = {
     "threads": "Threads",
     "threads_texto": "Threads (texto)",
     "facebook": "Facebook",
+    "youtube": "YouTube Shorts",
+    "whatsapp_kit": "Kits de WhatsApp",
+    "texto_threads": "Threads (post manual)",
+    "texto_telegram": "Telegram (post manual)",
 }
 
+# Canales que no son ofertas de ML (posts de texto): cuentan por canal pero no
+# entran en ofertas únicas, % mínimo histórico, ticket ni categorías.
+CANALES_SIN_OFERTA = {"texto_threads", "texto_telegram"}
+
 # Canales que el bot NO registra en posts_log.jsonl: se aclara en vez de poner 0.
-SIN_REGISTRO = [
-    "YouTube Shorts (salen con cada reel, sin log propio)",
-    "kits de WhatsApp (se pegan a mano)",
-    "posts de texto manuales (texto_post.yml)",
-]
+SIN_REGISTRO = {
+    "youtube": "YouTube Shorts (salen con cada reel)",
+    "whatsapp_kit": "kits de WhatsApp (se pegan a mano)",
+    ("texto_threads", "texto_telegram"): "posts de texto manuales (texto_post.yml)",
+}
+
+
+def sin_registro(*semanas: list[dict]) -> list[str]:
+    """Etiquetas de los canales sin ninguna entrada en las semanas dadas (el log
+    de esos canales arrancó después: se aclara en vez de mostrar 0)."""
+    vistos = {e.get("ch") for sem in semanas for e in (sem or [])}
+    out = []
+    for chs, label in SIN_REGISTRO.items():
+        chs = chs if isinstance(chs, tuple) else (chs,)
+        if not vistos.intersection(chs):
+            out.append(label)
+    return out
 
 # Categoría por palabras del título: el log no guarda la categoría de ML y
 # productos_rentables.json trae todo como "ofertas del día". Gana la primera.
@@ -215,6 +235,8 @@ def week_stats(entries: list[dict]) -> dict:
     unicas: dict[str, dict] = {}
     for e in entries:
         canales[e["ch"]] = canales.get(e["ch"], 0) + 1
+        if e["ch"] in CANALES_SIN_OFERTA:
+            continue
         unicas.setdefault(e["id"], e)
     n = len(unicas)
     cats: dict[str, int] = {}
@@ -345,7 +367,9 @@ def build_report(
         old = ps["canales"].get(ch, 0) if ps else None
         if cur or old:
             lines.append(f"  • {CH_LABELS.get(ch, ch)}: {cur}{flecha(cur, old)}")
-    lines.append("  • Sin registro en el repo: " + "; ".join(SIN_REGISTRO))
+    faltan = sin_registro(entries, prev_entries)
+    if faltan:
+        lines.append("  • Sin registro en el repo: " + "; ".join(faltan))
 
     resumen = (
         "📦 Lo publicado:\n"

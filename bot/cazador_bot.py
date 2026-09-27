@@ -123,6 +123,27 @@ def log_post(deal: dict, channel: str) -> None:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
+def log_text_post(channel: str, texto: str) -> None:
+    """Registra un post de texto manual (texto_post.py) en el mismo log. No es
+    una oferta de ML: id "texto-<ts>" y sin precio, así el reporte lo cuenta
+    por canal pero no lo mezcla con las ofertas únicas."""
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    entry = {
+        "ts": ts, "ch": channel, "id": f"texto-{ts}", "title": texto.strip()[:80],
+        "discount": 0, "price": 0, "low": False, "excl": False,
+    }
+    POSTS_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(POSTS_LOG_PATH, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
+def log_shorts(deal: dict, extra: list[str]) -> None:
+    """Registra el YouTube Short como canal aparte ("youtube") solo si la subida
+    salió bien (no en dry run ni si falló): el reel de IG ya tiene su entrada."""
+    if any(line.startswith("▶️ YouTube Short:") for line in extra):
+        log_post(deal, "youtube")
+
+
 SCAN_LOG_PATH = BASE_DIR / "state" / "scan_log.jsonl"
 
 
@@ -1841,6 +1862,7 @@ def main() -> int:
                                 os.getenv("ML_WORD_YOUTUBE", "youtube"))},
                             dry,
                         )
+                        log_shorts(r_deal, extra)
                         if extra:
                             msg += "\n" + "\n".join(extra)
                     except Exception as e:  # noqa: BLE001 — jamás frena el resto
@@ -1925,6 +1947,9 @@ def main() -> int:
             dry,
         )
         alert_admin(token, cfg["admin_chat"], wa_kit(to_post, affiliate_id, tool_wa), dry)
+        if not dry:  # una entrada por oferta del kit (canal "whatsapp_kit")
+            for d in to_post:
+                log_post(d, "whatsapp_kit")
 
     print(f"[done] publicadas {len(published_ids)} ofertas")
     return 0

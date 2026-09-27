@@ -25,7 +25,7 @@ on:
         default: true
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: deals-bot
@@ -57,3 +57,23 @@ jobs:
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
         run: python texto_post.py
+
+      # Registra el post en bot/state/posts_log.jsonl (lo cuenta weekly_report).
+      # Mismo esquema que deals_bot.yml: rebase + hasta 3 intentos.
+      - name: Guardar registro de publicaciones
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bot/state
+          if git diff --cached --quiet; then
+            echo "Sin cambios de estado."
+          else
+            git commit -m "bot: registrar post de texto [skip ci]"
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin main && exit 0
+              git rebase --abort 2>/dev/null || true
+              sleep 5
+            done
+            exit 1
+          fi

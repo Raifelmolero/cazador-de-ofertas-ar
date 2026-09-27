@@ -8,7 +8,7 @@ TEXTO. Avisa al admin por Telegram.
 import os
 import sys
 
-from cazador_bot import alert_admin, load_config, publish_threads, tg_call
+from cazador_bot import alert_admin, load_config, log_text_post, publish_threads, tg_call
 
 
 def main() -> int:
@@ -28,6 +28,7 @@ def main() -> int:
             try:
                 msg = tg_call(token, "sendMessage", {"chat_id": cfg["channel"], "text": texto})
                 results.append("Telegram ✅")
+                log_text_post("texto_telegram", texto)
                 if os.getenv("FIJAR") == "1":
                     mid = (msg.get("result") or msg).get("message_id")
                     tg_call(token, "pinChatMessage", {
@@ -40,6 +41,8 @@ def main() -> int:
         try:
             permalink = publish_threads({}, "", th_user, th_token, dry, caption=texto, text_only=True)
             results.append(f"Threads ✅ {permalink}")
+            if not dry:
+                log_text_post("texto_threads", texto)
         except Exception as e:  # noqa: BLE001
             results.append(f"Threads ❌ {str(e)[:150]}")
     res = "\n".join(results)

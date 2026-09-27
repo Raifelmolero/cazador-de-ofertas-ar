@@ -128,6 +128,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [microondas](https://cazadordeofertas.com.ar/mejores/mejores-microondas),
   [licuadoras y minipimers](https://cazadordeofertas.com.ar/mejores/mejores-licuadoras),
   [batidoras](https://cazadordeofertas.com.ar/mejores/mejores-batidoras),
+  [notebooks](https://cazadordeofertas.com.ar/mejores/mejores-notebooks),
+  [celulares](https://cazadordeofertas.com.ar/mejores/mejores-celulares),
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas del Cyber Monday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday)
   (CACE: lunes 2 al miércoles 4 de noviembre de 2026),

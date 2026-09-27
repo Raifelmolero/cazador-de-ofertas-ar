@@ -627,6 +627,57 @@ export const COMPARATIVAS: Comparativa[] = [
       'Entradas: DisplayPort o HDMI que soporten la frecuencia máxima del monitor.',
     ],
   },
+  {
+    slug: 'mejores-notebooks',
+    nombre: 'notebooks',
+    titulo: `Mejores notebooks en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de notebooks en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
+    intro:
+      'Las notebooks en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+    keywords: ['notebook', 'laptop', 'macbook'],
+    excluir: ['monitor', 'mochila', 'cargador', 'funda', 'soporte', 'base para'],
+    criterios: [
+      'Memoria: 8 GB de RAM como mínimo para uso diario; 16 GB si trabajás o estudiás con muchas cosas abiertas.',
+      'Disco SSD: arranca y abre programas mucho más rápido que un disco rígido; 256 GB es lo mínimo razonable, 512 GB es más cómodo.',
+      'Procesador: Ryzen 5 / Core i5 o superior para trabajo y estudio; Ryzen 3 / Core i3 alcanza para navegar y ofimática.',
+      'Revisá que la garantía sea oficial en Argentina y que el teclado sea en español si te importa la ñ.',
+    ],
+  },
+  {
+    slug: 'mejores-celulares',
+    nombre: 'celulares',
+    titulo: `Mejores celulares en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de celulares Samsung, Motorola, iPhone y otras marcas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los celulares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
+    criterios: [
+      'Almacenamiento: 128 GB como mínimo; las fotos, videos y WhatsApp llenan 64 GB rápido.',
+      'RAM: 4 GB alcanza para lo básico; 6 u 8 GB si usás muchas apps a la vez o jugás.',
+      'Que sea versión para Argentina (bandas de 4G/5G de las compañías locales) y con garantía oficial.',
+      'Años de actualizaciones del fabricante: un equipo que recibe parches de seguridad por más tiempo dura más.',
+    ],
+  },
+  {
+    slug: 'mejores-tablets',
+    nombre: 'tablets',
+    titulo: `Mejores tablets en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de tablets Android y iPad en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las tablets en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+    keywords: ['tablet', 'tableta', 'ipad'],
+    excluir: ['funda', 'vidrio templado', 'protector', 'soporte', 'teclado para', 'cargador', 'grafica', 'digitalizadora'],
+    criterios: [
+      'Pantalla: 8 pulgadas para leer y llevar; 10 u 11 pulgadas para series, clases o trabajar.',
+      'RAM y almacenamiento: 4 GB y 64 GB como mínimo; si la vas a usar para estudiar o dibujar, mejor 8 GB y 128 GB.',
+      'Fijate si acepta tarjeta microSD para ampliar la memoria y si tiene versión con chip (LTE) si la querés usar fuera de casa.',
+      'Para chicos: una funda resistente y control parental importan más que el procesador.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

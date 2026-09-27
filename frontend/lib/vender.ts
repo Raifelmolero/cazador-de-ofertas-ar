@@ -366,6 +366,11 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
   },
   {
     slug: 'como-calcular-precio-de-venta-mercado-libre',
+    herramienta: {
+      href: '/calculadora-precio-de-venta',
+      texto: 'Hacé la cuenta al revés con tus números: poné tu costo y la ganancia que querés y te damos el precio exacto, con el costo fijo de cada franja ya resuelto.',
+      boton: '¿A cuánto publicar? Calculadora 🧮',
+    },
     titulo: 'Cómo calcular el precio de venta en Mercado Libre para no perder plata',
     descripcion:
       'Fórmula simple para poner el precio de venta en Mercado Libre Argentina: costo del producto, comisión, costo fijo, cuotas y envío, con ejemplo.',

@@ -34,6 +34,13 @@ const HERRAMIENTAS = [
     boton: 'Calcular comisiones',
   },
   {
+    href: '/calculadora-precio-de-venta',
+    emoji: '🏷️',
+    nombre: '¿A cuánto publicar en Mercado Libre?',
+    texto: 'Poné tu costo y la ganancia que querés y te damos el precio exacto de publicación, con comisión, costo fijo, cuotas y envío.',
+    boton: 'Calcular precio',
+  },
+  {
     href: '/mercado-libre-vs-tiendanube',
     emoji: '⚖️',
     nombre: 'Mercado Libre vs Tiendanube',

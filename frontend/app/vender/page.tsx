@@ -37,6 +37,15 @@ export default function VenderPage() {
           </li>
           <li>
             <Link
+              href="/calculadora-precio-de-venta"
+              className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 p-5"
+            >
+              <span className="font-bold text-yellow-300">🏷️ ¿A cuánto tengo que publicar en Mercado Libre?</span>
+              <span className="block text-sm text-zinc-400 mt-1">Tu costo y la ganancia que querés → el precio exacto de publicación.</span>
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/mercado-libre-vs-tiendanube"
               className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 p-5"
             >

@@ -89,6 +89,23 @@ export const NICHOS: Nicho[] = [
       'balanza comercial', 'licuadora industrial', 'cafetera industrial', 'horno convector',
     ],
   },
+  {
+    slug: 'gamer',
+    marca: 'Cazador Gamer',
+    emoji: '🎮',
+    titulo: 'Ofertas gamer: monitores, notebooks, consolas, sillas y periféricos',
+    descripcion:
+      'Monitores gamer, notebooks gamer, consolas, joysticks, auriculares, teclados, mouse y sillas gamer en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Todo el setup gamer en un solo lugar: monitores, notebooks, consolas, joysticks, auriculares, teclados, mouse y sillas que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Antes de comprar, fijate que tu equipo aproveche lo que pagás: un monitor de 240 Hz no sirve de mucho si tu placa de video no llega a esos cuadros.',
+    etiqueta: 'gamer',
+    categorias: ['gamer'],
+    busquedas: [
+      'monitor gamer 144hz', 'monitor gamer 27', 'notebook gamer', 'pc gamer', 'playstation 5',
+      'nintendo switch', 'xbox series', 'joystick', 'auriculares gamer', 'teclado mecanico',
+      'mouse gamer', 'silla gamer',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

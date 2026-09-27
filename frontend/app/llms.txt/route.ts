@@ -64,6 +64,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),
   [tecno](https://cazadordeofertas.com.ar/tecno),
+  [gamer](https://cazadordeofertas.com.ar/gamer),
   [gastronomía](https://cazadordeofertas.com.ar/gastronomia).
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
@@ -81,7 +82,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [cocinas y hornos](https://cazadordeofertas.com.ar/categoria/cocinas-y-hornos),
   [parrillas](https://cazadordeofertas.com.ar/categoria/parrillas),
   [bicicletas](https://cazadordeofertas.com.ar/categoria/bicicletas),
-  [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes) y
+  [perfumes](https://cazadordeofertas.com.ar/categoria/perfumes),
+  [gamer](https://cazadordeofertas.com.ar/categoria/gamer) y
   [equipamiento gastronómico](https://cazadordeofertas.com.ar/categoria/equipamiento-gastronomico).
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
@@ -90,6 +92,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [heladeras](https://cazadordeofertas.com.ar/mejores/mejores-heladeras),
   [colchones](https://cazadordeofertas.com.ar/mejores/mejores-colchones),
   [taladros y herramientas](https://cazadordeofertas.com.ar/mejores/mejores-taladros),
+  [monitores gamer](https://cazadordeofertas.com.ar/mejores/mejores-monitores-gamer),
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas del Cyber Monday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday)
   (CACE: lunes 2 al miércoles 4 de noviembre de 2026),

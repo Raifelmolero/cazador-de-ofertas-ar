@@ -765,6 +765,58 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'gamer',
+    nombre: 'Gamer',
+    titulo: 'Ofertas gamer en Mercado Libre Argentina: monitores, consolas, sillas y periféricos',
+    descripcion:
+      'Monitores gamer, notebooks gamer, consolas, joysticks, auriculares, teclados, mouse y sillas gamer en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Lo gamer que hoy está en oferta en Mercado Libre Argentina: monitores de alta frecuencia, notebooks y PC gamer, consolas, joysticks, auriculares, teclados, mouse y sillas, con el descuento verificado contra el historial de precios del producto.',
+    keywords: [
+      'gamer', 'gaming', 'playstation', 'ps5', 'ps4', 'xbox', 'nintendo switch', 'joystick', 'gamepad',
+      'consola de videojuegos', 'consola portatil', 'steam deck',
+      // Monitores de alta frecuencia que no dicen "gamer" en el título
+      '144hz', '165hz', '180hz', '200hz', '240hz',
+    ],
+    excluir: [
+      'repuesto', 'funda', 'skin', 'sticker', 'vinilo', 'protector', 'soporte', 'base para',
+      'cargador para', 'cable para', 'gift card', 'tarjeta de regalo',
+    ],
+    guia: [
+      {
+        h: 'Qué mirar al comprar equipo gamer',
+        p: [
+          'Monitor: la frecuencia (144 Hz o más) y el tiempo de respuesta (1 ms) son lo que más se nota al jugar, pero solo si tu placa de video o tu consola llega a esos cuadros por segundo. En 27 pulgadas conviene resolución 2K (QHD); en 24, Full HD alcanza.',
+          'Notebook o PC gamer: lo que define el rendimiento en juegos es la placa de video dedicada; después, 16 GB de RAM y disco SSD. Un equipo con gráficos integrados no rinde como gamer aunque el título lo diga.',
+          'Consola: fijate si es la versión con lectora de discos o solo digital, cuánto almacenamiento trae y si incluye joystick y juegos. Preferí tiendas oficiales y revisá la garantía.',
+        ],
+      },
+      {
+        h: 'Periféricos y silla',
+        p: [
+          'Auriculares: para jugar en línea importa que tengan micrófono; los inalámbricos son más cómodos, pero revisá la autonomía y cómo se conectan (receptor USB o Bluetooth).',
+          'Teclado y mouse: los teclados mecánicos suelen durar más y sentirse más precisos; en el mouse mirá el peso y que la sensibilidad (DPI) se pueda ajustar.',
+          'Silla gamer: revisá el peso máximo que soporta, que la altura sea regulable y que tenga apoyo lumbar. Si pasás muchas horas sentado, la ergonomía importa más que las luces.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué monitor conviene para jugar?',
+        a: 'Uno de 144 Hz o más con 1 ms de respuesta, siempre que tu PC o consola pueda entregar esos cuadros por segundo. En la comparativa de monitores gamer están los que hoy tienen descuento real.',
+      },
+      {
+        q: '¿Cómo sé si una notebook es realmente gamer?',
+        a: 'Mirando que tenga placa de video dedicada (no solo gráficos integrados), idealmente 16 GB de RAM y disco SSD. El título de la publicación no alcanza.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

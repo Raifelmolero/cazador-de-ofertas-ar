@@ -414,6 +414,24 @@ export const COMPARATIVAS: Comparativa[] = [
       'Revisá las entradas (HDMI, DisplayPort) y si trae el cable que necesitás.',
     ],
   },
+  {
+    slug: 'mejores-monitores-gamer',
+    nombre: 'monitores gamer',
+    titulo: `Mejores monitores gamer en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de monitores gamer en oferta hoy en Mercado Libre Argentina: pulgadas, Hz, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los monitores gamer en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'gamer',
+    keywords: ['monitor'],
+    criterios: [
+      'Frecuencia: 144 Hz o más para que el movimiento se vea fluido; tu placa de video o consola tiene que llegar a esos cuadros.',
+      'Tiempo de respuesta de 1 ms o menos para evitar estelas en juegos rápidos.',
+      '27 pulgadas o más: resolución 2K (QHD); en 24 pulgadas alcanza con Full HD.',
+      'FreeSync o G-Sync evitan cortes en la imagen cuando los cuadros por segundo varían.',
+      'Entradas: DisplayPort o HDMI que soporten la frecuencia máxima del monitor.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

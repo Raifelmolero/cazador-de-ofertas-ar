@@ -881,3 +881,24 @@ class TestMencionWhatsApp(unittest.TestCase):
     def test_en_los_otros_slots_ningun_post_de_telegram_la_lleva(self):
         for slot in ("midday", "evening", "other"):
             self.assertEqual(self.correr_main(slot), [False, False, False], slot)
+
+
+class TestTemporadaReyes(unittest.TestCase):
+    def _d(self, y, m, d):
+        return datetime(y, m, d, 12, tzinfo=timezone.utc)
+
+    def test_dentro_de_ventana(self):
+        for fecha in (self._d(2026, 12, 25), self._d(2027, 1, 1), self._d(2027, 1, 6)):
+            self.assertEqual(bot.sello_temporada("LEGO City Camión", fecha), "👑 Idea de regalo para Reyes")
+            self.assertEqual(bot.temporada_boost("Muñeca Barbie", fecha), 1.4)
+
+    def test_fuera_de_ventana(self):
+        self.assertEqual(bot.sello_temporada("Muñeca Barbie", self._d(2027, 1, 7)), "")
+        self.assertEqual(bot.temporada_boost("Muñeca Barbie", self._d(2027, 1, 7)), 1.0)
+        # 24/12 sigue siendo Navidad, no Reyes
+        self.assertEqual(bot.sello_temporada("LEGO City", self._d(2026, 12, 24)), "🎄 Idea de regalo para Navidad")
+        self.assertEqual(bot.temporada_boost("Muñeca Barbie", self._d(2026, 12, 24)), 1.0)
+
+    def test_en_ventana_cruza_anio(self):
+        self.assertTrue(bot._en_ventana(self._d(2027, 1, 3), (12, 25), (1, 6)))
+        self.assertFalse(bot._en_ventana(self._d(2027, 6, 3), (12, 25), (1, 6)))

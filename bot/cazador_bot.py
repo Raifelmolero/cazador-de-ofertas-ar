@@ -1045,6 +1045,13 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "monopatín", "auriculares", "smartwatch", "perfume", "parlante",
         "lego", "tablet",
     ]),
+    # Reyes Magos (6/1): cruza de año; regalos para chicos. Landing: /regalos-navidad
+    ((12, 25), (1, 6), 1.4, [  # Reyes
+        "juguete", "lego", "bicicleta", "monopatin", "monopatín", "consola",
+        "nintendo", "playstation", "muñeca", "muneca", "pelota", "patines",
+        "rollers", "peluche", "didactico", "didáctico", "rompecabezas",
+        "juego de mesa", "auto a control", "drone", "tablet",
+    ]),
     ((6, 1), (6, 21), 1.5, [  # Día del Padre (3er domingo de junio)
         "taladro", "atornillador", "parrilla", "smartwatch", "reloj",
         "perfume", "herramienta", "cafetera", "afeitadora", "barbero",
@@ -1067,6 +1074,7 @@ def _en_ventana(hoy: datetime, desde: tuple[int, int], hasta: tuple[int, int]) -
 SELLOS_TEMPORADA = {
     (9, 25): "🎁 Idea de regalo para el Día de la Madre",
     (12, 1): "🎄 Idea de regalo para Navidad",
+    (12, 25): "👑 Idea de regalo para Reyes",
     (6, 1): "🎁 Idea de regalo para el Día del Padre",
     (7, 25): "🎁 Idea de regalo para el Día de las Infancias",
 }

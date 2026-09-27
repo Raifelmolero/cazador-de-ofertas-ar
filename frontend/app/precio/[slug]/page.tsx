@@ -3,6 +3,8 @@ import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import { getProductoById } from '@/lib/productos'
+import { CALC_URL } from '@/lib/vender'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY, seguidosDe } from '@/lib/preciohoy'
@@ -73,6 +75,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const preciosHoy = PRECIOS_HOY.filter(
     p => seguidosDe(p).some(x => x.id === s.id) || (cat && p.categoria === cat.slug),
   ).slice(0, 3)
+  // Ficha de ganancia para vendedores en calculadoraml (otro dominio, mismo deploy)
+  const ficha = getProductoById(s.id)
   const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidos())
   const nombre = nombreCorto(s)
 
@@ -267,6 +271,15 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               ))}
             </div>
           </nav>
+        )}
+
+        {ficha && (
+          <p className="mb-8 text-sm text-zinc-400">
+            ¿Lo vendés?{' '}
+            <a href={`${CALC_URL}/calculadora/${ficha.id_ml}`} className="text-yellow-400 hover:underline">
+              Calculá cuánto te deposita Mercado Libre por cada venta
+            </a>
+          </p>
         )}
 
         {relacionados.length > 0 && (

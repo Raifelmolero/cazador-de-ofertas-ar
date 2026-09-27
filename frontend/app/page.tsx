@@ -212,6 +212,11 @@ export default function HomePage() {
 
         <div className="pb-8">
           <ProductsGrid productos={productos.map(aLight)} />
+          <p className="mt-4 text-center text-xs">
+            <Link href="/calculadora" className="text-yellow-400 hover:underline">
+              Ver el índice de todas las fichas por precio ({productos.length})
+            </Link>
+          </p>
         </div>
       </section>
 

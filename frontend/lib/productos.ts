@@ -91,3 +91,22 @@ export function getOfertas(): ProductWithMargins[] {
 export function getScrapedAt(): Date {
   return new Date(readJson().metadata.scraped_at)
 }
+
+/** Fichas de /calculadora ordenadas por precio (orden estable: precio, id). */
+export function getFichasPorPrecio(): ProductWithMargins[] {
+  return getProductos().sort((a, b) => a.precio_actual - b.precio_actual || a.id_ml.localeCompare(b.id_ml))
+}
+
+/** Vecinos fijos en el orden por precio (circular): n/2 más baratos y n/2 más
+ *  caros. Así cada ficha recibe links de sus vecinas y ninguna queda huérfana. */
+export function fichasParecidas(id: string, n = 6): ProductWithMargins[] {
+  const lista = getFichasPorPrecio()
+  const i = lista.findIndex(p => p.id_ml === id)
+  if (i < 0 || lista.length < 2) return []
+  const out: ProductWithMargins[] = []
+  for (let k = 1; out.length < Math.min(n, lista.length - 1); k++) {
+    out.push(lista[(i - k + lista.length) % lista.length])
+    if (out.length < Math.min(n, lista.length - 1)) out.push(lista[(i + k) % lista.length])
+  }
+  return out.sort((a, b) => a.precio_actual - b.precio_actual)
+}

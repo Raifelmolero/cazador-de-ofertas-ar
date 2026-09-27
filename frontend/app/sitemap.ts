@@ -47,6 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { url: `${BASE}/calculadora-envio-gratis`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
       { url: `${BASE}/calculadora-cuotas-sin-interes`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
       { url: `${BASE}/mercado-libre-vs-tiendanube`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
+      // Índice estable de las fichas /calculadora/[id] (las fichas no se listan: rotan)
+      { url: `${BASE}/calculadora`, lastModified, changeFrequency: 'daily', priority: 0.6 },
       { url: `${BASE}/vender`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
       ...GUIAS_VENDER.map(g => ({ url: `${BASE}/vender/${g.slug}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.8 })),
     ]

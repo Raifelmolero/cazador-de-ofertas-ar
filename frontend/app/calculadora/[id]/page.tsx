@@ -1,4 +1,5 @@
-import { getProductos, getProductoById } from '@/lib/productos'
+import { getProductos, getProductoById, fichasParecidas } from '@/lib/productos'
+import { CALC_URL } from '@/lib/vender'
 import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -27,6 +28,7 @@ export async function generateMetadata({
   const deposita = Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')
   const precioMl = producto.precio_actual.toLocaleString('es-AR')
   return {
+    alternates: { canonical: `${CALC_URL}/calculadora/${producto.id_ml}` },
     title: tituloSeo(producto.titulo, [
       n => `Calculadora de ganancia: ${n} en Mercado Libre`,
       n => `Calculadora de ganancia: ${n}`,
@@ -50,6 +52,7 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
   const comisionArs = producto.precio_actual * producto.comision_clasica_pct
   const iibbArs = producto.precio_actual * producto.retencion_iibb_pct
   const envioArs = producto.costo_envio_base_ars
+  const parecidas = fichasParecidas(producto.id_ml)
 
   return (
     <main className="min-h-screen">
@@ -63,7 +66,7 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
             ← Inicio
           </Link>
           <span className="text-gray-700 flex-shrink-0">/</span>
-          <span className="text-sm text-gray-400 truncate">Calculadora</span>
+          <Link href="/calculadora" className="text-sm text-gray-400 hover:text-white truncate">Calculadora</Link>
           <span className="text-gray-700 flex-shrink-0">/</span>
           <span className="text-sm text-gray-200 truncate">{producto.titulo}</span>
         </div>
@@ -147,6 +150,20 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           envioArs={envioArs}
         />
 
+        {parecidas.length > 0 && (
+          <nav aria-label="Fichas de precio parecido" className="text-sm">
+            <p className="font-bold text-gray-300 mb-2">Productos de precio parecido</p>
+            <ul className="space-y-1.5">
+              {parecidas.map(p => (
+                <li key={p.id_ml} className="flex justify-between gap-3 min-w-0">
+                  <Link href={`/calculadora/${p.id_ml}`} className="text-gray-400 hover:text-yellow-400 truncate">{p.titulo}</Link>
+                  <span className="shrink-0 text-gray-500 tabular-nums">${p.precio_actual.toLocaleString('es-AR')}</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/calculadora" className="inline-block mt-3 text-yellow-400 hover:underline">Ver todas las fichas por precio →</Link>
+          </nav>
+        )}
       </div>
 
       <Footer />

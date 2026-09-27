@@ -152,6 +152,76 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
       texto: 'Cambiá el precio y mirá al instante cuánto te queda.',
     },
   },
+  {
+    slug: 'cuotas-sin-interes-mercado-libre-cuanto-cuestan',
+    titulo: 'Cuotas sin interés en Mercado Libre: cuánto le cuestan al vendedor y cuándo conviene',
+    descripcion:
+      'Cuánto cobra Mercado Libre Argentina por ofrecer cuotas sin interés (3, 6, 9 y 12) o con interés bajo, con ejemplos y cómo ajustar el precio para no perder margen.',
+    pregunta: '¿Cuánto cuesta ofrecer cuotas sin interés en Mercado Libre?',
+    respuestaCorta:
+      'Además del cargo por vender, ofrecer cuotas al mismo precio cuesta 8,90% del precio en 3 cuotas, 13,40% en 6, 17,80% en 9 y 21,60% en 12. Las cuotas con interés bajo (3 a 12) cuestan 5%. Si no agregás cuotas propias no pagás nada extra y el comprador solo tiene las cuotas con interés de su banco.',
+    secciones: [
+      {
+        h: 'Las opciones y su costo',
+        p: [
+          'Sin cuotas propias: pagás solo el cargo por vender (y el costo fijo si el producto cuesta menos de $33.000). El comprador puede pagar en cuotas con el interés de su banco.',
+          'Cuotas con interés bajo (3 a 12): pagás 5% más. El comprador paga un interés menor que el del banco.',
+          'Cuotas al mismo precio: 8,90% en 3 cuotas, 13,40% en 6, 17,80% en 9 y 21,60% en 12. El comprador paga lo mismo en cuotas que en un pago.',
+        ],
+      },
+      {
+        h: 'Ejemplo',
+        p: [
+          'Producto de $100.000 con cargo del 14%: sin cuotas propias te quedan $86.000. Con 6 cuotas al mismo precio te quedan $72.600. Con 12 cuotas, $64.400.',
+          'Para mantener lo mismo que sin cuotas ($86.000) ofreciendo 6 cuotas al mismo precio, el precio tendría que ser $86.000 ÷ (1 − 0,274) = unos $118.500. Por eso los precios con muchas cuotas sin interés suelen ser más altos.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene ofrecerlas',
+        p: [
+          'En productos caros (electrodomésticos, tecnología, muebles) las cuotas sin interés pesan mucho en la decisión de compra y suelen justificar el costo.',
+          'En productos baratos casi nadie paga en cuotas: el costo extra solo te baja el margen.',
+          'Probá con 3 cuotas antes que con 12: el costo es menos de la mitad y sigue siendo un atractivo.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Comparar con y sin cuotas 🧮',
+      texto: 'Elegí la opción de cuotas en la calculadora y mirá cuánto te queda en cada caso.',
+    },
+  },
+  {
+    slug: 'precio-minimo-para-publicar-en-mercado-libre',
+    titulo: 'Precio mínimo para publicar en Mercado Libre y cómo vender productos baratos con kits',
+    descripcion:
+      'Cuál es el precio mínimo para publicar en Mercado Libre Argentina ($1.000, o $3.500 en consumo masivo), qué pasa si quedás por debajo y cómo usar kits para vender productos baratos sin perder plata.',
+    pregunta: '¿Cuál es el precio mínimo para vender en Mercado Libre?',
+    respuestaCorta:
+      'El precio de venta tiene que ser de al menos $1.000, y de $3.500 en productos de consumo masivo (incluida la tienda Full Súper). Si una publicación queda por debajo, se pausa automáticamente. Para vender algo más barato, agrupá varias unidades en un kit: pagás un solo costo fijo por kit vendido.',
+    secciones: [
+      {
+        h: 'Por qué los productos baratos casi no dejan plata',
+        p: [
+          'Por debajo de $33.000 se suma un costo fijo por unidad al cargo por vender: $1.330 hasta $14.999 con Envíos Flex. En un producto de $5.000 eso solo ya es más del 25% del precio.',
+          'Por ejemplo, un producto de $5.000 con cargo del 14% paga $700 + $1.330: ML se queda con $2.030 y te quedan $2.970 antes de tu costo.',
+        ],
+      },
+      {
+        h: 'La solución: kits',
+        p: [
+          'Un kit agrupa varias unidades en una sola publicación. Si el kit cuesta menos de $33.000, pagás un solo costo fijo por kit, no uno por unidad.',
+          'Ejemplo: 4 unidades de $5.000 en un kit de $20.000 pagan $2.800 de cargo (14%) + $2.740 de costo fijo = $5.540. Vendidas por separado pagarían 4 × $2.030 = $8.120.',
+          'Si el kit supera los $33.000 el costo fijo desaparece: a veces conviene armar un pack un poco más grande.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular un kit 🧮',
+      texto: 'Poné el precio del kit en la calculadora y compará con la venta por unidad.',
+    },
+  },
 ]
 
 export const getGuiaVendedor = (slug: string) => GUIAS_VENDER.find(g => g.slug === slug)

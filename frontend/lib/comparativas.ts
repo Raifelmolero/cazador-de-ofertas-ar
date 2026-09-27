@@ -191,6 +191,24 @@ export const COMPARATIVAS: Comparativa[] = [
     guia: 'que-hidrolavadora-comprar',
   },
   {
+    slug: 'mejores-neumaticos',
+    nombre: 'neumáticos',
+    titulo: `Mejores neumáticos en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de neumáticos para auto y camioneta en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los neumáticos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'vehiculos',
+    keywords: ['neumatico'],
+    criterios: [
+      'La medida manda: ancho, alto, rodado e índices de carga y de velocidad tienen que coincidir con el manual del auto.',
+      'Ruta y ciudad: de turismo o H/T, más silenciosos y con más rendimiento en asfalto.',
+      'Ripio o tierra: A/T (all terrain), con más agarre fuera del asfalto pero más ruido.',
+      'Revisá si el precio es por unidad o por kit de dos o cuatro antes de comparar.',
+      'Sumá colocación, alineado y balanceo al presupuesto.',
+    ],
+  },
+  {
     slug: 'regalos-dia-de-la-madre',
     presupuestos: [50000, 150000],
     guia: 'que-regalar-el-dia-de-la-madre',

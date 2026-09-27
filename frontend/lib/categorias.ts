@@ -971,6 +971,67 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'vehiculos',
+    nombre: 'Autos y motos',
+    enFrase: 'autos y motos',
+    titulo: 'Ofertas de neumáticos, accesorios y equipamiento para autos y motos en Mercado Libre Argentina',
+    descripcion:
+      'Neumáticos, llantas, arrancadores, escáneres, estéreos, cascos y accesorios para autos y motos en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Neumáticos, llantas, arrancadores de batería, escáneres, estéreos y accesorios para el auto y la moto que hoy tienen descuento real en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: [
+      'neumatico', 'llanta deportiva', 'llanta de aleacion', 'arrancador de bateria', 'arrancador bateria',
+      'bateria para auto', 'bateria para moto', 'escaner automotriz', 'scanner automotriz', 'escaner obd',
+      'estereo pantalla', 'estereo 2 din', 'estereo para auto', 'autoestereo', 'para moto', 'para auto',
+      'auto/moto', 'casco moto', 'casco integral', 'casco rebatible', 'alforja', 'baul para moto',
+      'cubre auto', 'velocimetro digital', 'pluma hidraulica', 'gato hidraulico',
+      'cubierta moto', 'cubierta para moto', 'camara de reversa', 'camara de retroceso',
+    ],
+    excluir: [
+      // Butacas de bebé: van a /categoria/bebes-y-jugueteria
+      'butaca', 'huevito', 'grasera', 'engrasador', 'cargador para', 'soporte celular', 'aromatizante', 'difusor', 'juguete',
+    ],
+    guia: [
+      {
+        h: 'Neumáticos: cómo leer la medida',
+        p: [
+          'En una medida como 205/60 R16 92H, 205 es el ancho en milímetros, 60 es el alto del flanco como porcentaje del ancho, R16 es el diámetro de la llanta en pulgadas, 92 es el índice de carga y la H es el índice de velocidad. Tiene que coincidir con lo que indica el manual o la etiqueta del auto (suele estar en el marco de la puerta del conductor).',
+          'Uso: los de ruta y ciudad (de turismo o H/T) son más silenciosos y rinden más en asfalto. Los A/T (all terrain) agarran mejor en ripio y tierra, pero hacen más ruido. Cambialos al menos de a pares en el mismo eje y hacé alinear y balancear después de colocarlos.',
+        ],
+      },
+      {
+        h: 'Arrancadores, escáneres y electrónica',
+        p: [
+          'Arrancador portátil: fijate la corriente de arranque (amperes) y que alcance para el motor de tu vehículo; los diésel y las camionetas piden más. Muchos traen compresor y power bank.',
+          'Escáner OBD2: lee los códigos de falla del motor y sirve para vehículos con conector OBD2. Revisá la compatibilidad con tu marca y modelo.',
+          'Estéreos 2 DIN con pantalla: medí el hueco del tablero y revisá si hace falta un marco adaptador o un arnés para tu modelo.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Compatibilidad: medida, modelo y año del vehículo. Si dudás, preguntale al vendedor con el modelo exacto antes de comprar.',
+          'Colocación: en neumáticos y llantas sumá al presupuesto la colocación, el alineado y el balanceo, que casi nunca están incluidos.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cómo sé qué medida de neumático lleva mi auto?',
+        a: 'Está escrita en el flanco de los neumáticos que tenés puestos (por ejemplo 185/65 R15) y también en el manual y en la etiqueta del marco de la puerta del conductor. Tienen que coincidir ancho, alto, rodado e índices de carga y de velocidad.',
+      },
+      {
+        q: '¿Conviene cambiar los neumáticos de a dos o de a cuatro?',
+        a: 'Como mínimo de a pares en el mismo eje, para que frenen y agarren parejo. Si los cuatro están gastados, cambiarlos juntos mantiene el comportamiento del auto equilibrado.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

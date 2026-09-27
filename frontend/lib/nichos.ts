@@ -139,6 +139,23 @@ export const NICHOS: Nicho[] = [
       'pava electrica', 'ventilador de techo', 'ventilador de pie',
     ],
   },
+  {
+    slug: 'vehiculos',
+    marca: 'Cazador de Autos y Motos',
+    emoji: '🚗',
+    titulo: 'Autos y motos en oferta: neumáticos, llantas, arrancadores y accesorios',
+    descripcion:
+      'Neumáticos, llantas, arrancadores de batería, escáneres, estéreos y accesorios para autos y motos en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Todo para el auto y la moto en un solo lugar: neumáticos, llantas, arrancadores, escáneres, estéreos y accesorios que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Antes de comprar confirmá la medida y la compatibilidad con tu vehículo, no solo el % OFF.',
+    etiqueta: 'vehiculos',
+    categorias: ['vehiculos'],
+    busquedas: [
+      'neumaticos 175 65 r14', 'neumaticos 205 55 r16', 'neumaticos all terrain', 'bateria auto 12v',
+      'arrancador de bateria portatil', 'escaner automotriz obd2', 'estereo 2 din pantalla',
+      'casco moto', 'cubiertas moto', 'baul para moto', 'compresor de aire para auto', 'llantas deportivas',
+    ],
+  },
 ]
 
 export const getNicho = (slug: string) => NICHOS.find(n => n.slug === slug)

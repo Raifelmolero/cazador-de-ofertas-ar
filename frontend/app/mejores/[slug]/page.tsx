@@ -8,7 +8,8 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
-import { slugPorId } from '@/lib/seguimiento'
+import { getSeguidos, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
+import { normalizar } from '@/lib/categorias'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -53,6 +54,19 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   const cat = categoriaDe(c)
   const guia = c.guia ? getGuia(c.guia) : undefined
   const historial = slugPorId()
+  // Modelos con historial propio que entran en esta comparativa y no aparecen
+  // ya en la tabla (misma regla de categoría + keywords + exclusiones).
+  const enTabla = new Set(productos.map(p => p.id_ml))
+  const kws = (c.keywords ?? []).map(normalizar)
+  const fuera = (c.excluir ?? []).map(normalizar)
+  const conHistorial = (cat ? seguidosDeCategoria(cat.slug) : kws.length ? getSeguidos() : [])
+    .filter(x => !enTabla.has(x.id))
+    .filter(x => {
+      const t = normalizar(x.titulo)
+      return (!kws.length || kws.some(k => t.includes(k))) && !fuera.some(f => t.includes(f))
+    })
+    .sort((a, b) => a.min - b.min || a.slug.localeCompare(b.slug))
+    .slice(0, 6)
 
   const jsonLd = [
     {
@@ -213,6 +227,22 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             para vos es el mismo.
           </p>
         </section>
+
+        {conHistorial.length > 0 && (
+          <nav className="mb-10 text-sm">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Historial de precios de otros modelos</h2>
+            <ul className="space-y-1.5">
+              {conHistorial.map(x => (
+                <li key={x.id}>
+                  <a href={`/precio/${x.slug}`} className="text-yellow-400/80 hover:text-yellow-400">
+                    {x.titulo.split(/\s+/).slice(0, 8).join(' ')}
+                  </a>{' '}
+                  <span className="text-zinc-500">— mínimo {precio(x.min)}</span>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         {tramos.length > 0 && (
           <section className="mb-10">

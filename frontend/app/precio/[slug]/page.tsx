@@ -4,6 +4,8 @@ import AlertaCTA from '@/components/AlertaCTA'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { NICHOS } from '@/lib/nichos'
+import { PRECIOS_HOY, seguidosDe } from '@/lib/preciohoy'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -66,8 +68,12 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const sobreMin = Math.round(((hoy - s.min) / s.min) * 100)
   const descuentoLista = s.precio_lista > hoy ? Math.round((1 - hoy / s.precio_lista) * 100) : 0
   const cat = categoriaDeSeguido(s)
-  const comparativa = cat ? COMPARATIVAS.find(c => c.categoria === cat.slug) : undefined
-  const relacionados = cat ? seguidosDeCategoria(cat.slug).filter(x => x.id !== s.id).slice(0, 8) : []
+  const comparativas = cat ? COMPARATIVAS.filter(c => c.categoria === cat.slug).slice(0, 3) : []
+  const nicho = cat ? NICHOS.find(n => n.categorias.includes(cat.slug)) : undefined
+  const preciosHoy = PRECIOS_HOY.filter(
+    p => seguidosDe(p).some(x => x.id === s.id) || (cat && p.categoria === cat.slug),
+  ).slice(0, 3)
+  const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidos())
   const nombre = nombreCorto(s)
 
   const veredicto = !enOferta
@@ -235,19 +241,32 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           </div>
         </section>
 
-        {(comparativa || cat) && (
-          <p className="mb-8 space-x-4 text-sm">
-            {comparativa && (
-              <a href={`/mejores/${comparativa.slug}`} className="font-bold text-yellow-400 hover:underline">
-                📊 Comparativa de {comparativa.nombre}
-              </a>
-            )}
-            {cat && (
-              <a href={`/categoria/${cat.slug}`} className="font-bold text-yellow-400 hover:underline">
-                Ofertas de {cat.nombre.toLowerCase()} hoy →
-              </a>
-            )}
-          </p>
+        {(cat || nicho || comparativas.length > 0 || preciosHoy.length > 0) && (
+          <nav aria-label="Relacionados" className="mb-8 text-sm">
+            <p className="font-bold text-zinc-300 mb-2">Relacionados</p>
+            <div className="flex flex-wrap gap-2">
+              {cat && (
+                <a href={`/categoria/${cat.slug}`} className="font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                  Ofertas de {cat.nombre.toLowerCase()} hoy
+                </a>
+              )}
+              {nicho && (
+                <a href={`/${nicho.slug}`} className="font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                  {nicho.emoji} {nicho.marca}
+                </a>
+              )}
+              {comparativas.map(c => (
+                <a key={c.slug} href={`/mejores/${c.slug}`} className="font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                  📊 Comparativa de {c.nombre}
+                </a>
+              ))}
+              {preciosHoy.map(p => (
+                <a key={p.slug} href={`/precio-hoy/${p.slug}`} className="font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                  Precio de {p.nombre} hoy
+                </a>
+              ))}
+            </div>
+          </nav>
         )}
 
         {relacionados.length > 0 && (
@@ -275,6 +294,19 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       <Footer brand="ofertas" />
     </main>
   )
+}
+
+/**
+ * 6 hermanos determinísticos: los que siguen a este en el grupo ordenado por
+ * slug (circular). Así cada página recibe links de sus vecinos y no se
+ * concentran todos en los primeros de la lista.
+ */
+function hermanos(s: Seguido, grupo: Seguido[], n = 6): Seguido[] {
+  const orden = [...grupo].sort((a, b) => a.slug.localeCompare(b.slug))
+  const i = orden.findIndex(x => x.id === s.id)
+  const out: Seguido[] = []
+  for (let k = 1; k < orden.length && out.length < n; k++) out.push(orden[(i + k) % orden.length])
+  return out.filter(x => x.id !== s.id)
 }
 
 function Dato({ label, valor, sub }: { label: string; valor: string; sub?: string }) {

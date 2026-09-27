@@ -28,7 +28,7 @@ jobs:
       # Lo ya enviado vive en la caché de Actions (no en el repo): así el
       # push avisa solo páginas nuevas y la corrida diaria solo lo que cambió.
       - name: Recuperar URLs ya enviadas
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: .indexnow
           key: indexnow-${{ github.run_id }}
@@ -40,7 +40,7 @@ jobs:
         run: python bot/tools/indexnow.py ${{ github.event_name == 'push' && 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo || 'diario') }}
       - name: Guardar URLs enviadas
         if: success()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: .indexnow
           key: indexnow-${{ github.run_id }}

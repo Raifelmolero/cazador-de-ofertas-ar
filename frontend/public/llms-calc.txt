@@ -15,7 +15,10 @@ indica la fecha de verificación.
 cómo calcular el precio de venta en Mercado Libre, cuánto cuestan las cuotas
 sin interés para el vendedor, cuál es el precio mínimo que conviene publicar,
 si conviene vender en Mercado Libre o en tienda propia, y cuánto cuesta
-Tiendanube (planes y tarifas de Pago Nube).
+Tiendanube (planes y tarifas de Pago Nube), si hace falta el monotributo para
+vender en Mercado Libre (categorías vigentes desde el 1/08/2026, factura C y
+retenciones), cuánto paga el vendedor por el envío gratis y cómo mejorar la
+reputación.
 
 ## Herramientas
 
@@ -30,6 +33,9 @@ Tiendanube (planes y tarifas de Pago Nube).
 - [Cuotas sin interés en Mercado Libre: cuánto cuestan](https://calculadoraml.com.ar/vender/cuotas-sin-interes-mercado-libre-cuanto-cuestan)
 - [Precio mínimo para publicar en Mercado Libre](https://calculadoraml.com.ar/vender/precio-minimo-para-publicar-en-mercado-libre)
 - [Vender en Mercado Libre o en tienda propia](https://calculadoraml.com.ar/vender/vender-en-mercado-libre-o-tienda-propia)
+- [Monotributo para vender en Mercado Libre](https://calculadoraml.com.ar/vender/monotributo-para-vender-en-mercado-libre): categorías y cuotas de ARCA desde el 1/08/2026, habitualidad (RG 5794/2025), factura C y retenciones/percepciones de ML.
+- [Envío gratis en Mercado Libre: cuánto paga el vendedor](https://calculadoraml.com.ar/vender/envio-gratis-mercado-libre-cuanto-paga-el-vendedor): umbral de $33.000, costo por peso y reputación, tabla y ejemplos.
+- [Cómo mejorar la reputación en Mercado Libre](https://calculadoraml.com.ar/vender/como-mejorar-reputacion-mercado-libre): colores, límites de reclamos, cancelaciones y envíos incorrectos, y qué no cuenta.
 - [Cuánto cuesta Tiendanube en 2026](https://calculadoraml.com.ar/vender/cuanto-cuesta-tiendanube)
 
 ## Transparencia

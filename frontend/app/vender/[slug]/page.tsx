@@ -37,6 +37,7 @@ export default async function GuiaVendedorPage({ params }: { params: Promise<{ s
       mainEntityOfPage: url,
       author: { '@type': 'Organization', name: 'CalculadoraML', url: CALC_URL },
       publisher: { '@type': 'Organization', name: 'CalculadoraML', url: CALC_URL },
+      ...(g.fuentes ? { citation: g.fuentes.map(f => f.url) } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -72,6 +73,21 @@ export default async function GuiaVendedorPage({ params }: { params: Promise<{ s
             </div>
           </section>
         ))}
+        {g.fuentes && g.fuentes.length > 0 && (
+          <section className="mb-8 text-sm text-zinc-400">
+            <h2 className="font-bold text-zinc-300 mb-2">Fuentes oficiales</h2>
+            {g.verificado && <p className="mb-2">Consultadas el {g.verificado}.</p>}
+            <ul className="list-disc pl-5 space-y-1">
+              {g.fuentes.map(f => (
+                <li key={f.url}>
+                  <a href={f.url} target="_blank" rel="noopener" className="hover:text-yellow-400 underline">
+                    {f.texto}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {g.herramienta && (
           <section className="rounded-2xl border border-yellow-400/25 bg-yellow-400/5 p-5 mb-6">
             <p className="text-zinc-300 leading-relaxed mb-3">{g.herramienta.texto}</p>

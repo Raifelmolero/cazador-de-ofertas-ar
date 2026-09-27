@@ -29,6 +29,26 @@ export function costoFijo(precio: number): number {
   return COSTO_FIJO_FLEX.find(t => precio <= t.hasta)?.costo ?? 0
 }
 
+/** Envío gratis de productos nuevos: costo por unidad según el peso (el mayor
+ *  entre físico y volumétrico), con reputación verde, MercadoLíder o sin
+ *  reputación: 30% de descuento debajo de $33.000 y 50% desde $33.000.
+ *  Fuente: mercadolibre.com.ar/ayuda/40538 (leída el 27/09/2026). Acá solo
+ *  hasta 10 kg; la tabla oficial sigue hasta más de 180 kg. Amarilla:
+ *  ayuda/40545 (20% y 40%). Naranja o roja, sin descuento: ayuda/40547. */
+export const ENVIO_GRATIS_VERIFICADO = '27 de septiembre de 2026'
+export const ENVIO_GRATIS_VERDE: { peso: string; menos33: number; de33a50: number; desde50: number }[] = [
+  { peso: 'Hasta 0,3 kg', menos33: 8666, de33a50: 6190, desde50: 6790 },
+  { peso: 'De 0,3 a 0,5 kg', menos33: 9506, de33a50: 6790, desde50: 7290 },
+  { peso: 'De 0,5 a 1 kg', menos33: 10906, de33a50: 7790, desde50: 8290 },
+  { peso: 'De 1 a 1,5 kg', menos33: 11186, de33a50: 7990, desde50: 8590 },
+  { peso: 'De 1,5 a 2 kg', menos33: 11606, de33a50: 8290, desde50: 8790 },
+  { peso: 'De 2 a 3 kg', menos33: 12446, de33a50: 8890, desde50: 9590 },
+  { peso: 'De 3 a 4 kg', menos33: 13706, de33a50: 9790, desde50: 10890 },
+  { peso: 'De 4 a 5 kg', menos33: 15106, de33a50: 10790, desde50: 11890 },
+  { peso: 'De 5 a 8 kg', menos33: 16506, de33a50: 11790, desde50: 13090 },
+  { peso: 'De 8 a 10 kg', menos33: 17906, de33a50: 12790, desde50: 14190 },
+]
+
 /** Cargo de referencia cuando no sabemos la categoría exacta: el punto medio
  *  del rango oficial. Lo usan las fichas de /calculadora/[id]. */
 export const CARGO_REFERENCIA = 14.69 // punto medio del rango (igual en bot/cazador_bot.py)

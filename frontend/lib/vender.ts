@@ -7,8 +7,19 @@ import {
   CARGO_MIN,
   COSTOS_VERIFICADOS,
   COSTOS_VIGENCIA,
+  ENVIO_GRATIS_VERDE,
+  ENVIO_GRATIS_VERIFICADO,
   UMBRAL_COSTO_FIJO,
 } from '@/lib/costosml'
+import {
+  CATEGORIAS_MONOTRIBUTO,
+  FUENTE_MONOTRIBUTO,
+  MONOTRIBUTO_VERIFICADO,
+  MONOTRIBUTO_VIGENCIA,
+  PRECIO_UNITARIO_MAX,
+  TOPE_MONOTRIBUTO,
+  arsCentavos,
+} from '@/lib/monotributo'
 
 export const CALC_URL = 'https://calculadoraml.com.ar'
 
@@ -31,13 +42,243 @@ export interface GuiaVendedor {
   cta: { href: string; boton: string; texto: string; afiliado?: boolean }
   /** Link interno a una herramienta relacionada (se muestra antes del CTA). */
   herramienta?: { href: string; texto: string; boton: string }
+  /** Fuentes oficiales citadas (se listan al final y van al JSON-LD). */
+  fuentes?: { texto: string; url: string }[]
+  /** Fecha en que se consultaron las fuentes ("27 de septiembre de 2026"). */
+  verificado?: string
 }
+
+const MONO_A = CATEGORIAS_MONOTRIBUTO[0]
+const MONO_K = CATEGORIAS_MONOTRIBUTO[CATEGORIAS_MONOTRIBUTO.length - 1]
+const ENVIO_03 = ENVIO_GRATIS_VERDE[0]
 
 const HERRAMIENTA_ML_VS_TN = {
   href: '/mercado-libre-vs-tiendanube',
   texto: 'Hacé la cuenta con tus números: precio, costo y ventas por mes en Mercado Libre y en Tiendanube, y cuántas ventas necesitás para que el plan se pague solo.',
   boton: 'Calculadora Mercado Libre vs Tiendanube 🧮',
 }
+
+// Monotributo, envío gratis y reputación (fuentes consultadas el 27/09/2026).
+const GUIAS_NUEVAS: GuiaVendedor[] = [
+  {
+    slug: 'monotributo-para-vender-en-mercado-libre',
+    titulo: 'Monotributo para vender en Mercado Libre: categorías 2026, facturación y retenciones',
+    descripcion: `Cuándo necesitás el monotributo para vender en Mercado Libre, las categorías vigentes desde el ${MONOTRIBUTO_VIGENCIA} (hasta ${arsCentavos(TOPE_MONOTRIBUTO)} por año), cómo facturar con Factura C y qué retenciones te aplica ML.`,
+    pregunta: '¿Necesito ser monotributista para vender en Mercado Libre?',
+    respuestaCorta: `Si vendés seguido o como negocio, conviene estar inscripto: para el régimen de IVA de plataformas digitales, ARCA considera habitual hacer 10 o más ventas en un mes en una misma plataforma por $750.000 o más (RG 5794/2025), y si no estás inscripto, Mercado Libre te aplica una percepción de IVA del 8% sobre el precio de venta. Con la tabla de ARCA vigente desde el ${MONOTRIBUTO_VIGENCIA}, el monotributo llega hasta ${arsCentavos(TOPE_MONOTRIBUTO)} de facturación anual y ${arsCentavos(PRECIO_UNITARIO_MAX)} de precio por unidad, con una cuota mensual para venta de productos de ${arsCentavos(MONO_A.cuotaVenta)} (categoría A) a ${arsCentavos(MONO_K.cuotaVenta)} (categoría K). Facturás con Factura C y podés usar el Facturador gratuito de Mercado Libre.`,
+    secciones: [
+      {
+        h: '¿Hace falta ser monotributista?',
+        p: [
+          'El monotributo es el régimen de ARCA para pequeños contribuyentes: unifica en una cuota mensual el IVA, Ganancias, el aporte jubilatorio y la obra social. Pueden adherir, entre otros, quienes venden productos (ARCA, "¿Qué es el monotributo?").',
+          'Para el régimen de IVA de ventas por plataformas digitales, ARCA considera que vendés en forma habitual si en un mes hacés 10 o más ventas en una misma plataforma por un total de $750.000 o más, o si hacés 4 o más ventas en cada mes de un cuatrimestre (enero-abril, mayo-agosto o septiembre-diciembre) por $750.000 o más en total. Si solo vendés cosas usadas de uso personal, no cuenta como habitual mientras el total acumulado sea menor a $1.500.000 (RG 5794/2025 de ARCA, vigente desde el 1/12/2025, Boletín Oficial).',
+          'Si superás esos parámetros sin estar inscripto, Mercado Libre te aplica una percepción de IVA del 8% sobre el precio de venta de tus productos, nuevos o usados. Y si no estás inscripto en Ingresos Brutos y vendés 10 veces o más en un mes superando el monto que indica ML, en las provincias adheridas a SIRTAC te retiene 3% de cada venta hasta que te inscribas (Centro de vendedores de Mercado Libre).',
+          'Vender de vez en cuando algo tuyo que ya no usás no es lo mismo que tener un negocio. Si comprás para revender, fabricás o vendés todos los meses, consultá con un contador cómo inscribirte en tu caso.',
+        ],
+      },
+      {
+        h: `Categorías y cuotas vigentes desde el ${MONOTRIBUTO_VIGENCIA} (venta de productos)`,
+        p: [
+          'Según la tabla de ARCA con valores desde el 1/08/2026, estos son el tope de facturación anual y la cuota mensual total para quien vende productos (impuesto integrado + aporte jubilatorio + obra social del titular, sin adherentes):',
+          ...CATEGORIAS_MONOTRIBUTO.map(
+            c => `Categoría ${c.cat}: hasta ${arsCentavos(c.tope)} por año · cuota de ${arsCentavos(c.cuotaVenta)} por mes.`,
+          ),
+          `En todas las categorías el precio máximo por unidad para venta de productos es de ${arsCentavos(PRECIO_UNITARIO_MAX)}. Además de la facturación, la categoría depende de la superficie afectada, la energía eléctrica consumida y los alquileres.`,
+          'La recategorización se hace dos veces por año, en febrero y en agosto (hasta el día 5), mirando los últimos 12 meses. Si seguís en la misma categoría, no tenés que hacer nada (ARCA, "¿Cuándo y cómo me recategorizo?").',
+        ],
+      },
+      {
+        h: 'Ojo con los productos caros: la percepción de IVA del 7%',
+        p: [
+          `Si sos monotributista, Mercado Libre te aplica una percepción especial de IVA del 7% sobre el precio de venta cuando vendés un producto de más de ${arsCentavos(PRECIO_UNITARIO_MAX)} o cuando tus ventas en ML de los últimos 12 meses suman más de ${arsCentavos(TOPE_MONOTRIBUTO)}. Se aplica si el monto a percibir supera $2.000, se calcula al cierre del mes y se suma a tu factura de ML. Publicar productos más caros sin venderlos no la genera.`,
+          'Si vendés productos usados o reacondicionados de uso personal, podés declararlos exentos al publicarlos (hasta 10 por mes de facturación). Fuente: Centro de vendedores de Mercado Libre, "Percepción de IVA para monotributistas" (montos actualizados en agosto de 2026).',
+        ],
+      },
+      {
+        h: 'Cómo facturar tus ventas de Mercado Libre',
+        p: [
+          'ARCA indica que los monotributistas de todas las categorías emiten comprobantes electrónicos tipo C (tipo E si exportan). Para empezar hay que dar de alta un punto de venta desde el servicio con clave fiscal "Registro Único Tributario".',
+          'Podés facturar con las herramientas de ARCA (el Facturador en facturador.afip.gob.ar, Comprobantes en línea o la app Facturador móvil para Android) o con el Facturador de Mercado Libre, que es gratuito y lo pueden usar monotributistas, responsables inscriptos y exentos de IVA.',
+          'Para configurar el Facturador de ML cargás tu fecha de inicio de actividades, tu categoría de monotributo y tus datos de ARCA (necesitás un certificado digital y un punto de venta). Después elegís el modo automático, que emite la factura y se la envía al comprador en cada venta, o el manual, venta por venta o de forma masiva.',
+        ],
+      },
+      {
+        h: 'Qué retenciones y percepciones te aplica Mercado Libre',
+        p: [
+          'Mercado Libre es agente de recaudación. Si sos monotributista te puede aplicar retención de Ingresos Brutos en cada cobro por venta, percepción de Ingresos Brutos al cierre de la factura mensual y, en los casos de arriba, la percepción especial de IVA.',
+          'En las provincias adheridas a SIRTAC (Buenos Aires, Córdoba, Mendoza, Salta y otras 16) la alícuota base de la retención de IIBB sale del padrón de la Comisión Arbitral y puede ir del 0% al 5%.',
+          'Las retenciones y percepciones de IIBB son pagos a cuenta: las usás como saldo a favor en tu declaración jurada. Los certificados se descargan desde Información fiscal > Cálculos fiscales > Retenciones en los primeros 5 días hábiles del mes siguiente. Si estás exento o excluido, subí la constancia en Información fiscal.',
+          'ML toma tu condición de monotributista de ARCA automáticamente (puede tardar hasta 4 días hábiles); algunas inscripciones de IIBB las tenés que cargar vos.',
+        ],
+      },
+      {
+        h: 'Antes de inscribirte',
+        p: [
+          'Esta guía resume lo que publican ARCA y Mercado Libre y no reemplaza a un contador. Consultá con uno sobre todo cómo tributar Ingresos Brutos si vendés a varias provincias y si en tu provincia el IIBB se paga junto con la cuota (monotributo unificado).',
+          `Datos verificados el ${MONOTRIBUTO_VERIFICADO}.`,
+        ],
+      },
+    ],
+    fuentes: [
+      { texto: 'ARCA: categorías del monotributo (valores desde el 1/08/2026)', url: FUENTE_MONOTRIBUTO },
+      { texto: 'ARCA: ¿Qué es el monotributo?', url: 'https://www.arca.gob.ar/monotributo/ayuda/que-es.asp' },
+      { texto: 'ARCA: facturación del monotributo', url: 'https://www.arca.gob.ar/monotributo/ayuda/facturacion.asp' },
+      { texto: 'ARCA: recategorización', url: 'https://www.arca.gob.ar/monotributo/ayuda/recategorizacion.asp' },
+      { texto: 'Boletín Oficial: RG 5794/2025 de ARCA', url: 'https://www.boletinoficial.gob.ar/detalleAviso/primera/335414/20251202' },
+      { texto: 'Mercado Libre: Si sos monotributista y vendés en Mercado Libre', url: 'https://vendedores.mercadolibre.com.ar/nota/monotributistas-en-mercado-libre' },
+      { texto: 'Mercado Libre: Percepción de IVA para monotributistas', url: 'https://vendedores.mercadolibre.com.ar/nota/percepcion-de-iva-para-monotributistas-en-mercado-libre' },
+      { texto: 'Mercado Libre: Retención de IIBB para monotributistas', url: 'https://vendedores.mercadolibre.com.ar/nota/retencion-de-iibb-para-monotributistas-en-mercado-libre' },
+      { texto: 'Mercado Libre: Retención de IIBB para sujetos no categorizados', url: 'https://vendedores.mercadolibre.com.ar/nota/retencion-de-iibb-para-sujetos-no-categorizados' },
+      { texto: 'Mercado Libre: Qué es el Facturador', url: 'https://vendedores.mercadolibre.com.ar/nota/que-es-el-facturador-de-mercado-libre' },
+      { texto: 'Mercado Libre: Cómo emitir las facturas con el Facturador', url: 'https://www.mercadolibre.com.ar/ayuda/35900' },
+    ],
+    verificado: MONOTRIBUTO_VERIFICADO,
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular mi ganancia por venta 🧮',
+      texto: 'Mirá cuánto te queda después de lo que cobra ML y sumá tu cuota de monotributo a tus costos.',
+    },
+  },
+  {
+    slug: 'envio-gratis-mercado-libre-cuanto-paga-el-vendedor',
+    titulo: 'Envío gratis en Mercado Libre: cuánto paga el vendedor en 2026',
+    descripcion:
+      'Cuánto le cuesta al vendedor el envío gratis en Mercado Libre Argentina: desde qué precio viene incluido ($33.000), cómo se calcula por peso y reputación, tabla de costos y ejemplos.',
+    pregunta: '¿Cuánto paga el vendedor por el envío gratis en Mercado Libre?',
+    respuestaCorta: `Depende del peso del paquete, del precio y de tu reputación. En productos nuevos desde $33.000 el envío gratis viene incluido y, con reputación verde (o sin reputación todavía), pagás desde ${ars(ENVIO_03.de33a50)} por unidad hasta 0,3 kg, con 50% de descuento. Por debajo de $33.000 es opcional: si lo ofrecés, cuesta desde ${ars(ENVIO_03.menos33)} con 30% de descuento. Con reputación amarilla el descuento baja a 40% y 20%, y con naranja o roja no hay descuento (desde $12.380). El costo se descuenta de lo que cobrás por la venta.`,
+    secciones: [
+      {
+        h: 'Cuándo se ofrece envío gratis',
+        p: [
+          'En publicaciones de productos nuevos desde $33.000 se ofrece envío gratis (o un descuento en el envío cuando la distancia, las medidas o el peso no lo permiten) y vos pagás el costo con un descuento según tu reputación.',
+          'En productos de menos de $33.000 el envío gratis es opcional: si lo ofrecés, el costo corre por tu cuenta.',
+          'Si un comprador lleva varios productos tuyos que juntos suman $33.000, tiene envío gratis y lo paga Mercado Libre (no aplica si están en distintos centros de Envíos Full).',
+          'En distancias muy largas o productos muy grandes, en vez de envío gratis ofrecés un descuento y el comprador paga la diferencia.',
+        ],
+      },
+      {
+        h: 'Cómo se calcula el costo',
+        p: [
+          'Es un costo fijo por unidad según el peso del paquete ya embalado y el color de tu reputación. Para el peso, ML compara el peso físico con el volumétrico y usa el más alto.',
+          'Se cobra por unidad: si el envío de una unidad cuesta $2.000 y vendés 3, pagás $6.000. Si vendés un kit, pagás un solo envío por kit.',
+          'El costo que ves al publicar es estimado: cuando despachás, ML mide y pesa el paquete y, si hay diferencias, el costo cambia para tus próximas ventas, no para la actual. Con Full, el embalaje lo hace ML.',
+          'Las categorías de moda (zapatillas, botas, sandalias, mochilas, camperas y camisetas de fútbol) y los productos usados o de publicación gratuita tienen tablas propias.',
+        ],
+      },
+      {
+        h: 'Tabla: reputación verde, MercadoLíder o sin reputación',
+        p: [
+          'Costo por unidad de productos nuevos: menos de $33.000 con 30% de descuento; desde $33.000 con 50% de descuento.',
+          ...ENVIO_GRATIS_VERDE.map(
+            e => `${e.peso}: ${ars(e.menos33)} (menos de $33.000) · ${ars(e.de33a50)} ($33.000 a $49.999) · ${ars(e.desde50)} ($50.000 o más).`,
+          ),
+          'Para paquetes de más de 10 kg (hasta más de 180 kg) revisá la tabla completa en la ayuda de Mercado Libre.',
+        ],
+      },
+      {
+        h: 'Cuánto cambia con tu reputación',
+        p: [
+          'Reputación amarilla: 20% de descuento en productos de menos de $33.000 y 40% desde $33.000. Hasta 0,3 kg pagás $9.904, $7.428 o $8.148; de 0,5 a 1 kg, $12.464, $9.348 o $9.948.',
+          'Reputación naranja o roja: sin descuento. Hasta 0,3 kg pagás $12.380 en productos de menos de $33.000 y $13.580 desde $33.000; de 0,5 a 1 kg, $15.580 y $16.580.',
+          'Un paquete de 0,5 a 1 kg en un producto de $60.000 cuesta $8.290 con reputación verde y $16.580 con naranja o roja: el doble.',
+        ],
+      },
+      {
+        h: 'Ejemplos con números',
+        p: [
+          'Producto de $40.000 que pesa 0,8 kg, con cargo por vender del 14% y reputación verde: ML se queda con $5.600 de cargo y $7.790 de envío, y te quedan $26.610 antes de tu costo. Con reputación naranja el envío pasa a $16.580 y te quedan $17.820.',
+          'Producto de $25.000 de hasta 0,3 kg con reputación verde: sin envío gratis pagás $3.500 de cargo y $3.320 de costo fijo y te quedan $18.180. Si además ofrecés envío gratis ($8.666), te quedan $9.514: el envío se lleva más de un tercio del precio.',
+          'Si ese mismo producto se vende a $33.000, desaparece el costo fijo y el envío baja a $6.190: pagás $4.620 de cargo y te quedan $22.190. Cerca del umbral, subir el precio o armar un kit puede dejarte más plata.',
+          `Costos verificados el ${ENVIO_GRATIS_VERIFICADO} en la ayuda oficial de Mercado Libre.`,
+        ],
+      },
+    ],
+    fuentes: [
+      { texto: 'Mercado Libre: Funcionamiento de los envíos gratis', url: 'https://www.mercadolibre.com.ar/ayuda/16467' },
+      { texto: 'Mercado Libre: ¿Cuáles son los costos de ofrecer envíos gratis?', url: 'https://www.mercadolibre.com.ar/ayuda/3482' },
+      { texto: 'Mercado Libre: costos para MercadoLíderes, reputación verde o sin reputación', url: 'https://www.mercadolibre.com.ar/ayuda/40538' },
+      { texto: 'Mercado Libre: costos para reputación amarilla', url: 'https://www.mercadolibre.com.ar/ayuda/40545' },
+      { texto: 'Mercado Libre: costos para reputación naranja o roja', url: 'https://www.mercadolibre.com.ar/ayuda/40547' },
+    ],
+    verificado: ENVIO_GRATIS_VERIFICADO,
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular con el costo de envío 🧮',
+      texto: 'Poné tu precio, tu costo y lo que pagás de envío y mirá cuánto te queda.',
+    },
+  },
+  {
+    slug: 'como-mejorar-reputacion-mercado-libre',
+    titulo: 'Cómo mejorar la reputación en Mercado Libre: colores, límites y qué la afecta',
+    descripcion:
+      'Cómo funciona el termómetro de reputación de Mercado Libre: los colores, el porcentaje máximo de reclamos, cancelaciones y envíos incorrectos para ser verde, qué no cuenta y cómo mejorarla.',
+    pregunta: '¿Cómo mejoro mi reputación en Mercado Libre?',
+    respuestaCorta:
+      'La reputación es un termómetro que va del rojo al verde y mide tres cosas: reclamos, ventas canceladas por vos y envíos incorrectos (despachos con demora o desde el depósito equivocado). Para ser verde, los reclamos no pueden pasar del 1,5% de tus ventas, las cancelaciones del 1% (o 1,5% si te miden por 365 días) y los envíos incorrectos del 10% (o 13%). La variable con peor desempeño define tu color. Para mejorarla: despachá a tiempo, describí bien el producto, respondé las preguntas y no canceles ventas.',
+    secciones: [
+      {
+        h: 'Cómo funciona el termómetro',
+        p: [
+          'Mercado Libre empieza a medir tu reputación cuando completás tus primeras 10 ventas de los últimos 365 días; hasta entonces el termómetro está en gris.',
+          'Si tenés 101 ventas concretadas o más en los últimos 60 días, te miden por esos 60 días; si tenés menos, por los últimos 365 días. El período se actualiza todos los días.',
+          'Se miden tres variables: reclamos, canceladas por vos y envíos incorrectos (si sos MercadoLíder, también las mediaciones). La peor define el color: para ser verde tenés que estar dentro del límite en todas.',
+        ],
+      },
+      {
+        h: 'Los límites de cada color',
+        p: [
+          'Reclamos (igual para 60 y 365 días): verde hasta 1,5%, amarillo entre 1,5% y 3%, naranja entre 3% y 6%, rojo más de 6%.',
+          'Canceladas por vos: verde hasta 1% (60 días) o 1,5% (365 días); amarillo hasta 2,5% o 4%; naranja hasta 3% o 5%; rojo por encima.',
+          'Envíos incorrectos: verde hasta 10% (60 días) o 13% (365 días); amarillo hasta 15% o 19,5%; naranja hasta 22% o 28,5%; rojo por encima.',
+          'Son porcentajes sobre el total de tus ventas del período (ayuda de Mercado Libre, verificada el 27 de septiembre de 2026).',
+        ],
+      },
+      {
+        h: 'Qué cuenta y qué no',
+        p: [
+          'Reclamos: solo afectan los de productos incompletos o con faltantes y los de calidad (defectuosos, con fallas de fábrica o que no funcionan). Los de paquetes rotos o dañados no cuentan, y tampoco los que inicia el comprador porque se arrepintió.',
+          'Canceladas por vos: cuenta cada venta que cancelás vos. Si el comprador se arrepiente, tiene que pedir él la cancelación para que no te afecte. Si la venta tuvo un reclamo y después se canceló, cuenta solo como reclamo.',
+          'Envíos incorrectos: despachos con demora y envíos desde un depósito equivocado. Con Flex también cuentan las entregas que no se concretan antes de las 21 h y el comprador reprograma, los intentos con comprador ausente después de las 21 h y los envíos demorados que cancela el comprador.',
+          'Excepciones: las ventas de Inmuebles no afectan la reputación, y en envíos incorrectos no se cuentan arte y artesanías ni alianzas y kits personalizados de juguete. En autopartes sí cuentan los reclamos por informar mal la compatibilidad.',
+        ],
+      },
+      {
+        h: 'Cómo mejorarla, paso a paso',
+        p: [
+          'Despachá dentro del tiempo que indica cada forma de envío. Si necesitás más días, usá la opción Disponibilidad de stock: el plazo se cuenta desde el día que indicás que lo tenés listo.',
+          'Evitá reclamos con buena información: completá la ficha técnica, cargá el stock disponible y respondé las preguntas con datos concretos. Muchos reclamos se abren por falta de información.',
+          'No canceles ventas: con el stock bien cargado no vendés lo que no tenés.',
+          'Con Flex, entregá antes de las 21 h. Si tenés más de un depósito, despachá desde el correcto.',
+          'Como se mide en porcentaje, cada venta sin problemas diluye las que tuvieron, y las ventas viejas van saliendo del período de medición (60 o 365 días).',
+          'Si tu reputación está en rojo, naranja o amarillo, Mercado Libre ofrece el Beneficio de reputación. Si sos nuevo y todavía no llegaste a 10 ventas, podés activar el Programa de Despegue dejando dinero en garantía (si cumplís los requisitos) para arrancar con color verde claro.',
+        ],
+      },
+      {
+        h: 'Por qué te conviene cuidarla: visibilidad y plata',
+        p: [
+          'Con buena reputación más compradores ven tus publicaciones.',
+          'Además el envío gratis te sale más barato: con reputación verde tenés 50% de descuento en productos desde $33.000 y 30% en los de menos; con amarilla, 40% y 20%; con naranja o roja, ninguno. En un paquete de 0,5 a 1 kg de un producto de $60.000 son $8.290 contra $16.580 por venta.',
+          'MercadoLíder: más de 4 meses de antigüedad, reputación verde oscuro y, en los últimos 60 días, 101 ventas o más y $1.500.000 facturados o más (180 ventas y $3.000.000 para Gold; 415 ventas y $9.000.000 para Platinum), con reclamos hasta 1%, mediaciones y cancelaciones hasta 0,5% y envíos incorrectos hasta 8%. Sus publicaciones tienen más prioridad y exposición en las búsquedas.',
+        ],
+      },
+    ],
+    fuentes: [
+      { texto: 'Mercado Libre: Qué es y cómo funciona la reputación como vendedor', url: 'https://www.mercadolibre.com.ar/ayuda/866' },
+      { texto: 'Mercado Libre: Qué se tiene en cuenta para calcular mi reputación', url: 'https://www.mercadolibre.com.ar/ayuda/30193' },
+      { texto: 'Mercado Libre: número permitido de ventas afectadas para cada color', url: 'https://www.mercadolibre.com.ar/ayuda/21062' },
+      { texto: 'Mercado Libre: en qué tiempos miden la reputación', url: 'https://www.mercadolibre.com.ar/ayuda/21060' },
+      { texto: 'Mercado Libre: Todo sobre ser MercadoLíder', url: 'https://www.mercadolibre.com.ar/ayuda/864' },
+      { texto: 'Mercado Libre: Por qué es importante la reputación del vendedor', url: 'https://vendedores.mercadolibre.com.ar/nota/por-que-es-importante-la-reputacion-del-vendedor' },
+      { texto: 'Mercado Libre: costos de ofrecer envíos gratis', url: 'https://www.mercadolibre.com.ar/ayuda/3482' },
+    ],
+    verificado: '27 de septiembre de 2026',
+    cta: {
+      href: '/calculadora-de-comisiones',
+      boton: 'Calcular cuánto te queda 🧮',
+      texto: 'Probá cuánto cambia tu ganancia con el costo de envío de tu color de reputación.',
+    },
+  },
+]
 
 export const GUIAS_VENDER: GuiaVendedor[] = [
   {
@@ -231,6 +472,7 @@ export const GUIAS_VENDER: GuiaVendedor[] = [
       texto: 'Poné el precio del kit en la calculadora y compará con la venta por unidad.',
     },
   },
+  ...GUIAS_NUEVAS,
   {
     slug: 'cuanto-cuesta-tiendanube',
     titulo: 'Cuánto cuesta Tiendanube en 2026: planes, comisiones y Pago Nube',

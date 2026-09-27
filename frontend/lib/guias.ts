@@ -575,6 +575,158 @@ export const GUIAS: Guia[] = [
     categoria: { slug: 'equipamiento-gastronomico', nombre: 'equipamiento gastronómico' },
     cta: { href: '/gastronomia', titulo: 'Equipamiento gastronómico en oferta hoy', boton: 'Ver equipamiento en oferta' },
   },
+  {
+    slug: 'que-notebook-comprar-cyber-monday',
+    titulo: 'Qué notebook comprar en el Cyber Monday 2026: guía rápida',
+    descripcion:
+      'Cómo elegir una notebook en el Cyber Monday 2026 de Argentina: procesador, RAM, SSD y pantalla según el uso, y cómo saber si el descuento es real.',
+    pregunta: '¿Qué notebook conviene comprar en el Cyber Monday?',
+    respuestaCorta:
+      'Para estudiar o trabajar, una notebook con procesador Ryzen 5 o Core i5 (o superior), 8 GB de RAM como mínimo (mejor 16 GB) y disco SSD de 256 GB o más. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, compará el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'Según para qué la vas a usar',
+        p: [
+          'Navegar, videollamadas y ofimática: alcanza con un Ryzen 3 o Core i3 moderno, 8 GB de RAM y SSD. Evitá los 4 GB de RAM: con Windows 11 se quedan cortos enseguida.',
+          'Estudio y trabajo con muchas pestañas o programas abiertos: Ryzen 5 o Core i5 o superior y 16 GB de RAM (o 8 GB ampliables).',
+          'Diseño, edición o juegos: placa de video dedicada; en ese caso mirá las notebooks gamer.',
+        ],
+      },
+      {
+        h: 'Detalles que se pasan por alto',
+        p: [
+          'Pantalla: 15,6 pulgadas es lo más cómodo para trabajar; 14 pulgadas si la vas a llevar a todos lados. Preferí panel IPS: los TN se ven mal de costado.',
+          'Teclado en español y garantía oficial en Argentina: los equipos importados a veces no traen ninguna de las dos.',
+          'Mirá si la RAM se puede ampliar: una notebook con 8 GB ampliables puede durar varios años más.',
+        ],
+      },
+      {
+        h: 'Cómo aprovechar el Cyber Monday sin caer en descuentos inflados',
+        p: [
+          'Antes del evento anotá el precio de hoy del modelo que te interesa: si el lunes 2 aparece con un "40% OFF" pero cuesta lo mismo que ahora, el descuento es de cartel. En cazadordeofertas.com.ar cada oferta se compara contra el precio más bajo que registramos.',
+          'Compará el precio final en cuotas sin interés contra el precio en un pago y sumá el envío. Si el modelo ya está en su mínimo registrado antes del evento, no hace falta esperar.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-notebooks',
+      titulo: 'Notebooks en el Cyber Monday 2026: precios verificados',
+      boton: 'Ver notebooks en oferta 💻',
+    },
+  },
+  {
+    slug: 'que-smart-tv-comprar-cyber-monday',
+    titulo: 'Qué smart TV comprar en el Cyber Monday 2026: tamaño, resolución y precio',
+    descripcion:
+      'Cómo elegir un smart TV en el Cyber Monday 2026 de Argentina: tamaño según la distancia, 4K o Full HD, tipo de panel y sistema operativo.',
+    pregunta: '¿Qué smart TV conviene comprar en el Cyber Monday?',
+    respuestaCorta:
+      'Elegí el tamaño según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas), 4K a partir de 43 pulgadas y un sistema operativo que tenga las apps que usás (Google TV, Tizen o webOS). QLED y OLED dan mejor imagen que un LED común, pero cuestan más. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'Tamaño y resolución',
+        p: [
+          'A 1,5 metros va bien uno de 43 pulgadas; a 2 metros, 50 a 55; a 2,5 metros o más, 65.',
+          'En 32 pulgadas alcanza con HD o Full HD; desde 43 conviene 4K, que ya no cuesta mucho más.',
+        ],
+      },
+      {
+        h: 'Panel y sistema',
+        p: [
+          'LED común: el más barato. QLED: colores más vivos y más brillo. OLED: el mejor contraste, pero el más caro.',
+          'Google TV, Tizen (Samsung) y webOS (LG) tienen las apps principales; los sistemas menos conocidos a veces reciben menos actualizaciones.',
+          'Si vas a jugar con consola, buscá HDMI 2.1 y 120 Hz; si no, no pagues de más por eso.',
+        ],
+      },
+      {
+        h: 'Cómo aprovechar el Cyber Monday',
+        p: [
+          'Antes del evento anotá el precio de hoy del modelo que te interesa: si el lunes 2 aparece con un "40% OFF" pero cuesta lo mismo que ahora, el descuento es de cartel. En cazadordeofertas.com.ar cada oferta se compara contra el precio más bajo que registramos.',
+          'En los televisores de 32 y 43 pulgadas es común ver porcentajes de descuento grandes: mirá siempre el mínimo registrado antes de comprar.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-smart-tv',
+      titulo: 'Smart TV en el Cyber Monday 2026: cuáles bajan de verdad',
+      boton: 'Ver smart TV en oferta 📺',
+    },
+  },
+  {
+    slug: 'que-celular-comprar-cyber-monday',
+    titulo: 'Qué celular comprar en el Cyber Monday 2026: guía por presupuesto',
+    descripcion:
+      'Cómo elegir un celular en el Cyber Monday 2026 de Argentina: memoria, batería, cámara y garantía, y cómo detectar descuentos inflados.',
+    pregunta: '¿Qué celular conviene comprar en el Cyber Monday?',
+    respuestaCorta:
+      'Para la mayoría alcanza con 128 GB de almacenamiento, 6 a 8 GB de RAM y una batería de 5.000 mAh. Preferí equipos liberados con garantía oficial en Argentina y compará el mismo modelo en tiendas oficiales. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, mirá el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'Qué mirar según el presupuesto',
+        p: [
+          'Gama de entrada: priorizá 128 GB y 4 a 6 GB de RAM; con 64 GB el espacio se llena enseguida con fotos y WhatsApp.',
+          'Gama media: suele tener la mejor relación precio-calidad; buscá buena batería, pantalla AMOLED y actualizaciones de sistema por varios años.',
+          'Gama alta: cámaras y rendimiento superiores; son de los más buscados en los eventos, así que compará bien el precio de referencia.',
+        ],
+      },
+      {
+        h: 'Garantía y vendedor',
+        p: [
+          'Comprá en tiendas oficiales o vendedores con reputación verde. Los equipos importados a veces no tienen garantía oficial en Argentina.',
+          'Revisá que funcione con las bandas de tu compañía y si es dual SIM o admite eSIM.',
+        ],
+      },
+      {
+        h: 'Cómo aprovechar el Cyber Monday',
+        p: [
+          'Antes del evento anotá el precio de hoy del modelo que te interesa: si el lunes 2 aparece con un "40% OFF" pero cuesta lo mismo que ahora, el descuento es de cartel. En cazadordeofertas.com.ar cada oferta se compara contra el precio más bajo que registramos.',
+          'Los combos con regalo (funda, auriculares, cargador) no siempre valen más: compará el precio del equipo solo.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-celulares',
+      titulo: 'Celulares en el Cyber Monday 2026: ofertas reales',
+      boton: 'Ver celulares en oferta 📱',
+    },
+  },
+  {
+    slug: 'conviene-comprar-aire-acondicionado-cyber-monday',
+    titulo: '¿Conviene comprar el aire acondicionado en el Cyber Monday 2026?',
+    descripcion:
+      'Si conviene comprar el aire acondicionado en el Cyber Monday 2026 de Argentina o esperar a diciembre, cuántas frigorías necesitás y qué sumar al presupuesto.',
+    pregunta: '¿Conviene comprar el aire acondicionado en el Cyber Monday?',
+    respuestaCorta:
+      'Suele convenir: el Cyber Monday (2 al 4 de noviembre de 2026) cae antes del pico de demanda del verano, cuando se saturan los instaladores. Elegí las frigorías según el ambiente (m² × altura × 50), preferí inverter si lo vas a usar muchas horas y sumá la instalación al presupuesto. Compará el precio contra el historial del modelo.',
+    secciones: [
+      {
+        h: 'Por qué noviembre es buen momento',
+        p: [
+          'En diciembre y enero sube la demanda de aires y los tiempos de instalación se alargan. Comprar en noviembre te da margen para conseguir instalador antes del calor.',
+          'Aun así, no todos los descuentos del evento son reales: mirá el mínimo registrado del modelo.',
+        ],
+      },
+      {
+        h: 'Cuántas frigorías necesitás',
+        p: [
+          'Regla simple: volumen del ambiente (m² × altura) × 50. Un cuarto de 20 m² con 2,5 m de altura necesita unas 2.500 frigorías.',
+          'Sumá un 10 a 20 % si el ambiente da al sol de la tarde, tiene mucho vidrio o es el último piso.',
+        ],
+      },
+      {
+        h: 'Qué sumar al presupuesto',
+        p: [
+          'La instalación casi nunca está incluida: pedí presupuesto antes de comprar.',
+          'Inverter cuesta más al principio, pero consume menos si lo usás muchas horas por día. Buscá etiqueta de eficiencia A o superior.',
+        ],
+      },
+    ],
+    cta: {
+      href: '/mejores/cyber-monday-aires-acondicionados',
+      titulo: 'Aires acondicionados en el Cyber Monday 2026',
+      boton: 'Ver aires en oferta ❄️',
+    },
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

@@ -259,7 +259,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Mirá el sistema operativo (Google TV, Tizen, webOS) y que tenga las apps que usás.',
       'Cuotas sin interés: verificá que el precio en cuotas sea el mismo que en un pago.',
     ],
-    guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
+    guia: 'que-smart-tv-comprar-cyber-monday',
   },
   {
     slug: 'cyber-monday-aires-acondicionados',
@@ -276,7 +276,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Inverter si lo vas a usar muchas horas: consume menos.',
       'La instalación casi nunca está incluida: sumala al presupuesto y pedí turno con tiempo, en diciembre se satura.',
     ],
-    guia: 'cuantas-frigorias-necesito-aire-acondicionado',
+    guia: 'conviene-comprar-aire-acondicionado-cyber-monday',
   },
   {
     slug: 'cyber-monday-notebooks',
@@ -294,6 +294,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Procesador: Ryzen 5 / Core i5 o superior si vas a trabajar o estudiar con varias cosas abiertas.',
       'Revisá que la garantía sea oficial en Argentina y que el teclado sea en español si te importa la ñ.',
     ],
+    guia: 'que-notebook-comprar-cyber-monday',
   },
   {
     slug: 'cyber-monday-celulares',
@@ -311,6 +312,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Preferí equipos liberados con garantía oficial; evitá los "importados" sin garantía local.',
       'Compará el mismo modelo en tiendas oficiales: a veces la diferencia está en las cuotas, no en el precio.',
     ],
+    guia: 'que-celular-comprar-cyber-monday',
   },
   {
     slug: 'cyber-monday-lavarropas',

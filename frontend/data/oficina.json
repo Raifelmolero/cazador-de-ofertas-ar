@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-27T23:00:35+00:00",
+  "generado": "2026-09-28T03:29:09+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,21 +8,21 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-27T23:00:34+00:00",
+      "ultima_actividad": "2026-09-28T03:29:09+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1456 productos en la última corrida"
+          "tarea": "Revisó 1389 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 20
+          "valor": 15
         },
         {
           "label": "whatsapp_kit",
-          "valor": 5
+          "valor": 10
         },
         {
           "label": "Historias IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Conjunto Sommier Viggo Diamante Cm Alta Densidad 180x200 Cm Negro"
+      "ultimo_trabajo": "Soldadora Electrica Inverter Mig Tig Electrodo Slm210 Logus"
     },
     {
       "id": "investigacion",

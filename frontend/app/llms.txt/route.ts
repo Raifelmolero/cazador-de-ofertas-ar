@@ -57,6 +57,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   ofertas de la última pasada cuyo precio tachado anuncia un descuento, pero que
   ya registramos al menos 5% más baratas antes (precio tachado, % anunciado,
   mínimo registrado y su fecha). Dato propio, se actualiza 3 veces por día.
+- [Datos abiertos](https://cazadordeofertas.com.ar/datos): estadísticas
+  agregadas y citables (CC BY 4.0): % de descuentos inflados mes a mes,
+  ofertas revisadas, productos con historial y rubros; tabla en CSV
+  (https://cazadordeofertas.com.ar/datos/estudio.csv) y JSON-LD Dataset.
 - [Metodología](https://cazadordeofertas.com.ar/metodologia): qué páginas de
   Mercado Libre recorremos y cada cuánto, qué cuenta como descuento inflado
   (umbral del 5% contra el mínimo registrado), qué es el mínimo histórico y

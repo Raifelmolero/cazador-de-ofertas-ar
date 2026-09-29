@@ -80,6 +80,14 @@ export default function EstudioPage() {
           {TITULO}
         </h1>
 
+        <p className="text-lg text-zinc-300 leading-relaxed mb-6 [text-wrap:pretty]">
+          <strong className="text-zinc-100">Respuesta corta:</strong> {DATO} Tabla mes a mes, CSV y cita sugerida en{' '}
+          <Link href="/datos" className="text-yellow-400 underline">
+            datos abiertos
+          </Link>
+          .
+        </p>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
           <div className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 p-4">
             <p className="text-3xl font-black text-yellow-300">{e.pctInfladas.toLocaleString('es-AR')}%</p>

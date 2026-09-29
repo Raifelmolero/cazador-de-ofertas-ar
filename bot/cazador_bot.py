@@ -738,10 +738,16 @@ def deal_caption(deal: dict, link: str, whatsapp: bool = False) -> str:
 def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool,
               whatsapp: bool = False) -> bool:
     caption = deal_caption(deal, link, whatsapp=whatsapp)
+    landing = landing_temporada(deal["title"], "telegram")
+    mas = (
+        {"text": landing[0], "url": landing[1]}
+        if landing
+        else {"text": "🔎 Más ofertas en el sitio", "url": site_url("telegram")}
+    )
     keyboard = {
         "inline_keyboard": [
             [{"text": "🛒 Ver oferta en ML", "url": link}],
-            [{"text": "🔎 Más ofertas en el sitio", "url": site_url("telegram")}],
+            [mas],
             [{"text": "🔍 ¿Otro descuento es real? Verificalo", "url": verificador_url("telegram")}],
         ]
     }
@@ -839,6 +845,11 @@ def wa_kit(deals: list[dict], affiliate_id: str, word: str) -> str:
             affiliate_url(d["url"], affiliate_id, word),
             "",
         ]
+    landing = next(
+        (lt for d in deals[:3] if (lt := landing_temporada(d["title"], "whatsapp"))), None
+    )
+    if landing:
+        lineas.append(f"{landing[0]}: {landing[1]}")
     lineas.append(f"🔎 Todas las de hoy: {site_url('whatsapp')}")
     lineas.append("(Links de afiliado: el precio para vos es el mismo)")
     return "\n".join(lineas)
@@ -1051,6 +1062,10 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "licuadora", "mixer", "maquina de coser", "máquina de coser",
         "auriculares", "celular", "tablet", "anteojos de sol", "set de cuidado",
         "depiladora", "joya", "aros", "colgante", "pulsera",
+        # Ticket alto: lo que de verdad vendió (colchón, tablet, gazebo).
+        "colchon", "colchón", "sommier", "gazebo", "aspiradora",
+        "horno electrico", "horno eléctrico", "microondas", "robot de cocina",
+        "cafetera expreso", "notebook",
     ]),
     ((9, 21), (2, 28), 1.3, [  # Primavera-verano: calor y aire libre
         "aire acondicionado", "ventilador", "pileta", "piscina", "reposera",
@@ -1103,6 +1118,19 @@ SELLOS_TEMPORADA = {
 }
 
 
+# Landing de la fecha: los posts con sello enlazan ahí en vez de la home.
+LANDINGS_TEMPORADA = {
+    (9, 25): ("🎁 Más regalos para el Día de la Madre", "dia-de-la-madre"),
+    (12, 1): ("🎄 Más regalos para Navidad", "regalos-navidad"),
+    (12, 25): ("👑 Más regalos para Reyes", "regalos-navidad"),
+}
+
+# Desde este precio un regalo de temporada suma un plus en el ranking: la
+# comisión es un % del precio y las ventas reales fueron de ticket alto.
+REGALO_TICKET_ALTO = 80_000
+REGALO_TICKET_ALTO_BOOST = 1.2
+
+
 def _menciona(t: str, keywords: list[str]) -> bool:
     """Palabra que EMPIEZA con la keyword ("aros" no matchea "faros")."""
     return any(re.search(r"\b" + re.escape(k), t) for k in keywords)
@@ -1117,6 +1145,19 @@ def sello_temporada(title: str, hoy: datetime | None = None) -> str:
         if sello and _en_ventana(hoy, desde, hasta) and _menciona(t, keywords):
             return sello
     return ""
+
+
+def landing_temporada(title: str, source: str, hoy: datetime | None = None) -> tuple[str, str] | None:
+    """(texto, url) de la landing de la fecha vigente si el producto es regalo
+    de esa fecha; None si no aplica."""
+    hoy = hoy or datetime.now(timezone.utc) - timedelta(hours=3)
+    t = title.lower()
+    for desde, hasta, _peso, keywords in TEMPORADAS:
+        landing = LANDINGS_TEMPORADA.get(desde)
+        if landing and _en_ventana(hoy, desde, hasta) and _menciona(t, keywords):
+            texto, slug = landing
+            return texto, f"https://{SITE_DOMAIN}/{slug}?utm_source={source}&utm_campaign={slug}"
+    return None
 
 
 def temporada_boost(title: str, hoy: datetime | None = None) -> float:
@@ -1150,6 +1191,8 @@ def ganancia_esperada(deal: dict) -> float:
         score *= 1.3
     if deal.get("relampago"):
         score *= 1.2
+    if deal["price_cur"] >= REGALO_TICKET_ALTO and sello_temporada(deal["title"]):
+        score *= REGALO_TICKET_ALTO_BOOST
     return score
 
 

@@ -769,6 +769,36 @@ class TestSelloTemporada(unittest.TestCase):
             self.assertTrue(bot.ig_caption(deal).startswith("🎁 IDEA DE REGALO"))
 
 
+class TestDiaDeLaMadreTicketAlto(unittest.TestCase):
+    OCT = datetime(2026, 10, 5)
+
+    def test_colchon_sommier_gazebo_son_regalo(self):
+        for t in ("Colchón Piero 2 plazas 140x190", "Sommier Cannon Queen", "Gazebo 3x3 Acero"):
+            self.assertIn("Día de la Madre", bot.sello_temporada(t, self.OCT), t)
+
+    def test_landing_madre_en_ventana(self):
+        lt = bot.landing_temporada("Perfume Carolina Herrera 100ml", "telegram", self.OCT)
+        self.assertIsNotNone(lt)
+        self.assertIn("/dia-de-la-madre?utm_source=telegram", lt[1])
+        self.assertIsNone(bot.landing_temporada("Kit Faros Led", "telegram", self.OCT))
+        self.assertIsNone(bot.landing_temporada("Perfume X", "telegram", datetime(2026, 11, 10)))
+
+    def test_ticket_alto_de_regalo_suma_plus(self):
+        base = {"title": "Colchón Piero 2 plazas", "price_cur": 370000, "hist_low": False}
+        with mock.patch.object(bot, "sello_temporada", return_value="🎁 x"),                 mock.patch.object(bot, "temporada_boost", return_value=1.5):
+            alto = bot.ganancia_esperada(base)
+            bajo = bot.ganancia_esperada({**base, "price_cur": 70000})
+        self.assertAlmostEqual(alto / bajo, 370000 / 70000 * bot.REGALO_TICKET_ALTO_BOOST)
+
+    def test_boton_telegram_va_a_la_landing(self):
+        deal = {"title": "Perfume Carolina Herrera", "price_prev": 200000, "price_cur": 150000,
+                "discount": 25, "img": None}
+        with mock.patch.object(bot, "landing_temporada", return_value=("🎁 Más regalos", "https://x/dia-de-la-madre")),                 mock.patch.object(bot, "tg_call") as tg:
+            bot.post_deal("t", "c", deal, "https://ml", dry=False)
+        kb = str(tg.call_args)
+        self.assertIn("dia-de-la-madre", kb)
+
+
 class TestWaKit(unittest.TestCase):
     def test_arma_tres_ofertas_con_link_whatsapp(self):
         deals = [

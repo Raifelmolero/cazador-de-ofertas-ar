@@ -4,7 +4,7 @@
 //
 // Nada inventado: los productos salen de la comparativa
 // /mejores/regalos-dia-de-la-madre (keywords regalables) más las categorías
-// perfumes y electro de cocina; los rangos se
+// perfumes y electro de cocina, y de las comparativas por rubro (desde $30.000); los rangos se
 // calculan sobre esos precios y el % de infladas sale del registro del bot.
 // Sin JSON-LD de Event: el Día de la Madre no es un evento con organizador.
 import Link from 'next/link'
@@ -44,7 +44,23 @@ const CATEGORIAS_REGALO = [
   { slug: 'freidoras-de-aire', nombre: 'Freidoras de aire' },
   { slug: 'aspiradoras', nombre: 'Aspiradoras' },
   { slug: 'cocinas-y-hornos', nombre: 'Cocinas y hornos' },
+  { slug: 'colchones', nombre: 'Colchones y sommiers' },
 ]
+
+/** Regalos de ticket medio/alto por rubro: cada uno sale de su comparativa
+ *  (catálogo del día); si hoy no hay ofertas de un rubro, no se muestra. */
+const RUBROS_REGALO = [
+  { comp: 'mejores-perfumes', titulo: 'Perfumes', emoji: '🌸' },
+  { comp: 'mejores-cafeteras', titulo: 'Cafeteras', emoji: '☕' },
+  { comp: 'mejores-freidoras-de-aire', titulo: 'Freidoras de aire', emoji: '🍟' },
+  { comp: 'mejores-batidoras', titulo: 'Batidoras', emoji: '🍰' },
+  { comp: 'mejores-aspiradoras', titulo: 'Aspiradoras', emoji: '🧹' },
+  { comp: 'mejores-tablets', titulo: 'Tablets', emoji: '📱' },
+  { comp: 'mejores-colchones-2-plazas', titulo: 'Colchones 2 plazas y queen', emoji: '🛏️' },
+  { comp: 'mejores-sommiers', titulo: 'Sommiers y conjuntos', emoji: '🛏️' },
+  { comp: 'mejores-muebles-de-jardin', titulo: 'Muebles de jardín y gazebos', emoji: '🌿' },
+] as const
+const POR_RUBRO = 4
 
 const TITULO = `Regalos para el Día de la Madre ${AÑO}: ofertas reales por presupuesto`
 const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $30.000, hasta $80.000 y más), con el descuento verificado contra el historial.`
@@ -108,7 +124,16 @@ export default function DiaDeLaMadrePage() {
     const todos = regalos.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
     return { ...r, total: todos.length, productos: todos.slice(0, POR_RANGO) }
   })
-  const mostrados = rangos.flatMap(r => r.productos)
+  // Por rubro, solo ticket medio/alto (≥ $30.000): lo que más comisión deja.
+  const rubros = RUBROS_REGALO.flatMap(r => {
+    const c = getComparativa(r.comp)
+    if (!c) return []
+    const todos = productosDe(c).filter(p => p.precio_actual >= 30000)
+    return todos.length ? [{ ...r, slug: c.slug, compTitulo: c.titulo, total: todos.length, productos: todos.slice(0, POR_RUBRO) }] : []
+  })
+  const mostrados = [...rangos.flatMap(r => r.productos), ...rubros.flatMap(r => r.productos)].filter(
+    (p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i,
+  )
 
   const guias = GUIAS.filter(g => g.slug === 'que-regalar-el-dia-de-la-madre')
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
@@ -129,6 +154,14 @@ export default function DiaDeLaMadrePage() {
     {
       q: '¿Qué regalar según el presupuesto?',
       a: 'Depende de lo que haya en oferta ese día: en esta página separamos las ofertas regalables de hoy (perfumes, cuidado personal, electro de cocina, smartwatch, auriculares y más) en tres rangos: hasta $30.000, de $30.000 a $80.000 y más de $80.000. Si no estás seguro del gusto, un electrodoméstico útil rara vez falla.',
+    },
+    {
+      q: `¿Hasta cuándo conviene pedir el regalo para que llegue el ${FECHA_TEXTO}?`,
+      a: 'Lo ideal es pedirlo hasta el domingo 11 de octubre, una semana antes. Colchones, sommiers y muebles de jardín suelen tener entregas más largas por el tamaño: en esos, mirá la fecha estimada antes de pagar y no lo dejes para último momento.',
+    },
+    {
+      q: '¿Qué regalos grandes hay en oferta para el Día de la Madre?',
+      a: 'En esta página mostramos, por rubro, las ofertas de hoy desde $30.000 en perfumes, cafeteras, freidoras de aire, batidoras, aspiradoras, tablets, colchones, sommiers y muebles de jardín. Solo aparecen los rubros que hoy tienen ofertas, y cada rubro enlaza a su comparativa completa.',
     },
   ]
 
@@ -254,6 +287,35 @@ export default function DiaDeLaMadrePage() {
         </Link>
       </div>
 
+      {rubros.length > 0 && (
+        <section id="por-rubro" className="max-w-7xl mx-auto px-4 sm:px-6 pb-8 scroll-mt-20">
+          <div className="max-w-3xl mb-2">
+            <h2 className="font-display text-xl sm:text-2xl font-black">Regalos grandes por rubro</h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Si la idea es un regalo que dure (o armar una vaquita entre hermanos), estas son las ofertas de hoy desde
+              $30.000 en cada rubro, con el mínimo registrado de cada una.
+            </p>
+          </div>
+          {rubros.map(r => (
+            <div key={r.comp} className="pt-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                <h3 className="font-display text-lg font-black">
+                  {r.emoji} {r.titulo} <span className="text-sm font-semibold text-zinc-500">({r.total} en oferta)</span>
+                </h3>
+                <Link href={`/mejores/${r.slug}`} className="text-sm font-bold text-yellow-400 hover:text-yellow-300">
+                  Comparar todos →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                {r.productos.map(o => (
+                  <OfertaCard key={o.id_ml} producto={light(o)} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+
       <article className="max-w-3xl mx-auto px-4 pb-10">
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cómo no caer en un descuento inflado</h2>
@@ -312,6 +374,11 @@ export default function DiaDeLaMadrePage() {
                 <a href={`/mejores/${comp.slug}`} className="font-bold text-yellow-400 hover:underline">📊 {comp.titulo} →</a>
               </li>
             )}
+            {RUBROS_REGALO.map(r => getComparativa(r.comp)).filter(c => c !== undefined).map(c => (
+              <li key={c.slug}>
+                <a href={`/mejores/${c.slug}`} className="font-bold text-yellow-400 hover:underline">📊 {c.titulo} →</a>
+              </li>
+            ))}
             {guias.map(g => (
               <li key={g.slug}>
                 <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📖 {g.titulo} →</a>

@@ -100,8 +100,10 @@ function meta(html) {
 
 // ---------- chequeos por página ----------
 const hallazgos = {}
+const consolidadas = new Set() // rutas con canonical a otra página (duplicados agrupados)
 const add = (tipo, ruta, detalle = '') => (hallazgos[tipo] ??= []).push(detalle ? `${ruta} → ${detalle}` : ruta)
 const info = new Map()
+const otraRuta = []
 const hostDe = u => { try { return new URL(u).host.replace(/^www\./, '') } catch { return null } }
 
 for (const [ruta, html] of paginas) {
@@ -121,7 +123,9 @@ for (const [ruta, html] of paginas) {
     else {
       const p = new URL(m.canonical).pathname.replace(/\/$/, '') || '/'
       const esperado = ruta === '/hoy' ? '/' : ruta
-      if (p !== esperado) add('canonical_otra_ruta', ruta, m.canonical)
+      if (p !== esperado) {
+        otraRuta.push([ruta, p, m.canonical])
+      }
     }
   }
   if (m.h1 === 0) add('h1_faltante', ruta)
@@ -155,13 +159,21 @@ for (const [ruta, m] of info) {
   }
 }
 if (rotos.size) hallazgos.link_interno_roto = [...rotos.keys()]
+// Canonical a otra ruta: OK si es un duplicado consolidado a propósito (mismo
+// producto, otra publicación) que apunta a una página que es su propio canonical.
+for (const [ruta, p, canon] of otraRuta) {
+  const t = info.get(p)
+  const tc = t?.canonical && (new URL(t.canonical).pathname.replace(/\/$/, '') || '/')
+  if (t && !t.noindex && tc === p) consolidadas.add(ruta)
+  else add('canonical_otra_ruta', ruta, canon)
+}
 if (cruzados.size) hallazgos.link_relativo_cruza_dominio = [...cruzados.keys()]
 
 // Duplicados (por host canónico)
 const dup = (campo, tipo) => {
   const g = new Map()
   for (const [r, m] of info) {
-    if (m.noindex || !m[campo] || !hostRuta.get(r)) continue
+    if (m.noindex || !m[campo] || !hostRuta.get(r) || consolidadas.has(r)) continue
     const k = hostRuta.get(r) + '|' + m[campo]
     g.set(k, [...(g.get(k) ?? []), r])
   }
@@ -212,7 +224,7 @@ if (!args.has('--sin-server')) {
       }
     }
     for (const [r, m] of info) {
-      if (m.noindex || !m.canonical || /^\/tiktok\//.test(r)) continue
+      if (m.noindex || !m.canonical || consolidadas.has(r) || /^\/tiktok\//.test(r)) continue
       // /calculadora/[id] se excluye a propósito del sitemap (rotan, ver app/sitemap.ts)
       if (/^\/calculadora\/[^/]+$/.test(r)) continue
       if (!enSitemap.has(r)) add('indexable_fuera_del_sitemap', r)
@@ -239,7 +251,7 @@ if (!args.has('--sin-server')) {
 
 // ---------- reporte ----------
 const tipos = Object.keys(hallazgos).sort()
-console.log(`Páginas HTML: ${paginas.size} (noindex: ${[...info.values()].filter(m => m.noindex).length})`)
+console.log(`Páginas HTML: ${paginas.size} (noindex: ${[...info.values()].filter(m => m.noindex).length}) · duplicados consolidados por canonical: ${consolidadas.size}`)
 if (!tipos.length) console.log('Sin hallazgos ✔')
 for (const t of tipos) {
   console.log(`\n[${t}] ${hallazgos[t].length}`)

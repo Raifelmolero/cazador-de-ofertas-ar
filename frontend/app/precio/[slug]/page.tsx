@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
+import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -12,6 +12,8 @@ import {
   categoriaDeSeguido,
   getSeguido,
   getSeguidos,
+  getSeguidosPrincipales,
+  principalDe,
   precioActual,
   seguidosDeCategoria,
   vigente,
@@ -29,20 +31,33 @@ function nombreCorto(s: Seguido) {
   return s.titulo.split(/\s+/).slice(0, 8).join(' ')
 }
 
+const FORMATOS_TITULO = [
+  (n: string) => `Precio ${n}: historial y mínimo — Cazador de Ofertas AR`,
+  (n: string) => `Precio ${n}: historial y precio más bajo`,
+  (n: string) => `Precio ${n}: historial y mínimo`,
+  (n: string) => `Precio ${n}: historial`,
+]
+
+/** Productos distintos (color, capacidad…) cuyo título recortado coincide: sumamos lo que los distingue. */
+let difs: Map<string, string> | null = null
+function diferenciaDe(s: Seguido) {
+  difs ??= diferenciadores(
+    new Map(getSeguidosPrincipales().map(x => [x.id, x.titulo])),
+    n => tituloSeo(n, FORMATOS_TITULO),
+  )
+  return difs.get(s.id)
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const s = getSeguido((await params).slug)
   if (!s) return {}
-  const url = `${DEALS_URL}/precio/${s.slug}`
-  const titulo = tituloSeo(s.titulo, [
-    n => `Precio ${n}: historial y mínimo — Cazador de Ofertas AR`,
-    n => `Precio ${n}: historial y precio más bajo`,
-    n => `Precio ${n}: historial y mínimo`,
-    n => `Precio ${n}: historial`,
-  ])
-  const descripcion = tituloSeo(s.titulo, [
+  const url = `${DEALS_URL}/precio/${principalDe(s).slug}`
+  const dif = diferenciaDe(s)
+  const titulo = tituloSeo(s.titulo, conDiferencia(dif, FORMATOS_TITULO))
+  const descripcion = tituloSeo(s.titulo, conDiferencia(dif, [
     n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
     n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
-  ], MAX_DESCRIPCION)
+  ]), MAX_DESCRIPCION)
   return {
     title: titulo,
     description: descripcion,
@@ -77,7 +92,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   ).slice(0, 3)
   // Ficha de ganancia para vendedores en calculadoraml (otro dominio, mismo deploy)
   const ficha = getProductoById(s.id)
-  const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidos())
+  const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidosPrincipales())
   const nombre = nombreCorto(s)
 
   const veredicto = !enOferta

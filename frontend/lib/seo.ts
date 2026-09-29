@@ -35,3 +35,32 @@ export function tituloSeo(nombre: string, formatos: ((n: string) => string)[], m
 }
 
 export const descripcionSeo = (texto: string) => recortar(texto, MAX_DESCRIPCION)
+
+/**
+ * Títulos distintos de ML que quedan iguales al recortarlos (p. ej. mismo modelo
+ * en otro color o capacidad). Para cada id devuelve las palabras de su título
+ * que no comparten todos los demás del grupo (máx. 3, tal cual vienen en el
+ * título de ML) para agregarlas al nombre; '' si no hace falta.
+ */
+export function diferenciadores(nombres: Map<string, string>, recortado: (n: string) => string): Map<string, string> {
+  const grupos = new Map<string, string[]>()
+  for (const [id, n] of nombres) {
+    const k = recortado(n)
+    grupos.set(k, [...(grupos.get(k) ?? []), id])
+  }
+  const out = new Map<string, string>()
+  const pal = (n: string) => n.replace(/\s+/g, ' ').trim().split(' ')
+  for (const ids of grupos.values()) {
+    if (ids.length < 2) continue
+    const sets = ids.map(id => new Set(pal(nombres.get(id)!).map(w => w.toLowerCase())))
+    ids.forEach((id, i) => {
+      const propias = pal(nombres.get(id)!).filter(w => sets.some((s, j) => j !== i && !s.has(w.toLowerCase())))
+      out.set(id, [...new Set(propias)].slice(0, 3).join(' '))
+    })
+  }
+  return out
+}
+
+/** Agrega el diferenciador al nombre en todos los formatos (también al recortado). */
+export const conDiferencia = (dif: string | undefined, formatos: ((n: string) => string)[]) =>
+  dif ? formatos.map(f => (n: string) => f(`${n} ${dif}`)) : formatos

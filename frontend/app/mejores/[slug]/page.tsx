@@ -8,7 +8,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
-import { getSeguidos, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
+import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -59,7 +59,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   const enTabla = new Set(productos.map(p => p.id_ml))
   const kws = (c.keywords ?? []).map(normalizar)
   const fuera = (c.excluir ?? []).map(normalizar)
-  const conHistorial = (cat ? seguidosDeCategoria(cat.slug) : kws.length ? getSeguidos() : [])
+  const conHistorial = (cat ? seguidosDeCategoria(cat.slug) : kws.length ? getSeguidosPrincipales() : [])
     .filter(x => !enTabla.has(x.id))
     .filter(x => {
       const t = normalizar(x.titulo)

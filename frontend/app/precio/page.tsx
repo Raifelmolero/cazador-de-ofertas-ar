@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { CATEGORIAS } from '@/lib/categorias'
-import { categoriaDeSeguido, getSeguidos, type Seguido } from '@/lib/seguimiento'
+import { categoriaDeSeguido, getSeguidosPrincipales, type Seguido } from '@/lib/seguimiento'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PreciosIndex() {
   const grupos = new Map<string, Seguido[]>()
-  for (const s of getSeguidos()) {
+  for (const s of getSeguidosPrincipales()) {
     const nombre = categoriaDeSeguido(s)?.nombre ?? 'Otros'
     grupos.set(nombre, [...(grupos.get(nombre) ?? []), s])
   }

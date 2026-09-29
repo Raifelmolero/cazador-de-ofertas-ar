@@ -38,6 +38,36 @@ function leer() {
 
 export const getSeguidos = () => leer().items
 export const getSeguido = (slug: string) => leer().items.find(s => s.slug === slug)
+
+/**
+ * Mercado Libre repite el mismo título en publicaciones de distintos vendedores
+ * del mismo producto. Agrupamos por título normalizado y elegimos una página
+ * principal (la de más historial; empate: menor mínimo, luego slug). Las demás
+ * siguen existiendo pero apuntan su canonical a la principal y salen del
+ * sitemap y de los listados/links internos.
+ */
+let principales: Map<string, Seguido> | null = null
+function mapaPrincipal() {
+  if (principales) return principales
+  const grupos = new Map<string, Seguido[]>()
+  for (const s of leer().items) {
+    const k = normalizar(s.titulo).replace(/\s+/g, ' ').trim()
+    grupos.set(k, [...(grupos.get(k) ?? []), s])
+  }
+  principales = new Map()
+  for (const g of grupos.values()) {
+    const p = [...g].sort(
+      (a, b) => b.serie.length - a.serie.length || a.min - b.min || a.slug.localeCompare(b.slug),
+    )[0]
+    for (const s of g) principales.set(s.id, p)
+  }
+  return principales
+}
+/** Página principal (canónica) del producto; es el mismo seguido si no tiene duplicados. */
+export const principalDe = (s: Seguido) => mapaPrincipal().get(s.id) ?? s
+export const esPrincipal = (s: Seguido) => principalDe(s).id === s.id
+/** Seguidos sin duplicados: para sitemap, listados y links internos. */
+export const getSeguidosPrincipales = () => getSeguidos().filter(esPrincipal)
 export const actualizadoSeguimiento = () => leer().actualizado
 
 export function precioActual(s: Seguido) {
@@ -55,10 +85,10 @@ export function categoriaDeSeguido(s: Seguido) {
 }
 
 export function seguidosDeCategoria(slug: string) {
-  return getSeguidos().filter(s => categoriaDeSeguido(s)?.slug === slug)
+  return getSeguidosPrincipales().filter(s => categoriaDeSeguido(s)?.slug === slug)
 }
 
 /** Mapa id_ml → slug para enlazar desde tarjetas y tablas. */
 export function slugPorId(): Record<string, string> {
-  return Object.fromEntries(getSeguidos().map(s => [s.id, s.slug]))
+  return Object.fromEntries(getSeguidos().map(s => [s.id, principalDe(s).slug]))
 }

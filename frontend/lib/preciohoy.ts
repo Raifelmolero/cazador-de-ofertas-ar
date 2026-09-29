@@ -9,7 +9,7 @@
 
 import { getOfertas, type ProductWithMargins } from '@/lib/productos'
 import { normalizar } from '@/lib/categorias'
-import { getSeguidos, type Seguido } from '@/lib/seguimiento'
+import { getSeguidosPrincipales, type Seguido } from '@/lib/seguimiento'
 
 export interface PrecioHoy {
   fem?: boolean // femenino: "la notebook", "una heladera"
@@ -59,7 +59,7 @@ export function ofertasDe(p: PrecioHoy): ProductWithMargins[] {
 }
 
 export function seguidosDe(p: PrecioHoy): Seguido[] {
-  return getSeguidos().filter(s => coincide(p, s.titulo))
+  return getSeguidosPrincipales().filter(s => coincide(p, s.titulo))
 }
 
 /** Mediana (más representativa que el promedio con pocos datos). */

@@ -7,7 +7,7 @@ import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY } from '@/lib/preciohoy'
-import { getSeguidos } from '@/lib/seguimiento'
+import { getSeguidosPrincipales } from '@/lib/seguimiento'
 
 // Sin www: Vercel redirige www → calculadoraml.com.ar (307), y un sitemap o
 // canónico que apunta a una redirección confunde a Google.
@@ -86,7 +86,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
     { url: `${DEALS_URL}/privacidad`, changeFrequency: 'yearly' as const, priority: 0.1 },
     { url: `${DEALS_URL}/terminos`, changeFrequency: 'yearly' as const, priority: 0.1 },
-    ...getSeguidos().map(s => ({
+    ...getSeguidosPrincipales().map(s => ({
       url: `${DEALS_URL}/precio/${s.slug}`,
       lastModified: new Date(s.ultimo_visto),
       changeFrequency: 'daily' as const,

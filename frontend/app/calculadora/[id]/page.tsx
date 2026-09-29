@@ -1,6 +1,6 @@
-import { getProductos, getProductoById, fichasParecidas } from '@/lib/productos'
+import { getProductos, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
-import { MAX_DESCRIPCION, tituloSeo } from '@/lib/seo'
+import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -16,6 +16,21 @@ export async function generateStaticParams() {
   return productos.map(p => ({ id: p.id_ml }))
 }
 
+const FORMATOS_TITULO = [
+  (n: string) => `Calculadora de ganancia: ${n} en Mercado Libre`,
+  (n: string) => `Calculadora de ganancia: ${n}`,
+]
+
+/** Productos distintos cuyo título recortado coincide: sumamos lo que los distingue. */
+let difs: Map<string, string> | null = null
+function diferenciaDe(id: string) {
+  difs ??= diferenciadores(
+    new Map(getFichasPorPrecio().map(p => [p.id_ml, p.titulo])),
+    n => tituloSeo(n, FORMATOS_TITULO),
+  )
+  return difs.get(id)
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -25,17 +40,15 @@ export async function generateMetadata({
   const producto = getProductoById(id)
   if (!producto) return { title: 'Producto no encontrado' }
 
+  const dif = diferenciaDe(producto.id_ml)
   const deposita = Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')
   const precioMl = producto.precio_actual.toLocaleString('es-AR')
   return {
-    alternates: { canonical: `${CALC_URL}/calculadora/${producto.id_ml}` },
-    title: tituloSeo(producto.titulo, [
-      n => `Calculadora de ganancia: ${n} en Mercado Libre`,
-      n => `Calculadora de ganancia: ${n}`,
-    ]),
-    description: tituloSeo(producto.titulo, [
+    alternates: { canonical: `${CALC_URL}/calculadora/${fichaPrincipal(producto).id_ml}` },
+    title: tituloSeo(producto.titulo, conDiferencia(dif, FORMATOS_TITULO)),
+    description: tituloSeo(producto.titulo, conDiferencia(dif, [
       n => `Calculá cuánto ganás vendiendo "${n}". Precio ML: $${precioMl}. Te deposita ML: $${deposita}.`,
-    ], MAX_DESCRIPCION),
+    ]), MAX_DESCRIPCION),
     openGraph: {
       title: `Calculadora de Ganancia: ${producto.titulo}`,
       description: `Te deposita ML: $${Math.round(producto.margen_neto_clasico_ars).toLocaleString('es-AR')} ARS por venta (costos oficiales 2026)`,

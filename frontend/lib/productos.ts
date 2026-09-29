@@ -1,3 +1,4 @@
+import { normalizar } from '@/lib/categorias'
 import fs from 'fs'
 import path from 'path'
 import { CARGO_REFERENCIA, costoFijo, netoML } from '@/lib/costosml'
@@ -92,9 +93,29 @@ export function getScrapedAt(): Date {
   return new Date(readJson().metadata.scraped_at)
 }
 
-/** Fichas de /calculadora ordenadas por precio (orden estable: precio, id). */
+/**
+ * Mismo título de ML en varias publicaciones (distintos vendedores): la ficha
+ * principal es la más barata (empate: id). Las demás ponen su canonical ahí y
+ * no reciben links de vecinas.
+ */
+let principalPorId: Map<string, ProductWithMargins> | null = null
+export function fichaPrincipal(p: ProductWithMargins): ProductWithMargins {
+  if (!principalPorId) {
+    const clave = (x: ProductWithMargins) => normalizar(x.titulo).replace(/\s+/g, ' ').trim()
+    const mejor = new Map<string, ProductWithMargins>()
+    const todos = getProductos()
+    for (const x of todos) {
+      const m = mejor.get(clave(x))
+      if (!m || x.precio_actual < m.precio_actual || (x.precio_actual === m.precio_actual && x.id_ml < m.id_ml)) mejor.set(clave(x), x)
+    }
+    principalPorId = new Map(todos.map(x => [x.id_ml, mejor.get(clave(x))!]))
+  }
+  return principalPorId.get(p.id_ml) ?? p
+}
+
+/** Fichas de /calculadora ordenadas por precio (orden estable: precio, id), sin duplicados. */
 export function getFichasPorPrecio(): ProductWithMargins[] {
-  return getProductos().sort((a, b) => a.precio_actual - b.precio_actual || a.id_ml.localeCompare(b.id_ml))
+  return getProductos().filter(p => fichaPrincipal(p).id_ml === p.id_ml).sort((a, b) => a.precio_actual - b.precio_actual || a.id_ml.localeCompare(b.id_ml))
 }
 
 /** Vecinos fijos en el orden por precio (circular): n/2 más baratos y n/2 más

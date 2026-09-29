@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-29T04:05:21+00:00",
+  "generado": "2026-09-29T19:59:35+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,37 +8,37 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-29T04:05:21+00:00",
+      "ultima_actividad": "2026-09-29T19:59:35+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1440 productos en la última corrida"
+          "tarea": "Revisó 1379 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "whatsapp_kit",
-          "valor": 5
+          "valor": 10
         },
         {
           "label": "Historias IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Threads",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Facebook",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Smart tv Samsung Neo Qled 55 Tizen 4k Qn70f Negro Vision AI"
+      "ultimo_trabajo": "Colchón 2 Plazas 190x140x34 Caja Euro Top Firme 638 Resortes Kann Livet Gel Memo"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-09-28T18:27:11+00:00",
+      "ultima_actividad": "2026-09-29T16:47:40+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -214,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 15 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

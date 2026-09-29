@@ -1,8 +1,21 @@
 {
- "actualizado": "2026-09-29T19:57:55+00:00",
+ "actualizado": "2026-09-29T23:38:46+00:00",
  "fecha": "2026-09-29",
- "infladas_detectadas": 150,
+ "infladas_detectadas": 151,
  "items": [
+  {
+   "id": "MLA75336162",
+   "titulo": "Cinta Caminadora Eléctrica Para Correr | Noxi Sport | 12 Km/h | Negro",
+   "url": "https://www.mercadolibre.com.ar/cinta-caminadora-electrica-para-correr-noxi-sport-12-kmh-negro/p/MLA75336162",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_839368-MLA116739606784_092026-AB.webp",
+   "precio_hoy": 489999,
+   "precio_tachado": 999999,
+   "descuento_anunciado": 51,
+   "minimo_registrado": 288099,
+   "minimo_fecha": "2026-07-22",
+   "visto_desde": "2026-07-22",
+   "diferencia_pct": 41
+  },
   {
    "id": "MLA15503957",
    "titulo": "Balanza Digital Con Bluetooth Personal De Baño Peso Corporal 180 Kg Diseño Minimalista Femmto",
@@ -17,17 +30,30 @@
    "diferencia_pct": 39
   },
   {
-   "id": "MLA42514882",
-   "titulo": "Yogurtera Eléctrica Novohome 2 Litros Yogurt Griego Saludable Natural Color Blanca",
-   "url": "https://www.mercadolibre.com.ar/yogurtera-electrica-novohome-2-litros-yogurt-griego-saludable-natural-color-blanca/p/MLA42514882",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_690326-MLA113206627053_062026-AB.webp",
-   "precio_hoy": 64999,
-   "precio_tachado": 69990,
-   "descuento_anunciado": 7,
-   "minimo_registrado": 43699,
-   "minimo_fecha": "2026-08-17",
-   "visto_desde": "2026-08-17",
-   "diferencia_pct": 33
+   "id": "MLA15843641",
+   "titulo": "Aspiradora Samsung sin bolsa 2000W VC20CCNMA color negro",
+   "url": "https://www.mercadolibre.com.ar/aspiradora-samsung-sin-bolsa-2000w-vc20ccnma-color-negro/p/MLA15843641",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_754153-MLA99366964198_112025-AB.webp",
+   "precio_hoy": 291059,
+   "precio_tachado": 377999,
+   "descuento_anunciado": 23,
+   "minimo_registrado": 185624,
+   "minimo_fecha": "2026-07-28",
+   "visto_desde": "2026-07-28",
+   "diferencia_pct": 36
+  },
+  {
+   "id": "MLA41391097",
+   "titulo": "Notebook Lenovo IdeaPad 1 15ijl7 con Intel Celeron N4500, 12 GB RAM y 128 GB eMMC",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-1-15ijl7-con-intel-celeron-n4500-12-gb-ram-y-128-gb-emmc/p/MLA41391097",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_761852-MLA100001156811_112025-AB.webp",
+   "precio_hoy": 976789,
+   "precio_tachado": 1575748,
+   "descuento_anunciado": 38,
+   "minimo_registrado": 646999,
+   "minimo_fecha": "2026-07-20",
+   "visto_desde": "2026-07-20",
+   "diferencia_pct": 34
   },
   {
    "id": "MLA18212680",
@@ -43,6 +69,19 @@
    "diferencia_pct": 31
   },
   {
+   "id": "MLA63934515",
+   "titulo": "Tablet Lenovo Idea Tab 8gb 128gb Android 15 Con Teclado + Lápiz, Color Polar Blue",
+   "url": "https://www.mercadolibre.com.ar/tablet-lenovo-idea-tab-8gb-128gb-android-15-con-teclado-lapiz-color-polar-blue/p/MLA63934515",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_747056-MLA103366911966_012026-AB.webp",
+   "precio_hoy": 889999,
+   "precio_tachado": 1135795,
+   "descuento_anunciado": 21,
+   "minimo_registrado": 617820,
+   "minimo_fecha": "2026-07-18",
+   "visto_desde": "2026-07-18",
+   "diferencia_pct": 31
+  },
+  {
    "id": "MLA69124900",
    "titulo": "Notebook Acer Aspire Go 15 15.6 Full Hd Ryzen 7 7730u 16gb Ram 512gb Ssd Wifi 6 Windows 11 Home Plateada",
    "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-156-full-hd-ryzen-7-7730u-16gb-ram-512gb-ssd-wifi-6-windows-11-home-plateada/p/MLA69124900",
@@ -54,6 +93,32 @@
    "minimo_fecha": "2026-07-26",
    "visto_desde": "2026-07-26",
    "diferencia_pct": 27
+  },
+  {
+   "id": "MLA78631495",
+   "titulo": "Multigimnasio Multigym | Reforzado | 50 Kg | Color de la estructura Negro | Noxi - Sports | Gym001",
+   "url": "https://www.mercadolibre.com.ar/multigimnasio-multigym-reforzado-50-kg-color-de-la-estructura-negro-noxi-sports-gym001/p/MLA78631495",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_766552-MLA117322052889_092026-AB.webp",
+   "precio_hoy": 749999,
+   "precio_tachado": 1499999,
+   "descuento_anunciado": 50,
+   "minimo_registrado": 552996,
+   "minimo_fecha": "2026-09-14",
+   "visto_desde": "2026-09-12",
+   "diferencia_pct": 26
+  },
+  {
+   "id": "MLA22826188",
+   "titulo": "Notebook EXO Smart T38 Intel N4020 4GB SSD 128GB Windows 11 Color Gris",
+   "url": "https://www.mercadolibre.com.ar/notebook-exo-smart-t38-intel-n4020-4gb-ssd-128gb-windows-11-color-gris/p/MLA22826188",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_674154-MLA99475153990_112025-AB.webp",
+   "precio_hoy": 425999,
+   "precio_tachado": 569999,
+   "descuento_anunciado": 25,
+   "minimo_registrado": 316036,
+   "minimo_fecha": "2026-08-23",
+   "visto_desde": "2026-07-19",
+   "diferencia_pct": 26
   },
   {
    "id": "MLA65290702",
@@ -82,19 +147,6 @@
    "diferencia_pct": 25
   },
   {
-   "id": "MLA45636391",
-   "titulo": "Desmalezadora Motoguadaña A Explosion Naftera 52cc 2,2hp Pideweb Brd-52 Bordeadora Carretel Con Tanza Cuchilla Y Accesorios Uso Profesional",
-   "url": "https://www.mercadolibre.com.ar/desmalezadora-motoguadana-a-explosion-naftera-52cc-22hp-pideweb-brd-52-bordeadora-carretel-con-tanza-cuchilla-y-accesorios-uso-profesional/p/MLA45636391",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_647079-MLA99898654047_112025-AB.webp",
-   "precio_hoy": 165849,
-   "precio_tachado": 284998,
-   "descuento_anunciado": 41,
-   "minimo_registrado": 124389,
-   "minimo_fecha": "2026-09-24",
-   "visto_desde": "2026-07-22",
-   "diferencia_pct": 25
-  },
-  {
    "id": "MLA44141974",
    "titulo": "Depiladora Ipl Philips Lumea Prestige Bri947 - Alternativa Laser - Rostro + cuerpo + bikini + axilas",
    "url": "https://www.mercadolibre.com.ar/depiladora-ipl-philips-lumea-prestige-bri947-alternativa-laser-rostro-cuerpo-bikini-axilas/p/MLA44141974",
@@ -106,58 +158,6 @@
    "minimo_fecha": "2026-09-16",
    "visto_desde": "2026-07-19",
    "diferencia_pct": 24
-  },
-  {
-   "id": "MLA65278697",
-   "titulo": "Moto G77 Black Olive",
-   "url": "https://www.mercadolibre.com.ar/moto-g77-black-olive/p/MLA65278697",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_659998-MLA114428766744_082026-AB.webp",
-   "precio_hoy": 699999,
-   "precio_tachado": 799999,
-   "descuento_anunciado": 12,
-   "minimo_registrado": 536699,
-   "minimo_fecha": "2026-09-27",
-   "visto_desde": "2026-09-23",
-   "diferencia_pct": 23
-  },
-  {
-   "id": "MLA26986605",
-   "titulo": "Impresora laser Brother Hl-1 1212w negro/blanco",
-   "url": "https://www.mercadolibre.com.ar/impresora-laser-brother-hl-1-1212w-negroblanco/p/MLA26986605",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_989856-MLA100029186725_122025-AB.webp",
-   "precio_hoy": 282525,
-   "precio_tachado": 341999,
-   "descuento_anunciado": 17,
-   "minimo_registrado": 217381,
-   "minimo_fecha": "2026-09-13",
-   "visto_desde": "2026-08-12",
-   "diferencia_pct": 23
-  },
-  {
-   "id": "MLA10267638",
-   "titulo": "Eucerin HYALURON-FILLER + Elasticity Crema facial antiedad de día FPS 15 50 ml",
-   "url": "https://www.mercadolibre.com.ar/eucerin-hyaluron-filler-elasticity-crema-facial-antiedad-de-dia-fps-15-50-ml/p/MLA10267638",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_660749-MLA114701823229_072026-AB.webp",
-   "precio_hoy": 89858,
-   "precio_tachado": 149764,
-   "descuento_anunciado": 40,
-   "minimo_registrado": 69673,
-   "minimo_fecha": "2026-08-29",
-   "visto_desde": "2026-08-18",
-   "diferencia_pct": 22
-  },
-  {
-   "id": "MLA65683578",
-   "titulo": "Android 15 Tablet Con Teclado 10p 18gb Ram + 128gb Rom Rosa",
-   "url": "https://www.mercadolibre.com.ar/android-15-tablet-con-teclado-10p-18gb-ram-128gb-rom-rosa/p/MLA65683578",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_962019-MLA106666849548_022026-AB.webp",
-   "precio_hoy": 318115,
-   "precio_tachado": 489999,
-   "descuento_anunciado": 35,
-   "minimo_registrado": 247514,
-   "minimo_fecha": "2026-09-21",
-   "visto_desde": "2026-07-19",
-   "diferencia_pct": 22
   }
  ]
 }

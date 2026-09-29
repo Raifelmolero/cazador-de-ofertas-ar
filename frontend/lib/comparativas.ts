@@ -685,6 +685,61 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
   },
   {
+    slug: 'mejores-smartwatch',
+    nombre: 'smartwatch',
+    titulo: `Mejores smartwatch en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de smartwatch y smartbands en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
+    intro:
+      'Los smartwatch y smartbands en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    keywords: ['smartwatch', 'smart watch', 'reloj inteligente', 'smartband', 'smart band'],
+    excluir: ['malla', 'correa', 'vidrio templado', 'protector', 'cargador', 'funda'],
+    criterios: [
+      'Compatibilidad: que funcione con el celular de quien lo va a usar (Android o iPhone).',
+      'GPS propio si sale a correr o pedalear sin el celular.',
+      'Batería: los relojes deportivos duran varios días; los más completos suelen pedir carga diaria.',
+      'Sensores de salud (frecuencia cardíaca, oxígeno, ECG): revisá cuáles tiene cada modelo en la ficha.',
+      'Tamaño de la pantalla y de la caja según la muñeca.',
+    ],
+  },
+  {
+    slug: 'mejores-planchitas-y-secadores-de-pelo',
+    nombre: 'planchitas y secadores de pelo',
+    titulo: `Mejores planchitas y secadores de pelo en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de planchitas, secadores y rizadores de pelo en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las planchitas, secadores y rizadores de pelo en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['planchita', 'plancha de pelo', 'plancha pelo', 'alisador', 'secador de pelo', 'secador', 'rizador', 'buclera', 'ondulador'],
+    excluir: ['secador de manos', 'secarropas', 'secador de ropa', 'plancha de ropa', 'plancha a vapor', 'plancha de vapor', 'protector termico para'],
+    permitir: ['funda', 'protector'],
+    criterios: [
+      'Placas de cerámica o turmalina: reparten mejor el calor y maltratan menos el pelo.',
+      'Temperatura regulable: pelo fino o teñido pide menos grados que uno grueso.',
+      'Secador: 2000 W o más seca rápido; el aire frío ayuda a fijar el peinado.',
+      'Ancho de placa: angosta para pelo corto o flequillo, ancha para pelo largo.',
+      'Protector térmico antes de alisar, aunque la planchita no lo traiga.',
+    ],
+  },
+  {
+    slug: 'mejores-afeitadoras-y-cortadoras-de-pelo',
+    nombre: 'afeitadoras y cortadoras de pelo',
+    titulo: `Mejores afeitadoras y cortadoras de pelo en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de afeitadoras, cortadoras de pelo, trimmers y depiladoras en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    intro:
+      'Las afeitadoras, cortadoras de pelo, trimmers y depiladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    keywords: ['afeitadora', 'cortadora de pelo', 'cortadora de barba', 'maquina cortar pelo', 'maquina de cortar pelo', 'trimmer', 'patillera', 'clipper', 'shaver', 'depiladora'],
+    excluir: ['cuchilla', 'repuesto', 'aceite para', 'peine para'],
+    criterios: [
+      'Inalámbrica con batería de buena autonomía si la vas a usar lejos del enchufe.',
+      'Peines guía: cuantos más largos de corte trae, más estilos podés hacer.',
+      'Cuchillas de acero inoxidable o titanio, y que se puedan desmontar para limpiarlas.',
+      'Afeitadora de lámina para afeitado al ras; trimmer para perfilar barba y patillas.',
+      'Depiladora: con cabezal para zonas sensibles si la va a usar en todo el cuerpo.',
+    ],
+  },
+  {
     slug: 'mejores-colchones-2-plazas',
     nombre: 'colchones de 2 plazas',
     titulo: `Mejores colchones 2 plazas y queen en oferta ${AÑO}`,

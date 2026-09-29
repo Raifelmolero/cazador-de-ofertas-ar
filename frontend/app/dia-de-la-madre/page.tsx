@@ -56,6 +56,8 @@ const RUBROS_REGALO = [
   { comp: 'mejores-batidoras', titulo: 'Batidoras', emoji: '🍰' },
   { comp: 'mejores-aspiradoras', titulo: 'Aspiradoras', emoji: '🧹' },
   { comp: 'mejores-tablets', titulo: 'Tablets', emoji: '📱' },
+  { comp: 'mejores-smartwatch', titulo: 'Smartwatch', emoji: '⌚' },
+  { comp: 'mejores-planchitas-y-secadores-de-pelo', titulo: 'Planchitas y secadores de pelo', emoji: '💇' },
   { comp: 'mejores-colchones-2-plazas', titulo: 'Colchones 2 plazas y queen', emoji: '🛏️' },
   { comp: 'mejores-sommiers', titulo: 'Sommiers y conjuntos', emoji: '🛏️' },
   { comp: 'mejores-muebles-de-jardin', titulo: 'Muebles de jardín y gazebos', emoji: '🌿' },
@@ -161,7 +163,7 @@ export default function DiaDeLaMadrePage() {
     },
     {
       q: '¿Qué regalos grandes hay en oferta para el Día de la Madre?',
-      a: 'En esta página mostramos, por rubro, las ofertas de hoy desde $30.000 en perfumes, cafeteras, freidoras de aire, batidoras, aspiradoras, tablets, colchones, sommiers y muebles de jardín. Solo aparecen los rubros que hoy tienen ofertas, y cada rubro enlaza a su comparativa completa.',
+      a: 'En esta página mostramos, por rubro, las ofertas de hoy desde $30.000 en perfumes, cafeteras, freidoras de aire, batidoras, aspiradoras, tablets, smartwatch, planchitas y secadores de pelo, colchones, sommiers y muebles de jardín. Solo aparecen los rubros que hoy tienen ofertas, y cada rubro enlaza a su comparativa completa.',
     },
   ]
 

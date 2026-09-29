@@ -902,3 +902,32 @@ class TestTemporadaReyes(unittest.TestCase):
     def test_en_ventana_cruza_anio(self):
         self.assertTrue(bot._en_ventana(self._d(2027, 1, 3), (12, 25), (1, 6)))
         self.assertFalse(bot._en_ventana(self._d(2027, 6, 3), (12, 25), (1, 6)))
+
+
+# ---- Instagram/Threads mandan a la web, no directo a ML ----
+
+def test_web_deal_url_ficha_existente(tmp_path):
+    import json as _json
+    from cazador_bot import paginas_existentes, web_deal_url
+    p = tmp_path / "seg.json"
+    p.write_text(_json.dumps({"items": {"MLA1": {"slug": "tv-55-mla1"}}}), encoding="utf-8")
+    pag = paginas_existentes(p)
+    assert web_deal_url({"id": "MLA1"}, "threads", pag) == (
+        "https://cazadordeofertas.com.ar/precio/tv-55-mla1?utm_source=threads&utm_medium=social")
+
+
+def test_web_deal_url_sin_ficha_va_a_hoy(tmp_path):
+    from cazador_bot import paginas_existentes, web_deal_url
+    assert paginas_existentes(tmp_path / "no.json") == {}
+    url = web_deal_url({"id": "MLA9"}, "instagram", {})
+    assert url == "https://cazadordeofertas.com.ar/hoy?utm_source=instagram&utm_medium=social"
+    assert "mercadolibre" not in url
+
+
+def test_th_caption_con_link_web():
+    from cazador_bot import th_caption, th_text_caption, web_deal_url
+    d = {"id": "MLA1", "title": "Smart TV 55", "price_prev": 1000000,
+         "price_cur": 700000, "discount": 30}
+    link = web_deal_url(d, "threads", {"MLA1": "smart-tv-55-mla1"})
+    for cap in (th_caption(d, link), th_text_caption(d, link)):
+        assert link in cap and "mercadolibre" not in cap and len(cap) <= 500

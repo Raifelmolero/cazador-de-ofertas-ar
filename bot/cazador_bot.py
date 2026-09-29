@@ -615,6 +615,29 @@ def site_url(source: str) -> str:
     return f"https://{SITE_DOMAIN}/?utm_source={source}"
 
 
+def paginas_existentes(path: Path | None = None) -> dict[str, str]:
+    """id_ml → slug de las páginas /precio/[slug] que YA están publicadas
+    (seguimiento.json antes de actualizarlo en esta corrida: una página nueva
+    recién existe después del próximo deploy)."""
+    try:
+        with open(path or SEGUIMIENTO_PATH, encoding="utf-8") as f:
+            items = json.load(f).get("items", {})
+        return {k: v["slug"] for k, v in items.items() if v.get("slug")}
+    except (FileNotFoundError, json.JSONDecodeError, AttributeError, TypeError):
+        return {}
+
+
+def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None) -> str:
+    """Link a la ficha del producto en el sitio (/precio/[slug]) con UTM; si
+    el producto no tiene ficha publicada, a /hoy (donde está la oferta).
+    Instagram/Threads mandan acá en vez del link de ML: la web convierte ~12%
+    y las redes directo a ML no vendían."""
+    utm = f"utm_source={source}&utm_medium=social"
+    slug = (paginas or {}).get(deal.get("id", ""))
+    ruta = f"/precio/{slug}" if slug else "/hoy"
+    return f"https://{SITE_DOMAIN}{ruta}?{utm}"
+
+
 def verificador_url(source: str) -> str:
     """Link directo al verificador de la home (pegás un link de ML y te dice
     si el descuento es real). utm_campaign lo separa del resto en Clarity."""
@@ -1716,6 +1739,7 @@ def main() -> int:
     print(f"[info] {len(deals)} ofertas únicas parseadas")
 
     history = load_price_history()
+    paginas = paginas_existentes()  # antes de update_seguimiento: solo fichas ya publicadas
     annotate_price_history(deals, history)
     save_price_history(history)
     n_low = sum(d["hist_low"] for d in deals)
@@ -1792,7 +1816,8 @@ def main() -> int:
     ig_slot = slot in ("midday", "evening")
     if (os.getenv("FORCE_IG_KIT") == "1" or ig_slot) and to_post:
         best = to_post[0]
-        best_link = affiliate_url(best["url"], affiliate_id, tool_ig)
+        # A la ficha del sitio, no directo a ML (sticker de la story / kit).
+        best_link = web_deal_url(best, "instagram", paginas)
         ig_user_id = os.getenv("IG_USER_ID", "")
         ig_token = os.getenv("IG_ACCESS_TOKEN", "")
         if ig_user_id and ig_token:
@@ -1892,7 +1917,8 @@ def main() -> int:
         threads_token = os.getenv("THREADS_ACCESS_TOKEN", "")
         if threads_user_id and threads_token:
             th_deal = to_post[0]
-            th_link = affiliate_url(th_deal["url"], affiliate_id, tool_th)
+            # A la ficha del sitio con UTM, no directo a ML.
+            th_link = web_deal_url(th_deal, "threads", paginas)
             try:
                 permalink = publish_threads(
                     th_deal, th_link, threads_user_id, threads_token, dry,

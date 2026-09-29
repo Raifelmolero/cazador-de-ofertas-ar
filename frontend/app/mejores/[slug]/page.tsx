@@ -280,6 +280,16 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </p>
         )}
 
+        {(c.categoria === 'aire-acondicionado' || c.categoria === 'heladeras') && (
+          <p className="mb-10 text-sm bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-zinc-300">
+            ¿Cuánta luz va a gastar?{' '}
+            <a href="/calculadora-consumo-electrico" className="font-bold text-yellow-400 hover:underline">
+              Calculá el consumo eléctrico
+            </a>{' '}
+            en kWh por mes y su costo con tu precio del kWh.
+          </p>
+        )}
+
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué comparar antes de comprar</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">

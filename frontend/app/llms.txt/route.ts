@@ -127,6 +127,11 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   cuántas frigorías necesita un aire acondicionado según m², altura, sol, personas
   y equipos; conversor frigorías/BTU/kW (1 frigoría/h = 3,968 BTU/h) y aires en
   oferta hoy del tamaño recomendado.
+- [Calculadora de consumo eléctrico](https://cazadordeofertas.com.ar/calculadora-consumo-electrico):
+  kWh por mes de aire, heladera, freidora, lavarropas, termotanque, pava, microondas,
+  estufa, notebook o TV (watts × horas × días ÷ 1000); costo con el precio del kWh
+  que cargue el usuario (no publicamos tarifas), etiqueta de eficiencia explicada y
+  ofertas de hoy del equipo.
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
   [neumáticos](https://cazadordeofertas.com.ar/mejores/mejores-neumaticos),

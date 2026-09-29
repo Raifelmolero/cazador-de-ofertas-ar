@@ -136,6 +136,10 @@ export default function CalculadoraFrigoriasPage() {
             <Link href="/mejores/mejores-aires-acondicionados" className="text-yellow-400 hover:underline">
               comparativa de aires en oferta
             </Link>
+            . ¿Cuánto va a gastar de luz? Calculalo con la{' '}
+            <Link href="/calculadora-consumo-electrico" className="text-yellow-400 hover:underline">
+              calculadora de consumo eléctrico
+            </Link>
             .
           </p>
         </section>

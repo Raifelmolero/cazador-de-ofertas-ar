@@ -119,6 +119,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [electro de cocina](https://cazadordeofertas.com.ar/categoria/electro-de-cocina),
   [autos y motos](https://cazadordeofertas.com.ar/categoria/vehiculos) y
   [equipamiento gastronómico](https://cazadordeofertas.com.ar/categoria/equipamiento-gastronomico).
+- [Calculadora de frigorías](https://cazadordeofertas.com.ar/calculadora-frigorias):
+  cuántas frigorías necesita un aire acondicionado según m², altura, sol, personas
+  y equipos; conversor frigorías/BTU/kW (1 frigoría/h = 3,968 BTU/h) y aires en
+  oferta hoy del tamaño recomendado.
 - Comparativas de ticket alto (precio, descuento y mínimo registrado de hoy):
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/mejores-aires-acondicionados),
   [neumáticos](https://cazadordeofertas.com.ar/mejores/mejores-neumaticos),

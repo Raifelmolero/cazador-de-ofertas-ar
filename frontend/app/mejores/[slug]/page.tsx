@@ -270,6 +270,16 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </section>
         )}
 
+        {c.categoria === 'aire-acondicionado' && (
+          <p className="mb-10 text-sm bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-zinc-300">
+            ¿No sabés cuántas frigorías necesitás?{' '}
+            <a href="/calculadora-frigorias" className="font-bold text-yellow-400 hover:underline">
+              Usá la calculadora de frigorías
+            </a>{' '}
+            (m², altura, sol y personas) y te mostramos los aires en oferta de ese tamaño.
+          </p>
+        )}
+
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué comparar antes de comprar</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">

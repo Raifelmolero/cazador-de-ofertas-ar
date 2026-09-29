@@ -74,6 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/cupones-mercado-libre`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/descuentos-inflados`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
+    { url: `${DEALS_URL}/calculadora-frigorias`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/metodologia`, lastModified, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${DEALS_URL}/cyber-monday`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },

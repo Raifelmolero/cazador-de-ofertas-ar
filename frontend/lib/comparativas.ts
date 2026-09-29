@@ -684,6 +684,96 @@ export const COMPARATIVAS: Comparativa[] = [
       'Para chicos: una funda resistente y control parental importan más que el procesador.',
     ],
   },
+  {
+    slug: 'mejores-colchones-2-plazas',
+    nombre: 'colchones de 2 plazas',
+    titulo: `Mejores colchones 2 plazas y queen en oferta ${AÑO}`,
+    descripcion:
+      'Colchones de 2 plazas, queen y king en oferta hoy en Mercado Libre Argentina: medida, material, precio y precio mínimo registrado.',
+    intro:
+      'Los colchones de 2 plazas, queen y king en oferta hoy (solos o con sommier), comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'colchones',
+    keywords: ['2 plazas', 'dos plazas', 'queen', 'king', '130x190', '140x190', '140x200', '160x200', '180x200', '200x200'],
+    excluir: ['practicuna', 'cuna', 'funda', 'protector', 'almohada'],
+    criterios: [
+      'Medida: 2 plazas es 130x190 o 140x190; queen, 160x200; king, 180x200 o 200x200. Medí la base antes de comprar.',
+      'Con dos personas, resortes pocket o espuma de alta densidad transmiten menos el movimiento de uno al otro.',
+      'Mirá el peso máximo por plaza que declara el fabricante.',
+      'Si viene con sommier, fijate la altura total y si las patas vienen incluidas.',
+      'Garantía del fabricante y si el colchón viene "en caja" (tarda 24-48 h en tomar su forma).',
+    ],
+    guia: 'que-colchon-comprar-firmeza-y-material',
+  },
+  {
+    slug: 'mejores-sommiers',
+    nombre: 'sommiers',
+    titulo: `Mejores sommiers y conjuntos en oferta ${AÑO}: comparativa`,
+    descripcion:
+      'Sommiers y conjuntos sommier + colchón en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los sommiers y conjuntos sommier + colchón en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'colchones',
+    keywords: ['sommier', 'somier', 'box spring'],
+    excluir: ['funda', 'cubre sommier', 'pollera'],
+    criterios: [
+      'Que la medida del sommier sea exactamente la del colchón (130x190, 140x190, 160x200...).',
+      'Conjunto o solo base: el conjunto suele salir más barato que comprar las dos cosas por separado.',
+      'Peso máximo que soporta y material de la estructura (madera o metal).',
+      'Altura total con el colchón puesto y si trae patas, cajones o respaldo.',
+    ],
+    guia: 'que-colchon-comprar-firmeza-y-material',
+  },
+  {
+    slug: 'mejores-muebles-de-jardin',
+    nombre: 'muebles de jardín y gazebos',
+    titulo: `Mejores muebles de jardín y gazebos en oferta ${AÑO}`,
+    descripcion:
+      'Gazebos, reposeras, sillas, mesas y guardado de exterior en oferta hoy en Mercado Libre Argentina, con precio mínimo registrado.',
+    intro:
+      'Gazebos, reposeras, sillas, mesas y guardado de exterior en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    keywords: ['gazebo', 'glorieta', 'pergola', 'sombrilla', 'reposera', 'camastro', 'hamaca', 'jardin', 'exterior', 'gardenlife'],
+    excluir: ['bordeadora', 'cortadora', 'desmalezadora', 'motosierra', 'bomba', 'manguera', 'tijera', 'hidrolavadora', 'sopladora', 'luz', 'lampara', 'camara'],
+    criterios: [
+      'Gazebo: medida (3x3 es la más común), estructura de acero y lona con protección UV; mirá si trae paredes laterales y estacas.',
+      'Plástico reforzado o aluminio aguantan la intemperie sin mantenimiento; la madera necesita tratamiento.',
+      'Reposeras y sillas: peso máximo que soportan y si son plegables o apilables para guardarlas en invierno.',
+      'Guardado de exterior: acero galvanizado y medidas interiores reales, no solo las exteriores.',
+    ],
+  },
+  {
+    slug: 'mejores-parrillas',
+    nombre: 'parrillas',
+    titulo: `Mejores parrillas y asadores en oferta ${AÑO}: comparativa`,
+    descripcion:
+      'Parrillas, asadores, fogoneros y parrillas eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las parrillas y asadores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'parrillas',
+    excluir: ['cocina', 'anafe', 'horno'],
+    criterios: [
+      'Para balcón o departamento: parrilla eléctrica o a gas; a carbón o leña, patio o quincho.',
+      'Tamaño de la grilla según cuántos van a comer.',
+      'Chapa gruesa o hierro fundido retienen mejor el calor y duran más.',
+      'Ruedas, tapa y regulación de altura de la grilla hacen la diferencia en el uso diario.',
+    ],
+  },
+  {
+    slug: 'mejores-piletas',
+    nombre: 'piletas',
+    titulo: `Mejores piletas de lona y accesorios en oferta ${AÑO}`,
+    descripcion:
+      'Piletas de lona, estructurales e inflables, bombas y filtros en oferta hoy en Mercado Libre Argentina, con precio mínimo registrado.',
+    intro:
+      'Piletas y equipamiento para la pileta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    keywords: ['pileta', 'piscina', 'pelopincho'],
+    excluir: ['termometro', 'cloro', 'pastilla', 'barrefondo', 'saca hojas'],
+    criterios: [
+      'Capacidad en litros según el espacio disponible: está en la ficha de cada modelo.',
+      'Estructural (caños de acero) dura más temporadas que la inflable.',
+      'Filtro o bomba acordes al volumen de agua: mirá los litros por hora que declara el fabricante.',
+      'Superficie nivelada y lona de base para que no se rompa el piso de la pileta.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

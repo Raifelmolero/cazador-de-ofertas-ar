@@ -64,6 +64,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
 - Verificador de descuentos: https://cazadordeofertas.com.ar/#verificador
   (pegás el link de una publicación de Mercado Libre y dice si el precio de hoy
   es el mínimo registrado, normal o inflado).
+- [Cupones y códigos de descuento de Mercado Libre](https://cazadordeofertas.com.ar/cupones-mercado-libre):
+  dónde ver los cupones oficiales (mercadolibre.com.ar/cupones, requiere sesión),
+  cómo son sus condiciones, Meli+ y beneficios bancarios según
+  mercadolibre.com.ar/l/promociones (leído el 28/09/2026). No lista códigos.
 - [Cyber Monday 2026 en Argentina](https://cazadordeofertas.com.ar/cyber-monday):
   fechas oficiales (CACE: lunes 2 al miércoles 4 de noviembre de 2026, fuente
   cybermonday.com.ar), cómo detectar descuentos inflados en el evento y las

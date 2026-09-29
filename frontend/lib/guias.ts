@@ -209,6 +209,11 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+    cta: {
+      href: '/cupones-mercado-libre',
+      titulo: 'Guía completa de cupones, con fuentes oficiales',
+      boton: 'Ver la guía de cupones 🎟️',
+    },
   },
   {
     slug: 'cuantas-frigorias-necesito-aire-acondicionado',

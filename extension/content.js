@@ -59,7 +59,7 @@
         <div class="top"><span>🎯 Cazador de Ofertas</span><button class="x" aria-label="Cerrar">×</button></div>
         ${v.sello ? `<span class="s" style="color:${v.color};border-color:${v.color}">${v.sello}</span>` : ''}
         <h3>${v.titulo}</h3>
-        <p>${v.hist}${slug ? ` <a href="https://cazadordeofertas.com.ar/precio/${slug}" target="_blank" rel="noopener">Ver historial</a>` : ''}</p>
+        <p>${v.hist}${slug ? ` <a href="https://cazadordeofertas.com.ar/precio/${slug}?utm_source=extension&utm_medium=extension" target="_blank" rel="noopener">Ver historial</a>` : ''}</p>
         <button class="b">Comprar con Cazador</button>
         <small>Opcional: nos apoya con una comisión de afiliado y a vos te cuesta lo mismo.</small>
       </div>`

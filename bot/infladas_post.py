@@ -85,7 +85,7 @@ def texto_threads(casos: list[dict]) -> str:
         t = (
             "🚩 Descuentos truchos de la semana en Mercado Libre:\n\n"
             f"{cuerpo}\n\n"
-            f"Lista completa: {SITE_DOMAIN}/descuentos-inflados"
+            f"Lista completa: {pagina('threads')}"
         )
         if len(t) <= 500:
             return t

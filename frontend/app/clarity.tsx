@@ -23,6 +23,21 @@ export default function Clarity() {
       } as ((...args: unknown[]) => void) & { q?: unknown[] })
     w.clarity = clarity
 
+    // Canal de origen como custom tag para filtrar sesiones en Clarity
+    // (Telegram/IG no mandan referrer). Se guarda en sessionStorage para que
+    // la etiqueta siga aunque la persona navegue a otra página sin UTM.
+    try {
+      const params = new URLSearchParams(window.location.search)
+      for (const k of ['utm_source', 'utm_medium', 'utm_campaign']) {
+        let v = params.get(k)
+        if (v) sessionStorage.setItem(k, v)
+        else v = sessionStorage.getItem(k)
+        if (v) clarity('set', k, v.slice(0, 100))
+      }
+    } catch {
+      // sessionStorage bloqueado: seguimos sin etiqueta
+    }
+
     const script = document.createElement('script')
     script.id = 'clarity-script'
     script.async = true

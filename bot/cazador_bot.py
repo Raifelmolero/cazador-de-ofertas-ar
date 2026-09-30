@@ -1313,14 +1313,14 @@ def th_caption(deal: dict, link: str) -> str:
         f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
         f"{remate}\n\n"
-        f"{VERIF_CTA.format(url=SITE_DOMAIN)}"
+        f"{VERIF_CTA.format(url=verificador_url('threads'))}"
     )
     if len(caption) > 500:
         caption = (
             f"{hook} {deal['discount']}% OFF en {deal['title'][:60]}\n\n"
             f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 💸\n\n"
             f"🛒 {link}\n\n"
-            f"🔎 {SITE_DOMAIN}"
+            f"🔎 {site_url('threads')}"
         )
     return caption
 
@@ -1346,7 +1346,7 @@ def fb_caption(deal: dict, link: str) -> str:
         f"🛒 Comprá acá: {link}\n\n"
         f"{remate}\n\n"
         f"{VERIF_CTA.format(url=verificador_url('facebook'))}\n\n"
-        f"Más ofertas todos los días en cazadordeofertas.com.ar y en nuestro "
+        f"Más ofertas todos los días en {site_url('facebook')} y en nuestro "
         f"canal de Telegram: t.me/cazadordeofertasar"
     )
 

@@ -4,7 +4,7 @@
   "short_name": "Cazador",
   "version": "0.1.1",
   "description": "En cada producto de Mercado Libre Argentina te muestra el historial de precios y si el descuento es real o está inflado.",
-  "homepage_url": "https://cazadordeofertas.com.ar",
+  "homepage_url": "https://cazadordeofertas.com.ar/?utm_source=extension",
   "permissions": [],
   "host_permissions": [
     "https://cazadordeofertas.com.ar/*"

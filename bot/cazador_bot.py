@@ -638,6 +638,20 @@ def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None)
     return f"https://{SITE_DOMAIN}{ruta}?{utm}"
 
 
+def telegram_links(deal: dict, affiliate_id: str, word: str,
+                   paginas: dict[str, str] | None = None) -> tuple[str, str | None]:
+    """(link principal, link directo a ML o None) para un post del canal.
+    Mismo criterio que IG/Threads (web_deal_url): si el producto tiene ficha
+    /precio/[slug] publicada, el principal va a la web con UTM (la web hizo el
+    100% de la ganancia 22-28/09) y el de ML (matt_word=telegram) queda como
+    secundario. Sin ficha, o si es exclusiva del canal (no sale en la web),
+    el principal sigue siendo ML directo."""
+    ml = affiliate_url(deal["url"], affiliate_id, word)
+    if deal.get("canal_exclusiva") or deal.get("id", "") not in (paginas or {}):
+        return ml, None
+    return web_deal_url(deal, "telegram", paginas), ml
+
+
 def verificador_url(source: str) -> str:
     """Link directo al verificador de la home (pegás un link de ML y te dice
     si el descuento es real). utm_campaign lo separa del resto en Clarity."""
@@ -735,22 +749,33 @@ def deal_caption(deal: dict, link: str, whatsapp: bool = False) -> str:
     return caption
 
 
-def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool,
-              whatsapp: bool = False) -> bool:
-    caption = deal_caption(deal, link, whatsapp=whatsapp)
+def tg_keyboard(deal: dict, link: str, ml_link: str | None = None) -> dict:
+    """Botones del post. Con ml_link, `link` es la ficha de la web y ML queda
+    como segundo botón (link directo de afiliado, sin ocultar)."""
     landing = landing_temporada(deal["title"], "telegram")
     mas = (
         {"text": landing[0], "url": landing[1]}
         if landing
         else {"text": "🔎 Más ofertas en el sitio", "url": site_url("telegram")}
     )
-    keyboard = {
-        "inline_keyboard": [
-            [{"text": "🛒 Ver oferta en ML", "url": link}],
+    principal = (
+        [[{"text": "📊 Ver precio e historial", "url": link}],
+         [{"text": "🛒 Ir directo a ML", "url": ml_link}]]
+        if ml_link
+        else [[{"text": "🛒 Ver oferta en ML", "url": link}]]
+    )
+    return {
+        "inline_keyboard": principal + [
             [mas],
             [{"text": "🔍 ¿Otro descuento es real? Verificalo", "url": verificador_url("telegram")}],
         ]
     }
+
+
+def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool,
+              whatsapp: bool = False, ml_link: str | None = None) -> bool:
+    caption = deal_caption(deal, link, whatsapp=whatsapp)
+    keyboard = tg_keyboard(deal, link, ml_link)
     if dry:
         print("=" * 60)
         print(f"[DRY] canal {channel} | img={bool(deal['img'])}")
@@ -1840,11 +1865,12 @@ def main() -> int:
 
     published_ids = []
     for i, deal in enumerate(to_post):
-        link = affiliate_url(deal["url"], affiliate_id, tool_tg)
+        # A la ficha de la web si existe (como IG/Threads); ML queda de 2º botón.
+        link, ml_link = telegram_links(deal, affiliate_id, tool_tg, paginas)
         # Canal de WhatsApp: una sola mención por día, al pie del último post
         # del run de la noche.
         wa = slot == "night" and i == len(to_post) - 1
-        if post_deal(token, cfg["channel"], deal, link, dry, whatsapp=wa):
+        if post_deal(token, cfg["channel"], deal, link, dry, whatsapp=wa, ml_link=ml_link):
             published_ids.append(deal["id"])
             log_post(deal, "telegram")
             time.sleep(2)

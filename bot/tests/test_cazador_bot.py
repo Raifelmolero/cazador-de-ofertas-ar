@@ -961,3 +961,35 @@ def test_th_caption_con_link_web():
     link = web_deal_url(d, "threads", {"MLA1": "smart-tv-55-mla1"})
     for cap in (th_caption(d, link), th_text_caption(d, link)):
         assert link in cap and "mercadolibre" not in cap and len(cap) <= 500
+
+
+class TestTelegramAWeb(unittest.TestCase):
+    DEAL = {"id": "MLA1", "url": "https://www.mercadolibre.com.ar/p/MLA1",
+            "title": "Aire acondicionado split 3000 frigorías"}
+
+    def test_con_ficha_va_a_la_web_y_ml_queda_secundario(self):
+        link, ml = bot.telegram_links(self.DEAL, "aff", "telegram", {"MLA1": "aire-split"})
+        self.assertEqual(
+            link, f"https://{bot.SITE_DOMAIN}/precio/aire-split?utm_source=telegram&utm_medium=social")
+        self.assertIn("matt_word=telegram", ml)
+        kb = bot.tg_keyboard(self.DEAL, link, ml)["inline_keyboard"]
+        self.assertEqual(kb[0][0]["url"], link)
+        self.assertEqual(kb[1][0]["url"], ml)
+
+    def test_sin_ficha_sigue_ml_directo(self):
+        link, ml = bot.telegram_links(self.DEAL, "aff", "telegram", {})
+        self.assertIsNone(ml)
+        self.assertIn("matt_word=telegram", link)
+        self.assertEqual(bot.tg_keyboard(self.DEAL, link)["inline_keyboard"][0][0]["url"], link)
+
+    def test_exclusiva_del_canal_no_manda_a_la_web(self):
+        deal = dict(self.DEAL, canal_exclusiva=True)
+        link, ml = bot.telegram_links(deal, "aff", "telegram", {"MLA1": "aire-split"})
+        self.assertIsNone(ml)
+        self.assertNotIn(bot.SITE_DOMAIN, link)
+
+    def test_seleccion_prioriza_ganancia_esperada(self):
+        chico = {"title": "Juguete", "price_cur": 15000}
+        grande = {"title": "Aire acondicionado split", "price_cur": 800000}
+        orden = sorted([chico, grande], key=bot.ganancia_esperada, reverse=True)
+        self.assertIs(orden[0], grande)

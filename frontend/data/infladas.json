@@ -1,8 +1,21 @@
 {
- "actualizado": "2026-09-29T23:38:46+00:00",
- "fecha": "2026-09-29",
- "infladas_detectadas": 151,
+ "actualizado": "2026-09-30T03:49:53+00:00",
+ "fecha": "2026-09-30",
+ "infladas_detectadas": 213,
  "items": [
+  {
+   "id": "MLA63784972",
+   "titulo": "Aspiradora Robot Trapeadora Fika Limpieza Mapeo Swift Con Estación De Vaciado Automático App Wifi Color Negro",
+   "url": "https://www.mercadolibre.com.ar/aspiradora-robot-trapeadora-fika-limpieza-mapeo-swift-con-estacion-de-vaciado-automatico-app-wifi-color-negro/p/MLA63784972",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_906834-MLA107370991054_032026-AB.webp",
+   "precio_hoy": 603339,
+   "precio_tachado": 799999,
+   "descuento_anunciado": 24,
+   "minimo_registrado": 349999,
+   "minimo_fecha": "2026-09-29",
+   "visto_desde": "2026-09-29",
+   "diferencia_pct": 42
+  },
   {
    "id": "MLA75336162",
    "titulo": "Cinta Caminadora Eléctrica Para Correr | Noxi Sport | 12 Km/h | Negro",
@@ -15,6 +28,19 @@
    "minimo_fecha": "2026-07-22",
    "visto_desde": "2026-07-22",
    "diferencia_pct": 41
+  },
+  {
+   "id": "MLA27003152",
+   "titulo": "Bicicleta Spinning Shock Rider Profesional Con Amortiguador 30 kg y App Bluetooth Energy Fit",
+   "url": "https://www.mercadolibre.com.ar/bicicleta-spinning-shock-rider-profesional-con-amortiguador-30-kg-y-app-bluetooth-energy-fit/p/MLA27003152",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_641627-MLA116701210345_082026-AB.webp",
+   "precio_hoy": 676260,
+   "precio_tachado": 867000,
+   "descuento_anunciado": 22,
+   "minimo_registrado": 410048,
+   "minimo_fecha": "2026-09-19",
+   "visto_desde": "2026-07-21",
+   "diferencia_pct": 39
   },
   {
    "id": "MLA15503957",
@@ -30,6 +56,19 @@
    "diferencia_pct": 39
   },
   {
+   "id": "MLA21651867",
+   "titulo": "Bicicleta Fija Spinning Profesional Gym 8 Niveles 28 Kgs con App Bluetooth",
+   "url": "https://www.mercadolibre.com.ar/bicicleta-fija-spinning-profesional-gym-8-niveles-28-kgs-con-app-bluetooth/p/MLA21651867",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_678531-MLA115292824318_082026-AB.webp",
+   "precio_hoy": 616690,
+   "precio_tachado": 743000,
+   "descuento_anunciado": 17,
+   "minimo_registrado": 379999,
+   "minimo_fecha": "2026-09-28",
+   "visto_desde": "2026-07-22",
+   "diferencia_pct": 38
+  },
+  {
    "id": "MLA15843641",
    "titulo": "Aspiradora Samsung sin bolsa 2000W VC20CCNMA color negro",
    "url": "https://www.mercadolibre.com.ar/aspiradora-samsung-sin-bolsa-2000w-vc20ccnma-color-negro/p/MLA15843641",
@@ -41,6 +80,45 @@
    "minimo_fecha": "2026-07-28",
    "visto_desde": "2026-07-28",
    "diferencia_pct": 36
+  },
+  {
+   "id": "MLA63691359",
+   "titulo": "Mesa Nórdicas Redonda 50 Cm - Melamina+ Patas De Madera Blanco",
+   "url": "https://www.mercadolibre.com.ar/mesa-nordicas-redonda-50-cm-melamina-patas-de-madera-blanco/p/MLA63691359",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_887058-MLA103142194019_122025-AB.webp",
+   "precio_hoy": 32205,
+   "precio_tachado": 33900,
+   "descuento_anunciado": 5,
+   "minimo_registrado": 20582,
+   "minimo_fecha": "2026-09-26",
+   "visto_desde": "2026-09-26",
+   "diferencia_pct": 36
+  },
+  {
+   "id": "MLA22230195",
+   "titulo": "Adaptador Displayport a Hdmi stick 4k 60hz",
+   "url": "https://www.mercadolibre.com.ar/adaptador-displayport-a-hdmi-stick-4k-60hz/p/MLA22230195",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_730739-MLU77955692000_082024-AB.webp",
+   "precio_hoy": 7510,
+   "precio_tachado": 7990,
+   "descuento_anunciado": 6,
+   "minimo_registrado": 4818,
+   "minimo_fecha": "2026-09-29",
+   "visto_desde": "2026-09-29",
+   "diferencia_pct": 36
+  },
+  {
+   "id": "MLA62027601",
+   "titulo": "Taladro Percutor Electrico Tivoli 500w mandril 13mm 3000rpm",
+   "url": "https://www.mercadolibre.com.ar/taladro-percutor-electrico-tivoli-500w-mandril-13mm-3000rpm/p/MLA62027601",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_757838-MLA111237221069_052026-AB.webp",
+   "precio_hoy": 64999,
+   "precio_tachado": 89999,
+   "descuento_anunciado": 27,
+   "minimo_registrado": 42999,
+   "minimo_fecha": "2026-09-26",
+   "visto_desde": "2026-09-26",
+   "diferencia_pct": 34
   },
   {
    "id": "MLA41391097",
@@ -69,95 +147,17 @@
    "diferencia_pct": 31
   },
   {
-   "id": "MLA63934515",
-   "titulo": "Tablet Lenovo Idea Tab 8gb 128gb Android 15 Con Teclado + Lápiz, Color Polar Blue",
-   "url": "https://www.mercadolibre.com.ar/tablet-lenovo-idea-tab-8gb-128gb-android-15-con-teclado-lapiz-color-polar-blue/p/MLA63934515",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_747056-MLA103366911966_012026-AB.webp",
-   "precio_hoy": 889999,
-   "precio_tachado": 1135795,
-   "descuento_anunciado": 21,
-   "minimo_registrado": 617820,
-   "minimo_fecha": "2026-07-18",
-   "visto_desde": "2026-07-18",
-   "diferencia_pct": 31
-  },
-  {
-   "id": "MLA69124900",
-   "titulo": "Notebook Acer Aspire Go 15 15.6 Full Hd Ryzen 7 7730u 16gb Ram 512gb Ssd Wifi 6 Windows 11 Home Plateada",
-   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-156-full-hd-ryzen-7-7730u-16gb-ram-512gb-ssd-wifi-6-windows-11-home-plateada/p/MLA69124900",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_876025-MLA111198115363_052026-AB.webp",
-   "precio_hoy": 1569999,
-   "precio_tachado": 2522848,
-   "descuento_anunciado": 37,
-   "minimo_registrado": 1151399,
-   "minimo_fecha": "2026-07-26",
-   "visto_desde": "2026-07-26",
-   "diferencia_pct": 27
-  },
-  {
-   "id": "MLA78631495",
-   "titulo": "Multigimnasio Multigym | Reforzado | 50 Kg | Color de la estructura Negro | Noxi - Sports | Gym001",
-   "url": "https://www.mercadolibre.com.ar/multigimnasio-multigym-reforzado-50-kg-color-de-la-estructura-negro-noxi-sports-gym001/p/MLA78631495",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_766552-MLA117322052889_092026-AB.webp",
-   "precio_hoy": 749999,
-   "precio_tachado": 1499999,
-   "descuento_anunciado": 50,
-   "minimo_registrado": 552996,
-   "minimo_fecha": "2026-09-14",
-   "visto_desde": "2026-09-12",
-   "diferencia_pct": 26
-  },
-  {
-   "id": "MLA22826188",
-   "titulo": "Notebook EXO Smart T38 Intel N4020 4GB SSD 128GB Windows 11 Color Gris",
-   "url": "https://www.mercadolibre.com.ar/notebook-exo-smart-t38-intel-n4020-4gb-ssd-128gb-windows-11-color-gris/p/MLA22826188",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_674154-MLA99475153990_112025-AB.webp",
-   "precio_hoy": 425999,
-   "precio_tachado": 569999,
-   "descuento_anunciado": 25,
-   "minimo_registrado": 316036,
-   "minimo_fecha": "2026-08-23",
-   "visto_desde": "2026-07-19",
-   "diferencia_pct": 26
-  },
-  {
-   "id": "MLA65290702",
-   "titulo": "Smartphone Moto G17 Evening Blue Memoria interna 128GB - 4GM RAM Motorola",
-   "url": "https://www.mercadolibre.com.ar/smartphone-moto-g17-evening-blue-memoria-interna-128gb-4gm-ram-motorola/p/MLA65290702",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_638602-MLA106598723027_022026-AB.webp",
-   "precio_hoy": 299999,
-   "precio_tachado": 478499,
-   "descuento_anunciado": 37,
-   "minimo_registrado": 223399,
-   "minimo_fecha": "2026-09-23",
-   "visto_desde": "2026-07-27",
-   "diferencia_pct": 26
-  },
-  {
-   "id": "MLA24240981",
-   "titulo": "Cocina Negra Escorial Candor S2 Black 4 Hornallas Visor Y Parilla gas natural",
-   "url": "https://www.mercadolibre.com.ar/cocina-negra-escorial-candor-s2-black-4-hornallas-visor-y-parilla-gas-natural/p/MLA24240981",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_863411-MLA100045820297_122025-AB.webp",
-   "precio_hoy": 434389,
-   "precio_tachado": 659999,
-   "descuento_anunciado": 34,
-   "minimo_registrado": 325555,
-   "minimo_fecha": "2026-07-31",
-   "visto_desde": "2026-07-19",
-   "diferencia_pct": 25
-  },
-  {
-   "id": "MLA44141974",
-   "titulo": "Depiladora Ipl Philips Lumea Prestige Bri947 - Alternativa Laser - Rostro + cuerpo + bikini + axilas",
-   "url": "https://www.mercadolibre.com.ar/depiladora-ipl-philips-lumea-prestige-bri947-alternativa-laser-rostro-cuerpo-bikini-axilas/p/MLA44141974",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_836926-MLU71242140084_082023-AB.webp",
-   "precio_hoy": 799999,
-   "precio_tachado": 1090789,
-   "descuento_anunciado": 26,
-   "minimo_registrado": 611088,
-   "minimo_fecha": "2026-09-16",
-   "visto_desde": "2026-07-19",
-   "diferencia_pct": 24
+   "id": "MLA70042178",
+   "titulo": "Aire Acondicionado Split Inverter Philco 3800W/3268FG PHIN38HA6AN",
+   "url": "https://www.mercadolibre.com.ar/aire-acondicionado-split-inverter-philco-3800w3268fg-phin38ha6an/p/MLA70042178",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_987855-MLA111945222829_052026-AB.webp",
+   "precio_hoy": 1072135,
+   "precio_tachado": 1223999,
+   "descuento_anunciado": 12,
+   "minimo_registrado": 749999,
+   "minimo_fecha": "2026-09-21",
+   "visto_desde": "2026-07-22",
+   "diferencia_pct": 30
   }
  ]
 }

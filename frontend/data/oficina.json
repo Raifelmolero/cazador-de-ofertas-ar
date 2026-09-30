@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-29T23:40:23+00:00",
+  "generado": "2026-09-30T03:52:04+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,29 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-29T23:40:22+00:00",
+      "ultima_actividad": "2026-09-30T03:52:04+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1382 productos en la última corrida"
+          "tarea": "Revisó 1444 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 15
+          "valor": 20
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "Historias IG",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
@@ -39,14 +43,10 @@
         {
           "label": "Facebook",
           "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Aire Acondicionado Philco Split Inverter Phin82hc2an Blanco"
+      "ultimo_trabajo": "Blanco Aspiradora Robot Xiaomi Vacuum H50"
     },
     {
       "id": "investigacion",

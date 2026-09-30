@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-30T03:52:04+00:00",
+  "generado": "2026-09-30T19:59:21+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,45 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-30T03:52:04+00:00",
+      "ultima_actividad": "2026-09-30T19:59:21+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1444 productos en la última corrida"
+          "tarea": "Revisó 1459 productos en la última corrida"
         }
       ],
       "metricas": [
-        {
-          "label": "Telegram",
-          "valor": 20
-        },
         {
           "label": "whatsapp_kit",
           "valor": 15
         },
         {
+          "label": "Telegram",
+          "valor": 15
+        },
+        {
+          "label": "Facebook",
+          "valor": 3
+        },
+        {
           "label": "Historias IG",
-          "valor": 4
+          "valor": 3
         },
         {
           "label": "Threads",
-          "valor": 4
-        },
-        {
-          "label": "Reels IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Facebook",
-          "valor": 2
+          "label": "Reels IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Blanco Aspiradora Robot Xiaomi Vacuum H50"
+      "ultimo_trabajo": "Cortadora De Fiambre Profesional Ascada Slicer 300 Plateado"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-09-29T16:47:40+00:00",
+      "ultima_actividad": "2026-09-30T16:39:21+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

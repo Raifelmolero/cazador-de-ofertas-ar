@@ -13,13 +13,19 @@ import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
+import { getComparativa, indexable } from '@/lib/comparativas'
 
 const URL = `${DEALS_URL}/cupones-mercado-libre`
-const TITULO = 'Cupones y códigos de descuento de Mercado Libre'
+const TITULO = 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos'
 const DESCRIPCION =
-  'Cómo funcionan los cupones de Mercado Libre Argentina, dónde verlos, qué pasa con Meli+ y los bancos, y cómo saber si el descuento es real. Sin códigos inventados.'
+  'Cupones y códigos de descuento de Mercado Libre Argentina: dónde verlos, cómo usarlos, qué pasa con Meli+ y los bancos, y cómo saber si el descuento es real. Sin códigos inventados.'
 /** Día en que se leyeron las fuentes oficiales citadas abajo. */
 const VERIFICADO = '28/09/2026'
+/** Última edición de esta guía (ISO, para JSON-LD y el texto visible). */
+const MODIFICADO = '2026-09-29'
+const MODIFICADO_TXT = '29/09/2026'
+/** Comparativas de ticket alto: donde un cupón con tope rinde más. */
+const TICKET_ALTO = ['mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas', 'mejores-notebooks', 'mejores-celulares']
 const MAX_OFERTAS = 8
 
 export const metadata: Metadata = {
@@ -44,6 +50,14 @@ const FAQS = [
   {
     q: '¿Dónde veo los cupones que tengo disponibles?',
     a: 'En mercadolibre.com.ar/cupones, con tu cuenta iniciada (sin sesión, la página te manda al login). Ahí aparecen los cupones disponibles para tu usuario en ese momento.',
+  },
+  {
+    q: '¿Cómo se usa un cupón de Mercado Libre?',
+    a: 'Con tu cuenta iniciada, revisá en mercadolibre.com.ar/cupones qué cupones tenés y leé sus condiciones (vigencia, productos alcanzados y tope). Después comprá un producto alcanzado y, antes de confirmar el pago, verificá que el descuento figure en el resumen de la compra. Si no aparece, ese cupón no aplica a esa compra.',
+  },
+  {
+    q: '¿El cupón descuenta el envío?',
+    a: 'En las condiciones de campañas de cupones que publicó Mercado Libre que leímos, el descuento se calcula sobre el total de la compra sin incluir el envío. Cada cupón puede tener reglas propias: fijate en las suyas.',
   },
   {
     q: '¿Puedo usar dos cupones en la misma compra?',
@@ -73,6 +87,10 @@ export default function CuponesPage() {
       historial: historial[o.id_ml],
     }))
 
+  const comparativas = TICKET_ALTO.map(getComparativa).filter(
+    (c): c is NonNullable<typeof c> => !!c && indexable(c),
+  )
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -80,7 +98,8 @@ export default function CuponesPage() {
       headline: TITULO,
       description: DESCRIPCION,
       inLanguage: 'es-AR',
-      dateModified: '2026-09-28',
+      datePublished: '2026-09-28',
+      dateModified: MODIFICADO,
       mainEntityOfPage: URL,
       author: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
       publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
@@ -111,9 +130,11 @@ export default function CuponesPage() {
       </header>
 
       <article className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
-        <p className="text-xs font-bold tracking-widest text-yellow-400 mb-3">GUÍA · FUENTES LEÍDAS EL {VERIFICADO}</p>
+        <p className="text-xs font-bold tracking-widest text-yellow-400 mb-3">
+          GUÍA · ACTUALIZADA EL <time dateTime={MODIFICADO}>{MODIFICADO_TXT}</time> · FUENTES LEÍDAS EL {VERIFICADO}
+        </p>
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-6 [text-wrap:balance]">
-          Cupones y códigos de descuento de Mercado Libre Argentina
+          Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos
         </h1>
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
@@ -135,6 +156,17 @@ export default function CuponesPage() {
               Sin sesión iniciada te redirige al login: los cupones son por usuario, así que dos personas pueden ver
               cupones distintos el mismo día. Revisala antes de pagar, no después.
             </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3 text-zinc-100">Cómo usar un cupón de Mercado Libre, paso a paso</h2>
+            <ol className="space-y-2 list-decimal pl-5">
+              <li>Iniciá sesión y entrá a <a href="https://www.mercadolibre.com.ar/cupones" rel="nofollow noopener" target="_blank" className={a}>mercadolibre.com.ar/cupones</a> para ver los cupones de tu cuenta.</li>
+              <li>Leé las condiciones de cada uno: vigencia, productos alcanzados y tope máximo de descuento.</li>
+              <li>Elegí un producto que entre en esas condiciones y chequeá que el precio base sea bueno (abajo te decimos cómo).</li>
+              <li>Antes de confirmar el pago, mirá el resumen de la compra: el descuento del cupón tiene que figurar ahí. Si no figura, ese cupón no aplica.</li>
+              <li>Un cupón por compra: si tenés varios, usá el que más descuente para esa compra en particular.</li>
+            </ol>
           </section>
 
           <section>
@@ -243,6 +275,28 @@ export default function CuponesPage() {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-12">
+        {comparativas.length > 0 && (
+          <section className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Donde un cupón rinde más: compras grandes</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">
+              Los cupones suelen tener un tope de descuento, así que conviene comparar bien el precio base de las compras
+              caras. Estas comparativas muestran el precio de hoy contra el mínimo que registramos:
+            </p>
+            <ul className="text-sm space-y-1 list-disc pl-5 text-zinc-400">
+              {comparativas.map(c => (
+                <li key={c.slug}>
+                  <Link href={`/mejores/${c.slug}`} className={a}>Mejores {c.nombre} en oferta</Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/precio" className={a}>Historial de precios de productos de ticket alto</Link>
+              </li>
+              <li>
+                <a href={DEALS_URL} className={a}>Todas las ofertas de hoy en Mercado Libre</a>
+              </li>
+            </ul>
+          </section>
+        )}
         <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Preguntas frecuentes</h2>
         <div className="space-y-5">
           {FAQS.map(f => (

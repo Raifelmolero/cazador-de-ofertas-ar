@@ -37,6 +37,14 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
           <a href="https://cazadordeofertas.com.ar/terminos" className="underline hover:text-yellow-400 transition-colors">
             Términos de servicio
           </a>
+          {brand === 'ofertas' && (
+            <>
+              {' · '}
+              <a href="https://cazadordeofertas.com.ar/cupones-mercado-libre" className="underline hover:text-yellow-400 transition-colors">
+                Cupones de Mercado Libre
+              </a>
+            </>
+          )}
         </p>
       </div>
     </footer>

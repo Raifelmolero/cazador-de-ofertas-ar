@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-30T19:59:21+00:00",
+  "generado": "2026-09-30T23:42:55+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,25 +8,21 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-30T19:59:21+00:00",
+      "ultima_actividad": "2026-09-30T23:42:54+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1459 productos en la última corrida"
+          "tarea": "Revisó 1444 productos en la última corrida"
         }
       ],
       "metricas": [
-        {
-          "label": "whatsapp_kit",
-          "valor": 15
-        },
         {
           "label": "Telegram",
           "valor": 15
         },
         {
-          "label": "Facebook",
-          "valor": 3
+          "label": "whatsapp_kit",
+          "valor": 10
         },
         {
           "label": "Historias IG",
@@ -41,12 +37,16 @@
           "valor": 2
         },
         {
+          "label": "Facebook",
+          "valor": 2
+        },
+        {
           "label": "Reels IG",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Cortadora De Fiambre Profesional Ascada Slicer 300 Plateado"
+      "ultimo_trabajo": "Sommier Y Colchón Suavestar Centuria Ep 2 1/2 Plazas 140x190 Gris Combinado"
     },
     {
       "id": "investigacion",

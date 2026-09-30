@@ -140,10 +140,18 @@ export default function CalculadoraConsumoPage() {
             , y mirá las comparativas de{' '}
             <Link href="/mejores/mejores-aires-acondicionados" className="text-yellow-400 hover:underline">
               aires acondicionados
-            </Link>{' '}
-            y{' '}
+            </Link>
+            ,{' '}
             <Link href="/mejores/mejores-heladeras" className="text-yellow-400 hover:underline">
               heladeras
+            </Link>
+            ,{' '}
+            <Link href="/mejores/mejores-lavarropas" className="text-yellow-400 hover:underline">
+              lavarropas
+            </Link>{' '}
+            y{' '}
+            <Link href="/mejores/mejores-smart-tv" className="text-yellow-400 hover:underline">
+              smart TV
             </Link>{' '}
             en oferta.
           </p>

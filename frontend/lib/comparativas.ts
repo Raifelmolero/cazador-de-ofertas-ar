@@ -76,6 +76,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
     categoria: 'lavarropas',
+    guia: 'que-lavarropas-comprar',
     criterios: [
       'Capacidad: 6-7 kg para 1-2 personas, 8 kg o más para familias.',
       'Carga frontal: lava mejor y gasta menos agua; carga superior: más barato.',
@@ -93,6 +94,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Las heladeras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
     categoria: 'heladeras',
+    guia: 'que-heladera-comprar',
     criterios: [
       'No frost: no junta hielo; cíclica: más barata y gasta menos.',
       'Litros: unos 100 a 150 L por persona como referencia.',
@@ -506,6 +508,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Las freidoras de aire en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
     categoria: 'freidoras-de-aire',
+    guia: 'que-freidora-de-aire-comprar',
     criterios: [
       'Capacidad: 3 a 4 litros alcanza para 1-2 personas; para familias conviene 5 litros o más (o doble canasto).',
       'Potencia: entre 1.400 y 1.800 W cocina parejo y rápido.',

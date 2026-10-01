@@ -15,6 +15,14 @@ export interface Guia {
   categoria?: { slug: string; nombre: string }
   // Botón final a medida (ej. a una comparativa); pisa al de categoría.
   cta?: { href: string; titulo: string; boton: string }
+  /** Preguntas frecuentes extra (van al FAQPage JSON-LD junto con la principal). */
+  faq?: { q: string; a: string }[]
+  /** Links internos destacados (comparativa, calculadora, /hoy). */
+  enlaces?: { href: string; texto: string }[]
+  /** Fuentes oficiales citadas. */
+  fuentes?: { texto: string; url: string }[]
+  /** Slug de /mejores/* de donde mostrar ofertas reales del catálogo del día. */
+  comparativa?: string
 }
 
 export const GUIAS: Guia[] = [
@@ -217,7 +225,7 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'cuantas-frigorias-necesito-aire-acondicionado',
-    titulo: 'Cuántas frigorías necesito: cómo calcular el aire acondicionado para tu ambiente',
+    titulo: '¿Qué aire acondicionado comprar? Cálculo de frigorías por m², inverter vs on-off y consumo',
     descripcion:
       'Cálculo simple de frigorías para elegir el aire acondicionado según los metros del ambiente, la altura del techo y el sol. Tabla orientativa de 2.250 a 6.000 frigorías.',
     pregunta: '¿Cuántas frigorías necesito para mi ambiente?',
@@ -247,6 +255,222 @@ export const GUIAS: Guia[] = [
       },
     ],
     categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-acondicionados',
+    faq: [
+      {
+        q: '¿Cómo se calcula el aire acondicionado para un ambiente?',
+        a: 'Multiplicá los metros cuadrados por la altura del techo y ese volumen por 50 frigorías. Después elegí el equipo de capacidad inmediatamente superior y sumá 10% a 20% si hay mucho sol, último piso o varias personas. La calculadora de frigorías hace la cuenta con esos ajustes.',
+      },
+      {
+        q: '¿Qué conviene, inverter u on-off?',
+        a: 'Si lo vas a usar muchas horas por día, inverter: regula la velocidad del compresor en vez de cortar y arrancar, por lo que gasta menos luz y hace menos ruido. Un on-off es más barato de entrada y puede alcanzar para un uso esporádico.',
+      },
+      {
+        q: '¿Cuánta luz consume un aire acondicionado?',
+        a: 'Depende de la potencia, las horas de uso y la eficiencia. El dato para comparar está en la etiqueta de eficiencia energética, obligatoria en Argentina, que indica la clase y el consumo. Con la potencia de la etiqueta podés calcular los kWh por mes en la calculadora de consumo eléctrico.',
+      },
+      {
+        q: '¿La instalación viene incluida?',
+        a: 'Casi nunca. Fijate en la publicación si la incluye y, si no, pedí presupuesto a un instalador antes de comprar, sobre todo antes del verano, cuando se saturan.',
+      },
+    ],
+    enlaces: [
+      { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías ❄️' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+      { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
+    ],
+  },
+  {
+    slug: 'que-heladera-comprar',
+    titulo: '¿Qué heladera comprar? No frost o cíclica, litros por persona y etiqueta energética',
+    descripcion:
+      'Cómo elegir una heladera en Argentina: no frost o cíclica, cuántos litros según las personas, freezer, medidas y cómo leer la etiqueta de eficiencia energética.',
+    pregunta: '¿Qué heladera conviene comprar?',
+    respuestaCorta:
+      'Elegí primero la capacidad (como referencia orientativa, 250 a 300 litros suelen alcanzar para una familia chica; con más personas, más litros) y después el sistema: no frost si no querés descongelar nunca, cíclica si buscás precio. Como la heladera está enchufada las 24 horas, la etiqueta de eficiencia energética (obligatoria en Argentina) pesa más que en casi cualquier otro electrodoméstico: compará el consumo anual en kWh que figura en ella.',
+    secciones: [
+      {
+        h: 'No frost o cíclica',
+        p: [
+          'No frost: un ventilador distribuye el frío y no se forma escarcha, así que no hay que descongelarla. Suele costar más.',
+          'Cíclica: acumula hielo en el freezer y cada tanto hay que descongelarla a mano. Es más económica de entrada.',
+        ],
+      },
+      {
+        h: 'Cuántos litros',
+        p: [
+          'Depende de cuántos son y de cada cuánto hacés las compras. Como referencia orientativa, una de 250 a 300 litros suele alcanzar para una familia chica; si compran por mes o son más, conviene subir de capacidad.',
+          'Si congelás mucho, mirá la capacidad del freezer por separado, no solo la total. Freezer arriba es lo más común; abajo deja el sector de heladera a la altura de la vista; side by side es para mucho volumen y necesita un hueco ancho.',
+        ],
+      },
+      {
+        h: 'Etiqueta energética y medidas',
+        p: [
+          'En Argentina la etiqueta de eficiencia energética es obligatoria para heladeras (Secretaría de Energía, con normas IRAM). Indica la clase de eficiencia y el consumo anual en kWh: ese número es el que conviene comparar entre modelos. Pasalo a la calculadora de consumo eléctrico para ver cuánto es por mes con tu precio del kWh.',
+          'Medí el hueco (alto, ancho y profundidad), dejá espacio atrás y a los costados para ventilación y comprobá que pase por puertas y pasillos. Fijate también hacia qué lado abre la puerta y si se puede invertir.',
+        ],
+      },
+    ],
+    categoria: { slug: 'heladeras', nombre: 'heladeras' },
+    comparativa: 'mejores-heladeras',
+    cta: { href: '/mejores/mejores-heladeras', titulo: 'Heladeras en oferta hoy, comparadas', boton: 'Ver la comparativa de heladeras 🧊' },
+    faq: [
+      {
+        q: '¿Cuántos litros de heladera necesito por persona?',
+        a: 'No hay una cifra oficial. Como referencia orientativa, 250 a 300 litros suelen alcanzar para una familia chica; con más integrantes o si hacés compras grandes por mes, conviene más capacidad.',
+      },
+      {
+        q: '¿Qué diferencia hay entre no frost y cíclica?',
+        a: 'La no frost no forma escarcha y no hay que descongelarla; la cíclica acumula hielo y hay que descongelarla cada tanto, pero suele ser más barata.',
+      },
+      {
+        q: '¿Cómo leo la etiqueta de eficiencia energética de una heladera?',
+        a: 'La etiqueta, obligatoria en Argentina, muestra la clase de eficiencia con letras (las primeras son las más eficientes) y el consumo de energía anual en kWh. Para comparar dos heladeras, mirá ese consumo anual: menos kWh es menos gasto de luz.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de una heladera es real?',
+        a: 'Comparando con el historial de precios. En Cazador de Ofertas AR descartamos las ofertas cuyo precio ya se había visto igual o más bajo antes y marcamos las que están en su mínimo registrado.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-heladeras', texto: 'Comparativa de heladeras' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+      { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
+    ],
+  },
+  {
+    slug: 'que-lavarropas-comprar',
+    titulo: '¿Qué lavarropas comprar? Carga frontal o superior, cuántos kg e inverter',
+    descripcion:
+      'Cómo elegir un lavarropas en Argentina: carga frontal o superior, capacidad en kg según la familia, motor inverter, centrifugado, medidas y etiqueta de eficiencia energética.',
+    pregunta: '¿Qué lavarropas conviene comprar?',
+    respuestaCorta:
+      'Elegí la capacidad según cuántos son (6 a 7 kg para 1 a 3 personas, 8 kg o más para familias o si lavás acolchados), carga frontal si querés gastar menos agua y cuidar más la ropa, o carga superior si priorizás precio y ciclos más cortos. El motor inverter suele ser más silencioso y eficiente. Compará el consumo por ciclo de la etiqueta de eficiencia energética, obligatoria en Argentina.',
+    secciones: [
+      {
+        h: 'Carga frontal o superior',
+        p: [
+          'Carga frontal: lava por volteo, usa menos agua y es más suave con la ropa; los ciclos suelen ser más largos y hay que agacharse para cargarlo.',
+          'Carga superior: en general más barato, con ciclos más rápidos, y en muchos modelos podés agregar ropa durante el lavado. Los semiautomáticos son la opción más barata, pero hay que pasar la ropa a mano al centrifugado.',
+        ],
+      },
+      {
+        h: 'Capacidad, centrifugado e inverter',
+        p: [
+          'Capacidad (kg de ropa seca): 6 a 7 kg para 1 a 3 personas; 8 kg o más para familias o para lavar acolchados.',
+          'Centrifugado: con 1.000 rpm o más la ropa sale más seca y tarda menos en secarse.',
+          'Motor inverter: regula la velocidad sin escobillas, suele hacer menos ruido y vibrar menos. Revisá los años de garantía que da el fabricante sobre el motor.',
+        ],
+      },
+      {
+        h: 'Etiqueta energética y medidas',
+        p: [
+          'La etiqueta de eficiencia energética de lavarropas es obligatoria en Argentina (Secretaría de Energía, normas IRAM): indica la clase y el consumo de energía por ciclo. Calentar agua es lo que más gasta; lavar en frío baja mucho el consumo. Podés estimar el costo mensual en la calculadora de consumo eléctrico.',
+          'Medí ancho, profundidad y alto (en carga superior, también el espacio para abrir la tapa) y dejá lugar atrás para las mangueras.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: { href: '/mejores/mejores-lavarropas', titulo: 'Lavarropas en oferta hoy, comparados', boton: 'Ver la comparativa de lavarropas 🧺' },
+    faq: [
+      {
+        q: '¿Qué es mejor, lavarropas de carga frontal o superior?',
+        a: 'Carga frontal si buscás gastar menos agua y cuidar la ropa; carga superior si priorizás precio, ciclos más cortos y cargar sin agacharte.',
+      },
+      {
+        q: '¿De cuántos kg tiene que ser el lavarropas?',
+        a: 'Para 1 a 3 personas alcanzan 6 a 7 kg; para familias, o si querés lavar acolchados y frazadas, 8 kg o más.',
+      },
+      {
+        q: '¿Conviene un lavarropas inverter?',
+        a: 'Si lo usás seguido, sí: el motor inverter suele ser más silencioso, vibra menos y es más eficiente. Cuesta algo más que uno con motor convencional.',
+      },
+      {
+        q: '¿Cuánta luz gasta un lavarropas?',
+        a: 'La etiqueta indica el consumo por ciclo. La mayor parte se va en calentar agua: lavando en frío el gasto baja mucho. Con ese dato podés calcular el costo por mes en la calculadora de consumo eléctrico.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-lavarropas', texto: 'Comparativa de lavarropas' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/guias/que-lavarropas-comprar-cyber-monday', texto: 'Lavarropas en el Cyber Monday' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+      { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
+    ],
+  },
+  {
+    slug: 'que-freidora-de-aire-comprar',
+    titulo: '¿Qué freidora de aire comprar? Litros, potencia y consumo',
+    descripcion:
+      'Cómo elegir una freidora de aire (air fryer) en Argentina: cuántos litros según las personas, potencia en watts, consumo eléctrico, canasto y cuándo conviene comprarla.',
+    pregunta: '¿Qué freidora de aire conviene comprar?',
+    respuestaCorta:
+      'Elegí por capacidad: de 2 a 4 litros para una o dos personas y de 5 litros en adelante para una familia (o doble canasto para cocinar dos cosas a la vez). La potencia de placa (en watts) define qué tan rápido calienta: más watts, más rápido pero más consumo por hora. Preferí canasto antiadherente desmontable y compará el precio contra el historial antes de comprar, sobre todo en Hot Sale y Cyber Monday.',
+    secciones: [
+      {
+        h: 'Cuántos litros',
+        p: [
+          '2 a 4 litros: una o dos personas, porciones chicas. 5 litros o más: familias. Los hornos air fryer (10 litros o más) y los modelos de doble canasto permiten cocinar varias cosas a la vez, pero ocupan más lugar en la mesada.',
+        ],
+      },
+      {
+        h: 'Potencia y consumo',
+        p: [
+          'La potencia figura en la placa del equipo y en la publicación, en watts. A más potencia, precalienta y cocina más rápido, pero consume más por hora de uso.',
+          'El consumo es simple de calcular: watts × horas de uso ÷ 1000 = kWh. Como la resistencia corta y arranca al llegar a la temperatura, el consumo real suele ser algo menor que el de placa. En la calculadora de consumo eléctrico ponés la potencia y los minutos por día y te da los kWh por mes.',
+        ],
+      },
+      {
+        h: 'Qué más revisar',
+        p: [
+          'Canasto antiadherente y desmontable (y si el fabricante indica que va al lavavajillas). Controles digitales con programas, o perilla analógica si buscás lo más simple. Ventana o luz interior para ver la cocción sin abrir.',
+          'Garantía oficial en Argentina y espacio libre alrededor: necesita ventilación y no debería quedar pegada a la pared.',
+        ],
+      },
+    ],
+    categoria: { slug: 'freidoras-de-aire', nombre: 'freidoras de aire' },
+    comparativa: 'mejores-freidoras-de-aire',
+    cta: { href: '/mejores/mejores-freidoras-de-aire', titulo: 'Freidoras de aire en oferta hoy, comparadas', boton: 'Ver la comparativa de freidoras 🍟' },
+    faq: [
+      {
+        q: '¿De cuántos litros conviene la freidora de aire?',
+        a: 'Para una o dos personas, de 2 a 4 litros. Para una familia, de 5 litros o más, o un modelo de doble canasto.',
+      },
+      {
+        q: '¿Cuánta luz gasta una freidora de aire?',
+        a: 'Watts de placa × horas de uso ÷ 1000 = kWh. Por ejemplo, una de 1.500 W usada media hora gasta como máximo 0,75 kWh; como la resistencia cicla, suele ser algo menos. Multiplicalo por el precio del kWh de tu factura.',
+      },
+      {
+        q: '¿Conviene comprar la freidora de aire en el Hot Sale o el Cyber Monday?',
+        a: 'Solo si el precio es realmente más bajo que en las semanas previas. Muchos descuentos de esas fechas se calculan sobre un precio anterior inflado: compará contra el historial de precios del modelo.',
+      },
+      {
+        q: '¿Una freidora de aire reemplaza al horno?',
+        a: 'Para porciones chicas y medianas cocina más rápido porque calienta menos volumen de aire. Para platos grandes o varias bandejas, el horno sigue siendo más práctico.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-freidoras-de-aire', texto: 'Comparativa de freidoras' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre', texto: 'Hot Sale o Cyber Monday: cuándo comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+    ],
   },
   {
     slug: 'que-colchon-comprar-firmeza-y-material',

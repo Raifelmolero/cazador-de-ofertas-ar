@@ -198,6 +198,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué freidora de aire comprar](https://cazadordeofertas.com.ar/guias/que-freidora-de-aire-comprar),
   [qué notebook comprar](https://cazadordeofertas.com.ar/guias/que-notebook-comprar),
   [qué celular comprar según presupuesto](https://cazadordeofertas.com.ar/guias/que-celular-comprar-segun-presupuesto),
+  [qué celular de gama alta comprar](https://cazadordeofertas.com.ar/guias/que-celular-gama-alta-comprar),
   [qué smart TV comprar](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar),
   y [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa):
   guías con respuesta corta citable.

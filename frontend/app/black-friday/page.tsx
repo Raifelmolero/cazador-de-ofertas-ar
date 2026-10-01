@@ -20,6 +20,7 @@ import { GUIAS } from '@/lib/guias'
 const GUIAS_TICKET_ALTO = [
   'que-notebook-comprar',
   'que-celular-comprar-segun-presupuesto',
+  'que-celular-gama-alta-comprar',
   'que-smart-tv-comprar',
   'que-freidora-de-aire-comprar',
   'que-colchon-comprar-firmeza-y-material',

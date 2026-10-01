@@ -26,6 +26,7 @@ const GUIAS_COMPRA = [
   'que-freidora-de-aire-comprar',
   'que-notebook-comprar',
   'que-celular-comprar-segun-presupuesto',
+  'que-celular-gama-alta-comprar',
   'que-smart-tv-comprar',
   'cuantas-frigorias-necesito-aire-acondicionado',
   'que-colchon-comprar-firmeza-y-material',

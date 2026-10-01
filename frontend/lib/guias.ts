@@ -967,6 +967,7 @@ export const GUIAS: Guia[] = [
     ],
     enlaces: [
       { href: '/mejores/mejores-celulares', texto: 'Celulares en oferta: comparativa de precios' },
+      { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },
       { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
     ],
     comparativa: 'mejores-celulares',
@@ -974,6 +975,88 @@ export const GUIAS: Guia[] = [
       href: '/mejores/mejores-celulares',
       titulo: 'Celulares en oferta hoy, comparados contra su historial',
       boton: 'Ver celulares en oferta 📱',
+    },
+  },
+  {
+    slug: 'que-celular-gama-alta-comprar',
+    titulo: '¿Qué celular de gama alta comprar? iPhone, Samsung Galaxy S, Motorola Edge y Xiaomi',
+    descripcion:
+      'Guía para elegir un celular de gama alta en Argentina: iPhone, Samsung Galaxy S, Motorola Edge o Xiaomi tope de gama. Qué mirar, cuotas sin interés y cuándo conviene esperar al Cyber Monday o al Black Friday.',
+    pregunta: '¿Qué celular de gama alta conviene comprar en Argentina?',
+    respuestaCorta:
+      'En gama alta la elección pasa más por el ecosistema que por la ficha: si ya usás Mac, iPad o Apple Watch, un iPhone se integra mejor; si preferís Android, la serie Galaxy S de Samsung y los tope de gama de Motorola (Edge) y Xiaomi compiten en cámara, pantalla y rendimiento. Antes de pagar, compará el precio contra su historial, revisá que tenga garantía oficial en Argentina (tienda oficial o distribuidor autorizado) y hacé la cuenta de las cuotas: en un equipo de varios millones, las cuotas sin interés pueden convenir más que un descuento chico en un pago.',
+    secciones: [
+      {
+        h: 'iPhone o Android: primero el ecosistema',
+        p: [
+          'iPhone: tiene sentido si ya usás otros productos de Apple (Mac, iPad, AirPods, Apple Watch), porque se integran entre sí. Apple suele actualizar sus iPhone durante muchos años.',
+          'Android de gama alta: la serie Galaxy S de Samsung (con la versión Ultra como tope), los Motorola Edge y los Xiaomi tope de gama ofrecen más variedad de formatos, precios y personalización.',
+          'Cambiar de sistema se puede, pero lleva trabajo (por ejemplo, migrar los chats de WhatsApp). Si estás conforme con el que usás, quedarte simplifica el cambio.',
+        ],
+      },
+      {
+        h: 'Qué mirar en un gama alta',
+        p: [
+          'Almacenamiento: la mayoría de los gama alta no tiene ranura microSD, así que no se puede ampliar. Si grabás video, 256 GB es un piso cómodo.',
+          'Años de actualizaciones: los fabricantes anuncian cuántos años de actualizaciones de sistema y seguridad dan a sus tope de gama. Un equipo caro que se actualiza más tiempo te dura más; el dato está en la página oficial de cada modelo.',
+          'Cámara: las versiones "Pro", "Pro Max" o "Ultra" suelen sumar teleobjetivo con más zoom óptico. Si casi no usás zoom, la versión base puede alcanzarte.',
+          'Modelo anterior: cuando sale una generación nueva, la anterior muchas veces baja de precio y sigue recibiendo actualizaciones. Compará los dos antes de decidir.',
+        ],
+      },
+      {
+        h: 'Garantía, vendedor y versión',
+        p: [
+          'Comprá en la tienda oficial de la marca o en un distribuidor autorizado: los equipos importados por particulares a veces no tienen garantía oficial en Argentina.',
+          'Revisá que la versión funcione con las bandas 4G/5G de tu compañía y si admite eSIM o dos chips.',
+          'Desconfiá de precios muy por debajo del resto para el mismo modelo, sobre todo de vendedores sin reputación.',
+        ],
+      },
+      {
+        h: 'Cuotas sin interés: cómo hacer la cuenta',
+        p: [
+          'En un celular de varios millones, las cuotas sin interés pesan mucho: con inflación, las cuotas fijas de los últimos meses valen menos en términos reales.',
+          'Compará el total en cuotas contra el precio en un pago: a veces el pago único trae un descuento extra que compensa. La calculadora de cuotas sin interés del sitio hace esa cuenta.',
+          'Fijate qué tarjetas y bancos aplican: las cuotas sin interés suelen depender del medio de pago.',
+        ],
+      },
+      {
+        h: '¿Comprar ahora o esperar al Cyber Monday o al Black Friday?',
+        p: [
+          'El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE) y el Black Friday es a fines de noviembre. Los celulares están entre los productos más promocionados en esos eventos.',
+          'Si no te urge, esperar puede convenir. Si lo necesitás ahora, mirá si el precio de hoy ya está cerca del mínimo que registramos: si lo está, esperar no garantiza un precio mejor.',
+          'Ojo con los descuentos de cartel: anotá el precio de hoy del modelo que te interesa y compará el día del evento. En cazadordeofertas.com.ar cada oferta se muestra contra el precio más bajo que registramos.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Conviene más un iPhone o un Samsung Galaxy S?',
+        a: 'Depende del ecosistema: si ya usás Mac, iPad o Apple Watch, el iPhone se integra mejor; si preferís Android, la serie Galaxy S es la alternativa natural. Compará precio, almacenamiento y garantía oficial del modelo puntual.',
+      },
+      {
+        q: '¿Cuánto almacenamiento conviene en un gama alta?',
+        a: 'La mayoría no tiene ranura microSD, así que no se puede ampliar. Si grabás video o sacás muchas fotos, 256 GB es un piso cómodo.',
+      },
+      {
+        q: '¿Conviene esperar al Cyber Monday para comprar un celular caro?',
+        a: 'Si no te urge, puede convenir: es de los rubros con más promociones. Pero compará el precio contra su historial: si hoy ya está cerca del mínimo registrado, esperar no garantiza un precio mejor.',
+      },
+      {
+        q: '¿Las cuotas sin interés convienen para un celular de gama alta?',
+        a: 'Con inflación, las cuotas fijas pierden valor real, así que suelen convenir. Compará igual el total en cuotas contra el precio en un pago, que a veces trae un descuento extra.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-celulares-gama-alta', texto: 'Celulares de gama alta en oferta: comparativa de precios' },
+      { href: '/calculadora-cuotas-sin-interes', texto: 'Calculadora de cuotas sin interés' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según tu presupuesto (gama media y de entrada)' },
+      { href: '/guias/que-celular-comprar-cyber-monday', texto: 'Qué celular comprar en el Cyber Monday 2026' },
+    ],
+    comparativa: 'mejores-celulares-gama-alta',
+    cta: {
+      href: '/mejores/mejores-celulares-gama-alta',
+      titulo: 'Celulares de gama alta en oferta hoy, comparados contra su historial',
+      boton: 'Ver celulares gama alta en oferta 📱',
     },
   },
   {
@@ -1151,6 +1234,9 @@ export const GUIAS: Guia[] = [
           'Los combos con regalo (funda, auriculares, cargador) no siempre valen más: compará el precio del equipo solo.',
         ],
       },
+    ],
+    enlaces: [
+      { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },
     ],
     cta: {
       href: '/mejores/cyber-monday-celulares',
@@ -1385,7 +1471,8 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-horno-pizzero-comprar-para-mi-negocio': { publicada: '2026-09-26', modificada: '2026-09-26' },
   'que-freidora-industrial-comprar': { publicada: '2026-09-26', modificada: '2026-09-26' },
   'que-notebook-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
-  'que-celular-comprar-segun-presupuesto': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-celular-comprar-segun-presupuesto': { publicada: '2026-09-30', modificada: '2026-10-01' },
+  'que-celular-gama-alta-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'que-smart-tv-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
   'que-notebook-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
   'que-smart-tv-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },

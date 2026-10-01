@@ -700,6 +700,26 @@ export const COMPARATIVAS: Comparativa[] = [
     guia: 'que-celular-comprar-segun-presupuesto',
   },
   {
+    slug: 'mejores-celulares-gama-alta',
+    nombre: 'celulares de gama alta',
+    titulo: `Mejores celulares de gama alta en oferta ${AÑO}: iPhone, Galaxy S y más`,
+    descripcion:
+      'Comparativa de celulares de gama alta en oferta hoy en Mercado Libre Argentina (iPhone, Samsung Galaxy S, Motorola Edge, Xiaomi tope de gama): precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los celulares de gama alta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    keywords: ['iphone', 'galaxy s2', 'galaxy z fold', 'galaxy z flip', 'motorola edge', 'moto edge', 'motorola razr', 'pixel 9', 'pixel 10', 'xiaomi 15', 'xiaomi 16'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'cable', 'auricular', 'reacondicionado'],
+    permitir: ['funda'],
+    criterios: [
+      'Ecosistema: iPhone si ya usás Mac, iPad o Apple Watch; Galaxy S, Edge o Xiaomi si preferís Android.',
+      'Almacenamiento: la mayoría no acepta microSD; 256 GB es un piso cómodo si grabás video.',
+      'Garantía oficial en Argentina: tienda oficial o distribuidor autorizado.',
+      'Cuotas sin interés: en equipos de varios millones, comparalas contra el precio en un pago.',
+      'Años de actualizaciones del fabricante y precio del modelo anterior, que suele bajar al salir el nuevo.',
+    ],
+    guia: 'que-celular-gama-alta-comprar',
+  },
+  {
     slug: 'mejores-tablets',
     nombre: 'tablets',
     titulo: `Mejores tablets en oferta ${AÑO}: comparativa de precios`,

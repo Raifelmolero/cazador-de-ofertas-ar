@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-30T23:42:55+00:00",
+  "generado": "2026-10-01T04:00:31+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-09-30T23:42:54+00:00",
+      "ultima_actividad": "2026-10-01T04:00:31+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1444 productos en la última corrida"
+          "tarea": "Revisó 1317 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Sommier Y Colchón Suavestar Centuria Ep 2 1/2 Plazas 140x190 Gris Combinado"
+      "ultimo_trabajo": "Soldadora inverter Esab LHN 242i color negro/amarillo"
     },
     {
       "id": "investigacion",
@@ -96,7 +96,7 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 22
+          "valor": 28
         },
         {
           "label": "Comparativas",

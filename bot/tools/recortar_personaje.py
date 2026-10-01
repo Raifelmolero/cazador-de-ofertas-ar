@@ -4,7 +4,7 @@ cambian las hojas: el bot solo usa los PNG ya recortados."""
 
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "docs" / "personaje"
@@ -43,6 +43,7 @@ def quitar_fondo(img: Image.Image) -> Image.Image:
     if semilla:
         ImageDraw.floodfill(alpha, semilla, 200)
         alpha = alpha.point(lambda v: 255 if v == 200 else 0)
+    alpha = alpha.filter(ImageFilter.MinFilter(3))  # saca el halo blanco del borde
     out = img.convert("RGBA")
     out.putalpha(alpha)
     return out.crop(out.getbbox())

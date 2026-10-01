@@ -234,8 +234,12 @@ def render_story(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.rounded_rectangle([bx0, byc - 58, bx1, byc + 58], radius=44, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
 
-    # sello CAZADO pisando la esquina inferior izquierda de la tarjeta
-    _stamp_cazado(img, (card_left + 210, card_bottom - 35), 1.1)
+    # Don Ofertín abajo a la izquierda; el sello CAZADO pasa a la derecha
+    con_personaje = _pegar_personaje(
+        img, pose_personaje(deal), (0, card_bottom - 360, 350, card_bottom + 30)
+    )
+    sello_x = card_left + card_w - 210 if con_personaje else card_left + 210
+    _stamp_cazado(img, (sello_x, card_bottom - 35), 1.1)
 
     if sello:
         _ribbon_temporada(d, W // 2, card_bottom + ribbon_h // 2, sello, font_size=34)

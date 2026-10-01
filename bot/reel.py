@@ -23,7 +23,8 @@ from PIL import Image, ImageDraw, ImageOps
 
 from story import (
     AMBER, BG, BLACK, GRAY, STAMP_RED, WHITE,
-    _font, _fmt, _ribbon_temporada, _stamp_cazado, _wrap,
+    _font, _fmt, _pegar_personaje, _ribbon_temporada, _stamp_cazado, _wrap,
+    pose_personaje,
 )
 
 W, H = 1080, 1920
@@ -46,6 +47,16 @@ def _badge(d: ImageDraw.ImageDraw, cx: int, cy: int, texto: str, scale: float = 
     d.rounded_rectangle([x0, cy - 36 * scale - pad_y, x1, cy + 36 * scale + pad_y],
                         radius=int(52 * scale), fill=AMBER)
     d.text((cx, cy + 2), texto, font=f, fill=BLACK, anchor="mm")
+
+
+def _personaje_entra(img: Image.Image, deal: dict, box: tuple[int, int, int, int],
+                     t: float, t0: float) -> None:
+    """Don Ofertín entra deslizándose desde la izquierda a partir de t0 (0,4 s)."""
+    if t < t0:
+        return
+    dx = int(-(box[2] + 40) * (1 - _ease_out(min((t - t0) / 0.4, 1.0))))
+    x0, y0, x1, y1 = box
+    _pegar_personaje(img, pose_personaje(deal), (x0 + dx, y0, x1 + dx, y1))
 
 
 def _scene_hook(deal: dict, t: float) -> Image.Image:
@@ -138,6 +149,7 @@ def _scene_precio(deal: dict, thumb: Image.Image, t: float) -> Image.Image:
         d.text((W // 2, 1190), f"Te ahorrás {_fmt(ahorro)}", font=_font(52), fill=WHITE, anchor="mm")
     if t > 1.3 and deal.get("discount") is not None:
         _badge(d, W // 2, 1390, f"-{deal['discount']}%", 0.9)
+    _personaje_entra(img, deal, (0, 1170, 300, 1555), t, 1.5)
 
     d.rectangle([0, 1560, W, 1720], fill=AMBER)
     banner_f = _font(66)
@@ -389,7 +401,7 @@ def _scene_close_v2(deal: dict, t: float) -> Image.Image:
     d = ImageDraw.Draw(img)
 
     # único sello CAZADO de todo el video, en el cierre
-    _stamp_cazado(img, (W // 2, SAFE_TOP + 220), 1.7)
+    _stamp_cazado(img, (W // 2, SAFE_TOP + 100), 1.7)
 
     banner_top, banner_bot = 900, 1140
     d.rectangle([0, banner_top, W, banner_bot], fill=AMBER)
@@ -398,6 +410,8 @@ def _scene_close_v2(deal: dict, t: float) -> Image.Image:
 
     d.text((W // 2, banner_bot + 100), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
     d.text((W // 2, banner_bot + 165), "seguime para la próxima caza", font=_font(34), fill=WHITE, anchor="mm")
+    # Don Ofertín entre el sello y el banner
+    _personaje_entra(img, deal, (W // 2 - 190, banner_top - 380, W // 2 + 190, banner_top - 10), t, 0.2)
     return img
 
 

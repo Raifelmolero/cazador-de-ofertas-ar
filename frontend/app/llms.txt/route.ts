@@ -8,6 +8,7 @@
 // a mano: no se genera del JSON de ofertas porque ese cambia 3×/día y este
 // archivo describe el SITIO, no el catálogo del momento.
 import { getEstudio } from '@/lib/estudio'
+import { getComparativa, indexable } from '@/lib/comparativas'
 import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/lib/marca'
 
 const E = getEstudio()
@@ -234,8 +235,23 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   marketplaces.
 `
 
+// Las comparativas con menos de 3 productos hoy llevan noindex: no las
+// listamos (un LLM no debería citar una página que Google no indexa).
+const LINEA_MEJORES = /^\s*\[[^\]]+\]\(https:\/\/cazadordeofertas\.com\.ar\/mejores\/([^)]+)\),\s*$/
+function sinNoindex(texto: string): string {
+  return texto
+    .split('\n')
+    .filter(l => {
+      const m = l.match(LINEA_MEJORES)
+      if (!m) return true
+      const c = getComparativa(m[1])
+      return !c || indexable(c)
+    })
+    .join('\n')
+}
+
 export async function GET() {
-  return new Response(CONTENT, {
+  return new Response(sinNoindex(CONTENT), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   })
 }

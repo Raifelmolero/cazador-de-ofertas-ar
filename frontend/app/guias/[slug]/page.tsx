@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { GUIAS, getGuia } from '@/lib/guias'
-import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
+import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
+import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 
 export function generateStaticParams() {
@@ -35,6 +35,8 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const url = `${DEALS_URL}/guias/${g.slug}`
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   const ofertas = comp ? productosDe(comp).slice(0, 4) : []
+  const fechas = fechasGuia(g.slug)
+  const org = { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL }
 
   const jsonLd = [
     {
@@ -44,9 +46,19 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       description: g.descripcion,
       inLanguage: 'es-AR',
       mainEntityOfPage: url,
-      author: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
-      publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Cazador de Ofertas AR', url: DEALS_URL },
+      datePublished: fechas.publicada,
+      dateModified: fechas.modificada,
+      author: org,
+      publisher: org,
       isPartOf: { '@id': WEBSITE_ID },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: DEALS_URL },
+        { '@type': 'ListItem', position: 2, name: g.titulo, item: url },
+      ],
     },
     {
       '@context': 'https://schema.org',

@@ -17,6 +17,20 @@ import {
 // responder "qué ofertas hay hoy en Mercado Libre" citando datos concretos sin
 // tener que rastrear ni ejecutar JavaScript. Se genera en el build (el bot
 // redeploya el sitio con datos nuevos varias veces por día).
+// Guías de compra de ticket alto: van con la respuesta corta y sus preguntas
+// frecuentes completas (texto tal cual de lib/guias.ts) para que un asistente
+// pueda citarlas sin abrir la página.
+const GUIAS_COMPRA = [
+  'que-heladera-comprar',
+  'que-lavarropas-comprar',
+  'que-freidora-de-aire-comprar',
+  'que-notebook-comprar',
+  'que-celular-comprar-segun-presupuesto',
+  'que-smart-tv-comprar',
+  'cuantas-frigorias-necesito-aire-acondicionado',
+  'que-colchon-comprar-firmeza-y-material',
+]
+
 const ars = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 
 export const dynamic = 'force-static'
@@ -51,6 +65,21 @@ Detalle: ${DEALS_URL}/descuentos-inflados
     return `- ${o.titulo}: ${partes.join(' · ')}`
   })
 
+  const resumenesCompra = GUIAS_COMPRA.map(slug => GUIAS.find(g => g.slug === slug))
+    .filter(g => g !== undefined)
+    .map(g => {
+      const faq = (g.faq ?? []).map(f => `- ${f.q} ${f.a}`).join('\n')
+      const ofertas = g.cta?.href ?? (g.categoria ? `/categoria/${g.categoria.slug}` : '/hoy')
+      return `### ${g.titulo}
+
+Fuente: ${DEALS_URL}/guias/${g.slug}
+
+${g.pregunta} ${g.respuestaCorta}
+${faq ? `\n${faq}\n` : ''}
+Ofertas verificadas de hoy: ${DEALS_URL}${ofertas}`
+    })
+    .join('\n\n')
+
   const body = `# Cazador de Ofertas AR — ofertas de Mercado Libre Argentina hoy
 
 > Ofertas de Mercado Libre Argentina con descuento real, verificado contra el
@@ -76,6 +105,10 @@ ${CATEGORIAS.map(c => `- [${c.nombre}](${DEALS_URL}/categoria/${c.slug}): ${c.de
 ## Guías
 
 ${GUIAS.map(g => `- [${g.titulo}](${DEALS_URL}/guias/${g.slug}): ${g.respuestaCorta}`).join('\n')}
+
+## Qué comprar: resúmenes citables de las guías de compra
+
+${resumenesCompra}
 
 ## Canales
 

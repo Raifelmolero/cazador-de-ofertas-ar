@@ -1276,3 +1276,39 @@ export const GUIAS: Guia[] = [
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
+
+/** Fechas de publicación y última revisión (del historial de git) para el
+ *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
+export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'como-saber-si-un-descuento-de-mercado-libre-es-real': { publicada: '2026-09-21', modificada: '2026-09-21' },
+  'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre': { publicada: '2026-09-21', modificada: '2026-09-21' },
+  'como-ahorrar-en-mercado-libre-argentina': { publicada: '2026-09-21', modificada: '2026-09-21' },
+  'donde-encontrar-las-mejores-ofertas-de-mercado-libre-argentina': { publicada: '2026-09-23', modificada: '2026-09-23' },
+  'que-es-el-minimo-historico-en-mercado-libre': { publicada: '2026-09-23', modificada: '2026-09-23' },
+  'cupones-y-codigos-de-descuento-de-mercado-libre-argentina': { publicada: '2026-09-23', modificada: '2026-09-23' },
+  'cuantas-frigorias-necesito-aire-acondicionado': { publicada: '2026-09-23', modificada: '2026-09-30' },
+  'que-heladera-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-lavarropas-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-freidora-de-aire-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-colchon-comprar-firmeza-y-material': { publicada: '2026-09-23', modificada: '2026-09-30' },
+  'que-taladro-comprar-para-la-casa': { publicada: '2026-09-23', modificada: '2026-09-23' },
+  'que-amoladora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
+  'que-regalar-el-dia-de-la-madre': { publicada: '2026-09-24', modificada: '2026-09-24' },
+  'que-soldadora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
+  'que-hidrolavadora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
+  'herramientas-electricas-cyber-monday-black-friday': { publicada: '2026-09-25', modificada: '2026-09-25' },
+  'que-horno-pizzero-comprar-para-mi-negocio': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-freidora-industrial-comprar': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-notebook-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-celular-comprar-segun-presupuesto': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-smart-tv-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-notebook-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-smart-tv-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-celular-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'conviene-comprar-aire-acondicionado-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-lavarropas-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+  'que-auriculares-comprar-cyber-monday': { publicada: '2026-09-26', modificada: '2026-09-26' },
+}
+
+const FECHA_DEFAULT = '2026-09-30'
+export const fechasGuia = (slug: string) => FECHAS_GUIAS[slug] ?? { publicada: FECHA_DEFAULT, modificada: FECHA_DEFAULT }

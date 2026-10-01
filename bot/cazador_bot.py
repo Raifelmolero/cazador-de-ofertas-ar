@@ -73,6 +73,11 @@ CATEGORIAS_TICKET_ALTO = {
     # Regalos (perfumes, secadores, planchitas): comisión baja, pero es lo que
     # más se busca en Día de la Madre/Navidad y alimenta /mejores/regalos-*.
     "MLA1246": "Belleza y Cuidado Personal",
+    # Panel 24-30/09: celular gama alta ($162k de comisión), monitor y silla
+    # gamer salieron de la web; sin estas categorías el catálogo no los trae
+    # y /mejores/mejores-celulares-gama-alta y -sillas-gamer quedan vacías.
+    "MLA1051": "Celulares y Teléfonos",
+    "MLA1648": "Computación",  # notebooks, monitores, accesorios PC gaming
 }
 
 # Días que se conserva la media (placas, stories, reels) antes de borrarla.

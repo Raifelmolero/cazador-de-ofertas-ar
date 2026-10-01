@@ -638,6 +638,17 @@ def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None)
     return f"https://{SITE_DOMAIN}{ruta}?{utm}"
 
 
+def canal_link(deal: dict, affiliate_id: str, word: str, source: str,
+               paginas: dict[str, str] | None = None) -> str:
+    """Link principal de una oferta para un canal (Facebook, YouTube,
+    WhatsApp...): la ficha /precio/[slug] con utm_source=<source> si está
+    publicada (la web hace el 100% de la ganancia); si no, ML directo con la
+    etiqueta del canal, como antes."""
+    if deal.get("id", "") in (paginas or {}):
+        return web_deal_url(deal, source, paginas)
+    return affiliate_url(deal["url"], affiliate_id, word)
+
+
 def telegram_links(deal: dict, affiliate_id: str, word: str,
                    paginas: dict[str, str] | None = None) -> tuple[str, str | None]:
     """(link principal, link directo a ML o None) para un post del canal.
@@ -849,7 +860,8 @@ def send_ig_kit(token: str, admin: str, deal: dict, link: str, dry: bool) -> Non
         print(f"[warn] IG kit no enviado: {e}")
 
 
-def wa_kit(deals: list[dict], affiliate_id: str, word: str) -> str:
+def wa_kit(deals: list[dict], affiliate_id: str, word: str,
+           paginas: dict[str, str] | None = None) -> str:
     """Mensaje listo para copiar y pegar en el canal de WhatsApp.
 
     WhatsApp no tiene API para publicar en canales (y las librerías no
@@ -867,7 +879,7 @@ def wa_kit(deals: list[dict], affiliate_id: str, word: str) -> str:
         lineas += [
             f"*{d['discount']}% OFF* {d['title'][:80]}",
             f"Antes {fmt_price(d['price_prev'])} → *{fmt_price(d['price_cur'])}*",
-            affiliate_url(d["url"], affiliate_id, word),
+            canal_link(d, affiliate_id, word, "whatsapp", paginas),
             "",
         ]
     landing = next(
@@ -1961,9 +1973,9 @@ def main() -> int:
                         import shorts
                         extra = shorts.cross_post(
                             Path(r_deal["_reel_path"]), r_deal, site_url("youtube"),
-                            {"youtube": affiliate_url(
-                                r_deal["url"], affiliate_id,
-                                os.getenv("ML_WORD_YOUTUBE", "youtube"))},
+                            {"youtube": canal_link(
+                                r_deal, affiliate_id,
+                                os.getenv("ML_WORD_YOUTUBE", "youtube"), "youtube", paginas)},
                             dry,
                         )
                         log_shorts(r_deal, extra)
@@ -2022,7 +2034,7 @@ def main() -> int:
         fb_page_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
         if fb_page_id and fb_page_token:
             fb_deal = to_post[0]
-            fb_link = affiliate_url(fb_deal["url"], affiliate_id, tool_fb)
+            fb_link = canal_link(fb_deal, affiliate_id, tool_fb, "facebook", paginas)
             try:
                 permalink = publish_facebook(fb_deal, fb_link, fb_page_id, fb_page_token, dry)
                 if permalink:
@@ -2051,7 +2063,7 @@ def main() -> int:
             "📋 Para el canal de WhatsApp (copiá y pegá el mensaje de abajo):",
             dry,
         )
-        alert_admin(token, cfg["admin_chat"], wa_kit(to_post, affiliate_id, tool_wa), dry)
+        alert_admin(token, cfg["admin_chat"], wa_kit(to_post, affiliate_id, tool_wa, paginas), dry)
         if not dry:  # una entrada por oferta del kit (canal "whatsapp_kit")
             for d in to_post:
                 log_post(d, "whatsapp_kit")

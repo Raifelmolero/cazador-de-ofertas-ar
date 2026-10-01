@@ -73,7 +73,7 @@ class TestTextoPost(_LogTmp):
 class TestWhatsappKit(unittest.TestCase):
     def test_bloque_del_kit_registra_una_entrada_por_oferta(self):
         src = Path(bot.__file__).read_text(encoding="utf-8")
-        i = src.index("wa_kit(to_post, affiliate_id, tool_wa)")
+        i = src.index("wa_kit(to_post, affiliate_id, tool_wa, paginas)")
         bloque = src[i:i + 300]
         self.assertIn("if not dry", bloque)
         self.assertIn('log_post(d, "whatsapp_kit")', bloque)

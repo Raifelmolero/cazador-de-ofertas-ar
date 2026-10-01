@@ -41,7 +41,7 @@ export async function GET() {
         `${s.titulo}. Hoy ${precio(hoy)} en Mercado Libre` +
         (off ? `, ${off}% menos que el precio de lista` : '') +
         `. Precio más bajo que registramos: ${precio(s.min)}. Mirá el historial y si conviene comprar hoy.`
-      const link = `${DEALS_URL}/precio/${s.slug}?utm_source=pinterest`
+      const link = `${DEALS_URL}/precio/${s.slug}?utm_source=pinterest&utm_medium=social`
       return `    <item>
       <title>${xml(titulo)}</title>
       <link>${xml(link)}</link>

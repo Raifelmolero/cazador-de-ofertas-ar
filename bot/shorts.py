@@ -53,7 +53,7 @@ def yt_title(deal: dict) -> str:
 def yt_description(deal: dict, site_link: str, ml_link: str) -> str:
     return (
         f"🔥 {deal['title']}\n\n"
-        f"🛒 Ver la oferta en Mercado Libre: {ml_link}\n"
+        f"🛒 Ver la oferta: {ml_link}\n"
         f"🔎 Más ofertas todos los días: {site_link}\n\n"
         "Como afiliados de Mercado Libre podemos recibir una comisión por tus compras, "
         "sin costo extra para vos.\n#ofertas #mercadolibre #argentina"

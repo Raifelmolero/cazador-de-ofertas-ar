@@ -474,23 +474,33 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-colchon-comprar-firmeza-y-material',
-    titulo: 'Qué colchón comprar: firmeza, material y medidas explicados simple',
+    titulo: '¿Qué colchón comprar? Resortes pocket vs. espuma, medidas y densidad',
     descripcion:
-      'Guía para elegir colchón en Argentina: espuma de alta densidad, resortes o viscoelástico, qué firmeza según tu peso y postura, y medidas de 1 plaza a king.',
+      'Guía para elegir colchón en Argentina: resortes pocket, bonell, espuma de alta densidad o viscoelástico, qué firmeza según tu peso y postura, y medidas de 1 plaza a king.',
     pregunta: '¿Qué colchón me conviene comprar?',
     respuestaCorta:
-      'Depende sobre todo de tu peso y de cómo dormís. Como referencia orientativa: contextura liviana va mejor con firmeza media a blanda y contextura más pesada con uno firme; quien duerme de costado suele preferir algo menos firme. La espuma de alta densidad da buena relación precio-calidad, los resortes son más frescos y el viscoelástico alivia puntos de presión.',
+      'Depende sobre todo de tu peso, de cómo dormís y de si dormís solo o acompañado. Para dos personas, los resortes pocket (resortes individuales embolsados) transmiten menos el movimiento y ventilan mejor; la espuma de alta densidad da buena relación precio-calidad si la densidad declarada es alta. Como referencia orientativa: contextura liviana va mejor con firmeza media y contextura pesada con una firme; quien duerme de costado suele preferir algo menos firme. Antes de comprar, medí tu base: 2 plazas es 140 × 190 cm y queen, 160 × 200 cm.',
     secciones: [
       {
-        h: 'Materiales: qué cambia en la práctica',
+        h: 'Resortes pocket vs. espuma: qué cambia en la práctica',
         p: [
-          'Espuma de alta densidad: sostiene bien y dura años si la densidad es alta (fijate el número, no solo la palabra "espuma"). Resortes (bonell o pocket): reparten el peso y ventilan mejor; los pocket, con resortes individuales, transmiten menos el movimiento de la otra persona. Viscoelástico: se adapta al cuerpo, pero retiene más calor en verano.',
+          'Resortes pocket: cada resorte va en su propia bolsa de tela y trabaja por separado. Por eso aíslan el movimiento (si el otro se da vuelta, lo sentís menos) y circula más aire, algo que se agradece en verano. Suelen ser más pesados y más caros que la espuma.',
+          'Resortes bonell: resortes unidos entre sí. Son más económicos y frescos, pero transmiten más el movimiento de una plaza a la otra.',
+          'Espuma de alta densidad: firme y pareja, sin ruidos. Su duración depende de la densidad, no de la palabra "espuma": fijate el número que declara el fabricante.',
+          'Viscoelástico (memory foam): se adapta al cuerpo y alivia puntos de presión, pero retiene más calor. Muchos colchones combinan una capa de viscoelástico arriba con resortes o espuma abajo.',
+        ],
+      },
+      {
+        h: 'Densidad de la espuma: cómo leer el número',
+        p: [
+          'La densidad se expresa en kg/m³ y es el dato más útil para comparar colchones de espuma: a igual tipo de espuma, más densidad suele significar más durabilidad y que se hunda menos con los años.',
+          'Muchos fabricantes además indican el peso máximo recomendado por plaza. Ese dato, más que el nombre comercial ("ortopédico", "premium"), te dice si el colchón está pensado para tu contextura. Si la publicación no informa densidad ni peso máximo, preguntá antes de comprar.',
         ],
       },
       {
         h: 'Medidas en Argentina',
         p: [
-          'Las medidas más comunes son 1 plaza (80 × 190 cm), 1 plaza y media (100 × 190 cm), 2 plazas (140 × 190 cm), queen (160 × 200 cm) y king (180 o 200 × 200 cm). Confirmá que coincida exactamente con tu base o sommier antes de comprar.',
+          'Las medidas más comunes son 1 plaza (80 × 190 cm), 1 plaza y media (100 × 190 cm), 2 plazas (140 × 190 cm; también hay 130 × 190), queen (160 × 200 cm) y king (180 o 200 × 200 cm). Confirmá que coincida exactamente con tu base o sommier antes de comprar.',
           'Muchos colchones vienen comprimidos "en caja": es normal y tardan 24 a 48 horas en tomar su forma y firmeza reales.',
         ],
       },
@@ -501,6 +511,30 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+    faq: [
+      {
+        q: '¿Qué es mejor, colchón de resortes pocket o de espuma?',
+        a: 'Ninguno es mejor para todos. Los resortes pocket aíslan mejor el movimiento entre dos personas y son más frescos; la espuma de alta densidad suele ser más económica y no hace ruido. Si dormís acompañado y te molesta que el otro se mueva, conviene pocket.',
+      },
+      {
+        q: '¿Qué medida tiene un colchón de 2 plazas?',
+        a: 'En Argentina, 2 plazas es 140 × 190 cm (también se vende 130 × 190). Queen es 160 × 200 cm y king, 180 × 200 o 200 × 200 cm. Medí tu base o sommier antes de comprar.',
+      },
+      {
+        q: '¿Qué densidad de espuma conviene?',
+        a: 'Más densidad suele significar más durabilidad. Más que buscar un número mágico, compará la densidad (kg/m³) y el peso máximo por plaza que declara cada fabricante, y elegí uno cuyo peso máximo te quede holgado.',
+      },
+      {
+        q: '¿Es normal que el colchón llegue enrollado en una caja?',
+        a: 'Sí. Los colchones "en caja" vienen comprimidos y tardan entre 24 y 48 horas en recuperar su forma y firmeza. Abrilo en el lugar donde lo vas a usar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-colchones-2-plazas', texto: 'Colchones 2 plazas, queen y king en oferta' },
+      { href: '/mejores/mejores-colchones', texto: 'Todos los colchones en oferta' },
+      { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
+    ],
+    comparativa: 'mejores-colchones-2-plazas',
     categoria: { slug: 'colchones', nombre: 'colchones' },
   },
   {
@@ -803,6 +837,211 @@ export const GUIAS: Guia[] = [
     ],
     categoria: { slug: 'equipamiento-gastronomico', nombre: 'equipamiento gastronómico' },
     cta: { href: '/gastronomia', titulo: 'Equipamiento gastronómico en oferta hoy', boton: 'Ver equipamiento en oferta' },
+  },
+  {
+    slug: 'que-notebook-comprar',
+    titulo: '¿Qué notebook comprar? Procesador, RAM y SSD según para qué la usás',
+    descripcion:
+      'Guía para elegir notebook en Argentina para estudiar, trabajar o jugar: qué procesador, cuánta RAM y qué disco SSD conviene, y qué evitar.',
+    pregunta: '¿Qué notebook me conviene comprar?',
+    respuestaCorta:
+      'Para estudiar o trabajar: procesador Ryzen 5 o Core i5 (o superior), 16 GB de RAM (8 GB como mínimo, mejor si se puede ampliar) y disco SSD de 512 GB (256 GB como mínimo). Para gaming: además, placa de video dedicada (NVIDIA GeForce RTX o AMD Radeon) y 16 GB de RAM. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana.',
+    secciones: [
+      {
+        h: 'Para estudiar',
+        p: [
+          'Navegar, Word, Classroom, Zoom y muchas pestañas: un Ryzen 3 / Core i3 moderno con 8 GB de RAM y SSD alcanza; si podés, subí a Ryzen 5 / Core i5 para que dure más años.',
+          'Si la vas a llevar todos los días, priorizá peso y batería: 14 pulgadas es más cómodo de transportar que 15,6.',
+        ],
+      },
+      {
+        h: 'Para trabajar',
+        p: [
+          'Ryzen 5 / Core i5 o superior y 16 GB de RAM: con el navegador, planillas, videollamadas y un par de programas abiertos a la vez, 8 GB se quedan cortos.',
+          'Pantalla de 15,6 pulgadas con panel IPS y resolución Full HD (1920 × 1080): se lee mejor y se ve bien de costado. Evitá los paneles TN y las pantallas de 1366 × 768.',
+          'Puertos: fijate que tenga los que usás (HDMI para un monitor, USB-A, USB-C, lector de tarjetas) para no depender de adaptadores.',
+        ],
+      },
+      {
+        h: 'Para gaming o edición',
+        p: [
+          'Lo que más pesa es la placa de video dedicada: una NVIDIA GeForce RTX o AMD Radeon. Los gráficos integrados alcanzan para juegos livianos, no para títulos exigentes.',
+          '16 GB de RAM, SSD de 512 GB o más (los juegos ocupan mucho) y una pantalla de 120 Hz o más si jugás competitivo. Estas notebooks pesan más y la batería dura menos.',
+        ],
+      },
+      {
+        h: 'RAM y SSD: los dos datos que más cambian la experiencia',
+        p: [
+          'RAM: con Windows 11, 4 GB no alcanza y 8 GB es el mínimo razonable. Revisá si la memoria está soldada o si tiene un slot libre para ampliarla más adelante.',
+          'Disco: un SSD arranca y abre programas mucho más rápido que un disco rígido (HDD). Los SSD NVMe son más rápidos que los SATA. 256 GB se llena rápido; 512 GB es más cómodo.',
+          'Garantía oficial en Argentina y teclado en español: los equipos importados a veces no traen ninguna de las dos.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuánta RAM necesita una notebook para estudiar?',
+        a: '8 GB como mínimo. Con 16 GB va a seguir rindiendo bien varios años aunque abras muchas pestañas y programas. 4 GB no alcanza con Windows 11.',
+      },
+      {
+        q: '¿Conviene Ryzen o Intel?',
+        a: 'A igual nivel (Ryzen 5 vs. Core i5, Ryzen 7 vs. Core i7) rinden parecido para estudiar y trabajar. Conviene comparar la generación del procesador y el resto del equipo (RAM, SSD, pantalla) más que la marca.',
+      },
+      {
+        q: '¿Un SSD de 256 GB alcanza?',
+        a: 'Para estudiar y trabajar con archivos en la nube, sí, aunque queda justo. Si guardás fotos, videos o juegos, buscá 512 GB o más, o un modelo con lugar para un segundo disco.',
+      },
+      {
+        q: '¿Qué notebook sirve para jugar?',
+        a: 'Una con placa de video dedicada (NVIDIA GeForce RTX o AMD Radeon), 16 GB de RAM y SSD de 512 GB o más. Sin placa dedicada, solo vas a poder jugar títulos livianos.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-notebooks', texto: 'Notebooks en oferta: comparativa de precios' },
+      { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
+    ],
+    comparativa: 'mejores-notebooks',
+    cta: {
+      href: '/mejores/mejores-notebooks',
+      titulo: 'Notebooks en oferta hoy, comparadas contra su historial',
+      boton: 'Ver notebooks en oferta 💻',
+    },
+  },
+  {
+    slug: 'que-celular-comprar-segun-presupuesto',
+    titulo: '¿Qué celular comprar según tu presupuesto? Gama media: RAM, memoria, 5G y batería',
+    descripcion:
+      'Guía para elegir celular en Argentina según el presupuesto: cuánta RAM y almacenamiento conviene, si hace falta 5G, batería, pantalla y años de actualizaciones.',
+    pregunta: '¿Qué celular me conviene comprar según mi presupuesto?',
+    respuestaCorta:
+      'Para la mayoría, un gama media es la mejor relación precio-calidad: 128 GB de almacenamiento como mínimo (256 GB si sacás muchas fotos y videos), 6 a 8 GB de RAM, batería de 5.000 mAh y varios años de actualizaciones del fabricante. El 5G es un plus si tu compañía lo ofrece en tu zona, pero no es imprescindible. Preferí equipos con garantía oficial en Argentina.',
+    secciones: [
+      {
+        h: 'Gama de entrada: lo justo para WhatsApp, redes y fotos',
+        p: [
+          'Priorizá 128 GB de almacenamiento y 4 a 6 GB de RAM. Con 64 GB el espacio se llena enseguida con fotos, videos y WhatsApp.',
+          'Si el modelo tiene ranura para tarjeta microSD, podés sumar espacio para fotos más adelante.',
+        ],
+      },
+      {
+        h: 'Gama media: dónde está la mejor relación precio-calidad',
+        p: [
+          'RAM: 6 u 8 GB para tener varias apps abiertas sin que se cierren solas. Almacenamiento: 128 GB mínimo, 256 GB si grabás video.',
+          'Pantalla: AMOLED se ve mejor (negros más profundos, mejor a pleno sol) que LCD; 90 o 120 Hz hace que todo se sienta más fluido.',
+          'Batería: 5.000 mAh es lo habitual en la gama y suele dar un día completo de uso. Mirá también la potencia de carga y si el cargador viene en la caja.',
+          'Actualizaciones: algunos fabricantes prometen varios años de actualizaciones de Android y parches de seguridad. Un equipo que se actualiza por más tiempo dura más; el dato está en la página oficial del modelo.',
+        ],
+      },
+      {
+        h: '5G: ¿hace falta?',
+        p: [
+          'El 5G da más velocidad donde hay cobertura, pero el 4G sigue funcionando bien para el uso diario. Conviene si tu compañía ya tiene 5G en tu zona o si pensás usar el equipo varios años.',
+          'Sea 4G o 5G, revisá que sea una versión que funcione con las bandas de las compañías argentinas y si es dual SIM o admite eSIM.',
+        ],
+      },
+      {
+        h: 'Garantía y vendedor',
+        p: [
+          'Comprá en tiendas oficiales o vendedores con reputación verde. Los equipos importados a veces no tienen garantía oficial en Argentina.',
+          'Los combos con regalo (funda, auriculares, cargador) no siempre valen más: compará el precio del equipo solo.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuánta RAM necesita un celular?',
+        a: '4 GB alcanza para lo básico; 6 u 8 GB es lo recomendable en gama media si usás muchas apps a la vez o jugás.',
+      },
+      {
+        q: '¿Alcanza con 128 GB de almacenamiento?',
+        a: 'Para la mayoría, sí. Si sacás muchas fotos, grabás video o guardás todo lo de WhatsApp, conviene 256 GB o un modelo con ranura microSD.',
+      },
+      {
+        q: '¿Vale la pena pagar más por 5G?',
+        a: 'Solo si tu compañía tiene 5G en tu zona o si vas a usar el celular varios años. Para WhatsApp, redes y video, el 4G alcanza.',
+      },
+      {
+        q: '¿Qué batería conviene?',
+        a: 'Unos 5.000 mAh, que es lo habitual en gama media y suele durar un día completo. La duración real depende también de la pantalla y del procesador.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-celulares', texto: 'Celulares en oferta: comparativa de precios' },
+      { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
+    ],
+    comparativa: 'mejores-celulares',
+    cta: {
+      href: '/mejores/mejores-celulares',
+      titulo: 'Celulares en oferta hoy, comparados contra su historial',
+      boton: 'Ver celulares en oferta 📱',
+    },
+  },
+  {
+    slug: 'que-smart-tv-comprar',
+    titulo: '¿Qué smart TV comprar? Pulgadas según la distancia, 4K y sistema operativo',
+    descripcion:
+      'Guía para elegir smart TV en Argentina: cuántas pulgadas según la distancia al sillón, cuándo conviene 4K, LED vs. QLED vs. OLED y Google TV, Tizen o webOS.',
+    pregunta: '¿Qué smart TV me conviene comprar?',
+    respuestaCorta:
+      'Elegí el tamaño según la distancia al sillón: a 1,5 metros, unas 43 pulgadas; a 2 metros, 50 a 55; a 2,5 metros o más, 65. Desde 43 pulgadas conviene 4K. El sistema operativo (Google TV, Tizen de Samsung o webOS de LG) tiene que tener las apps que usás. QLED y OLED dan mejor imagen que un LED común, pero cuestan más.',
+    secciones: [
+      {
+        h: 'Cuántas pulgadas según la distancia',
+        p: [
+          'A 1,5 metros: 43 pulgadas. A 2 metros: 50 a 55 pulgadas. A 2,5 metros o más: 65 pulgadas. Es una referencia orientativa para una imagen 4K.',
+          'Medí el mueble o la pared: un TV de 55 pulgadas mide unos 1,22 m de diagonal de pantalla y un poco más de ancho con el marco. Si lo vas a colgar, fijate la norma VESA del soporte.',
+        ],
+      },
+      {
+        h: 'Resolución: HD, Full HD o 4K',
+        p: [
+          'En 32 pulgadas alcanza con HD o Full HD. Desde 43 pulgadas conviene 4K (3840 × 2160): la diferencia se nota y ya no cuesta mucho más.',
+          'HDR mejora el brillo y el contraste en el contenido compatible, pero rinde más cuanto más brillo tiene el panel.',
+        ],
+      },
+      {
+        h: 'Panel: LED, QLED u OLED',
+        p: [
+          'LED común: el más barato y suficiente para la mayoría. QLED: colores más vivos y más brillo, bueno para livings luminosos. OLED: negros perfectos y el mejor contraste, ideal para ver películas a oscuras, pero el más caro.',
+          'Si vas a jugar con consola de última generación, buscá HDMI 2.1 y 120 Hz; si no, no pagues de más por eso.',
+        ],
+      },
+      {
+        h: 'Sistema operativo',
+        p: [
+          'Google TV / Android TV (varias marcas), Tizen (Samsung) y webOS (LG) tienen las apps principales de streaming. Si usás una app puntual, confirmá que esté en la tienda de ese sistema.',
+          'Los sistemas menos conocidos de algunas marcas económicas a veces reciben menos actualizaciones y tienen menos apps.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuántas pulgadas de TV necesito para 2 metros de distancia?',
+        a: 'Entre 50 y 55 pulgadas. A 1,5 metros va bien uno de 43 y a 2,5 metros o más, uno de 65.',
+      },
+      {
+        q: '¿Conviene 4K o Full HD?',
+        a: 'Desde 43 pulgadas conviene 4K: se nota la diferencia y ya no cuesta mucho más. En 32 pulgadas alcanza con HD o Full HD.',
+      },
+      {
+        q: '¿Qué es mejor, Google TV, Tizen o webOS?',
+        a: 'Los tres tienen las apps de streaming principales. Google TV está en varias marcas; Tizen es de Samsung y webOS de LG. Elegí el que tenga las apps que usás.',
+      },
+      {
+        q: '¿Qué diferencia hay entre LED, QLED y OLED?',
+        a: 'LED es el más económico. QLED da más brillo y colores más vivos. OLED tiene negros perfectos y el mejor contraste, pero cuesta más.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-smart-tv', texto: 'Smart TV en oferta: comparativa de precios' },
+      { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
+    ],
+    comparativa: 'mejores-smart-tv',
+    cta: {
+      href: '/mejores/mejores-smart-tv',
+      titulo: 'Smart TV en oferta hoy, comparados contra su historial',
+      boton: 'Ver smart TV en oferta 📺',
+    },
   },
   {
     slug: 'que-notebook-comprar-cyber-monday',

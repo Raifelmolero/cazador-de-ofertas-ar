@@ -66,6 +66,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Sistema (Google TV, webOS, Tizen): que tenga las apps que usás.',
       'Garantía oficial de la marca en Argentina.',
     ],
+    guia: 'que-smart-tv-comprar',
   },
   {
     slug: 'mejores-lavarropas',
@@ -650,6 +651,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Procesador: Ryzen 5 / Core i5 o superior para trabajo y estudio; Ryzen 3 / Core i3 alcanza para navegar y ofimática.',
       'Revisá que la garantía sea oficial en Argentina y que el teclado sea en español si te importa la ñ.',
     ],
+    guia: 'que-notebook-comprar',
   },
   {
     slug: 'mejores-celulares',
@@ -668,6 +670,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Que sea versión para Argentina (bandas de 4G/5G de las compañías locales) y con garantía oficial.',
       'Años de actualizaciones del fabricante: un equipo que recibe parches de seguridad por más tiempo dura más.',
     ],
+    guia: 'que-celular-comprar-segun-presupuesto',
   },
   {
     slug: 'mejores-tablets',

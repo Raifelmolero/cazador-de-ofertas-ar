@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-01T04:00:31+00:00",
+  "generado": "2026-10-01T20:33:12+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-01T04:00:31+00:00",
+      "ultima_actividad": "2026-10-01T20:33:12+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1317 productos en la última corrida"
+          "tarea": "Revisó 1416 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -22,7 +22,7 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 5
         },
         {
           "label": "Historias IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora inverter Esab LHN 242i color negro/amarillo"
+      "ultimo_trabajo": "Televisor 75 Pulgadas Crystal Uhd 4k Samsung"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-09-30T16:39:21+00:00",
+      "ultima_actividad": "2026-10-01T17:16:23+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

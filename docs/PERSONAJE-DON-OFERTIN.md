@@ -1,5 +1,9 @@
 # Don Ofertín — personaje de Cazador de Ofertas AR
 
+> **VERSIÓN FINAL (01/10/2026): cazador explorador.** Casco de safari caqui con banda amarilla #FACC15, chaleco caqui de bolsillos, camisa amarilla, bermuda, botas, binoculares, lupa y **red de cazar mariposas** (sin armas, a propósito: políticas de redes y distancia de Elmer Gruñón). Las imágenes aprobadas están en `docs/personaje/` (maestra, expresiones, poses + poses-1-y-4 corregidas, escena-1..6, avatar, stickers). Los prompts de abajo son la versión inicial (jubilado con boina); para nuevas piezas adjuntar `maestra.webp` como referencia.
+>
+> Uso de escenas: 1 precio trucho · 2 oferta real · 3 mínimo histórico · 4 relámpago/se termina · 5 ticket alto · 6 consejo (pizarrón vacío para texto). Fondo negro, tercio superior libre para texto.
+
 Jubilado argentino gruñón pero querible que no se come ningún verso de precios.
 Se enoja con los descuentos inflados y se alegra con las ofertas reales.
 

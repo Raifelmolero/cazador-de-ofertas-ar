@@ -1273,6 +1273,90 @@ export const GUIAS: Guia[] = [
       boton: 'Ver auriculares en oferta 🎧',
     },
   },
+  {
+    slug: 'que-silla-gamer-comprar',
+    titulo: '¿Qué silla gamer comprar? Peso y altura que soporta, tela o cuero sintético, reclinación y apoyabrazos',
+    descripcion:
+      'Cómo elegir una silla gamer en Argentina: peso máximo y altura recomendada, tela o cuero sintético (PU), reclinación, apoyabrazos 2D/3D/4D, base, ruedas y pistón, y qué mirar en el precio.',
+    pregunta: '¿Qué silla gamer me conviene comprar?',
+    respuestaCorta:
+      'Empezá por tu cuerpo: elegí una silla cuyo peso máximo declarado te quede con margen y cuya altura recomendada te incluya. Después el material: la tela respira mejor en verano y el cuero sintético (PU) se limpia más fácil pero da más calor y con los años se puede descascarar. Para jugar o trabajar muchas horas importan el apoyo lumbar, la altura regulable y los apoyabrazos ajustables (3D o 4D) más que las luces o el diseño. Antes de pagar, chequeá en el historial que el descuento sea real.',
+    secciones: [
+      {
+        h: 'Peso máximo y altura: lo primero que hay que mirar',
+        p: [
+          'Cada silla declara un peso máximo en la publicación o en la ficha técnica. Elegí una que te quede con margen por encima de tu peso: una silla trabajando al límite se gasta antes, sobre todo el pistón y la base.',
+          'La altura también cuenta. Si sos muy alto o muy bajo, revisá la altura del respaldo y el rango de regulación del asiento: tenés que poder apoyar los pies en el piso con las rodillas a unos 90 grados, y el respaldo tiene que llegarte por lo menos a los hombros.',
+        ],
+      },
+      {
+        h: 'Tela o cuero sintético',
+        p: [
+          'Cuero sintético (PU o ecocuero): es el más común en sillas gamer, se limpia con un paño y se ve bien de nueva. Contras: da calor en verano y, con los años y el uso, puede cuartearse o descascararse.',
+          'Tela o malla: respira mejor, así que es más cómoda en los meses de calor, y no se descascara. Contras: absorbe manchas y cuesta más limpiarla. Si en tu casa hace mucho calor o pasás muchas horas sentado, la tela suele ser la opción más cómoda.',
+        ],
+      },
+      {
+        h: 'Ergonomía: lumbar, cabezal y reclinación',
+        p: [
+          'Apoyo lumbar: la mayoría trae almohadón lumbar y cervical sueltos. Algunas tienen soporte lumbar integrado y regulable, que no se mueve de lugar. Si pasás muchas horas sentado, es lo que más se nota en la espalda.',
+          'Reclinación: muchas sillas gamer reclinan el respaldo bastante más que una silla de oficina común y tienen función de balanceo (mecedora) con traba. Fijate el rango de grados que declara la publicación y que se pueda trabar en varias posiciones, no solo en vertical y acostado.',
+        ],
+      },
+      {
+        h: 'Apoyabrazos 2D, 3D o 4D',
+        p: [
+          'Los apoyabrazos fijos o 1D solo suben y bajan, o ni eso. Los 2D suman algún movimiento extra (según la marca, hacia adelante y atrás o hacia los costados); los 3D agregan otra dirección y los 4D además giran. No todas las marcas usan los mismos nombres, así que leé qué movimientos tiene realmente.',
+          'Para jugar con teclado y mouse o trabajar, unos apoyabrazos que se ajusten a la altura del escritorio evitan cargar hombros y muñecas. Si la silla va a quedar bajo un escritorio, chequeá que los apoyabrazos bajen lo suficiente para que entre.',
+        ],
+      },
+      {
+        h: 'Base, ruedas y pistón',
+        p: [
+          'La base de metal (aluminio o acero) aguanta más que la de plástico. El pistón a gas es lo que sube y baja la silla: si la publicación menciona su clase o certificación, mejor; si es el primer componente en fallar, se puede reemplazar.',
+          'Las ruedas comunes de nylon pueden rayar pisos de madera o flotantes; ahí conviene una alfombra protectora o ruedas de goma (PU).',
+        ],
+      },
+      {
+        h: 'Rangos de precio y cómo no pagar de más',
+        p: [
+          'Las sillas más baratas suelen tener base de plástico, apoyabrazos fijos y cuero sintético básico. A medida que sube el precio aparecen la base metálica, los apoyabrazos 3D/4D, el soporte lumbar regulable y las marcas con garantía oficial en Argentina. Como los precios cambian todo el tiempo, compará las sillas que están en oferta hoy en la tabla de la comparativa, con el precio más bajo que registramos para cada una.',
+          'Preferí tiendas oficiales o vendedores con buena reputación, revisá la garantía y si llega armada o hay que armarla. Y fijate que el descuento sea real: comparamos el precio contra el historial y marcamos las que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'productos gamer' },
+    comparativa: 'mejores-sillas-gamer',
+    cta: {
+      href: '/mejores/mejores-sillas-gamer',
+      titulo: 'Las sillas gamer en oferta hoy, comparadas',
+      boton: 'Ver la comparativa de sillas 🪑',
+    },
+    faq: [
+      {
+        q: '¿Es mejor una silla gamer de tela o de cuero sintético?',
+        a: 'Depende del calor y del uso. La tela respira mejor y no se descascara; el cuero sintético se limpia más fácil pero da calor en verano y con los años se puede cuartear. Para muchas horas en una casa calurosa, conviene tela.',
+      },
+      {
+        q: '¿Qué son los apoyabrazos 4D?',
+        a: 'Son apoyabrazos que se ajustan en cuatro movimientos: altura, adelante-atrás, hacia los costados y giro. Los 2D y 3D tienen menos ajustes. Como cada marca usa los nombres a su manera, leé en la publicación qué movimientos tiene.',
+      },
+      {
+        q: '¿Cuánto peso aguanta una silla gamer?',
+        a: 'Lo declara cada fabricante en la publicación o la ficha técnica. Elegí una que te deje margen por encima de tu peso para que el pistón y la base no trabajen al límite.',
+      },
+      {
+        q: '¿Silla gamer o silla ergonómica de oficina?',
+        a: 'Para muchas horas, lo que importa es el ajuste: altura regulable, apoyo lumbar y apoyabrazos ajustables. Una silla gamer con esas regulaciones sirve igual que una de oficina; una con solo diseño y luces, no.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-sillas-gamer', texto: 'Comparativa de sillas gamer' },
+      { href: '/mejores/mejores-monitores-gamer', texto: 'Comparativa de monitores gamer' },
+      { href: '/gamer', texto: 'Ofertas gamer 🎮' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1280,6 +1364,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-silla-gamer-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'como-saber-si-un-descuento-de-mercado-libre-es-real': { publicada: '2026-09-21', modificada: '2026-09-21' },
   'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre': { publicada: '2026-09-21', modificada: '2026-09-21' },
   'como-ahorrar-en-mercado-libre-argentina': { publicada: '2026-09-21', modificada: '2026-09-21' },

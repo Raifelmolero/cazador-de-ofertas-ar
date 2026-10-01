@@ -346,6 +346,21 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </section>
         )}
 
+        {c.enlaces && c.enlaces.length > 0 && (
+          <nav className="text-sm mb-8">
+            <p className="font-bold text-zinc-300 mb-2">Completá el setup</p>
+            <ul className="flex flex-wrap gap-2">
+              {c.enlaces.map(e => (
+                <li key={e.href}>
+                  <a href={e.href} className="inline-block border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                    {e.texto}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
         <nav className="text-sm">
           <p className="font-bold text-zinc-300 mb-2">Otras comparativas</p>
           <ul className="space-y-1.5">

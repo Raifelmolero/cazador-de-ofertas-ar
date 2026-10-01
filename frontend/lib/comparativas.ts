@@ -27,6 +27,8 @@ export interface Comparativa {
   guia?: string // slug de /guias/* relacionada
   /** Cortes de precio para la sección "por presupuesto" (regalos) */
   presupuestos?: number[]
+  /** Links internos extra (ej. del monitor gamer a la silla gamer). */
+  enlaces?: { href: string; texto: string }[]
 }
 
 const AÑO = 2026
@@ -634,6 +636,31 @@ export const COMPARATIVAS: Comparativa[] = [
       'FreeSync o G-Sync evitan cortes en la imagen cuando los cuadros por segundo varían.',
       'Entradas: DisplayPort o HDMI que soporten la frecuencia máxima del monitor.',
     ],
+    enlaces: [
+      { href: '/mejores/mejores-sillas-gamer', texto: 'Comparativa de sillas gamer 🪑' },
+      { href: '/guias/que-silla-gamer-comprar', texto: '¿Qué silla gamer comprar?' },
+    ],
+  },
+  {
+    slug: 'mejores-sillas-gamer',
+    nombre: 'sillas gamer',
+    titulo: `Mejores sillas gamer en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de sillas gamer en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar: peso máximo, tela o cuero sintético, reclinación y apoyabrazos.',
+    intro:
+      'Las sillas gamer en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    categoria: 'gamer',
+    keywords: ['silla'],
+    excluir: ['funda', 'repuesto', 'piston', 'rueda', 'almohad'],
+    criterios: [
+      'Peso máximo y altura recomendada: elegí una que te quede con margen; el pistón y la base son lo primero que se gasta.',
+      'Tela si hace calor o la usás muchas horas; cuero sintético (PU) si priorizás limpiarla fácil.',
+      'Apoyo lumbar regulable y apoyabrazos ajustables (3D o 4D) pesan más que las luces o el diseño.',
+      'Reclinación con traba en varias posiciones y base metálica para que dure.',
+      'Garantía oficial en Argentina y si llega armada o hay que armarla.',
+    ],
+    guia: 'que-silla-gamer-comprar',
+    enlaces: [{ href: '/mejores/mejores-monitores-gamer', texto: 'Comparativa de monitores gamer' }],
   },
   {
     slug: 'mejores-notebooks',

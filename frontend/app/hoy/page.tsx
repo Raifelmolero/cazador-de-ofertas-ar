@@ -218,8 +218,9 @@ export default function HoyPage() {
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/85 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-          <span className="font-display text-lg font-extrabold tracking-tight">
-            🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
+          <span className="font-display text-lg font-extrabold tracking-tight flex items-center gap-2">
+            <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" priority />
+            <span className="text-yellow-400">Cazador de Ofertas</span>
           </span>
           <nav aria-label="Rubros" className="hidden md:flex items-center gap-5 text-sm font-semibold text-zinc-400">
             {NICHOS.map(n => (
@@ -242,25 +243,40 @@ export default function HoyPage() {
 
       {/* Hero: el verificador es lo primero que se ve */}
       <section
-        className="border-b border-zinc-900 px-4 pt-10 pb-8 sm:pt-16 sm:pb-12"
+        className="border-b border-zinc-900 px-4 pt-6 pb-5 sm:pt-16 sm:pb-12"
         style={{ background: 'radial-gradient(ellipse 70% 60% at 50% -20%, rgba(250,204,21,0.09) 0%, transparent 70%)' }}
       >
         <div className="max-w-3xl mx-auto">
-          <h1 className="font-display text-[2.2rem] sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
+          {/* Celular: primero el atajo a las ofertas (el que entra quiere comprar) */}
+          <div className="sm:hidden flex items-center gap-3 mb-4">
+            <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={84} height={104} className="shrink-0" priority />
+            <div>
+              <p className="font-display text-xl font-black leading-tight">Ofertas reales de Mercado Libre, verificadas hoy</p>
+              <p className="mt-1 text-xs text-zinc-400">{ofertas.length.toLocaleString('es-AR')} ofertas{minimos > 0 ? ` · ${minimos} en su mínimo histórico` : ''}</p>
+            </div>
+          </div>
+          <a
+            href="#ofertas"
+            className="sm:hidden mb-6 flex items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-5 py-4 text-lg font-black text-black shadow-lg shadow-yellow-400/20 active:scale-[0.98] transition-transform"
+          >
+            🔥 Ver las ofertas de hoy
+          </a>
+          <h1 className="font-display text-2xl sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
             ¿Ese descuento de Mercado Libre es real?
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]">
+          <p className="hidden sm:block mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]">
             Pegá el link y te lo decimos con el historial de precios que registramos desde julio.
             Según nuestro estudio, {estudio.pctInfladas.toLocaleString('es-AR')}% de las ofertas tiene el precio tachado inflado.
           </p>
-          <div id="verificador" className="mt-7 scroll-mt-24">
+          <div id="verificador" className="mt-4 sm:mt-7 scroll-mt-24">
             <Verificador />
-            <ExtensionCTA className="mt-4" />
+            {/* la extensión es de Chrome de escritorio: en el celular solo ocupa lugar */}
+            <ExtensionCTA className="mt-4 hidden sm:block" />
           </div>
         </div>
 
         {/* Contadores en vivo: salen del registro del bot y del catálogo del día */}
-        <dl className="max-w-5xl mx-auto mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-4 border-y border-zinc-800 divide-zinc-800 sm:divide-x">
+        <dl className="max-w-5xl mx-auto mt-10 sm:mt-14 hidden sm:grid grid-cols-2 sm:grid-cols-4 border-y border-zinc-800 divide-zinc-800 sm:divide-x">
           {[
             [estudio.revisadas.toLocaleString('es-AR'), 'ofertas revisadas', `desde el ${estudio.desde.split('-').reverse().join('/')}`],
             [estudio.infladas.toLocaleString('es-AR'), 'descuentos inflados', 'detectados y descartados'],
@@ -275,7 +291,7 @@ export default function HoyPage() {
             </div>
           ))}
         </dl>
-        <p className="max-w-5xl mx-auto mt-3 px-4 text-xs text-zinc-500 flex items-center gap-2">
+        <p className="max-w-5xl mx-auto mt-3 px-4 text-xs text-zinc-500 hidden sm:flex items-center gap-2">
           <span className="relative flex h-2 w-2" aria-hidden="true">
             <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -284,7 +300,16 @@ export default function HoyPage() {
         </p>
 
         {/* Rubros + los dos atajos con datos propios */}
-        <div className="max-w-5xl mx-auto mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        {/* Celular: rubros en una fila deslizable (la grilla ocupaba 1.100 px) */}
+        <nav aria-label="Rubros" className="sm:hidden -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none]">
+          {NICHOS.map(n => (
+            <a key={n.slug} href={`/${n.slug}`} className="shrink-0 rounded-full border border-zinc-800 bg-zinc-900/60 px-3.5 py-2 text-sm font-semibold text-zinc-200">
+              {n.emoji} {n.marca.replace('Cazador de ', '')}
+            </a>
+          ))}
+          <Link href="/precio-hoy" className="shrink-0 rounded-full border border-emerald-500/30 px-3.5 py-2 text-sm font-semibold text-emerald-300">$ Precio hoy</Link>
+        </nav>
+        <div className="max-w-5xl mx-auto mt-8 hidden sm:grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {NICHOS.map(n => (
             <a
               key={n.slug}
@@ -319,7 +344,7 @@ export default function HoyPage() {
       <BannerTemporada />
 
       {/* Grid con búsqueda y filtros */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <section id="ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 scroll-mt-16">
         {ofertas.length === 0 ? (
           <p className="text-center text-zinc-500 py-16">
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯

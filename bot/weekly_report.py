@@ -12,6 +12,7 @@ Corre los domingos a la noche (weekly_report.yml). Lee bot/state/posts_log.jsonl
 Si no entra en un mensaje de Telegram (4096 caracteres) se parte en varios.
 """
 
+import csv
 import json
 import os
 import re
@@ -35,6 +36,8 @@ from cazador_bot import (
 METRICS_LOG_PATH = BASE_DIR / "state" / "metrics_log.jsonl"
 NICHOS_TS_PATH = BASE_DIR.parent / "frontend" / "lib" / "nichos.ts"
 TG_MAX = 4096
+AFILIADOS_DIR = BASE_DIR / "state"
+AFILIADOS_SEMANA_PATH = AFILIADOS_DIR / "afiliados_semana.csv"
 
 CH_LABELS = {
     "telegram": "Telegram",
@@ -312,6 +315,86 @@ def bloque_manual() -> str:
     )
 
 
+def leer_afiliados(path) -> dict[str, dict]:
+    """CSV etiqueta,clics,unidades,ganancia -> {etiqueta: {clics, unidades, ganancia}}.
+    Tolera "$" y separadores de miles con punto; ignora decimales."""
+    out: dict[str, dict] = {}
+    try:
+        with open(path, encoding="utf-8-sig", newline="") as f:
+            for row in csv.DictReader(f):
+                tag = (row.get("etiqueta") or "").strip()
+                if not tag:
+                    continue
+                num = {}
+                for k in ("clics", "unidades", "ganancia"):
+                    v = re.sub(r"[^\d-]", "", (row.get(k) or "").split(",")[0])
+                    num[k] = int(v) if v not in ("", "-") else 0
+                out[tag] = num
+    except (OSError, csv.Error, ValueError):
+        return {}
+    return out
+
+
+def afiliados_anterior(hoy: datetime | None = None):
+    """Último afiliados_AAAA-MM-DD.csv con fecha de al menos 4 días antes de hoy
+    (la semana anterior), o None."""
+    hoy = hoy or datetime.now(timezone.utc)
+    limite = (hoy - timedelta(days=4)).strftime("%Y-%m-%d")
+    cands = sorted(p for p in AFILIADOS_DIR.glob("afiliados_????-??-??.csv")
+                   if p.stem[len("afiliados_"):] <= limite)
+    return cands[-1] if cands else None
+
+
+def _conv(unidades: int, clics: int) -> str:
+    return f"{unidades / clics * 100:.1f}%" if clics else "s/d"
+
+
+def bloque_afiliados(actual: dict | None = None, anterior: dict | None = None) -> str:
+    """Ranking de ganancia por etiqueta desde afiliados_semana.csv, con variación
+    vs la semana anterior (último afiliados_AAAA-MM-DD.csv) y conversión clics→unidades."""
+    titulo = "💰 Ganancia por etiqueta (completar desde el panel de ML):\n"
+    if actual is None:
+        actual = leer_afiliados(AFILIADOS_SEMANA_PATH) if AFILIADOS_SEMANA_PATH.exists() else {}
+        if anterior is None:
+            prev_path = afiliados_anterior()
+            anterior = leer_afiliados(prev_path) if prev_path else {}
+    anterior = anterior or {}
+    if not actual:
+        return titulo + (
+            "  Sin datos. Cargá bot/state/afiliados_semana.csv con la cabecera\n"
+            "  etiqueta,clics,unidades,ganancia y una fila por etiqueta (panel de\n"
+            "  afiliados ML, últimos 7 días; ganancia en pesos sin puntos), ej.:\n"
+            "  web,267,27,574519\n"
+            "  Al cerrar la semana copialo como afiliados_AAAA-MM-DD.csv (fecha del\n"
+            "  domingo) para que el reporte siguiente compare contra él."
+        )
+    lines = []
+    tot = {"clics": 0, "unidades": 0, "ganancia": 0}
+    ranking = sorted(actual.items(),
+                     key=lambda kv: (kv[1]["ganancia"], kv[1]["unidades"], kv[1]["clics"]),
+                     reverse=True)
+    for i, (tag, d) in enumerate(ranking, 1):
+        for k in tot:
+            tot[k] += d[k]
+        old = anterior.get(tag) if anterior else None
+        if anterior and old is None:
+            old = {"clics": 0, "unidades": 0, "ganancia": 0}
+        lines.append(
+            f"  {i}. {tag}: {fmt_price(d['ganancia'])}"
+            f"{flecha(d['ganancia'], old['ganancia'] if old else None, precio=True)}"
+            f" · {d['clics']} clics{flecha(d['clics'], old['clics'] if old else None)}"
+            f" · {d['unidades']} u. · conv {_conv(d['unidades'], d['clics'])}"
+        )
+    prev_g = sum(d["ganancia"] for d in anterior.values()) if anterior else None
+    lines.append(
+        f"  Total: {fmt_price(tot['ganancia'])}{flecha(tot['ganancia'], prev_g, precio=True)}"
+        f" · {tot['clics']} clics · {tot['unidades']} u. · conv {_conv(tot['unidades'], tot['clics'])}"
+    )
+    if not anterior:
+        lines.append("  (sin semana anterior para comparar)")
+    return titulo + "\n".join(lines)
+
+
 def build_report(
     entries: list[dict],
     metrics: dict | None = None,
@@ -351,7 +434,7 @@ def build_report(
             "📊 REPORTE SEMANAL\n\n" + metrics_block + scan_block +
             "Sin publicaciones registradas esta semana (el log arranca a acumular "
             "desde que se activó — la semana que viene ya hay datos completos).\n\n"
-            + bloque_manual()
+            + bloque_manual() + "\n\n" + bloque_afiliados()
         )
 
     st = week_stats(entries)
@@ -405,7 +488,7 @@ def build_report(
         "  2. IG Insights: ¿qué post tuvo más alcance y guardados?\n"
         "  3. ¿Hiciste stories con sticker esta semana? (2-3 recomendadas)\n"
         "  4. Clarity: ¿cuántas visitas tuvo el sitio y de dónde vinieron?\n\n"
-        + bloque_manual()
+        + bloque_manual() + "\n\n" + bloque_afiliados()
     )
 
 

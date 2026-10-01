@@ -220,9 +220,9 @@ export default function CuponesPage() {
             </ul>
             <p className="mt-3">
               Si vas a pagar en cuotas, la{' '}
-              <Link href="/calculadora-cuotas-sin-interes" className={a}>calculadora de cuotas sin interés</Link>{' '}
+              <a href="https://calculadoraml.com.ar/calculadora-cuotas-sin-interes" className={a}>calculadora de cuotas sin interés</a>{' '}
               te dice si conviene contra pagar de contado, y la de{' '}
-              <Link href="/calculadora-envio-gratis" className={a}>envío gratis</Link> cuánto te falta para no pagar envío.
+              <a href="https://calculadoraml.com.ar/calculadora-envio-gratis" className={a}>envío gratis</a> cuánto te falta para no pagar envío.
             </p>
           </section>
 

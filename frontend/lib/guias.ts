@@ -188,7 +188,7 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'cupones-y-codigos-de-descuento-de-mercado-libre-argentina',
-    titulo: 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo funcionan y dónde buscarlos',
+    titulo: 'Dónde buscar cupones de Mercado Libre Argentina y cómo funcionan',
     descripcion:
       'Cómo funcionan los cupones de Mercado Libre Argentina, la diferencia entre cupones de Mercado Libre y de vendedor, y dónde encontrarlos antes de pagar.',
     pregunta: '¿Cómo funcionan los cupones y códigos de descuento de Mercado Libre Argentina?',

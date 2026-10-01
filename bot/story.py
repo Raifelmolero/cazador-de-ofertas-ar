@@ -19,6 +19,34 @@ BLACK = (12, 12, 14)
 STAMP_RED = (206, 43, 43)
 RIBBON_GREEN = (0, 143, 107)  # cinta de regalo: contrasta con ámbar/rojo
 
+# Don Ofertín (mascota): poses recortadas por tools/recortar_personaje.py.
+PERSONAJE_DIR = Path(__file__).resolve().parent / "assets" / "personaje"
+PRECIO_TICKET_ALTO = 300_000
+
+
+def pose_personaje(deal: dict) -> str:
+    """Qué pose de Don Ofertín acompaña la oferta (assets/personaje/<pose>.png)."""
+    if deal.get("hist_low"):
+        return "festejando"
+    if deal.get("relampago"):
+        return "corriendo"
+    if deal.get("price_cur", 0) >= PRECIO_TICKET_ALTO:
+        return "atrapando"
+    return "pulgar"
+
+
+def _pegar_personaje(img: Image.Image, pose: str, box: tuple[int, int, int, int]) -> bool:
+    """Pega la pose recortada dentro de box (x0, y0, x1, y1), apoyada abajo a
+    la izquierda. Si falta el PNG no hace nada (la placa sale como antes)."""
+    path = PERSONAJE_DIR / f"{pose}.png"
+    if not path.exists():
+        return False
+    pj = Image.open(path).convert("RGBA")
+    x0, y0, x1, y1 = box
+    pj = ImageOps.contain(pj, (x1 - x0, y1 - y0))
+    img.paste(pj, (x0, y1 - pj.height), pj)
+    return True
+
 _BOLD_FONTS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "C:/Windows/Fonts/arialbd.ttf",
@@ -128,7 +156,13 @@ def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.rounded_rectangle([bx0, byc - 50, bx1, byc + 50], radius=38, outline=BG, width=6)
     d.text(((bx0 + bx1) // 2, byc + 2), badge_txt, font=badge_f, fill=BLACK, anchor="mm")
 
-    _stamp_cazado(img, (card_left + 160, card_bottom - 35), 0.95)
+    # Don Ofertín abajo a la izquierda, pisando la esquina de la tarjeta; el
+    # sello pasa a la derecha para no taparlo.
+    con_personaje = _pegar_personaje(
+        img, pose_personaje(deal), (0, card_bottom - 300, 300, card_bottom + 25)
+    )
+    sello_x = card_left + card_w - 160 if con_personaje else card_left + 160
+    _stamp_cazado(img, (sello_x, card_bottom - 35), 0.95)
 
     if sello:
         _ribbon_temporada(d, FW // 2, card_bottom + ribbon_h // 2, sello, font_size=30)

@@ -1080,7 +1080,7 @@ def comision_estimada(title: str) -> float:
 # sale a comprar pesan más. (mes, día) inclusivo. El Día de la Madre es el
 # 3er domingo de octubre; la ventana cubre las 3 semanas previas de compra.
 TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
-    ((9, 25), (10, 19), 1.5, [  # Día de la Madre (18/10/2026)
+    ((9, 25), (10, 18), 1.5, [  # Día de la Madre (18/10/2026): sello y landing hasta ese día
         "perfume", "secador de pelo", "planchita", "alisadora", "rizador",
         "smartwatch", "reloj", "cartera", "bata", "masajeador", "cafetera",
         "freidora de aire", "robot aspiradora", "aspiradora robot", "batidora",
@@ -1091,6 +1091,8 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "colchon", "colchón", "sommier", "gazebo", "aspiradora",
         "horno electrico", "horno eléctrico", "microondas", "robot de cocina",
         "cafetera expreso", "notebook",
+        # Ventas reales de afiliados (sep-2026): lavarropas y smart TV.
+        "lavarropas", "smart tv", "televisor",
     ]),
     ((9, 21), (2, 28), 1.3, [  # Primavera-verano: calor y aire libre
         "aire acondicionado", "ventilador", "pileta", "piscina", "reposera",

@@ -15,6 +15,15 @@ import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, getComparativa, productosDe } from '@/lib/comparativas'
 import { GUIAS } from '@/lib/guias'
+
+/** Guías de compra de ticket alto (lo que más vende por afiliados). */
+const GUIAS_TICKET_ALTO = [
+  'que-notebook-comprar',
+  'que-celular-comprar-segun-presupuesto',
+  'que-smart-tv-comprar',
+  'que-freidora-de-aire-comprar',
+  'que-colchon-comprar-firmeza-y-material',
+]
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
@@ -78,7 +87,7 @@ export default function CyberMondayPage() {
 
   const comparativas = COMPARATIVAS.filter(c => c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-'))
   const blackFriday = getComparativa('ofertas-black-friday')
-  const guias = GUIAS.filter(g => g.slug.includes('cyber-monday'))
+  const guias = GUIAS.filter(g => g.slug.includes('cyber-monday') || GUIAS_TICKET_ALTO.includes(g.slug))
 
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
   const faqs = [

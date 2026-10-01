@@ -33,9 +33,9 @@ const FECHA_TEXTO = 'domingo 18 de octubre'
 const POR_RANGO = 8
 
 const RANGOS = [
-  { id: 'hasta-30000', titulo: 'Hasta $30.000', min: 0, max: 30000 },
-  { id: '30000-a-80000', titulo: 'De $30.000 a $80.000', min: 30000, max: 80000 },
-  { id: 'mas-de-80000', titulo: 'Más de $80.000', min: 80000, max: Infinity },
+  { id: 'hasta-100000', titulo: 'Hasta $100.000', min: 0, max: 100000 },
+  { id: '100000-a-300000', titulo: 'De $100.000 a $300.000', min: 100000, max: 300000 },
+  { id: 'mas-de-300000', titulo: 'Más de $300.000', min: 300000, max: Infinity },
 ] as const
 
 const CATEGORIAS_REGALO = [
@@ -47,9 +47,25 @@ const CATEGORIAS_REGALO = [
   { slug: 'colchones', nombre: 'Colchones y sommiers' },
 ]
 
+/** Guías de compra para regalos de ticket alto (lo que más se vendió). */
+const GUIAS_REGALO = [
+  'que-regalar-el-dia-de-la-madre',
+  'que-notebook-comprar',
+  'que-celular-comprar-segun-presupuesto',
+  'que-smart-tv-comprar',
+  'que-lavarropas-comprar',
+  'que-colchon-comprar-firmeza-y-material',
+  'que-freidora-de-aire-comprar',
+]
+
 /** Regalos de ticket medio/alto por rubro: cada uno sale de su comparativa
  *  (catálogo del día); si hoy no hay ofertas de un rubro, no se muestra. */
 const RUBROS_REGALO = [
+  { comp: 'mejores-notebooks', titulo: 'Notebooks', emoji: '💻' },
+  { comp: 'mejores-celulares', titulo: 'Celulares', emoji: '📱' },
+  { comp: 'mejores-smart-tv', titulo: 'Smart TV', emoji: '📺' },
+  { comp: 'mejores-lavarropas', titulo: 'Lavarropas', emoji: '🧺' },
+  { comp: 'mejores-colchones', titulo: 'Colchones', emoji: '🛏️' },
   { comp: 'mejores-perfumes', titulo: 'Perfumes', emoji: '🌸' },
   { comp: 'mejores-cafeteras', titulo: 'Cafeteras', emoji: '☕' },
   { comp: 'mejores-freidoras-de-aire', titulo: 'Freidoras de aire', emoji: '🍟' },
@@ -65,7 +81,7 @@ const RUBROS_REGALO = [
 const POR_RUBRO = 4
 
 const TITULO = `Regalos para el Día de la Madre ${AÑO}: ofertas reales por presupuesto`
-const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $30.000, hasta $80.000 y más), con el descuento verificado contra el historial.`
+const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $100.000, de $100.000 a $300.000 y más de $300.000: notebooks, celulares, smart TV, lavarropas, colchones), con el descuento verificado contra el historial.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -121,9 +137,15 @@ export default function DiaDeLaMadrePage() {
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
   })
-  // Ya vienen ordenados por ganancia esperada (igual que /hoy).
+  // Ya vienen ordenados por ganancia esperada (igual que /hoy). Los rangos
+  // altos suman los rubros de ticket alto (notebooks, celulares, TV, etc.).
+  const deRubros = RUBROS_REGALO.flatMap(r => {
+    const c = getComparativa(r.comp)
+    return c ? productosDe(c) : []
+  })
+  const pool = [...regalos, ...deRubros].filter((p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i)
   const rangos = RANGOS.map(r => {
-    const todos = regalos.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
+    const todos = pool.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
     return { ...r, total: todos.length, productos: todos.slice(0, POR_RANGO) }
   })
   // Por rubro, solo ticket medio/alto (≥ $30.000): lo que más comisión deja.
@@ -137,7 +159,7 @@ export default function DiaDeLaMadrePage() {
     (p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i,
   )
 
-  const guias = GUIAS.filter(g => g.slug === 'que-regalar-el-dia-de-la-madre')
+  const guias = GUIAS_REGALO.map(s => GUIAS.find(g => g.slug === s)).filter(g => g !== undefined)
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
 
   const faqs = [
@@ -147,7 +169,7 @@ export default function DiaDeLaMadrePage() {
     },
     {
       q: '¿Con cuánta anticipación conviene comprar el regalo?',
-      a: 'Al menos una semana antes. En Mercado Libre mirá la fecha de entrega estimada antes de pagar: los productos con envío Full suelen llegar más rápido y tienen devolución más simple si hay que cambiarlos.',
+      a: `Cuanto antes, mejor. Mercado Libre muestra en cada publicación la fecha de entrega estimada para tu código postal antes de pagar: esa es la única referencia confiable. Fijate que diga una fecha anterior al ${FECHA_TEXTO}.`,
     },
     {
       q: '¿Cómo sé si el descuento de un regalo es real?',
@@ -155,15 +177,15 @@ export default function DiaDeLaMadrePage() {
     },
     {
       q: '¿Qué regalar según el presupuesto?',
-      a: 'Depende de lo que haya en oferta ese día: en esta página separamos las ofertas regalables de hoy (perfumes, cuidado personal, electro de cocina, smartwatch, auriculares y más) en tres rangos: hasta $30.000, de $30.000 a $80.000 y más de $80.000. Si no estás seguro del gusto, un electrodoméstico útil rara vez falla.',
+      a: 'Depende de lo que haya en oferta ese día: en esta página separamos las ofertas regalables de hoy en tres rangos: hasta $100.000 (perfumes, cuidado personal, electro de cocina), de $100.000 a $300.000 (freidoras, celulares, colchones) y más de $300.000 (notebooks, smart TV, lavarropas). Para los regalos grandes tenemos guías de compra que explican qué mirar en cada uno.',
     },
     {
       q: `¿Hasta cuándo conviene pedir el regalo para que llegue el ${FECHA_TEXTO}?`,
-      a: 'Lo ideal es pedirlo hasta el domingo 11 de octubre, una semana antes. Colchones, sommiers y muebles de jardín suelen tener entregas más largas por el tamaño: en esos, mirá la fecha estimada antes de pagar y no lo dejes para último momento.',
+      a: `No hay una fecha única: depende del vendedor, del tipo de envío y de tu código postal. Antes de pagar, Mercado Libre muestra la fecha estimada de entrega; elegí una publicación cuya fecha sea anterior al ${FECHA_TEXTO}. En productos grandes (colchones, lavarropas, smart TV) revisala con más cuidado.`,
     },
     {
       q: '¿Qué regalos grandes hay en oferta para el Día de la Madre?',
-      a: 'En esta página mostramos, por rubro, las ofertas de hoy desde $30.000 en perfumes, cafeteras, freidoras de aire, batidoras, aspiradoras, tablets, smartwatch, planchitas y secadores de pelo, colchones, sommiers y muebles de jardín. Solo aparecen los rubros que hoy tienen ofertas, y cada rubro enlaza a su comparativa completa.',
+      a: 'En esta página mostramos, por rubro, las ofertas de hoy desde $30.000 en notebooks, celulares, smart TV, lavarropas, colchones, perfumes, cafeteras, freidoras de aire, batidoras, aspiradoras, tablets, smartwatch, planchitas y secadores de pelo, colchones, sommiers y muebles de jardín. Solo aparecen los rubros que hoy tienen ofertas, y cada rubro enlaza a su comparativa completa.',
     },
   ]
 
@@ -230,7 +252,7 @@ export default function DiaDeLaMadrePage() {
             {TITULO}
           </h1>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Perfumes, cuidado personal, electro de cocina, smartwatch y más, separados por presupuesto. Cada regalo está
+            Desde perfumes y electro de cocina hasta notebooks, celulares, smart TV, lavarropas y colchones, separados por presupuesto. Cada regalo está
             comparado contra el precio más bajo que registramos, así sabés si el descuento es de verdad.
           </p>
 
@@ -276,7 +298,7 @@ export default function DiaDeLaMadrePage() {
           {r.productos.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {r.productos.map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'hasta-30000' && i < 4} />
+                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'hasta-100000' && i < 4} />
               ))}
             </div>
           )}

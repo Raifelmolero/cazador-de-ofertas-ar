@@ -1,7 +1,7 @@
-// Invitación a instalar la extensión. Apagada hasta que la Chrome Web Store
-// la apruebe: al publicarse, poner EXTENSION_PUBLICADA en true y listo.
+// Invitación a instalar la extensión (publicada en la Chrome Web Store el 30/09/2026).
+// EXTENSION_PUBLICADA en false la oculta.
 
-export const EXTENSION_PUBLICADA = false
+export const EXTENSION_PUBLICADA = true
 export const EXTENSION_URL =
   'https://chromewebstore.google.com/detail/jcmmpomhhoeohohaaminnjhicnenjbdm?utm_source=sitio'
 

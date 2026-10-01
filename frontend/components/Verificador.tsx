@@ -200,6 +200,14 @@ const TONOS = {
   zinc: 'border-zinc-500 text-zinc-400',
 }
 
+// Cara de Don Ofertín según el veredicto (public/personaje/)
+const CARAS: Record<keyof typeof TONOS, string> = {
+  red: '/personaje/cara-furioso.webp',
+  green: '/personaje/cara-enamorado.webp',
+  yellow: '/personaje/cara-desconfiado.webp',
+  zinc: '/personaje/cara-desconfiado.webp',
+}
+
 function Resultado({ sello, tono, titulo, children }: { sello: string; tono: keyof typeof TONOS; titulo: string; children: React.ReactNode }) {
   return (
     <div className="verdict relative mt-4 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-5 pr-5 sm:pr-36 text-left">
@@ -209,7 +217,11 @@ function Resultado({ sello, tono, titulo, children }: { sello: string; tono: key
       >
         {sello}
       </span>
-      <p className={`font-display text-xl font-black sm:text-2xl ${TONOS[tono].split(' ')[1]}`}>{titulo}</p>
+      <div className="flex items-center gap-3">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={CARAS[tono]} alt="" width={56} height={56} className="h-14 w-14 shrink-0 object-contain" />
+        <p className={`font-display text-xl font-black sm:text-2xl ${TONOS[tono].split(' ')[1]}`}>{titulo}</p>
+      </div>
       <div className="mt-2 text-sm leading-relaxed text-zinc-400 [text-wrap:pretty]">{children}</div>
     </div>
   )
@@ -223,9 +235,13 @@ function Comprar({ url, tipo }: { url: string; tipo: Tipo }) {
         onClick={() => medir('verificador_click_ml', tipo)}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className="inline-block rounded-lg border border-zinc-700 px-4 py-2 text-sm font-bold text-zinc-100 transition-colors hover:border-yellow-400 hover:text-yellow-300"
+        className={
+          tipo === 'inflado'
+            ? 'inline-block rounded-lg border border-zinc-700 px-4 py-2 text-sm font-bold text-zinc-100 transition-colors hover:border-yellow-400 hover:text-yellow-300'
+            : 'inline-block rounded-xl bg-yellow-400 px-5 py-3 text-base font-black text-black transition-transform hover:bg-yellow-300 active:scale-[0.97]'
+        }
       >
-        Ir a Mercado Libre
+        {tipo === 'cazado' ? 'Comprar en Mercado Libre 🛒' : 'Ir a Mercado Libre'}
       </a>
       <span className="ml-3 text-xs text-zinc-500">Link de afiliado: a vos te cuesta lo mismo.</span>
     </p>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
@@ -151,15 +152,16 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 sm:pb-0">
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
 
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
-            🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
+          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight flex items-center gap-2">
+            <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" />
+            <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
           <a
             href={TELEGRAM_URL}
@@ -211,9 +213,19 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             enMinimo ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-zinc-800 bg-zinc-900'
           }`}
         >
-          <p className="font-bold text-zinc-100 mb-1">
-            {enMinimo ? '📉 Buen momento para comprar' : enOferta ? '¿Es buen precio?' : 'Hoy no está en oferta'}
-          </p>
+          <div className="flex items-center gap-3 mb-1">
+            {/* Don Ofertín: festeja el mínimo, aprueba la oferta, desconfía si no hay */}
+            <Image
+              src={enMinimo ? '/personaje/cara-enamorado.webp' : enOferta ? '/personaje/cara-contento.webp' : '/personaje/cara-desconfiado.webp'}
+              alt=""
+              width={56}
+              height={56}
+              className="h-14 w-14 shrink-0 object-contain"
+            />
+            <p className="font-bold text-zinc-100">
+              {enMinimo ? '📉 Buen momento para comprar' : enOferta ? '¿Es buen precio?' : 'Hoy no está en oferta'}
+            </p>
+          </div>
           <p className="text-zinc-300 leading-relaxed">{veredicto}</p>
           {s.relampago && enOferta && (
             <p className="text-sm font-bold text-blue-400 mt-2">⚡ Es una oferta relámpago: dura pocas horas o hasta agotar stock.</p>
@@ -320,6 +332,22 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       </article>
 
       <Footer brand="ofertas" />
+
+      {/* Celular: el botón de compra queda siempre a mano al bajar por el historial */}
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-[11px] text-zinc-500 truncate">{enMinimo ? 'En su mínimo histórico' : enOferta ? 'Precio hoy' : 'Último precio'}</p>
+          <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(hoy)}</p>
+        </div>
+        <a
+          href={s.url}
+          target="_blank"
+          rel="sponsored nofollow noopener"
+          className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black active:scale-[0.97] transition-transform"
+        >
+          Ver en Mercado Libre 🛒
+        </a>
+      </div>
     </main>
   )
 }

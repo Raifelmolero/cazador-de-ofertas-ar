@@ -340,6 +340,7 @@ export const GUIAS: Guia[] = [
     enlaces: [
       { href: '/mejores/mejores-heladeras', texto: 'Comparativa de heladeras' },
       { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/guias/que-lavavajillas-comprar', texto: 'Qué lavavajillas comprar' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
     fuentes: [
@@ -404,11 +405,85 @@ export const GUIAS: Guia[] = [
       { href: '/mejores/mejores-lavarropas', texto: 'Comparativa de lavarropas' },
       { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
       { href: '/guias/que-lavarropas-comprar-cyber-monday', texto: 'Lavarropas en el Cyber Monday' },
+      { href: '/guias/que-lavavajillas-comprar', texto: 'Qué lavavajillas comprar' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
     fuentes: [
       { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
       { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
+    ],
+  },
+  {
+    slug: 'que-lavavajillas-comprar',
+    titulo: '¿Qué lavavajillas comprar? Cubiertos, 45 o 60 cm, consumo e instalación',
+    descripcion:
+      'Cómo elegir un lavavajillas en Argentina: cuántos cubiertos según la familia, ancho de 45 o 60 cm, libre instalación o empotrable, consumo de agua y luz, y qué necesita la instalación (toma de agua fría, desagüe y enchufe).',
+    pregunta: '¿Qué lavavajillas conviene comprar?',
+    respuestaCorta:
+      'Elegí el tamaño por cuántos son: los de 45 cm de ancho suelen llevar unos 9 a 10 cubiertos y alcanzan para 1 a 3 personas; los de 60 cm llevan 12 a 14 cubiertos y convienen si son 4 o más o cocinan mucho. Antes de comprar, confirmá que tenés toma de agua fría, desagüe y un enchufe con descarga a tierra cerca del lugar, y medí el hueco. Compará el consumo de agua y energía por ciclo que figura en la ficha del modelo, y el precio contra el historial.',
+    secciones: [
+      {
+        h: 'Cuántos cubiertos y qué ancho: 45 o 60 cm',
+        p: [
+          'La capacidad se mide en "cubiertos": un cubierto es el juego de vajilla de una persona en una comida (platos, vaso, taza y cubiertos). Es una medida de referencia: ollas y fuentes ocupan más lugar.',
+          'Ancho de 45 cm ("slim"): suelen llevar alrededor de 9 a 10 cubiertos. Entran en cocinas chicas y alcanzan para 1 a 3 personas.',
+          'Ancho de 60 cm (tamaño estándar): suelen llevar 12 a 14 cubiertos. Convienen para 4 personas o más, o si lavás ollas y fuentes grandes seguido. También hay modelos compactos de mesada para muy poca vajilla.',
+        ],
+      },
+      {
+        h: 'Instalación: agua fría, desagüe y enchufe',
+        p: [
+          'El lavavajillas se conecta a una toma de agua fría (con llave de paso) y calienta el agua él mismo con su resistencia. El desagüe va a la bacha o a una descarga cercana, y necesita un enchufe con descarga a tierra. Revisá en el manual del modelo el largo de las mangueras y la presión de agua que pide.',
+          'Libre instalación (con tapa, va en cualquier lugar) o empotrable (va bajo la mesada, a veces con panel frontal de mueble). Medí ancho, alto y profundidad del hueco y dejá lugar para abrir la puerta y para las mangueras atrás.',
+          'Si en la cocina no hay toma de agua ni desagüe cerca, sumá al presupuesto el trabajo de un plomero: casi nunca está incluido en el precio.',
+        ],
+      },
+      {
+        h: 'Consumo de agua y de luz',
+        p: [
+          'La ficha técnica de cada modelo indica cuántos litros de agua y cuántos kWh usa por ciclo en el programa estándar o eco. Compará esos dos números entre modelos del mismo tamaño.',
+          'La mayor parte de la energía se va en calentar el agua: los programas eco o de baja temperatura tardan más pero gastan menos. Con el consumo por ciclo y cuántas veces por semana lo usás podés estimar el costo mensual en la calculadora de consumo eléctrico.',
+          'Usarlo con la carga completa rinde más que varios ciclos a media carga.',
+        ],
+      },
+      {
+        h: 'Qué más mirar y cuánto sale',
+        p: [
+          'Programas útiles: eco, rápido, intensivo para ollas y media carga. Canasto de cubiertos o tercera bandeja, canastos regulables en altura, nivel de ruido (dB) si la cocina está integrada al living, y garantía oficial en Argentina.',
+          'Es un electrodoméstico de ticket alto y los precios cambian mucho entre modelos, tamaños y semanas. Por eso no damos un precio fijo: en la comparativa de lavavajillas tenés los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas y lavavajillas' },
+    comparativa: 'mejores-lavavajillas',
+    cta: { href: '/mejores/mejores-lavavajillas', titulo: 'Lavavajillas en oferta hoy, comparados', boton: 'Ver la comparativa de lavavajillas 🍽️' },
+    faq: [
+      {
+        q: '¿De cuántos cubiertos conviene el lavavajillas?',
+        a: 'Para 1 a 3 personas suele alcanzar uno de 45 cm (unos 9 a 10 cubiertos). Para 4 personas o más, o si lavás ollas y fuentes seguido, uno de 60 cm (12 a 14 cubiertos).',
+      },
+      {
+        q: '¿El lavavajillas necesita agua caliente?',
+        a: 'No. Se conecta a la toma de agua fría y calienta el agua con su propia resistencia. Necesita además un desagüe cerca y un enchufe con descarga a tierra.',
+      },
+      {
+        q: '¿Qué diferencia hay entre un lavavajillas de 45 y uno de 60 cm?',
+        a: 'El ancho y la capacidad: el de 45 cm entra en cocinas chicas y lleva menos vajilla; el de 60 cm es el tamaño estándar y lleva 12 a 14 cubiertos.',
+      },
+      {
+        q: '¿Cuánta luz y agua gasta un lavavajillas?',
+        a: 'Depende del modelo y del programa: la ficha técnica indica litros y kWh por ciclo. Calentar el agua es lo que más consume, por eso los programas eco gastan menos. Con esos datos podés calcular el costo mensual en la calculadora de consumo eléctrico.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-lavavajillas', texto: 'Comparativa de lavavajillas' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
     ],
   },
   {
@@ -1460,6 +1535,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'cuantas-frigorias-necesito-aire-acondicionado': { publicada: '2026-09-23', modificada: '2026-09-30' },
   'que-heladera-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
   'que-lavarropas-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-lavavajillas-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'que-freidora-de-aire-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
   'que-colchon-comprar-firmeza-y-material': { publicada: '2026-09-23', modificada: '2026-09-30' },
   'que-taladro-comprar-para-la-casa': { publicada: '2026-09-23', modificada: '2026-09-23' },

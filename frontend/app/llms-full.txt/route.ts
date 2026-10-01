@@ -23,6 +23,7 @@ import {
 const GUIAS_COMPRA = [
   'que-heladera-comprar',
   'que-lavarropas-comprar',
+  'que-lavavajillas-comprar',
   'que-freidora-de-aire-comprar',
   'que-notebook-comprar',
   'que-celular-comprar-segun-presupuesto',

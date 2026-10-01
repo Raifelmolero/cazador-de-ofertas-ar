@@ -54,6 +54,7 @@ const GUIAS_REGALO = [
   'que-celular-comprar-segun-presupuesto',
   'que-smart-tv-comprar',
   'que-lavarropas-comprar',
+  'que-lavavajillas-comprar',
   'que-colchon-comprar-firmeza-y-material',
   'que-freidora-de-aire-comprar',
 ]
@@ -65,6 +66,7 @@ const RUBROS_REGALO = [
   { comp: 'mejores-celulares', titulo: 'Celulares', emoji: '📱' },
   { comp: 'mejores-smart-tv', titulo: 'Smart TV', emoji: '📺' },
   { comp: 'mejores-lavarropas', titulo: 'Lavarropas', emoji: '🧺' },
+  { comp: 'mejores-lavavajillas', titulo: 'Lavavajillas', emoji: '🍽️' },
   { comp: 'mejores-colchones', titulo: 'Colchones', emoji: '🛏️' },
   { comp: 'mejores-perfumes', titulo: 'Perfumes', emoji: '🌸' },
   { comp: 'mejores-cafeteras', titulo: 'Cafeteras', emoji: '☕' },

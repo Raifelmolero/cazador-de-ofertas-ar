@@ -79,6 +79,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
     categoria: 'lavarropas',
+    excluir: ['lavavajillas', 'lava vajillas'],
     guia: 'que-lavarropas-comprar',
     criterios: [
       'Capacidad: 6-7 kg para 1-2 personas, 8 kg o más para familias.',
@@ -86,6 +87,26 @@ export const COMPARATIVAS: Comparativa[] = [
       'Centrifugado: 1000 rpm o más deja la ropa más seca.',
       'Inverter: menos ruido y consumo.',
       'Medidas: confirmá el espacio y la puerta de acceso antes de comprar.',
+    ],
+  },
+  {
+    slug: 'mejores-lavavajillas',
+    nombre: 'lavavajillas',
+    titulo: `Mejores lavavajillas en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Comparativa de lavavajillas en oferta hoy en Mercado Libre Argentina: 45 o 60 cm, cubiertos, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los lavavajillas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+    categoria: 'lavarropas',
+    keywords: ['lavavajillas', 'lava vajillas', 'lavaplatos'],
+    excluir: ['detergente', 'pastillas', 'abrillantador', 'sal para', 'canasto', 'manguera', 'repuesto'],
+    guia: 'que-lavavajillas-comprar',
+    criterios: [
+      'Cubiertos: 45 cm de ancho (unos 9 a 10 cubiertos) para 1 a 3 personas; 60 cm (12 a 14) para familias.',
+      'Instalación: necesita toma de agua fría, desagüe y enchufe con descarga a tierra cerca.',
+      'Libre instalación o empotrable: medí el hueco y el espacio para abrir la puerta.',
+      'Consumo: compará litros de agua y kWh por ciclo de la ficha técnica.',
+      'Garantía oficial en Argentina y service cerca.',
     ],
   },
   {

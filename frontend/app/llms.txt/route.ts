@@ -191,7 +191,13 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué es el mínimo histórico](https://cazadordeofertas.com.ar/guias/que-es-el-minimo-historico-en-mercado-libre),
   [cupones y códigos de descuento](https://cazadordeofertas.com.ar/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina),
   [cuántas frigorías necesito](https://cazadordeofertas.com.ar/guias/cuantas-frigorias-necesito-aire-acondicionado),
-  [qué colchón comprar](https://cazadordeofertas.com.ar/guias/que-colchon-comprar-firmeza-y-material)
+  [qué colchón comprar](https://cazadordeofertas.com.ar/guias/que-colchon-comprar-firmeza-y-material),
+  [qué heladera comprar](https://cazadordeofertas.com.ar/guias/que-heladera-comprar),
+  [qué lavarropas comprar](https://cazadordeofertas.com.ar/guias/que-lavarropas-comprar),
+  [qué freidora de aire comprar](https://cazadordeofertas.com.ar/guias/que-freidora-de-aire-comprar),
+  [qué notebook comprar](https://cazadordeofertas.com.ar/guias/que-notebook-comprar),
+  [qué celular comprar según presupuesto](https://cazadordeofertas.com.ar/guias/que-celular-comprar-segun-presupuesto),
+  [qué smart TV comprar](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar),
   y [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa):
   guías con respuesta corta citable.
 

@@ -413,7 +413,7 @@ class TestIgCaption(unittest.TestCase):
         # En IG los links del caption no son clickeables: la bio es lo único
         # que puede terminar en una compra, así que va primero.
         cap = bot.ig_caption(self.DEAL)
-        self.assertLess(cap.index("bio"), cap.index("Telegram"))
+        self.assertLess(cap.index("cazadordeofertas.com.ar/ig"), cap.index("Telegram"))
 
     def test_menciona_el_dominio_propio(self):
         self.assertIn("cazadordeofertas.com.ar", bot.ig_caption(self.DEAL))

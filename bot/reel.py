@@ -5,7 +5,7 @@ Tres escenas con la estética de la marca (negro/ámbar, sello CAZADO):
   1. Gancho (2,0 s): "LA CAZA DEL DÍA" + badge % OFF con punch-in
   2. Producto (3,5 s): tarjeta blanca con zoom lento (Ken Burns) + título
   3. Precio (3,0 s): precio anterior tachado → precio actual con pop +
-     ahorro + banner LINK EN BIO
+     ahorro + banner con la dirección de la web
 
 Requiere ffmpeg en el PATH (o env FFMPEG_BIN). Audio: si existe
 `bot/assets/reel_music.m4a` se usa como pista (con fade final) — para
@@ -152,14 +152,11 @@ def _scene_precio(deal: dict, thumb: Image.Image, t: float) -> Image.Image:
     _personaje_entra(img, deal, (0, 1170, 300, 1555), t, 1.5)
 
     d.rectangle([0, 1560, W, 1720], fill=AMBER)
-    banner_f = _font(66)
-    banner_txt = "LINK EN BIO"
+    banner_f = _font(58)
+    banner_txt = "cazadordeofertas.com.ar/ig"
     tw = d.textlength(banner_txt, font=banner_f)
-    cx = W // 2 + 30
+    cx = W // 2
     d.text((cx, 1640), banner_txt, font=banner_f, fill=BLACK, anchor="mm")
-    ax = int(cx - tw / 2 - 60)
-    d.polygon([(ax, 1612), (ax - 27, 1652), (ax + 27, 1652)], fill=BLACK)
-    d.rectangle([ax - 10, 1652, ax + 10, 1674], fill=BLACK)
 
     d.text((W // 2, 1790), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
     d.text((W // 2, 1852), "Seguime para la caza de mañana", font=_font(34), fill=WHITE, anchor="mm")
@@ -405,8 +402,8 @@ def _scene_close_v2(deal: dict, t: float) -> Image.Image:
 
     banner_top, banner_bot = 900, 1140
     d.rectangle([0, banner_top, W, banner_bot], fill=AMBER)
-    d.text((W // 2, banner_top + 85), "LINK EN BIO", font=_font(56), fill=BLACK, anchor="mm")
-    d.text((W // 2, banner_top + 165), "cazadordeofertas.com.ar", font=_font(40), fill=BLACK, anchor="mm")
+    d.text((W // 2, banner_top + 85), "ENTRÁ A", font=_font(56), fill=BLACK, anchor="mm")
+    d.text((W // 2, banner_top + 165), "cazadordeofertas.com.ar/ig", font=_font(40), fill=BLACK, anchor="mm")
 
     d.text((W // 2, banner_bot + 100), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
     d.text((W // 2, banner_bot + 165), "seguime para la próxima caza", font=_font(34), fill=WHITE, anchor="mm")

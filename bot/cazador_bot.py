@@ -1263,11 +1263,11 @@ def ig_caption(deal: dict) -> str:
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
         f"{badge}\n"
-        # El link de la bio va primero y solo: en IG los links del caption no
-        # son clickeables, así que es el único camino que puede terminar en una
-        # compra. Telegram queda al final, en una línea.
-        f"🛒 ¿Lo querés? Tocá el link de mi bio → cazadordeofertas.com.ar y lo "
-        f"comprás desde ahí.\n\n"
+        # La web va primero y sola: en IG los links del caption no son
+        # clickeables (y la cuenta hoy no puede poner link en la bio), así que
+        # se escribe la dirección para tipearla. Telegram queda al final.
+        f"🛒 ¿Lo querés? Entrá a cazadordeofertas.com.ar/ig (escribilo en el "
+        f"navegador) y lo comprás desde ahí.\n\n"
         f"🔍 ¿Otro descuento de ML te parece raro? En la web pegás el link y te "
         f"decimos si es real.\n\n"
         f"💾 Guardá este post si lo estás pensando.\n"

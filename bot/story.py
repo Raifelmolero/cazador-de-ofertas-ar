@@ -2,7 +2,7 @@
 Genera la imagen 9:16 de la story diaria de Instagram (requiere Pillow).
 
 Diseño: fondo oscuro, tarjeta blanca con la foto del producto, badge de % OFF,
-título, precio anterior tachado, precio actual grande y banner "LINK EN BIO".
+título, precio anterior tachado, precio actual grande y banner con la dirección de la web.
 """
 
 import io
@@ -183,14 +183,11 @@ def render_feed(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     d.text((FW // 2, 1210), _fmt(deal["price_cur"]), font=_font(92), fill=AMBER, anchor="mm")
 
     d.rectangle([0, 1276, FW, 1350], fill=AMBER)
-    banner_f = _font(42)
-    banner_txt = "LINK EN BIO"
+    banner_f = _font(40)
+    banner_txt = "cazadordeofertas.com.ar/ig"
     tw = d.textlength(banner_txt, font=banner_f)
-    cx = FW // 2 + 18
+    cx = FW // 2
     d.text((cx, 1312), banner_txt, font=banner_f, fill=BLACK, anchor="mm")
-    ax = int(cx - tw / 2 - 42)
-    d.polygon([(ax, 1295), (ax - 17, 1320), (ax + 17, 1320)], fill=BLACK)
-    d.rectangle([ax - 7, 1320, ax + 7, 1333], fill=BLACK)
 
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -264,17 +261,13 @@ def render_story(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     ahorro = deal["price_prev"] - deal["price_cur"]
     d.text((W // 2, 1608), f"Te ahorrás {_fmt(ahorro)}", font=_font(42, bold=False), fill=WHITE, anchor="mm")
 
-    # banner LINK EN BIO
+    # banner con la dirección de la web
     d.rectangle([0, 1690, W, 1836], fill=AMBER)
-    banner_f = _font(64)
-    banner_txt = "LINK EN BIO"
+    banner_f = _font(56)
+    banner_txt = "cazadordeofertas.com.ar/ig"
     tw = d.textlength(banner_txt, font=banner_f)
-    cx = W // 2 + 28
+    cx = W // 2
     d.text((cx, 1763), banner_txt, font=banner_f, fill=BLACK, anchor="mm")
-    # flecha hacia arriba a la izquierda del texto
-    ax = int(cx - tw / 2 - 56)
-    d.polygon([(ax, 1737), (ax - 26, 1775), (ax + 26, 1775)], fill=BLACK)
-    d.rectangle([ax - 10, 1775, ax + 10, 1795], fill=BLACK)
 
     d.text((W // 2, 1878), "@elcazadordeofertas.ar", font=_font(34, bold=False), fill=GRAY, anchor="mm")
 

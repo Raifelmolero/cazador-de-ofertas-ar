@@ -25,10 +25,16 @@ def expresion(n: int) -> Image.Image:
     return quitar_fondo(Image.open(PJ / "expresiones.webp").crop(caja))
 
 
-def escena(n: int) -> Image.Image:
-    """Escena sin el tercio superior vacío (fondo negro, se pega sobre BG)."""
+def escena(n: int, tiza: list[str] | None = None) -> Image.Image:
+    """Escena sin el tercio superior vacío (fondo negro, se pega sobre BG).
+    tiza: líneas para escribir en el pizarrón de la escena 6."""
     im = Image.open(PJ / f"escena-{n}.webp").convert("RGB")
-    im = im.crop((0, int(im.height * 0.30), im.width, im.height))
+    if tiza:
+        dd = ImageDraw.Draw(im)
+        y = 640
+        for linea in tiza:
+            dd.text((800, y), linea, font=_font(54), fill=(235, 235, 225), anchor="mm")
+            y += 78
     # negro conectado al borde → transparente (así no queda un recuadro)
     w, h = im.size
     m = im.convert("L").point(lambda v: 255 if v > 40 else 0)
@@ -50,8 +56,14 @@ def tapa(nombre: str, exp: int) -> None:
     d = ImageDraw.Draw(img)
     r = 470  # IG recorta un círculo centrado: todo lo importante adentro
     d.ellipse([W // 2 - r, H // 2 - r, W // 2 + r, H // 2 + r], fill=AMBER)
-    cara = ImageOps.contain(expresion(exp), (720, 620))
-    img.paste(cara, ((W - cara.width) // 2, H // 2 - cara.height // 2 + 30), cara)
+    cara = ImageOps.contain(expresion(exp), (820, 820))
+    capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    # apoyada en el borde inferior del círculo: el corte recto queda afuera
+    capa.paste(cara, ((W - cara.width) // 2, H // 2 + r - cara.height + 40), cara)
+    circulo = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(circulo).ellipse([W // 2 - r, H // 2 - r, W // 2 + r, H // 2 + r], fill=255)
+    capa.putalpha(Image.composite(capa.getchannel("A"), Image.new("L", (W, H), 0), circulo))
+    img.paste(capa, (0, 0), capa)
     img.save(OUT / f"tapa-{nombre}.jpg", quality=92)
 
 
@@ -93,8 +105,8 @@ if __name__ == "__main__":
         ("1-como-funciona", 5, "SOY DON OFERTÍN",
          ["Cazo ofertas de Mercado Libre y chequeo que el descuento sea real.",
           "Guardo el historial de precios de cada producto: si antes estaba más barato, te aviso."],
-         escena(6), "cazadordeofertas.com.ar"),
-        ("2-truchos", 3, "¡PRECIO TRUCHO!",
+         escena(6, ["¿EL DESCUENTO", "ES REAL?", "Lo chequeo", "con el historial"]), "cazadordeofertas.com.ar"),
+        ("2-truchos", 2, "¡PRECIO TRUCHO!",
          ["Suben el precio unos días antes y después le ponen \"50% OFF\".",
           "En la web te muestro qué descuentos están inflados."],
          escena(1), "cazadordeofertas.com.ar/descuentos-inflados"),

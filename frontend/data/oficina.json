@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-01T20:33:12+00:00",
+  "generado": "2026-10-02T01:15:18+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-01T20:33:12+00:00",
+      "ultima_actividad": "2026-10-02T01:15:18+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1416 productos en la última corrida"
+          "tarea": "Revisó 1503 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -22,15 +22,19 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 5
+          "valor": 10
         },
         {
           "label": "Historias IG",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
           "valor": 3
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
@@ -38,15 +42,11 @@
         },
         {
           "label": "Facebook",
-          "valor": 2
-        },
-        {
-          "label": "Reels IG",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Televisor 75 Pulgadas Crystal Uhd 4k Samsung"
+      "ultimo_trabajo": "Colchón Sueño Dorado Donatello Dos Plazas Espuma 140x190 Cm"
     },
     {
       "id": "investigacion",
@@ -96,11 +96,11 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 28
+          "valor": 31
         },
         {
           "label": "Comparativas",
-          "valor": 44
+          "valor": 47
         }
       ],
       "entregas": [
@@ -114,15 +114,15 @@
         },
         {
           "fecha": "",
+          "titulo": "que silla gamer comprar"
+        },
+        {
+          "fecha": "",
           "titulo": "que auriculares comprar cyber monday"
         },
         {
           "fecha": "",
           "titulo": "que lavarropas comprar cyber monday"
-        },
-        {
-          "fecha": "",
-          "titulo": "conviene comprar aire acondicionado cyber monday"
         }
       ]
     },

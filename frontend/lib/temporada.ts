@@ -16,6 +16,8 @@ export interface Temporada {
   /** YYYY-MM-DD inclusive, hora argentina; desde null = sin inicio */
   desde: string | null
   hasta: string
+  /** true si `hasta` es EL día de la fecha (muestra "faltan N días") */
+  cuenta?: boolean
 }
 
 const diaSiguiente = (f: string) => {
@@ -34,6 +36,7 @@ export const TEMPORADAS: Temporada[] = [
     texto: 'text-pink-200',
     desde: null,
     hasta: '2026-10-18',
+    cuenta: true,
   },
   {
     id: 'cyber',
@@ -54,6 +57,7 @@ export const TEMPORADAS: Temporada[] = [
     texto: 'text-yellow-200',
     desde: diaSiguiente(CYBER_MONDAY.fin),
     hasta: BLACK_FRIDAY.fecha,
+    cuenta: true,
   },
   {
     id: 'navidad',
@@ -77,4 +81,15 @@ export function temporadaActual(ahora = new Date()): Temporada | null {
       (s) => (s.desde === null || t >= ms(s.desde, '00:00:00')) && t <= ms(s.hasta, '23:59:59.999'),
     ) ?? null
   )
+}
+
+/** "faltan N días" / "es hoy" hasta el día de la fecha (hora argentina), o
+ *  null si la temporada no tiene un día puntual o faltan más de 14 días. */
+export function cuentaRegresiva(t: Temporada, ahora = new Date()): string | null {
+  if (!t.cuenta) return null
+  const hoy = new Date(ahora.getTime() - 3 * 3_600_000).toISOString().slice(0, 10)
+  const dias = Math.round((ms(t.hasta, '12:00:00') - ms(hoy, '12:00:00')) / 86_400_000)
+  if (dias < 0 || dias > 14) return null
+  if (dias === 0) return '¡es hoy!'
+  return dias === 1 ? 'falta 1 día' : `faltan ${dias} días`
 }

@@ -751,6 +751,8 @@ def deal_caption(deal: dict, link: str, whatsapp: bool = False) -> str:
     )
     sello = sello_temporada(deal["title"])
     regalo = f"<b>{sello}</b>\n\n" if sello else ""
+    if regalo and (cuenta := cuenta_regresiva(deal["title"])):
+        regalo += f"{esc(cuenta)}\n\n"
     caption = (
         f"{exclusiva}{relampago}{regalo}"
         f"🔥 <b>{deal['discount']}% OFF</b> — {esc(deal['title'])}\n\n"
@@ -1110,6 +1112,9 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "cafetera expreso", "notebook",
         # Ventas reales de afiliados (sep-2026): lavarropas y smart TV.
         "lavarropas", "smart tv", "televisor",
+        # Guías nuevas de ticket alto (oct-2026) y regalos de cocina.
+        "lavavajillas", "parlante", "kindle", "bateria de cocina",
+        "batería de cocina", "set de ollas", "pava electrica", "pava eléctrica",
     ]),
     ((9, 21), (2, 28), 1.3, [  # Primavera-verano: calor y aire libre
         "aire acondicionado", "ventilador", "pileta", "piscina", "reposera",
@@ -1168,6 +1173,43 @@ LANDINGS_TEMPORADA = {
     (12, 1): ("🎄 Más regalos para Navidad", "regalos-navidad"),
     (12, 25): ("👑 Más regalos para Reyes", "regalos-navidad"),
 }
+
+# Fecha del regalo (fija en el calendario) para la cuenta regresiva de los
+# posts. Solo las de fecha fija o ya calculada para este año; el Día del Padre
+# y el de las Infancias cambian de día cada año: se suman cuando se actualicen.
+FECHAS_TEMPORADA = {
+    (9, 25): ((10, 18), "el Día de la Madre", "domingo 18/10"),
+    (12, 1): ((12, 24), "Nochebuena", "24/12"),
+    (12, 25): ((1, 6), "Reyes", "6/1"),
+}
+# Desde cuántos días antes se muestra la cuenta regresiva.
+CUENTA_REGRESIVA_DIAS = 14
+
+
+def cuenta_regresiva(title: str, hoy: datetime | None = None) -> str:
+    """Línea "⏰ Faltan N días para el Día de la Madre…" si el producto es
+    regalo de una fecha cercana; "" si no aplica. Pide mirar la fecha de
+    entrega en ML: no prometemos plazos de envío, los define cada vendedor."""
+    hoy = hoy or datetime.now(timezone.utc) - timedelta(hours=3)
+    t = title.lower()
+    for desde, hasta, _peso, keywords in TEMPORADAS:
+        fecha = FECHAS_TEMPORADA.get(desde)
+        if not fecha or not _en_ventana(hoy, desde, hasta) or not _menciona(t, keywords):
+            continue
+        (mes, dia), nombre, texto = fecha
+        anio = hoy.year + (1 if mes < hoy.month else 0)
+        dias = (datetime(anio, mes, dia) - datetime(hoy.year, hoy.month, hoy.day)).days
+        if dias < 0 or dias > CUENTA_REGRESIVA_DIAS:
+            return ""
+        if dias == 0:
+            return f"🎁 Hoy es {nombre}"
+        cuando = "Falta 1 día" if dias == 1 else f"Faltan {dias} días"
+        return (
+            f"⏰ {cuando} para {nombre} ({texto}): fijate la fecha de entrega "
+            f"en ML antes de comprar"
+        )
+    return ""
+
 
 # Desde este precio un regalo de temporada suma un plus en el ranking: la
 # comisión es un % del precio y las ventas reales fueron de ticket alto.
@@ -1256,6 +1298,15 @@ def ig_caption(deal: dict) -> str:
         if deal.get("hist_low")
         else ""
     )
+    # Regalo de fecha: cuenta regresiva + la landing escrita (en IG no hay links).
+    regalo_ig = ""
+    if sello:
+        if cuenta := cuenta_regresiva(deal["title"]):
+            regalo_ig += f"{cuenta}\n"
+        if lt := landing_temporada(deal["title"], "instagram"):
+            regalo_ig += f"{lt[0]} → {lt[1].split('?')[0].removeprefix('https://')}\n"
+        if regalo_ig:
+            regalo_ig += "\n"
     return (
         f"{hook}\n\n"
         f"{deal['discount']}% OFF en {deal['title'][:80]}\n\n"
@@ -1266,6 +1317,7 @@ def ig_caption(deal: dict) -> str:
         # La web va primero y sola: en IG los links del caption no son
         # clickeables (y la cuenta hoy no puede poner link en la bio), así que
         # se escribe la dirección para tipearla. Telegram queda al final.
+        f"{regalo_ig}"
         f"🛒 ¿Lo querés? Entrá a cazadordeofertas.com.ar/ig (escribilo en el "
         f"navegador) y lo comprás desde ahí.\n\n"
         f"🔍 ¿Otro descuento de ML te parece raro? En la web pegás el link y te "
@@ -1334,6 +1386,9 @@ def th_caption(deal: dict, link: str) -> str:
         f"{remate}\n\n"
         f"{VERIF_CTA.format(url=verificador_url('threads'))}"
     )
+    cuenta = cuenta_regresiva(deal["title"])
+    if cuenta and len(caption) + len(cuenta) + 2 <= 500:
+        caption = f"{cuenta}\n\n{caption}"
     if len(caption) > 500:
         caption = (
             f"{hook} {deal['discount']}% OFF en {deal['title'][:60]}\n\n"
@@ -1357,8 +1412,10 @@ def fb_caption(deal: dict, link: str) -> str:
         if deal.get("hist_low")
         else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
     )
+    cuenta = cuenta_regresiva(deal["title"])
     return (
-        f"{hook} {deal['discount']}% OFF en {deal['title'][:90]}\n\n"
+        (f"{cuenta}\n\n" if cuenta else "")
+        + f"{hook} {deal['discount']}% OFF en {deal['title'][:90]}\n\n"
         f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"

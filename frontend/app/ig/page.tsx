@@ -7,6 +7,7 @@ import { slugPorId } from '@/lib/seguimiento'
 import type { OfertaLight } from '@/components/OfertaCard'
 import OfertaCard from '@/components/OfertaCard'
 import Footer from '@/components/Footer'
+import BannerTemporada from '@/components/BannerTemporada'
 import { DEALS_URL, WHATSAPP_URL } from '@/lib/marca'
 
 // "Link en bio" de Instagram: los posts no pueden tener links, así que acá
@@ -112,6 +113,10 @@ export default function InstagramPage() {
             ))}
           </div>
         )}
+        {/* fecha comercial vigente (Día de la Madre, Cyber…): mismo banner que la home */}
+        <div className="-mx-4 sm:-mx-6">
+          <BannerTemporada />
+        </div>
         {mas.length > 0 && (
           <>
             <h2 className="font-display text-xl font-black mt-8 mb-3">Más ofertas como estas</h2>

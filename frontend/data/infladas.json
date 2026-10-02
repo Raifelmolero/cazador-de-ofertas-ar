@@ -1,7 +1,7 @@
 {
- "actualizado": "2026-10-02T19:54:03+00:00",
+ "actualizado": "2026-10-02T23:44:12+00:00",
  "fecha": "2026-10-02",
- "infladas_detectadas": 162,
+ "infladas_detectadas": 170,
  "items": [
   {
    "id": "MLA75336162",
@@ -27,19 +27,6 @@
    "minimo_registrado": 23821,
    "minimo_fecha": "2026-09-27",
    "visto_desde": "2026-09-25",
-   "diferencia_pct": 39
-  },
-  {
-   "id": "MLA19223496",
-   "titulo": "Soporte Para Tv Led Fijo Extra Chato Prosoft Color Negro PS3321",
-   "url": "https://www.mercadolibre.com.ar/soporte-para-tv-led-fijo-extra-chato-prosoft-color-negro-ps3321/p/MLA19223496",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_864065-MLA88696666664_072025-AB.webp",
-   "precio_hoy": 16443,
-   "precio_tachado": 18900,
-   "descuento_anunciado": 13,
-   "minimo_registrado": 9990,
-   "minimo_fecha": "2026-09-29",
-   "visto_desde": "2026-09-29",
    "diferencia_pct": 39
   },
   {
@@ -82,16 +69,16 @@
    "diferencia_pct": 24
   },
   {
-   "id": "MLA19695532",
-   "titulo": "Aire acondicionado split frio y calor Philco PHS32HA4CNE 2900F 3400W color blanco",
-   "url": "https://www.mercadolibre.com.ar/aire-acondicionado-split-frio-y-calor-philco-phs32ha4cne-2900f-3400w-color-blanco/p/MLA19695532",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_960914-MLA107829968120_032026-AB.webp",
-   "precio_hoy": 759121,
-   "precio_tachado": 872799,
-   "descuento_anunciado": 13,
-   "minimo_registrado": 577999,
-   "minimo_fecha": "2026-07-18",
-   "visto_desde": "2026-07-18",
+   "id": "MLA66704872",
+   "titulo": "Microcomponente / Microsistema Ranser MR-5499 Hi-Fi Bluetooth CD USB MP3 FM Negro",
+   "url": "https://www.mercadolibre.com.ar/microcomponente-microsistema-ranser-mr-5499-hi-fi-bluetooth-cd-usb-mp3-fm-negro/p/MLA66704872",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_982219-MLA108805548757_032026-AB.webp",
+   "precio_hoy": 264999,
+   "precio_tachado": 293332,
+   "descuento_anunciado": 9,
+   "minimo_registrado": 202399,
+   "minimo_fecha": "2026-10-01",
+   "visto_desde": "2026-10-01",
    "diferencia_pct": 24
   },
   {
@@ -108,6 +95,19 @@
    "diferencia_pct": 23
   },
   {
+   "id": "MLA75901817",
+   "titulo": "Notebook Lenovo Ideapad Slim 3 Ryzen 5 40 8gb 256gb Ssd Pantalla 15,6 Full Hd Windows 11",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-ryzen-5-40-8gb-256gb-ssd-pantalla-156-full-hd-windows-11/p/MLA75901817",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_915570-MLA115292753441_072026-AB.webp",
+   "precio_hoy": 1209600,
+   "precio_tachado": 1344000,
+   "descuento_anunciado": 10,
+   "minimo_registrado": 934577,
+   "minimo_fecha": "2026-09-30",
+   "visto_desde": "2026-09-29",
+   "diferencia_pct": 23
+  },
+  {
    "id": "MLA47058304",
    "titulo": "Harman Kardon Onyx Studio 9 Bocina Portátil Bluetooth Ct Color Negro",
    "url": "https://www.mercadolibre.com.ar/harman-kardon-onyx-studio-9-bocina-portatil-bluetooth-ct-color-negro/p/MLA47058304",
@@ -118,6 +118,19 @@
    "minimo_registrado": 268839,
    "minimo_fecha": "2026-09-01",
    "visto_desde": "2026-07-20",
+   "diferencia_pct": 22
+  },
+  {
+   "id": "MLA50387899",
+   "titulo": "Ventilador De Techo Retráctil Mtl Negro Con Luz Led 3 Tonos Control Remoto Y App Wifi 6 Velocidades Aspas Reversibles Silencioso Smart Diseño Moderno",
+   "url": "https://www.mercadolibre.com.ar/ventilador-de-techo-retractil-mtl-negro-con-luz-led-3-tonos-control-remoto-y-app-wifi-6-velocidades-aspas-reversibles-silencioso-smart-diseno-moderno-para-dormitorio-living-comedor/p/MLA50387899",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_606677-MLA118516433013_092026-AB.webp",
+   "precio_hoy": 172990,
+   "precio_tachado": 215339,
+   "descuento_anunciado": 19,
+   "minimo_registrado": 134990,
+   "minimo_fecha": "2026-09-22",
+   "visto_desde": "2026-09-22",
    "diferencia_pct": 22
   },
   {
@@ -144,19 +157,6 @@
    "minimo_registrado": 37049,
    "minimo_fecha": "2026-07-28",
    "visto_desde": "2026-07-21",
-   "diferencia_pct": 21
-  },
-  {
-   "id": "MLA14259153",
-   "titulo": "Horno Eléctrico Smartlife Conveccion Spiedo 50L 6 Funciones",
-   "url": "https://www.mercadolibre.com.ar/horno-electrico-smartlife-conveccion-spiedo-50l-6-funciones/p/MLA14259153",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_818802-MLA99992134773_112025-AB.webp",
-   "precio_hoy": 218499,
-   "precio_tachado": 229999,
-   "descuento_anunciado": 5,
-   "minimo_registrado": 172499,
-   "minimo_fecha": "2026-07-25",
-   "visto_desde": "2026-07-25",
    "diferencia_pct": 21
   }
  ]

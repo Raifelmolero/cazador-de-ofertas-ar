@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-02T19:55:28+00:00",
+  "generado": "2026-10-02T23:45:37+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-02T19:55:28+00:00",
+      "ultima_actividad": "2026-10-02T23:45:36+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1543 productos en la última corrida"
+          "tarea": "Revisó 1535 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -37,16 +37,16 @@
           "valor": 3
         },
         {
-          "label": "Facebook",
+          "label": "Reels IG",
           "valor": 2
         },
         {
-          "label": "Reels IG",
+          "label": "Facebook",
           "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Aire Acondicionado Bgh Split Inverter Frío/calor 4600f Wifi"
+      "ultimo_trabajo": "Combo Sobadora Eléctrica 450mm 3/4hp - Amasadora 20kg 1/2hp"
     },
     {
       "id": "investigacion",

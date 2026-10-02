@@ -289,6 +289,51 @@ def save_price_history(history: dict) -> None:
         json.dump(history, f, ensure_ascii=False, separators=(",", ":"))
 
 
+# ---------------------------------------------------------------- precio testigo (Cyber Monday)
+
+# Precio "de antes" para comparar en el Cyber Monday y el Black Friday: el
+# mínimo y el máximo que vimos de cada producto en las semanas previas. En
+# noviembre la web muestra "en octubre estuvo a $X" junto a cada oferta. Se
+# registra solo dentro de la ventana; afuera el archivo queda congelado (es la
+# evidencia). Para el año que viene: nuevo archivo y nuevas fechas.
+TESTIGO_PATH = BASE_DIR / "state" / "precio_testigo_2026.json"
+TESTIGO_DESDE = "2026-10-03"
+TESTIGO_HASTA = "2026-11-01"   # inclusive: el Cyber arranca el lunes 2/11
+
+
+def update_testigo(deals: list[dict], path: Path = TESTIGO_PATH,
+                   today: str | None = None) -> int:
+    """Suma los precios de hoy al registro testigo. Devuelve cuántos
+    productos tiene el registro (0 si hoy está fuera de la ventana)."""
+    today = today or (datetime.now(timezone.utc) - timedelta(hours=3)).strftime("%Y-%m-%d")
+    if not (TESTIGO_DESDE <= today <= TESTIGO_HASTA) or not deals:
+        return 0
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {"desde": TESTIGO_DESDE, "hasta": TESTIGO_HASTA, "items": {}}
+    items = data.setdefault("items", {})
+    for d in deals:
+        price = d["price_cur"]
+        it = items.get(d["id"])
+        if it is None:
+            items[d["id"]] = {"t": d["title"][:90], "min": price, "min_ts": today,
+                              "max": price, "dias": 1, "ult": today}
+            continue
+        if price < it["min"]:
+            it["min"], it["min_ts"] = price, today
+        it["max"] = max(it["max"], price)
+        if it["ult"] != today:
+            it["dias"] += 1
+            it["ult"] = today
+    data["actualizado"] = today
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    return len(items)
+
+
 def _days_between(a: str, b: str) -> int:
     return abs((datetime.fromisoformat(b) - datetime.fromisoformat(a)).days)
 
@@ -1098,6 +1143,11 @@ def comision_estimada(title: str) -> float:
 # Fechas comerciales de Argentina: en cada ventana, los rubros que la gente
 # sale a comprar pesan más. (mes, día) inclusivo. El Día de la Madre es el
 # 3er domingo de octubre; la ventana cubre las 3 semanas previas de compra.
+KEYWORDS_CYBER = [
+    "smart tv", "notebook", "celular", "consola", "playstation",
+    "lavarropas", "heladera", "monitor", "lavavajillas", "aire acondicionado",
+]
+
 TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
     ((9, 25), (10, 18), 1.5, [  # Día de la Madre (18/10/2026): sello y landing hasta ese día
         "perfume", "secador de pelo", "planchita", "alisadora", "rizador",
@@ -1122,11 +1172,10 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "bicicleta", "carpa", "sombrilla", "climatizador",
     ]),
     # Cyber Monday 2026 (CACE, oficial): lunes 2 al miércoles 4/11; Black
-    # Friday: viernes 27/11. La ventana cubre las dos y las semanas del medio.
-    ((11, 1), (12, 2), 1.3, [  # Black Friday / Cyber Monday: ticket alto
-        "smart tv", "notebook", "celular", "consola", "playstation",
-        "lavarropas", "heladera", "monitor",
-    ]),
+    # Friday: viernes 27/11. Dos ventanas (misma lista) para que cada una
+    # lleve a su landing; la del Cyber arranca una semana antes.
+    ((10, 26), (11, 4), 1.3, KEYWORDS_CYBER),  # Cyber Monday: ticket alto
+    ((11, 5), (12, 2), 1.3, KEYWORDS_CYBER),   # Black Friday
     ((12, 1), (12, 24), 1.4, [  # Navidad
         "consola", "playstation", "nintendo", "bicicleta", "monopatin",
         "monopatín", "auriculares", "smartwatch", "perfume", "parlante",
@@ -1170,6 +1219,8 @@ SELLOS_TEMPORADA = {
 # Landing de la fecha: los posts con sello enlazan ahí en vez de la home.
 LANDINGS_TEMPORADA = {
     (9, 25): ("🎁 Más regalos para el Día de la Madre", "dia-de-la-madre"),
+    (10, 26): ("💻 Cyber Monday: qué ofertas son reales", "cyber-monday"),
+    (11, 5): ("🖤 Black Friday: qué ofertas son reales", "black-friday"),
     (12, 1): ("🎄 Más regalos para Navidad", "regalos-navidad"),
     (12, 25): ("👑 Más regalos para Reyes", "regalos-navidad"),
 }
@@ -1298,15 +1349,15 @@ def ig_caption(deal: dict) -> str:
         if deal.get("hist_low")
         else ""
     )
-    # Regalo de fecha: cuenta regresiva + la landing escrita (en IG no hay links).
+    # Fecha comercial: cuenta regresiva + la landing escrita (en IG no hay
+    # links). Cyber/Black Friday no llevan sello pero sí la landing.
     regalo_ig = ""
-    if sello:
-        if cuenta := cuenta_regresiva(deal["title"]):
-            regalo_ig += f"{cuenta}\n"
-        if lt := landing_temporada(deal["title"], "instagram"):
-            regalo_ig += f"{lt[0]} → {lt[1].split('?')[0].removeprefix('https://')}\n"
-        if regalo_ig:
-            regalo_ig += "\n"
+    if sello and (cuenta := cuenta_regresiva(deal["title"])):
+        regalo_ig += f"{cuenta}\n"
+    if lt := landing_temporada(deal["title"], "instagram"):
+        regalo_ig += f"{lt[0]} → {lt[1].split('?')[0].removeprefix('https://')}\n"
+    if regalo_ig:
+        regalo_ig += "\n"
     return (
         f"{hook}\n\n"
         f"{deal['discount']}% OFF en {deal['title'][:80]}\n\n"
@@ -1886,6 +1937,8 @@ def main() -> int:
     paginas = paginas_existentes()  # antes de update_seguimiento: solo fichas ya publicadas
     annotate_price_history(deals, history)
     save_price_history(history)
+    if n_testigo := update_testigo(deals):
+        print(f"[info] precio testigo Cyber: {n_testigo} productos")
     n_low = sum(d["hist_low"] for d in deals)
     n_inf = sum(d["inflada"] for d in deals)
     print(f"[info] historial: {len(history)} productos | {n_low} en mínimo | {n_inf} infladas")

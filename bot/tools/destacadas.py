@@ -102,10 +102,12 @@ if __name__ == "__main__":
         ((n - 1) % 4 * 384 + 14, (n - 1) // 4 * 341 + 14,
          ((n - 1) % 4 + 1) * 384 - 14, ((n - 1) // 4 + 1) * 341 - 14)))
     D = [
-        ("1-como-funciona", 5, "SOY DON OFERTÍN",
-         ["Cazo ofertas de Mercado Libre y chequeo que el descuento sea real.",
-          "Guardo el historial de precios de cada producto: si antes estaba más barato, te aviso."],
-         escena(6, ["¿EL DESCUENTO", "ES REAL?", "Lo chequeo", "con el historial"]), "cazadordeofertas.com.ar"),
+        ("1-verifica", 9, "¿TE TIENTA UNA OFERTA?",
+         ["1. Copiá el link del producto en Mercado Libre.",
+          "2. Pegalo en cazadordeofertas.com.ar",
+          "3. Te digo si el descuento es real o trucho, con el historial de precios."],
+         quitar_fondo(Image.open(PJ / "poses.webp").crop((770, 0, 1150, 372))),  # pose 3: las botas pasan la celda
+         "cazadordeofertas.com.ar"),
         ("2-truchos", 2, "¡PRECIO TRUCHO!",
          ["Suben el precio unos días antes y después le ponen \"50% OFF\".",
           "En la web te muestro qué descuentos están inflados."],

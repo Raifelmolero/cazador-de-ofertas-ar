@@ -7,7 +7,7 @@ import { slugPorId } from '@/lib/seguimiento'
 import type { OfertaLight } from '@/components/OfertaCard'
 import OfertaCard from '@/components/OfertaCard'
 import Footer from '@/components/Footer'
-import { DEALS_URL } from '@/lib/marca'
+import { DEALS_URL, WHATSAPP_URL } from '@/lib/marca'
 
 // "Link en bio" de Instagram: los posts no pueden tener links, así que acá
 // van las últimas ofertas publicadas en el feed, en el mismo orden, cada una
@@ -127,6 +127,14 @@ export default function InstagramPage() {
           className="mt-8 flex items-center justify-center rounded-2xl bg-yellow-400 px-5 py-4 text-lg font-black text-black active:scale-[0.98] transition-transform"
         >
           🔥 Ver todas las ofertas de hoy
+        </a>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 flex items-center justify-center rounded-2xl border border-emerald-400/60 px-5 py-3 font-bold text-emerald-300"
+        >
+          💬 Recibí las ofertas por WhatsApp
         </a>
       </section>
 

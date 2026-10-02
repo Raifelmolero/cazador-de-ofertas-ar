@@ -1,8 +1,21 @@
 {
- "actualizado": "2026-10-02T01:12:06+00:00",
+ "actualizado": "2026-10-02T03:55:03+00:00",
  "fecha": "2026-10-02",
- "infladas_detectadas": 158,
+ "infladas_detectadas": 224,
  "items": [
+  {
+   "id": "MLA54427142",
+   "titulo": "Bolso Deportivo Negro Iko Shop Impermeable Cruzado Viaje Nylon",
+   "url": "https://www.mercadolibre.com.ar/bolso-deportivo-negro-iko-shop-impermeable-cruzado-viaje-nylon/p/MLA54427142",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_769526-MLA99608142776_122025-AB.webp",
+   "precio_hoy": 15870,
+   "precio_tachado": 26450,
+   "descuento_anunciado": 40,
+   "minimo_registrado": 8993,
+   "minimo_fecha": "2026-10-02",
+   "visto_desde": "2026-10-02",
+   "diferencia_pct": 43
+  },
   {
    "id": "MLA75336162",
    "titulo": "Cinta Caminadora Eléctrica Para Correr | Noxi Sport | 12 Km/h | Negro",
@@ -15,6 +28,32 @@
    "minimo_fecha": "2026-07-22",
    "visto_desde": "2026-07-22",
    "diferencia_pct": 41
+  },
+  {
+   "id": "MLA65290702",
+   "titulo": "Smartphone Moto G17 Evening Blue Memoria interna 128GB - 4GM RAM Motorola",
+   "url": "https://www.mercadolibre.com.ar/smartphone-moto-g17-evening-blue-memoria-interna-128gb-4gm-ram-motorola/p/MLA65290702",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_638602-MLA106598723027_022026-AB.webp",
+   "precio_hoy": 372499,
+   "precio_tachado": 442700,
+   "descuento_anunciado": 15,
+   "minimo_registrado": 223399,
+   "minimo_fecha": "2026-09-23",
+   "visto_desde": "2026-07-27",
+   "diferencia_pct": 40
+  },
+  {
+   "id": "MLA74504869",
+   "titulo": "Notebook Asus Vivobook Go 15 Ryzen 5 8gb 512gb W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-go-15-ryzen-5-8gb-512gb-w11/p/MLA74504869",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_639604-MLA112551219242_062026-AB.webp",
+   "precio_hoy": 1435999,
+   "precio_tachado": 2349999,
+   "descuento_anunciado": 38,
+   "minimo_registrado": 871099,
+   "minimo_fecha": "2026-09-09",
+   "visto_desde": "2026-09-02",
+   "diferencia_pct": 39
   },
   {
    "id": "MLA15503957",
@@ -30,17 +69,56 @@
    "diferencia_pct": 39
   },
   {
-   "id": "MLA63302655",
-   "titulo": "Moto G06 64GB NFC Tapestry",
-   "url": "https://www.mercadolibre.com.ar/moto-g06-64gb-nfc-tapestry/p/MLA63302655",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_982511-MLA116902618940_092026-AB.webp",
-   "precio_hoy": 229999,
-   "precio_tachado": 259999,
-   "descuento_anunciado": 11,
-   "minimo_registrado": 155999,
-   "minimo_fecha": "2026-09-24",
-   "visto_desde": "2026-07-27",
-   "diferencia_pct": 32
+   "id": "MLA49998838",
+   "titulo": "Kit Bandas Elasticas De Tela 3 Intensidades Entrenamiento",
+   "url": "https://www.mercadolibre.com.ar/kit-bandas-elasticas-de-tela-3-intensidades-entrenamiento/p/MLA49998838",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_790616-MLA109812354156_042026-AB.webp",
+   "precio_hoy": 19319,
+   "precio_tachado": 20999,
+   "descuento_anunciado": 8,
+   "minimo_registrado": 12602,
+   "minimo_fecha": "2026-10-02",
+   "visto_desde": "2026-10-02",
+   "diferencia_pct": 35
+  },
+  {
+   "id": "MLA63739611",
+   "titulo": "Smartwatch Amazfit Active Max Amoled 1.75 +170 deportes Gps 5 atm Llamadas batería 25 días Musica 4Gb Inteligencia artificial android Ios",
+   "url": "https://www.mercadolibre.com.ar/smartwatch-amazfit-active-max-amoled-175-170-deportes-gps-5-atm-llamadas-bateria-25-dias-musica-4gb-inteligencia-artificial-android-ios/p/MLA63739611",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_664393-MLA103275720855_122025-AB.webp",
+   "precio_hoy": 434499,
+   "precio_tachado": 457554,
+   "descuento_anunciado": 5,
+   "minimo_registrado": 285599,
+   "minimo_fecha": "2026-09-26",
+   "visto_desde": "2026-08-16",
+   "diferencia_pct": 34
+  },
+  {
+   "id": "MLA27003152",
+   "titulo": "Bicicleta Spinning Shock Rider Profesional Con Amortiguador 30 kg y App Bluetooth Energy Fit",
+   "url": "https://www.mercadolibre.com.ar/bicicleta-spinning-shock-rider-profesional-con-amortiguador-30-kg-y-app-bluetooth-energy-fit/p/MLA27003152",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_641627-MLA116701210345_082026-AB.webp",
+   "precio_hoy": 623220,
+   "precio_tachado": 799000,
+   "descuento_anunciado": 22,
+   "minimo_registrado": 410048,
+   "minimo_fecha": "2026-09-19",
+   "visto_desde": "2026-07-21",
+   "diferencia_pct": 34
+  },
+  {
+   "id": "MLA70042178",
+   "titulo": "Aire Acondicionado Split Inverter Philco 3800W/3268FG PHIN38HA6AN",
+   "url": "https://www.mercadolibre.com.ar/aire-acondicionado-split-inverter-philco-3800w3268fg-phin38ha6an/p/MLA70042178",
+   "img": "https://http2.mlstatic.com/D_Q_NP_2X_987855-MLA111945222829_052026-AB.webp",
+   "precio_hoy": 1126899,
+   "precio_tachado": 1223999,
+   "descuento_anunciado": 7,
+   "minimo_registrado": 749999,
+   "minimo_fecha": "2026-09-21",
+   "visto_desde": "2026-07-22",
+   "diferencia_pct": 33
   },
   {
    "id": "MLA45615651",
@@ -60,13 +138,13 @@
    "titulo": "Bateria Cocina Hudson Antiadherente Granito 9 Pz",
    "url": "https://www.mercadolibre.com.ar/bateria-cocina-hudson-antiadherente-granito-9-pz/p/MLA32808954",
    "img": "https://http2.mlstatic.com/D_Q_NP_2X_952024-MLA114022867217_072026-AB.webp",
-   "precio_hoy": 267382,
+   "precio_hoy": 263382,
    "precio_tachado": 381974,
-   "descuento_anunciado": 29,
+   "descuento_anunciado": 31,
    "minimo_registrado": 187744,
    "minimo_fecha": "2026-09-30",
    "visto_desde": "2026-09-29",
-   "diferencia_pct": 30
+   "diferencia_pct": 29
   },
   {
    "id": "MLA69124900",
@@ -80,84 +158,6 @@
    "minimo_fecha": "2026-07-26",
    "visto_desde": "2026-07-26",
    "diferencia_pct": 27
-  },
-  {
-   "id": "MLA40065973",
-   "titulo": "Lenovo Tab Plus 11.5 Octacore 8gb 256gb Octa Jbl Speakers Color Gris oscuro",
-   "url": "https://www.mercadolibre.com.ar/lenovo-tab-plus-115-octacore-8gb-256gb-octa-jbl-speakers-color-gris-oscuro/p/MLA40065973",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_843547-MLA99516246424_112025-AB.webp",
-   "precio_hoy": 779999,
-   "precio_tachado": 1599999,
-   "descuento_anunciado": 51,
-   "minimo_registrado": 570657,
-   "minimo_fecha": "2026-09-30",
-   "visto_desde": "2026-08-07",
-   "diferencia_pct": 27
-  },
-  {
-   "id": "MLA55255969",
-   "titulo": "Monitor Gamer Level Up 27 curvo 200hz 1ms Full Hd Led",
-   "url": "https://www.mercadolibre.com.ar/monitor-gamer-level-up-27-curvo-200hz-1ms-full-hd-led/p/MLA55255969",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_798594-MLA115400825174_082026-AB.webp",
-   "precio_hoy": 388884,
-   "precio_tachado": 549119,
-   "descuento_anunciado": 29,
-   "minimo_registrado": 292054,
-   "minimo_fecha": "2026-08-28",
-   "visto_desde": "2026-08-28",
-   "diferencia_pct": 25
-  },
-  {
-   "id": "MLA18569931",
-   "titulo": "Disco duro externo Seagate Expansion STKM4000400 4TB",
-   "url": "https://www.mercadolibre.com.ar/disco-duro-externo-seagate-expansion-stkm4000400-4tb/p/MLA18569931",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_764965-MLA95705979678_102025-AB.webp",
-   "precio_hoy": 349999,
-   "precio_tachado": 372576,
-   "descuento_anunciado": 6,
-   "minimo_registrado": 266490,
-   "minimo_fecha": "2026-07-18",
-   "visto_desde": "2026-07-18",
-   "diferencia_pct": 24
-  },
-  {
-   "id": "MLA17840710",
-   "titulo": "Yogurtera Fabrica De Yogurt Yelmo Yg-1700 7 Jarros Tapas De Colores",
-   "url": "https://www.mercadolibre.com.ar/yogurtera-fabrica-de-yogurt-yelmo-yg-1700-7-jarros-tapas-de-colores/p/MLA17840710",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_794503-MLA113911080193_062026-AB.webp",
-   "precio_hoy": 42999,
-   "precio_tachado": 49999,
-   "descuento_anunciado": 14,
-   "minimo_registrado": 32990,
-   "minimo_fecha": "2026-08-20",
-   "visto_desde": "2026-08-20",
-   "diferencia_pct": 23
-  },
-  {
-   "id": "MLA54423759",
-   "titulo": "Ventilador Retractil De Techo Novohome Luz Calida Fria Neutra 6 Velocidades 4 aspas Color Blanco",
-   "url": "https://www.mercadolibre.com.ar/ventilador-retractil-de-techo-novohome-luz-calida-fria-neutra-6-velocidades-4-aspas-color-blanco/p/MLA54423759",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_932802-MLA113050185405_062026-AB.webp",
-   "precio_hoy": 124178,
-   "precio_tachado": 282129,
-   "descuento_anunciado": 55,
-   "minimo_registrado": 95534,
-   "minimo_fecha": "2026-09-21",
-   "visto_desde": "2026-08-07",
-   "diferencia_pct": 23
-  },
-  {
-   "id": "MLA61381499",
-   "titulo": "Teléfono inteligente Motorola Moto G06",
-   "url": "https://www.mercadolibre.com.ar/telefono-inteligente-motorola-moto-g06/p/MLA61381499",
-   "img": "https://http2.mlstatic.com/D_Q_NP_2X_689704-MLA96194618638_102025-AB.webp",
-   "precio_hoy": 254999,
-   "precio_tachado": 309999,
-   "descuento_anunciado": 17,
-   "minimo_registrado": 196599,
-   "minimo_fecha": "2026-09-24",
-   "visto_desde": "2026-08-20",
-   "diferencia_pct": 23
   }
  ]
 }

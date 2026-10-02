@@ -28,6 +28,7 @@ const GUIAS_TICKET_ALTO = [
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
+import ComparacionTestigo from '@/components/ComparacionTestigo'
 import { BLACK_FRIDAY as BF, CYBER_MONDAY as CM, etapaBlackFriday } from '@/lib/cybermonday'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -189,6 +190,7 @@ export default function BlackFridayPage() {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
+        <ComparacionTestigo evento="Black Friday" etapa={etapa} />
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué es el Black Friday en Argentina</h2>
           <div className="space-y-3 text-zinc-400 leading-relaxed">

@@ -28,7 +28,7 @@ const GUIAS_TICKET_ALTO = [
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
-import { getTestigo, veredictoTestigo } from '@/lib/testigo'
+import ComparacionTestigo from '@/components/ComparacionTestigo'
 import { BLACK_FRIDAY, CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -86,30 +86,6 @@ export default function CyberMondayPage() {
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
   }))
-
-  // Precio testigo: lo que el bot vio de cada producto antes del evento.
-  // Antes del Cyber se muestra cuántos productos se están registrando; durante
-  // y después, qué ofertas de hoy bajaron de verdad contra ese registro.
-  const testigo = getTestigo()
-  const nTestigo = Object.keys(testigo.items).length
-  const conTestigo = getOfertas()
-    .map(o => ({ o, t: testigo.items[o.id_ml], v: veredictoTestigo(o.precio_actual, testigo.items[o.id_ml]) }))
-    .filter(x => x.v !== null)
-  const bajaron = conTestigo.filter(x => x.v === 'bajo')
-  const noBajaron = conTestigo.filter(x => x.v !== 'bajo')
-  const pctBajaron = conTestigo.length ? Math.round((bajaron.length / conTestigo.length) * 100) : 0
-  const lightDe = (o: (typeof ofertas)[number]): OfertaLight => ({
-    id_ml: o.id_ml,
-    titulo: o.titulo,
-    precio_actual: o.precio_actual,
-    precio_anterior: o.precio_anterior,
-    descuento_pct: o.descuento_pct,
-    minimo_historico: o.minimo_historico,
-    relampago: o.relampago,
-    url_producto: o.url_producto,
-    url_imagen: o.url_imagen,
-    historial: historial[o.id_ml],
-  })
 
   const comparativas = COMPARATIVAS.filter(c => c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-'))
   const blackFriday = getComparativa('ofertas-black-friday')
@@ -265,66 +241,7 @@ export default function CyberMondayPage() {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
-        {etapa === 'antes' ? (
-          <section className="mb-10 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 sm:p-6">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-2">📋 Estamos anotando los precios de antes</h2>
-            <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-              {nTestigo > 0 ? (
-                <>
-                  Desde el {fechaAR(testigo.desde)} registramos el precio de{' '}
-                  <strong className="text-zinc-100">{nTestigo.toLocaleString('es-AR')} productos</strong> de Mercado Libre,
-                  3 veces por día.
-                </>
-              ) : (
-                <>Desde el {fechaAR(testigo.desde)} registramos el precio de cada producto en oferta de Mercado Libre, 3 veces por día.</>
-              )}{' '}
-              Cuando arranque el Cyber Monday vas a ver acá cuáles bajaron de verdad contra su precio de octubre y cuáles
-              solo cambiaron el cartel.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-5 py-2.5 transition-colors">
-                Avisame por Telegram
-              </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-bold border border-emerald-400/60 text-emerald-300 rounded-xl px-5 py-2.5">
-                Avisame por WhatsApp
-              </a>
-            </div>
-          </section>
-        ) : conTestigo.length > 0 ? (
-          <section className="mb-10">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-2">¿Bajaron de verdad? Hoy contra octubre</h2>
-            <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
-              De las {conTestigo.length.toLocaleString('es-AR')} ofertas de hoy que seguimos desde antes del evento,{' '}
-              <strong className="text-zinc-100">{pctBajaron}%</strong> está al menos 3% más barata que el precio más bajo
-              que registramos entre el {fechaAR(testigo.desde)} y el {fechaAR(testigo.hasta)}. El resto estuvo igual o más
-              barato en esas semanas.
-            </p>
-            {bajaron.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                {bajaron.slice(0, 9).map(({ o }) => (
-                  <OfertaCard key={o.id_ml} producto={lightDe(o)} />
-                ))}
-              </div>
-            )}
-            {noBajaron.length > 0 && (
-              <>
-                <h3 className="font-display text-lg font-black mb-2">Estaban igual o más baratas antes del Cyber</h3>
-                <ul className="divide-y divide-zinc-900 rounded-2xl border border-zinc-900 text-sm">
-                  {noBajaron.slice(0, 8).map(({ o, t }) => (
-                    <li key={o.id_ml} className="flex items-center justify-between gap-3 px-4 py-3">
-                      <span className="text-zinc-300 line-clamp-2">{o.titulo}</span>
-                      <span className="shrink-0 text-right text-xs text-zinc-500">
-                        hoy <strong className="text-zinc-200">${o.precio_actual.toLocaleString('es-AR')}</strong>
-                        <br />
-                        el {fechaAR(t!.min_ts)}: <strong className="text-red-300">${t!.min.toLocaleString('es-AR')}</strong>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </section>
-        ) : null}
+        <ComparacionTestigo evento="Cyber Monday" etapa={etapa} />
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué es el Cyber Monday</h2>

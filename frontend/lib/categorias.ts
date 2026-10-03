@@ -670,6 +670,84 @@ export const CATEGORIAS: Categoria[] = [
     ],
   },
   {
+    slug: 'piletas',
+    nombre: 'Piletas',
+    titulo: 'Ofertas de piletas en Mercado Libre Argentina',
+    descripcion:
+      'Piletas de lona, estructurales e inflables en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Qué tamaño elegir y qué revisar antes de comprar.',
+    intro:
+      'Piletas de lona, estructurales e inflables con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['pileta', 'piscina', 'pelopincho'],
+    excluir: ['repuesto', 'cobertor', 'cloro', 'pastilla', 'barrefondo', 'limpiafondo', 'manguera', 'parche', 'flotador', 'termometro', 'termómetro', 'skimmer', 'red ', 'escalera'],
+    guia: [
+      {
+        h: 'Qué pileta elegir',
+        p: [
+          'Las inflables son las más baratas y fáciles de guardar, pero duran menos y se pinchan. Las de lona con estructura (tipo Pelopincho) aguantan varias temporadas y son las más elegidas para patio. Las estructurales grandes necesitan bomba con filtro y un terreno bien nivelado.',
+          'Antes de comprar, medí el espacio y fijate la capacidad en litros: cuanta más agua, más cloro y más tiempo de llenado.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Que el terreno esté nivelado y sin piedras ni raíces: una pileta desnivelada se deforma y puede romperse. Una lona o protector abajo alarga la vida de la base.',
+          'Para piletas medianas o grandes, conviene sumar bomba con filtro y cobertor: mantienen el agua limpia más días y bajan el gasto en cloro.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué pileta conviene para un patio chico?',
+        a: 'Una de lona con estructura de tamaño chico o mediano. Medí el espacio dejando lugar para circular alrededor y verificá que el piso esté nivelado.',
+      },
+      {
+        q: '¿Cuándo conviene comprar la pileta?',
+        a: 'La demanda sube con el calor, entre octubre y enero. Seguir el precio desde antes del verano ayuda a detectar si una oferta es real.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'muebles-de-jardin',
+    nombre: 'Muebles de jardín',
+    titulo: 'Ofertas de muebles de jardín en Mercado Libre Argentina',
+    descripcion:
+      'Juegos de jardín, reposeras, hamacas, gazebos y toldos en oferta en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
+    intro:
+      'Muebles de jardín, reposeras, gazebos y toldos con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['juego de jardin', 'juego de jardín', 'reposera', 'gazebo', 'toldo', 'hamaca', 'sillon de jardin', 'sillón de jardín', 'mesa de jardin', 'mesa de jardín', 'camastro'],
+    excluir: ['repuesto', 'funda', 'almohadon', 'almohadón', 'lona de repuesto', 'juguete', 'bebe', 'bebé'],
+    guia: [
+      {
+        h: 'Qué muebles de jardín elegir',
+        p: [
+          'El material define cuánto duran afuera: el aluminio y el ratán sintético aguantan sol y lluvia con poco mantenimiento; la madera es linda pero pide tratamiento cada temporada; el plástico es el más barato y liviano.',
+          'Medí el espacio antes de comprar y pensá si los muebles van a quedar a la intemperie o bajo techo.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'En gazebos y toldos, fijate el tamaño, el tipo de lona (protección UV, si es impermeable) y cómo se ancla al piso: el viento es lo que más los rompe.',
+          'En juegos de jardín, mirá cuántas personas entran, si los almohadones son lavables y si las sillas se apilan para guardarlas en invierno.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Qué material de muebles de jardín dura más afuera?',
+        a: 'El aluminio y el ratán sintético son los que mejor aguantan sol y lluvia con poco mantenimiento. La madera necesita tratamiento periódico.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
     slug: 'bicicletas',
     nombre: 'Bicicletas',
     titulo: 'Ofertas de bicicletas en Mercado Libre Argentina',

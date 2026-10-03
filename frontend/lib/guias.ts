@@ -2147,6 +2147,7 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+    categoria: { slug: 'piletas', nombre: 'piletas' },
     comparativa: 'mejores-piletas',
     cta: { href: '/mejores/mejores-piletas', titulo: 'Piletas en oferta hoy, comparadas', boton: 'Ver la comparativa de piletas 🏊' },
     faq: [
@@ -2382,6 +2383,7 @@ export const GUIAS: Guia[] = [
         ],
       },
     ],
+    categoria: { slug: 'muebles-de-jardin', nombre: 'muebles de jardín' },
     comparativa: 'mejores-muebles-de-jardin',
     cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Muebles de jardín y gazebos en oferta hoy, comparados', boton: 'Ver la comparativa de muebles de jardín ☀️' },
     faq: [

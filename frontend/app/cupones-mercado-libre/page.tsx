@@ -14,6 +14,7 @@ import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import { getComparativa, indexable } from '@/lib/comparativas'
+import { getCategoria, enCategoria } from '@/lib/categorias'
 
 const URL = `${DEALS_URL}/cupones-mercado-libre`
 const TITULO = 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos'
@@ -73,7 +74,10 @@ const FAQS = [
 export default function CuponesPage() {
   const scrapedAt = getScrapedAt().toISOString()
   const historial = slugPorId()
+  // Quien busca cupones es comprador de casa: sin equipamiento gastronómico industrial
+  const gastro = getCategoria('equipamiento-gastronomico')
   const ofertas: OfertaLight[] = getOfertas()
+    .filter(o => !gastro || !enCategoria(gastro, o.titulo))
     .slice(0, MAX_OFERTAS)
     .map(o => ({
       id_ml: o.id_ml,
@@ -146,6 +150,12 @@ export default function CuponesPage() {
             vas a encontrar códigos inventados: te explicamos dónde están los reales y cómo comprobar que el precio
             con descuento sea de verdad bajo.
           </p>
+          <a
+            href="#ofertas-hoy"
+            className="mt-4 flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 font-black text-black hover:bg-yellow-300 transition-colors"
+          >
+            🔥 Ver las ofertas de hoy con descuento real ↓
+          </a>
         </div>
 
         <div className="space-y-8 text-zinc-400 leading-relaxed">
@@ -215,7 +225,7 @@ export default function CuponesPage() {
               </li>
               <li>
                 Cuotas sin interés y reintegros con tarjetas de bancos puntuales, pagando a través de Mercado Pago.
-                Varias de las que leímos vencen el 30/09/2026, así que no las detallamos: fijate en esa página qué
+                Cambian seguido (muchas vencen a fin de mes), así que no las detallamos: fijate en esa página qué
                 está vigente para tu tarjeta el día que compres.
               </li>
             </ul>
@@ -250,7 +260,7 @@ export default function CuponesPage() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
         <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
-          <h2 className="font-display text-xl sm:text-2xl font-black">Ofertas de hoy con descuento verificado</h2>
+          <h2 id="ofertas-hoy" className="font-display text-xl sm:text-2xl font-black scroll-mt-20">Ofertas de hoy con descuento verificado</h2>
           <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
             Precios de Mercado Libre comparados contra nuestro historial (no incluyen cupones). Los botones son links
             de afiliado: si comprás, Mercado Libre nos paga una comisión y a vos no te cuesta más.{' '}

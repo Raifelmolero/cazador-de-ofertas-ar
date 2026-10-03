@@ -1937,6 +1937,76 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-smartwatch-comprar',
+    titulo: '¿Qué smartwatch comprar? Compatibilidad, batería, GPS y sensores',
+    descripcion:
+      'Cómo elegir un smartwatch o una smartband en Argentina: compatibilidad con Android o iPhone, batería, GPS, sensores de salud y sus límites, resistencia al agua, pantalla y garantía.',
+    pregunta: '¿Qué smartwatch conviene comprar?',
+    respuestaCorta:
+      'Primero confirmá que sea compatible con tu celular: el Apple Watch solo funciona con iPhone, y muchos relojes con Wear OS no andan bien con iPhone. Si querés notificaciones, pasos y sueño con batería que dure días, alcanza una smartband; si querés responder mensajes, apps o GPS propio para correr, conviene un smartwatch. Mirá la autonomía real, la resistencia al agua (5 ATM si nadás) y que tenga garantía en Argentina. Los sensores de salud orientan, pero no reemplazan a un dispositivo médico.',
+    secciones: [
+      {
+        h: 'Smartwatch o smartband',
+        p: [
+          'Smartband (pulsera): liviana, barata y con batería que suele durar más de una semana. Muestra notificaciones, cuenta pasos, mide pulso y sueño. Pantalla chica y pocas apps.',
+          'Smartwatch: pantalla más grande, más funciones (responder mensajes, apps, pagos o llamadas en algunos modelos) y suele tener que cargarse más seguido.',
+          'Si solo querés contar pasos y ver quién te escribe, una smartband alcanza. Si lo vas a usar como extensión del celular, andá por un smartwatch.',
+        ],
+      },
+      {
+        h: 'Compatibilidad con Android o iPhone',
+        p: [
+          'Apple Watch: funciona solo con iPhone.',
+          'Relojes con Wear OS: están pensados para Android; con iPhone la compatibilidad es limitada o nula según el modelo.',
+          'Marcas con app propia (muchas smartbands y relojes de entrada): suelen andar con Android y iPhone, pero con iPhone algunas funciones, como responder mensajes, pueden no estar. Revisá en la publicación qué versión de sistema pide y si la app está en tu tienda.',
+        ],
+      },
+      {
+        h: 'Batería, GPS, sensores y agua',
+        p: [
+          'Batería: la duración que anuncia el fabricante es con uso moderado; con pantalla siempre encendida o GPS activo baja bastante.',
+          'GPS: un reloj con GPS propio registra la ruta sin llevar el celular; los que usan "GPS conectado" necesitan el teléfono encima. Si corrés o andás en bici, conviene GPS propio.',
+          'Sensores de salud: pulso, oxígeno en sangre, sueño o estrés son estimaciones útiles para seguir tendencias, pero no son dispositivos médicos. No los uses para diagnosticar nada: ante cualquier duda, consultá a un médico.',
+          'Resistencia al agua: IP67/IP68 aguanta lluvia y lavarse las manos; para nadar buscá 5 ATM o más. Ninguno conviene usarlo en sauna o con agua caliente.',
+        ],
+      },
+      {
+        h: 'Pantalla, garantía y precio',
+        p: [
+          'Pantalla: las AMOLED se ven mejor y con más brillo; las LCD gastan distinto y suelen estar en los más baratos. Fijate que se lea bien al sol.',
+          'Garantía: preferí tienda oficial o vendedor con garantía en Argentina; los importados sin respaldo complican cualquier reclamo.',
+          'Precio: cambia mucho entre marcas y semanas. No damos un precio fijo: en la comparativa de smartwatch tenés los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-smartwatch',
+    cta: { href: '/mejores/mejores-smartwatch', titulo: 'Smartwatch en oferta hoy, comparados', boton: 'Ver la comparativa de smartwatch ⌚' },
+    faq: [
+      {
+        q: '¿El Apple Watch funciona con Android?',
+        a: 'No. El Apple Watch necesita un iPhone para configurarse y usarse. Si tenés Android, buscá un reloj con Wear OS o de una marca con app compatible.',
+      },
+      {
+        q: '¿Qué diferencia hay entre smartwatch y smartband?',
+        a: 'La smartband es más chica, barata y con más batería, ideal para pasos, sueño y notificaciones. El smartwatch tiene pantalla más grande y más funciones, como apps o responder mensajes.',
+      },
+      {
+        q: '¿Los smartwatch miden bien la presión o el oxígeno?',
+        a: 'Dan estimaciones útiles para seguir tendencias, pero no son dispositivos médicos. No sirven para diagnosticar; ante cualquier síntoma consultá a un médico.',
+      },
+      {
+        q: '¿Puedo nadar con un smartwatch?',
+        a: 'Solo si indica resistencia de 5 ATM o más. IP67 o IP68 aguanta salpicaduras y lluvia, pero no está pensado para nadar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-smartwatch', texto: 'Comparativa de smartwatch' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según tu presupuesto' },
+      { href: '/guias/que-regalar-el-dia-de-la-madre', texto: 'Qué regalar el Día de la Madre' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1945,6 +2015,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
   'que-aspiradora-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-smartwatch-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-monitor-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

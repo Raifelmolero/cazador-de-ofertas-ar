@@ -766,6 +766,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-smartwatch',
+    guia: 'que-smartwatch-comprar',
     nombre: 'smartwatch',
     titulo: `Mejores smartwatch en oferta ${AÑO}: comparativa de precios`,
     descripcion:

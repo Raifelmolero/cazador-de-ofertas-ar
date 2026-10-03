@@ -206,6 +206,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [aire acondicionado portátil o split](https://cazadordeofertas.com.ar/guias/aire-acondicionado-portatil-o-split),
   [qué ventilador comprar](https://cazadordeofertas.com.ar/guias/que-ventilador-comprar),
   [qué pileta comprar](https://cazadordeofertas.com.ar/guias/que-pileta-comprar),
+  [qué parrilla comprar](https://cazadordeofertas.com.ar/guias/que-parrilla-comprar),
   [qué muebles de jardín comprar](https://cazadordeofertas.com.ar/guias/que-muebles-de-jardin-comprar),
   [qué freezer comprar](https://cazadordeofertas.com.ar/guias/que-freezer-comprar),
   [qué cocina comprar](https://cazadordeofertas.com.ar/guias/que-cocina-comprar),

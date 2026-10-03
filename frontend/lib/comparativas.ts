@@ -629,6 +629,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-monitores',
+    guia: 'que-monitor-comprar',
     nombre: 'monitores',
     titulo: `Mejores monitores en oferta ${AÑO}: comparativa de precios`,
     descripcion:

@@ -1796,6 +1796,76 @@ export const GUIAS: Guia[] = [
       { texto: 'Secretaría de Energía de la Nación: eficiencia energética', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
     ],
   },
+  {
+    slug: 'que-monitor-comprar',
+    titulo: '¿Qué monitor comprar? Pulgadas, resolución, panel y Hz para trabajar o jugar',
+    descripcion:
+      'Cómo elegir un monitor en Argentina para trabajo, estudio o gamer: pulgadas y resolución, panel IPS, VA o TN, Hz y tiempo de respuesta, conexiones HDMI, DisplayPort y USB-C, y ergonomía.',
+    pregunta: '¿Qué monitor conviene comprar?',
+    respuestaCorta:
+      'Para trabajar o estudiar, un monitor de 24 pulgadas Full HD con panel IPS alcanza y cuida la vista; si vas a 27 pulgadas, conviene resolución 2K (QHD). Para jugar, buscá 144 Hz o más y tiempo de respuesta bajo, y fijate que tu placa de video llegue a esos cuadros. Antes de comprar, revisá que tenga las entradas que usa tu PC o notebook (HDMI, DisplayPort o USB-C) y si el pie permite regular la altura.',
+    secciones: [
+      {
+        h: 'Pulgadas y resolución',
+        p: [
+          '22 a 24 pulgadas: Full HD (1920x1080) se ve bien y es lo más común para oficina, estudio y juegos competitivos.',
+          '27 pulgadas: conviene 2K (QHD, 2560x1440); en Full HD a ese tamaño se nota el "pixelado" de cerca.',
+          '32 pulgadas o más, o ultrawide: para edición, planillas grandes o simuladores; 4K pide una PC más potente si es para jugar.',
+        ],
+      },
+      {
+        h: 'Panel IPS, VA o TN',
+        p: [
+          'IPS: los mejores colores y ángulos de visión; el más recomendable para trabajar, diseñar y para la mayoría de los gamers.',
+          'VA: mejor contraste (negros más profundos), bueno para películas y juegos con escenas oscuras; algunos dejan estela en movimientos rápidos.',
+          'TN: el más rápido y barato, pero con colores y ángulos peores; hoy tiene sentido solo para juego competitivo con poco presupuesto.',
+        ],
+      },
+      {
+        h: 'Hz y tiempo de respuesta (gamer)',
+        p: [
+          '60 o 75 Hz alcanzan para trabajar y estudiar. Para jugar, 144 Hz o más se nota mucho en fluidez.',
+          'Los Hz sirven solo si tu PC o consola llega a esos cuadros por segundo: revisá tu placa de video antes de pagar por 240 Hz.',
+          'Tiempo de respuesta: 1 ms (MPRT o GtG) es lo habitual en gamers; ojo que las marcas miden distinto. FreeSync o G-Sync evitan cortes en la imagen.',
+        ],
+      },
+      {
+        h: 'Conexiones, ergonomía y cuánto sale',
+        p: [
+          'Conexiones: HDMI es lo universal; DisplayPort suele hacer falta para los Hz altos en PC; USB-C con video (y carga) es cómodo para notebooks con un solo cable. Fijate qué cable viene en la caja.',
+          'Ergonomía: un pie con altura e inclinación regulables o compatibilidad VESA para brazo ayuda a la postura si pasás muchas horas. Modo de luz azul baja y sin parpadeo (flicker free) cuidan la vista.',
+          'Precio: cambia mucho entre tamaños, paneles y Hz, y entre semanas. No damos un precio fijo: en la comparativa de monitores tenés los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    categoria: { slug: 'monitores', nombre: 'monitores' },
+    comparativa: 'mejores-monitores',
+    cta: { href: '/mejores/mejores-monitores', titulo: 'Monitores en oferta hoy, comparados', boton: 'Ver la comparativa de monitores 🖥️' },
+    faq: [
+      {
+        q: '¿Qué monitor conviene para trabajar o estudiar?',
+        a: 'Uno de 24 pulgadas Full HD con panel IPS y pie regulable alcanza. Si querés más espacio, uno de 27 pulgadas con resolución 2K.',
+      },
+      {
+        q: '¿Cuántos Hz tiene que tener un monitor gamer?',
+        a: '144 Hz o más es el estándar para jugar fluido. Más Hz solo sirven si tu placa de video o consola llega a esos cuadros por segundo.',
+      },
+      {
+        q: '¿Qué es mejor, panel IPS o VA?',
+        a: 'IPS tiene mejores colores y ángulos de visión; VA tiene mejor contraste y negros más profundos. Para uso general y gamer, IPS suele ser la opción más equilibrada.',
+      },
+      {
+        q: '¿Necesito DisplayPort o alcanza con HDMI?',
+        a: 'Para oficina alcanza con HDMI. Para Hz altos en PC muchas veces hace falta DisplayPort; revisá qué soportan tu placa de video y el monitor.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-monitores', texto: 'Comparativa de monitores' },
+      { href: '/mejores/mejores-monitores-gamer', texto: 'Comparativa de monitores gamer' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1804,6 +1874,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-monitor-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

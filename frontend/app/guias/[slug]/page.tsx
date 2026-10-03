@@ -3,7 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
-import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
+import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 
 export function generateStaticParams() {
@@ -192,6 +192,32 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </a>
         </div>
 
+        <section className="mt-10 rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+          <p className="font-bold text-zinc-100 mb-1">
+            ¿Todavía no comprás? Te avisamos cuando baje{g.categoria ? ` algo de ${g.categoria.nombre}` : ''} 🔔
+          </p>
+          <p className="text-sm text-zinc-400 mb-4">
+            Todos los días publicamos las ofertas con descuento real verificado. Gratis, sin spam, te salís cuando quieras.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-bold text-black bg-green-500 hover:bg-green-400 px-4 py-2 rounded-full transition-colors"
+            >
+              Seguir el canal de WhatsApp 💬
+            </a>
+            <a
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-4 py-2 rounded-full transition-colors"
+            >
+              Unirme a Telegram ✈️
+            </a>
+          </div>
+        </section>
         <nav className="mt-10 text-sm">
           <p className="font-bold text-zinc-300 mb-2">Más guías</p>
           <ul className="space-y-1.5">

@@ -2251,6 +2251,81 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'aire-acondicionado-portatil-o-split',
+    titulo: '¿Aire acondicionado portátil o split? Eficiencia, ruido, instalación y cuál conviene',
+    descripcion:
+      'Portátil vs split en Argentina: cuál enfría mejor, cuál gasta menos luz, ruido, manguera por la ventana, alquileres y departamentos. Además: inverter u on-off y frío solo o frío/calor.',
+    pregunta: '¿Qué conviene, un aire acondicionado portátil o un split?',
+    respuestaCorta:
+      'Si podés instalarlo, el split conviene casi siempre: enfría mejor, gasta menos luz y hace menos ruido porque el compresor queda afuera. El portátil sirve cuando no se puede instalar un split (alquiler sin permiso, consorcio que no deja poner la unidad exterior, uso ocasional o para mover entre ambientes), pero hay que sacar la manguera de aire caliente por una ventana y rinde menos. En los dos casos, primero calculá las frigorías que necesitás y compará la etiqueta de eficiencia energética, obligatoria en Argentina.',
+    secciones: [
+      {
+        h: 'Cómo funciona cada uno',
+        p: [
+          'Split: tiene una unidad interior (la que va en la pared) y una exterior con el compresor, unidas por cañerías con gas refrigerante. El calor y casi todo el ruido quedan afuera.',
+          'Portátil: es un solo equipo con ruedas que va adentro del ambiente, con el compresor incluido. El aire caliente sale por una manguera que tiene que ir a una ventana o a un hueco al exterior; sin esa salida no enfría.',
+        ],
+      },
+      {
+        h: 'Eficiencia y ruido',
+        p: [
+          'El split suele ser más eficiente: el portátil tiene el compresor dentro del ambiente que querés enfriar y la manguera también irradia calor, así que a igual capacidad suele rendir menos y gastar más. Por eso conviene elegir un portátil con algo de margen sobre las frigorías calculadas.',
+          'En ruido, el split gana: adentro solo queda el ventilador. El portátil tiene el compresor a tu lado, algo a tener en cuenta si es para dormir.',
+          'Para comparar consumo, mirá la etiqueta de eficiencia energética de cada modelo: indica la clase y el consumo, y con esos datos podés estimar el gasto mensual en la calculadora de consumo eléctrico.',
+        ],
+      },
+      {
+        h: 'Instalación, alquileres y departamentos',
+        p: [
+          'El split necesita instalación: perforar la pared, montar la unidad exterior, conectar cañerías y cargar el gas. Hacela con un técnico matriculado; además, una instalación incorrecta puede afectar la garantía. Casi nunca viene incluida en el precio, así que pedí presupuesto antes de comprar.',
+          'En departamentos, revisá el reglamento del consorcio sobre dónde se puede poner la unidad exterior y el desagüe. Si alquilás, pedí autorización al propietario antes de perforar.',
+          'El portátil no requiere instalación: se enchufa y se saca la manguera por la ventana con el kit que trae. Lo que sí: la ventana queda entreabierta, así que conviene sellar el hueco para que no entre aire caliente. Algunos modelos acumulan agua de condensación y hay que vaciarla.',
+        ],
+      },
+      {
+        h: 'Inverter u on-off, frío solo o frío/calor',
+        p: [
+          'Inverter regula la potencia del compresor en vez de prender y apagar, así que gasta menos luz y hace menos ruido; conviene si lo vas a usar muchas horas. Un on-off es más barato de entrada y puede alcanzar para un uso esporádico.',
+          'Frío/calor también calefacciona con bomba de calor, que suele ser más eficiente que una estufa eléctrica común. Si en invierno no lo vas a usar para calefaccionar, un frío solo puede alcanzar.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-acondicionados',
+    faq: [
+      {
+        q: '¿El aire portátil enfría igual que un split?',
+        a: 'En general no: a igual capacidad, el split rinde más porque el compresor y el calor quedan afuera. El portátil enfría, pero conviene elegirlo con algo de margen sobre las frigorías que necesitás y sellar bien la salida de la manguera.',
+      },
+      {
+        q: '¿Se puede usar un aire portátil sin ventana?',
+        a: 'Necesita sacar el aire caliente al exterior por la manguera. Sin una ventana u otra abertura al exterior, el calor queda en el mismo ambiente y no enfría.',
+      },
+      {
+        q: '¿Quién tiene que instalar el split?',
+        a: 'Un técnico matriculado. La instalación incluye perforar, montar la unidad exterior y cargar el gas refrigerante, y una mala instalación puede afectar la garantía. Casi nunca viene incluida en el precio.',
+      },
+      {
+        q: '¿Conviene inverter y frío/calor?',
+        a: 'Inverter conviene si lo vas a usar muchas horas: gasta menos luz y hace menos ruido. Frío/calor conviene si también lo querés para calefaccionar en invierno. Compará siempre la etiqueta de eficiencia energética.',
+      },
+    ],
+    cta: {
+      href: '/mejores/mejores-aires-acondicionados',
+      titulo: 'Comparativa de aires acondicionados con precios actualizados',
+      boton: 'Ver los mejores aires ❄️',
+    },
+    enlaces: [
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: '¿Cuántas frigorías necesito? ❄️' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2258,6 +2333,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'aire-acondicionado-portatil-o-split': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-ventilador-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-pileta-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-freezer-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

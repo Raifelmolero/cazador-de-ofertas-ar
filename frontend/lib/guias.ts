@@ -2603,6 +2603,102 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'climatizador-o-ventilador-o-aire',
+    titulo: '¿Climatizador evaporativo, ventilador o aire acondicionado? Cuál conviene',
+    descripcion:
+      'Diferencias entre climatizador evaporativo, ventilador y aire acondicionado: cómo enfría cada uno, por qué el climatizador rinde menos en clima húmedo como Buenos Aires, cuándo conviene cada uno (alquiler, presupuesto, ambiente), qué mirar en un climatizador y cómo se compara el consumo.',
+    pregunta: '¿Qué conviene: climatizador evaporativo, ventilador o aire acondicionado?',
+    respuestaCorta:
+      'Si necesitás bajar de verdad la temperatura de un ambiente cerrado, sobre todo en clima húmedo, el aire acondicionado es el único que enfría y deshumidifica. Si buscás algo barato, sin instalación y de bajo consumo, un ventilador alcanza para sentir alivio. El climatizador evaporativo queda en el medio: refresca algo más que un ventilador, pero rinde bien en clima seco y con ventilación, y bastante menos en lugares húmedos.',
+    secciones: [
+      {
+        h: 'Cómo funciona un climatizador evaporativo',
+        p: [
+          'Un climatizador evaporativo hace pasar el aire por un filtro o panel mojado con agua de un tanque. Al evaporarse esa agua, el aire que sale es un poco más fresco que el del ambiente.',
+          'Como enfría por evaporación, suma humedad al aire. Por eso rinde mejor en clima seco y en ambientes ventilados (con una ventana o puerta abierta), donde la humedad extra se renueva.',
+          'En clima húmedo, como Buenos Aires y buena parte del Litoral en verano, el aire ya tiene mucha humedad, el agua se evapora menos y el efecto de enfriamiento es más chico. Ahí puede sentirse casi como un ventilador, y en un cuarto cerrado incluso aumentar la sensación de pesadez.',
+        ],
+      },
+      {
+        h: 'Diferencia con el ventilador',
+        p: [
+          'El ventilador no enfría el aire: solo lo mueve. La sensación de alivio viene de que el aire en movimiento ayuda a evaporar la transpiración de la piel.',
+          'Es lo más barato, lo más simple y lo que menos consume. No necesita agua ni instalación, y funciona igual en clima seco o húmedo, aunque con mucho calor solo te mueve aire caliente.',
+        ],
+      },
+      {
+        h: 'Diferencia con el aire acondicionado',
+        p: [
+          'El aire acondicionado sí baja la temperatura del ambiente y además saca humedad del aire. Es el que más confort da en días de mucho calor y en climas húmedos.',
+          'A cambio, consume bastante más que un ventilador o un climatizador y, en el caso del split, requiere instalación. El portátil no necesita instalador, pero igual tiene que sacar el aire caliente por una ventana con su manguera.',
+          'Para elegir la potencia, mirá cuántas frigorías necesita tu ambiente según los metros cuadrados y la exposición al sol.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene cada uno',
+        p: [
+          'Alquilás y no podés instalar: un aire portátil, un climatizador o un ventilador, que no requieren obra. Si vivís en zona húmeda y querés enfriar de verdad, el portátil rinde más que el climatizador.',
+          'Presupuesto ajustado o uso ocasional: un buen ventilador (de pie, de techo o turbo) es la opción más económica de comprar y de usar.',
+          'Clima seco o ambiente ventilado (galería, quincho, taller, zonas del interior con poca humedad): ahí el climatizador evaporativo aprovecha mejor su forma de enfriar.',
+          'Dormitorio o living cerrado en verano húmedo: el aire acondicionado es el que realmente baja la temperatura y saca la humedad.',
+        ],
+      },
+      {
+        h: 'Qué mirar en un climatizador evaporativo',
+        p: [
+          'Tanque en litros: define cuánto tiempo funciona sin recargar. Uno más grande da más autonomía, pero pesa más lleno.',
+          'Caudal de aire: indica cuánto aire mueve. Un caudal mayor sirve para ambientes más grandes.',
+          'Hielo o geles refrigerantes: muchos traen compartimento para hielo o acumuladores de frío, que ayudan a que el aire salga más fresco un rato.',
+          'Control remoto, temporizador y modos: comodidad para manejarlo desde la cama o programar que se apague solo.',
+          'Ruedas: como se usa en distintos ambientes y se llena con agua, que tenga ruedas facilita moverlo.',
+          'Mantenimiento: cambiá el agua seguido y limpiá el filtro o panel según indique el fabricante, para evitar olores y bacterias.',
+        ],
+      },
+      {
+        h: 'Consumo comparado',
+        p: [
+          'En términos generales, el ventilador es el que menos consume, el climatizador evaporativo consume algo más (por el ventilador y la bomba de agua) pero sigue siendo bajo, y el aire acondicionado es el que más energía usa de los tres.',
+          'El consumo real depende de la potencia de cada equipo y de las horas de uso: mirá la potencia en watts en la etiqueta o la ficha técnica y hacé la cuenta con la calculadora de consumo eléctrico.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio varía según el tipo, la potencia y la marca. No damos un precio fijo: en la categoría de ventiladores y en la comparativa de aires están los que están en oferta hoy, con el precio actual y el descuento verificado.',
+        ],
+      },
+    ],
+    categoria: { slug: 'ventiladores', nombre: 'ventiladores' },
+    comparativa: 'mejores-ventiladores',
+    cta: { href: '/mejores/mejores-ventiladores', titulo: 'Ventiladores en oferta hoy, comparados', boton: 'Ver la comparativa de ventiladores 🌀' },
+    faq: [
+      {
+        q: '¿El climatizador evaporativo enfría como un aire acondicionado?',
+        a: 'No. Refresca algo el aire por evaporación de agua, pero no baja la temperatura del ambiente como un aire ni saca humedad. Rinde mejor en clima seco y con ventilación.',
+      },
+      {
+        q: '¿Sirve un climatizador en Buenos Aires?',
+        a: 'Rinde menos, porque la humedad alta hace que el agua se evapore menos. En un ambiente cerrado y húmedo puede sentirse casi como un ventilador; si querés enfriar de verdad, conviene un aire acondicionado.',
+      },
+      {
+        q: '¿Qué consume menos: ventilador, climatizador o aire?',
+        a: 'En general, el ventilador es el que menos consume, después el climatizador y el aire acondicionado es el que más. Para el número exacto, mirá los watts del equipo y usá la calculadora de consumo.',
+      },
+      {
+        q: '¿Qué conviene si alquilo y no puedo instalar un split?',
+        a: 'Un aire portátil si necesitás enfriar de verdad, o un ventilador o climatizador si buscás algo más barato y de menor consumo. Ninguno de los tres requiere obra.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-ventilador-comprar', texto: 'Qué ventilador comprar' },
+      { href: '/guias/aire-acondicionado-portatil-o-split', texto: 'Aire acondicionado portátil o split' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Mejores aires acondicionados' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo eléctrico' },
+      { href: '/categoria/ventiladores', texto: 'Ventiladores en oferta' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2610,6 +2706,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'climatizador-o-ventilador-o-aire': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-bicicleta-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'aire-acondicionado-portatil-o-split': { publicada: '2026-10-02', modificada: '2026-10-02' },

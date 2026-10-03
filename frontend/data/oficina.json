@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-03T18:42:38+00:00",
+  "generado": "2026-10-03T22:52:25+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-03T18:42:38+00:00",
+      "ultima_actividad": "2026-10-03T22:52:24+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1576 productos en la última corrida"
+          "tarea": "Revisó 1545 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -22,7 +22,7 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 15
+          "valor": 10
         },
         {
           "label": "Threads",
@@ -33,12 +33,12 @@
           "valor": 3
         },
         {
-          "label": "Historias IG",
+          "label": "Facebook",
           "valor": 3
         },
         {
-          "label": "Facebook",
-          "valor": 3
+          "label": "Historias IG",
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Celular HUAWEI nova 15 Max Smartphone 8GB+256GB, Cámara Ultra Clara RYYB de 50 M"
+      "ultimo_trabajo": "Soldadora Mig 200amp 4 En 1 Mig + Tig + Mig Flux + Mma Aleba Amarillo"
     },
     {
       "id": "investigacion",

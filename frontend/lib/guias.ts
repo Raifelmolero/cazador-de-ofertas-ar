@@ -2174,6 +2174,83 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-ventilador-comprar',
+    titulo: '¿Qué ventilador comprar? De pie, de techo, turbo o torre',
+    descripcion:
+      'Cómo elegir un ventilador para el verano en Argentina: de pie, de techo, turbo de piso, de pared o torre; tamaño de aspas, potencia, ruido, control remoto y timer, consumo comparado con un aire y cuándo conviene pasar a un aire acondicionado.',
+    pregunta: '¿Qué ventilador conviene comprar?',
+    respuestaCorta:
+      'Para un ambiente que usás todos los días, el de techo es el más cómodo: no ocupa lugar y reparte el aire en toda la habitación. Si lo querés mover de un cuarto a otro, andá por uno de pie; si buscás mucho caudal de aire en poco espacio, un turbo de piso; y si tenés poco lugar, uno de pared o una torre. Para dormir, fijate que tenga varias velocidades, bajo ruido y timer. Un ventilador gasta mucho menos que un aire, pero no baja la temperatura: si el calor es fuerte, compará con un aire acondicionado.',
+    secciones: [
+      {
+        h: 'Los tipos de ventilador',
+        p: [
+          'De techo: se instala fijo, no ocupa piso y mueve el aire en todo el ambiente. Es el más cómodo para uso diario en dormitorios y livings. Necesita instalación y altura de techo suficiente; algunos traen luz incluida.',
+          'De pie: el más versátil, lo llevás de una habitación a otra y regulás la altura y la oscilación. Ocupa algo de piso.',
+          'Turbo o de piso: bajo y potente, tira mucho aire hacia adelante. Sirve para pegarle de frente a donde estás, pero suele ser más ruidoso.',
+          'De pared: se fija en la pared con oscilación. Ideal para cocinas, locales o cuartos chicos donde no hay lugar en el piso.',
+          'Torre: angosto y alto, ocupa poco y suele ser más silencioso y prolijo, aunque en general mueve menos aire que uno de pie con aspas grandes.',
+        ],
+      },
+      {
+        h: 'Tamaño de aspas y potencia',
+        p: [
+          'A más diámetro de aspas, más aire mueve. Para un dormitorio alcanza con un ventilador mediano; para un living o un ambiente grande conviene ir a aspas más grandes o a uno de techo.',
+          'La potencia (en watts) indica cuánto consume el motor, no exactamente cuánto enfría: compará también el diámetro, la cantidad de velocidades y las opiniones de quienes ya lo compraron.',
+          'Las aspas metálicas suelen mover más aire; las plásticas son más livianas y en general más silenciosas.',
+        ],
+      },
+      {
+        h: 'Ruido, control remoto y timer',
+        p: [
+          'Si es para dormir, el ruido importa tanto como el caudal. Mirá las opiniones en la publicación: es donde más se nota si un modelo hace ruido en velocidad baja.',
+          'El control remoto es cómodo sobre todo en los de techo y en las torres. El timer te deja dormirte con el ventilador prendido y que se apague solo.',
+          'Varias velocidades y oscilación hacen que lo puedas usar suave de noche y fuerte en la siesta.',
+        ],
+      },
+      {
+        h: 'Consumo: ventilador o aire acondicionado',
+        p: [
+          'Un ventilador consume mucho menos que un aire acondicionado, porque solo mueve el aire: da sensación de fresco, pero no baja la temperatura del ambiente. Podés comparar cuánto sale por mes cada uno en la calculadora de consumo eléctrico, con los watts de cada equipo y las horas de uso.',
+          'Conviene pasar a un aire cuando el calor es fuerte y sostenido, el ambiente es grande o da al sol, o cuando el ventilador termina tirando aire caliente. Para elegir el tamaño del aire, mirá la guía de frigorías.',
+        ],
+      },
+      {
+        h: 'Cuándo comprar y cuánto sale',
+        p: [
+          'Conviene comprar antes de la ola de calor: en pleno verano la demanda sube y aparecen menos ofertas. No damos un precio fijo porque cambia según tipo, tamaño y marca: en la comparativa de ventiladores están los que están en oferta hoy, con el precio actual y el mínimo que registramos.',
+        ],
+      },
+    ],
+    categoria: { slug: 'ventiladores', nombre: 'ventiladores' },
+    comparativa: 'mejores-ventiladores',
+    cta: { href: '/mejores/mejores-ventiladores', titulo: 'Ventiladores en oferta hoy, comparados', boton: 'Ver la comparativa de ventiladores 🌀' },
+    faq: [
+      {
+        q: '¿Qué es mejor, ventilador de techo o de pie?',
+        a: 'El de techo no ocupa lugar y reparte el aire en todo el ambiente, ideal para uso diario. El de pie es más versátil porque lo movés de un cuarto a otro y no necesita instalación.',
+      },
+      {
+        q: '¿Qué ventilador es más silencioso para dormir?',
+        a: 'En general las torres y los de techo de buena calidad son más silenciosos que los turbo. Buscá varias velocidades y timer, y revisá las opiniones sobre el ruido en velocidad baja.',
+      },
+      {
+        q: '¿Cuánta luz gasta un ventilador comparado con un aire?',
+        a: 'Bastante menos, porque solo mueve el aire. Con los watts de cada equipo y las horas de uso podés comparar el costo por mes en la calculadora de consumo eléctrico.',
+      },
+      {
+        q: '¿Cuándo conviene comprar un aire acondicionado en vez de un ventilador?',
+        a: 'Cuando el calor es fuerte y sostenido, el ambiente es grande o da al sol: el ventilador no baja la temperatura y un aire sí. Para el tamaño, mirá la guía de cuántas frigorías necesitás.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-ventiladores', texto: 'Comparativa de ventiladores' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2181,6 +2258,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-ventilador-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-pileta-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-freezer-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-aspiradora-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

@@ -559,6 +559,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Motor: los de 3 o más velocidades y bajo ruido son mejores para dormir.',
       'Si te sobra presupuesto y el calor es fuerte, compará con un aire acondicionado: enfría, no solo mueve el aire.',
     ],
+    guia: 'que-ventilador-comprar',
   },
   {
     slug: 'mejores-cafeteras',

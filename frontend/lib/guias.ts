@@ -1725,6 +1725,77 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-cocina-comprar',
+    titulo: '¿Qué cocina comprar? Gas natural, envasado, multigas o eléctrica',
+    descripcion:
+      'Cómo elegir una cocina en Argentina: a gas, multigas o eléctrica, medidas del hueco, horno con visor y luz, válvula de seguridad, encendido y instalación por gasista matriculado.',
+    pregunta: '¿Qué cocina conviene comprar?',
+    respuestaCorta:
+      'Primero fijate qué gas tenés: si es gas natural o garrafa (envasado), elegí una cocina para ese gas o una multigas que traiga los picos para los dos. Si no tenés gas, la opción es una cocina o anafe eléctrico o de inducción, con una instalación eléctrica que aguante su potencia. Medí el hueco (la mayoría mide entre 50 y 56 cm de ancho), buscá válvula de seguridad en hornallas y horno, y hacé la conexión de gas con un gasista matriculado.',
+    secciones: [
+      {
+        h: 'Gas natural, envasado, multigas o eléctrica',
+        p: [
+          'Gas natural o envasado: cada tipo de gas usa picos (inyectores) distintos. Comprá la cocina para el gas que tenés en casa o confirmá que el cambio de picos lo haga un gasista.',
+          'Multigas: viene preparada para gas natural y envasado, y trae los picos para convertirla. Conviene si hoy usás garrafa y pensás conectarte a la red, o si te mudás seguido.',
+          'Eléctrica o de inducción: no necesita conexión de gas, pero consume bastante potencia. Revisá que la instalación eléctrica y la térmica de tu casa la soporten; la de inducción además pide ollas aptas (con base magnética).',
+        ],
+      },
+      {
+        h: 'Medidas y horno',
+        p: [
+          'Medí el ancho, alto y profundidad del hueco antes de comprar: la mayoría de las cocinas mide entre 50 y 56 cm de ancho, y hay modelos más anchos con más hornallas.',
+          'Horno: con visor (puerta de vidrio) y luz podés ver la comida sin abrir y perder calor. Fijate la capacidad en litros, si trae grill y cuántas posiciones de bandeja tiene.',
+          'Si solo querés hornear o te falta lugar, un horno eléctrico de mesada puede complementar o reemplazar el horno de la cocina.',
+        ],
+      },
+      {
+        h: 'Seguridad e instalación',
+        p: [
+          'Válvula de seguridad: corta el gas si la llama se apaga. Buscá que la tengan las hornallas y el horno, no solo uno de los dos.',
+          'Encendido electrónico: evita usar fósforos o encendedor y es más cómodo, pero necesita un enchufe cerca.',
+          'La conexión de gas la tiene que hacer un gasista matriculado, con la ventilación que pide la normativa del ENARGAS. No la conectes por tu cuenta: una pérdida de gas o una mala combustión pueden generar monóxido de carbono.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio cambia mucho según tipo de gas, tamaño, horno y marca. No damos un precio fijo: en la comparativa de cocinas y hornos tenés los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno. Sumá al presupuesto la instalación del gasista.',
+        ],
+      },
+    ],
+    categoria: { slug: 'cocinas-y-hornos', nombre: 'cocinas y hornos' },
+    comparativa: 'mejores-cocinas-y-hornos',
+    cta: { href: '/mejores/mejores-cocinas-y-hornos', titulo: 'Cocinas y hornos en oferta hoy, comparados', boton: 'Ver la comparativa de cocinas y hornos 🍳' },
+    faq: [
+      {
+        q: '¿Qué es una cocina multigas?',
+        a: 'Es una cocina que funciona con gas natural y con gas envasado (garrafa). Trae los picos para cambiar de un gas a otro; el cambio lo tiene que hacer un gasista matriculado.',
+      },
+      {
+        q: '¿Puedo usar una cocina de gas natural con garrafa?',
+        a: 'No sin cambiar los picos (inyectores), porque cada gas necesita uno distinto. Si la cocina es multigas trae los picos; si no, consultá con un gasista matriculado.',
+      },
+      {
+        q: '¿Qué medida tiene una cocina estándar?',
+        a: 'La mayoría mide entre 50 y 56 cm de ancho, pero varía según el modelo. Medí el hueco (ancho, alto y profundidad) antes de comprar.',
+      },
+      {
+        q: '¿Puedo instalar la cocina yo mismo?',
+        a: 'La conexión de gas la tiene que hacer un gasista matriculado, con la ventilación que pide la normativa. Una cocina eléctrica necesita una instalación adecuada a su potencia.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-cocinas-y-hornos', texto: 'Comparativa de cocinas y hornos' },
+      { href: '/guias/que-termotanque-comprar', texto: 'Qué termotanque comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'ENARGAS: instalaciones de gas y gasistas matriculados', url: 'https://www.enargas.gob.ar/' },
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1732,6 +1803,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

@@ -450,6 +450,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Las cocinas y hornos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
     categoria: 'cocinas-y-hornos',
+    guia: 'que-cocina-comprar',
     criterios: [
       'Tipo de gas: si tenés gas natural o envasado (garrafa), elegí una multigas o confirmá que trae los picos para tu instalación.',
       'Medidas: la mayoría mide 50 a 56 cm de ancho; medí el hueco antes de comprar.',

@@ -34,9 +34,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      # El bot es stdlib pura salvo alertas.py, que cifra con Fernet.
+      # El bot es stdlib pura salvo alertas.py (Fernet) y las placas (Pillow);
+      # varios tests usan pytest (fixtures tmp_path y conftest.py).
       - name: Dependencias
-        run: pip install cryptography
+        run: pip install cryptography pillow pytest
 
       - name: Correr tests
-        run: python -m unittest discover -s bot/tests -v
+        run: python -m pytest bot/tests -q

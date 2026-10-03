@@ -1199,6 +1199,15 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
         "aire acondicionado", "ventilador", "pileta", "piscina", "reposera",
         "parrilla", "heladera portatil", "heladera portátil", "conservadora",
         "bicicleta", "carpa", "sombrilla", "climatizador",
+        "freezer", "juego de jardin", "juego de jardín", "hamaca", "toldo",
+        "gazebo", "inflable", "pelopincho",
+    ]),
+    # Pico de búsquedas de calor (tendencias ML oct-2026: "aire acondicionado
+    # inverter", "frío calor", "portátil"; ventiladores y piletas con cada ola
+    # de calor). Pesa más que el resto del verano y tiene guía propia en la web.
+    ((10, 1), (2, 15), 1.45, [
+        "aire acondicionado", "split", "aire portatil",
+        "aire portátil", "climatizador", "ventilador", "pileta", "piscina",
     ]),
     # Cyber Monday 2026 (CACE, oficial): lunes 2 al miércoles 4/11; Black
     # Friday: viernes 27/11. Dos ventanas (misma lista) para que cada una

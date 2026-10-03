@@ -1967,7 +1967,7 @@ def main() -> int:
     paginas = paginas_existentes()  # antes de update_seguimiento: solo fichas ya publicadas
     annotate_price_history(deals, history)
     save_price_history(history)
-    if n_testigo := update_testigo(deals):
+    if n_testigo := update_testigo(deals, TESTIGO_PATH):
         print(f"[info] precio testigo Cyber: {n_testigo} productos")
     n_low = sum(d["hist_low"] for d in deals)
     n_inf = sum(d["inflada"] for d in deals)

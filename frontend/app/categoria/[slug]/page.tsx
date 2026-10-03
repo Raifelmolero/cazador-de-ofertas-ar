@@ -231,6 +231,17 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
+        {GUIAS.filter(g => g.categoria?.slug === c.slug).map(g => (
+          <Link
+            key={g.slug}
+            href={`/guias/${g.slug}`}
+            className="mb-6 block rounded-2xl border border-yellow-400/30 bg-yellow-400/5 p-4 hover:border-yellow-400/60 transition-colors"
+          >
+            <p className="text-xs font-bold uppercase tracking-wide text-yellow-400/80 mb-1">📘 Guía de compra</p>
+            <p className="font-bold text-zinc-100">{g.titulo}</p>
+            <p className="text-sm text-zinc-400 mt-1">{g.descripcion}</p>
+          </Link>
+        ))}
         <section className="mb-10" aria-labelledby="datos-historial">
           <h2 id="datos-historial" className="font-display text-xl sm:text-2xl font-black mb-4">
             Datos del historial: {c.nombre.toLowerCase()}

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-03T03:42:42+00:00",
+  "generado": "2026-10-03T18:42:38+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-03T03:42:42+00:00",
+      "ultima_actividad": "2026-10-03T18:42:38+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1582 productos en la última corrida"
+          "tarea": "Revisó 1576 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -25,28 +25,28 @@
           "valor": 15
         },
         {
-          "label": "Historias IG",
-          "valor": 4
-        },
-        {
           "label": "Threads",
           "valor": 4
         },
         {
-          "label": "Reels IG",
-          "valor": 2
+          "label": "Instagram",
+          "valor": 3
         },
         {
-          "label": "Instagram",
-          "valor": 2
+          "label": "Historias IG",
+          "valor": 3
         },
         {
           "label": "Facebook",
-          "valor": 2
+          "valor": 3
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Sommier Y Colchón Springwall Mcb 115 Queen 160x200cm Color Beige Con Base Dividi"
+      "ultimo_trabajo": "Celular HUAWEI nova 15 Max Smartphone 8GB+256GB, Cámara Ultra Clara RYYB de 50 M"
     },
     {
       "id": "investigacion",
@@ -96,11 +96,11 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 42
+          "valor": 46
         },
         {
           "label": "Comparativas",
-          "valor": 47
+          "valor": 48
         }
       ],
       "entregas": [
@@ -110,19 +110,19 @@
         },
         {
           "fecha": "",
-          "titulo": "mejores parrillas"
+          "titulo": "mejores bicicletas"
         },
         {
           "fecha": "",
-          "titulo": "aire acondicionado portatil o split"
+          "titulo": "climatizador o ventilador o aire"
         },
         {
           "fecha": "",
-          "titulo": "que ventilador comprar"
+          "titulo": "que bicicleta comprar"
         },
         {
           "fecha": "",
-          "titulo": "que pileta comprar"
+          "titulo": "que parrilla comprar"
         }
       ]
     },

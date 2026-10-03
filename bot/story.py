@@ -30,9 +30,14 @@ def pose_personaje(deal: dict) -> str:
         return "festejando"
     if deal.get("relampago"):
         return "corriendo"
+    if deal.get("sello_temporada"):
+        return "enamorado"  # regalo de fecha comercial (Día de la Madre, Navidad...)
     if deal.get("price_cur", 0) >= PRECIO_TICKET_ALTO:
         return "atrapando"
-    return "pulgar"
+    if deal.get("discount", 0) >= 45:
+        return "lupa"  # descuento grande: "lo miré con lupa, es real"
+    # Resto: alterna por producto para que las placas no salgan todas iguales.
+    return "binoculares" if sum(map(ord, str(deal.get("id", "")))) % 2 else "pulgar"
 
 
 def _pegar_personaje(img: Image.Image, pose: str, box: tuple[int, int, int, int]) -> bool:

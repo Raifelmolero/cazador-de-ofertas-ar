@@ -17,6 +17,10 @@ POSES = {
     "pulgar": ("poses.webp", (0, CELDA_H, CELDA_W, 2 * CELDA_H)),
     "festejando": ("poses.webp", (0, 2 * CELDA_H, CELDA_W, 1024)),
     "corriendo": ("poses.webp", (CELDA_W, 2 * CELDA_H, 2 * CELDA_W + 80, 1024)),  # la red sale de la celda
+    # stickers.webp: grilla 4x2 (384x512)
+    "lupa": ("stickers.webp", (2 * 384, 0, 3 * 384, 512)),
+    "enamorado": ("stickers.webp", (0, 512, 384, 1024)),
+    "binoculares": ("stickers.webp", (3 * 384, 512, 1536, 1024)),
 }
 
 

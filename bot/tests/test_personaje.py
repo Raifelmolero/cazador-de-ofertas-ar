@@ -13,7 +13,9 @@ def test_pose_por_tipo_de_oferta():
     assert story.pose_personaje({"hist_low": True, "relampago": True}) == "festejando"
     assert story.pose_personaje({"relampago": True}) == "corriendo"
     assert story.pose_personaje({"price_cur": 300_000}) == "atrapando"
-    assert story.pose_personaje({"price_cur": 50_000}) == "pulgar"
+    assert story.pose_personaje({"sello_temporada": "DÍA DE LA MADRE", "price_cur": 400_000}) == "enamorado"
+    assert story.pose_personaje({"price_cur": 50_000, "discount": 50}) == "lupa"
+    assert {story.pose_personaje({"price_cur": 50_000, "id": i}) for i in ("MLA1", "MLA2")} == {"pulgar", "binoculares"}
 
 
 def test_poses_existen():

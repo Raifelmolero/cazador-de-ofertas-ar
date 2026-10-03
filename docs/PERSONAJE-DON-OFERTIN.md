@@ -122,3 +122,19 @@ Si vienen en grilla no pasa nada: las recorto yo y armo un PNG por expresión o 
 - Web: verificador de descuentos, /descuentos-inflados, 404, estado vacío, bienvenida del buscador guiado.
 - Avatar unificado en todas las redes; stickers para el canal de WhatsApp y Telegram.
 - Medición: 2 semanas con personaje vs. antes, por etiqueta del panel de afiliados.
+
+## Poses por tipo de oferta (02/10/2026)
+
+En `bot/story.py` (`pose_personaje`), en orden de prioridad:
+mínimo histórico → festejando · relámpago → corriendo · sello de temporada → enamorado ·
+≥ $300k → atrapando · descuento ≥ 45% → lupa · resto → pulgar / binoculares (alterna por producto).
+Lupa, enamorado y binoculares salen de `docs/personaje/stickers.webp` (`bot/tools/recortar_personaje.py`).
+
+## Ideas pendientes para aprovechar ChatGPT (imágenes ilimitadas)
+
+1. Avatar de IG simplificado (solo la cabeza, se lee mejor chico).
+2. Escenas de temporada para banners web y destacadas: Halloween, Cyber Monday (03/11), Navidad, Reyes.
+3. Una ilustración por guía de compra y por categoría (imagen OG + pines de Pinterest).
+4. Stickers de WhatsApp/Telegram con la hoja `stickers.webp`.
+5. Variantes probadas el 02/10 en ChatGPT: "Premium 3D", "Argentino con mate", "Logo/ícono", "Cazador Pro" (falta elegir).
+6. Pose "enojado" de stickers.webp para posts de "descuento inflado / trucho" (la destacada Truchos).

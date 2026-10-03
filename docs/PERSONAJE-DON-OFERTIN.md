@@ -138,3 +138,12 @@ Lupa, enamorado y binoculares salen de `docs/personaje/stickers.webp` (`bot/tool
 4. Stickers de WhatsApp/Telegram con la hoja `stickers.webp`.
 5. Variantes probadas el 02/10 en ChatGPT: "Premium 3D", "Argentino con mate", "Logo/ícono", "Cazador Pro" (falta elegir).
 6. Pose "enojado" de stickers.webp para posts de "descuento inflado / trucho" (la destacada Truchos).
+
+## Escenas de temporada (02/10/2026)
+
+`docs/personaje/escenas-temporada.png` (grilla original de ChatGPT) → recortes `escena-halloween/cyber-monday/reyes.webp`.
+- Cyber Monday: en el banner de la web (`lib/temporada.ts`, campo `escena`) para Cyber Monday y Black Friday.
+- Navidad: la de la grilla salió con los ojos raros; rehecha aparte en ChatGPT ("Navidad tropical con regalos aventureros"), falta bajarla → `escena-navidad`, sumarla al banner `navidad` y a la destacada Regalos después del 18/10.
+- Halloween: para posts/destacada de IG hasta el 31/10 (la web no tiene temporada Halloween).
+- Reyes: guardada para enero.
+- `variantes-estilo` ("Explorador en cuatro estilos creíbles" en ChatGPT): falta bajarla y elegir.

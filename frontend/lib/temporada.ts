@@ -18,6 +18,8 @@ export interface Temporada {
   hasta: string
   /** true si `hasta` es EL día de la fecha (muestra "faltan N días") */
   cuenta?: boolean
+  /** ilustración de Don Ofertín (public/personaje), apaisada 480x266 */
+  escena?: string
 }
 
 const diaSiguiente = (f: string) => {
@@ -47,6 +49,7 @@ export const TEMPORADAS: Temporada[] = [
     texto: 'text-cyan-200',
     desde: '2026-10-19',
     hasta: CYBER_MONDAY.fin,
+    escena: '/personaje/escena-cyber-monday.webp',
   },
   {
     id: 'blackfriday',
@@ -58,6 +61,7 @@ export const TEMPORADAS: Temporada[] = [
     desde: diaSiguiente(CYBER_MONDAY.fin),
     hasta: BLACK_FRIDAY.fecha,
     cuenta: true,
+    escena: '/personaje/escena-cyber-monday.webp',
   },
   {
     id: 'navidad',

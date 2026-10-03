@@ -168,7 +168,53 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
               .
             </p>
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-zinc-800">
+            <>
+            {/* Celular: tarjetas con foto y botón (la tabla dejaba el precio y la compra fuera de pantalla) */}
+            <ol className="sm:hidden space-y-3">
+              {productos.map((p, i) => (
+                <li key={p.id_ml} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3">
+                  <div className="flex gap-3">
+                    <div className="relative w-24 h-24 shrink-0 rounded-xl bg-white overflow-hidden">
+                      {p.url_imagen && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.url_imagen} alt="" loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-contain p-1" />
+                      )}
+                      <span className="absolute top-1 left-1 rounded-full bg-zinc-900 px-1.5 text-[11px] font-bold text-zinc-200">#{i + 1}</span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm text-zinc-200 line-clamp-2">{p.titulo}</p>
+                      <p className="mt-1 flex items-baseline gap-2">
+                        <span className="font-display text-lg font-black text-zinc-50">{precio(p.precio_actual)}</span>
+                        {p.descuento_pct != null && <span className="text-xs font-bold text-red-400">{p.descuento_pct}% OFF</span>}
+                      </p>
+                      <p className="text-[11px] text-zinc-500">
+                        {p.minimo_historico
+                          ? '📉 En su mínimo histórico'
+                          : p.precio_minimo_registrado
+                            ? `Mínimo registrado: ${precio(p.precio_minimo_registrado)}`
+                            : ' '}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex gap-2">
+                    <a
+                      href={p.url_producto}
+                      rel="sponsored nofollow noopener"
+                      target="_blank"
+                      className="flex-1 rounded-xl bg-yellow-400 px-3 py-2.5 text-center text-sm font-black text-black"
+                    >
+                      Ver oferta en ML ↗
+                    </a>
+                    {historial[p.id_ml] && (
+                      <a href={`/precio/${historial[p.id_ml]}`} aria-label="Historial de precio" className="rounded-xl border border-zinc-700 px-3 py-2.5 text-sm font-bold text-zinc-300">
+                        📈
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="hidden sm:block overflow-x-auto rounded-xl border border-zinc-800">
               <table className="w-full text-sm">
                 <thead className="bg-zinc-900 text-zinc-400 text-left">
                   <tr>
@@ -211,6 +257,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                 </tbody>
               </table>
             </div>
+            </>
           )}
           {cat && (
             <a

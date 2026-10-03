@@ -896,6 +896,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-piletas',
+    guia: 'que-pileta-comprar',
     nombre: 'piletas',
     titulo: `Mejores piletas de lona y accesorios en oferta ${AÑO}`,
     descripcion:

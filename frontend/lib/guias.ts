@@ -2078,6 +2078,102 @@ export const GUIAS: Guia[] = [
       { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
     ],
   },
+  {
+    slug: 'que-pileta-comprar',
+    titulo: '¿Qué pileta comprar para el verano? Estructural, inflable o de lona',
+    descripcion:
+      'Cómo elegir una pileta para el verano en Argentina: estructural, inflable o de lona, litros y medidas según el patio y cuántos la usan, terreno, filtro y cloro, seguridad con chicos, agua, armado y guardado.',
+    pregunta: '¿Qué pileta conviene comprar para el verano?',
+    respuestaCorta:
+      'Para el verano, primero medí el patio y pensá cuántos la van a usar: dejá espacio libre alrededor y elegí los litros en base a eso. La estructural (caños de acero y lona) dura más temporadas y aguanta más litros; la inflable es la más rápida de armar y guardar, ideal para chicos o espacios chicos; la de lona tipo pelopincho es el término medio. Armala siempre sobre terreno nivelado, sumá un filtro acorde a los litros y cloro, y si hay chicos, nunca los dejes solos: usá cerco o cobertor.',
+    secciones: [
+      {
+        h: 'Estructural, inflable o de lona',
+        p: [
+          'Estructural: tiene caños de acero que sostienen la lona. Es la que aguanta más litros y más temporadas, pero tarda más en armarse y ocupa más lugar.',
+          'Inflable: el aro de arriba se infla y la pileta se levanta sola al llenarse. Es la más fácil de armar y guardar, pero se puede pinchar y suele durar menos.',
+          'De lona (tipo pelopincho): una lona reforzada sostenida con caños o varillas. Es un término medio en precio, duración y armado.',
+        ],
+      },
+      {
+        h: 'Litros y medidas según el patio y cuántos la usan',
+        p: [
+          'Medí el lugar y dejá espacio libre alrededor para circular y para el filtro. Las medidas y los litros están en la ficha de cada modelo.',
+          'Pensá cuántos la van a usar a la vez y quiénes: para chicos chicos alcanza una baja; para adultos conviene más profundidad y superficie.',
+          'Más litros significa más agua para llenarla, más cloro y un filtro más grande.',
+        ],
+      },
+      {
+        h: 'Terreno nivelado',
+        p: [
+          'Armala sobre un piso plano y firme, sin piedras ni raíces. Si el terreno está desnivelado, el agua carga más de un lado y la pileta se puede deformar o romper.',
+          'Poné una lona o manta de base debajo para proteger el piso de la pileta.',
+        ],
+      },
+      {
+        h: 'Filtro, bomba y cloro',
+        p: [
+          'El filtro o bomba tiene que ser acorde al volumen de agua: compará los litros por hora que declara el fabricante con los litros de tu pileta.',
+          'Con filtro y cloro el agua se mantiene limpia mucho más tiempo y no hace falta vaciarla seguido. Seguí las dosis que indica el producto y guardá el cloro fuera del alcance de los chicos.',
+          'Un cobertor ayuda a que no caigan hojas y bichos cuando no se usa.',
+        ],
+      },
+      {
+        h: 'Seguridad con chicos',
+        p: [
+          'Nunca dejes a los chicos solos en la pileta ni cerca de ella, aunque sea baja: siempre tiene que haber un adulto mirando.',
+          'Usá un cerco o barrera alrededor y tapala con un cobertor cuando no se usa. Si la pileta es elevada, sacá la escalera para que no puedan subir solos.',
+          'Las piletas chicas o inflables también son un riesgo: si no se usan, conviene vaciarlas.',
+        ],
+      },
+      {
+        h: 'Consumo de agua',
+        p: [
+          'Llenarla usa muchos litros de agua de una vez. Con filtro, cloro y cobertor podés mantener la misma agua por más tiempo en vez de vaciarla y llenarla seguido.',
+          'Fijate si en tu localidad hay restricciones de uso de agua en verano antes de llenarla.',
+        ],
+      },
+      {
+        h: 'Armado y guardado',
+        p: [
+          'Leé el manual y armala entre dos personas. Al terminar la temporada, vaciala, lavala, dejala secar bien y guardala doblada en un lugar seco y protegido del sol.',
+          'Guardarla húmeda genera hongos y olor, y acorta la vida de la lona.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio cambia mucho según tipo, litros y si trae filtro. No damos un precio fijo: en la comparativa de piletas están las que están en oferta hoy, con el precio actual y el mínimo que registramos para cada una.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-piletas',
+    cta: { href: '/mejores/mejores-piletas', titulo: 'Piletas en oferta hoy, comparadas', boton: 'Ver la comparativa de piletas 🏊' },
+    faq: [
+      {
+        q: '¿Qué conviene, pileta estructural o inflable?',
+        a: 'La estructural dura más temporadas y aguanta más litros. La inflable es más fácil de armar y guardar y conviene para chicos o espacios chicos, aunque suele durar menos.',
+      },
+      {
+        q: '¿De cuántos litros tiene que ser la pileta?',
+        a: 'Depende del espacio que tengas y de cuántos la usen a la vez. Medí el patio dejando lugar alrededor y mirá los litros y medidas en la ficha de cada modelo.',
+      },
+      {
+        q: '¿Hace falta filtro en una pileta de lona?',
+        a: 'Con filtro y cloro el agua se mantiene limpia mucho más tiempo y no hay que vaciarla seguido. Elegí uno con un caudal en litros por hora acorde al volumen de la pileta.',
+      },
+      {
+        q: '¿Cómo hago segura la pileta si hay chicos?',
+        a: 'Nunca los dejes solos: siempre tiene que haber un adulto mirando. Sumá cerco o barrera, cobertor cuando no se usa y sacá la escalera de las piletas elevadas.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-piletas', texto: 'Comparativa de piletas' },
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Muebles de jardín en oferta' },
+      { href: '/mejores/mejores-parrillas', texto: 'Parrillas en oferta' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2085,6 +2181,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-pileta-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-freezer-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-aspiradora-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-smartwatch-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

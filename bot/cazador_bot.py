@@ -912,6 +912,32 @@ def send_ig_kit(token: str, admin: str, deal: dict, link: str, dry: bool) -> Non
         print(f"[warn] IG kit no enviado: {e}")
 
 
+def story_kit(deal: dict, affiliate_id: str, word: str,
+              paginas: dict[str, str] | None = None,
+              story_url: str | None = None) -> str:
+    """Kit para que el admin suba la story con sticker de link (la API de IG
+    publica stories pero no permite stickers). Trae la placa y los dos links
+    a pegar: la ficha de la web (convierte más y se mide con UTM) y el link
+    de afiliado de ML directo, con la etiqueta de Instagram."""
+    web = web_deal_url(deal, "ig_story", paginas)
+    ml = affiliate_url(deal["url"], affiliate_id, word)
+    return "\n".join([
+        "📲 <b>KIT STORY CON LINK</b>",
+        f"{esc(deal['title'][:70])} · {deal['discount']}% OFF · {fmt_price(deal['price_cur'])}",
+        "",
+        "1️⃣ Placa 9:16 (o el video de Don Ofertín de hoy):",
+        esc(story_url or deal.get("img") or "(sin imagen)"),
+        "",
+        "2️⃣ Sticker \"Enlace\" → web (recomendado):",
+        f"<code>{esc(web)}</code>",
+        "",
+        "3️⃣ Segundo sticker → Mercado Libre directo (afiliado):",
+        f"<code>{esc(ml)}</code>",
+        "",
+        f"🔎 Todas las de hoy: <code>{esc(site_url('ig_story'))}</code>",
+    ])
+
+
 def wa_kit(deals: list[dict], affiliate_id: str, word: str,
            paginas: dict[str, str] | None = None) -> str:
     """Mensaje listo para copiar y pegar en el canal de WhatsApp.
@@ -944,12 +970,15 @@ def wa_kit(deals: list[dict], affiliate_id: str, word: str,
     return "\n".join(lineas)
 
 
-def alert_admin(token: str, admin: str, text: str, dry: bool) -> None:
+def alert_admin(token: str, admin: str, text: str, dry: bool, html: bool = False) -> None:
     if dry:
         print(f"[DRY] alerta admin: {text}")
         return
+    payload = {"chat_id": admin, "text": text}
+    if html:
+        payload.update(parse_mode="HTML", disable_web_page_preview=True)
     try:
-        tg_call(token, "sendMessage", {"chat_id": admin, "text": text})
+        tg_call(token, "sendMessage", payload)
     except Exception as e:  # noqa: BLE001
         print(f"[warn] alerta no enviada: {e}")
 
@@ -1873,6 +1902,7 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
         return False
     repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
     public_url = f"https://raw.githubusercontent.com/{repo}/main/bot/stories/{fname}"
+    deal["story_url"] = public_url
     time.sleep(5)  # margen para que raw.githubusercontent sirva el archivo
 
     container = ig_call(
@@ -2062,6 +2092,12 @@ def main() -> int:
                     f"⚠️ La story de hoy no salió ({str(e)[:120]}). El post del feed sí está OK.",
                     dry,
                 )
+            # La API no pone stickers: el admin sube la story con los links.
+            alert_admin(
+                token, cfg["admin_chat"],
+                story_kit(best, affiliate_id, tool_ig, paginas, best.get("story_url")),
+                dry, html=True,
+            )
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 

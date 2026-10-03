@@ -2409,6 +2409,96 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-parrilla-comprar',
+    titulo: '¿Qué parrilla comprar? Carbón, leña, eléctrica, gas o para balcón',
+    descripcion:
+      'Cómo elegir parrilla en Argentina: a carbón o leña, eléctrica o a gas; qué conviene en balcón o departamento (reglamento del consorcio y humo), materiales (hierro, acero inoxidable, chapa enlozada), tamaño según comensales, kamado y kettle, y accesorios.',
+    pregunta: '¿Qué parrilla conviene comprar?',
+    respuestaCorta:
+      'Depende de dónde vas a asar. En patio o quincho, una parrilla a carbón o leña da el sabor del asado de siempre. En balcón o departamento, primero leé el reglamento del consorcio: muchas veces conviene una parrilla eléctrica o a gas, que casi no larga humo. Después elegí el material (hierro, acero inoxidable o chapa enlozada) y un tamaño acorde a cuántos comen.',
+    secciones: [
+      {
+        h: 'Carbón o leña, eléctrica o gas',
+        p: [
+          'Carbón o leña: el asado clásico, con sabor ahumado. Necesita lugar al aire libre, tiempo para hacer las brasas y limpieza de cenizas. Es la opción para patio, terraza o quincho.',
+          'Eléctrica: se enchufa y listo, no hace brasas ni llamas y larga mucho menos humo. Es la más práctica para departamento; el sabor no es igual al de las brasas. Mirá la potencia y que la grilla o bandeja se pueda sacar para lavar.',
+          'Gas: prende rápido y se regula la temperatura con perillas. Puede ser con garrafa o conectada a la red; si va a gas de red, la instalación la tiene que hacer un gasista matriculado.',
+        ],
+      },
+      {
+        h: 'Parrilla para balcón o departamento',
+        p: [
+          'Antes de comprar, leé el reglamento de copropiedad y preguntá en la administración: hay edificios que prohíben hacer fuego en balcones o restringen el humo que molesta a los vecinos.',
+          'Si no se permite fuego, la parrilla eléctrica es la salida más segura. Si se permite, buscá modelos chicos y cerrados, con tapa, y nunca la dejes encendida sin supervisión.',
+          'Ubicala lejos de cortinas, toldos y plantas secas, sobre una superficie que no se queme, y tené a mano un matafuego o un balde con arena.',
+        ],
+      },
+      {
+        h: 'Materiales: hierro, acero inoxidable o chapa enlozada',
+        p: [
+          'Hierro: retiene muy bien el calor y es el clásico de las parrillas argentinas. Se oxida si queda a la intemperie sin cuidado; conviene curarlo con aceite y taparlo.',
+          'Acero inoxidable: no se oxida y se limpia fácil. Fijate el espesor: el acero muy fino se puede deformar con el calor.',
+          'Chapa enlozada: típica de parrillas portátiles y kettle; el esmalte protege del óxido mientras no se salte. Evitá golpearla.',
+        ],
+      },
+      {
+        h: 'Tamaño según cuántos comen',
+        p: [
+          'Para 2 a 4 personas alcanza una parrilla chica o portátil. Para reuniones familiares o con amigos buscá una grilla más grande o una parrilla con más de un nivel.',
+          'Medí el espacio disponible antes de comprar, sumando lugar para trabajar alrededor y para la mesa de apoyo.',
+        ],
+      },
+      {
+        h: 'Kamado y kettle',
+        p: [
+          'Kettle: la parrilla redonda con tapa. Con la tapa cerrada cocina como un horno, controla mejor la llama y ahúma. Es portátil y sirve para patio o terraza.',
+          'Kamado: de cerámica, retiene muchísimo el calor y gasta poco carbón; sirve para asar, ahumar y hasta hacer pizza. Es pesado y más caro, pensado para quien asa seguido.',
+        ],
+      },
+      {
+        h: 'Accesorios que suman',
+        p: [
+          'Pinza, cuchillo y tabla; cepillo para limpiar la grilla; atizador y pala para las brasas; chimenea de encendido para prender el carbón sin alcohol ni papel en exceso; y una funda si la parrilla queda afuera.',
+          'Un termómetro de carne ayuda a sacar el punto justo, sobre todo en kamado y kettle.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio varía mucho según tipo, material y tamaño. No damos un precio fijo: en la comparativa de parrillas están las que están en oferta hoy, con el precio actual y el mínimo que registramos para cada una.',
+        ],
+      },
+    ],
+    categoria: { slug: 'parrillas', nombre: 'parrillas' },
+    comparativa: 'mejores-parrillas',
+    cta: { href: '/mejores/mejores-parrillas', titulo: 'Parrillas y asadores en oferta hoy, comparados', boton: 'Ver la comparativa de parrillas 🔥' },
+    faq: [
+      {
+        q: '¿Qué parrilla conviene para un departamento?',
+        a: 'En general una eléctrica, porque no hace fuego y larga poco humo. Antes revisá el reglamento del consorcio: algunos edificios prohíben el fuego en balcones.',
+      },
+      {
+        q: '¿Es mejor una parrilla de hierro o de acero inoxidable?',
+        a: 'El hierro retiene mejor el calor pero se oxida si no se cuida; el acero inoxidable no se oxida y se limpia fácil. Si queda a la intemperie, el inoxidable pide menos mantenimiento.',
+      },
+      {
+        q: '¿Qué diferencia hay entre kamado y kettle?',
+        a: 'Los dos tienen tapa y cocinan como un horno. El kettle es de chapa enlozada, liviano y portátil; el kamado es de cerámica, pesado, retiene más el calor y gasta menos carbón.',
+      },
+      {
+        q: '¿Puedo instalar yo una parrilla a gas de red?',
+        a: 'No: la conexión a gas de red la tiene que hacer un gasista matriculado. Las de garrafa vienen listas para conectar siguiendo las instrucciones del fabricante.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-parrillas', texto: 'Comparativa de parrillas' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/guias/que-freezer-comprar', texto: 'Qué freezer comprar' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)

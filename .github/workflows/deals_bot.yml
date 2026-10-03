@@ -5,6 +5,10 @@ on:
     # 12:00, 17:00 y 21:00 hora Argentina (UTC-3)
     - cron: '0 15,20 * * *'
     - cron: '0 0 * * *'
+    # Mañana: solo refresca precios y la web (sin publicar). Sin esto la web
+    # quedaba ~16 h con datos de la noche (los crons llegan ~4 h tarde).
+    # Minuto 23: GitHub descarta/atrasa más los crons en punto.
+    - cron: '23 9 * * *'
   workflow_dispatch:
     inputs:
       force_ig_kit:
@@ -82,6 +86,7 @@ jobs:
           FORCE_THREADS: ${{ inputs.force_threads == true && '1' || '0' }}
           FORCE_REEL: ${{ inputs.force_reel == true && '1' || '0' }}
           FORCE_FACEBOOK: ${{ inputs.force_facebook == true && '1' || '0' }}
+          SOLO_DATOS: ${{ github.event.schedule == '23 9 * * *' && '1' || '0' }}
         run: |
           if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
             echo "::warning::Falta el secreto TELEGRAM_BOT_TOKEN — agregalo en Settings → Secrets → Actions. Salgo sin publicar."

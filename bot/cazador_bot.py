@@ -2032,7 +2032,10 @@ def main() -> int:
     # IG (que siempre usa to_post[0], el producto estrella) ni en la web. Es el
     # motivo concreto para sumarse al canal. Se persisten para que sigan fuera
     # de la web en corridas futuras (si no, reaparecerían al día siguiente).
-    n_excl = min(cfg.get("exclusive_posts", 0), max(0, len(to_post) - 1))
+    # SOLO_DATOS=1: corrida de la mañana que solo refresca precios y la web (no
+    # publica en ningún canal, así que tampoco marca exclusivas del canal).
+    solo_datos = os.getenv("SOLO_DATOS") == "1"
+    n_excl = 0 if solo_datos else min(cfg.get("exclusive_posts", 0), max(0, len(to_post) - 1))
     for d in to_post[len(to_post) - n_excl:] if n_excl else []:
         d["canal_exclusiva"] = True  # marca para el caption y el filtro de la web
     exclusive_ids = set(state.get("exclusive_ids", []))
@@ -2050,6 +2053,11 @@ def main() -> int:
             write_infladas(deals)
         except Exception as e:  # noqa: BLE001
             print(f"[warn] infladas.json no se pudo escribir: {e}")
+
+    if solo_datos:
+        save_state(state)
+        print("[info] SOLO_DATOS: precios y web actualizados, sin publicar")
+        return 0
 
     hour_utc = datetime.now(timezone.utc).hour
     slot = run_slot(hour_utc)

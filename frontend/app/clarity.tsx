@@ -38,6 +38,21 @@ export default function Clarity() {
       // sessionStorage bloqueado: seguimos sin etiqueta
     }
 
+    // Cada clic a Mercado Libre (cualquier botón de afiliado del sitio) como
+    // evento, con la página de origen: el panel de ML no dice de qué página
+    // salió la venta. Captura en document para cubrir también server components.
+    document.addEventListener(
+      'click',
+      e => {
+        const a = (e.target as Element | null)?.closest?.('a[href*="mercadolibre.com"]')
+        if (!a) return
+        const pagina = window.location.pathname.split('/').slice(0, 2).join('/') || '/'
+        clarity('set', 'click_ml_pagina', pagina)
+        clarity('event', a.closest('[data-destacada]') ? 'click_ml_destacada' : 'click_ml')
+      },
+      true,
+    )
+
     const script = document.createElement('script')
     script.id = 'clarity-script'
     script.async = true

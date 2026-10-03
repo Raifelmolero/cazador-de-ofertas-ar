@@ -39,13 +39,13 @@ Uno por uno en cámara lenta con su objeto (red, mate, celu, pinza, joystick, pl
 Texto: "Te presento a la Familia Ofertín 🦋 ¿Cuál sos vos?".
 
 ## Hojas de personaje que faltan (generar en Gemini Imágenes o ChatGPT)
-Marce (hay en ChatGPT, falta bajar) · Benja · Gustavo el cuñado · Doña Chola · perro Precio. Prompts en bot-repo/docs/FAMILIA-OFERTIN.md.
+Marce (hay en ChatGPT, falta bajar) · Benja · Gustavo el cuñado · Doña Chola · perro Changuito. Prompts en bot-repo/docs/FAMILIA-OFERTIN.md.
 
 ## Estado 03/10 ~01:30 (Gemini)
 - Video 01: clips 1-3 en el chat "El misterioso paquete de Ofertín".
 - Video 02: clip 1 OK en el chat "Abuelos reaccionan al Cyber"; clip 2 rechazado (menores) y la versión POV dio "muchas solicitudes, intentá más tarde" → reintentar.
 - Video 03: prompt cargado en un chat nuevo sin enviar (Gemini no deja mandar: límite de videos del día / uno a la vez).
-- Gemini Imágenes, chat "Creación de Hoja de Personaje 3D": hojas de Benja, Gustavo, Doña Chola, Precio + FOTO GRUPAL de la familia + cuadros iniciales: video 03 (x3), video 04 "Tu hermano" (x2), video 05 "El cuñado" (x2). Bajarlas todas.
+- Gemini Imágenes, chat "Creación de Hoja de Personaje 3D": hojas de Benja, Gustavo, Doña Chola, Changuito + FOTO GRUPAL de la familia + cuadros iniciales: video 03 (x3), video 04 "Tu hermano" (x2), video 05 "El cuñado" (x2). Bajarlas todas.
 - Ojo: en la foto grupal la camiseta de Tincho tiene un escudo tipo club → pedir "camiseta amarilla lisa sin escudo".
 - Gemini genera de a un video por vez y tiene tope diario; las imágenes rinden mucho más.
 - 03/10 03:17: video 03 sigue sin poder enviarse (tope diario de video). Se sumaron en el chat de imágenes: cuadro inicial POV del video 02, póster final de la familia (video 06) y el cierre reutilizable (Ofertín pulgar arriba en el estudio negro).

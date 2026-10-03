@@ -93,13 +93,13 @@ Siempre adjuntar la hoja 360° de Don Ofertín como referencia de estilo.
 - **Prompt:**
 > [Bloque fijo, salvo cejas] Personaje: Doña Chola, señora argentina de 78 años. Bajita, pelo batido violeta claro, cejas finitas dibujadas, nariz redonda, anteojos con cadenita, collar de perlas, saco de lana bordó, pollera gris, cartera grande, celular en la mano. Expresión de chusma con ceja levantada.
 
-### 2.9 Precio — el perro (extra)
+### 2.9 Changuito — el perro (extra)
 - **Edad:** 6 años (perro). **Personalidad:** detecta ofertas con el olfato, ladra cuando un precio está inflado, roba cajas de envío.
 - **"Frase":** un ladrido corto + gruñido al ver "-70%".
 - **Rol:** **mascotas** (alimento balanceado, camas, juguetes).
 - **Look:** perro mestizo marrón y blanco tipo callejero argentino, orejas caídas, cejas gruesas de pelo blanco (como el abuelo), nariz grande redonda, mini casco safari caqui con banda amarilla, pañuelo amarillo al cuello.
 - **Prompt:**
-> [Bloque fijo] Personaje: Precio, perro mestizo argentino mediano, pelaje marrón con manchas blancas, orejas caídas, cejas de pelo blanco grueso, nariz grande redonda, mini casco safari caqui con banda amarilla, pañuelo amarillo al cuello. Expresiones: contento, olfateando, gruñendo, ojos de cachorro. Ambos ojos abiertos.
+> [Bloque fijo] Personaje: Changuito, perro mestizo argentino mediano, pelaje marrón con manchas blancas, orejas caídas, cejas de pelo blanco grueso, nariz grande redonda, mini casco safari caqui con banda amarilla, pañuelo amarillo al cuello. Expresiones: contento, olfateando, gruñendo, ojos de cachorro. Ambos ojos abiertos.
 
 ---
 
@@ -107,9 +107,9 @@ Siempre adjuntar la hoja 360° de Don Ofertín como referencia de estilo.
 
 Antes de cada prompt pegar: *"Personajes exactamente como en sus hojas adjuntas. Estilo 3D Pixar, vertical 9:16, 8 segundos, sin texto en pantalla."* El texto va después en CapCut.
 
-**1. "Cuando el cuñado dice que lo consigue más barato"** (Gustavo, Don Ofertín, Precio)
-Gancho: "Todos tenemos un cuñado así 👀". Cuadros: 1) asado, Gustavo muestra una caja · 2) "la pagué la mitad" con sonrisa canchera · 3) Precio olfatea y gruñe · 4) Don Ofertín saca la lupa · 5) ve la etiqueta inflada pegada con cinta · 6) Gustavo se pone los anteojos de sol y se va disimulando.
-Prompt: *Patio con parrilla argentina, Gustavo muestra orgulloso una caja; el perro Precio la olfatea y gruñe; Don Ofertín examina la etiqueta con su lupa y descubre el precio viejo pegado con cinta; Gustavo se baja los anteojos de sol y se aleja silbando. Comedia, cámara a la altura de la mesa.*
+**1. "Cuando el cuñado dice que lo consigue más barato"** (Gustavo, Don Ofertín, Changuito)
+Gancho: "Todos tenemos un cuñado así 👀". Cuadros: 1) asado, Gustavo muestra una caja · 2) "la pagué la mitad" con sonrisa canchera · 3) Changuito olfatea y gruñe · 4) Don Ofertín saca la lupa · 5) ve la etiqueta inflada pegada con cinta · 6) Gustavo se pone los anteojos de sol y se va disimulando.
+Prompt: *Patio con parrilla argentina, Gustavo muestra orgulloso una caja; el perro Changuito la olfatea y gruñe; Don Ofertín examina la etiqueta con su lupa y descubre el precio viejo pegado con cinta; Gustavo se baja los anteojos de sol y se aleja silbando. Comedia, cámara a la altura de la mesa.*
 
 **2. "Abuelos reaccionan a precios del Cyber"** (Juli, Don Ofertín, Doña Rosa)
 Gancho: formato TikTok de reacción. Cuadros: 1) Juli filma en selfie · 2) les muestra el celu · 3) Rosa se tapa la boca · 4) Don Ofertín desconfía · 5) Juli muestra el gráfico de precio · 6) los dos festejan, Juli hace la V.
@@ -127,9 +127,9 @@ Prompt: *Patio, Tincho abre feliz una caja enorme y saca una parrilla diminuta; 
 Gancho: "Grupo familiar a las 7 AM". Cuadros: 1) Chola escribe con el celu en la cara · 2) Rosa recibe y frunce el ceño · 3) Rosa le pasa el celu a Don Ofertín · 4) él busca · 5) Rosa responde con una foto · 6) Chola se queda boquiabierta.
 Prompt: *Pantalla dividida: Doña Chola en su cocina escribe con el celular pegado a la cara y sonrisa chusma; Doña Rosa en su living lo lee, frunce el ceño, Don Ofertín le muestra algo en su celular y Rosa contesta; Doña Chola se queda con la boca abierta y se le resbalan los anteojos.*
 
-**6. "Precio, el detector de infladas"** (Precio)
-Gancho: "Mi perro detecta precios inflados 🐶". Cuadros: 1) cajas con etiquetas · 2) Precio olfatea una · 3) mueve la cola · 4) olfatea otra · 5) gruñe y le ladra · 6) se sienta orgulloso al lado de la buena.
-Prompt: *Depósito de cajas de envío con etiquetas amarillas; el perro Precio con mini casco safari olfatea una caja y mueve la cola, olfatea otra, gruñe y le ladra; termina sentado orgulloso junto a la primera mirando a cámara. Tierno y gracioso.*
+**6. "Changuito, el detector de infladas"** (Changuito)
+Gancho: "Mi perro detecta precios inflados 🐶". Cuadros: 1) cajas con etiquetas · 2) Changuito olfatea una · 3) mueve la cola · 4) olfatea otra · 5) gruñe y le ladra · 6) se sienta orgulloso al lado de la buena.
+Prompt: *Depósito de cajas de envío con etiquetas amarillas; el perro Changuito con mini casco safari olfatea una caja y mueve la cola, olfatea otra, gruñe y le ladra; termina sentado orgulloso junto a la primera mirando a cámara. Tierno y gracioso.*
 
 **7. "Vlog de Don Ofertín: día de Cyber"** (Don Ofertín, formato vlog IA)
 Gancho: "Un día en la vida de un cazador de ofertas". Cuadros: 1) despierta 5 AM con binoculares · 2) mate y notebook · 3) cuenta a cámara en selfie · 4) atrapa una etiqueta · 5) Rosa le tira la almohada · 6) duerme abrazado a la caja.
@@ -140,8 +140,8 @@ Gancho: "Los hijos compitiendo por el regalo de mamá". Cuadros: 1) Rosa en el s
 Prompt: *Living argentino decorado, Doña Rosa sentada recibe regalos: Gustavo le da un paquete raro, Tincho uno envuelto en diario, Marce una freidora de aire con moño amarillo; Rosa abraza a Marce feliz mientras Tincho y Gustavo se miran derrotados.*
 
 **9. "La familia es un equipo de caza"** (todos, presentación tipo Los Simuladores)
-Gancho: "Cada familia tiene su especialista". Cuadros: 1) Don Ofertín ajusta el casco · 2) Benja con joystick · 3) Juli con planchita y celu · 4) Tincho con pinza de asado · 5) Marce y Rosa con el celu · 6) todos en fila con la red, Precio adelante.
-Prompt: *Presentación épica en cámara lenta: uno por uno, Don Ofertín, Benja, Juli, Tincho, Marce, Doña Rosa y el perro Precio aparecen con su objeto característico y terminan en fila mirando a cámara, Don Ofertín al centro con la red, luz dorada de atardecer.* (Si no entra en 8 s, dos clips.)
+Gancho: "Cada familia tiene su especialista". Cuadros: 1) Don Ofertín ajusta el casco · 2) Benja con joystick · 3) Juli con planchita y celu · 4) Tincho con pinza de asado · 5) Marce y Rosa con el celu · 6) todos en fila con la red, Changuito adelante.
+Prompt: *Presentación épica en cámara lenta: uno por uno, Don Ofertín, Benja, Juli, Tincho, Marce, Doña Rosa y el perro Changuito aparecen con su objeto característico y terminan en fila mirando a cámara, Don Ofertín al centro con la red, luz dorada de atardecer.* (Si no entra en 8 s, dos clips.)
 
 **10. "Navidad: el amigo invisible"** (todos, escenario navidad de verano)
 Gancho: "Amigo invisible en familia argentina 🎄". Cuadros: 1) mesa en el patio, calor · 2) Gustavo abre su regalo, decepcionado · 3) Juli abre el suyo, grita · 4) Benja abre una consola · 5) todos miran a Don Ofertín · 6) él se acomoda el casco: "cazado".
@@ -149,11 +149,11 @@ Prompt: *Navidad de verano en patio argentino con luces, pileta de lona y mesa l
 
 ---
 
-**Orden sugerido de estreno:** Benja y Juli primero (reels 2 y 3: formato abuelo+nieto es el más compartible), después el Cuñado (reel 1, máxima identificación para WhatsApp), Precio (reel 6) y finalmente el elenco completo (reel 9) como "presentación de la familia".
+**Orden sugerido de estreno:** Benja y Juli primero (reels 2 y 3: formato abuelo+nieto es el más compartible), después el Cuñado (reel 1, máxima identificación para WhatsApp), Changuito (reel 6) y finalmente el elenco completo (reel 9) como "presentación de la familia".
 
 ## Estado de las hojas generadas en ChatGPT (02-03/10/2026, chat "Crear hoja de poses")
 - Hechas: Don Ofertín 360° (3D), Doña Rosa, Marce ("Hoja de expresiones de mujer caricaturesca"), Juli (generada con 13 años, no 17), hijo asador con taladro y pinza (generado como "Gustavo 'el Gus'": **usar esa hoja como TINCHO**; el cuñado Gustavo queda por generar con otro look).
-- Faltan: Benja, Gustavo el cuñado, Doña Chola, el perro Precio.
+- Faltan: Benja, Gustavo el cuñado, Doña Chola, el perro Changuito.
 - ChatGPT agotó el cupo de imágenes del plan gratis; se renueva al día siguiente ~17:27.
 - Raifel tiene que bajar todas las hojas a la carpeta DON OFERTÍN (Brave bloquea mis descargas).
 - 03/10: procesadas en docs/personaje/: video/ (ofertin-360-3d, poses-3d, escenarios-3d, storyboard-senora-cuanto-salio), familia/ (dona-rosa-360, juli-360, tincho-360), estilos-3d, variantes-estilo, post-halloween, avatar-v2 (ojos corregidos; ya es el avatar de la web). Faltan bajar: Marce y storyboard Cyber Monday.

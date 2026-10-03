@@ -19,7 +19,7 @@ TEXTOS = {
     5: ("MARCE · La ordenada", "“Mirá el historial.”"),
     6: ("DOÑA CHOLA · La consuegra", "“Ay, Rosa… yo la pagué menos.”"),
     7: ("BENJA · El primo del cuarto del fondo", "“Abuelo… hay cupón.”"),
-    8: ("PRECIO · El detector de inflados", "“Grrr…”"),
+    8: ("CHANGUITO · El detector de inflados", "“Grrr…”"),
     9: ("¿CUÁL SOS VOS? COMENTÁ ↓", "Las ofertas reales de la familia → link en la bio"),
 }
 

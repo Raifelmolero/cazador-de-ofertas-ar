@@ -25,7 +25,7 @@
 | **Muletilla de Rosa** | "¿Y cuánto salió?" vs "¿Y esto cuánto salió, Ofertín?" | Misma idea; fijar la corta (se dice en 1 s). |
 | **Video 04 "Tu hermano"** | PLAN: Tincho + **Doña Rosa** le dice "Martín" · FAMILIA reel 4: Tincho + **Marce** | Si el texto dice "tu hermano", la que reta tiene que ser la HERMANA (Marce). Con la madre el chiste es otro ("tu hijo de 44"). |
 | **Doña Chola** | BIBLIA: flaquita y elegante · FAMILIA: bajita, saco bordó, cartera grande | Elegir. Además es la consuegra = mamá de Gustavo = abuela paterna de Juli. Nadie lo explota. |
-| **Precio (perro)** | BIBLIA: "una oreja caída" · FAMILIA: "orejas caídas" + pañuelo amarillo | Detalle chico pero se nota en continuidad. |
+| **Changuito (perro)** | BIBLIA: "una oreja caída" · FAMILIA: "orejas caídas" + pañuelo amarillo | Detalle chico pero se nota en continuidad. |
 | **Estilo** | IDEAS: "2D cartoon, contorno negro grueso" para imágenes · todo lo demás: 3D Pixar | Ok para placas del bot, pero NO mezclar en reels. |
 | **Rosa con la cuchara "apuntando como detective"** | VIDEO-SEÑORA clip 2 original | Ya documentado como causa de rechazo; el guion viejo sigue escrito así. Usar la versión corregida. |
 | **Edad de Ofertín y Rosa** | 72 / 70, pero los prompts dicen "jubilados de 70 años" para los dos | Sin problema; dejar "matrimonio de jubilados de más de 70". |
@@ -50,7 +50,7 @@ Aire de familia: cejas gruesas, nariz redonda grande, mejillas sonrosadas, ojos 
 | **JULI** | **19** | Nieta, hija de Marce y Gustavo; la que filma | Belleza, moda, celulares | **"Abu, es re cringe… ¿pero a cuánto?"** | Celular con funda brillante (es la CÁMARA) | **Siempre POV.** Se ve solo su mano: uñas violetas, pulsera de hilo amarilla, funda brillante. Voz joven y burlona. |
 | **BENJA** | **20** | Nieto, hijo de Tincho; vive en el cuarto del fondo | Gamer y tecnología, cupones | **"Abuelo… hay cupón."** (susurrado, como secreto de Estado) | Joystick | Alto y flaco, barba rala, pelo despeinado, anteojos redondos iguales al abuelo, auriculares gamer amarillos al cuello, buzo con capucha caqui, ojotas con medias. |
 | **DOÑA CHOLA** | 78 | Consuegra (mamá de Gustavo) | Salud y cuidado personal | **"Ay, Rosa… yo la pagué menos."** | Celular con letra gigante pegado a la cara | Flaquita y elegante, pelo batido violeta claro, cejas finitas dibujadas, collar de perlas, saco de lana bordó, anteojos con cadenita. |
-| **PRECIO** (perro) | 6 | Mascota | Mascotas | Gruñido cuando ve "-70%" | Mini casco safari | Mestizo marrón y blanco, UNA oreja caída, cejas de pelo blanco, mini casco safari caqui con banda amarilla, pañuelo amarillo. |
+| **CHANGUITO** (perro) | 6 | Mascota | Mascotas | Gruñido cuando ve "-70%" | Mini casco safari | Mestizo marrón y blanco, UNA oreja caída, cejas de pelo blanco, mini casco safari caqui con banda amarilla, pañuelo amarillo. |
 
 **Villano oficial de la serie:** el Precio Inflado (y su cómplice involuntario, Gustavo). Nunca un comercio, nunca una persona real, nunca política.
 
@@ -80,7 +80,7 @@ Mejora: Tincho invita a todos "al asado inaugural de la parrilla nueva" y la par
 
 **05 — El asado y el cuñado · 8/10 (potencial 9)**
 El mejor concepto de identificación ("etiquetalo"). Pero el guion es mudo: Gustavo no dice nada gracioso. El cuñado tiene que hablar, y mucho.
-Mejora: Gustavo da cátedra con la llave en el dedo, Ofertín lo desarma con una sola frase y la lupa, Precio le gruñe. Remate: Juli (POV) es su hija y lo está subiendo. Guion #5.
+Mejora: Gustavo da cátedra con la llave en el dedo, Ofertín lo desarma con una sola frase y la lupa, Changuito le gruñe. Remate: Juli (POV) es su hija y lo está subiendo. Guion #5.
 
 **06 — Presentación de la Familia Ofertín · 5/10**
 Las presentaciones en cámara lenta no se comparten: no tienen chiste. Además 7 personajes en 8 s = el modelo inventa caras.
@@ -92,7 +92,7 @@ Mejora: hacerla estilo **Los Simuladores** ("cada uno tiene su especialidad") pe
 |---|---|---|---|
 | 3 | El nieto le gana al abuelo (Benja 11) | 6 → 8 con Benja de 20 | Con un pibe de 11 no se puede producir. Con Benja de 20 que vive en el cuarto del fondo: el abuelo corre con la red y Benja desde la cama, sin levantarse: "Abuelo… hay cupón". Ver guion #6. |
 | 5 | La consuegra en el grupo de WhatsApp | 8 | Rivalidad de consuegras = Esperando la Carroza puro. Pantalla dividida es riesgosa en Veo; mejor dos clips. Guion #7. |
-| 6 | Precio, el detector de infladas | 6 | Tierno, pero perros IA hay millones. Sirve como running gag dentro de otros videos (el gruñido), no como video solo. |
+| 6 | Changuito, el detector de infladas | 6 | Tierno, pero perros IA hay millones. Sirve como running gag dentro de otros videos (el gruñido), no como video solo. |
 | 8 | Día de la Madre: ¿quién regala mejor? | 7 | Ya pasó el Día de la Madre 2026 (18/10 es el próximo… ojo: en AR es el 3er domingo de octubre = 18/10/2026; **todavía llega**). Producirlo YA: es la fecha comercial más cercana. Mejora del remate: Gustavo regala "un perfume importado" que Rosa huele y dice "esto es lavandina con brillitos". Ver variante en guion #5/#7 o hacerlo como bonus. |
 | 9 | Equipo de caza (presentación) | 5 | Igual que 06. |
 | 10 | Navidad: amigo invisible | 7 | Muy argentino (calor, sidra, pileta de lona). Demasiados personajes para 8 s. Guardar para diciembre en 3 clips, centrado en Gustavo vs Ofertín. |
@@ -105,7 +105,7 @@ Mejora: hacerla estilo **Los Simuladores** ("cada uno tiene su especialidad") pe
 | Rosa vs. la freidora de aire | 7 | Bien, pero ya está dentro del #1. |
 | Hot Sale uniforme | 5 | Hot Sale cae en mayo; parodia de película de acción ya vista. Reconvertir a Cyber Monday (2-4/11). |
 | Grupo de WhatsApp en Cyber | 9 | El mejor concepto de toda la biblia: cada uno manda "OFERTÓN" y el abuelo contesta "inflada" a todos. Se hace con capturas de chat falsas (en CapCut, NO en Veo) + reacción de Ofertín. Muy barato de producir. |
-| Precio encuentra la oferta | 5 | Ver arriba. |
+| Changuito encuentra la oferta | 5 | Ver arriba. |
 | Tincho y el aire en enero | 7 | Para enero, con ola de calor real. |
 | Amigo invisible | 7 | Ver arriba. |
 | La consuegra presume | 8 | Guion #7. |
@@ -228,14 +228,14 @@ Parodia del meme de rutinas de "CEO millonario a las 5 AM".
 
 ---
 
-### GUION 5 — "Tengo un contacto" · Gustavo + Ofertín + Precio + POV Juli · Prioridad 5 (el más etiquetable)
+### GUION 5 — "Tengo un contacto" · Gustavo + Ofertín + Changuito + POV Juli · Prioridad 5 (el más etiquetable)
 **Gancho:** Gustavo, llave del auto girando en el dedo, primerísimo plano: "Esto lo pagué la mitad. Tengo un contacto." Texto: **"Todos tenemos un cuñado así 👀"**
 
 **Clip 1 — La cátedra (8 s)**
 > [ESTILO] [GUSTAVO] [OFERTÍN] Patio argentino con parrilla humeando de fondo y mesa de plástico blanca con una caja de cartón encima. Gustavo, parado al lado de la mesa, gira una llave de auto en el dedo y le habla a la familia con sonrisa canchera: "Esto lo pagué la mitad, eh. Tengo un contacto. Ustedes compran mal." Don Ofertín, sentado en una silla de jardín con un mate en la mano, lo escucha sin moverse, con una ceja levantada. Plano medio, cámara a la altura de la mesa.
 
 **Clip 2 — La lupa (8 s)**
-> [ESTILO] [GUSTAVO] [OFERTÍN] [PRECIO] Continuación directa: el perro Precio, con su mini casco safari, entra al cuadro trotando desde abajo de la mesa, olfatea la caja y le gruñe bajito. Don Ofertín deja el mate en la mesa, se levanta, saca la lupa del chaleco y mira de cerca la etiqueta de precio pegada en la caja; tira de una punta y se despega una segunda etiqueta de abajo, con un precio más bajo. Don Ofertín, tranquilo: "Gustavo… tu contacto te cobró el doble." Silencio. Precio ladra una vez.
+> [ESTILO] [GUSTAVO] [OFERTÍN] [CHANGUITO] Continuación directa: el perro Changuito, con su mini casco safari, entra al cuadro trotando desde abajo de la mesa, olfatea la caja y le gruñe bajito. Don Ofertín deja el mate en la mesa, se levanta, saca la lupa del chaleco y mira de cerca la etiqueta de precio pegada en la caja; tira de una punta y se despega una segunda etiqueta de abajo, con un precio más bajo. Don Ofertín, tranquilo: "Gustavo… tu contacto te cobró el doble." Silencio. Changuito ladra una vez.
 
 **Clip 3 — La huida + la hija (8 s)**
 > [ESTILO] [GUSTAVO] Continuación directa, mismo patio. Gustavo se baja lentamente los anteojos de sol de la cabeza a los ojos, toma la caja con las dos manos y dice: "Bueno, yo me tengo que ir, que dejé el auto en doble fila." Sale caminando de espaldas hacia la puerta de la casa, silbando, y se va. Toma en primera persona: una mano de mujer joven adulta con uñas violetas sostiene el celular filmando la escena desde una silla; se escucha su voz riéndose: "Papá, esto va para el grupo." Cámara en mano.
@@ -333,8 +333,8 @@ Total: 4-7 clips de Veo por semana. Con un tope de ~1-3 videos diarios en Gemini
 1. **"¿Y cuánto salió?"** — Rosa lo pregunta en todos los capítulos. En algún momento se lo pregunta otro (Ofertín en el #1, Chola en el #7): el giro es quién lo dice.
 2. **La lupa** — cada vez que Ofertín saca la lupa hay un "fiiiu" (mismo sonido siempre). Se vuelve marca registrada.
 3. **"¡CAZADO!"** con el puño arriba = aprobado. **"¿Cincuenta por ciento de qué, querido?"** = inflado. El público aprende el código.
-4. **Gustavo y su contacto** — nunca se sabe quién es "el contacto". Payoff de temporada (Navidad): el contacto es Precio, el perro.
-5. **Precio gruñe antes que nadie** cuando hay un inflado. Precio nunca se equivoca.
+4. **Gustavo y su contacto** — nunca se sabe quién es "el contacto". Payoff de temporada (Navidad): el contacto es Changuito, el perro.
+5. **Changuito gruñe antes que nadie** cuando hay un inflado. Changuito nunca se equivoca.
 6. **Benja nunca se levanta de la cama** (cada aparición, desde la cama; el día que se levanta = evento).
 7. **Los ruleros de Rosa se caen** con cada sorpresa (se van acumulando en el piso del living: easter egg de continuidad).
 8. **Juli nunca aparece en cuadro**: "la que filma". Los fans van a pedir verle la cara; NO mostrarla nunca (es el misterio, estilo Wilson en Home Improvement). Además resuelve el filtro.
@@ -361,4 +361,4 @@ Usarlas también en las respuestas a comentarios desde la cuenta ("Gustavo, ¿so
 8. **El producto del cierre es real, del día, con su precio real** (sacado de la web), nunca un "%" inventado en el guion.
 
 ### Orden recomendado de producción
-1) Guion 1 (ya está casi hecho, solo rehacer clip 3) → 2) Guion 7 (Día de la Madre, 18/10) → 3) Guion 5 (cuñado) → 4) Guion 2 (Cyber, antes del 2/11) → 5) Guion 4 → 6) Guion 3 → 7) Guion 6 (cuando exista la hoja de Benja adulto) → 8) Guion 8 (presentación, cuando ya se conozca al elenco). Pendientes de hojas: Gustavo, Chola, Precio, Benja (20 años), y rehacer Juli si alguna vez sale en cuadro (19, pelo suelto, sin colitas).
+1) Guion 1 (ya está casi hecho, solo rehacer clip 3) → 2) Guion 7 (Día de la Madre, 18/10) → 3) Guion 5 (cuñado) → 4) Guion 2 (Cyber, antes del 2/11) → 5) Guion 4 → 6) Guion 3 → 7) Guion 6 (cuando exista la hoja de Benja adulto) → 8) Guion 8 (presentación, cuando ya se conozca al elenco). Pendientes de hojas: Gustavo, Chola, Changuito, Benja (20 años), y rehacer Juli si alguna vez sale en cuadro (19, pelo suelto, sin colitas).

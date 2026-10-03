@@ -14,7 +14,7 @@ Animación 3D estilo Pixar, colores cálidos, contorno suave, piel con textura s
 - **BENJA (gamer, sin hoja todavía):** nieto, pelo revuelto, buzo gamer con capucha, auriculares con micrófono, joystick. Encuentra cupones. Muletilla: "Abuelo, hay cupón".
 - **GUSTAVO, EL CUÑADO (45, sin hoja):** pelo engominado, anteojos de sol en la cabeza, chomba ajustada, reloj grande dorado de mentira. Sabelotodo, cae en las ofertas infladas. Muletilla: "Yo lo conseguí más barato".
 - **DOÑA CHOLA (78, sin hoja):** consuegra flaquita y elegante, pelo violeta batido, collar de perlas, celular pegado a la cara. Chusma del grupo de WhatsApp.
-- **PRECIO (perro, sin hoja):** mestizo marrón y blanco con una oreja caída y mini casco safari. Le ladra a los precios inflados.
+- **CHANGUITO (perro, sin hoja):** mestizo marrón y blanco con una oreja caída y mini casco safari. Le ladra a los precios inflados.
 
 ## Escenarios fijos
 1. **LIVING DE LOS ABUELOS:** sillón floreado con almohadones de crochet, mesita ratona de madera con mate y termo, ventilador de pie, cuadros de la familia, cortinas beige, luz cálida de tarde por la ventana, alfombra marrón.
@@ -36,7 +36,7 @@ Animación 3D estilo Pixar, colores cálidos, contorno suave, piel con textura s
 2. **"Rosa vs. la freidora de aire"**: la mira con desconfianza, la prueba, termina abrazándola.
 3. **"Cuando llega el Hot Sale y el abuelo se pone el uniforme"**: escena de película de acción, se ajusta el casco en cámara lenta.
 4. **"El grupo de WhatsApp de la familia en Cyber Monday"**: cada uno manda su oferta, Ofertín responde "inflada" a todos.
-5. **"Precio, el perro, encuentra la oferta"**: olfatea cajas y se sienta junto a la buena.
+5. **"Changuito, el perro, encuentra la oferta"**: olfatea cajas y se sienta junto a la buena.
 6. **"Tincho y el aire acondicionado en enero"**: transpira al lado del ventilador; Marce le muestra el split en oferta.
 7. **"Navidad: el amigo invisible"**: el cuñado regala algo inflado, el abuelo algo cazado.
 8. **"La consuegra presume"**: Chola muestra lo que compró, Rosa le muestra que lo pagó la mitad.

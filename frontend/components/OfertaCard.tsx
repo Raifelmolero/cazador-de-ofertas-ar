@@ -19,6 +19,16 @@ export interface OfertaLight {
   historial?: string
 }
 
+// Clarity: cuántos clics a ML salen de cada página (el panel de afiliados no
+// dice desde qué página del sitio vino la venta). Solo corre si Clarity cargó.
+function medirClickML(destacada: boolean) {
+  const c = (window as unknown as { clarity?: (...a: unknown[]) => void }).clarity
+  if (!c) return
+  const pagina = window.location.pathname.split('/').slice(0, 2).join('/') || '/'
+  c('set', 'click_ml_pagina', pagina)
+  c('event', destacada ? 'click_ml_destacada' : 'click_ml')
+}
+
 function precio(n: number) {
   return `$${Math.round(n).toLocaleString('es-AR')}`
 }
@@ -117,6 +127,7 @@ function Tarjeta({
         href={producto.url_producto}
         target="_blank"
         rel="noopener noreferrer sponsored"
+        onClick={() => medirClickML(true)}
         className="rise-in group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
       >
         <div className="relative w-[38%] max-w-72 shrink-0 self-stretch bg-white min-h-36">
@@ -186,6 +197,7 @@ function Tarjeta({
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      onClick={() => medirClickML(false)}
       className="rise-in group flex-1 flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
     >
       <div className="relative aspect-square bg-white">

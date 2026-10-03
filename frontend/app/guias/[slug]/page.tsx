@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!g) return {}
   const url = `${DEALS_URL}/guias/${g.slug}`
   return {
+    metadataBase: new URL(DEALS_URL),
     title: tituloSeo(g.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n]),
     description: descripcionSeo(g.descripcion),
     alternates: { canonical: url },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
@@ -23,6 +23,15 @@ import {
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
+
+function busquedaDesdeSlug(slug: string): string {
+  return slug
+    .replace(/-mla\d+$/i, '')
+    .split('-')
+    .filter(w => w.length > 1)
+    .slice(0, 3)
+    .join(' ')
+}
 
 export function generateStaticParams() {
   return getSeguidos().map(s => ({ slug: s.slug }))
@@ -77,8 +86,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PrecioPage({ params }: { params: Promise<{ slug: string }> }) {
-  const s = getSeguido((await params).slug)
-  if (!s) notFound()
+  const slug = (await params).slug
+  const s = getSeguido(slug)
+  // Ficha que salió del seguimiento (links viejos de Google/ChatGPT): en vez de
+  // un 404, la home con la búsqueda de ese producto ya cargada.
+  if (!s) redirect(`/?q=${encodeURIComponent(busquedaDesdeSlug(slug))}#ofertas`)
 
   const url = `${DEALS_URL}/precio/${s.slug}`
   const hoy = precioActual(s)

@@ -2576,7 +2576,8 @@ export const GUIAS: Guia[] = [
       },
     ],
     categoria: { slug: 'bicicletas', nombre: 'bicicletas' },
-    cta: { href: '/categoria/bicicletas', titulo: 'Bicicletas en oferta hoy', boton: 'Ver bicicletas en oferta 🚲' },
+    comparativa: 'mejores-bicicletas',
+    cta: { href: '/mejores/mejores-bicicletas', titulo: 'Bicicletas en oferta hoy, comparadas', boton: 'Ver la comparativa de bicicletas 🚲' },
     faq: [
       {
         q: '¿Qué bicicleta conviene para andar por la ciudad?',

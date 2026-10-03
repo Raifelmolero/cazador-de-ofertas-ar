@@ -897,6 +897,23 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
   },
   {
+    slug: 'mejores-bicicletas',
+    guia: 'que-bicicleta-comprar',
+    nombre: 'bicicletas',
+    titulo: `Mejores bicicletas en oferta ${AÑO}: comparativa de precios`,
+    descripcion:
+      'Bicicletas urbanas, mountain bike, de ruta, plegables y eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las bicicletas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+    categoria: 'bicicletas',
+    criterios: [
+      'Tipo según el uso: urbana o paseo para ciudad, mountain bike para tierra y ripio, ruta para asfalto y distancia.',
+      'Rodado y talle de cuadro según tu altura: están en la ficha de cada modelo.',
+      'Frenos a disco frenan mejor con lluvia que los V-brake.',
+      'Cuadro de aluminio pesa menos; el de acero es más económico y resistente.',
+    ],
+  },
+  {
     slug: 'mejores-piletas',
     guia: 'que-pileta-comprar',
     nombre: 'piletas',

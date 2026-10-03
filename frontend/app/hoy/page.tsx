@@ -345,7 +345,7 @@ export default function HoyPage() {
       <AtajosVerano />
 
       {/* Grid con búsqueda y filtros */}
-      <section id="ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 scroll-mt-16">
+      <section id="ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-6 sm:py-8 scroll-mt-16">
         {ofertas.length === 0 ? (
           <p className="text-center text-zinc-500 py-16">
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯

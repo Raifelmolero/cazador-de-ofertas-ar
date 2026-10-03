@@ -111,20 +111,20 @@ export default function OfertasGrid({
     <>
       {/* Búsqueda + filtros */}
       <div className="mb-4 sm:mb-5 space-y-3">
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex gap-2">
           <input
             type="search"
             value={q}
             onChange={e => setQ(e.target.value)}
-            placeholder="Buscar entre las ofertas de hoy… (ej: colchón, aire, bici)"
+            placeholder="Buscar: colchón, aire, bici…"
             aria-label="Buscar ofertas"
-            className="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+            className="min-w-0 flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
           />
           <select
             value={orden}
             onChange={e => setOrden(e.target.value as OrdenId)}
             aria-label="Ordenar ofertas"
-            className="bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+            className="w-32 sm:w-auto shrink-0 bg-zinc-900 border border-zinc-800 rounded-xl px-2 sm:px-3 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
           >
             {ORDENES.map(o => (
               <option key={o.id} value={o.id}>

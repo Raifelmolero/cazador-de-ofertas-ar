@@ -12,6 +12,7 @@ const DESC =
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
   description: descripcionSeo(DESC),
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
 }
 

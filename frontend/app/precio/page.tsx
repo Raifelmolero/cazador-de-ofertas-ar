@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Historial de precios Mercado Libre — Cazador de Ofertas AR',
   description:
     'Historial de precios y precio más bajo registrado de aires, smart TV, heladeras, lavarropas, colchones, herramientas y más en Mercado Libre Argentina.',
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: `${DEALS_URL}/precio` },
 }
 

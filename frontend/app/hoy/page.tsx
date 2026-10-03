@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     'ofertas del día argentina',
     'mínimo histórico mercado libre',
   ],
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: {
     canonical: DEALS_URL,
     types: { 'text/markdown': `${DEALS_URL}/llms-full.txt` },

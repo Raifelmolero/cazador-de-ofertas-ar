@@ -54,6 +54,7 @@ export const metadata: Metadata = {
     'ofertas cyber monday',
     'descuentos inflados cyber monday',
   ],
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

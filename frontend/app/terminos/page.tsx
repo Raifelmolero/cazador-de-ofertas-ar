@@ -6,6 +6,7 @@ const DEALS_URL = 'https://cazadordeofertas.com.ar'
 export const metadata: Metadata = {
   title: 'Términos de servicio — Cazador de Ofertas AR',
   description: 'Condiciones de uso de Cazador de Ofertas AR.',
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: `${DEALS_URL}/terminos` },
 }
 

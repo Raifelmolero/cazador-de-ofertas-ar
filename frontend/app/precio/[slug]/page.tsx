@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: titulo,
     description: descripcion,
+    metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },
     openGraph: {
       title: titulo,

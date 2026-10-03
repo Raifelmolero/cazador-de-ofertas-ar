@@ -16,6 +16,7 @@ const CONTACTO = 'mailto:raifelmolero@gmail.com?subject=Quiero%20mi%20cazador%20
 export const metadata: Metadata = {
   title: `${TITULO} — Cazador de Ofertas AR`,
   description: DESCRIPCION,
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
   robots: { index: false, follow: false },
 }

@@ -6,6 +6,7 @@ const DEALS_URL = 'https://cazadordeofertas.com.ar'
 export const metadata: Metadata = {
   title: 'Política de privacidad — Cazador de Ofertas AR',
   description: 'Qué datos usa Cazador de Ofertas AR y cómo los trata.',
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: `${DEALS_URL}/privacidad` },
 }
 

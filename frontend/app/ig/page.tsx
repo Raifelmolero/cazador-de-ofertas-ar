@@ -20,6 +20,7 @@ import { DEALS_URL, WHATSAPP_URL } from '@/lib/marca'
 export const metadata: Metadata = {
   title: 'Lo que viste en Instagram — Cazador de Ofertas AR',
   description: 'Las últimas ofertas que publicó Don Ofertín en Instagram, con el link para comprarlas.',
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: `${DEALS_URL}/ig` },
   robots: { index: false, follow: true },
 }

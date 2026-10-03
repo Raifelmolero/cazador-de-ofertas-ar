@@ -19,6 +19,7 @@ const DATO = `De ${numero(e.revisadas)} ofertas de mercadolibre.com.ar/ofertas q
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Estudio Cazador de Ofertas AR`, t => t, () => `1 de cada ${unoCada} ofertas de Mercado Libre tiene descuento inflado`]),
   description: descripcionSeo(DATO),
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DATO, url: URL, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

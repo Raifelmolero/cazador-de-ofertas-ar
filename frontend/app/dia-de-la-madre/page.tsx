@@ -96,6 +96,7 @@ export const metadata: Metadata = {
     'regalos día de la madre mercado libre',
     'ofertas día de la madre',
   ],
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

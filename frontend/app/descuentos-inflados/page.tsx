@@ -24,6 +24,7 @@ const DESCRIPCION =
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
   description: descripcionSeo(DESCRIPCION),
+  metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }

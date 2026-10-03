@@ -2326,6 +2326,89 @@ export const GUIAS: Guia[] = [
       { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
     ],
   },
+  {
+    slug: 'que-muebles-de-jardin-comprar',
+    titulo: '¿Qué muebles de jardín comprar? Materiales, sol, lluvia y espacio',
+    descripcion:
+      'Cómo elegir muebles de jardín para el verano en Argentina: ratán sintético, aluminio, hierro, madera o plástico y cuánto aguantan sol y lluvia; cuántas personas, reposeras, mesas, gazebos y sombrillas, balcón o patio, fundas, mantenimiento y armado.',
+    pregunta: '¿Qué muebles de jardín conviene comprar?',
+    respuestaCorta:
+      'Primero medí el espacio y pensá cuántos van a usarlo: en un balcón conviene un juego chico, plegable o apilable; en un patio podés ir a un juego completo con mesa, sillones y reposeras. Si quedan a la intemperie, elegí materiales que aguanten sol y lluvia sin mucho mantenimiento, como aluminio, ratán sintético o plástico reforzado; la madera y el hierro quedan lindos pero piden tratamiento. Sumá sombra (gazebo o sombrilla) y fundas para alargarles la vida.',
+    secciones: [
+      {
+        h: 'Materiales: cuánto aguantan sol y lluvia',
+        p: [
+          'Ratán sintético: tejido plástico sobre una estructura (en general de aluminio o acero). Aguanta bien la intemperie y es liviano; conviene que la estructura sea de aluminio o acero con pintura, y que diga protección UV para que no se reseque ni pierda color al sol.',
+          'Aluminio: liviano y no se oxida, por eso es de los más cómodos para dejar afuera todo el año. Al sol directo se calienta, así que suma usar almohadones.',
+          'Hierro: muy firme y pesado (no se vuela con el viento), pero se oxida si se pela la pintura. Hay que revisarlo y retocarlo cada tanto.',
+          'Madera: cálida y linda, pero al sol y la lluvia se agrieta o se pone gris si no la tratás con aceite o protector cada temporada. Las maderas duras aguantan mejor.',
+          'Plástico o resina: lo más barato, liviano, fácil de limpiar y apilable. El plástico reforzado y con protección UV dura más; el común se pone quebradizo con el sol.',
+        ],
+      },
+      {
+        h: 'Cuántas personas y qué piezas',
+        p: [
+          'Contá cuántos son en casa y cuántos suelen venir: un juego de 2 sillas y mesita alcanza para un balcón; para comer afuera en familia buscá una mesa con 4 a 6 sillas, o un juego de living (sillones con mesa ratona) para estar.',
+          'Reposeras y camastros: ideales al lado de la pileta. Mirá el peso máximo que soportan, si el respaldo se regula y si se pliegan para guardarlos.',
+          'Mesas: verificá la medida de la tapa y si tiene agujero para sombrilla. El vidrio templado o la tapa de aluminio o plástico se limpian fácil.',
+        ],
+      },
+      {
+        h: 'Sombra: gazebo o sombrilla',
+        p: [
+          'Sombrilla: práctica para una mesa o para un par de reposeras. Necesita una base pesada para que no se la lleve el viento; las de brazo lateral dejan la mesa libre.',
+          'Gazebo: da sombra a un grupo entero. La medida más común es 3x3; mirá que la estructura sea de acero, que la lona tenga protección UV y si trae paredes laterales y estacas o vientos para fijarlo. Con viento fuerte conviene plegarlo.',
+        ],
+      },
+      {
+        h: 'Balcón o patio',
+        p: [
+          'Balcón: medí ancho y profundidad y dejá lugar para circular y abrir la puerta. Funcionan mejor las sillas plegables, las mesas rebatibles y los juegos de 2 piezas. Preferí materiales livianos.',
+          'Patio o jardín: hay más lugar, pero también más sol y viento. Los muebles pesados (hierro) o un gazebo bien anclado aguantan mejor; en pasto conviene poner las patas sobre baldosas para que no se hundan.',
+        ],
+      },
+      {
+        h: 'Mantenimiento, fundas y armado',
+        p: [
+          'Fundas: cubrir los muebles cuando no se usan los protege del sol, la lluvia y la tierra, y es lo que más les alarga la vida. Los almohadones conviene guardarlos adentro o en un baúl de exterior.',
+          'Limpieza: aluminio, ratán sintético y plástico con agua y jabón; la madera con su producto de tratamiento una vez por temporada; el hierro, revisar óxido y retocar la pintura.',
+          'Armado: muchos juegos vienen desarmados. Revisá en la publicación si incluye herrajes e instrucciones y si tiene sentido guardarlos plegados en invierno.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio cambia muchísimo según material, cantidad de piezas y marca, y en primavera y verano suben las ofertas. No damos un precio fijo: en la comparativa de muebles de jardín y gazebos están los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-muebles-de-jardin',
+    cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Muebles de jardín y gazebos en oferta hoy, comparados', boton: 'Ver la comparativa de muebles de jardín ☀️' },
+    faq: [
+      {
+        q: '¿Qué material de muebles de jardín aguanta mejor la intemperie?',
+        a: 'El aluminio, el ratán sintético con protección UV y el plástico reforzado aguantan sol y lluvia con poco mantenimiento. La madera y el hierro necesitan tratamiento o retoques.',
+      },
+      {
+        q: '¿Qué muebles conviene poner en un balcón?',
+        a: 'Piezas livianas, plegables o apilables: un juego de 2 sillas con mesita o una mesa rebatible. Medí antes y dejá lugar para circular.',
+      },
+      {
+        q: '¿Conviene un gazebo o una sombrilla?',
+        a: 'La sombrilla alcanza para una mesa o un par de reposeras; el gazebo da sombra a un grupo entero. En los dos casos hay que fijarlos bien por el viento.',
+      },
+      {
+        q: '¿Cómo hago que los muebles de jardín duren más?',
+        a: 'Cubrilos con fundas cuando no los usás, guardá los almohadones adentro, limpialos cada tanto y tratá la madera o retocá el hierro una vez por temporada.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Comparativa de muebles de jardín' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/mejores/mejores-parrillas', texto: 'Comparativa de parrillas' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2333,6 +2416,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'aire-acondicionado-portatil-o-split': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-ventilador-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-pileta-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

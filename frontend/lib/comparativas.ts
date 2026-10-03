@@ -880,6 +880,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-parrillas',
+    guia: 'que-parrilla-comprar',
     nombre: 'parrillas',
     titulo: `Mejores parrillas y asadores en oferta ${AÑO}: comparativa`,
     descripcion:

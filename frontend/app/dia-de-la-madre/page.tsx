@@ -146,7 +146,10 @@ export default function DiaDeLaMadrePage() {
     const c = getComparativa(r.comp)
     return c ? productosDe(c) : []
   })
-  const pool = [...regalos, ...deRubros].filter((p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i)
+  // Cosas que se cuelan por categoría pero no son regalo para mamá
+  const NO_REGALO = ['bomba', 'presurizadora', 'masculino', 'hombre', 'for men', 'pour homme', 'repuesto', 'industrial', 'compresor', 'amoladora', 'soldadora', 'neumatico', 'neumático']
+  const esRegalo = (p: ProductWithMargins) => !NO_REGALO.some(w => p.titulo.toLowerCase().includes(w))
+  const pool = [...regalos, ...deRubros].filter((p, i, a) => esRegalo(p) && a.findIndex(x => x.id_ml === p.id_ml) === i)
   const rangos = RANGOS.map(r => {
     const todos = pool.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
     return { ...r, total: todos.length, productos: todos.slice(0, POR_RANGO) }
@@ -251,20 +254,20 @@ export default function DiaDeLaMadrePage() {
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">Día de la Madre {AÑO}</span>
           </nav>
-          <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
+          <h1 className="font-display text-2xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-3 sm:mb-4 [text-wrap:balance]">
             {TITULO}
           </h1>
-          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
+          <p className="hidden sm:block text-zinc-400 leading-relaxed [text-wrap:pretty]">
             Desde perfumes y electro de cocina hasta notebooks, celulares, smart TV, lavarropas y colchones, separados por presupuesto. Cada regalo está
             comparado contra el precio más bajo que registramos, así sabés si el descuento es de verdad.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-pink-400/30 bg-pink-500/[0.07] p-5 sm:p-6">
+          <div className="mt-3 sm:mt-6 rounded-2xl border border-pink-400/30 bg-pink-500/[0.07] p-4 sm:p-6">
             <p className="text-xs font-bold uppercase tracking-wider text-pink-300">Tercer domingo de octubre · {estado}</p>
-            <p className="mt-2 font-display text-2xl sm:text-3xl font-black text-zinc-50 [text-wrap:balance]">
+            <p className="mt-1 sm:mt-2 font-display text-xl sm:text-3xl font-black text-zinc-50 [text-wrap:balance]">
               Domingo 18 de octubre de {AÑO}
             </p>
-            <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+            <p className="hidden sm:block mt-2 text-sm text-zinc-400 leading-relaxed">
               {dias > 7
                 ? 'Si comprás en Mercado Libre, apuntá a tenerlo pedido una semana antes: mirá la fecha de entrega antes de pagar.'
                 : dias >= 0

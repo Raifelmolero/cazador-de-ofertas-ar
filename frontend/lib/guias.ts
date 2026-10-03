@@ -2501,6 +2501,107 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-bicicleta-comprar',
+    titulo: '¿Qué bicicleta comprar? Urbana, mountain bike, ruta, plegable o eléctrica',
+    descripcion:
+      'Cómo elegir bicicleta en Argentina: urbana o de paseo, mountain bike, ruta, plegable o eléctrica; rodado según la altura, talle de cuadro, cambios y frenos (V-brake o disco), material del cuadro, qué sumar (casco, candado, luces) y bicis para chicos por rodado.',
+    pregunta: '¿Qué bicicleta conviene comprar?',
+    respuestaCorta:
+      'Depende de por dónde vas a andar. Para la ciudad y paseos, una urbana o de paseo; para tierra y calles rotas, una mountain bike; para asfalto y velocidad, una de ruta; si tenés poco lugar o la combinás con transporte, una plegable; y si querés pedalear con menos esfuerzo en distancias largas, una eléctrica. Después elegí el talle de cuadro según tu altura, el tipo de frenos y sumá casco, candado y luces.',
+    secciones: [
+      {
+        h: 'Urbana, mountain bike, ruta, plegable o eléctrica',
+        p: [
+          'Urbana o de paseo: posición erguida y cómoda, muchas veces con canasto, guardabarros y portaequipaje. Ideal para moverse por la ciudad, ir al trabajo o pasear.',
+          'Mountain bike (MTB): cubiertas anchas con taco, suspensión delantera en la mayoría y cambios para las subidas. Es la más versátil para calles en mal estado, tierra y senderos, aunque en asfalto liso es más lenta.',
+          'Ruta: liviana, con cubiertas finas y manubrio curvo. Es la más rápida en asfalto, pero menos cómoda y no sirve para tierra ni pozos.',
+          'Plegable: se dobla para guardarla en un departamento, en el baúl o llevarla en el tren. Suele tener rodado chico, así que rinde en trayectos cortos y medianos.',
+          'Eléctrica: tiene un motor de asistencia y una batería que ayudan al pedalear. Rinde en distancias largas o zonas con pendientes; pesa más y hay que cargar la batería. Antes de comprar, revisá qué exige la normativa de tu ciudad para circular.',
+        ],
+      },
+      {
+        h: 'Rodado según la altura',
+        p: [
+          'El rodado es el diámetro de la rueda en pulgadas. En adultos, los más comunes son 26, 27,5 y 29 en mountain bike, y 700c (parecido al 28) en ruta y muchas urbanas.',
+          'Como regla general, las personas más bajas andan más cómodas con rodados más chicos y las más altas con rodados más grandes. Un rodado grande pasa mejor los pozos y mantiene la velocidad; uno chico es más ágil y liviano.',
+          'Cada marca publica su propia tabla de medidas: guiate por la del modelo que te interesa y, si podés, probalo antes.',
+        ],
+      },
+      {
+        h: 'Talle de cuadro',
+        p: [
+          'Además del rodado, importa el talle del cuadro (S, M, L, XL, o en centímetros o pulgadas). Es lo que define si la bici te queda bien.',
+          'Una prueba simple: parado sobre el cuadro con los pies apoyados, tiene que quedarte espacio entre el caño superior y la entrepierna. Sentado, con el pedal abajo, la pierna debe quedar casi estirada, sin trabar la rodilla.',
+          'Si estás entre dos talles, el más chico suele ser más manejable y el más grande, más estable. El asiento y el manubrio permiten ajustar un poco, pero no corrigen un cuadro de talle equivocado.',
+        ],
+      },
+      {
+        h: 'Cambios y frenos: V-brake o disco',
+        p: [
+          'Cambios: para andar por la ciudad en llano alcanzan pocos cambios o incluso una sola velocidad. Si hay subidas o vas a hacer tierra, más cambios ayudan a dosificar el esfuerzo.',
+          'V-brake: frenos de zapata que aprietan el aro. Son simples, baratos y fáciles de regular, pero pierden fuerza con lluvia o barro.',
+          'Disco mecánico: funciona con cable y frena mejor que el V-brake, también mojado. Es un buen punto medio.',
+          'Disco hidráulico: el que mejor frena y el que menos fuerza pide en la mano. Su mantenimiento es algo más técnico (hay que purgarlo cada tanto).',
+        ],
+      },
+      {
+        h: 'Material del cuadro: acero o aluminio',
+        p: [
+          'Acero: resistente, absorbe bien las vibraciones y es fácil de reparar. Es más pesado y se puede oxidar si no se cuida.',
+          'Aluminio: más liviano y no se oxida como el acero. Es el material más común en mountain bikes y urbanas de gama media; se siente un poco más rígido al andar.',
+        ],
+      },
+      {
+        h: 'Qué sumar: casco, candado y luces',
+        p: [
+          'Casco: el accesorio más importante. Tiene que quedar firme, sin bailar, y siempre abrochado.',
+          'Candado: si la vas a dejar en la calle, conviene uno resistente (tipo U o cadena gruesa) y atar el cuadro, no solo una rueda.',
+          'Luces: blanca adelante y roja atrás, para ver y que te vean de noche. Sumá timbre y, si la usás para ir al trabajo, un portaequipaje o canasto.',
+        ],
+      },
+      {
+        h: 'Bicicleta para chicos por rodado',
+        p: [
+          'En chicos, la bici se elige por rodado según la edad y sobre todo la altura: los más chiquitos arrancan con rodados chicos (12 o 16, muchas veces con rueditas) y van pasando a 20 y 24 a medida que crecen.',
+          'Lo importante es que, sentado, apoye los pies en el piso o casi, para que se sienta seguro. No compres una bici muy grande para que le dure: es más difícil de manejar y menos segura.',
+          'Para los más chicos, una bici de equilibrio (sin pedales) ayuda a aprender a mantenerse antes de pasar a una con pedales.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio varía mucho según tipo, material, cambios y frenos. No damos un precio fijo: en la categoría de bicicletas están las que están en oferta hoy, con el precio actual y el descuento verificado.',
+        ],
+      },
+    ],
+    categoria: { slug: 'bicicletas', nombre: 'bicicletas' },
+    cta: { href: '/categoria/bicicletas', titulo: 'Bicicletas en oferta hoy', boton: 'Ver bicicletas en oferta 🚲' },
+    faq: [
+      {
+        q: '¿Qué bicicleta conviene para andar por la ciudad?',
+        a: 'Una urbana o de paseo si las calles están en buen estado; si hay muchos pozos o querés usarla también en tierra, una mountain bike es más versátil.',
+      },
+      {
+        q: '¿Qué rodado necesito según mi altura?',
+        a: 'Como regla general, a más altura, rodado y talle de cuadro más grandes. Lo más confiable es la tabla de medidas de la marca del modelo que elijas y, si podés, probarla.',
+      },
+      {
+        q: '¿Son mejores los frenos a disco que los V-brake?',
+        a: 'Frenan mejor, sobre todo con lluvia o barro. El disco hidráulico es el que mejor frena; el V-brake es más simple y barato de mantener.',
+      },
+      {
+        q: '¿Conviene una bicicleta de acero o de aluminio?',
+        a: 'El aluminio es más liviano y no se oxida como el acero; el acero es resistente, cómodo y fácil de reparar, pero más pesado.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/bicicletas', texto: 'Bicicletas en oferta' },
+      { href: '/guias/que-smartwatch-comprar', texto: 'Qué smartwatch comprar' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2508,6 +2609,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-bicicleta-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'aire-acondicionado-portatil-o-split': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-ventilador-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

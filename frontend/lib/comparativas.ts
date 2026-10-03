@@ -493,6 +493,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-aspiradoras',
+    guia: 'que-aspiradora-comprar',
     nombre: 'aspiradoras',
     titulo: `Mejores aspiradoras y robots aspiradores en oferta ${AÑO}: comparativa`,
     descripcion:

@@ -1866,6 +1866,77 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-aspiradora-comprar',
+    titulo: '¿Qué aspiradora comprar? De arrastre, vertical, robot o de mano',
+    descripcion:
+      'Cómo elegir una aspiradora en Argentina: de arrastre, vertical inalámbrica, robot o de mano; potencia y succión, filtro HEPA, batería, mascotas, tipo de piso, ruido y mantenimiento.',
+    pregunta: '¿Qué aspiradora conviene comprar?',
+    respuestaCorta:
+      'Si tenés alfombras o una casa grande, la de arrastre con cable da la succión más pareja y no depende de una batería. Para pasadas rápidas en departamento, una vertical inalámbrica es lo más práctico: mirá la autonomía en minutos y si la batería se puede cambiar. Un robot aspiradora sirve para el mantenimiento diario sin esfuerzo, mejor si tiene mapeo. Con mascotas buscá cepillo antienredos y, si hay alergias, filtro HEPA.',
+    secciones: [
+      {
+        h: 'Qué tipo de aspiradora te conviene',
+        p: [
+          'De arrastre (con cable): la clásica con cuerpo y manguera. Suele tener más succión sostenida y más capacidad de depósito; conviene para casas grandes, alfombras y limpiezas a fondo. Es más pesada y ocupa más lugar.',
+          'Vertical o escoba inalámbrica: liviana, se guarda parada y muchas se convierten en aspiradora de mano. Ideal para departamentos y pasadas diarias. La limita la batería.',
+          'Robot aspiradora: limpia solo mientras no estás. No reemplaza una limpieza a fondo, pero mantiene el piso. Los que tienen mapeo recorren ordenado; los de navegación aleatoria tardan más y dejan zonas. Algunos también pasan el trapo.',
+          'De mano: chica, para el auto, el sillón, migas o pelos puntuales. Es un complemento, no la aspiradora principal.',
+        ],
+      },
+      {
+        h: 'Potencia, succión, filtro y batería',
+        p: [
+          'La potencia en watts indica cuánto consume el motor, no exactamente cuánto aspira. Si el fabricante informa la succión (en Pa o en AW), es un dato más útil para comparar modelos del mismo tipo. A mayor succión, mejor rinde en alfombras.',
+          'Filtro HEPA: retiene partículas finas como polvo y polen; conviene si en casa hay alergias o asma. Fijate si es lavable o si hay que comprar repuesto.',
+          'Batería (verticales, robots y de mano): mirá la autonomía en minutos, que suele bajar en el modo de máxima potencia, el tiempo de carga y si la batería es reemplazable.',
+          'Si la vas a usar mucho, podés estimar el gasto de luz con la potencia del modelo en la calculadora de consumo eléctrico.',
+        ],
+      },
+      {
+        h: 'Mascotas, tipo de piso y ruido',
+        p: [
+          'Con perros o gatos: buscá cepillo antienredos o de goma (el pelo se enrosca menos), accesorio para tapizados y buen filtro.',
+          'Pisos duros (cerámica, porcelanato, madera): casi cualquier tipo rinde; cuidá que el cepillo no raye la madera. Alfombras: conviene más succión y cepillo giratorio.',
+          'Ruido: si el fabricante lo informa en decibeles (dB), menos es más silenciosa. Importa sobre todo en robots que van a andar mientras estás en casa.',
+        ],
+      },
+      {
+        h: 'Mantenimiento y cuánto sale',
+        p: [
+          'Con bolsa o sin bolsa: las sin bolsa (depósito) no tienen gasto en bolsas, pero hay que vaciarlas y limpiar el filtro seguido. Revisá que haya repuestos de filtros, cepillos y batería en el país, y la garantía.',
+          'El precio cambia mucho según el tipo y la marca, así que no damos un precio fijo: en la comparativa de aspiradoras están las que están en oferta hoy, con el precio actual y el mínimo que registramos para cada una.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aspiradoras', nombre: 'aspiradoras' },
+    comparativa: 'mejores-aspiradoras',
+    cta: { href: '/mejores/mejores-aspiradoras', titulo: 'Aspiradoras en oferta hoy, comparadas', boton: 'Ver la comparativa de aspiradoras 🧹' },
+    faq: [
+      {
+        q: '¿Qué conviene, aspiradora vertical o de arrastre?',
+        a: 'La de arrastre con cable conviene para casas grandes, alfombras y limpiezas a fondo. La vertical inalámbrica es más práctica para departamentos y pasadas rápidas, aunque depende de la batería.',
+      },
+      {
+        q: '¿Vale la pena un robot aspiradora?',
+        a: 'Sirve para mantener el piso limpio todos los días sin esfuerzo, pero no reemplaza una limpieza a fondo. Conviene que tenga mapeo para que recorra ordenado.',
+      },
+      {
+        q: '¿Qué aspiradora conviene si tengo mascotas?',
+        a: 'Una con buena succión, cepillo antienredos o de goma, accesorio para tapizados y filtro HEPA si hay alergias en casa.',
+      },
+      {
+        q: '¿Para qué sirve el filtro HEPA?',
+        a: 'Retiene partículas muy finas como polvo y polen, así no vuelven al aire. Es recomendable si en casa hay alergias o asma.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-aspiradoras', texto: 'Comparativa de aspiradoras' },
+      { href: '/guias/que-regalar-el-dia-de-la-madre', texto: 'Qué regalar el Día de la Madre' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1873,6 +1944,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-aspiradora-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-monitor-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

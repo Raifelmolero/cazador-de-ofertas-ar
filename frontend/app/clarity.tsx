@@ -46,9 +46,11 @@ export default function Clarity() {
       e => {
         const a = (e.target as Element | null)?.closest?.('a[href*="mercadolibre.com"]')
         if (!a) return
+        // window.clarity en el momento del clic: el script real reemplaza al stub al cargar
+        const c = w.clarity as (...args: unknown[]) => void
         const pagina = window.location.pathname.split('/').slice(0, 2).join('/') || '/'
-        clarity('set', 'click_ml_pagina', pagina)
-        clarity('event', a.closest('[data-destacada]') ? 'click_ml_destacada' : 'click_ml')
+        c('set', 'click_ml_pagina', pagina)
+        c('event', a.closest('[data-destacada]') ? 'click_ml_destacada' : 'click_ml')
       },
       true,
     )

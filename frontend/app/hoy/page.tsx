@@ -12,6 +12,7 @@ import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
+import AtajosVerano from '@/components/AtajosVerano'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
@@ -343,6 +344,7 @@ export default function HoyPage() {
 
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
       <BannerTemporada />
+      <AtajosVerano />
 
       {/* Grid con búsqueda y filtros */}
       <section id="ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 scroll-mt-16">

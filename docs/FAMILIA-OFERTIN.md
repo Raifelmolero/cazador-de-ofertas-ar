@@ -156,3 +156,4 @@ Prompt: *Navidad de verano en patio argentino con luces, pileta de lona y mesa l
 - Faltan: Benja, Gustavo el cuñado, Doña Chola, el perro Precio.
 - ChatGPT agotó el cupo de imágenes del plan gratis; se renueva al día siguiente ~17:27.
 - Raifel tiene que bajar todas las hojas a la carpeta DON OFERTÍN (Brave bloquea mis descargas).
+- 03/10: procesadas en docs/personaje/: video/ (ofertin-360-3d, poses-3d, escenarios-3d, storyboard-senora-cuanto-salio), familia/ (dona-rosa-360, juli-360, tincho-360), estilos-3d, variantes-estilo, post-halloween, avatar-v2 (ojos corregidos; ya es el avatar de la web). Faltan bajar: Marce y storyboard Cyber Monday.

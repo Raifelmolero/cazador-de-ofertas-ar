@@ -28,6 +28,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Instalar Pillow (placa de la cacería)
+        run: pip install --quiet Pillow
+
       - name: Enviar reporte
         working-directory: bot
         env:

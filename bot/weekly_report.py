@@ -19,6 +19,7 @@ import re
 import sys
 import unicodedata
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from cazador_bot import (
     BASE_DIR,
@@ -510,7 +511,45 @@ def main() -> int:
         alert_admin(token, cfg["admin_chat"], parte, dry)
         if not dry:
             print(parte)
+    enviar_placa_caceria(token, cfg["admin_chat"], dry)
     return 0
+
+
+def enviar_placa_caceria(token: str, admin: str, dry: bool) -> None:
+    """Manda al admin la placa "Cacería de la semana" (tools/caceria_semana.py)
+    como archivo, lista para el post del domingo. Best-effort."""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent / "tools"))
+        import caceria_semana  # requiere Pillow
+        items = caceria_semana.top_semana(caceria_semana.cargar())
+        if not items:
+            return
+        out = caceria_semana.render(items, Path(__file__).resolve().parent / "stories" / "caceria-semana.jpg")
+        if dry:
+            print(f"[DRY] placa cacería en {out}")
+            return
+        import urllib.request
+        import uuid
+        limite = uuid.uuid4().hex
+        caption = ("🎯 Cacería de la semana lista para el post del domingo. "
+                   "Subila con el caption: las 5 mejores con precio verificado, link en la bio.")
+        crlf = chr(13) + chr(10)
+        cab = 'Content-Disposition: form-data; name="{}"'
+        partes = [
+            f"--{limite}{crlf}{cab.format('chat_id')}{crlf}{crlf}{admin}{crlf}".encode(),
+            f"--{limite}{crlf}{cab.format('caption')}{crlf}{crlf}{caption}{crlf}".encode(),
+            (f"--{limite}{crlf}{cab.format('document')}; filename=\"caceria-semana.jpg\"{crlf}"
+             f"Content-Type: image/jpeg{crlf}{crlf}").encode(),
+            out.read_bytes(),
+            f"{crlf}--{limite}--{crlf}".encode(),
+        ]
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendDocument", data=b"".join(partes),
+            headers={"Content-Type": f"multipart/form-data; boundary={limite}"},
+        )
+        urllib.request.urlopen(req, timeout=60).read()
+    except Exception as e:  # noqa: BLE001 — la placa nunca frena el reporte
+        print(f"[warn] placa de la cacería no enviada: {e}")
 
 
 if __name__ == "__main__":

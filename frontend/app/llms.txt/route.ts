@@ -202,7 +202,19 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué celular comprar según presupuesto](https://cazadordeofertas.com.ar/guias/que-celular-comprar-segun-presupuesto),
   [qué celular de gama alta comprar](https://cazadordeofertas.com.ar/guias/que-celular-gama-alta-comprar),
   [qué smart TV comprar](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar),
-  y [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa):
+  [qué taladro comprar](https://cazadordeofertas.com.ar/guias/que-taladro-comprar-para-la-casa),
+  [aire acondicionado portátil o split](https://cazadordeofertas.com.ar/guias/aire-acondicionado-portatil-o-split),
+  [qué ventilador comprar](https://cazadordeofertas.com.ar/guias/que-ventilador-comprar),
+  [qué pileta comprar](https://cazadordeofertas.com.ar/guias/que-pileta-comprar),
+  [qué muebles de jardín comprar](https://cazadordeofertas.com.ar/guias/que-muebles-de-jardin-comprar),
+  [qué freezer comprar](https://cazadordeofertas.com.ar/guias/que-freezer-comprar),
+  [qué cocina comprar](https://cazadordeofertas.com.ar/guias/que-cocina-comprar),
+  [qué monitor comprar](https://cazadordeofertas.com.ar/guias/que-monitor-comprar),
+  [qué aspiradora comprar](https://cazadordeofertas.com.ar/guias/que-aspiradora-comprar),
+  [qué smartwatch comprar](https://cazadordeofertas.com.ar/guias/que-smartwatch-comprar),
+  [qué tablet comprar](https://cazadordeofertas.com.ar/guias/que-tablet-comprar),
+  [qué cafetera comprar](https://cazadordeofertas.com.ar/guias/que-cafetera-comprar)
+  y [qué termotanque comprar](https://cazadordeofertas.com.ar/guias/que-termotanque-comprar):
   guías con respuesta corta citable.
 
 ## Canales y alertas

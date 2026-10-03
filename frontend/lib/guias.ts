@@ -1518,6 +1518,213 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-termotanque-comprar',
+    titulo: '¿Qué termotanque comprar? Litros, gas o eléctrico y recuperación',
+    descripcion:
+      'Cómo elegir un termotanque en Argentina: cuántos litros según cuántos viven, gas natural, envasado o eléctrico, recuperación por hora, instalación y consumo.',
+    pregunta: '¿Qué termotanque conviene comprar?',
+    respuestaCorta:
+      'Como referencia, elegí unos 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos. Si tenés gas natural, el termotanque a gas suele salir más barato de usar y recupera más rápido; el eléctrico no necesita salida de gases y se instala en más lugares, pero gasta más luz. Mirá la recuperación en litros por hora y la etiqueta de eficiencia energética, y hacé instalar el de gas por un gasista matriculado.',
+    secciones: [
+      {
+        h: 'Cuántos litros según cuántos viven',
+        p: [
+          'La capacidad depende de cuánta agua caliente usan seguido, no solo de cuántos son. Como referencia: 50 litros para 1 o 2 personas, 80 litros para 3 o 4, y 120 litros o más si son 5 o más o se duchan uno atrás del otro.',
+          'Si te quedás corto, el agua se enfría en la segunda o tercera ducha. Si te pasás, gastás más manteniendo caliente agua que no usás.',
+        ],
+      },
+      {
+        h: 'Gas o eléctrico',
+        p: [
+          'A gas (natural o envasado): con gas natural suele ser lo más barato de usar y recupera más rápido. Necesita salida de gases al exterior y ventilación según la normativa, y lo tiene que instalar un gasista matriculado. Confirmá que el modelo sea para tu tipo de gas.',
+          'Eléctrico: no necesita salida de gases, así que entra en departamentos o lugares sin conexión de gas. Suele gastar más energía; podés estimar el costo por mes en la calculadora de consumo eléctrico con la potencia del modelo.',
+          'Si vas a cambiar de gas a eléctrico o al revés, sumá al presupuesto la instalación nueva.',
+        ],
+      },
+      {
+        h: 'Recuperación, eficiencia y medidas',
+        p: [
+          'Recuperación (litros por hora): cuántos litros calienta en una hora. Cuanto más alta, menos esperás entre una ducha y otra.',
+          'Etiqueta de eficiencia energética: es obligatoria en Argentina para estos equipos (Secretaría de Energía, normas IRAM). Compará la clase entre modelos del mismo tamaño.',
+          'Medí el lugar: alto, diámetro y si va de pie o colgado. Revisá la garantía del tanque y que haya service oficial en tu zona.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'Es un equipo de ticket alto y el precio cambia mucho según litros, tipo y marca. No damos un precio fijo: en la comparativa de termotanques están los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    categoria: { slug: 'termotanques', nombre: 'termotanques' },
+    comparativa: 'mejores-termotanques',
+    cta: { href: '/mejores/mejores-termotanques', titulo: 'Termotanques en oferta hoy, comparados', boton: 'Ver la comparativa de termotanques 🚿' },
+    faq: [
+      {
+        q: '¿De cuántos litros tiene que ser el termotanque?',
+        a: 'Como referencia, 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos.',
+      },
+      {
+        q: '¿Qué conviene, termotanque a gas o eléctrico?',
+        a: 'Con gas natural, el de gas suele ser más barato de usar y recupera más rápido. El eléctrico conviene donde no hay gas o no se puede hacer salida de gases, aunque gasta más luz.',
+      },
+      {
+        q: '¿Qué es la recuperación de un termotanque?',
+        a: 'Son los litros de agua que calienta por hora. Cuanto más alta, menos tiempo esperás para tener agua caliente de nuevo.',
+      },
+      {
+        q: '¿Puedo instalar el termotanque yo mismo?',
+        a: 'El de gas lo tiene que instalar un gasista matriculado, con la salida de gases y la ventilación que pide la normativa. El eléctrico necesita una instalación eléctrica adecuada a su potencia.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-termotanques', texto: 'Comparativa de termotanques' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+      { texto: 'ENARGAS: instalaciones de gas y gasistas matriculados', url: 'https://www.enargas.gob.ar/' },
+    ],
+  },
+  {
+    slug: 'que-tablet-comprar',
+    titulo: '¿Qué tablet comprar? Pantalla, RAM, memoria y para qué la vas a usar',
+    descripcion:
+      'Cómo elegir una tablet en Argentina: tamaño de pantalla, RAM y almacenamiento, Android o iPad, chip LTE, lápiz y qué conviene para estudiar, leer, ver series o para chicos.',
+    pregunta: '¿Qué tablet conviene comprar?',
+    respuestaCorta:
+      'Elegí primero para qué la vas a usar: para leer y llevar alcanza una de 8 pulgadas; para series, clases o trabajar conviene una de 10 u 11 pulgadas. Buscá como mínimo 4 GB de RAM y 64 GB de almacenamiento, y mejor 8 GB y 128 GB si la vas a usar para estudiar, dibujar o con muchas apps. Fijate si acepta microSD, si tiene versión con chip (LTE) y cuántos años de actualizaciones da el fabricante.',
+    secciones: [
+      {
+        h: 'Tamaño de pantalla según el uso',
+        p: [
+          '8 pulgadas: liviana y fácil de llevar; sirve para leer, redes y videos cortos.',
+          '10 u 11 pulgadas: la más versátil para series, clases virtuales, videollamadas y trabajar con teclado.',
+          '12 pulgadas o más: para dibujar, editar o reemplazar una notebook liviana; es más cara y pesa más.',
+        ],
+      },
+      {
+        h: 'RAM, almacenamiento y actualizaciones',
+        p: [
+          'RAM: 4 GB como piso para que no se trabe; 8 GB si usás varias apps a la vez o la querés para estudiar o trabajar.',
+          'Almacenamiento: 64 GB como mínimo; 128 GB si guardás fotos, series descargadas o juegos. Revisá si acepta tarjeta microSD para ampliar.',
+          'Actualizaciones: los años de actualizaciones de sistema y seguridad que promete el fabricante dicen cuánto te va a durar. Las tablets muy baratas de marcas sin respaldo suelen quedarse sin actualizaciones rápido.',
+        ],
+      },
+      {
+        h: 'Android o iPad, chip y accesorios',
+        p: [
+          'Android: hay de todos los precios y la mayoría acepta microSD. iPad: suele durar más años con actualizaciones, pero no acepta microSD y es más cara en Argentina.',
+          'Wi-Fi o LTE: la versión con chip te deja usarla fuera de casa sin compartir datos del celular, y cuesta más.',
+          'Lápiz y teclado: si los vas a usar, confirmá que el modelo sea compatible y si vienen incluidos o se compran aparte.',
+          'Para chicos: una funda resistente, control parental y buena batería importan más que el procesador.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'El precio cambia mucho entre marcas, tamaños y memorias, y entre semanas. No damos un precio fijo: en la comparativa de tablets tenés las que están en oferta hoy, con el precio actual y el mínimo que registramos para cada una. Preferí tienda oficial o vendedor con garantía en Argentina.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-tablets',
+    cta: { href: '/mejores/mejores-tablets', titulo: 'Tablets en oferta hoy, comparadas', boton: 'Ver la comparativa de tablets 📱' },
+    faq: [
+      {
+        q: '¿Cuánta RAM tiene que tener una tablet?',
+        a: '4 GB como mínimo para un uso básico; 8 GB si la vas a usar para estudiar, trabajar o con varias apps abiertas a la vez.',
+      },
+      {
+        q: '¿Qué tamaño de tablet conviene?',
+        a: '8 pulgadas para leer y llevar; 10 u 11 pulgadas para series, clases y trabajar; 12 pulgadas o más para dibujar o reemplazar una notebook liviana.',
+      },
+      {
+        q: '¿Conviene una tablet con chip (LTE)?',
+        a: 'Solo si la vas a usar seguido fuera de casa sin Wi-Fi. Si no, la versión Wi-Fi es más barata y podés compartir datos desde el celular.',
+      },
+      {
+        q: '¿Qué tablet le compro a un chico?',
+        a: 'Una con buena batería, funda resistente y control parental. No hace falta la más potente; sí que tenga garantía y actualizaciones.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-tablets', texto: 'Comparativa de tablets' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/guias/que-regalar-el-dia-de-la-madre', texto: 'Qué regalar el Día de la Madre' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
+  {
+    slug: 'que-cafetera-comprar',
+    titulo: '¿Qué cafetera comprar? Espresso, cápsulas o de filtro',
+    descripcion:
+      'Cómo elegir una cafetera en Argentina: de filtro, espresso o de cápsulas, presión, vaporizador para leche, molinillo, costo por taza y limpieza.',
+    pregunta: '¿Qué cafetera conviene comprar?',
+    respuestaCorta:
+      'Depende de cómo tomás el café: una de filtro si hacés varias tazas juntas y te gusta el café suave; una espresso si te gusta concentrado o con leche espumada (fijate que traiga vaporizador); una de cápsulas si priorizás rapidez y limpieza, sabiendo que cada taza sale más cara. Antes de comprar, mirá que el depósito de agua y la bandeja se saquen fácil y que consigas el café o las cápsulas que usa.',
+    secciones: [
+      {
+        h: 'Filtro, espresso o cápsulas',
+        p: [
+          'De filtro (goteo): hace varias tazas juntas y es la más simple y barata de usar. Café más suave; ideal para la oficina o si toman varios en casa.',
+          'Espresso: café concentrado, base para cortado, latte o capuchino. Si te gusta con leche, buscá que traiga vaporizador (lanza de vapor). Pide café molido fino o en grano si tiene molinillo integrado.',
+          'De cápsulas: la más rápida y la que menos se ensucia. La máquina suele costar menos, pero cada taza sale más cara; confirmá que consigas cápsulas originales o compatibles en Argentina.',
+        ],
+      },
+      {
+        h: 'Qué mirar en una espresso',
+        p: [
+          'Presión: la mayoría de las hogareñas indica 15 a 20 bares; más bares no siempre es mejor café, importa que la temperatura sea estable.',
+          'Vaporizador: si tomás café con leche, es lo que más vas a usar.',
+          'Molinillo integrado: las superautomáticas muelen el grano en el momento; son más caras y ocupan más lugar. Si no tiene, podés comprar café ya molido para espresso.',
+          'Portafiltro presurizado o no: el presurizado perdona más si el molido no es perfecto; es lo más cómodo para empezar.',
+        ],
+      },
+      {
+        h: 'Limpieza, tamaño y garantía',
+        p: [
+          'Que el depósito de agua y la bandeja de goteo se saquen fácil: la limpieza diaria es lo que más se usa. Las espresso necesitan descalcificar cada tanto según el agua de tu zona.',
+          'Medí el lugar en la mesada, sobre todo en altura si vas a usar tazas grandes. Preferí tienda oficial o vendedor con garantía y service en Argentina.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'Hay de todos los precios: las de filtro son las más baratas y las superautomáticas son de ticket alto. No damos un precio fijo: en la comparativa de cafeteras tenés las que están en oferta hoy, con el precio actual y el mínimo que registramos para cada una.',
+        ],
+      },
+    ],
+    categoria: { slug: 'electro-de-cocina', nombre: 'electro de cocina' },
+    comparativa: 'mejores-cafeteras',
+    cta: { href: '/mejores/mejores-cafeteras', titulo: 'Cafeteras en oferta hoy, comparadas', boton: 'Ver la comparativa de cafeteras ☕' },
+    faq: [
+      {
+        q: '¿Qué es mejor, cafetera de cápsulas o espresso?',
+        a: 'La de cápsulas es más rápida y limpia, pero cada taza sale más cara. La espresso da más control y el café por taza es más barato, a cambio de más limpieza.',
+      },
+      {
+        q: '¿Cuántos bares tiene que tener una cafetera espresso?',
+        a: 'Las hogareñas suelen indicar 15 a 20 bares, y alcanza. Más bares no garantiza mejor café: importa más la estabilidad de la temperatura y el molido.',
+      },
+      {
+        q: '¿Conviene una cafetera con molinillo?',
+        a: 'Si tomás mucho café y querés el mejor sabor, sí: muele en el momento. Es más cara y ocupa más lugar; si no, alcanza con café ya molido para espresso.',
+      },
+      {
+        q: '¿Qué cafetera regalar el Día de la Madre?',
+        a: 'Pensá en cómo toma el café: de cápsulas si quiere algo práctico, espresso con vaporizador si le gusta el café con leche, de filtro si hacen varias tazas juntas.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-cafeteras', texto: 'Comparativa de cafeteras' },
+      { href: '/guias/que-regalar-el-dia-de-la-madre', texto: 'Qué regalar el Día de la Madre' },
+      { href: '/guias/que-freidora-de-aire-comprar', texto: 'Qué freidora de aire comprar' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -1525,6 +1732,9 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-silla-gamer-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'como-saber-si-un-descuento-de-mercado-libre-es-real': { publicada: '2026-09-21', modificada: '2026-09-21' },
   'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre': { publicada: '2026-09-21', modificada: '2026-09-21' },

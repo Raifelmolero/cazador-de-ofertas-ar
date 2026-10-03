@@ -472,6 +472,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Recuperación (litros por hora): cuanto más alta, menos esperás entre una ducha y otra.',
       'La instalación a gas la tiene que hacer un gasista matriculado.',
     ],
+    guia: 'que-termotanque-comprar',
   },
   {
     slug: 'mejores-freezers',
@@ -572,6 +573,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Cápsulas: la máquina suele ser barata, pero cada taza sale más cara; confirmá que consigas cápsulas compatibles.',
       'Que el depósito de agua y la bandeja de goteo se saquen fácil: la limpieza diaria es lo que más se usa.',
     ],
+    guia: 'que-cafetera-comprar',
   },
   {
     slug: 'mejores-microondas',
@@ -757,6 +759,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Fijate si acepta tarjeta microSD para ampliar la memoria y si tiene versión con chip (LTE) si la querés usar fuera de casa.',
       'Para chicos: una funda resistente y control parental importan más que el procesador.',
     ],
+    guia: 'que-tablet-comprar',
   },
   {
     slug: 'mejores-smartwatch',

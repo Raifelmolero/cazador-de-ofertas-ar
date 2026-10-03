@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import Clarity from './clarity'
+import ClicsML from './clics-ml'
 
 const inter = Inter({ subsets: ['latin'] })
 // Fuente de titulares y precios: le da carácter propio a la marca de ofertas
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} ${display.variable} bg-zinc-950 text-white antialiased`}>
         {children}
         <Clarity />
+        <ClicsML />
         <Analytics />
         <SpeedInsights />
       </body>

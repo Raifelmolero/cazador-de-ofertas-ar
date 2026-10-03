@@ -39,6 +39,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const fechas = fechasGuia(g.slug)
   const org = { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL }
 
+  const ctaHref = g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL
+  const ctaBoton = g.cta ? g.cta.boton : g.categoria ? `Ver ${g.categoria.nombre} en oferta 🎯` : 'Ver las ofertas de hoy 🎯'
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -99,6 +102,12 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>
           <p className="text-zinc-200 leading-relaxed">{g.respuestaCorta}</p>
+          <a
+            href={ctaHref}
+            className="mt-4 flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black hover:bg-yellow-300 transition-colors"
+          >
+            {ctaBoton}
+          </a>
         </div>
 
         {g.secciones.map(s => (
@@ -232,6 +241,13 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </ul>
         </nav>
       </article>
+      {/* Celular: el botón de compra siempre a mano mientras lee */}
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3">
+        <a href={ctaHref} className="block rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black">
+          {ctaBoton}
+        </a>
+      </div>
+      <div className="sm:hidden h-20" aria-hidden="true" />
       <Footer brand="ofertas" />
     </main>
   )

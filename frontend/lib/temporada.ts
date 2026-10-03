@@ -18,7 +18,7 @@ export interface Temporada {
   hasta: string
   /** true si `hasta` es EL día de la fecha (muestra "faltan N días") */
   cuenta?: boolean
-  /** ilustración de Don Ofertín (public/personaje), apaisada 480x266 */
+  /** ilustración de Don Ofertín (public/personaje), apaisada, 480 px de ancho */
   escena?: string
 }
 
@@ -72,6 +72,7 @@ export const TEMPORADAS: Temporada[] = [
     texto: 'text-green-200',
     desde: diaSiguiente(BLACK_FRIDAY.fecha),
     hasta: '2027-01-06',
+    escena: '/personaje/escena-navidad.webp',
   },
 ]
 

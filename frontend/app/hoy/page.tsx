@@ -15,7 +15,7 @@ import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
-import { CATEGORIAS } from '@/lib/categorias'
+import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
@@ -52,8 +52,16 @@ export const metadata: Metadata = {
   },
 }
 
+// "La caza del día" (la 1ª tarjeta) la ve casi todo el que entra desde la bio:
+// que sea algo de casa con buen descuento, no equipamiento industrial.
+function conDestacada<T extends { titulo: string; descuento_pct?: number; minimo_historico?: boolean }>(lista: T[]): T[] {
+  const gastro = getCategoria('equipamiento-gastronomico')
+  const i = lista.findIndex(o => (!gastro || !enCategoria(gastro, o.titulo)) && ((o.descuento_pct ?? 0) >= 20 || o.minimo_historico))
+  return i > 0 ? [lista[i], ...lista.slice(0, i), ...lista.slice(i + 1)] : lista
+}
+
 export default function HoyPage() {
-  const ofertas = getOfertas()
+  const ofertas = conDestacada(getOfertas())
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
   const estudio = getEstudio()

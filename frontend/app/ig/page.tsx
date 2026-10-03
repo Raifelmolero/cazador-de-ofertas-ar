@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { getOfertas } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import type { OfertaLight } from '@/components/OfertaCard'
@@ -127,12 +128,12 @@ export default function InstagramPage() {
             </div>
           </>
         )}
-        <a
+        <Link
           href="/#ofertas"
           className="mt-8 flex items-center justify-center rounded-2xl bg-yellow-400 px-5 py-4 text-lg font-black text-black active:scale-[0.98] transition-transform"
         >
           🔥 Ver todas las ofertas de hoy
-        </a>
+        </Link>
         <a
           href={WHATSAPP_URL}
           target="_blank"

@@ -938,6 +938,24 @@ def story_kit(deal: dict, affiliate_id: str, word: str,
     ])
 
 
+def send_story_kit(token: str, admin: str, kit: str, story_url: str | None,
+                   dry: bool) -> None:
+    """Manda la placa 9:16 como archivo (sin la compresión de Telegram, para
+    guardarla en el celu y subirla tal cual) con el kit de links como texto
+    al pie. Si no hay placa o falla el envío, va el kit solo."""
+    if dry or not story_url:
+        alert_admin(token, admin, kit, dry, html=True)
+        return
+    try:
+        tg_call(token, "sendDocument", {
+            "chat_id": admin, "document": story_url, "caption": kit[:1024],
+            "parse_mode": "HTML",
+        })
+    except Exception as e:  # noqa: BLE001
+        print(f"[warn] placa de story no enviada como archivo: {e}")
+        alert_admin(token, admin, kit, dry, html=True)
+
+
 def wa_kit(deals: list[dict], affiliate_id: str, word: str,
            paginas: dict[str, str] | None = None) -> str:
     """Mensaje listo para copiar y pegar en el canal de WhatsApp.
@@ -1884,7 +1902,10 @@ def _git_push_file(path: Path, message: str) -> bool:
 
 
 def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool:
-    """Genera la placa 9:16 y la publica como story. Best-effort: nunca frena el bot."""
+    """Genera la placa 9:16 (deja su URL en deal["story_url"]) y, solo si
+    IG_STORY_AUTO=1, la publica como story. Por defecto NO la publica: la API
+    no permite el sticker de link, así que el admin la sube a mano con el kit.
+    Best-effort: nunca frena el bot."""
     if not deal.get("img"):
         return False
     try:
@@ -1912,6 +1933,8 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
     repo = os.getenv("GITHUB_REPOSITORY", "Raifelmolero/cazador-de-ofertas-ar")
     public_url = f"https://raw.githubusercontent.com/{repo}/main/bot/stories/{fname}"
     deal["story_url"] = public_url
+    if os.getenv("IG_STORY_AUTO") != "1":
+        return False
     time.sleep(5)  # margen para que raw.githubusercontent sirva el archivo
 
     container = ig_call(
@@ -2102,10 +2125,10 @@ def main() -> int:
                     dry,
                 )
             # La API no pone stickers: el admin sube la story con los links.
-            alert_admin(
+            send_story_kit(
                 token, cfg["admin_chat"],
                 story_kit(best, affiliate_id, tool_ig, paginas, best.get("story_url")),
-                dry, html=True,
+                best.get("story_url"), dry,
             )
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)

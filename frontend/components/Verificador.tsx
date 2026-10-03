@@ -64,7 +64,7 @@ function conEtiqueta(url: string) {
   }
 }
 
-export default function Verificador() {
+export default function Verificador({ idPrefijo = 'v' }: { idPrefijo?: string }) {
   const [link, setLink] = useState('')
   const [precio, setPrecio] = useState('')
   const [estado, setEstado] = useState<Estado>({ tipo: 'vacio' })
@@ -102,9 +102,9 @@ export default function Verificador() {
   return (
     <div className="w-full">
       <form onSubmit={verificar} className="flex flex-col gap-2 sm:flex-row">
-        <label className="sr-only" htmlFor="v-link">Link del producto en Mercado Libre</label>
+        <label className="sr-only" htmlFor={`${idPrefijo}-link`}>Link del producto en Mercado Libre</label>
         <input
-          id="v-link"
+          id={`${idPrefijo}-link`}
           type="text"
           inputMode="url"
           autoComplete="off"
@@ -113,9 +113,9 @@ export default function Verificador() {
           placeholder="Pegá el link del producto de Mercado Libre"
           className="min-w-0 flex-1 rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3.5 text-[15px] text-zinc-100 placeholder:text-zinc-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30"
         />
-        <label className="sr-only" htmlFor="v-precio">Precio que ves hoy (opcional)</label>
+        <label className="sr-only" htmlFor={`${idPrefijo}-precio`}>Precio que ves hoy (opcional)</label>
         <input
-          id="v-precio"
+          id={`${idPrefijo}-precio`}
           type="text"
           inputMode="numeric"
           value={precio}

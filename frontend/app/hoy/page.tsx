@@ -257,20 +257,18 @@ export default function HoyPage() {
               <p className="mt-1 text-xs text-zinc-400">{ofertas.length.toLocaleString('es-AR')} ofertas{minimos > 0 ? ` · ${minimos} en su mínimo histórico` : ''}</p>
             </div>
           </div>
-          <a
-            href="#ofertas"
-            className="sm:hidden mb-6 flex items-center justify-center gap-2 rounded-2xl bg-yellow-400 px-5 py-4 text-lg font-black text-black shadow-lg shadow-yellow-400/20 active:scale-[0.98] transition-transform"
-          >
-            🔥 Ver las ofertas de hoy
-          </a>
-          <h1 className="font-display text-2xl sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
+          <h1 className="font-display text-base sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
             ¿Ese descuento de Mercado Libre es real?
+            {/* Celular: el verificador va debajo de la grilla; las ofertas primero */}
+            <a href="#verificador-movil" className="sm:hidden ml-1 font-sans text-sm font-bold text-yellow-400 underline underline-offset-2">
+              Verificalo acá ↓
+            </a>
           </h1>
           <p className="hidden sm:block mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]">
             Pegá el link y te lo decimos con el historial de precios que registramos desde julio.
             Según nuestro estudio, {estudio.pctInfladas.toLocaleString('es-AR')}% de las ofertas tiene el precio tachado inflado.
           </p>
-          <div id="verificador" className="mt-4 sm:mt-7 scroll-mt-24">
+          <div id="verificador" className="hidden sm:block mt-4 sm:mt-7 scroll-mt-24">
             <Verificador />
             {/* la extensión es de Chrome de escritorio: en el celular solo ocupa lugar */}
             <ExtensionCTA className="mt-4 hidden sm:block" />
@@ -355,6 +353,12 @@ export default function HoyPage() {
         ) : (
           <OfertasGrid ofertas={ofertasLight} telegramUrl={TELEGRAM_URL} />
         )}
+      </section>
+
+      <section id="verificador-movil" className="sm:hidden max-w-3xl mx-auto px-4 pb-10 scroll-mt-20">
+        <h2 className="font-display text-xl font-black mb-1">¿Viste una oferta en otro lado?</h2>
+        <p className="text-sm text-zinc-400 mb-4">Pegá el link de Mercado Libre y te decimos si el descuento es real, con el historial de precios.</p>
+        <Verificador idPrefijo="vm" />
       </section>
 
       {/* Descuentos inflados de hoy: después de la grilla (el verificador y los

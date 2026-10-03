@@ -2007,6 +2007,77 @@ export const GUIAS: Guia[] = [
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
   },
+  {
+    slug: 'que-freezer-comprar',
+    titulo: '¿Qué freezer comprar? Horizontal o vertical, litros y consumo',
+    descripcion:
+      'Cómo elegir un freezer en Argentina: horizontal o vertical, cuántos litros, dual freezer/heladera, no frost o cíclico, consumo y etiqueta de eficiencia energética, medidas y ventilación.',
+    pregunta: '¿Qué freezer conviene comprar?',
+    respuestaCorta:
+      'Si querés guardar mucho por el mismo precio, el freezer horizontal suele rendir más litros y conservar mejor el frío al abrirlo; si tenés poco piso o querés ordenar y encontrar las cosas fácil, conviene uno vertical. Elegí los litros según cuánto comprás y congelás, medí el lugar dejando espacio para que ventile, y compará la clase y el consumo de la etiqueta de eficiencia energética: un freezer funciona todo el día y eso se nota en la factura.',
+    secciones: [
+      {
+        h: 'Horizontal o vertical',
+        p: [
+          'Horizontal (tipo arcón): por el mismo precio suele tener más litros, y al abrir la tapa se escapa menos frío. Ocupa más piso y cuesta más encontrar lo que está al fondo; los canastos ayudan.',
+          'Vertical: ocupa menos piso, se ordena con estantes o cajones como una heladera y se ve todo de un vistazo. Por la misma capacidad suele costar más.',
+          'Dual (freezer/heladera): muchos horizontales se pueden usar como freezer o como conservadora con una perilla. Sirve si a veces lo querés para bebidas, por ejemplo en verano.',
+        ],
+      },
+      {
+        h: 'Cuántos litros',
+        p: [
+          'Depende de cuánto congelás más que de cuántos son: si comprás por mayor, hacés viandas o congelás carne en cantidad, conviene ir a más litros. Si es para complementar el freezer de la heladera, alcanza con uno chico.',
+          'Un freezer muy grande y medio vacío gasta energía en enfriar aire. Pensá en lo que vas a guardar de forma habitual.',
+        ],
+      },
+      {
+        h: 'Consumo, no frost y medidas',
+        p: [
+          'La etiqueta de eficiencia energética es obligatoria en Argentina (Secretaría de Energía, normas IRAM): indica la clase y el consumo anual. Como funciona todo el día, la diferencia entre clases se nota. Podés estimar el costo por mes en la calculadora de consumo eléctrico.',
+          'No frost: no junta hielo, pero suele costar más. Cíclico: hay que descongelarlo cada tanto.',
+          'Medí ancho, profundidad y alto (en el horizontal, también el espacio para abrir la tapa) y dejá unos centímetros atrás y a los costados para que ventile. Revisá la garantía y que haya service oficial en tu zona.',
+        ],
+      },
+      {
+        h: 'Cuánto sale',
+        p: [
+          'Es un electrodoméstico de ticket alto y el precio cambia mucho según litros, tipo y marca. No damos un precio fijo: en la comparativa de freezers están los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+        ],
+      },
+    ],
+    categoria: { slug: 'freezers', nombre: 'freezers' },
+    comparativa: 'mejores-freezers',
+    cta: { href: '/mejores/mejores-freezers', titulo: 'Freezers en oferta hoy, comparados', boton: 'Ver la comparativa de freezers 🧊' },
+    faq: [
+      {
+        q: '¿Qué es mejor, freezer horizontal o vertical?',
+        a: 'El horizontal guarda más por el mismo precio y pierde menos frío al abrirlo; el vertical ocupa menos piso y es más fácil de ordenar.',
+      },
+      {
+        q: '¿De cuántos litros conviene el freezer?',
+        a: 'Depende de cuánto congelás: si comprás por mayor o hacés viandas, más litros; si es para complementar la heladera, uno chico alcanza. Uno grande medio vacío gasta de más.',
+      },
+      {
+        q: '¿Cuánta luz gasta un freezer?',
+        a: 'La etiqueta de eficiencia energética indica el consumo anual. Con ese dato podés calcular el costo por mes en la calculadora de consumo eléctrico.',
+      },
+      {
+        q: '¿Qué es un freezer dual?',
+        a: 'Un freezer, en general horizontal, que con una perilla también funciona como conservadora o heladera. Es útil si a veces lo querés para bebidas.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-freezers', texto: 'Comparativa de freezers' },
+      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+    fuentes: [
+      { texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado', url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica' },
+      { texto: 'IRAM: normas de etiquetado de eficiencia energética por producto', url: 'https://www.iram.org.ar/' },
+    ],
+  },
 ]
 
 export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
@@ -2014,6 +2085,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  'que-freezer-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-aspiradora-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-smartwatch-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },

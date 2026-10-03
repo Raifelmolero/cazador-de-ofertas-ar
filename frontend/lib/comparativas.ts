@@ -490,6 +490,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Dual (freezer/heladera): algunos horizontales se pueden usar como conservadora; útil si lo querés para bebidas.',
       'Eficiencia energética: la etiqueta A o superior se nota en la factura porque funciona todo el día.',
     ],
+    guia: 'que-freezer-comprar',
   },
   {
     slug: 'mejores-aspiradoras',

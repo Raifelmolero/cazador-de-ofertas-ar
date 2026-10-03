@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-02T23:45:37+00:00",
+  "generado": "2026-10-03T03:42:42+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-02T23:45:36+00:00",
+      "ultima_actividad": "2026-10-03T03:42:42+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1535 productos en la última corrida"
+          "tarea": "Revisó 1582 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -26,18 +26,18 @@
         },
         {
           "label": "Historias IG",
-          "valor": 5
+          "valor": 4
         },
         {
           "label": "Threads",
           "valor": 4
         },
         {
-          "label": "Instagram",
-          "valor": 3
+          "label": "Reels IG",
+          "valor": 2
         },
         {
-          "label": "Reels IG",
+          "label": "Instagram",
           "valor": 2
         },
         {
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Combo Sobadora Eléctrica 450mm 3/4hp - Amasadora 20kg 1/2hp"
+      "ultimo_trabajo": "Sommier Y Colchón Springwall Mcb 115 Queen 160x200cm Color Beige Con Base Dividi"
     },
     {
       "id": "investigacion",
@@ -96,7 +96,7 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 31
+          "valor": 42
         },
         {
           "label": "Comparativas",
@@ -114,15 +114,15 @@
         },
         {
           "fecha": "",
-          "titulo": "que silla gamer comprar"
+          "titulo": "aire acondicionado portatil o split"
         },
         {
           "fecha": "",
-          "titulo": "que auriculares comprar cyber monday"
+          "titulo": "que ventilador comprar"
         },
         {
           "fecha": "",
-          "titulo": "que lavarropas comprar cyber monday"
+          "titulo": "que pileta comprar"
         }
       ]
     },

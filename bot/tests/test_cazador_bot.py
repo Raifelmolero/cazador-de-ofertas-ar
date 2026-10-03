@@ -697,7 +697,10 @@ class TestTemporadas(unittest.TestCase):
         self.assertEqual(bot.temporada_boost("Perfume Carolina Herrera 100ml", datetime(2026, 4, 1)), 1.0)
 
     def test_verano_cruza_fin_de_anio(self):
-        self.assertEqual(bot.temporada_boost("Pileta estructural 3x2", datetime(2027, 1, 15)), 1.3)
+        # Piletas y aires: pico de calor (1.45); el resto del verano, 1.3.
+        self.assertEqual(bot.temporada_boost("Pileta estructural 3x2", datetime(2027, 1, 15)), 1.45)
+        self.assertEqual(bot.temporada_boost("Parrilla de hierro", datetime(2027, 1, 15)), 1.3)
+        self.assertEqual(bot.temporada_boost("Pileta estructural 3x2", datetime(2027, 2, 20)), 1.3)
 
 
 class TestGananciaPorComision(unittest.TestCase):

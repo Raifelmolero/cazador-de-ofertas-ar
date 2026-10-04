@@ -51,20 +51,22 @@ function ShareButton({ producto, className = '' }: { producto: OfertaLight; clas
 
 function Badges({ producto, className = '' }: { producto: OfertaLight; className?: string }) {
   return (
-    <div className={`absolute top-2 left-2 flex flex-col items-start gap-1.5 ${className}`}>
+    // En celular, carteles cortos: con el texto completo tapaban media foto
+    // y no se reconocía el producto de un vistazo.
+    <div className={`absolute top-2 left-2 flex flex-col items-start gap-1 sm:gap-1.5 ${className}`}>
       {producto.descuento_pct != null && (
-        <span className="text-xs font-extrabold bg-red-600 text-white px-2.5 py-0.5 rounded-full shadow-sm">
+        <span className="text-[11px] sm:text-xs font-extrabold bg-red-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
           {producto.descuento_pct}% OFF
         </span>
       )}
       {producto.minimo_historico && (
-        <span className="text-xs font-extrabold bg-yellow-400 text-black px-2.5 py-0.5 rounded-full shadow-sm">
-          📉 Mínimo histórico
+        <span className="text-[11px] sm:text-xs font-extrabold bg-yellow-400 text-black px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
+          📉 Mínimo<span className="hidden sm:inline"> histórico</span>
         </span>
       )}
       {producto.relampago && (
-        <span className="text-xs font-extrabold bg-blue-600 text-white px-2.5 py-0.5 rounded-full shadow-sm">
-          ⚡ Relámpago: dura pocas horas
+        <span className="text-[11px] sm:text-xs font-extrabold bg-blue-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
+          ⚡ Relámpago<span className="hidden sm:inline">: dura pocas horas</span>
         </span>
       )}
     </div>

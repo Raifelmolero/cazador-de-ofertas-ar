@@ -677,6 +677,25 @@ def paginas_existentes(path: Path | None = None) -> dict[str, str]:
         return {}
 
 
+# Sin ficha /precio, las ofertas de las categorías que más ganancia dejan
+# (panel 27/09-03/10: notebooks + celulares + colchones = 65% de la web) van a
+# su comparativa en vez de a /hoy: la visita cae entre productos del mismo tipo.
+# Solo si el título ARRANCA con la palabra: "Funda para celular" no es un celular.
+COMPARATIVA_POR_PRODUCTO = (
+    (("notebook", "laptop"), "/mejores/mejores-notebooks"),
+    (("celular", "smartphone"), "/mejores/mejores-celulares"),
+    (("colchon",), "/mejores/mejores-colchones"),
+)
+
+
+def comparativa_de(title: str) -> str | None:
+    t = title.strip().lower().replace("ó", "o")
+    for palabras, ruta in COMPARATIVA_POR_PRODUCTO:
+        if t.startswith(palabras):
+            return ruta
+    return None
+
+
 def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None) -> str:
     """Link a la ficha del producto en el sitio (/precio/[slug]) con UTM; si
     el producto no tiene ficha publicada, a /hoy (donde está la oferta).
@@ -684,7 +703,7 @@ def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None)
     y las redes directo a ML no vendían."""
     utm = f"utm_source={source}&utm_medium=social"
     slug = (paginas or {}).get(deal.get("id", ""))
-    ruta = f"/precio/{slug}" if slug else "/hoy"
+    ruta = f"/precio/{slug}" if slug else comparativa_de(deal.get("title", "")) or "/hoy"
     return f"https://{SITE_DOMAIN}{ruta}?{utm}"
 
 

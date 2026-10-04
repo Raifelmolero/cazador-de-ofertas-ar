@@ -957,6 +957,18 @@ def test_web_deal_url_sin_ficha_va_a_hoy(tmp_path):
     assert "mercadolibre" not in url
 
 
+def test_web_deal_url_sin_ficha_va_a_su_comparativa():
+    from cazador_bot import web_deal_url
+    url = web_deal_url({"id": "MLA9", "title": "Notebook Lenovo IdeaPad 15"}, "telegram", {})
+    assert url == ("https://cazadordeofertas.com.ar/mejores/mejores-notebooks"
+                   "?utm_source=telegram&utm_medium=social")
+    assert "/mejores/mejores-colchones?" in web_deal_url({"id": "X", "title": "Colchón Piero 2 Plazas"}, "ig", {})
+    assert "/mejores/mejores-celulares?" in web_deal_url({"id": "X", "title": "Smartphone Moto G"}, "ig", {})
+    # accesorios y fichas existentes no cambian
+    assert "/hoy?" in web_deal_url({"id": "X", "title": "Funda Para Celular"}, "ig", {})
+    assert "/precio/nb-mla1?" in web_deal_url({"id": "MLA1", "title": "Notebook HP"}, "ig", {"MLA1": "nb-mla1"})
+
+
 def test_th_caption_con_link_web():
     from cazador_bot import th_caption, th_text_caption, web_deal_url
     d = {"id": "MLA1", "title": "Smart TV 55", "price_prev": 1000000,

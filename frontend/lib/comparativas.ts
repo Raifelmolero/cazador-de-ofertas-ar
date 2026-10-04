@@ -39,6 +39,10 @@ const PERENNES = new Set([
   'mejores-notebooks', 'mejores-celulares', 'mejores-celulares-gama-alta',
   'mejores-colchones', 'mejores-colchones-2-plazas', 'mejores-sommiers',
   'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
+  // Cyber Monday (2 al 4/11): tienen que estar indexadas semanas antes del evento,
+  // y "aire acondicionado cyber monday" ya rankea en la posición ~17 (GSC 04/10).
+  'ofertas-cyber-monday', 'cyber-monday-smart-tv', 'cyber-monday-aires-acondicionados',
+  'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares',
 ])
 
 const AÑO = 2026

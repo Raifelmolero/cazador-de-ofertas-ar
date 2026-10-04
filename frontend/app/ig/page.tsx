@@ -9,6 +9,7 @@ import type { OfertaLight } from '@/components/OfertaCard'
 import OfertaCard from '@/components/OfertaCard'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
+import AtajosTicketAlto from '@/components/AtajosTicketAlto'
 import { DEALS_URL, WHATSAPP_URL } from '@/lib/marca'
 
 // "Link en bio" de Instagram: los posts no pueden tener links, así que acá
@@ -115,6 +116,10 @@ export default function InstagramPage() {
             ))}
           </div>
         )}
+        {/* si no le cerró esa oferta, a las comparativas que más venden */}
+        <div className="-mx-4 sm:-mx-6 mt-2">
+          <AtajosTicketAlto />
+        </div>
         {/* fecha comercial vigente (Día de la Madre, Cyber…): mismo banner que la home */}
         <div className="-mx-4 sm:-mx-6">
           <BannerTemporada />

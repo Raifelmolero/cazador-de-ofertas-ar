@@ -31,6 +31,16 @@ export interface Comparativa {
   enlaces?: { href: string; texto: string }[]
 }
 
+/** Comparativas de ticket alto que ya venden: quedan indexables aunque un día
+ *  tengan menos de MIN_PRODUCTOS_INDEXABLE ofertas (la página igual trae el
+ *  historial de precios de la categoría). Sin esto Google las sacaba del índice
+ *  un día flojo y tardaba semanas en volver (pasó con notebooks, oct/2026). */
+const PERENNES = new Set([
+  'mejores-notebooks', 'mejores-celulares', 'mejores-celulares-gama-alta',
+  'mejores-colchones', 'mejores-colchones-2-plazas', 'mejores-sommiers',
+  'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
+])
+
 const AÑO = 2026
 
 export const COMPARATIVAS: Comparativa[] = [
@@ -946,7 +956,7 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
 export const MIN_PRODUCTOS_INDEXABLE = 3
 
 export function indexable(c: Comparativa): boolean {
-  return productosDe(c).length >= MIN_PRODUCTOS_INDEXABLE
+  return PERENNES.has(c.slug) || productosDe(c).length >= MIN_PRODUCTOS_INDEXABLE
 }
 
 export function productosDe(c: Comparativa): ProductWithMargins[] {

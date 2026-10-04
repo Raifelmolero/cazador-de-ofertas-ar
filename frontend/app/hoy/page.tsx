@@ -6,6 +6,7 @@ import { getOfertas, getScrapedAt } from '@/lib/productos'
 import type { OfertaLight } from '@/components/OfertaCard'
 import OfertasGrid from '@/components/OfertasGrid'
 import BackToTop from '@/components/BackToTop'
+import AnclaVerificador from '@/components/AnclaVerificador'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import Verificador from '@/components/Verificador'
 import { getEstudio } from '@/lib/estudio'
@@ -546,6 +547,7 @@ export default function HoyPage() {
 
       <Footer brand="ofertas" />
       <BackToTop />
+      <AnclaVerificador />
     </main>
   )
 }

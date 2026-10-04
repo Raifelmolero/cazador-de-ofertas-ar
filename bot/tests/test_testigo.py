@@ -37,3 +37,16 @@ def test_cyber_y_black_friday_llevan_a_su_landing():
     assert "/cyber-monday" in cyber[1]
     assert "/black-friday" in bf[1]
     assert bot.sello_temporada(tv, datetime(2026, 11, 3)) == ""
+
+
+def test_pre_cyber_lleva_a_cyber_monday_sin_plus():
+    from datetime import datetime
+    import cazador_bot as bot
+    tv = "Smart TV Samsung 55 4K"
+    hoy = datetime(2026, 10, 21)
+    lt = bot.landing_temporada(tv, "telegram", hoy)
+    assert lt and "/cyber-monday?" in lt[1]
+    # la ventana pre-Cyber no suma plus (el Día de la Madre ya terminó el 18/10)
+    assert bot.temporada_boost("Notebook Lenovo", hoy) == 1.0
+    # antes del 19/10 sigue mandando el Día de la Madre
+    assert "dia-de-la-madre" in bot.landing_temporada(tv, "telegram", datetime(2026, 10, 15))[1]

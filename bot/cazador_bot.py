@@ -1249,6 +1249,10 @@ TEMPORADAS: list[tuple[tuple[int, int], tuple[int, int], float, list[str]]] = [
     # Cyber Monday 2026 (CACE, oficial): lunes 2 al miércoles 4/11; Black
     # Friday: viernes 27/11. Dos ventanas (misma lista) para que cada una
     # lleve a su landing; la del Cyber arranca una semana antes.
+    # Pre-Cyber (después del Día de la Madre): solo el botón a /cyber-monday,
+    # sin plus en el ranking. Las páginas del Cyber ya rankean (GSC 04/10:
+    # "aire acondicionado cyber monday" pos ~17) y necesitan visitas antes del 2/11.
+    ((10, 19), (10, 25), 1.0, KEYWORDS_CYBER),
     ((10, 26), (11, 4), 1.3, KEYWORDS_CYBER),  # Cyber Monday: ticket alto
     ((11, 5), (12, 2), 1.3, KEYWORDS_CYBER),   # Black Friday
     ((12, 1), (12, 24), 1.4, [  # Navidad
@@ -1294,6 +1298,7 @@ SELLOS_TEMPORADA = {
 # Landing de la fecha: los posts con sello enlazan ahí en vez de la home.
 LANDINGS_TEMPORADA = {
     (9, 25): ("🎁 Más regalos para el Día de la Madre", "dia-de-la-madre"),
+    (10, 19): ("💻 Cyber Monday (2 al 4/11): qué ofertas son reales", "cyber-monday"),
     (10, 26): ("💻 Cyber Monday: qué ofertas son reales", "cyber-monday"),
     (11, 5): ("🖤 Black Friday: qué ofertas son reales", "black-friday"),
     (12, 1): ("🎄 Más regalos para Navidad", "regalos-navidad"),

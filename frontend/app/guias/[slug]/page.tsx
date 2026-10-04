@@ -110,6 +110,32 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </a>
         </div>
 
+        {comp && ofertas.length > 0 && (
+          <section className="mb-8 -mx-4 sm:mx-0" aria-label="En oferta hoy">
+            <p className="px-4 sm:px-0 text-xs font-bold tracking-widest text-yellow-400 mb-2">🔥 EN OFERTA HOY</p>
+            <ul className="flex gap-3 overflow-x-auto px-4 sm:px-0 pb-1 snap-x">
+              {ofertas.map(p => (
+                <li key={p.id_ml} className="snap-start shrink-0 w-40 rounded-2xl border border-zinc-800 bg-zinc-900 p-2">
+                  <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="block">
+                    <div className="h-28 rounded-xl bg-white overflow-hidden">
+                      {p.url_imagen && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.url_imagen} alt="" loading="lazy" className="w-full h-full object-contain p-1" />
+                      )}
+                    </div>
+                    <p className="mt-2 text-xs text-zinc-300 line-clamp-2">{p.titulo}</p>
+                    <p className="mt-1 flex items-baseline gap-1.5">
+                      <span className="font-black text-zinc-50">${p.precio_actual.toLocaleString('es-AR')}</span>
+                      {p.descuento_pct != null && <span className="text-[11px] font-bold text-red-400">-{p.descuento_pct}%</span>}
+                    </p>
+                    <span className="mt-2 block rounded-lg bg-yellow-400 py-1.5 text-center text-xs font-black text-black">Ver en ML ↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {g.secciones.map(s => (
           <section key={s.h} className="mb-8">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{s.h}</h2>

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-04T18:41:04+00:00",
+  "generado": "2026-10-04T23:02:49+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,33 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-04T18:41:04+00:00",
+      "ultima_actividad": "2026-10-04T23:02:48+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1602 productos en la última corrida"
+          "tarea": "Revisó 1577 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 20
-        },
-        {
-          "label": "whatsapp_kit",
           "valor": 15
         },
         {
+          "label": "whatsapp_kit",
+          "valor": 10
+        },
+        {
           "label": "Threads",
-          "valor": 4
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Sommier Y Colchón Sueño Dorado Monza 2 Plazas Resortes 140x190 Cm"
+      "ultimo_trabajo": "Soldadora Mig 200amp 4 En 1 Mig + Tig + Mig Flux + Mma Aleba Amarillo"
     },
     {
       "id": "investigacion",

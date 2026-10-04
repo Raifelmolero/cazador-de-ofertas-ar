@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-03T22:52:25+00:00",
+  "generado": "2026-10-04T04:12:33+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,17 +8,17 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-03T22:52:24+00:00",
+      "ultima_actividad": "2026-10-04T04:12:32+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1545 productos en la última corrida"
+          "tarea": "Revisó 1542 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 20
+          "valor": 15
         },
         {
           "label": "whatsapp_kit",
@@ -26,27 +26,27 @@
         },
         {
           "label": "Threads",
-          "valor": 4
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Facebook",
-          "valor": 3
-        },
-        {
-          "label": "Historias IG",
           "valor": 2
         },
         {
           "label": "Reels IG",
           "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora Mig 200amp 4 En 1 Mig + Tig + Mig Flux + Mma Aleba Amarillo"
+      "ultimo_trabajo": "Notebook Asus Gamer Tuf Gaming A15 Rtx 3050 16gb 512gb Fhd W11"
     },
     {
       "id": "investigacion",

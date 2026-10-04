@@ -123,7 +123,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className={productos.length ? 'min-h-screen pb-20 sm:pb-0' : 'min-h-screen'}>
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
@@ -424,6 +424,24 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
       </article>
 
       <Footer brand="ofertas" />
+
+      {/* Celular: la #1 de la comparativa queda a mano mientras se baja por la lista */}
+      {productos[0] && (
+        <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="text-[11px] text-zinc-500 truncate">🏆 #1: {productos[0].titulo}</p>
+            <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(productos[0].precio_actual)}</p>
+          </div>
+          <a
+            href={productos[0].url_producto}
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black active:scale-[0.97] transition-transform"
+          >
+            Ver en ML 🛒
+          </a>
+        </div>
+      )}
     </main>
   )
 }

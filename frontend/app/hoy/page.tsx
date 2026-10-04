@@ -14,6 +14,7 @@ import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
+import AtajosTicketAlto from '@/components/AtajosTicketAlto'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
@@ -351,6 +352,7 @@ export default function HoyPage() {
 
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
       <BannerTemporada />
+      <AtajosTicketAlto />
       <AtajosVerano />
 
       {/* Grid con búsqueda y filtros */}

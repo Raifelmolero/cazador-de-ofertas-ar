@@ -9,7 +9,7 @@ Texto en la franja amarilla de abajo de cada tarjeta (Canva: nombre en negrita +
 4. **GUSTAVO** · El cuñado · "Tengo un contacto."
 5. **MARCE** · La ordenada · "Mirá el historial."
 6. **DOÑA CHOLA** · La consuegra · "Ay, Rosa… yo la pagué menos."
-7. **BENJA** · El primo del cuarto del fondo · "Abuelo… hay cupón." ⚠️ la tarjeta actual es un nene: hay que rehacerla con Benja de 20
+7. **RUBÉN** · El vecino de al lado · "¿Vos también? Yo lo tengo hace un mes." (reemplaza a Benja, 04/10)
 8. **CHANGUITO** · El detector de precios inflados · "Grrr…"
 9. Placa final (toda la familia): arriba **"¿Cuál sos vos? 👇"** · abajo **"Las ofertas reales de la familia → link en la bio"**
 

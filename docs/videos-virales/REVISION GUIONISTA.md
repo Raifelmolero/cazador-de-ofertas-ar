@@ -3,6 +3,10 @@
 > Mirada: Casados con Hijos (arquetipo + gag fijo), Los Simuladores (cada uno una especialidad, "el plan"), Esperando la Carroza (la familia que habla toda a la vez, la plata como motor del conflicto), grupo familiar de WhatsApp (audios de 4 minutos, "¿quién es este número?", stickers) y humor de reels 2025-2026 (POV, "nadie:", reacción, loop).
 > Veredicto corto: **el universo está bien armado pero escrito como catálogo, no como comedia.** Hay mucho "festejan", "levanta el pulgar", "se sorprende" y muy poco *remate*: la frase que la gente repite en los comentarios. Los gags terminan en la resolución feliz (la marca gana) cuando el chiste está en el conflicto. Abajo, cómo arreglarlo.
 
+> **LOOK = CARRUSEL APROBADO (04/10):** Gustavo con chomba celeste y anteojos de sol puestos, Tincho sin gorra, Chola con saco lila (así salieron en el carrusel publicado; el canon los sigue).
+>
+> **ACTUALIZACIÓN 04/10/2026 (decisión de Raifel, manda sobre todo lo de abajo):** **Benja sale de la serie** (rebuscado, sin conflicto). Entra **RUBÉN, el vecino de al lado** (rival estilo Flanders). Donde diga Benja, leer Rubén; el Guion 6 se reemplaza por "El vecino" (abajo). **Más adelante** se suma **el encargado** (personaje propio, NO copiar a Eliseo de "El encargado": ni cara, ni nombre, ni frases).
+
 ---
 
 ## 1. Inconsistencias entre documentos y versión CANÓNICA
@@ -45,11 +49,11 @@ Aire de familia: cejas gruesas, nariz redonda grande, mejillas sonrosadas, ojos 
 | **DON OFERTÍN** (Héctor, nadie le dice así) | 72 | Abuelo, jefe de la cacería | Ticket alto: aires, heladeras, herramientas | Desconfía: **"¿Cincuenta por ciento de qué, querido?"** · Gana: **"¡CAZADO!"** | Lupa (y red) | Bajito robusto, bigote blanco manubrio, cejas blancas gruesas, nariz redonda rosada, anteojos redondos de alambre con ambos ojos abiertos, casco safari caqui con banda amarilla, chaleco caqui, camisa amarilla, bermuda caqui, medias altas, botas marrones, binoculares. Sin armas. |
 | **DOÑA ROSA** | 70 | Abuela, ministra de economía de la casa | Hogar y cocina | **"¿Y cuánto salió?"** | Cuchara de madera (en la mano, nunca "apuntando") | Bajita y redonda, pelo gris con ruleros rosas, anteojos de marco rojo con cadenita, delantal floreado sobre vestido celeste, pantuflas rosas. |
 | **MARCE** | 42 | Hija, la ordenada | Bebés, súper, compras del mes; la de las alertas | **"Mirá el historial."** | Celular + vaso térmico | Rodete castaño con birome atravesada, anteojos rectangulares, buzo amarillo, jean, zapatillas. |
-| **TINCHO** (Martín; solo la madre le dice Martín) | 45 | Hijo, el impulsivo | Asado, camping, TV | **"¡Estaba de oferta!"** | Pinza de asado | Robusto, panza simpática, barba corta castaña, pelo corto con entradas, gorra caqui, **chomba amarilla lisa sin escudos ni logos**, bermuda de jean, ojotas. (Usar la hoja "Gustavo 'el Gus'" renombrada TINCHO.) |
-| **GUSTAVO** | 47 | Marido de Marce = "el cuñado" de Tincho = papá de Juli | El anti-ejemplo: compra inflado. Autos y accesorios | **"Tengo un contacto."** | Llave del auto que gira en el dedo | Flaco, pelo engominado hacia atrás, bigotito fino, anteojos de sol en la cabeza, camisa a cuadros abierta con cadenita, jean ajustado, mocasines. |
+| **TINCHO** (Martín; solo la madre le dice Martín) | 45 | Hijo, el impulsivo | Asado, camping, TV | **"¡Estaba de oferta!"** | Pinza de asado | Robusto, panza simpática, barba corta castaña, pelo corto oscuro, sin gorra, **chomba amarilla lisa sin escudos ni logos**, bermuda de jean, ojotas. (Usar la hoja "Gustavo 'el Gus'" renombrada TINCHO.) |
+| **GUSTAVO** | 47 | Marido de Marce = "el cuñado" de Tincho = papá de Juli | El anti-ejemplo: compra inflado. Autos y accesorios | **"Tengo un contacto."** | Llave del auto que gira en el dedo | Flaco, pelo engominado hacia atrás, bigotito fino, anteojos de sol puestos, chomba celeste lisa sin logos, reloj dorado, jean, mocasines. |
 | **JULI** | **19** | Nieta, hija de Marce y Gustavo; la que filma | Belleza, moda, celulares | **"Abu, es re cringe… ¿pero a cuánto?"** | Celular con funda brillante (es la CÁMARA) | **Siempre POV.** Se ve solo su mano: uñas violetas, pulsera de hilo amarilla, funda brillante. Voz joven y burlona. |
-| **BENJA** | **20** | Nieto, hijo de Tincho; vive en el cuarto del fondo | Gamer y tecnología, cupones | **"Abuelo… hay cupón."** (susurrado, como secreto de Estado) | Joystick | Alto y flaco, barba rala, pelo despeinado, anteojos redondos iguales al abuelo, auriculares gamer amarillos al cuello, buzo con capucha caqui, ojotas con medias. |
-| **DOÑA CHOLA** | 78 | Consuegra (mamá de Gustavo) | Salud y cuidado personal | **"Ay, Rosa… yo la pagué menos."** | Celular con letra gigante pegado a la cara | Flaquita y elegante, pelo batido violeta claro, cejas finitas dibujadas, collar de perlas, saco de lana bordó, anteojos con cadenita. |
+| **RUBÉN** (reemplaza a Benja) | 65 | El vecino de al lado (no es familia) | Rival: compra primero y a precio lleno; jardín, pileta, parrilla | **"Ah, ¿vos también lo compraste? Yo lo tengo hace un mes."** | Manguera de jardín | Delgado y erguido, canoso prolijo peinado al costado con raya, bronceado, sonrisa de catálogo con dientes muy blancos, chomba blanca impecable lisa con el cuello levantado, bermuda beige con raya planchada, mocasines náuticos sin medias, reloj dorado. Siempre se asoma por la medianera. |
+| **DOÑA CHOLA** | 78 | Consuegra (mamá de Gustavo) | Salud y cuidado personal | **"Ay, Rosa… yo la pagué menos."** | Celular con letra gigante pegado a la cara | Flaquita y elegante, pelo batido violeta claro, cejas finitas dibujadas, collar de perlas, saco de lana lila, anteojos con cadenita. |
 | **CHANGUITO** (perro) | 6 | Mascota | Mascotas | Gruñido cuando ve "-70%" | Mini casco safari | Mestizo marrón y blanco, UNA oreja caída, cejas de pelo blanco, mini casco safari caqui con banda amarilla, pañuelo amarillo. |
 
 **Villano oficial de la serie:** el Precio Inflado (y su cómplice involuntario, Gustavo). Nunca un comercio, nunca una persona real, nunca política.
@@ -250,25 +254,25 @@ Parodia del meme de rutinas de "CEO millonario a las 5 AM".
 
 ---
 
-### GUION 6 — "Abuelo… hay cupón" · Ofertín + Benja (20) · Prioridad 6 (requiere hoja de Benja adulto)
-**Gancho:** Ofertín corriendo por el pasillo con la red en alto, casco torcido. Texto: **"El abuelo cazando ofertas vs. el nieto que no se levanta de la cama"**
+### GUION 6 — "El vecino" · Ofertín + Rubén (+ Rosa) · Prioridad 6
+**Gancho:** Rubén asomado por la medianera, sonrisa de catálogo: "Ah, ¿vos también lo compraste?". Texto: **"Todos tenemos un vecino así 🙄"**
 
-**Clip 1 — El abuelo atleta (8 s)**
-> [ESTILO] [OFERTÍN] Pasillo de casa argentina con cuadros familiares. Don Ofertín corre a toda velocidad por el pasillo con la red de cazar mariposas en alto, persiguiendo una etiqueta de precio amarilla de cartón que vuela como mariposa; salta, mueve la red, falla, se le tuerce el casco y choca suave contra un almohadón del sillón. Jadea, se acomoda los anteojos, mira la etiqueta que se escapa por la ventana: "¡Volvé acá, sinvergüenza!". Cámara lo sigue de costado, ritmo rápido.
+**Clip 1 — La caja (8 s)**
+> [ESTILO] [OFERTÍN] [RUBÉN] Patio argentino con medianera de ladrillo a la altura del pecho. Don Ofertín, orgulloso, abre una caja de cartón sobre la mesa de plástico y saca un ventilador de pie nuevo. Por encima de la medianera se asoma Rubén, el vecino, con la manguera en la mano, y dice con sonrisa de catálogo: "Ah, ¿vos también lo compraste? Yo lo tengo hace un mes." Don Ofertín se queda congelado con el ventilador en la mano. Plano medio.
 
-**Clip 2 — El cuarto del fondo (8 s)**
-> [ESTILO] [OFERTÍN] [BENJA] Don Ofertín entra caminando por la puerta abierta de un cuarto desordenado con luces de colores, pósters sin texto y una silla gamer. Benja, hombre joven de 20 años, alto y flaco, barba rala, pelo despeinado, anteojos redondos iguales a los del abuelo, auriculares gamer amarillos, buzo con capucha caqui, está acostado en la cama con la notebook sobre la panza. Sin mirar al abuelo, susurra como un secreto de Estado: "Abuelo… hay cupón." Hace un solo clic. Se escucha el timbre de la casa.
+**Clip 2 — La cifra (8 s)**
+> [ESTILO] [OFERTÍN] [RUBÉN] Continuación directa, mismo patio. Don Ofertín deja el ventilador, se acomoda los anteojos y pregunta tranquilo: "¿Y cuánto lo pagaste, Rubén?". Rubén, orgulloso, le dice una cifra al oído por encima de la medianera. Don Ofertín saca la lupa, mira su celular, sonríe debajo del bigote y le muestra la pantalla: "Yo, la mitad." Pausa con sonido de grillos.
 
-**Clip 3 — El traspaso (8 s)**
-> [ESTILO] [OFERTÍN] [BENJA] Continuación directa, mismo cuarto. Don Ofertín mira a Benja, mira la red que tiene en la mano, suspira; se saca el casco safari con ceremonia y se lo pone en la cabeza a Benja, que sigue acostado. Benja, sin dejar de mirar la notebook: "Igual no me voy a levantar." Don Ofertín se queda con la red, mira a cámara y se encoge de hombros con una media sonrisa bajo el bigote.
+**Clip 3 — El remate (8 s)**
+> [ESTILO] [OFERTÍN] [RUBÉN] [ROSA] Continuación directa. Rubén se queda mudo, se le escapa la manguera y le moja la chomba blanca. Desaparece despacio detrás de la medianera. Doña Rosa sale por la puerta de la cocina con la cuchara de madera en la mano y le pregunta a Don Ofertín: "¿Y cuánto salió?". Don Ofertín mira a cámara: "Menos que el de Rubén."
 
-**Texto en pantalla:** "El abuelo: 🏃‍♂️🦋" / "El nieto: 🛏️💻" → "Abuelo… hay cupón" → cierre: "Los cupones del día, en el link de la bio".
-**CTA:** "¿Quién es el Benja de tu familia? Etiquetalo 👇"
+**Texto en pantalla:** "Todos tenemos un vecino así 🙄" → clip 2: "Rubén: 0 · Ofertín: 1" → cierre: producto real + precio + "Link en la bio".
+**CTA:** "Etiquetá a tu Rubén 👇"
 **Caption IG:**
-> El abuelo corre 3 cuadras con la red. El nieto hace un clic desde la cama. Los dos ganan (uno menos cansado) 😂
-> Etiquetá al Benja de tu familia 👇
-> Cupones y ofertas verificadas todos los días: link en la bio 🦋
-> #cupones #abuelo #nieto #gamer #humorargentino #ofertas #mercadolibre #cazadordeofertas #parati
+> Rubén siempre lo compró antes. Ofertín siempre lo pagó menos 🧉
+> Etiquetá a tu vecino Rubén 👇
+> Los precios reales, sin inflar: link en la bio 🦋
+> #vecinos #humorargentino #ofertas #mercadolibre #cazadordeofertas #parati #reelsargentina
 
 ---
 
@@ -335,13 +339,13 @@ Total: 4-7 clips de Veo por semana. Con un tope de ~1-3 videos diarios en Gemini
 3. **"¡CAZADO!"** con el puño arriba = aprobado. **"¿Cincuenta por ciento de qué, querido?"** = inflado. El público aprende el código.
 4. **Gustavo y su contacto** — nunca se sabe quién es "el contacto". Payoff de temporada (Navidad): el contacto es Changuito, el perro.
 5. **Changuito gruñe antes que nadie** cuando hay un inflado. Changuito nunca se equivoca.
-6. **Benja nunca se levanta de la cama** (cada aparición, desde la cama; el día que se levanta = evento).
+6. **Rubén siempre se asoma por la medianera** y siempre lo compró antes (y más caro). Nunca se lo ve entero: solo de la medianera para arriba.
 7. **Los ruleros de Rosa se caen** con cada sorpresa (se van acumulando en el piso del living: easter egg de continuidad).
 8. **Juli nunca aparece en cuadro**: "la que filma". Los fans van a pedir verle la cara; NO mostrarla nunca (es el misterio, estilo Wilson en Home Improvement). Además resuelve el filtro.
 9. **Tincho siempre compra el tamaño equivocado** (parrilla chiquita, pileta gigante, TV de 98" para un monoambiente).
 
 ### Frases para que la gente las use en los comentarios
-"¿Y cuánto salió?" · "¿Cincuenta por ciento de qué, querido?" · "¡Cazado!" · "Tengo un contacto" · "Mirá el historial" · "Abuelo… hay cupón" · "Ay, Rosa… yo la pagué menos" · "¡Estaba de oferta!".
+"¿Y cuánto salió?" · "¿Cincuenta por ciento de qué, querido?" · "¡Cazado!" · "Tengo un contacto" · "Mirá el historial" · "Ah, ¿vos también lo compraste?" · "Ay, Rosa… yo la pagué menos" · "¡Estaba de oferta!".
 Usarlas también en las respuestas a comentarios desde la cuenta ("Gustavo, ¿sos vos? 👀").
 
 ### Arcos (culebrón, estilo la muerte de Duo)

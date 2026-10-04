@@ -10,7 +10,7 @@ import { DEALS_URL } from '@/lib/marca'
 const URL = `${DEALS_URL}/familia`
 const TITULO = 'La Familia Ofertín: ¿cuál sos vos?'
 const DESCRIPCION =
-  'Conocé a la Familia Ofertín: Don Ofertín, Doña Rosa, Tincho, Marce, Gustavo, Benja, Doña Chola y el perro Changuito. Cada uno caza ofertas a su manera; encontrá las tuyas con el precio verificado contra el historial.'
+  'Conocé a la Familia Ofertín: Don Ofertín, Doña Rosa, Tincho, Marce, Gustavo, Doña Chola, el vecino Rubén y el perro Changuito. Cada uno caza ofertas a su manera; encontrá las tuyas con el precio verificado contra el historial.'
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -36,7 +36,7 @@ const FAMILIA: Miembro[] = [
   { img: 'tincho', nombre: 'Tincho', rol: 'El impulsivo', frase: '¡Estaba de oferta!', bio: 'Ve "oferta" y ya pagó. Parrillas, TV y camping. Mejor que mire el historial antes.', href: '/categoria/parrillas', cta: 'Parrillas de verdad' },
   { img: 'marce', nombre: 'Marce', rol: 'La ordenada', frase: 'Mirá el historial.', bio: 'Tiene una planilla para todo. Bebés, súper y las compras grandes del mes.', href: '/bebes-y-jugueteria', cta: 'Lo que compara Marce' },
   { img: 'gustavo', nombre: 'Gustavo', rol: 'El cuñado', frase: 'Tengo un contacto.', bio: 'Siempre lo consiguió más barato… hasta que alguien mira el historial. Antes de llamar a tu contacto, mirá los cupones vigentes.', href: '/cupones-mercado-libre', cta: 'Cupones de verdad' },
-  { img: 'benja', nombre: 'Benja', rol: 'El primo del cuarto del fondo', frase: 'Abuelo… hay cupón.', bio: 'No se levanta de la cama, pero encuentra todos los cupones. Gamer y tecnología.', href: '/gamer', cta: 'El rincón gamer' },
+  { img: 'ruben', nombre: 'Rubén', rol: 'El vecino de al lado', frase: '¿Vos también? Yo lo tengo hace un mes.', bio: 'Siempre lo compró antes que vos… y siempre más caro. Jardín, piletas y todo lo del verano: antes de copiarle a Rubén, mirá el historial.', href: '/categoria/piletas', cta: 'Ganale a Rubén' },
   { img: 'chola', nombre: 'Doña Chola', rol: 'La consuegra', frase: 'Ay, Rosa… yo la pagué menos.', bio: 'Compite con Rosa por quién compró más barato. Cuidado personal y perfumes.', href: '/categoria/perfumes', cta: 'Lo de Chola' },
   { img: 'changuito', nombre: 'Changuito', rol: 'El detector de inflados', frase: 'Grrr…', bio: 'El perro de la familia. Le gruñe a los descuentos inflados y nunca se equivoca. Mirá cuáles detectó esta semana.', href: '/descuentos-inflados', cta: 'Ver los inflados' },
 ]

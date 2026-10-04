@@ -734,6 +734,19 @@ class TestSeguimiento(unittest.TestCase):
         self.assertEqual(data["items"], {})
 
 
+    def test_al_recortar_quedan_las_de_mas_historial(self):
+        def aire(i):
+            return {"id": f"MLA{i}", "title": f"Aire Acondicionado Split {i}", "url": "u",
+                    "price_prev": 1000000, "price_cur": 800000, "discount": 20, "img": None}
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(bot, "SEGUIMIENTO_MAX_ITEMS", 2):
+            p = Path(tmp) / "seg.json"
+            bot.update_seguimiento([aire(1)], {}, "aff", p, today="2026-09-23")
+            bot.update_seguimiento([aire(1), aire(2)], {}, "aff", p, today="2026-09-24")
+            data = bot.update_seguimiento([aire(3), aire(2), aire(1)], {}, "aff", p, today="2026-09-25")
+        # MLA3 es nueva (1 punto): sale ella, no las que Google ya conoce
+        self.assertEqual(sorted(data["items"]), ["MLA1", "MLA2"])
+
+
 class TestSelloTemporada(unittest.TestCase):
     OCT = datetime(2026, 10, 5)
     NOV = datetime(2026, 11, 10)

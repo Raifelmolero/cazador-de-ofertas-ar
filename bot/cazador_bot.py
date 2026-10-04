@@ -503,7 +503,9 @@ def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> lis
 # sigue viva aunque hoy no esté en oferta, y la serie crece con el tiempo.
 SEGUIMIENTO_PATH = BASE_DIR.parent / "frontend" / "data" / "seguimiento.json"
 SEGUIMIENTO_MIN_GANANCIA = 12000   # ganancia esperada mínima para abrir página
-SEGUIMIENTO_MAX_ITEMS = 500
+# 1500: con 500 se reemplazaba el 80% de las fichas por semana (27/09→04/10:
+# 403 de 500) y las páginas que Google ya indexaba pasaban a redirigir.
+SEGUIMIENTO_MAX_ITEMS = 1500
 SEGUIMIENTO_MAX_DIAS = 60          # sin verlo en /ofertas por más → se borra
 SEGUIMIENTO_MAX_PUNTOS = 180
 
@@ -555,7 +557,9 @@ def update_seguimiento(deals: list[dict], history: dict, affiliate_id: str,
         del serie[:-SEGUIMIENTO_MAX_PUNTOS]
     limite = (datetime.fromisoformat(today) - timedelta(days=SEGUIMIENTO_MAX_DIAS)).strftime("%Y-%m-%d")
     vivos = [(k, v) for k, v in items.items() if v["ultimo_visto"] >= limite]
-    vivos.sort(key=lambda kv: kv[1]["ultimo_visto"], reverse=True)
+    # Al recortar, quedan las vistas más recientemente y, entre ellas, las de
+    # más historial: son las páginas que Google ya conoce.
+    vivos.sort(key=lambda kv: (kv[1]["ultimo_visto"], len(kv[1]["serie"])), reverse=True)
     data["items"] = dict(vivos[:SEGUIMIENTO_MAX_ITEMS])
     data["actualizado"] = today
     path.parent.mkdir(parents=True, exist_ok=True)

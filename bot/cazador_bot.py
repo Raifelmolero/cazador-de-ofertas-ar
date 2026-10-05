@@ -109,6 +109,29 @@ def save_state(state: dict) -> None:
         json.dump(state, f, ensure_ascii=False, indent=1)
 
 
+def title_key(title: str) -> str:
+    """Clave para detectar la misma publicación subida con otro ID (vendedores
+    que republican el mismo producto): título normalizado, primeras 45 letras."""
+    return re.sub(r"[^a-z0-9]+", " ", title.lower()).strip()[:45]
+
+
+def recent_title_keys(days: int = 14, path: Path | None = None) -> set[str]:
+    """Títulos ya publicados en los últimos `days` días (por el log de posts)."""
+    path = path or POSTS_LOG_PATH
+    keys: set[str] = set()
+    if not path.exists():
+        return keys
+    limite = datetime.now(timezone.utc) - timedelta(days=days)
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            e = json.loads(line)
+            if e.get("title") and datetime.fromisoformat(e["ts"]) >= limite:
+                keys.add(title_key(e["title"]))
+        except (ValueError, KeyError):
+            continue
+    return keys
+
+
 def log_post(deal: dict, channel: str) -> None:
     """Registra una publicación en el log semanal (jsonl, un evento por línea)."""
     entry = {
@@ -2076,6 +2099,16 @@ def main() -> int:
     # Ganancia esperada primero (ticket × comisión, con plus por mínimo
     # histórico y relámpago): pocas ventas grandes valen más que muchas chicas.
     candidates.sort(key=ganancia_esperada, reverse=True)
+    # Misma publicación con otro ID (la soldadora salió 7 veces en 2 semanas):
+    # se saltea si el título ya salió en 14 días o ya está en este lote.
+    vistos = recent_title_keys()
+    unicos = []
+    for d in candidates:
+        k = title_key(d["title"])
+        if k not in vistos:
+            vistos.add(k)
+            unicos.append(d)
+    candidates = unicos
     to_post = candidates[: cfg.get("max_posts", 5)]
 
     # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en

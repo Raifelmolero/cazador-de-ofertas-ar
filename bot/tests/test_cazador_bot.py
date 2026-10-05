@@ -899,7 +899,7 @@ class TestMencionWhatsApp(unittest.TestCase):
 
     def correr_main(self, slot, n=3):
         from contextlib import ExitStack
-        deals = [{**self.DEAL, "id": f"MLA{i}", "url": f"https://www.mercadolibre.com.ar/MLA{i}",
+        deals = [{**self.DEAL, "id": f"MLA{i}", "title": f"Producto distinto {i}", "url": f"https://www.mercadolibre.com.ar/MLA{i}",
                   "inflada": False} for i in range(n)]
         with ExitStack() as st:
             for nombre in ("write_site_data", "update_seguimiento", "save_price_history",
@@ -907,6 +907,7 @@ class TestMencionWhatsApp(unittest.TestCase):
                            "annotate_price_history", "log_post", "publish_reel"):
                 st.enter_context(mock.patch.object(bot, nombre))
             st.enter_context(mock.patch.object(bot, "fetch_deals", return_value=deals))
+            st.enter_context(mock.patch.object(bot, "recent_title_keys", return_value=set()))
             st.enter_context(mock.patch.object(bot, "load_price_history", return_value={}))
             st.enter_context(mock.patch.object(bot, "load_state", return_value={"posted_ids": []}))
             st.enter_context(mock.patch.object(bot, "load_config", return_value={

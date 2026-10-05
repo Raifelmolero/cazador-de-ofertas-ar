@@ -10,3 +10,8 @@ export function busquedaML(q: string, etiqueta = 'web') {
   const slug = normalizar(q.trim()).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
   return `https://listado.mercadolibre.com.ar/${slug}?matt_word=${etiqueta}&matt_tool=37267219`
 }
+
+/** Página de compra de ML (cupones, promociones) con el link de afiliado visible. */
+export function paginaML(url: string, etiqueta = 'web') {
+  return `${url}${url.includes('?') ? '&' : '?'}matt_word=${etiqueta}&matt_tool=37267219`
+}

@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
+import { paginaML } from '@/lib/afiliado'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
@@ -163,7 +164,7 @@ export default function CuponesPage() {
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3 text-zinc-100">1. La página oficial de cupones</h2>
             <p>
               Mercado Libre tiene una sección de cupones en{' '}
-              <a href="https://www.mercadolibre.com.ar/cupones" rel="nofollow noopener" target="_blank" className={a}>mercadolibre.com.ar/cupones</a>.
+              <a href={paginaML('https://www.mercadolibre.com.ar/cupones')} rel="sponsored nofollow noopener" target="_blank" className={a}>mercadolibre.com.ar/cupones</a>.
               Sin sesión iniciada te redirige al login: los cupones son por usuario, así que dos personas pueden ver
               cupones distintos el mismo día. Revisala antes de pagar, no después.
             </p>
@@ -172,7 +173,7 @@ export default function CuponesPage() {
           <section>
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3 text-zinc-100">Cómo usar un cupón de Mercado Libre, paso a paso</h2>
             <ol className="space-y-2 list-decimal pl-5">
-              <li>Iniciá sesión y entrá a <a href="https://www.mercadolibre.com.ar/cupones" rel="nofollow noopener" target="_blank" className={a}>mercadolibre.com.ar/cupones</a> para ver los cupones de tu cuenta.</li>
+              <li>Iniciá sesión y entrá a <a href={paginaML('https://www.mercadolibre.com.ar/cupones')} rel="sponsored nofollow noopener" target="_blank" className={a}>mercadolibre.com.ar/cupones</a> para ver los cupones de tu cuenta.</li>
               <li>Leé las condiciones de cada uno: vigencia, productos alcanzados y tope máximo de descuento.</li>
               <li>Elegí un producto que entre en esas condiciones y chequeá que el precio base sea bueno (abajo te decimos cómo).</li>
               <li>Antes de confirmar el pago, mirá el resumen de la compra: el descuento del cupón tiene que figurar ahí. Si no figura, ese cupón no aplica.</li>
@@ -184,7 +185,7 @@ export default function CuponesPage() {
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3 text-zinc-100">2. Cómo son las condiciones de un cupón</h2>
             <p>
               Tomamos como ejemplo los legales publicados en{' '}
-              <a href="https://www.mercadolibre.com.ar/ofertas/cuponera" rel="nofollow noopener" target="_blank" className={a}>la cuponera de Mercado Libre</a>{' '}
+              <a href={paginaML('https://www.mercadolibre.com.ar/ofertas/cuponera')} rel="sponsored nofollow noopener" target="_blank" className={a}>la cuponera de Mercado Libre</a>{' '}
               (son de una campaña de 2022, ya vencida; no copiamos sus códigos porque no sirven). Ahí se ve la
               estructura típica: un plazo de vigencia, productos seleccionados, descuento sobre el total de la compra
               sin incluir el envío, un tope máximo de descuento por cupón y 1 cupón por transacción.
@@ -211,7 +212,7 @@ export default function CuponesPage() {
             <p>
               Muchos “descuentos” de Mercado Libre no son cupones sino beneficios por suscripción o por medio de pago.
               En la{' '}
-              <a href="https://www.mercadolibre.com.ar/l/promociones" rel="nofollow noopener" target="_blank" className={a}>página de promociones</a>{' '}
+              <a href={paginaML('https://www.mercadolibre.com.ar/l/promociones')} rel="sponsored nofollow noopener" target="_blank" className={a}>página de promociones</a>{' '}
               (leída el {VERIFICADO}) figuran, entre otros:
             </p>
             <ul className="mt-3 space-y-2 list-disc pl-5">

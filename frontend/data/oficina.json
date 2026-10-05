@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-05T03:56:56+00:00",
+  "generado": "2026-10-05T18:36:57+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,29 +12,21 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1413 productos en la última corrida"
+          "tarea": "Revisó 1601 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 20
-        },
-        {
-          "label": "whatsapp_kit",
           "valor": 15
         },
         {
+          "label": "whatsapp_kit",
+          "valor": 10
+        },
+        {
           "label": "Threads",
-          "valor": 4
-        },
-        {
-          "label": "Reels IG",
-          "valor": 2
-        },
-        {
-          "label": "Historias IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
@@ -43,6 +35,14 @@
         {
           "label": "Facebook",
           "valor": 2
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
@@ -164,7 +164,7 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
-      "ultima_actividad": "2026-09-28T08:07:32+00:00",
+      "ultima_actividad": "2026-10-05T08:09:57+00:00",
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -174,18 +174,18 @@
       "metricas": [
         {
           "label": "Seguidores IG",
-          "valor": 1498,
-          "delta": 7
+          "valor": 1492,
+          "delta": -6
         },
         {
           "label": "Seguidores Threads",
-          "valor": 100,
-          "delta": 3
+          "valor": 101,
+          "delta": 1
         },
         {
           "label": "Suscriptores TG",
           "valor": 3,
-          "delta": 1
+          "delta": 0
         },
         {
           "label": "Seguidores FB",

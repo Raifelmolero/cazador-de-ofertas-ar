@@ -26,6 +26,7 @@ const nextConfig = {
       '/lavarropas': '/mejores/mejores-lavarropas',
       '/heladeras': '/mejores/mejores-heladeras',
       '/cyber': '/cyber-monday',
+      '/madre': '/dia-de-la-madre',
     }
     return Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false }))
   },

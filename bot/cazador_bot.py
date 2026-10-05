@@ -690,6 +690,7 @@ COMPARATIVA_POR_PRODUCTO = (
     (("celular", "smartphone"), "/mejores/mejores-celulares"),
     (("colchon",), "/mejores/mejores-colchones"),
     (("aire acondicionado",), "/mejores/mejores-aires-acondicionados"),
+    (("smart tv", "televisor"), "/mejores/mejores-smart-tv"),
 )
 # Dirección corta de cada comparativa (redirects en frontend/next.config.mjs).
 CORTO_COMPARATIVA = {
@@ -697,6 +698,7 @@ CORTO_COMPARATIVA = {
     "/mejores/mejores-celulares": "celulares",
     "/mejores/mejores-colchones": "colchones",
     "/mejores/mejores-aires-acondicionados": "aires",
+    "/mejores/mejores-smart-tv": "tv",
 }
 
 
@@ -1452,7 +1454,7 @@ def ig_caption(deal: dict) -> str:
     # comparativa, fácil de tipear desde IG (redirect en next.config.mjs).
     if ruta := comparativa_de(deal["title"]):
         corto = CORTO_COMPARATIVA[ruta]
-        regalo_ig += f"📊 Compará más {corto}: cazadordeofertas.com.ar/{corto}\n"
+        regalo_ig += f"📊 Compará más {'smart TV' if corto == 'tv' else corto}: cazadordeofertas.com.ar/{corto}\n"
     if regalo_ig:
         regalo_ig += "\n"
     return (

@@ -1034,3 +1034,9 @@ def test_aires_van_a_su_comparativa_con_direccion_corta():
     d = {"title": "Aire Acondicionado Philco Inverter", "discount": 40, "price_prev": 1999999, "price_cur": 1199999}
     assert bot.comparativa_de(d["title"]) == "/mejores/mejores-aires-acondicionados"
     assert "cazadordeofertas.com.ar/aires" in bot.ig_caption(d)
+
+
+def test_smart_tv_va_a_su_comparativa_con_direccion_corta():
+    d = {"title": "Smart Tv Samsung 50 Uhd 4k", "discount": 20, "price_prev": 917999, "price_cur": 733999}
+    assert bot.comparativa_de(d["title"]) == "/mejores/mejores-smart-tv"
+    assert "cazadordeofertas.com.ar/tv" in bot.ig_caption(d)

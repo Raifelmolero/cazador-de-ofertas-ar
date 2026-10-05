@@ -22,6 +22,7 @@ const nextConfig = {
       '/celulares': '/mejores/mejores-celulares',
       '/colchones': '/mejores/mejores-colchones',
       '/aires': '/mejores/mejores-aires-acondicionados',
+      '/tv': '/mejores/mejores-smart-tv',
       '/cyber': '/cyber-monday',
     }
     return Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false }))

@@ -1,10 +1,9 @@
-import { slugPorId } from '@/lib/seguimiento'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
-import type { OfertaLight } from '@/components/OfertaCard'
-import OfertasGrid from '@/components/OfertasGrid'
+import OfertasGrid, { OFERTAS_EN_HTML } from '@/components/OfertasGrid'
+import { conDestacada, ofertasHoyLight } from '@/lib/ofertashoy'
 import BackToTop from '@/components/BackToTop'
 import AnclaVerificador from '@/components/AnclaVerificador'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -17,7 +16,7 @@ import AtajosVerano from '@/components/AtajosVerano'
 import AtajosTicketAlto from '@/components/AtajosTicketAlto'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
-import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
+import { CATEGORIAS } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
@@ -54,14 +53,6 @@ export const metadata: Metadata = {
   },
 }
 
-// "La caza del día" (la 1ª tarjeta) la ve casi todo el que entra desde la bio:
-// que sea algo de casa con buen descuento, no equipamiento industrial.
-function conDestacada<T extends { titulo: string; descuento_pct?: number; minimo_historico?: boolean }>(lista: T[]): T[] {
-  const gastro = getCategoria('equipamiento-gastronomico')
-  const i = lista.findIndex(o => (!gastro || !enCategoria(gastro, o.titulo)) && ((o.descuento_pct ?? 0) >= 20 || o.minimo_historico))
-  return i > 0 ? [lista[i], ...lista.slice(0, i), ...lista.slice(i + 1)] : lista
-}
-
 export default function HoyPage() {
   const ofertas = conDestacada(getOfertas())
   const scrapedAt = getScrapedAt().toISOString()
@@ -70,20 +61,9 @@ export default function HoyPage() {
   const conHistorial = Object.keys(getHistorial()).length
   const infladas = getInfladas()
 
-  // Solo los campos que la grilla usa: mantiene chico el payload del cliente
-  const historial = slugPorId()
-  const ofertasLight: OfertaLight[] = ofertas.map(o => ({
-    id_ml: o.id_ml,
-    titulo: o.titulo,
-    precio_actual: o.precio_actual,
-    precio_anterior: o.precio_anterior,
-    descuento_pct: o.descuento_pct,
-    minimo_historico: o.minimo_historico,
-    relampago: o.relampago,
-    url_producto: o.url_producto,
-    url_imagen: o.url_imagen,
-    historial: historial[o.id_ml],
-  }))
+  // Solo los campos que la grilla usa; en el HTML van las primeras, el resto
+  // lo baja la grilla de /ofertas-hoy.json después de pintar.
+  const ofertasLight = ofertasHoyLight()
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
   // el resto no aporta y agranda el HTML). priceValidUntil = fin del día
@@ -362,7 +342,7 @@ export default function HoyPage() {
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯
           </p>
         ) : (
-          <OfertasGrid ofertas={ofertasLight} telegramUrl={TELEGRAM_URL} />
+          <OfertasGrid ofertas={ofertasLight.slice(0, OFERTAS_EN_HTML)} total={ofertasLight.length} telegramUrl={TELEGRAM_URL} />
         )}
       </section>
 

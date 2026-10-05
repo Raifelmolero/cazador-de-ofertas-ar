@@ -63,14 +63,39 @@ function ordenar(ofertas: OfertaLight[], orden: OrdenId) {
 }
 
 const PASO = 48
+// Las que vienen en el HTML; el resto se baja de /ofertas-hoy.json al pintar.
+export const OFERTAS_EN_HTML = PASO
 
 export default function OfertasGrid({
-  ofertas,
+  ofertas: iniciales,
+  total,
   telegramUrl,
 }: {
   ofertas: OfertaLight[]
+  total?: number
   telegramUrl: string
 }) {
+  // Primero las del HTML (pinta rápido en celular); apenas el navegador queda
+  // libre, todas las de hoy para que búsqueda, filtros y "ver más" las tengan.
+  const [ofertas, setOfertas] = useState(iniciales)
+  useEffect(() => {
+    if (!total || total <= iniciales.length) return
+    let vivo = true
+    const bajar = () =>
+      fetch('/ofertas-hoy.json')
+        .then(r => (r.ok ? r.json() : null))
+        .then((todas: OfertaLight[] | null) => {
+          if (vivo && todas?.length) setOfertas(todas)
+        })
+        .catch(() => {})
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }
+    if (w.requestIdleCallback) w.requestIdleCallback(bajar, { timeout: 2000 })
+    else setTimeout(bajar, 1000)
+    return () => {
+      vivo = false
+    }
+  }, [iniciales, total])
+
   const [q, setQ] = useState('')
   const [chip, setChip] = useState<ChipId>('all')
   const [orden, setOrden] = useState<OrdenId>('relevancia')
@@ -83,7 +108,7 @@ export default function OfertasGrid({
   }, [])
 
   const counts = useMemo(() => {
-    const c: Record<ChipId, number> = { all: ofertas.length, flash: 0, low: 0, half: 0, cheap: 0 }
+    const c: Record<ChipId, number> = { all: Math.max(ofertas.length, total ?? 0), flash: 0, low: 0, half: 0, cheap: 0 }
     for (const o of ofertas) {
       if (pasaChip(o, 'flash')) c.flash++
       if (pasaChip(o, 'low')) c.low++
@@ -91,7 +116,7 @@ export default function OfertasGrid({
       if (pasaChip(o, 'cheap')) c.cheap++
     }
     return c
-  }, [ofertas])
+  }, [ofertas, total])
 
   // Render incremental: 423 tarjetas SSR pesaban 1,7 MB de HTML y ~1 s de
   // hidratación en mobile. Se muestran de a PASO; búsqueda/filtros siguen

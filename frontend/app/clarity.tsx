@@ -59,7 +59,14 @@ export default function Clarity() {
     script.id = 'clarity-script'
     script.async = true
     script.src = `https://www.clarity.ms/tag/${CLARITY_ID}`
-    document.head.appendChild(script)
+    // Clarity ocupaba ~450 ms del procesador durante la carga en celular: se
+    // pide cuando la página ya pintó. Los clics a ML se registran igual (el
+    // listener de arriba encola en el stub hasta que llega el script real).
+    const cargar = () => document.head.appendChild(script)
+    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback
+    const despues = () => (ric ? ric.call(window, cargar, { timeout: 4000 }) : setTimeout(cargar, 2000))
+    if (document.readyState === 'complete') despues()
+    else window.addEventListener('load', despues, { once: true })
   }, [])
 
   return null

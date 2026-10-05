@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-04T23:02:49+00:00",
+  "generado": "2026-10-05T03:56:56+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,25 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-04T23:02:48+00:00",
+      "ultima_actividad": "2026-10-05T03:56:56+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1577 productos en la última corrida"
+          "tarea": "Revisó 1413 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 15
+          "valor": 20
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
+        },
+        {
+          "label": "Historias IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
@@ -35,18 +43,10 @@
         {
           "label": "Facebook",
           "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora Mig 200amp 4 En 1 Mig + Tig + Mig Flux + Mma Aleba Amarillo"
+      "ultimo_trabajo": "Televisor Tcl 55 Qled 4k Uhd 55p7l"
     },
     {
       "id": "investigacion",

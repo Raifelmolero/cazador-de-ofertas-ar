@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { ofertasDeCategoria } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY, seguidosDe } from '@/lib/preciohoy'
 import {
@@ -99,6 +100,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const sobreMin = Math.round(((hoy - s.min) / s.min) * 100)
   const descuentoLista = s.precio_lista > hoy ? Math.round((1 - hoy / s.precio_lista) * 100) : 0
   const cat = categoriaDeSeguido(s)
+  // Si hoy no está en oferta, mostramos las de su categoría que sí lo están
+  const alternativas = !enOferta && cat ? ofertasDeCategoria(cat).filter(o => o.id_ml !== s.id).slice(0, 4) : []
   const comparativas = cat ? COMPARATIVAS.filter(c => c.categoria === cat.slug).slice(0, 3) : []
   const nicho = cat ? NICHOS.find(n => n.categorias.includes(cat.slug)) : undefined
   const preciosHoy = PRECIOS_HOY.filter(
@@ -253,6 +256,32 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           </a>
           <AlertaCTA id={s.id} className="mt-4" />
         </section>
+
+        {alternativas.length > 0 && (
+          <section className="mb-8" aria-label="En oferta hoy">
+            <p className="text-xs font-bold tracking-widest text-yellow-400 mb-2">🔥 PARECIDOS QUE SÍ ESTÁN EN OFERTA HOY</p>
+            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {alternativas.map(p => (
+                <li key={p.id_ml} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-2">
+                  <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="block">
+                    <div className="h-28 rounded-xl bg-white overflow-hidden">
+                      {p.url_imagen && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.url_imagen} alt="" loading="lazy" className="w-full h-full object-contain p-1" />
+                      )}
+                    </div>
+                    <p className="mt-2 text-xs text-zinc-300 line-clamp-2">{p.titulo}</p>
+                    <p className="mt-1 flex items-baseline gap-1.5">
+                      <span className="font-black text-zinc-50">{precio(p.precio_actual)}</span>
+                      {p.descuento_pct != null && <span className="text-[11px] font-bold text-red-400">-{p.descuento_pct}%</span>}
+                    </p>
+                    <span className="mt-2 block rounded-lg bg-yellow-400 py-1.5 text-center text-xs font-black text-black">Ver en ML ↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
           <Dato label={enOferta ? 'Precio hoy' : 'Último precio'} valor={precio(hoy)} />

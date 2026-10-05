@@ -13,6 +13,19 @@ const nextConfig = {
       },
     ],
   },
+  // Direcciones cortas para placas de story y para tipear: llevan a la página
+  // larga conservando los utm (?utm_source=...) que traiga el link.
+  async redirects() {
+    const cortos = {
+      '/cupones': '/cupones-mercado-libre',
+      '/notebooks': '/mejores/mejores-notebooks',
+      '/celulares': '/mejores/mejores-celulares',
+      '/colchones': '/mejores/mejores-colchones',
+      '/aires': '/mejores/mejores-aires-acondicionados',
+      '/cyber': '/cyber-monday',
+    }
+    return Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false }))
+  },
   async rewrites() {
     const dealsHosts = [DEALS_HOST, `www.${DEALS_HOST}`]
     return {

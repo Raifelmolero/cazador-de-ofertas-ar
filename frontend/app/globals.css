@@ -40,6 +40,14 @@ body::before {
   animation: stamp-in 0.55s 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Celular: sin grano (filtro SVG de ruido a pantalla completa) ni animación
+   de entrada en cada tarjeta: costaban ~2 s de "Style & Layout" en Lighthouse
+   mobile y no se notan en pantalla chica. */
+@media (max-width: 639px) {
+  body::before { display: none; }
+  .rise-in, .stamp { animation: none; }
+}
+
 /* Custom scrollbar (paleta zinc, como el resto del sitio) */
 ::-webkit-scrollbar {
   width: 6px;

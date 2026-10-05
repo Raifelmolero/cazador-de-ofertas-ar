@@ -42,5 +42,5 @@ def test_caption_ig_lleva_cuenta_y_landing_escrita():
     with mock.patch.object(bot, "cuenta_regresiva", lambda t: cr(t, hoy)),          mock.patch.object(bot, "landing_temporada", lambda t, s: lt(t, s, hoy)),          mock.patch.object(bot, "sello_temporada", lambda t: st(t, hoy)):
         cap = bot.ig_caption(deal)
     assert "Faltan 9 días" in cap
-    assert "cazadordeofertas.com.ar/dia-de-la-madre" in cap
+    assert "cazadordeofertas.com.ar/madre" in cap  # dirección corta (redirect)
     assert "utm_" not in cap

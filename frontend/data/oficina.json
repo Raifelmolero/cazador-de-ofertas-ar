@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-05T18:36:57+00:00",
+  "generado": "2026-10-05T22:00:26+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-05T03:56:56+00:00",
+      "ultima_actividad": "2026-10-05T22:00:25+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1601 productos en la última corrida"
+          "tarea": "Revisó 1543 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -22,19 +22,19 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 5
         },
         {
           "label": "Threads",
           "valor": 3
         },
         {
-          "label": "Instagram",
+          "label": "Facebook",
           "valor": 2
         },
         {
-          "label": "Facebook",
-          "valor": 2
+          "label": "Instagram",
+          "valor": 1
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Televisor Tcl 55 Qled 4k Uhd 55p7l"
+      "ultimo_trabajo": "Lavarropas LG WM10VVC4S6 ThinQ 10 Kg AI DD Inverter Direct Drive 1400 RPM Vapor "
     },
     {
       "id": "investigacion",

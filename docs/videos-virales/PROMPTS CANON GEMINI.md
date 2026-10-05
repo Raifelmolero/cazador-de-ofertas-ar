@@ -34,6 +34,13 @@ Video vertical 9:16, 8 segundos, animación 3D estilo Pixar, colores cálidos, i
 ## Continuidad (clip 2 en adelante)
 Empezar con: "Continuación directa del clip anterior: mismo lugar, misma ropa, mismas caras. [posición final del clip anterior]." Si Gemini extiende, el último video del chat ya trae todo unido.
 
+## Reglas de VOZ (04/10, después de que Rosa habló con la voz de Juli)
+- Gemini NO maneja voces fuera de cuadro: se las pega a la primera boca que ve. **Nunca** pedir "voz fuera de cuadro". La pregunta de Juli (POV) va como texto en pantalla en la edición.
+- **Un solo personaje habla por clip**, con su voz descrita: "Don Ofertín, voz grave y ronca de abuelo de 72 años, es el ÚNICO que habla en todo el clip".
+- Los demás: "Doña Rosa NO habla en ningún momento, mantiene la boca cerrada / se la tapa con las manos".
+- Frase final fija: "En todo el clip se escucha una sola voz: la de [X]. Nadie más dice nada."
+- Empezar siempre con "Creá un VIDEO (no una imagen)" y adjuntar las tarjetas del carrusel aprobado de quienes aparecen.
+
 ## Palabras prohibidas en prompts
 apuntar, detective, sudor, asustado, niño/nene/chico (para personas), arma, cuchillo, sangre, dólares/USD, nombres de marcas (Apple, Samsung, Google, Nike, TikTok…), camiseta de fútbol, bandera.
 
@@ -45,3 +52,10 @@ Manos (5 dedos), ojos (los dos abiertos), caras iguales al clip anterior, nadie 
 - Cada hoja aprobada se usa SIEMPRE: en un chat nuevo de Videos, Raifel arrastra las hojas de quienes aparecen (subirlas por script no funciona) y después se pega el prompt.
 - No se reemplaza una hoja sin OK de Raifel. Si un clip sale con otra cara, se corrige ese clip, no la hoja.
 - Benja quedó fuera de la serie (04/10): su hoja va a `_descartes y pruebas`.
+
+## Encuadre y ritmo (04/10, segundo intento de Abuelos)
+- **Chat NUEVO por escena**: si se pide otro video en el mismo chat, Gemini lo PEGA al anterior (sale de 20 s).
+- Diálogo **desde el segundo 1**, terminar antes del 6. Si no, el personaje pierde 5 s acomodándose los anteojos.
+- Objetos (tablet, celular) **chicos y en una esquina**, nunca tapando a nadie.
+- El que no habla arranca **desde el primer cuadro** con la pose que le impide hablar (manos en la boca, brazos cruzados).
+- Cerrar con: "Ninguna voz fuera de cuadro, ninguna voz joven, ninguna voz femenina" (o la que corresponda).

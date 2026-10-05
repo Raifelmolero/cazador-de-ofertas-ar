@@ -8,6 +8,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
+import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
 import {
@@ -192,6 +193,19 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             <LastUpdated scrapedAt={scrapedAt} /> · {ofertas.length} {ofertas.length === 1 ? 'oferta' : 'ofertas'}
             {minimos > 0 && <> · {minimos} en mínimo histórico</>}
           </p>
+          {COMPARATIVAS.some(x => x.categoria === c.slug && indexable(x)) && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {COMPARATIVAS.filter(x => x.categoria === c.slug && indexable(x)).slice(0, 4).map(x => (
+                <Link
+                  key={x.slug}
+                  href={`/mejores/${x.slug}`}
+                  className="text-xs sm:text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-full px-3 py-1.5 transition-colors"
+                >
+                  🏆 Comparativa: {x.nombre}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

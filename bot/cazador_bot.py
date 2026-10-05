@@ -1453,7 +1453,10 @@ def ig_caption(deal: dict) -> str:
     if sello and (cuenta := cuenta_regresiva(deal["title"])):
         regalo_ig += f"{cuenta}\n"
     if lt := landing_temporada(deal["title"], "instagram"):
-        regalo_ig += f"{lt[0]} → {lt[1].split('?')[0].removeprefix('https://')}\n"
+        # En IG se tipea: dirección corta si la landing tiene (redirects en next.config.mjs)
+        dire = lt[1].split('?')[0].removeprefix('https://')
+        dire = dire.replace("/dia-de-la-madre", "/madre").replace("/cyber-monday", "/cyber")
+        regalo_ig += f"{lt[0]} → {dire}\n"
     # Notebooks/celulares/colchones (65% de la ganancia): dirección corta a la
     # comparativa, fácil de tipear desde IG (redirect en next.config.mjs).
     if ruta := comparativa_de(deal["title"]):

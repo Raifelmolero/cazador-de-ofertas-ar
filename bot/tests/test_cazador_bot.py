@@ -1046,3 +1046,9 @@ def test_lavarropas_y_heladeras_van_a_su_comparativa():
     base = {"discount": 30, "price_prev": 1000000, "price_cur": 700000}
     assert "cazadordeofertas.com.ar/lavarropas" in bot.ig_caption({**base, "title": "Lavarropas Drean Next 8kg"})
     assert "cazadordeofertas.com.ar/heladeras" in bot.ig_caption({**base, "title": "Heladera No Frost Samsung"})
+
+
+def test_ig_caption_landing_con_direccion_corta(monkeypatch):
+    monkeypatch.setattr(bot, "landing_temporada", lambda t, s: ("🎁 Más regalos", "https://cazadordeofertas.com.ar/dia-de-la-madre?utm_source=instagram"))
+    cap = bot.ig_caption({"title": "Perfume", "discount": 30, "price_prev": 100000, "price_cur": 70000})
+    assert "cazadordeofertas.com.ar/madre\n" in cap

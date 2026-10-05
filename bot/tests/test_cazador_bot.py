@@ -1021,3 +1021,10 @@ class TestTelegramAWeb(unittest.TestCase):
         grande = {"title": "Aire acondicionado split", "price_cur": 800000}
         orden = sorted([chico, grande], key=bot.ganancia_esperada, reverse=True)
         self.assertIs(orden[0], grande)
+
+
+def test_ig_caption_ticket_alto_lleva_direccion_corta_a_comparativa():
+    d = {"title": "Notebook Acer Aspire Go 15", "discount": 38, "price_prev": 2373000, "price_cur": 1471299}
+    assert "cazadordeofertas.com.ar/notebooks" in bot.ig_caption(d)
+    d["title"] = "Freidora de aire Philco"
+    assert "Compará más" not in bot.ig_caption(d)

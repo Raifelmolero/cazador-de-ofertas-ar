@@ -1440,6 +1440,11 @@ def ig_caption(deal: dict) -> str:
         regalo_ig += f"{cuenta}\n"
     if lt := landing_temporada(deal["title"], "instagram"):
         regalo_ig += f"{lt[0]} → {lt[1].split('?')[0].removeprefix('https://')}\n"
+    # Notebooks/celulares/colchones (65% de la ganancia): dirección corta a la
+    # comparativa, fácil de tipear desde IG (redirect en next.config.mjs).
+    if ruta := comparativa_de(deal["title"]):
+        corto = ruta.rsplit("-", 1)[-1]
+        regalo_ig += f"📊 Compará más {corto}: cazadordeofertas.com.ar/{corto}\n"
     if regalo_ig:
         regalo_ig += "\n"
     return (

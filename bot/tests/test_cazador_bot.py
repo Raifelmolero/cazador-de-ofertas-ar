@@ -1040,3 +1040,9 @@ def test_smart_tv_va_a_su_comparativa_con_direccion_corta():
     d = {"title": "Smart Tv Samsung 50 Uhd 4k", "discount": 20, "price_prev": 917999, "price_cur": 733999}
     assert bot.comparativa_de(d["title"]) == "/mejores/mejores-smart-tv"
     assert "cazadordeofertas.com.ar/tv" in bot.ig_caption(d)
+
+
+def test_lavarropas_y_heladeras_van_a_su_comparativa():
+    base = {"discount": 30, "price_prev": 1000000, "price_cur": 700000}
+    assert "cazadordeofertas.com.ar/lavarropas" in bot.ig_caption({**base, "title": "Lavarropas Drean Next 8kg"})
+    assert "cazadordeofertas.com.ar/heladeras" in bot.ig_caption({**base, "title": "Heladera No Frost Samsung"})

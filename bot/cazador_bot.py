@@ -691,6 +691,8 @@ COMPARATIVA_POR_PRODUCTO = (
     (("colchon",), "/mejores/mejores-colchones"),
     (("aire acondicionado",), "/mejores/mejores-aires-acondicionados"),
     (("smart tv", "televisor"), "/mejores/mejores-smart-tv"),
+    (("lavarropas", "lavasecarropas"), "/mejores/mejores-lavarropas"),
+    (("heladera",), "/mejores/mejores-heladeras"),
 )
 # Dirección corta de cada comparativa (redirects en frontend/next.config.mjs).
 CORTO_COMPARATIVA = {
@@ -699,6 +701,8 @@ CORTO_COMPARATIVA = {
     "/mejores/mejores-colchones": "colchones",
     "/mejores/mejores-aires-acondicionados": "aires",
     "/mejores/mejores-smart-tv": "tv",
+    "/mejores/mejores-lavarropas": "lavarropas",
+    "/mejores/mejores-heladeras": "heladeras",
 }
 
 

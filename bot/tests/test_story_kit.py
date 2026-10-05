@@ -18,7 +18,13 @@ def test_story_kit_trae_web_y_ml():
     assert "https://raw/story.jpg" in msg
 
 
-def test_story_kit_sin_ficha_va_a_hoy():
+def test_story_kit_sin_ficha_va_a_su_comparativa():
+    # Un aire sin ficha /precio va a la comparativa de aires (no a /hoy)
     msg = cb.story_kit(DEAL, "AFF", "instagram", {}, None)
+    assert "/mejores/mejores-aires-acondicionados?utm_source=ig_story" in msg
+
+
+def test_story_kit_sin_ficha_ni_comparativa_va_a_hoy():
+    msg = cb.story_kit({**DEAL, "title": "Freidora de aire Philco"}, "AFF", "instagram", {}, None)
     assert "/hoy?utm_source=ig_story" in msg
     assert "https://x/y.jpg" in msg

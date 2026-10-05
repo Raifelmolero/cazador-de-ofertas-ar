@@ -1028,3 +1028,9 @@ def test_ig_caption_ticket_alto_lleva_direccion_corta_a_comparativa():
     assert "cazadordeofertas.com.ar/notebooks" in bot.ig_caption(d)
     d["title"] = "Freidora de aire Philco"
     assert "Compará más" not in bot.ig_caption(d)
+
+
+def test_aires_van_a_su_comparativa_con_direccion_corta():
+    d = {"title": "Aire Acondicionado Philco Inverter", "discount": 40, "price_prev": 1999999, "price_cur": 1199999}
+    assert bot.comparativa_de(d["title"]) == "/mejores/mejores-aires-acondicionados"
+    assert "cazadordeofertas.com.ar/aires" in bot.ig_caption(d)

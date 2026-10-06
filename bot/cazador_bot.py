@@ -2205,6 +2205,12 @@ def main() -> int:
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history)
+        if os.getenv("WEB_VIDEOS", "1") != "0" and os.getenv("DRY_RUN") != "1":
+            try:  # best-effort: los videos de la web nunca frenan la publicación
+                from web_videos import generar as generar_videos_web
+                print(f"[info] videos web: {generar_videos_web()}")
+            except Exception as e:  # noqa: BLE001
+                print(f"[warn] videos web no se generaron: {e}")
         update_seguimiento(deals, history, affiliate_id)
         try:  # best-effort: la muestra de infladas nunca frena la publicación
             write_infladas(deals)

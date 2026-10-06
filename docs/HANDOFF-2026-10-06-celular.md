@@ -32,3 +32,12 @@ tocó `frontend/lib/landings.ts` y archivos nuevos en `docs/`.
 ## Notas
 - Cuidado: en IG nunca escribir el handle de Telegram con `@` (usar t.me/...).
 - Sandbox remoto: `npm ci` + `npx next build` anda; el scraper de ML no.
+
+## Agregado más tarde (06/10)
+- Día de la Madre (`frontend/app/dia-de-la-madre/page.tsx`): rangos con ticket alto primero, sin repetidos (por título) y sin no-regalos (micrófono, inflable, hidrolavadora, pencil, rugged).
+- Botón "Avisame si baja" en las tarjetas de ticket alto (`OfertaCard.tsx`) + evento `alerta_click` en `app/clics-ml.tsx`. El backend de alertas (`bot/alertas.py`) ya existía.
+- CI de lint arreglado (Link en vez de `<a>` en guias, mejores y landings).
+- NUEVO publicador de texto: `bot/post_texto.py` + `.github/workflows/post_texto.yml` + textos en `bot/posts_texto/*.json`. Publica en Facebook (página) y Threads, sin producto ni afiliado. Se corre con dry_run primero. Post del estudio publicado el 06/10 en ambos canales (utm_source=facebook/threads, utm_campaign=estudio).
+- OJO: la URL del estudio es `/estudio/descuentos-inflados-mercado-libre` (no existe `/estudio`). Corregido en `docs/MENCIONES-EXTERNAS-2026.md`.
+- Trello: #23 con investigación de X (precios contradictorios, verificar), #24 a #29 nuevas. Comentario de prueba sobrante en #22 ya marcado como borrable.
+- Un test viejo (`bot/tests/test_atribucion.py`) importa `pytest`; localmente sin pytest da error de importación. No es regresión.

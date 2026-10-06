@@ -10,6 +10,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
 import {
@@ -337,6 +338,22 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </div>
           </section>
         )}
+
+        {(() => {
+          const ls = LANDINGS.filter(x => (!x.categoria || x.categoria === c.slug) && indexableLanding(x))
+          return ls.length > 0 ? (
+            <section className="mb-10">
+              <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Listas de ofertas relacionadas</h2>
+              <ul className="space-y-2 text-sm">
+                {[...ls].sort((a, b) => Number(b.categoria === c.slug) - Number(a.categoria === c.slug)).map(x => (
+                  <li key={x.slug}>
+                    <a href={`/ofertas/${x.slug}`} className="text-yellow-400/80 hover:text-yellow-400">{x.titulo} →</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null
+        })()}
 
         {relacionados.length > 0 && (
           <section className="mb-10">

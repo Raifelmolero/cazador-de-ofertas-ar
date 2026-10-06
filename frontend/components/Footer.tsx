@@ -43,6 +43,14 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
               <a href="https://cazadordeofertas.com.ar/cupones-mercado-libre" className="underline hover:text-yellow-400 transition-colors">
                 Cupones de Mercado Libre
               </a>
+              {' · '}
+              <a href="https://cazadordeofertas.com.ar/guias" className="underline hover:text-yellow-400 transition-colors">
+                Guías de compra
+              </a>
+              {' · '}
+              <a href="https://cazadordeofertas.com.ar/mejores" className="underline hover:text-yellow-400 transition-colors">
+                Mejores en oferta
+              </a>
             </>
           )}
         </p>

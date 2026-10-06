@@ -1,5 +1,6 @@
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
+import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { CATEGORIAS } from '@/lib/categorias'
 import { getInfladas } from '@/lib/infladas'
 import {
@@ -104,7 +105,17 @@ ${seccionInfladas}## Categorías
 
 ${CATEGORIAS.map(c => `- [${c.nombre}](${DEALS_URL}/categoria/${c.slug}): ${c.descripcion}`).join('\n')}
 
+## Comparativas de ticket alto (aires, smart TV, heladeras, colchones, notebooks, celulares)
+
+Índice: ${DEALS_URL}/mejores
+
+${COMPARATIVAS.filter(indexable)
+  .map(c => `- [${c.titulo}](${DEALS_URL}/mejores/${c.slug})`)
+  .join('\n')}
+
 ## Guías
+
+Índice: ${DEALS_URL}/guias
 
 ${GUIAS.map(g => `- [${g.titulo}](${DEALS_URL}/guias/${g.slug}): ${g.respuestaCorta}`).join('\n')}
 

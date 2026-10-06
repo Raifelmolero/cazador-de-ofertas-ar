@@ -5,6 +5,7 @@ import { GUIAS } from '@/lib/guias'
 import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import { CATEGORIAS } from '@/lib/categorias'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidosPrincipales } from '@/lib/seguimiento'
@@ -70,6 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily' as const,
       priority: 0.8,
     })),
+    ...LANDINGS.filter(indexableLanding).map(l => ({ url: `${DEALS_URL}/ofertas/${l.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.7 })),
     ...NICHOS.map(n => ({ url: `${DEALS_URL}/${n.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 })),
     { url: `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/cupones-mercado-libre`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },

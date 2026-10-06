@@ -1,0 +1,34 @@
+# HANDOFF 2026-10-06 (sesión desde el celular, sin PC — leer antes de tocar nada)
+
+Antes leer `docs/HANDOFF-2026-10-03.md` y `docs/HANDOFF-2026-10-04b-familia.md`.
+Otro chat trabaja con Don Ofertín/familia/videos: no pisarlo. Esta sesión solo
+tocó `frontend/lib/landings.ts` y archivos nuevos en `docs/`.
+
+## Hecho (todo en main)
+- 6 landings nuevas en `frontend/lib/landings.ts` (`/ofertas/[slug]`), con el
+  mismo patrón que las 7 existentes: aires inverter, colchones 2 plazas/queen/king,
+  Smart TV 55"+, heladeras, herramientas eléctricas, termotanques y calefones.
+  Se filtran del catálogo del día y solo entran al sitemap si hay productos
+  suficientes (`min`: 3 a 5). Build completo (2044 páginas) y lint OK.
+- `docs/CYBER-POSTS-2026.md`: calendario del 26/10 al 5/11 con textos listos.
+  Los `[corchetes]` se completan con productos reales del día.
+- Recordatorio programado (`send_later`) para el sáb 31/10 12:00 ART: completar
+  esos textos con productos reales y dejarlos listos para `special_post.yml`.
+- Trello: tarjetas nuevas #24 (alertas de precio por Telegram), #25 (Pinterest),
+  #26 (menciones externas / GEO) y #27 (bajar cadencia de Telegram).
+
+## Verificado y descartado
+- El pendiente "/#verificador cae en bloque oculto en celular" ya estaba
+  resuelto por `components/AnclaVerificador.tsx` (usado en `app/hoy/page.tsx`).
+
+## Pendientes / decisiones de Raifel
+1. Mié 07/10: medición semanal (panel ML por etiqueta, Clarity, Search Console)
+   y decidir #27 (Telegram) con datos.
+2. Elegir cuáles de #24/#25/#26 vale la pena empezar.
+3. Verificar en vivo que las landings nuevas cargan y cuáles quedaron en el sitemap
+   (heladeras y colchones queen/king estaban justo en el mínimo).
+4. Las stories con link de la lista de PENDIENTES DE RAIFEL siguen siendo manuales.
+
+## Notas
+- Cuidado: en IG nunca escribir el handle de Telegram con `@` (usar t.me/...).
+- Sandbox remoto: `npm ci` + `npx next build` anda; el scraper de ML no.

@@ -33,9 +33,9 @@ const FECHA_TEXTO = 'domingo 18 de octubre'
 const POR_RANGO = 8
 
 const RANGOS = [
-  { id: 'hasta-100000', titulo: 'Hasta $100.000', min: 0, max: 100000 },
-  { id: '100000-a-300000', titulo: 'De $100.000 a $300.000', min: 100000, max: 300000 },
   { id: 'mas-de-300000', titulo: 'Más de $300.000', min: 300000, max: Infinity },
+  { id: '100000-a-300000', titulo: 'De $100.000 a $300.000', min: 100000, max: 300000 },
+  { id: 'hasta-100000', titulo: 'Hasta $100.000', min: 0, max: 100000 },
 ] as const
 
 const CATEGORIAS_REGALO = [
@@ -147,19 +147,29 @@ export default function DiaDeLaMadrePage() {
     return c ? productosDe(c) : []
   })
   // Cosas que se cuelan por categoría pero no son regalo para mamá
-  const NO_REGALO = ['bomba', 'presurizadora', 'masculino', 'hombre', 'for men', 'pour homme', 'repuesto', 'industrial', 'compresor', 'amoladora', 'soldadora', 'neumatico', 'neumático']
+  const NO_REGALO = ['bomba', 'presurizadora', 'masculino', 'hombre', 'for men', 'pour homme', 'repuesto', 'industrial', 'compresor', 'amoladora', 'soldadora', 'neumatico', 'neumático', 'microfono', 'micrófono', 'lavalier', 'inflable', 'hidrolavadora', 'pencil', 'rugged', 'militar']
   const esRegalo = (p: ProductWithMargins) => !NO_REGALO.some(w => p.titulo.toLowerCase().includes(w))
-  const pool = [...regalos, ...deRubros].filter((p, i, a) => esRegalo(p) && a.findIndex(x => x.id_ml === p.id_ml) === i)
+  // Mismo título con otro ID (color/variante) = el mismo regalo repetido
+  const claveTitulo = (p: ProductWithMargins) => p.titulo.toLowerCase().replace(/\s+/g, ' ').trim()
+  const pool = [...regalos, ...deRubros].filter(
+    (p, i, a) => esRegalo(p) && a.findIndex(x => x.id_ml === p.id_ml || claveTitulo(x) === claveTitulo(p)) === i,
+  )
   const rangos = RANGOS.map(r => {
     const todos = pool.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
     return { ...r, total: todos.length, productos: todos.slice(0, POR_RANGO) }
   })
+  // Se va completando: un regalo no se repite entre rangos ni entre rubros
+  const yaEnRangos = new Set(rangos.flatMap(r => r.productos.map(claveTitulo)))
   // Por rubro, solo ticket medio/alto (≥ $30.000): lo que más comisión deja.
   const rubros = RUBROS_REGALO.flatMap(r => {
     const c = getComparativa(r.comp)
     if (!c) return []
-    const todos = productosDe(c).filter(p => p.precio_actual >= 30000)
-    return todos.length ? [{ ...r, slug: c.slug, compTitulo: c.titulo, total: todos.length, productos: todos.slice(0, POR_RUBRO) }] : []
+    const todos = productosDe(c).filter(
+      (p, i, a) => p.precio_actual >= 30000 && esRegalo(p) && !yaEnRangos.has(claveTitulo(p)) && a.findIndex(x => claveTitulo(x) === claveTitulo(p)) === i,
+    )
+    const productos = todos.slice(0, POR_RUBRO)
+    productos.forEach(p => yaEnRangos.add(claveTitulo(p)))
+    return todos.length ? [{ ...r, slug: c.slug, compTitulo: c.titulo, total: todos.length, productos }] : []
   })
   const mostrados = [...rangos.flatMap(r => r.productos), ...rubros.flatMap(r => r.productos)].filter(
     (p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i,
@@ -304,7 +314,7 @@ export default function DiaDeLaMadrePage() {
           {r.productos.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {r.productos.map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'hasta-100000' && i < 4} />
+                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'mas-de-300000' && i < 4} />
               ))}
             </div>
           )}

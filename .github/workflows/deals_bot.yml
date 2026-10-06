@@ -101,7 +101,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add bot/state frontend/data/productos_rentables.json frontend/data/seguimiento.json frontend/data/oficina.json frontend/data/infladas.json frontend/public/videos
+          git add bot/state frontend/data/productos_rentables.json frontend/data/seguimiento.json frontend/data/oficina.json frontend/data/infladas.json
           if git diff --cached --quiet; then
             echo "Sin cambios de estado."
           else

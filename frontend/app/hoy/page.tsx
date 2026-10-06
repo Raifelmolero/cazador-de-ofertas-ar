@@ -19,8 +19,6 @@ import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
-import VideosDestacados from '@/components/VideosDestacados'
-import { videosDestacados } from '@/lib/videos'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
@@ -341,7 +339,6 @@ export default function HoyPage() {
       <AtajosTicketAlto />
       <ColchonesDestacados ofertas={colchones} />
       <AtajosVerano />
-      <VideosDestacados ofertas={videosDestacados(ofertasLight)} />
 
       {/* Grid con búsqueda y filtros */}
       <section id="ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-6 sm:py-8 scroll-mt-16">

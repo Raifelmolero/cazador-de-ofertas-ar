@@ -1,0 +1,44 @@
+name: Post de Texto
+
+# Publica un texto propio (estudio, guía) en Facebook y Threads, sin producto
+# ni link de afiliado. El texto vive en bot/posts_texto/<archivo>.json.
+on:
+  workflow_dispatch:
+    inputs:
+      archivo:
+        description: 'Nombre del JSON en bot/posts_texto/ (ej: estudio-2026-10-06.json)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Solo simular (no publica)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  post-texto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Publicar post de texto
+        working-directory: bot
+        env:
+          POST_TEXTO: ${{ inputs.archivo }}
+          DRY_RUN: ${{ inputs.dry_run == true && '1' || '0' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: python post_texto.py

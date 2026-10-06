@@ -51,6 +51,18 @@ export default function Clarity() {
         const pagina = window.location.pathname.split('/').slice(0, 2).join('/') || '/'
         c('set', 'click_ml_pagina', pagina)
         c('event', a.closest('[data-destacada]') ? 'click_ml_destacada' : 'click_ml')
+        // Ticket alto (colchones, herramientas, >= $250.000): lo que más ganancia deja
+        if (a.closest('[data-ticket-alto]')) c('event', 'click_ml_ticket_alto')
+        // Etiqueta de afiliado del link (web/nicho): cruza con el panel de ML
+        try {
+          const mw = new URL((a as HTMLAnchorElement).href).searchParams.get('matt_word')
+          if (mw) c('set', 'click_ml_etiqueta', mw.slice(0, 40))
+        } catch {
+          // href raro: sin etiqueta
+        }
+        // Sección de la página donde estaba el botón (data-seccion en el contenedor)
+        const sec = a.closest('[data-seccion]')?.getAttribute('data-seccion')
+        if (sec) c('set', 'click_ml_seccion', sec.slice(0, 40))
       },
       true,
     )

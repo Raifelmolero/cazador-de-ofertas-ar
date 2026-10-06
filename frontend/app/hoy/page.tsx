@@ -14,9 +14,10 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import AtajosTicketAlto from '@/components/AtajosTicketAlto'
+import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
-import { CATEGORIAS } from '@/lib/categorias'
+import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
@@ -64,6 +65,8 @@ export default function HoyPage() {
   // Solo los campos que la grilla usa; en el HTML van las primeras, el resto
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
+  const catColchones = getCategoria('colchones')
+  const colchones = catColchones ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo)) : []
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
   // el resto no aporta y agranda el HTML). priceValidUntil = fin del día
@@ -333,6 +336,7 @@ export default function HoyPage() {
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
       <BannerTemporada />
       <AtajosTicketAlto />
+      <ColchonesDestacados ofertas={colchones} />
       <AtajosVerano />
 
       {/* Grid con búsqueda y filtros */}

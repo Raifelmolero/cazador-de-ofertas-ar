@@ -14,9 +14,31 @@ export function conDestacada<T extends { titulo: string; descuento_pct?: number;
   return i > 0 ? [lista[i], ...lista.slice(0, i), ...lista.slice(i + 1)] : lista
 }
 
+// Ticket alto: lo que más ganancia dejó (panel de afiliados 28/09-05/10: colchones,
+// sommiers y herramientas al 15%; un colchón de $86k en 2 ventas). Se sube
+// arriba de la grilla sin cambiar el orden interno (que ya es por ganancia
+// esperada). Equipamiento gastronómico/industrial no cuenta: no es compra de casa.
+import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
+export { TICKET_ALTO_DESDE }
+export function esTicketAlto(titulo: string, precio: number): boolean {
+  const gastro = getCategoria('equipamiento-gastronomico')
+  if (gastro && enCategoria(gastro, titulo)) return false
+  if (precio >= TICKET_ALTO_DESDE) return true
+  return ['colchones', 'herramientas-electricas'].some(slug => {
+    const c = getCategoria(slug)
+    return !!c && enCategoria(c, titulo)
+  })
+}
+
+export function ticketAltoPrimero<T extends { titulo: string; precio_actual: number }>(lista: T[]): T[] {
+  const alto = lista.filter(o => esTicketAlto(o.titulo, o.precio_actual))
+  if (alto.length === 0) return lista
+  return [...alto, ...lista.filter(o => !esTicketAlto(o.titulo, o.precio_actual))]
+}
+
 export function ofertasHoyLight(): OfertaLight[] {
   const historial = slugPorId()
-  return conDestacada(getOfertas()).map(o => ({
+  return conDestacada(ticketAltoPrimero(getOfertas())).map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
     precio_actual: o.precio_actual,

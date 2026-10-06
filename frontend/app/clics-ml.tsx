@@ -19,7 +19,13 @@ export default function ClicsML() {
         return
       }
       if (!ML.test(url.hostname) || url.pathname.startsWith('/ayuda')) return
-      track('clic_ml', { pagina: window.location.pathname, destino: url.hostname + url.pathname.slice(0, 40) })
+      track('clic_ml', {
+        pagina: window.location.pathname,
+        destino: url.hostname + url.pathname.slice(0, 40),
+        etiqueta: url.searchParams.get('matt_word') ?? 'sin_etiqueta',
+        ticket_alto: a.closest('[data-ticket-alto]') ? 'si' : 'no',
+        seccion: a.closest('[data-seccion]')?.getAttribute('data-seccion') ?? 'grilla',
+      })
     }
     document.addEventListener('click', onClick, { capture: true })
     return () => document.removeEventListener('click', onClick, { capture: true })

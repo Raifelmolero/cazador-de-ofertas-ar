@@ -3,6 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
@@ -72,7 +73,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
     .slice(0, 15)
 
   const historial = slugPorId()
-  const ofertasLight: OfertaLight[] = ofertas.map(o => ({
+  const ofertasLight: OfertaLight[] = ticketAltoPrimero(ofertas).map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
     precio_actual: o.precio_actual,

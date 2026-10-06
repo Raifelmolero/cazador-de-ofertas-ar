@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 
 /** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
  *  necesita, y mantiene liviano el payload que viaja al cliente. */
@@ -108,6 +109,7 @@ function Tarjeta({
   featured?: boolean
   priority?: boolean
 }) {
+  const ticketAlto = producto.precio_actual >= TICKET_ALTO_DESDE ? '' : undefined
   const ahorro =
     producto.precio_anterior != null
       ? producto.precio_anterior - producto.precio_actual
@@ -120,6 +122,7 @@ function Tarjeta({
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-destacada
+        data-ticket-alto={ticketAlto}
         className="rise-in group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
       >
         <div className="relative w-[38%] max-w-72 shrink-0 self-stretch bg-white min-h-36">
@@ -162,8 +165,13 @@ function Tarjeta({
               Te ahorrás {precio(ahorro)}
             </span>
           )}
-          <span className="mt-3 inline-flex w-fit items-center text-sm font-bold bg-yellow-400 text-black rounded-xl px-5 py-2.5 transition-colors group-hover:bg-yellow-300">
-            Ver oferta en ML ↗
+          {producto.minimo_historico && (
+            <span className="mt-1.5 w-fit text-xs font-extrabold bg-yellow-400 text-black px-2.5 py-1 rounded-md">
+              📉 El precio más bajo que registramos
+            </span>
+          )}
+          <span className="mt-3 inline-flex w-fit items-center text-sm sm:text-base font-extrabold bg-yellow-400 text-black rounded-xl px-6 py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
+            Comprar en Mercado Libre ↗
           </span>
         </div>
 
@@ -189,6 +197,7 @@ function Tarjeta({
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      data-ticket-alto={ticketAlto}
       className="rise-in group flex-1 flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
     >
       <div className="relative aspect-square bg-white">
@@ -229,8 +238,11 @@ function Tarjeta({
           )}
         </div>
 
-        <span className="mt-3 block w-full text-center text-[13px] sm:text-sm font-bold bg-yellow-400 text-black rounded-xl py-2.5 transition-colors group-hover:bg-yellow-300">
-          Ver oferta en ML ↗
+        {producto.minimo_historico && (
+          <div className="mt-1.5 text-[11px] font-extrabold text-yellow-300">📉 Precio más bajo que registramos</div>
+        )}
+        <span className="mt-3 block w-full text-center text-sm sm:text-[15px] font-extrabold bg-yellow-400 text-black rounded-xl py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
+          Comprar en ML ↗
         </span>
       </div>
     </a>

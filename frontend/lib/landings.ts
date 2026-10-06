@@ -201,6 +201,160 @@ export const LANDINGS: Landing[] = [
       { q: '¿Con qué comparar?', a: 'Mirá también los colchones de 2 plazas y los sommiers en la categoría de colchones.' },
     ],
   },
+  {
+    slug: 'aires-acondicionados-inverter-en-oferta',
+    categoria: 'aire-acondicionado',
+    nombre: 'aires acondicionados inverter',
+    titulo: 'Aires acondicionados inverter en oferta hoy',
+    descripcion:
+      'Aires acondicionados inverter en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado para comparar antes de comprar.',
+    h1: 'Aires acondicionados inverter en oferta',
+    intro:
+      'Equipos inverter (compresor de velocidad variable) en oferta hoy en Mercado Libre Argentina. Cuestan más al inicio pero consumen menos si los usás muchas horas; comparalos con su mínimo registrado.',
+    tipo: 'ofertas',
+    filtrar: p => esAire(p) && normalizar(p.titulo).includes('inverter'),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Inverter ajusta la potencia en vez de prenderse y apagarse: menos consumo y menos ruido.',
+      'Revisá la etiqueta de eficiencia energética (A o mejor) y si es frío solo o frío/calor.',
+      'Sumá el costo de instalación al precio: varía mucho según la zona.',
+    ],
+    faq: [
+      { q: '¿Conviene un aire inverter?', a: 'Si lo usás varias horas por día, el menor consumo suele compensar la diferencia de precio. Para uso esporádico, un modelo convencional puede alcanzar.' },
+      { q: '¿Cuántas frigorías necesito?', a: 'Calculá el volumen del ambiente × 50 y sumá por sol y personas. La calculadora de frigorías del sitio lo resuelve.' },
+    ],
+  },
+  {
+    slug: 'colchones-2-plazas-queen-king-en-oferta',
+    categoria: 'colchones',
+    nombre: 'colchones de 2 plazas, queen y king',
+    titulo: 'Colchones de 2 plazas, queen y king en oferta hoy',
+    descripcion:
+      'Colchones y sommiers de 2 plazas, queen y king en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y mínimo registrado.',
+    h1: 'Colchones de 2 plazas, queen y king en oferta',
+    intro:
+      'Colchones y sommiers para cama matrimonial (140x190), queen (160x200) y king (180x200) en oferta hoy en Mercado Libre Argentina. Es una compra grande: mirá el mínimo registrado antes de pagar.',
+    tipo: 'ofertas',
+    filtrar: p => {
+      const t = normalizar(p.titulo)
+      return (
+        /colchon|sommier|somier/.test(t) &&
+        /(2 plazas|queen|king|140x190|150x190|160x200|180x200|200x200)/.test(t) &&
+        !/(inflable|antiescaras|respaldo|funda|protector|cuna)/.test(t)
+      )
+    },
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Medidas habituales: 2 plazas 140x190, queen 160x200, king 180x200. Medí el somier o la base antes de comprar.',
+      'Resortes o espuma de alta densidad: la firmeza ideal depende del peso y de cómo dormís.',
+      'Fijate si el precio incluye la base (sommier) o solo el colchón, y si hay cuotas sin interés.',
+    ],
+    faq: [
+      { q: '¿Qué medida es un colchón queen?', a: 'Generalmente 160x200 cm. El king mide 180x200 y el de 2 plazas 140x190.' },
+      { q: '¿Cada cuánto se renueva un colchón?', a: 'Entre 8 y 10 años, según el uso y el material.' },
+    ],
+  },
+  {
+    slug: 'smart-tv-55-pulgadas-o-mas-en-oferta',
+    categoria: 'smart-tv',
+    nombre: 'Smart TV de 55 pulgadas o más',
+    titulo: 'Smart TV de 55 pulgadas o más en oferta hoy',
+    descripcion:
+      'Smart TV de 55, 58, 65 y 75 pulgadas en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Smart TV de 55 pulgadas o más en oferta',
+    intro:
+      'Televisores smart de 55 pulgadas o más en oferta hoy en Mercado Libre Argentina, del más barato al más caro. En esta franja el precio cambia seguido: comparalo con el mínimo registrado.',
+    tipo: 'ofertas',
+    filtrar: p => {
+      const t = normalizar(p.titulo)
+      return /(smart tv|televisor|\btv\b)/.test(t) && /\b(55|58|60|65|70|75|85)\s?(\"|pulgadas|pulg|')/.test(t)
+    },
+    ordenar: porPrecio,
+    min: 4,
+    criterios: [
+      'Para ver desde 3 metros, 55" ya alcanza; 65" o más se justifica en living grande.',
+      'Mirá el panel (LED, QLED, OLED), la resolución 4K y el sistema (Google TV, Roku, webOS).',
+      'Verificá la garantía oficial de la marca en Argentina y el costo del envío.',
+    ],
+    faq: [
+      { q: '¿Qué tamaño de TV me conviene?', a: 'Regla práctica: la distancia de visión en cm dividida 2,5 da las pulgadas. A 3 metros, unas 47 a 55 pulgadas.' },
+      { q: '¿4K vale la pena?', a: 'En 55" o más sí: el contenido actual de streaming ya viene en 4K y la diferencia de precio es chica.' },
+    ],
+  },
+  {
+    slug: 'heladeras-no-frost-en-oferta',
+    categoria: 'heladeras',
+    nombre: 'heladeras en oferta',
+    titulo: 'Heladeras en oferta hoy en Mercado Libre',
+    descripcion:
+      'Heladeras con freezer, no frost y side by side en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Heladeras en oferta',
+    intro:
+      'Heladeras en oferta hoy en Mercado Libre Argentina. Es de las compras más caras del hogar: revisá el mínimo registrado y las cuotas antes de decidir.',
+    tipo: 'ofertas',
+    filtrar: p => /heladera/.test(normalizar(p.titulo)) && !/(portatil|camping|conservadora|vitrina)/.test(normalizar(p.titulo)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'No frost evita descongelar a mano y mantiene mejor el frío; cuesta algo más.',
+      'Revisá capacidad en litros según tu hogar (unos 100 litros por persona) y las medidas del hueco y de las puertas por donde pasa.',
+      'La etiqueta de eficiencia energética define cuánto gastás en luz durante años.',
+    ],
+    faq: [
+      { q: '¿Cuántos litros necesito?', a: 'Como referencia, unos 100 litros por persona; para 4 personas, entre 350 y 450 litros.' },
+      { q: '¿No frost o con escarcha?', a: 'No frost no forma hielo y es más cómoda; las de ciclo normal son más baratas pero hay que descongelarlas.' },
+    ],
+  },
+  {
+    slug: 'herramientas-electricas-en-oferta',
+    categoria: 'herramientas-electricas',
+    nombre: 'taladros, amoladoras y herramientas eléctricas',
+    titulo: 'Taladros, amoladoras y herramientas eléctricas en oferta hoy',
+    descripcion:
+      'Taladros, atornilladores, amoladoras y sierras en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Taladros, amoladoras y herramientas eléctricas en oferta',
+    intro:
+      'Herramientas eléctricas en oferta hoy en Mercado Libre Argentina: taladros, atornilladores, amoladoras y sierras. Comparalas con su mínimo registrado y fijate qué incluye cada kit.',
+    tipo: 'ofertas',
+    filtrar: p => /(taladro|atornillador|amoladora|sierra circular|caladora|rotomartillo|lijadora|esmeril)/.test(normalizar(p.titulo)),
+    ordenar: porDescuento,
+    min: 5,
+    criterios: [
+      'Inalámbrico da libertad pero depende de la batería: fijate el voltaje, los Ah y si trae una de repuesto.',
+      'Para uso frecuente conviene una marca con servicio técnico y repuestos en Argentina.',
+      'Mirá qué accesorios trae el kit (mechas, maletín, cargador) antes de comparar precios.',
+    ],
+    faq: [
+      { q: '¿Taladro con cable o a batería?', a: 'Con cable rinde más potencia constante y es más barato; a batería es más cómodo para trabajos cortos o en altura.' },
+      { q: '¿Qué significa percutor?', a: 'Que además de girar golpea, para perforar mampostería y hormigón. Para madera y metal no hace falta.' },
+    ],
+  },
+  {
+    slug: 'termotanques-y-calefones-en-oferta',
+    categoria: 'termotanques',
+    nombre: 'termotanques y calefones',
+    titulo: 'Termotanques y calefones en oferta hoy',
+    descripcion:
+      'Termotanques eléctricos, a gas y calefones en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Termotanques y calefones en oferta',
+    intro:
+      'Termotanques y calefones en oferta hoy en Mercado Libre Argentina. Antes del invierno suben las ventas y el precio: comparalos con el mínimo registrado.',
+    tipo: 'ofertas',
+    filtrar: p => /(termotanque|calefon)/.test(normalizar(p.titulo)),
+    ordenar: porPrecio,
+    min: 5,
+    criterios: [
+      'Capacidad: 40 a 60 litros para 1 o 2 personas, 80 a 120 para una familia.',
+      'A gas calienta rápido y gasta menos; eléctrico no requiere instalación de gas.',
+      'Revisá si es apto para la presión de tu red y el costo de instalación.',
+    ],
+    faq: [
+      { q: '¿Cuántos litros necesita una familia?', a: 'Para 3 o 4 personas, entre 80 y 120 litros.' },
+      { q: '¿Termotanque o calefón?', a: 'El termotanque acumula agua caliente; el calefón la calienta al momento y ocupa menos espacio.' },
+    ],
+  },
 ]
 
 export const getLanding = (slug: string) => LANDINGS.find(l => l.slug === slug)

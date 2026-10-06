@@ -18,6 +18,7 @@ import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
@@ -494,6 +495,25 @@ export default function HoyPage() {
           ))}
         </ul>
       </section>
+
+      {/* Landings por tipo de oferta: enlaces internos desde la página más fuerte */}
+      {LANDINGS.filter(indexableLanding).length > 0 && (
+        <section className="max-w-2xl mx-auto px-4 pb-10">
+          <h2 className="font-display text-lg font-black mb-4 text-center">Ofertas más buscadas hoy</h2>
+          <ul className="flex flex-wrap justify-center gap-2">
+            {LANDINGS.filter(indexableLanding).map(l => (
+              <li key={l.slug}>
+                <a
+                  href={`/ofertas/${l.slug}`}
+                  className="block rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm font-bold text-zinc-200 hover:border-yellow-400/40 hover:text-yellow-300 transition-colors"
+                >
+                  {l.nombre}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Comparativas de ticket alto */}
       <section className="max-w-2xl mx-auto px-4 pb-10">

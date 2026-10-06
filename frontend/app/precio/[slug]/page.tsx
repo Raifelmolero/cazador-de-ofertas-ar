@@ -168,7 +168,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   ]
 
   return (
-    <main className="min-h-screen pb-20 sm:pb-0">
+    <main className="min-h-screen pb-24 sm:pb-0">
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
@@ -205,7 +205,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           <span aria-hidden="true">/</span> <span className="text-zinc-300">Historial de precios</span>
         </nav>
 
-        <div className="flex flex-col sm:flex-row gap-5 mb-6">
+        {/* Móvil: foto chica al costado + precio y botón de compra visibles sin scroll */}
+        <div className="flex flex-row gap-4 sm:gap-5 mb-5">
           {s.img && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -213,14 +214,17 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               alt={s.titulo}
               width={160}
               height={160}
-              className="w-40 h-40 object-contain bg-white rounded-xl p-2 shrink-0"
+              fetchPriority="high"
+              decoding="async"
+              className="w-24 h-24 sm:w-40 sm:h-40 object-contain bg-white rounded-xl p-1.5 sm:p-2 shrink-0"
             />
           )}
-          <div>
-            <h1 className="font-display text-2xl sm:text-4xl font-black leading-tight tracking-tight mb-2 [text-wrap:balance]">
+          <div className="min-w-0">
+            <h1 className="font-display text-xl sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">
               {s.titulo}: historial de precios
             </h1>
-            <p className="text-sm text-zinc-500">Seguimos este precio en Mercado Libre 3 veces por día desde el {fecha(s.desde)}.</p>
+            <p className="font-display text-2xl font-black text-yellow-400 leading-tight sm:hidden tabular-nums">{precio(hoy)}</p>
+            <p className="hidden sm:block text-sm text-zinc-500">Seguimos este precio en Mercado Libre 3 veces por día desde el {fecha(s.desde)}.</p>
           </div>
         </div>
 
@@ -250,10 +254,11 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             href={s.url}
             target="_blank"
             rel="sponsored nofollow noopener"
-            className="mt-4 inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-3"
+            className="mt-4 block sm:inline-block text-center text-base sm:text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-3.5 sm:py-3"
           >
             {enOferta ? `Ver a ${precio(hoy)} en Mercado Libre 🛒` : 'Ver precio actual en Mercado Libre'}
           </a>
+          <p className="mt-2 text-xs text-zinc-500">Link oficial de Mercado Libre. Comprás ahí, al mismo precio.</p>
           <AlertaCTA id={s.id} className="mt-4" />
         </section>
 
@@ -376,7 +381,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       <Footer brand="ofertas" />
 
       {/* Celular: el botón de compra queda siempre a mano al bajar por el historial */}
-      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3">
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-[11px] text-zinc-500 truncate">{enMinimo ? 'En su mínimo histórico' : enOferta ? 'Precio hoy' : 'Último precio'}</p>
           <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(hoy)}</p>
@@ -385,7 +390,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           href={s.url}
           target="_blank"
           rel="sponsored nofollow noopener"
-          className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black active:scale-[0.97] transition-transform"
+          className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3.5 text-sm font-black text-black active:scale-[0.97] transition-transform"
         >
           Ver en Mercado Libre 🛒
         </a>

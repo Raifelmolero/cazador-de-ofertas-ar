@@ -143,13 +143,13 @@ export default function OfertasGrid({
             onChange={e => setQ(e.target.value)}
             placeholder="Buscar: colchón, aire, bici…"
             aria-label="Buscar ofertas"
-            className="min-w-0 flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+            className="min-w-0 flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
           />
           <select
             value={orden}
             onChange={e => setOrden(e.target.value as OrdenId)}
             aria-label="Ordenar ofertas"
-            className="w-32 sm:w-auto shrink-0 bg-zinc-900 border border-zinc-800 rounded-xl px-2 sm:px-3 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
+            className="w-32 sm:w-auto shrink-0 bg-zinc-900 border border-zinc-800 rounded-xl px-2 sm:px-3 py-3 text-base sm:text-sm text-white focus:outline-none focus:border-yellow-400/60 focus-visible:ring-1 focus-visible:ring-yellow-400/60 transition-colors"
           >
             {ORDENES.map(o => (
               <option key={o.id} value={o.id}>
@@ -168,7 +168,7 @@ export default function OfertasGrid({
                 key={c.id}
                 onClick={() => setChip(activo && c.id !== 'all' ? 'all' : c.id)}
                 aria-pressed={activo}
-                className={`shrink-0 text-xs font-bold rounded-full px-3.5 py-2 border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+                className={`shrink-0 text-xs font-bold rounded-full px-4 py-2.5 border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
                   activo
                     ? 'bg-yellow-400 text-black border-yellow-400'
                     : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'

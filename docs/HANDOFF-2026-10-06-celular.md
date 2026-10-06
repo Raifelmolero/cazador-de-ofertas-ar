@@ -41,3 +41,8 @@ tocó `frontend/lib/landings.ts` y archivos nuevos en `docs/`.
 - OJO: la URL del estudio es `/estudio/descuentos-inflados-mercado-libre` (no existe `/estudio`). Corregido en `docs/MENCIONES-EXTERNAS-2026.md`.
 - Trello: #23 con investigación de X (precios contradictorios, verificar), #24 a #29 nuevas. Comentario de prueba sobrante en #22 ya marcado como borrable.
 - Un test viejo (`bot/tests/test_atribucion.py`) importa `pytest`; localmente sin pytest da error de importación. No es regresión.
+
+## Videos de ML en la web (06/10, noche) — NO se puede automatizar hoy
+- Pedido del dueño: en los 2-3 primeros destacados de la web, mostrar el video de la publicación de ML en vez de la foto. NO quiere videos generados por nosotros (se revirtió el generador `web_videos.py`, commit d9cf505).
+- Prueba corrida en GitHub Actions (`probe_video_ml.yml`, solo lectura): el listado de /ofertas no trae ningún indicio de video, y las 10 fichas pedidas devolvieron ~41 KB casi idénticos, sin la palabra "video": ML no sirve la ficha real al runner (ya se sabía por `bot/alertas.py`). Conclusión: sacar los videos por scraping NO funciona desde Actions.
+- Caminos a evaluar: (a) API oficial de ML (`api.mercadolibre.com/items/{id}`, campo de video si existe; requiere crear una app en developers.mercadolibre.com.ar y tokens; NO verificado); (b) material oficial de la sección "Campañas de videos" del panel de afiliados; (c) curación manual de 2-3 productos por día. Derechos de los videos de vendedores: no verificado.

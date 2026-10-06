@@ -168,3 +168,34 @@ siguen existiendo y navegables desde el sitio, solo se dejó de anunciarlas.
 semanas), decidir si vale la pena bajarle la cadencia a Telegram — hoy es
 puro costo de mantenimiento sin contrapartida — y si Instagram empieza a
 mover clicks reales a la bio con el caption reordenado.
+
+## Estado al 2026-10-06 (sesión desde el celular, sin PC)
+
+Leer `docs/HANDOFF-2026-10-06-celular.md` (detalle) y, para plata, `docs/PROYECCION-MENSUAL-2026-10-06.md`.
+
+- **Números reales** (panel de afiliados de ML, 7 días hasta el 6/10): 409 clics, 62 pedidos,
+  ganancia estimada $1.013.911. Conversión 15%, ~$2.480 por clic, ~$16.350 por pedido. Semana
+  anterior: $1.102.009. **El cuello de botella es el tráfico, no la conversión.** Meta del dueño:
+  +$10 M por mes; la proyección base da ~$4,6 M oct / $5,3 M nov / $4,7 M dic (optimista ~$7 M).
+  Esos picos de eventos son supuestos: el sitio nunca pasó por un Cyber. El dueño cobra ~2 meses
+  después (octubre se cobra a fin de diciembre).
+- **Hecho hoy, todo en main**: 6 landings nuevas en `frontend/lib/landings.ts` (13 en total,
+  enlazadas desde la home y listadas en llms.txt/llms-full.txt); botón «Avisame si baja» en las
+  tarjetas de ticket alto + evento `alerta_click`; Día de la Madre con ticket alto primero y sin
+  repetidos/no-regalos; lint de CI en verde.
+- **Publicador de texto nuevo**: `bot/post_texto.py` + `post_texto.yml` + `bot/posts_texto/*.json`
+  publica en Facebook (página) y Threads, sin afiliado. Siempre ensayar con `dry_run=true` primero.
+  Post del estudio publicado el 06/10.
+- **URL del estudio**: `/estudio/descuentos-inflados-mercado-libre` (NO existe `/estudio`).
+- **Textos listos**: `docs/CYBER-POSTS-2026.md` (calendario 26/10-5/11, completar [corchetes] con
+  productos reales; recordatorio puesto para el 31/10), `docs/MENCIONES-EXTERNAS-2026.md`
+  (los publica el dueño a mano en grupos/foros; el bot no puede postear en grupos).
+- **Decisiones pendientes del dueño**: test de Meta Ads (`docs/META-ADS-TEST-2026.md`, tope $10.000,
+  26/10-4/11; crear la etiqueta `meta` en el panel de ML para medir pedidos), bajar la cadencia de
+  Telegram (#27), cuenta de X con API (#23), Pinterest (#25).
+- **Trello** nuevas: #24 alertas (ya existía el backend `bot/alertas.py`), #25 Pinterest,
+  #26 menciones, #27 Telegram, #28 tráfico/Meta Ads, #29 conectores. Un comentario de prueba
+  sobrante en #22 (marcado como borrable).
+- **Ojo**: `bot/tests/test_atribucion.py` importa `pytest`; sin pytest da error de importación
+  (no es regresión). En el sandbox remoto el sitio real no es alcanzable (proxy): verificar el
+  deploy desde el teléfono/PC.

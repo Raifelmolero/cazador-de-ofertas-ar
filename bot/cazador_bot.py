@@ -1435,6 +1435,76 @@ def temporada_boost(title: str, hoy: datetime | None = None) -> float:
 COMISION_PCT_POR_PESO = {1.8: 0.15, 1.4: 0.07, 1.15: 0.04, 1.0: 0.025}
 
 
+# Plus por unidad (panel ML 28/09-05/10: $1,12M, todo vía web). Los productos
+# del 15% (colchones, sommiers, herramientas eléctricas) rinden más por venta
+# y los mejores días convirtieron 26-28%; aires y heladeras (ticket alto, 7%)
+# también merecen subir. Es un multiplicador chico: el %OFF y el mínimo
+# histórico siguen mandando; la variedad la garantiza elegir_estrella().
+CATEGORIA_PLUS: list[tuple[float, list[str]]] = [
+    (1.25, ["colchon", "colchón", "sommier", "taladro", "atornillador",
+            "amoladora", "rotomartillo", "sierra circular", "sierra caladora",
+            "soldadora", "compresor de aire", "hidrolavadora", "lijadora"]),
+    (1.15, ["aire acondicionado", "acondicionado split", "split frio calor",
+            "split frío calor", "split inverter", "heladera"]),
+]
+
+
+def categoria_plus(title: str) -> float:
+    t = title.lower()
+    for plus, keywords in CATEGORIA_PLUS:
+        if any(k in t for k in keywords):
+            return plus
+    return 1.0
+
+
+def categoria_clave(title: str) -> str | None:
+    """Familia del producto para la variedad en IG (None = sin familia
+    conocida, no se limita). Grupos con un solo rubro = su tramo de comisión;
+    en los grupos grandes de electro/línea blanca cuenta la keyword."""
+    t = title.lower()
+    for i, (_w, keywords) in enumerate(CATEGORY_COMMISSION_WEIGHT):
+        for k in keywords:
+            if k in t:
+                if i in (5, 7):  # electro chico / línea blanca: por keyword
+                    return k.replace("ó", "o").replace("í", "i")
+                return f"g{i}"
+    return None
+
+
+IG_CHANNELS = ("ig", "reel")
+IG_VENTANA = 6
+IG_MAX_MISMA_CATEGORIA = 2
+
+
+def categorias_recientes_ig(n: int = IG_VENTANA, path: Path | None = None) -> list[str | None]:
+    """Familias de las últimas `n` publicaciones de IG (feed + reel) del log."""
+    path = path or POSTS_LOG_PATH
+    if not path.exists():
+        return []
+    filas = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            e = json.loads(line)
+        except ValueError:
+            continue
+        if e.get("ch") in IG_CHANNELS and e.get("title"):
+            filas.append(categoria_clave(e["title"]))
+    return filas[-n:]
+
+
+def elegir_estrella(to_post: list[dict], recientes: list[str | None]) -> list[dict]:
+    """Reordena el lote para que to_post[0] (el que usan IG, reel, Threads y
+    Facebook) no haga que una familia ocupe más de 2 de las últimas 6
+    publicaciones de IG. La nueva cuenta dentro de la ventana de 6 (se miran
+    las últimas 5 + la nueva). Si todas están saturadas, queda el orden original."""
+    previas = recientes[-(IG_VENTANA - 1):]
+    for i, d in enumerate(to_post):
+        c = categoria_clave(d["title"])
+        if c is None or previas.count(c) < IG_MAX_MISMA_CATEGORIA:
+            return [d] + to_post[:i] + to_post[i + 1:]
+    return to_post
+
+
 def ganancia_esperada(deal: dict) -> float:
     """Pesos que deja una venta, en relativo: precio × peso de comisión.
     Una venta de un aire de $800k deja ~100 veces más que un juguete de $8k,
@@ -1444,6 +1514,7 @@ def ganancia_esperada(deal: dict) -> float:
         deal["price_cur"]
         * COMISION_PCT_POR_PESO.get(comision_estimada(deal["title"]), 0.025)
         * temporada_boost(deal["title"])
+        * categoria_plus(deal["title"])
     )
     if deal.get("hist_low"):
         score *= 1.3
@@ -1488,8 +1559,8 @@ def ig_caption(deal: dict) -> str:
     if regalo_ig:
         regalo_ig += "\n"
     return (
-        f"{hook}\n\n"
-        f"{deal['discount']}% OFF en {deal['title'][:80]}\n\n"
+        f"{hook} · {deal['discount']}% OFF a {fmt_price(deal['price_cur'])}\n\n"
+        f"{deal['title'][:80]}\n\n"
         f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
@@ -1559,7 +1630,7 @@ def th_caption(deal: dict, link: str) -> str:
         else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
     )
     caption = (
-        f"{hook} {deal['discount']}% OFF en {deal['title'][:70]}\n\n"
+        f"{hook} {deal['discount']}% OFF a {fmt_price(deal['price_cur'])}: {deal['title'][:60]}\n\n"
         f"Estaba {fmt_price(deal['price_prev'])} → hoy {fmt_price(deal['price_cur'])}.\n"
         f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
         f"🛒 {link}\n\n"
@@ -2110,6 +2181,9 @@ def main() -> int:
             unicos.append(d)
     candidates = unicos
     to_post = candidates[: cfg.get("max_posts", 5)]
+    # Variedad en IG: la estrella (to_post[0]) no repite familia más de 2 veces
+    # en las últimas 6 publicaciones de IG.
+    to_post = elegir_estrella(to_post, categorias_recientes_ig())
 
     # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en
     # IG (que siempre usa to_post[0], el producto estrella) ni en la web. Es el

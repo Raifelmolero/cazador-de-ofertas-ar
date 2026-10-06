@@ -199,3 +199,17 @@ Leer `docs/HANDOFF-2026-10-06-celular.md` (detalle) y, para plata, `docs/PROYECC
 - **Ojo**: `bot/tests/test_atribucion.py` importa `pytest`; sin pytest da error de importación
   (no es regresión). En el sandbox remoto el sitio real no es alcanzable (proxy): verificar el
   deploy desde el teléfono/PC.
+
+### Cierre del 2026-10-06 (noche)
+- **Videos de ML en la web (tarjeta #30, EN ESTUDIO)**: el dueño quiere que los 2-3 primeros destacados de
+  la web muestren el MISMO video de la publicación de ML (no videos nuestros ni los reels de IG). Se armó por
+  error un generador propio y se revirtió (d9cf505): **no volver a generar videos**. Pruebas desde Actions
+  (`bot/tools/probe_video_ml.py` + `probe_video_ml.yml`, solo lectura): el listado no trae video, las fichas no
+  se sirven al runner (~41 KB iguales) y la API pública pide token (items 403, products 401). **No hay
+  credenciales de la API de ML en el repo** (solo `ML_AFFILIATE_ID`). Siguiente paso: el dueño crea una app en
+  developers.mercadolibre.com.ar y carga `ML_CLIENT_ID`/`ML_CLIENT_SECRET` como secrets del repo (nunca por chat).
+- **Antes de publicar algo en público** (posts, anuncios): ensayar con `dry_run=true` y pedir permiso explícito.
+  Los recordatorios `send_later` que disparan publicaciones pueden duplicarlas: cancelar el que ya no hace falta.
+- **Recordatorio activo**: sáb 31/10 12:00 ART, cargar los posts del Cyber (`docs/CYBER-POSTS-2026.md`).
+- Estado de `main` al cierre: CI de frontend en verde (último run: revert d9cf505). Trello: tarjetas #24 a #30 creadas.
+

@@ -47,3 +47,23 @@ tocó `frontend/lib/landings.ts` y archivos nuevos en `docs/`.
 - Prueba corrida en GitHub Actions (`probe_video_ml.yml`, solo lectura): el listado de /ofertas no trae ningún indicio de video, y las 10 fichas pedidas devolvieron ~41 KB casi idénticos, sin la palabra "video": ML no sirve la ficha real al runner (ya se sabía por `bot/alertas.py`). Conclusión: sacar los videos por scraping NO funciona desde Actions.
 - Caminos a evaluar: (a) API oficial de ML (`api.mercadolibre.com/items/{id}`, campo de video si existe; requiere crear una app en developers.mercadolibre.com.ar y tokens; NO verificado); (b) material oficial de la sección "Campañas de videos" del panel de afiliados; (c) curación manual de 2-3 productos por día. Derechos de los videos de vendedores: no verificado.
 - Prueba de la API pública de ML (sin credenciales, desde Actions, 06/10): `api.mercadolibre.com/items/{id}` → 403 y `/products/{id}` → 401 en 6/6 ids. Hace falta token. En el repo NO hay credenciales de la API de ML (solo `ML_AFFILIATE_ID`, que es la etiqueta de afiliado). Próximo paso: el dueño crea una app en developers.mercadolibre.com.ar y carga `ML_CLIENT_ID`/`ML_CLIENT_SECRET` como secrets del repo (NO pegarlos en el chat); después correr `probe_video_ml.yml` con token para ver si hay campo de video. No verificado que la API lo entregue.
+
+## CIERRE DE LA SESIÓN (06/10/2026, noche) — dónde quedamos exactamente
+**Todo está en `main` y en la rama `ccr-207a46f4-6lujjp`. CI de frontend en verde.** Nada a medio hacer en el código.
+
+Pendiente de RAIFEL (nada de esto lo puede hacer Claude):
+1. Crear la app en developers.mercadolibre.com.ar y cargar `ML_CLIENT_ID`/`ML_CLIENT_SECRET` como secrets del repo (para probar si hay video en la API; tarjeta #30).
+2. Mirar "Campañas de videos" en el panel de afiliados de ML y contar qué ofrece.
+3. Crear la etiqueta `meta` en el Administrador de etiquetas de ML y decidir el test de Meta Ads (#28, `docs/META-ADS-TEST-2026.md`, tope $10.000, 26/10-4/11).
+4. Publicar a mano los textos de `docs/MENCIONES-EXTERNAS-2026.md` (texto 1 en un grupo de Facebook el 7/10).
+5. Subir las stories con link de la lista PENDIENTES DE RAIFEL de Trello.
+6. En Search Console: pedir indexación de las 6 landings nuevas `/ofertas/...` (ver lista abajo) y mirar impresiones de los últimos 28 días.
+7. Mié 7/10: capturas del panel de ML (clics, pedidos, ganancia), Clarity y Search Console para decidir el próximo cambio con datos.
+8. Borrar el comentario sobrante en la tarjeta #22 (lo marqué como error).
+9. Decidir: cadencia de Telegram (#27), cuenta de X con API (#23), Pinterest (#25).
+
+Landings nuevas para indexar: `/ofertas/aires-acondicionados-inverter-en-oferta`, `/ofertas/colchones-2-plazas-queen-king-en-oferta`, `/ofertas/smart-tv-55-pulgadas-o-mas-en-oferta`, `/ofertas/heladeras-no-frost-en-oferta`, `/ofertas/herramientas-electricas-en-oferta`, `/ofertas/termotanques-y-calefones-en-oferta`.
+
+Cosas hechas el 06/10 (resumen): 6 landings, enlaces desde la home + llms.txt/llms-full.txt, botón «Avisame si baja» en tarjetas de ticket alto, Día de la Madre mejorado, lint de CI arreglado, publicador de texto FB+Threads (post del estudio publicado: https://www.facebook.com/122132162469386247/posts/122140730301386247 y https://www.threads.com/@elcazadordeofertas.ar/post/DeKVeIflSWM), proyección (`docs/PROYECCION-MENSUAL-2026-10-06.md`), plan Meta Ads, posts del Cyber, textos de menciones externas, prueba de videos de ML (negativa por ahora).
+
+Para Claude al retomar: responder en rioplatense, directo; no publicar sin permiso; probar con `npm run lint` completo (no solo archivos sueltos) y `npx next build` antes de mergear; el sandbox no llega a mercadolibre.com.ar ni al sitio (usar Actions para pruebas); `bot/tests/test_atribucion.py` pide `pytest`.

@@ -6,8 +6,10 @@ video/clips y de qué tipo (mp4, m3u8, youtube...). No guarda ni publica nada;
 imprime un resumen. Lo corre probe_video_ml.yml a mano.
 """
 
+import json
 import re
 import sys
+from pathlib import Path
 
 from cazador_bot import http_get
 
@@ -42,7 +44,8 @@ def main() -> int:
     for nombre, pat in PATRONES.items():
         n = len(pat.findall(listado))
         print(f"[listado] {nombre}: {n}")
-    links = list(dict.fromkeys(re.findall(r"https://(?:www|articulo|produto)\.mercadolibre\.com\.ar/[^\"'\s<>\\]+(?:MLA|/p/MLA)[^\"'\s<>\\]*", listado)))[:8]
+    datos = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "data" / "productos_rentables.json").read_text(encoding="utf-8"))
+    links = [i["url_producto"].split("?")[0] for i in datos["items"] if i.get("url_producto")][:10]
     print(f"[fichas] links encontrados: {len(links)}")
     con_video = 0
     for u in links:

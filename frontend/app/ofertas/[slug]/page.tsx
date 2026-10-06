@@ -172,10 +172,10 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <p className="mb-8 text-sm text-zinc-300">
             <a href={`/categoria/${l.categoria}`} className="font-bold text-yellow-400 hover:underline">Ver toda la categoría →</a>
             {l.categoria === 'aire-acondicionado' && (
-              <> · <a href="/calculadora-frigorias" className="font-bold text-yellow-400 hover:underline">Calculadora de frigorías</a> · <a href="/mejores/mejores-aires-acondicionados" className="font-bold text-yellow-400 hover:underline">Comparativa de aires</a></>
+              <> · <a href="/calculadora-frigorias" className="font-bold text-yellow-400 hover:underline">Calculadora de frigorías</a> · <Link href="/mejores/mejores-aires-acondicionados" className="font-bold text-yellow-400 hover:underline">Comparativa de aires</Link></>
             )}
             {l.categoria === 'colchones' && (
-              <> · <a href="/mejores/mejores-colchones-2-plazas" className="font-bold text-yellow-400 hover:underline">Colchones de 2 plazas</a> · <a href="/mejores/mejores-sommiers" className="font-bold text-yellow-400 hover:underline">Sommiers</a></>
+              <> · <Link href="/mejores/mejores-colchones-2-plazas" className="font-bold text-yellow-400 hover:underline">Colchones de 2 plazas</Link> · <Link href="/mejores/mejores-sommiers" className="font-bold text-yellow-400 hover:underline">Sommiers</Link></>
             )}
           </p>
         )}
@@ -201,7 +201,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             {LANDINGS.filter(x => x.slug !== l.slug && indexableLanding(x)).map(x => (
               <li key={x.slug}><a href={`/ofertas/${x.slug}`} className="text-yellow-400/80 hover:text-yellow-400">{x.titulo}</a></li>
             ))}
-            <li><a href="/mejores" className="text-yellow-400/80 hover:text-yellow-400">Comparativas de los mejores productos</a></li>
+            <li><Link href="/mejores" className="text-yellow-400/80 hover:text-yellow-400">Comparativas de los mejores productos</Link></li>
           </ul>
         </nav>
       </article>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { GUIAS } from '@/lib/guias'
@@ -69,9 +70,9 @@ export default function GuiasIndex() {
         <p className="text-zinc-400 mb-8">
           Respuestas cortas para decidir qué comprar y cómo no pagar de más. Las comparativas con precios de hoy están
           en{' '}
-          <a href="/mejores" className="underline text-yellow-400">
+          <Link href="/mejores" className="underline text-yellow-400">
             Mejores en oferta
-          </a>
+          </Link>
           .
         </p>
         <ul className="space-y-4">

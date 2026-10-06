@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
@@ -69,9 +70,9 @@ export default function MejoresIndex() {
         <p className="text-zinc-400 mb-8">
           Comparamos precio, descuento y el mínimo que registramos de cada producto en Mercado Libre Argentina. No son
           reseñas. Antes de decidir, mirá las{' '}
-          <a href="/guias" className="underline text-yellow-400">
+          <Link href="/guias" className="underline text-yellow-400">
             guías de compra
-          </a>
+          </Link>
           .
         </p>
         <ul className="space-y-3">

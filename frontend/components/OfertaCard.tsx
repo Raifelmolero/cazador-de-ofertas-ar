@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
+import { alertaUrl } from '@/components/AlertaCTA'
 
 /** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
  *  necesita, y mantiene liviano el payload que viaja al cliente. */
@@ -86,16 +87,30 @@ export default function OfertaCard(props: {
   priority?: boolean
 }) {
   const slug = props.producto.historial
-  if (!slug) return <Tarjeta {...props} />
+  // «Avisame si baja»: solo ticket alto, donde esperar la baja vale más plata
+  const alerta = props.producto.precio_actual >= TICKET_ALTO_DESDE ? alertaUrl(props.producto.id_ml) : null
+  if (!slug && !alerta) return <Tarjeta {...props} />
   return (
     <div className={`flex flex-col ${props.featured ? 'col-span-full' : ''}`}>
       <Tarjeta {...props} />
-      <Link
-        href={`/precio/${slug}`}
-        className="mt-1.5 text-center text-xs font-semibold text-zinc-400 hover:text-yellow-400 transition-colors"
-      >
-        📈 Historial de precio: ¿conviene hoy?
-      </Link>
+      {slug && (
+        <Link
+          href={`/precio/${slug}`}
+          className="mt-1.5 text-center text-xs font-semibold text-zinc-400 hover:text-yellow-400 transition-colors"
+        >
+          📈 Historial de precio: ¿conviene hoy?
+        </Link>
+      )}
+      {alerta && (
+        <a
+          href={alerta}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 text-center text-xs font-semibold text-sky-300/90 hover:text-sky-200 transition-colors"
+        >
+          🔔 Avisame si baja
+        </a>
+      )}
     </div>
   )
 }

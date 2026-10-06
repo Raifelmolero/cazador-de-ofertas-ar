@@ -38,6 +38,20 @@ def analizar(url: str) -> dict:
     return out
 
 
+def probar_api(ids: list[str]) -> None:
+    """¿La API pública de ML responde sin credenciales y trae datos de video?"""
+    for i in ids:
+        for ruta in ("items", "products"):
+            url = f"https://api.mercadolibre.com/{ruta}/{i}"
+            try:
+                crudo = http_get(url).decode("utf-8", errors="replace")
+                d = json.loads(crudo)
+                claves = [k for k in d if "video" in k.lower() or "clip" in k.lower()]
+                print(f"[api] {ruta}/{i}: OK bytes={len(crudo)} claves_video={claves} video_id={d.get('video_id')!r}")
+            except Exception as e:  # noqa: BLE001
+                print(f"[api] {ruta}/{i}: {str(e)[:120]}")
+
+
 def main() -> int:
     listado = http_get("https://www.mercadolibre.com.ar/ofertas").decode("utf-8", errors="replace")
     print(f"[listado] bytes={len(listado)} palabra_video={len(re.findall(r'video|clip', listado, re.I))}")
@@ -46,6 +60,9 @@ def main() -> int:
         print(f"[listado] {nombre}: {n}")
     datos = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "data" / "productos_rentables.json").read_text(encoding="utf-8"))
     links = [i["url_producto"].split("?")[0] for i in datos["items"] if i.get("url_producto")][:10]
+    ids = [i["id_ml"] for i in datos["items"] if str(i.get("id_ml", "")).startswith("MLA")][:6]
+    print(f"[api] probando ids: {ids}")
+    probar_api(ids)
     print(f"[fichas] links encontrados: {len(links)}")
     con_video = 0
     for u in links:

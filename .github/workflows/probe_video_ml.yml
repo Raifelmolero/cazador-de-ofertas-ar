@@ -1,0 +1,24 @@
+name: Probe video ML
+
+# Prueba de solo lectura: ¿las publicaciones de ML traen video usable? Se corre a mano.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Probar
+        working-directory: bot/tools
+        env:
+          PYTHONPATH: ..
+        run: python probe_video_ml.py

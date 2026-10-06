@@ -102,6 +102,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [pequeños electrodomésticos](https://cazadordeofertas.com.ar/pequenos-electrodomesticos),
   [autos y motos](https://cazadordeofertas.com.ar/vehiculos),
   [gastronomía](https://cazadordeofertas.com.ar/gastronomia).
+- Ofertas de hoy por tipo (más de 30% OFF, ticket alto, mínimos históricos, aires inverter, colchones, Smart TV, heladeras, herramientas, termotanques): páginas en https://cazadordeofertas.com.ar/ofertas/<slug>, listadas en https://cazadordeofertas.com.ar/llms-full.txt
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),

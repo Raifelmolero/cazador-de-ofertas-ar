@@ -1,6 +1,7 @@
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { CATEGORIAS } from '@/lib/categorias'
 import { getInfladas } from '@/lib/infladas'
 import {
@@ -111,6 +112,12 @@ ${CATEGORIAS.map(c => `- [${c.nombre}](${DEALS_URL}/categoria/${c.slug}): ${c.de
 
 ${COMPARATIVAS.filter(indexable)
   .map(c => `- [${c.titulo}](${DEALS_URL}/mejores/${c.slug})`)
+  .join('\n')}
+
+## Ofertas de hoy por tipo (se arman del catálogo del día)
+
+${LANDINGS.filter(indexableLanding)
+  .map(l => `- [${l.titulo}](${DEALS_URL}/ofertas/${l.slug}): ${l.descripcion}`)
   .join('\n')}
 
 ## Guías

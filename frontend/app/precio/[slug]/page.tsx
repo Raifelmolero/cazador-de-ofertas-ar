@@ -252,6 +252,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           )}
           <a
             href={s.url}
+            data-seccion="precio_cta"
             target="_blank"
             rel="sponsored nofollow noopener"
             className="mt-4 block sm:inline-block text-center text-base sm:text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-3.5 sm:py-3"
@@ -388,6 +389,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
         </div>
         <a
           href={s.url}
+          data-seccion="precio_barra_fija"
           target="_blank"
           rel="sponsored nofollow noopener"
           className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3.5 text-sm font-black text-black active:scale-[0.97] transition-transform"

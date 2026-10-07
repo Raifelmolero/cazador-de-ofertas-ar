@@ -41,6 +41,9 @@ export default function Clarity() {
     // Cada clic a Mercado Libre (cualquier botón de afiliado del sitio) como
     // evento, con la página de origen: el panel de ML no dice de qué página
     // salió la venta. Captura en document para cubrir también server components.
+    // Si el clic llega antes de que Clarity cargue (idle), se carga ya mismo: así
+    // el evento no queda encolado en un stub que se pierde al abrir ML en la app.
+    let cargarYa: () => void = () => {}
     document.addEventListener(
       'click',
       e => {
@@ -62,7 +65,12 @@ export default function Clarity() {
         }
         // Sección de la página donde estaba el botón (data-seccion en el contenedor)
         const sec = a.closest('[data-seccion]')?.getAttribute('data-seccion')
-        if (sec) c('set', 'click_ml_seccion', sec.slice(0, 40))
+        if (sec) {
+          c('set', 'click_ml_seccion', sec.slice(0, 40))
+          // Además como evento: en Clarity los eventos se filtran más fácil que las etiquetas
+          c('event', `click_ml_seccion_${sec.slice(0, 30)}`)
+        }
+        cargarYa()
       },
       true,
     )
@@ -74,7 +82,10 @@ export default function Clarity() {
     // Clarity ocupaba ~450 ms del procesador durante la carga en celular: se
     // pide cuando la página ya pintó. Los clics a ML se registran igual (el
     // listener de arriba encola en el stub hasta que llega el script real).
-    const cargar = () => document.head.appendChild(script)
+    const cargar = () => {
+      if (!script.isConnected) document.head.appendChild(script)
+    }
+    cargarYa = cargar
     const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback
     const despues = () => (ric ? ric.call(window, cargar, { timeout: 4000 }) : setTimeout(cargar, 2000))
     if (document.readyState === 'complete') despues()

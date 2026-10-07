@@ -5,6 +5,11 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    # Un solo PR por semana con todos los minor/patch (antes 1 PR + 1 build de
+    # preview por dependencia, que gastaba la cuota de Build CPU de Vercel).
+    groups:
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
     # Saltos mayores que son migraciones (rompen el build): se hacen a mano
     # cuando haga falta, no por PR automático.
     ignore:

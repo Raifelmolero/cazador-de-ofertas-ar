@@ -233,4 +233,213 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       },
     ],
   },
+
+  'mejores-ventiladores': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir un ventilador',
+        parrafos: [
+          'El tipo depende del lugar: de pie o de pared para ambientes medianos, de techo para dormitorios y livings, de mesa o turbo para espacios chicos. El de techo mueve el aire de todo el ambiente y casi no ocupa lugar.',
+          'Fijate en la potencia en watts, el diámetro de las aspas (más grande mueve más aire) y las velocidades. Un motor con rulemanes es más silencioso y duradero que uno con bujes. Si lo vas a usar de noche, buscá uno de bajo nivel de ruido y con control remoto o temporizador.',
+        ],
+      },
+      {
+        titulo: 'Ventilador, ventilador de techo o aire acondicionado',
+        parrafos: [
+          'El ventilador no baja la temperatura: refresca porque mueve el aire sobre la piel. Gasta mucho menos que un aire (unos 50 a 100 W contra más de 1.000), pero en olas de calor fuertes no alcanza. Para dormir con mucho calor, un aire inverter suele ser la mejor inversión.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué ventilador conviene para un dormitorio?',
+        a: 'Uno de techo si el ambiente lo permite, o uno de pie silencioso con temporizador. Mirá el nivel de ruido y que tenga velocidades bajas.',
+      },
+      {
+        q: '¿Un ventilador gasta mucha luz?',
+        a: 'No: la mayoría consume entre 50 y 100 W, bastante menos que un aire acondicionado.',
+      },
+      {
+        q: '¿Ventilador o aire acondicionado?',
+        a: 'El ventilador refresca moviendo el aire pero no baja la temperatura; con calor extremo conviene un aire, preferentemente inverter por el consumo.',
+      },
+    ],
+  },
+
+  'mejores-muebles-de-jardin': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir muebles de jardín',
+        parrafos: [
+          'Pensá primero en el uso: un juego de mesa y sillas para comer, un living con sillones y mesa ratona, o reposeras para la pileta. Medí el espacio y dejá lugar para circular.',
+          'El material define cuánto duran a la intemperie: la resina y el aluminio no se oxidan; el hierro con pintura epoxi aguanta si se lo cuida; la madera necesita barniz cada temporada; el mimbre sintético (ratán) resiste el sol y la lluvia. Los almohadones tienen que ser desmontables para lavarlos.',
+        ],
+      },
+      {
+        titulo: 'Cómo cuidarlos',
+        parrafos: [
+          'Con una funda o guardándolos bajo techo en invierno duran varias temporadas más. Evitá dejar los almohadones a la lluvia y limpiá la estructura con agua y jabón neutro.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué material es mejor para muebles de exterior?',
+        a: 'La resina, el aluminio y el mimbre sintético son los que mejor resisten sol y lluvia sin mantenimiento. La madera y el hierro necesitan cuidado periódico.',
+      },
+      {
+        q: '¿Conviene comprar muebles de jardín en primavera?',
+        a: 'Sí: la demanda sube desde octubre y en pleno verano hay menos stock. Comprar temprano o en eventos como el Cyber Monday suele salir mejor.',
+      },
+    ],
+  },
+
+  'mejores-bicicletas': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir una bicicleta',
+        parrafos: [
+          'Primero el uso: urbana o de paseo para la ciudad, mountain bike (MTB) para tierra y ripio, de ruta para asfalto y distancia. Después el talle: el rodado (26, 27,5, 29) y el tamaño del cuadro tienen que ir según tu altura. Una bici de talle incorrecto es incómoda y menos segura.',
+          'Mirá el cuadro (aluminio es liviano y no se oxida; acero es más económico y resistente), los frenos (a disco frenan mejor en mojado que los V-brake) y la cantidad de cambios. Para uso urbano, 7 a 21 velocidades alcanzan.',
+        ],
+      },
+      {
+        titulo: 'Seguridad y accesorios',
+        parrafos: [
+          'Casco, luces delantera y trasera y una buena traba son lo mínimo. Verificá que venga armada o que el vendedor explique el armado: muchas se envían desarmadas y conviene que la ajuste un bicicletero.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué rodado de bicicleta necesito?',
+        a: 'Depende de tu altura y del uso. Para adultos, 26 o 27,5 en MTB urbana y 29 para más rendimiento; para chicos hay rodados 12, 16 y 20. Revisá la tabla de talles del fabricante.',
+      },
+      {
+        q: '¿Frenos a disco o V-brake?',
+        a: 'El freno a disco frena mejor con lluvia y requiere menos fuerza; el V-brake es más simple y barato de mantener.',
+      },
+    ],
+  },
+
+  'mejores-aires-acondicionados': {
+    secciones: [
+      {
+        titulo: 'Cuántas frigorías necesitás',
+        parrafos: [
+          'La regla práctica es multiplicar el volumen del ambiente (m² × altura en metros) por 50. Un cuarto de 20 m² con techo de 2,6 m son unas 2.600 frigorías. Sumá si hay mucho sol, ventanales o cocina; elegí un equipo de 3.000 o más en ese caso. Podés usar nuestra calculadora de frigorías para afinarlo.',
+        ],
+      },
+      {
+        titulo: 'Inverter, frío solo o frío/calor',
+        parrafos: [
+          'El inverter ajusta la potencia del compresor en lugar de prenderse y apagarse, así consume bastante menos y hace menos ruido. Si lo vas a usar muchas horas, se paga solo en la factura. El modelo frío/calor sirve también en invierno con bomba de calor, más eficiente que una estufa eléctrica.',
+          'Contá la instalación: casi nunca está incluida en el precio y puede sumar un costo importante. Pedí presupuesto de un instalador matriculado antes de comprar.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuántas frigorías necesito para 20 m²?',
+        a: 'Unas 2.600 frigorías con techo de 2,6 m (volumen × 50). Con mucho sol o ventanales conviene 3.000 o más.',
+      },
+      {
+        q: '¿Vale la pena el aire inverter?',
+        a: 'Sí si lo usás muchas horas: consume menos y es más silencioso que uno convencional. La diferencia de precio se recupera en la factura de luz.',
+      },
+      {
+        q: '¿La instalación está incluida?',
+        a: 'Casi nunca. Sumá al presupuesto el costo de un instalador, que depende de la distancia entre la unidad interior y la exterior.',
+      },
+    ],
+  },
+
+  'mejores-heladeras': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir una heladera',
+        parrafos: [
+          'La capacidad se mide en litros: 250 a 300 para 1 o 2 personas, 350 a 400 para una familia chica y 450 o más para familias grandes o si comprás en cantidad. Medí el hueco donde va y la puerta de entrada: muchas heladeras no pasan por pasillos angostos.',
+          'No frost evita descongelar a mano y mantiene la temperatura pareja, aunque cuesta más y consume algo más. Las de freezer superior son las más económicas; las side by side y las de freezer inferior son más cómodas pero más caras.',
+        ],
+      },
+      {
+        titulo: 'Consumo y eficiencia',
+        parrafos: [
+          'Una heladera funciona todo el día, así que la etiqueta de eficiencia (A o superior) se nota en la factura. Con nuestra calculadora de consumo eléctrico podés estimar cuánto gasta en pesos por mes.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué capacidad de heladera necesito?',
+        a: 'Para una o dos personas 250 a 300 litros; para una familia de 3 o 4, unos 350 a 400 litros.',
+      },
+      {
+        q: '¿Conviene la heladera No Frost?',
+        a: 'Si querés evitar descongelar y mantener la temperatura pareja, sí. Es más cara que una con freezer común y consume un poco más.',
+      },
+    ],
+  },
+
+  'mejores-colchones': {
+    secciones: [
+      {
+        titulo: 'Resortes o espuma: cuál conviene',
+        parrafos: [
+          'El colchón de resortes es fresco, firme y el más elegido en Argentina; ideal si dormís con calor y querés un apoyo firme. El de espuma de alta densidad es más liviano, silencioso y se adapta mejor al cuerpo; suele ser más cómodo para quien se mueve poco o tiene dolores en las articulaciones.',
+          'La densidad de la espuma (kg/m³) indica la durabilidad: para uso diario buscá 28 kg/m³ o más. En resortes, mirá la cantidad y el tipo (bicónicos, Bonnell o embolsados).',
+        ],
+      },
+      {
+        titulo: 'Medidas y firmeza',
+        parrafos: [
+          'Las medidas más comunes: 1 plaza (80 a 100 cm), 1 plaza y media (100 a 120 cm), 2 plazas (140 cm), queen (160 cm) y king (180 a 200 cm). Medí la cama y la habitación antes de comprar. La firmeza depende de tu peso y de cómo dormís: de costado conviene algo más blando, boca arriba o boca abajo, más firme.',
+          'Revisá la garantía del fabricante y el período de prueba si lo ofrece. Un colchón dura en promedio 8 a 10 años.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué colchón es mejor, de resortes o de espuma?',
+        a: 'El de resortes es más fresco y firme; el de espuma es más liviano y se adapta al cuerpo. Depende de tu preferencia de firmeza y de si dormís con calor.',
+      },
+      {
+        q: '¿Cada cuánto hay que cambiar el colchón?',
+        a: 'En promedio cada 8 a 10 años, o antes si se hunde, se nota el desgaste o amanecés con dolores.',
+      },
+      {
+        q: '¿Qué medida de colchón necesito para dos personas?',
+        a: 'Para dos, 140 cm (2 plazas) es lo mínimo; queen (160 cm) o king (180 a 200 cm) dan más espacio.',
+      },
+    ],
+  },
+
+  'mejores-freidoras-de-aire': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir una freidora de aire',
+        parrafos: [
+          'La capacidad se mide en litros: 2 a 4 litros para 1 o 2 personas, 5 a 7 para una familia, y más de 8 si cocinás para muchos o querés meter un pollo entero. La potencia (1.400 a 2.000 W) define la velocidad de cocción.',
+          'Buscá canasta antiadherente y apta lavavajillas, control digital de temperatura y programas preconfigurados. Las de doble canasta o tipo horno permiten cocinar dos cosas a la vez.',
+        ],
+      },
+      {
+        titulo: 'Freidora de aire u horno eléctrico',
+        parrafos: [
+          'La freidora cocina más rápido, no necesita precalentar y gasta menos energía; el horno eléctrico es más versátil para pizzas, tortas y porciones grandes. Si cocinás para una o dos personas a diario, la freidora rinde más.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué capacidad de freidora de aire conviene?',
+        a: 'De 2 a 4 litros para una o dos personas, de 5 a 7 para una familia chica y 8 o más para cocinar para muchos.',
+      },
+      {
+        q: '¿Una freidora de aire gasta mucha luz?',
+        a: 'Menos que un horno eléctrico: cocina más rápido y no necesita precalentar, aunque la potencia ronda los 1.400 a 2.000 W.',
+      },
+    ],
+  },
 }

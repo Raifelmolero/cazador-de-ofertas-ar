@@ -35,6 +35,10 @@ const DEALS_URL = `https://${DEALS_HOST}`
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = getScrapedAt()
+  // Páginas de texto que no cambian con el scraper: con la fecha del scraper, Google
+  // ve "modificado hoy" en todo y termina ignorando el dato. Subir esta fecha solo
+  // cuando se edite de verdad el contenido (guías, metodología, calculadoras).
+  const textoModificado = new Date('2026-10-07T00:00:00Z')
 
   // El mismo deploy sirve los dos dominios. Google marca error si un sitemap
   // lista URLs de otro dominio (le pasaba al de cazadordeofertas: 1 error y
@@ -43,15 +47,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!host.startsWith(DEALS_HOST)) {
     return [
       { url: BASE, lastModified, changeFrequency: 'daily', priority: 1 },
-      { url: `${BASE}/calculadora-de-comisiones`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-precio-de-venta`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-envio-gratis`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-cuotas-sin-interes`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/mercado-libre-vs-tiendanube`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/calculadora-de-comisiones`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/calculadora-precio-de-venta`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/calculadora-envio-gratis`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/calculadora-cuotas-sin-interes`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
+      { url: `${BASE}/mercado-libre-vs-tiendanube`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
       // Índice estable de las fichas /calculadora/[id] (las fichas no se listan: rotan)
       { url: `${BASE}/calculadora`, lastModified, changeFrequency: 'daily', priority: 0.6 },
-      { url: `${BASE}/vender`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
-      ...GUIAS_VENDER.map(g => ({ url: `${BASE}/vender/${g.slug}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.8 })),
+      { url: `${BASE}/vender`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.7 },
+      ...GUIAS_VENDER.map(g => ({ url: `${BASE}/vender/${g.slug}`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.8 })),
     ]
   }
 
@@ -74,13 +78,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...LANDINGS.filter(indexableLanding).map(l => ({ url: `${DEALS_URL}/ofertas/${l.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.7 })),
     ...NICHOS.map(n => ({ url: `${DEALS_URL}/${n.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 })),
     { url: `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
-    { url: `${DEALS_URL}/cupones-mercado-libre`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${DEALS_URL}/cupones-mercado-libre`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/descuentos-inflados`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
-    { url: `${DEALS_URL}/calculadora-frigorias`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${DEALS_URL}/calculadora-frigorias`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/datos`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
-    { url: `${DEALS_URL}/calculadora-consumo-electrico`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
-    { url: `${DEALS_URL}/metodologia`, lastModified, changeFrequency: 'monthly' as const, priority: 0.6 },
-    { url: `${DEALS_URL}/familia`, lastModified, changeFrequency: 'monthly' as const, priority: 0.5 },
+    { url: `${DEALS_URL}/calculadora-consumo-electrico`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${DEALS_URL}/metodologia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.6 },
+    { url: `${DEALS_URL}/familia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.5 },
     { url: `${DEALS_URL}/cyber-monday`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/dia-de-la-madre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
@@ -100,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/mejores`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     ...GUIAS.map(g => ({
       url: `${DEALS_URL}/guias/${g.slug}`,
-      lastModified,
+      lastModified: textoModificado,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

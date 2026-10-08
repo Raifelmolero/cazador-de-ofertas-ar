@@ -24,7 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = getComparativa((await params).slug)
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
-  const titulo = tituloSeo(CONTENIDO[c.slug]?.titulo ?? c.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
+  // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
+  const precios = productosDe(c).map(p => p.precio_actual).filter(n => n > 0)
+  const base = (CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
+  const conPrecio = precios.length ? `${base}: desde ${precio(Math.min(...precios))}` : base
+  const titulo = tituloSeo(conPrecio, [n => `${n} — Cazador de Ofertas AR`, n => n])
   const descripcion = descripcionSeo(c.descripcion)
   return {
     title: titulo,
@@ -68,7 +72,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
       return (!kws.length || kws.some(k => t.includes(k))) && !fuera.some(f => t.includes(f))
     })
     .sort((a, b) => a.min - b.min || a.slug.localeCompare(b.slug))
-    .slice(0, 6)
+    .slice(0, productos.length < 3 ? 10 : 6) // tabla flaca: más modelos con historial para que no quede vacía
 
   const contenido = CONTENIDO[c.slug]
 

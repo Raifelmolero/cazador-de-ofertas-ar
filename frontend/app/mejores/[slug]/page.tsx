@@ -10,6 +10,7 @@ import { COMPARATIVAS, categoriaDe, getComparativa, indexable, productosDe } fro
 import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
+import { CONTENIDO } from '@/lib/comparativas-contenido'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = getComparativa((await params).slug)
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
-  const titulo = tituloSeo(c.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
+  const titulo = tituloSeo(CONTENIDO[c.slug]?.titulo ?? c.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
   const descripcion = descripcionSeo(c.descripcion)
   return {
     title: titulo,
@@ -69,6 +70,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     .sort((a, b) => a.min - b.min || a.slug.localeCompare(b.slug))
     .slice(0, 6)
 
+  const contenido = CONTENIDO[c.slug]
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -88,6 +91,11 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           name: `¿Qué conviene mirar antes de comprar ${c.nombre}?`,
           acceptedAnswer: { '@type': 'Answer', text: c.criterios.join(' ') },
         },
+        ...(contenido?.faq ?? []).map(f => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
         ...(productos.length > 0
           ? [
               {
@@ -346,6 +354,31 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             ))}
           </ul>
         </section>
+
+        {contenido?.secciones.map(s => (
+          <section key={s.titulo} className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{s.titulo}</h2>
+            <div className="space-y-3 text-zinc-400 leading-relaxed">
+              {s.parrafos.map(t => (
+                <p key={t}>{t}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {contenido && contenido.faq.length > 0 && (
+          <section className="mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Preguntas frecuentes</h2>
+            <dl className="space-y-4">
+              {contenido.faq.map(f => (
+                <div key={f.q}>
+                  <dt className="font-bold text-zinc-200">{f.q}</dt>
+                  <dd className="text-zinc-400 leading-relaxed mt-1">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
         {(c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')) && (
           <nav className="mb-10">

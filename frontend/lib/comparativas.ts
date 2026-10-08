@@ -9,6 +9,7 @@
 
 import { CATEGORIAS, getCategoria, normalizar, ofertasDeCategoria, type Categoria } from '@/lib/categorias'
 import type { ProductWithMargins } from '@/lib/productos'
+import { CONTENIDO } from '@/lib/comparativas-contenido'
 
 export interface Comparativa {
   slug: string
@@ -931,7 +932,7 @@ export const COMPARATIVAS: Comparativa[] = [
     slug: 'mejores-piletas',
     guia: 'que-pileta-comprar',
     nombre: 'piletas',
-    titulo: `Mejores piletas de lona y accesorios en oferta ${AÑO}`,
+    titulo: `Mejores piletas de lona y accesorios en Argentina ${AÑO}`,
     descripcion:
       'Piletas de lona, estructurales e inflables, bombas y filtros en oferta hoy en Mercado Libre Argentina, con precio mínimo registrado.',
     intro:
@@ -960,7 +961,7 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
 export const MIN_PRODUCTOS_INDEXABLE = 3
 
 export function indexable(c: Comparativa): boolean {
-  return PERENNES.has(c.slug) || productosDe(c).length >= MIN_PRODUCTOS_INDEXABLE
+  return PERENNES.has(c.slug) || c.slug in CONTENIDO || productosDe(c).length >= MIN_PRODUCTOS_INDEXABLE
 }
 
 export function productosDe(c: Comparativa): ProductWithMargins[] {

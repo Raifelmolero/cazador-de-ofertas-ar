@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T16:39:17+00:00",
+  "generado": "2026-10-08T20:41:40+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,16 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-05T22:00:25+00:00",
+      "ultima_actividad": "2026-10-08T20:41:39+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1543 productos en la última corrida"
+          "tarea": "Revisó 45 productos en la última corrida"
         }
       ],
-      "metricas": [],
+      "metricas": [
+        {
+          "label": "Telegram",
+          "valor": 5
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Threads",
+          "valor": 1
+        },
+        {
+          "label": "Facebook",
+          "valor": 1
+        }
+      ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Lavarropas LG WM10VVC4S6 ThinQ 10 Kg AI DD Inverter Direct Drive 1400 RPM Vapor "
+      "ultimo_trabajo": "Aire Acondicionado Split TCL Elite Frio Calor On Off 3350W 2900 Frigorías TACA-3"
     },
     {
       "id": "investigacion",

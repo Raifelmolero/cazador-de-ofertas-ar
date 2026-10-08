@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { COMPARATIVAS, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
+import { COMPARATIVAS, MIN_PRODUCTOS_INDEXABLE, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
   const precios = productosDe(c).map(p => p.precio_actual).filter(n => n > 0)
   const base = (CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
-  const conPrecio = precios.length ? `${base}: desde ${precio(Math.min(...precios))}` : base
+  // Con menos de 3 modelos el "desde" engaña (el único que hay puede ser el más caro).
+  const conPrecio = precios.length >= MIN_PRODUCTOS_INDEXABLE ?`${base}: desde ${precio(Math.min(...precios))}` : base
   const titulo = tituloSeo(conPrecio, [n => `${n} — Cazador de Ofertas AR`, n => n])
   const descripcion = descripcionSeo(c.descripcion)
   return {

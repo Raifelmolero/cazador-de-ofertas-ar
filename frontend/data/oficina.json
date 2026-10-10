@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-09T20:13:08+00:00",
+  "generado": "2026-10-10T04:10:54+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -15,24 +15,7 @@
           "tarea": "Revisó 45 productos en la última corrida"
         }
       ],
-      "metricas": [
-        {
-          "label": "Telegram",
-          "valor": 5
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
-          "label": "Threads",
-          "valor": 1
-        },
-        {
-          "label": "Facebook",
-          "valor": 1
-        }
-      ],
+      "metricas": [],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
       "ultimo_trabajo": "Aire Acondicionado Split TCL Elite Frio Calor On Off 3350W 2900 Frigorías TACA-3"
     },

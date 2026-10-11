@@ -4,7 +4,7 @@
 // filtra productos_rentables.json / seguimiento.json y solo es indexable si hoy
 // tiene suficientes productos (mismo criterio que indexable() de /mejores).
 import { getOfertas, type ProductWithMargins } from '@/lib/productos'
-import { normalizar } from '@/lib/categorias'
+import { normalizar, getCategoria, enCategoria } from '@/lib/categorias'
 import { frigoriasDelTitulo } from '@/lib/frigorias'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { getSeguidosPrincipales, actualizadoSeguimiento, precioActual, type Seguido } from '@/lib/seguimiento'
@@ -355,6 +355,54 @@ export const LANDINGS: Landing[] = [
       { q: '¿Termotanque o calefón?', a: 'El termotanque acumula agua caliente; el calefón la calienta al momento y ocupa menos espacio.' },
     ],
   },
+  {
+    slug: 'notebooks-en-oferta',
+    categoria: 'notebooks',
+    nombre: 'notebooks en oferta',
+    titulo: 'Notebooks en oferta hoy en Mercado Libre',
+    descripcion:
+      'Notebooks y laptops en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado para comparar antes de comprar.',
+    h1: 'Notebooks en oferta',
+    intro:
+      'Notebooks y laptops en oferta hoy en Mercado Libre Argentina, del más barato al más caro. Es una compra de ticket alto: comparalas con su mínimo registrado y fijate qué memoria y disco trae cada una.',
+    tipo: 'ofertas',
+    filtrar: p => !!getCategoria('notebooks') && enCategoria(getCategoria('notebooks')!, p.titulo),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Memoria RAM: 8 GB como mínimo para uso diario; 16 GB si trabajás con muchas cosas abiertas.',
+      'Disco SSD: arranca y abre programas mucho más rápido que un disco rígido; 256 GB es lo mínimo razonable.',
+      'Verificá la garantía oficial en Argentina y si trae sistema operativo instalado.',
+    ],
+    faq: [
+      { q: '¿Cuánta RAM necesito?', a: 'Para estudiar y navegar, 8 GB alcanzan. Para trabajo con muchos programas, edición o programación, conviene 16 GB.' },
+      { q: '¿Cómo sé si el precio es bueno?', a: 'Mirá si figura como mínimo histórico y abrí el historial de precios del producto cuando esté disponible.' },
+    ],
+  },
+  {
+    slug: 'celulares-en-oferta',
+    categoria: 'celulares',
+    nombre: 'celulares en oferta',
+    titulo: 'Celulares en oferta hoy en Mercado Libre',
+    descripcion:
+      'Celulares Samsung, Motorola, Xiaomi e iPhone en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Celulares en oferta',
+    intro:
+      'Celulares en oferta hoy en Mercado Libre Argentina, del más barato al más caro. Comparalos con su mínimo registrado y revisá almacenamiento, versión para Argentina y garantía antes de pagar.',
+    tipo: 'ofertas',
+    filtrar: p => !!getCategoria('celulares') && enCategoria(getCategoria('celulares')!, p.titulo),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Almacenamiento: 128 GB como mínimo; las fotos, videos y WhatsApp llenan 64 GB rápido.',
+      'Que sea versión para Argentina (bandas de 4G/5G locales) y con garantía oficial.',
+      'Comparalo en un pago contra las cuotas: las cuotas sin interés a veces esconden un precio de lista más alto.',
+    ],
+    faq: [
+      { q: '¿Cuántos GB conviene?', a: 'Desde 128 GB: la mayoría de los equipos actuales no acepta tarjeta microSD y 64 GB se llenan rápido.' },
+      { q: '¿Cómo sé si el descuento es real?', a: 'Mirá si figura como mínimo histórico y abrí el historial de precios del producto cuando esté disponible.' },
+    ],
+  },
 ]
 
 export const getLanding = (slug: string) => LANDINGS.find(l => l.slug === slug)
@@ -421,4 +469,6 @@ export const LANDINGS_RENTABLES = [
   'smart-tv-55-pulgadas-o-mas-en-oferta',
   'herramientas-electricas-en-oferta',
   'heladeras-no-frost-en-oferta',
+  'notebooks-en-oferta',
+  'celulares-en-oferta',
 ]

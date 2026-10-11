@@ -1110,6 +1110,112 @@ export const CATEGORIAS: Categoria[] = [
       },
     ],
   },
+  {
+    slug: 'notebooks',
+    nombre: 'Notebooks',
+    titulo: 'Ofertas de notebooks en Mercado Libre Argentina',
+    descripcion:
+      'Notebooks y laptops en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Cómo elegir procesador, memoria RAM y disco SSD.',
+    intro:
+      'Notebooks y laptops que hoy tienen descuento real en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: ['notebook', 'laptop', 'macbook', 'chromebook', 'ultrabook'],
+    excluir: [
+      // Accesorios y componentes que nombran "notebook" solo por compatibilidad
+      'mochila', 'maletin', 'funda', 'bolso', 'sobre para', 'cargador', 'fuente', 'adaptador', 'cable',
+      'soporte', 'base para', 'stand', 'cooler', 'mouse', 'teclado', 'hub', 'dock', 'webcam',
+      'ssd', 'disco', 'memoria', 'ram ', 'bateria', 'pantalla para', 'display para', 'repuesto', 'flex', 'placa',
+      'limpieza', 'kit', 'candado', 'lamina', 'protector', 'skin', 'sticker', 'vinilo', 'impresora',
+      'mesa', 'escritorio', 'monitor', 'parlante', 'auricular', 'para notebook', 'para laptop', 'para pc',
+    ],
+    guia: [
+      {
+        h: 'Cómo elegir una notebook',
+        p: [
+          'Memoria RAM: 8 GB es el mínimo razonable para uso diario; si trabajás o estudiás con muchas pestañas y programas abiertos, 16 GB se nota. Revisá si la memoria viene soldada o si se puede ampliar.',
+          'Disco: preferí SSD antes que disco rígido: el equipo arranca y abre programas mucho más rápido. 256 GB es lo mínimo cómodo y 512 GB da más aire.',
+          'Procesador: para ofimática, navegación y estudio alcanza un Core i3 o Ryzen 3; para trabajo exigente, edición o programación, un Core i5/Ryzen 5 o superior. Un procesador de generación reciente rinde y consume mejor que uno viejo con el mismo nombre.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Pantalla: Full HD (1920×1080) es lo normal; un panel IPS tiene mejores colores y ángulos que uno TN. El tamaño más práctico para moverse es de 14 a 15,6 pulgadas.',
+          'Garantía y sistema: confirmá que la garantía sea oficial en Argentina y si trae sistema operativo instalado; algunos equipos vienen "sin sistema" (FreeDOS) y hay que sumar la licencia.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cuánta memoria RAM necesita una notebook?',
+        a: 'Para navegar, estudiar y usar ofimática, 8 GB alcanzan. Si trabajás con muchos programas a la vez, editás o programás, conviene 16 GB. Menos de 8 GB se queda corto con los sistemas y navegadores actuales.',
+      },
+      {
+        q: '¿Qué es mejor, disco SSD o disco rígido?',
+        a: 'El SSD, sin dudas: es mucho más rápido para encender el equipo y abrir programas, y resiste mejor los golpes. El disco rígido solo se justifica si necesitás mucha capacidad a bajo costo.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de una notebook es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
+  {
+    slug: 'celulares',
+    nombre: 'Celulares',
+    titulo: 'Ofertas de celulares en Mercado Libre Argentina',
+    descripcion:
+      'Celulares Samsung, Motorola, Xiaomi e iPhone en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Qué mirar antes de comprar.',
+    intro:
+      'Celulares con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
+    keywords: [
+      'celular', 'smartphone', 'iphone', 'samsung galaxy', 'galaxy a', 'galaxy s', 'galaxy m', 'galaxy z',
+      'moto g', 'moto e', 'moto edge', 'motorola edge', 'motorola moto', 'motorola razr', 'redmi', 'poco x',
+      'poco m', 'poco c', 'poco f', 'xiaomi 1', 'pixel ', 'honor ', 'tecno ', 'infinix',
+    ],
+    excluir: [
+      // Accesorios y repuestos que nombran el celular solo por compatibilidad
+      'funda', 'case', 'carcasa', 'vidrio', 'templado', 'protector', 'lamina', 'film', 'cargador', 'cable',
+      'adaptador', 'soporte', 'holder', 'pop socket', 'popsocket', 'tripode', 'aro de luz', 'gimbal',
+      'auricular', 'manos libres', 'parlante', 'power bank', 'bateria', 'pantalla para', 'modulo', 'display',
+      'repuesto', 'flex', 'placa', 'camara para', 'lente', 'lupa', 'palo selfie', 'cinta', 'correa',
+      'reloj', 'smartwatch', 'watch', 'smart band', 'buds', 'tablet', 'tab ', 'ipad', 'consola', 'juguete',
+      'para celular', 'para iphone', 'para samsung', 'para moto',
+    ],
+    guia: [
+      {
+        h: 'Cómo elegir un celular',
+        p: [
+          'Almacenamiento: 128 GB es el piso razonable hoy; las fotos, los videos y WhatsApp llenan 64 GB rápido y la mayoría de los equipos no acepta microSD. Si grabás mucho video, mirá 256 GB.',
+          'Memoria RAM: 4 GB alcanzan para lo básico; con 6 u 8 GB el equipo se siente más fluido si usás muchas apps a la vez o jugás.',
+          'Cámara: los megapíxeles dicen poco por sí solos. Importan el sensor, la estabilización y el procesamiento; mirá fotos y reseñas de pruebas reales, sobre todo de noche.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de comprar',
+        p: [
+          'Versión y garantía: que sea la versión para Argentina (con las bandas de 4G/5G de las compañías locales) y que tenga garantía oficial. Un equipo importado puede tener peor señal o quedar fuera de servicio técnico.',
+          'Actualizaciones: fijate cuántos años de parches de seguridad promete el fabricante; un equipo que se actualiza más tiempo dura más.',
+          'Batería y carga: además de los mAh, mirá si trae cargador en la caja y qué potencia de carga rápida admite.',
+          'Precio: comprobá que el descuento sea real. Comparamos contra el historial de precios y marcamos los que están en su mínimo registrado.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Cuántos GB de almacenamiento conviene en un celular?',
+        a: 'Como mínimo 128 GB. Con 64 GB el espacio se llena rápido por fotos, videos y mensajes, y la mayoría de los equipos actuales no admite tarjeta microSD. Si grabás video o bajás muchas apps y juegos, conviene 256 GB.',
+      },
+      {
+        q: '¿Qué significa que el celular sea "versión Argentina"?',
+        a: 'Que está pensado para las bandas de red de las compañías locales y suele tener garantía oficial. Un equipo de otra región puede funcionar, pero con peor señal, sin 5G o sin servicio técnico en el país.',
+      },
+      {
+        q: '¿Cómo sé si el descuento de un celular es real?',
+        a: 'Comparando con el historial de precios del producto. En Cazador de Ofertas AR descartamos las ofertas que ya se habían visto igual o más baratas antes y marcamos con el sello de mínimo histórico las que están en su precio más bajo registrado.',
+      },
+    ],
+  },
 ]
 
 export function getCategoria(slug: string): Categoria | undefined {

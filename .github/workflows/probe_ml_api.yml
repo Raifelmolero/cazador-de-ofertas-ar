@@ -21,4 +21,18 @@ jobs:
         env:
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          # token de usuario (si existe); ML lo rota en cada uso, el paso siguiente lo guarda
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_REFRESH_TOKEN_OUT: ${{ runner.temp }}/ml_refresh_token
         run: python bot/tools/probe_ml_api.py
+
+      - name: Guardar refresh token rotado de ML
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          ML_TOKEN_FILE: ${{ runner.temp }}/ml_refresh_token
+        run: |
+          [ -s "$ML_TOKEN_FILE" ] || { echo "ML no rotó el refresh_token; nada que guardar."; exit 0; }
+          echo "::add-mask::$(cat "$ML_TOKEN_FILE")"
+          gh secret set ML_REFRESH_TOKEN --repo "${GITHUB_REPOSITORY}" < "$ML_TOKEN_FILE"             && echo "Secret ML_REFRESH_TOKEN actualizado."             || echo "::error::No se pudo guardar el refresh_token rotado; repetir ml_obtener_token.py"
+          rm -f "$ML_TOKEN_FILE"

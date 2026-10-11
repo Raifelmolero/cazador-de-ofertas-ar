@@ -80,6 +80,11 @@ def extraer_code(pegado: str, state_esperado: str | None = None) -> str:
         return q["code"][0]
     if re.search(r"\s", txt):
         raise ValueError("lo pegado no parece un code de ML (tiene espacios)")
+    if "&" in txt:  # pegaron "TG-...&state=..." sin el "?code=": quedarse con el code
+        q = urllib.parse.parse_qs(txt.split("&", 1)[1])
+        if state_esperado and q.get("state") and q["state"][0] != state_esperado:
+            raise ValueError("el state de la URL no coincide: abortado por seguridad")
+        txt = txt.split("&", 1)[0]
     return txt
 
 
@@ -147,7 +152,9 @@ def main(argv: list[str] | None = None, leer_secreto=_leer_secreto, post=_post) 
     print("\n2) Te redirige a tu Redirect URI con ?code=TG-... (la página puede dar error, no importa).")
     print("   Copiá el code o la URL completa de la barra y pegala acá (no se muestra).")
     try:
-        code = extraer_code(leer_secreto("code o URL: "), state)
+        pegado = input("code o URL: ") if sys.stdin.isatty() else leer_secreto("code o URL: ")
+        code = extraer_code(pegado, state)
+        print(f"(code leido: {len(code)} caracteres, empieza con {code[:3]}, redirect_uri enviada: {redirect_uri})")
     except ValueError as e:
         print(f"Error: {e}")
         return 2

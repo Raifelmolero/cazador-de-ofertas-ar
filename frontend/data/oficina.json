@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T15:50:02+00:00",
+  "generado": "2026-10-11T17:24:19+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -173,7 +173,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-02T16:29:10+00:00",
+      "ultima_actividad": "2026-10-11T16:33:38+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -185,7 +185,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 68 h"
         },
         {
           "fecha": "",
@@ -193,11 +193,11 @@
         },
         {
           "fecha": "",
-          "titulo": "✖ Tests del bot FALLAN"
+          "titulo": "✔ Tests del bot OK"
         },
         {
           "fecha": "",
-          "titulo": "✔ Sin vulnerabilidades altas"
+          "titulo": "✖ npm audit encontró vulnerabilidades altas o críticas"
         }
       ]
     }

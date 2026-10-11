@@ -683,9 +683,9 @@ export const GUIAS: Guia[] = [
         h: 'Ideas según presupuesto',
         p: [
           'Hasta $50.000: perfumes de marcas nacionales, sets de cuidado personal, secador o planchita de gama de entrada, auriculares.',
-          'De $50.000 a $150.000: perfumes importados, cafeteras de cápsulas, freidoras de aire, smartwatch, masajeadores.',
-          'Más de $150.000: robot aspiradora, cafetera espresso, celular o tablet, electrodomésticos de cocina de mayor gama.',
-          'En nuestra comparativa de regalos los productos en oferta de hoy están ordenados por estos mismos rangos, con el descuento verificado.',
+          'De $50.000 a $150.000: freidoras de aire, cafeteras, tablets, celulares de entrada, perfumes importados, smartwatch.',
+          'Más de $150.000: notebooks, smart TV, lavarropas, colchones, celulares de gama media y alta, robot aspiradora.',
+          'En la página de Día de la Madre (cazadordeofertas.com.ar/dia-de-la-madre) los productos en oferta de hoy están ordenados por estos mismos tres rangos, con el descuento verificado.',
         ],
       },
       {
@@ -700,7 +700,7 @@ export const GUIAS: Guia[] = [
       {
         h: 'Cuándo comprar para que llegue',
         p: [
-          'Comprá con al menos 5 a 7 días de margen y mirá la fecha de entrega que muestra Mercado Libre antes de pagar. La semana previa al 18 de octubre los envíos se cargan.',
+          'Comprá con al menos 5 a 7 días de margen y mirá la fecha de entrega que muestra Mercado Libre antes de pagar. La semana previa al 18 de octubre los envíos se cargan: si es para regalo grande (notebook, TV, lavarropas), pedilo cuanto antes y elegí envío Full.',
           'Los productos con envío Full suelen llegar más rápido y tienen devolución simple si hay que cambiar el talle, el color o el modelo.',
           'Antes de comprar, fijate si el descuento es real: muchos precios "antes" están inflados. En cada producto seguido mostramos el precio más bajo que registramos.',
         ],
@@ -2739,7 +2739,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-colchon-comprar-firmeza-y-material': { publicada: '2026-09-23', modificada: '2026-09-30' },
   'que-taladro-comprar-para-la-casa': { publicada: '2026-09-23', modificada: '2026-09-23' },
   'que-amoladora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
-  'que-regalar-el-dia-de-la-madre': { publicada: '2026-09-24', modificada: '2026-09-24' },
+  'que-regalar-el-dia-de-la-madre': { publicada: '2026-09-24', modificada: '2026-10-11' },
   'que-soldadora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
   'que-hidrolavadora-comprar': { publicada: '2026-09-25', modificada: '2026-09-25' },
   'herramientas-electricas-cyber-monday-black-friday': { publicada: '2026-09-25', modificada: '2026-09-25' },

@@ -5,14 +5,19 @@ import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt } from '@/lib/productos'
-import { slugPorId } from '@/lib/seguimiento'
+import { precioActual, slugPorId } from '@/lib/seguimiento'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { DEALS_URL } from '@/lib/marca'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
-import { LANDINGS, bajasDeLaSemana, getLanding, indexableLanding, productosLanding } from '@/lib/landings'
+import { LANDINGS, bajasDeLaSemana, getLanding, historialLanding, indexableLanding, minLanding, productosLanding } from '@/lib/landings'
+import { enlacesAfines } from '@/lib/afines'
+import SinOfertas from '@/components/SinOfertas'
 
 const MAX = 24
+const MAX_HISTORIAL = 12
+
+const fecha = (iso: string) => iso.slice(0, 10).split('-').reverse().join('/')
 
 export function generateStaticParams() {
   return LANDINGS.map(l => ({ slug: l.slug }))
@@ -44,6 +49,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const productos = productosLanding(l)
   const bajas = l.tipo === 'bajaron' ? bajasDeLaSemana() : []
   const total = l.tipo === 'bajaron' ? bajas.length : productos.length
+  // Catálogo del día flaco: se muestra el historial propio de los modelos del
+  // recorte (es lo que mantiene la página indexable, ver indexableLanding).
+  const historialModelos = total < minLanding(l) ? historialLanding(l).slice(0, MAX_HISTORIAL) : []
   const historial = slugPorId()
   const light: OfertaLight[] = productos.slice(0, MAX).map(o => ({
     id_ml: o.id_ml,
@@ -120,10 +128,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {total === 0 ? (
-          <p className="text-center text-zinc-400 py-10">
-            Hoy no hay productos que cumplan este criterio. La lista se actualiza 3 veces por día;{' '}
-            <a href={DEALS_URL} className="text-yellow-400 hover:underline">mirá todas las ofertas de hoy</a>.
-          </p>
+          <SinOfertas que="en esta lista" enlaces={enlacesAfines({ categoria: l.categoria })} />
         ) : l.tipo === 'bajaron' ? (
           <div className="max-w-3xl mx-auto overflow-x-auto rounded-xl border border-zinc-800">
             <table className="w-full text-sm">
@@ -167,6 +172,42 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
+        {historialModelos.length > 0 && (
+          <section className="mb-10" aria-labelledby="historial-modelos">
+            <h2 id="historial-modelos" className="font-display text-xl sm:text-2xl font-black mb-2">
+              Historial de precios de los modelos que seguimos
+            </h2>
+            <p className="text-sm text-zinc-500 mb-4">
+              Modelos de esta lista con historial propio, aunque hoy no estén en oferta: último precio que registramos y el más
+              bajo. Abrí cada uno para ver cómo se movió el precio.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-zinc-800">
+              <table className="w-full text-sm">
+                <thead className="bg-zinc-900 text-zinc-400 text-left">
+                  <tr>
+                    <th className="px-3 py-2 font-semibold">Producto</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Último precio</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Mínimo registrado</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Visto por última vez</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {historialModelos.map(s => (
+                    <tr key={s.id} className="border-t border-zinc-800 align-top">
+                      <td className="px-3 py-2 text-zinc-300">
+                        <a href={`/precio/${s.slug}`} className="hover:text-yellow-400">{s.titulo}</a>
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-100 font-semibold">{precio(precioActual(s))}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-300">{precio(s.min)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-500">{fecha(s.ultimo_visto)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué tener en cuenta</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">

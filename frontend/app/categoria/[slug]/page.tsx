@@ -12,6 +12,8 @@ import { GUIAS } from '@/lib/guias'
 import { getContenidoCategoria } from '@/lib/categorias-contenido'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
+import { enlacesAfines } from '@/lib/afines'
+import SinOfertas from '@/components/SinOfertas'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
@@ -226,20 +228,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {ofertas.length === 0 ? (
-          <div className="max-w-xl mx-auto text-center py-10">
-            <p className="text-zinc-300 font-semibold mb-2">
-              Hoy no hay {c.nombre.toLowerCase()} en el catálogo 🎯
-            </p>
-            <p className="text-sm text-zinc-500 mb-5">
-              Las ofertas cambian 3 veces por día. Mirá todas las de hoy o sumate al canal para enterarte apenas aparece una.
-            </p>
-            <a
-              href={DEALS_URL}
-              className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-2.5 transition-colors"
-            >
-              Ver todas las ofertas de hoy
-            </a>
-          </div>
+          <SinOfertas que={`de ${enFrase(c)}`} enlaces={enlacesAfines({ categoria: c.slug })} />
         ) : (
           <>
           {destacado && (

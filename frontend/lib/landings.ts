@@ -1,8 +1,11 @@
 // Landings derivadas del catálogo real del día (/ofertas/[slug]): cortes por
 // descuento, ticket alto, mínimos históricos, caídas de precio de la semana,
 // aires por frigorías y colchones de 1 plaza. Nada se inventa: cada página
-// filtra productos_rentables.json / seguimiento.json y solo es indexable si hoy
-// tiene suficientes productos (mismo criterio que indexable() de /mejores).
+// filtra productos_rentables.json / seguimiento.json. Es indexable si hoy tiene
+// suficientes productos O si tiene historial de precios propio de modelos del
+// mismo recorte (seguimiento.json persiste hasta 60 días): así un corte del bot
+// no la saca del índice, pero una landing sin productos ni historial (thin
+// content real) sigue noindex.
 import { getOfertas, type ProductWithMargins } from '@/lib/productos'
 import { normalizar, getCategoria, enCategoria } from '@/lib/categorias'
 import { frigoriasDelTitulo } from '@/lib/frigorias'
@@ -10,6 +13,9 @@ import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { getSeguidosPrincipales, actualizadoSeguimiento, precioActual, type Seguido } from '@/lib/seguimiento'
 
 export const MIN_LANDING = 5
+/** Modelos con historial propio que hacen falta para que una landing sin ofertas
+ *  de hoy siga siendo indexable (la página muestra esa tabla de historial). */
+export const MIN_HISTORIAL_LANDING = 5
 
 export interface Landing {
   slug: string
@@ -22,6 +28,10 @@ export interface Landing {
   intro: string
   tipo: 'ofertas' | 'bajaron'
   filtrar?: (p: ProductWithMargins) => boolean
+  /** Qué seguidos (historial propio) pertenecen al recorte aunque hoy no estén
+   *  en oferta. Por defecto: los que pasan `filtrar` (solo si la landing tiene
+   *  `categoria`, o sea un rubro estable y no un corte "de hoy"). */
+  historial?: (s: Seguido) => boolean
   ordenar?: (a: ProductWithMargins, b: ProductWithMargins) => number
   criterios: string[]
   faq: { q: string; a: string }[]
@@ -69,6 +79,7 @@ export const LANDINGS: Landing[] = [
       'Compras grandes con descuento hoy: productos de $250.000 o más en Mercado Libre Argentina. En importes altos conviene comparar el historial antes de pagar, por eso cada uno enlaza a su evolución de precio cuando la tenemos.',
     tipo: 'ofertas',
     filtrar: p => p.precio_actual >= TICKET_ALTO_DESDE,
+    historial: s => precioActual(s) >= TICKET_ALTO_DESDE,
     ordenar: porDescuento,
     criterios: [
       'En compras grandes, 10% de diferencia son decenas de miles de pesos: mirá el historial antes de decidir.',
@@ -445,8 +456,61 @@ export function cantidadLanding(l: Landing): number {
   return l.tipo === 'bajaron' ? bajasDeLaSemana().length : productosLanding(l).length
 }
 
+/** Mínimo de productos de hoy para que la landing sea indexable por sí sola. */
+export const minLanding = (l: Landing) => l.min ?? MIN_LANDING
+
+/** Un seguido visto como producto, para reusar el `filtrar` por título/precio. */
+function comoProducto(s: Seguido): ProductWithMargins {
+  const hoy = precioActual(s)
+  return {
+    id_ml: s.id,
+    titulo: s.titulo,
+    categoria_principal: '',
+    precio_actual: hoy,
+    precio_anterior: s.precio_lista,
+    minimo_historico: hoy <= s.min,
+    precio_minimo_registrado: s.min,
+    seguimiento_desde: s.desde,
+    moneda: 'ARS',
+    ventas_estimadas: null,
+    url_producto: s.url,
+    url_imagen: s.img,
+    comision_clasica_pct: 0,
+    comision_premium_pct: 0,
+    retencion_iibb_pct: 0,
+    costo_envio_base_ars: 0,
+    margen_neto_clasico_ars: 0,
+    margen_neto_premium_ars: 0,
+  }
+}
+
+const cacheHistorial = new Map<string, Seguido[]>()
+
+/** Modelos con historial de precios propio que entran en la landing, aunque hoy
+ *  no estén en oferta (el más reciente primero). Es el contenido propio y
+ *  perenne que sostiene la página cuando el catálogo del día viene flaco. Las
+ *  landings "de hoy" (más de 30% OFF, mínimos, bajas de la semana) no tienen:
+ *  sin catálogo del día no hay nada que mostrar y quedan noindex. */
+export function historialLanding(l: Landing): Seguido[] {
+  const hit = cacheHistorial.get(l.slug)
+  if (hit) return hit
+  let out: Seguido[] = []
+  if (l.tipo === 'ofertas') {
+    const filtro = l.historial ?? (l.categoria && l.filtrar ? (s: Seguido) => l.filtrar!(comoProducto(s)) : undefined)
+    if (filtro) {
+      out = getSeguidosPrincipales()
+        .filter(filtro)
+        .sort((a, b) => b.ultimo_visto.localeCompare(a.ultimo_visto) || a.slug.localeCompare(b.slug))
+    }
+  }
+  cacheHistorial.set(l.slug, out)
+  return out
+}
+
+/** Indexable con productos de hoy suficientes o, si no, con historial propio
+ *  suficiente. Sitemap, links internos y robots usan esta misma función. */
 export function indexableLanding(l: Landing): boolean {
-  return cantidadLanding(l) >= (l.min ?? MIN_LANDING)
+  return cantidadLanding(l) >= minLanding(l) || historialLanding(l).length >= MIN_HISTORIAL_LANDING
 }
 
 /** Landings indexables que corresponden a una guía (por categoría o, si la guía no

@@ -86,8 +86,7 @@ def _get(path: str, token: str, request=_request):
     except urllib.error.HTTPError as e:
         if e.code in (401, 403):
             try:
-                cuerpo = e.read().decode("utf-8", "replace")[:300].replace("
-", " ")
+                cuerpo = e.read().decode("utf-8", "replace")[:300].replace(chr(10), " ")
             except Exception:  # noqa: BLE001
                 cuerpo = ""
             print(f"[warn] ml_api: HTTP {e.code} en {path.split('?')[0]} — "

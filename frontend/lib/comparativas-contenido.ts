@@ -1431,4 +1431,378 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       },
     ],
   },
+  // --- Comparativas estacionales (Cyber Monday, Black Friday, Madre, Navidad) ---
+  // Fechas: solo las que están en lib/cybermonday.ts (Cyber 2 al 4/11, Black
+  // Friday viernes 27/11) y lib/temporada.ts (Madre domingo 18/10).
+  'regalos-dia-de-la-madre': {
+    secciones: [
+      {
+        titulo: 'Cómo elegir un regalo que no falle',
+        parrafos: [
+          'El Día de la Madre cae el domingo 18 de octubre y casi todo el mundo compra en la última semana, que es justo cuando los envíos se cargan y las ofertas se vuelven más escasas. Por eso conviene decidir temprano: pensá qué le gusta a ella y no qué está de moda, fijate qué usa todos los días y qué se le rompió o se le quedó viejo, y recién después mirá precios. Un regalo útil y bien elegido le gana a uno caro que termina en un cajón.',
+          'Si dudás entre dos opciones, elegí la que se pueda cambiar fácil: productos con envío Full y devolución simple te sacan del apuro si no era lo que esperabas.',
+        ],
+      },
+      {
+        titulo: 'Ofertas reales y plazos de entrega',
+        parrafos: [
+          'Antes de una fecha fuerte es común ver precios de referencia inflados. Para no caer, buscá el producto en la herramienta de precios del sitio (/precio) y compará el valor de hoy contra el mínimo que registramos; si el descuento es mayor al que tuvo históricamente, es sospechoso. También podés revisar /descuentos-inflados para ver cuáles dicen bajar y no bajaron.',
+          'Sumá siempre la fecha de entrega que muestra la publicación: si la promesa pasa del sábado, no sirve aunque el precio sea bueno.',
+        ],
+      },
+      {
+        titulo: 'Cuotas, envío y presupuesto',
+        parrafos: [
+          'Armá un tope antes de empezar y respetalo: en la tabla podés filtrar por rangos de presupuesto. Fijate si las cuotas son realmente sin interés o si el precio ya las trae incluidas, y si el envío es gratis o se suma al final. Con la calculadora de cuotas del sitio (/calculadora-cuotas-sin-interes) comparás el costo real de pagar en una vez o en varias.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Hasta cuándo puedo comprar para llegar al domingo 18?',
+        a: 'Lo más seguro es comprar con al menos una semana de margen. Mirá la fecha de entrega estimada de cada publicación: si el envío es Full suele ser más rápido y previsible.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es de verdad?',
+        a: 'Comparando el precio actual contra el mínimo registrado del mismo producto. Si el producto ya estuvo más barato, el cartel de oferta no significa tanto.',
+      },
+      {
+        q: '¿Qué regalo conviene si no sé qué elegir?',
+        a: 'Algo de uso diario y fácil de cambiar: un electrodoméstico práctico o un producto de cuidado personal de una marca conocida, comprado en una tienda oficial o con devolución simple.',
+      },
+    ],
+  },
+  'ofertas-cyber-monday': {
+    secciones: [
+      {
+        titulo: 'Cómo comprar en el Cyber Monday sin caer en descuentos inflados',
+        parrafos: [
+          'El Cyber Monday se hace del lunes 2 al miércoles 4 de noviembre y es la semana con más carteles de oferta del año. Eso no quiere decir que todo lo que dice bajar haya bajado: muchas tiendas suben el precio de lista unas semanas antes y después muestran un descuento enorme sobre ese número. La única forma de no equivocarte es comparar el precio de hoy contra el historial del mismo producto, no contra el "antes" que figura en la publicación.',
+          'Si ya tenés en mente qué comprar, empezá a mirarlo hoy: cuanto más historial veas antes del evento, mejor vas a poder juzgar si el precio del lunes es bueno.',
+        ],
+      },
+      {
+        titulo: 'Las herramientas del sitio para verificar',
+        parrafos: [
+          'En /precio buscás un producto y ves su evolución y su mínimo registrado. En /descuentos-inflados listamos las ofertas cuyo precio de referencia no se sostiene. Con esas dos páginas armás una lista corta: producto, precio de hoy y mínimo histórico. Si el precio del evento no mejora ese mínimo, no hay apuro.',
+        ],
+      },
+      {
+        titulo: 'Cuotas, envío y cupones',
+        parrafos: [
+          'El precio final depende de cómo pagás. Confirmá si las cuotas son sin interés de verdad o si el valor ya las trae incorporadas, probá la calculadora de cuotas (/calculadora-cuotas-sin-interes) y mirá si el envío es gratis o se cobra aparte (/calculadora-envio-gratis ayuda a saber a partir de qué monto). Los cupones y reintegros bancarios suelen tener tope y fecha de acreditación: leé la letra chica.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuándo es el Cyber Monday 2026?',
+        a: 'Del lunes 2 al miércoles 4 de noviembre, según las fechas que publica la CACE. Muchas tiendas estiran sus promociones durante toda la semana.',
+      },
+      {
+        q: '¿Conviene esperar al Cyber Monday para comprar?',
+        a: 'Depende del producto: si ya está en su mínimo registrado, no hace falta esperar. Si está caro respecto de su historial, tiene sentido aguardar al evento y comparar.',
+      },
+      {
+        q: '¿Cómo detecto una oferta falsa?',
+        a: 'Fijate si el precio "tachado" realmente existió. Con el historial de /precio ves cuánto costaba en las semanas previas y con /descuentos-inflados los casos más evidentes.',
+      },
+    ],
+  },
+  'cyber-monday-smart-tv': {
+    secciones: [
+      {
+        titulo: 'Smart TV en el Cyber Monday: cómo juzgar el precio',
+        parrafos: [
+          'Los televisores son de lo más buscado del Cyber Monday (lunes 2 al miércoles 4 de noviembre) y también donde más se ven precios de referencia armados. Un mismo modelo puede aparecer con distintos descuentos según la publicación, y un equipo con "50% OFF" puede costar lo mismo que hace un mes. Antes de decidir, mirá el historial del modelo exacto: el nombre comercial no alcanza, hay que comparar la sigla completa porque marcas iguales tienen versiones distintas año tras año.',
+          'Anotá hoy el valor de los dos o tres modelos que te interesan; el día del evento sabés al instante si hubo baja real.',
+        ],
+      },
+      {
+        titulo: 'Qué mirar en el televisor',
+        parrafos: [
+          'Tamaño en relación con la distancia al sillón, resolución, tipo de panel y sistema operativo (que tenga las apps que usás y siga recibiendo actualizaciones). Una pantalla más grande con menos calidad de panel rara vez conviene frente a una un poco más chica pero mejor. Sumá el costo de un soporte o de un mueble si no tenés donde apoyarlo.',
+        ],
+      },
+      {
+        titulo: 'Envío, garantía y cuotas',
+        parrafos: [
+          'Un televisor es frágil: priorizá envíos con seguimiento y revisá el producto al recibirlo, antes de firmar si es posible. Fijate que la garantía sea oficial en Argentina. Las cuotas sin interés ayudan en tickets altos, pero comparalas con el pago en una vez usando /calculadora-cuotas-sin-interes. Para verificar el descuento usá /precio y /descuentos-inflados.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuál es el mejor momento para comprar un smart TV?',
+        a: 'Cuando el precio actual iguala o se acerca al mínimo registrado del modelo. Los eventos como el Cyber Monday (2 al 4 de noviembre) son una buena ocasión, pero no garantizan el mínimo.',
+      },
+      {
+        q: '¿Qué tamaño de pantalla me conviene?',
+        a: 'Depende de la distancia desde donde mirás. Como referencia general, a mayor distancia, más pulgadas; midiendo el espacio antes evitás comprar uno que no entra o se ve chico.',
+      },
+      {
+        q: '¿Es importante que la garantía sea oficial?',
+        a: 'Sí, en electrónica de ticket alto te simplifica los reclamos y el servicio técnico. Preferí tiendas oficiales o vendedores con buena reputación.',
+      },
+    ],
+  },
+  'cyber-monday-aires-acondicionados': {
+    secciones: [
+      {
+        titulo: 'Aires acondicionados en el Cyber Monday',
+        parrafos: [
+          'Los aires se buscan mucho antes del verano y en el Cyber Monday (del lunes 2 al miércoles 4 de noviembre) aparecen promociones fuertes, pero la demanda de diciembre y enero hace que los precios casi nunca bajen después. Eso vuelve al evento una ventana razonable, siempre que verifiques que el descuento sea real. Comparar el modelo exacto contra su historial es clave: un split de la misma marca puede tener varias versiones con distinta eficiencia y distinta potencia.',
+          'Acordate de que el precio del equipo no es todo: la instalación suele ser un costo aparte y puede cambiar bastante la cuenta final.',
+        ],
+      },
+      {
+        titulo: 'Potencia y tipo de equipo',
+        parrafos: [
+          'La potencia se mide en frigorías y depende del ambiente: metros cuadrados, orientación al sol, altura y cantidad de gente. Un equipo corto no llega a enfriar y uno de más gasta de sobra. Usá la calculadora de frigorías del sitio (/calculadora-frigorias) para tener una referencia. Elegí inverter si lo vas a usar muchas horas: consume menos y es más silencioso.',
+        ],
+      },
+      {
+        titulo: 'Instalación, consumo y garantía',
+        parrafos: [
+          'Consultá si el envío incluye instalación o si hay que contratarla aparte, y quién responde por la garantía si la hace un tercero. Mirá la etiqueta de eficiencia energética y estimá el gasto con /calculadora-consumo-electrico. Para validar que el descuento sea genuino, buscá el modelo en /precio y revisá /descuentos-inflados.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Conviene comprar el aire en el Cyber Monday?',
+        a: 'Suele ser una buena ventana porque el verano empuja los precios hacia arriba después. Igual conviene comparar con el historial: si el precio no mejora su mínimo, podés esperar.',
+      },
+      {
+        q: '¿Cuántas frigorías necesito?',
+        a: 'Depende de los metros cuadrados, el sol y la cantidad de personas. La calculadora de frigorías del sitio te da un valor orientativo para el ambiente.',
+      },
+      {
+        q: '¿Qué es un aire inverter?',
+        a: 'Es un equipo que regula la velocidad del compresor en lugar de prenderse y apagarse. Consume menos y mantiene la temperatura más estable, a cambio de un precio inicial mayor.',
+      },
+    ],
+  },
+  'cyber-monday-notebooks': {
+    secciones: [
+      {
+        titulo: 'Notebooks en el Cyber Monday: cuidado con las configuraciones',
+        parrafos: [
+          'En el Cyber Monday (lunes 2 al miércoles 4 de noviembre) las notebooks se publican con precios llamativos, pero el truco más frecuente no es el precio sino la configuración: dos equipos con el mismo nombre comercial pueden traer procesador, memoria y almacenamiento distintos, y el que parece más barato es el de peor especificación. Por eso conviene leer la ficha técnica completa y comparar equipos con componentes equivalentes antes de mirar el porcentaje de descuento.',
+          'Definí primero para qué la vas a usar; eso te ahorra pagar de más por potencia que no necesitás.',
+        ],
+      },
+      {
+        titulo: 'Qué mirar en la ficha técnica',
+        parrafos: [
+          'Procesador y generación, memoria RAM (con posibilidad de ampliar), tipo de almacenamiento (SSD es lo que más se nota en el día a día), pantalla y batería. Para trabajar y estudiar alcanza con una configuración equilibrada; para diseño o juegos importa la placa de video. Fijate también el sistema operativo incluido.',
+        ],
+      },
+      {
+        titulo: 'Historial, cuotas y garantía',
+        parrafos: [
+          'Buscá el modelo exacto en /precio para ver cómo se movió en las últimas semanas y revisá /descuentos-inflados para descartar el "antes" armado. Para un ticket alto, comparalo en una cuota o en varias con /calculadora-cuotas-sin-interes y confirmá que la garantía sea oficial y que haya servicio técnico en el país.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué notebook conviene para estudiar o trabajar?',
+        a: 'Una con SSD, memoria RAM suficiente para tus programas y buena batería. No hace falta un procesador de gama alta para tareas de oficina.',
+      },
+      {
+        q: '¿Por qué dos notebooks con igual nombre cuestan distinto?',
+        a: 'Porque suelen diferir en procesador, memoria, almacenamiento o pantalla. Leé la ficha técnica completa antes de comparar precios.',
+      },
+      {
+        q: '¿Vale la pena esperar al Cyber Monday?',
+        a: 'Si el modelo que querés está lejos de su mínimo registrado, sí puede valer la pena. Si ya está cerca, comprá sin esperar.',
+      },
+    ],
+  },
+  'cyber-monday-celulares': {
+    secciones: [
+      {
+        titulo: 'Celulares en el Cyber Monday: precio y versión',
+        parrafos: [
+          'Entre el lunes 2 y el miércoles 4 de noviembre los celulares son de lo que más se mueve, y también de lo más fácil de confundir: el mismo modelo se vende en varias capacidades de almacenamiento y de memoria, a veces con variantes regionales, y el descuento anunciado puede referirse a la versión más cara. Antes de comprar, asegurate de estar mirando la misma versión en todas las publicaciones y de que el precio de referencia sea real.',
+          'Un celular se usa todos los días durante años, así que más que el último modelo suele convenir el mejor equilibrio entre rendimiento, batería y soporte.',
+        ],
+      },
+      {
+        titulo: 'Qué comparar entre modelos',
+        parrafos: [
+          'Almacenamiento (que no se quede corto), memoria RAM, calidad de cámara, batería y velocidad de carga, y cuántos años de actualizaciones promete el fabricante. Si vas a guardar muchas fotos o videos, priorizá el almacenamiento antes que unos megapíxeles de más.',
+        ],
+      },
+      {
+        titulo: 'Compra segura',
+        parrafos: [
+          'Comprá a tiendas oficiales o vendedores con reputación alta, y confirmá que sea equipo nuevo, liberado y apto para las bandas del país. Verificá el descuento en /precio y /descuentos-inflados, y comparé cuotas y envío antes de pagar con /calculadora-cuotas-sin-interes y /calculadora-envio-gratis.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cómo sé si un celular está en su mejor precio?',
+        a: 'Compará el precio actual contra el mínimo registrado del mismo modelo y la misma capacidad en /precio. Si no lo supera, probablemente haya otra oportunidad.',
+      },
+      {
+        q: '¿Qué almacenamiento conviene elegir?',
+        a: 'Pensá en fotos, videos y apps. Un almacenamiento ajustado se nota rápido y no suele poder ampliarse, así que mejor ir un escalón arriba si el presupuesto lo permite.',
+      },
+      {
+        q: '¿Hay que desconfiar de los celulares muy baratos?',
+        a: 'Sí, cuando el precio es mucho menor que en otras publicaciones del mismo modelo. Revisá reputación del vendedor, que sea equipo nuevo y la garantía.',
+      },
+    ],
+  },
+  'cyber-monday-lavarropas': {
+    secciones: [
+      {
+        titulo: 'Lavarropas en el Cyber Monday',
+        parrafos: [
+          'Un lavarropas es una compra de varios años, y el Cyber Monday (del lunes 2 al miércoles 4 de noviembre) puede ser un buen momento para hacerla porque las marcas grandes suelen sumar cuotas y envío sin cargo. Eso no impide que algunos modelos aparezcan con un descuento sobre un precio de lista que nunca se pagó. Lo mejor es decidir primero qué tipo y capacidad necesitás y después comparar el historial de las opciones que cumplen, en lugar de dejarte llevar por el mayor porcentaje.',
+          'Medí el espacio y el acceso, porque un lavarropas que no entra por la puerta o por el pasillo es el peor negocio posible.',
+        ],
+      },
+      {
+        titulo: 'Carga, capacidad y consumo',
+        parrafos: [
+          'La carga frontal lava mejor y gasta menos agua; la superior ocupa menos lugar y es más rápida. La capacidad en kilos tiene que acompañar a cuántas personas viven en la casa: de 6 a 8 kg alcanza para una familia chica, más si lavás acolchados. Fijate la etiqueta de eficiencia energética y de agua, que impacta en las facturas durante toda la vida del equipo.',
+        ],
+      },
+      {
+        titulo: 'Entrega, instalación y garantía',
+        parrafos: [
+          'Consultá si el envío llega hasta el interior de la casa y si incluye retirar el equipo viejo. Pedí garantía oficial y averiguá si hay servicio técnico cerca. Para confirmar la baja usá /precio y /descuentos-inflados, y compará pagos con /calculadora-cuotas-sin-interes.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Carga frontal o superior?',
+        a: 'La frontal es más eficiente en agua y energía y trata mejor la ropa; la superior es más compacta y rápida. Elegí según el espacio y tus hábitos.',
+      },
+      {
+        q: '¿Cuántos kilos necesito?',
+        a: 'Para una o dos personas alcanza con 6 kg; para una familia, 8 kg o más. Si lavás ropa de cama grande seguido, ir un escalón arriba te conviene.',
+      },
+      {
+        q: '¿Conviene comprarlo en cuotas?',
+        a: 'Si las cuotas son realmente sin interés, ayuda a no desembolsar todo junto. Verificá que el precio en cuotas no sea más alto que el de contado.',
+      },
+    ],
+  },
+  'cyber-monday-auriculares': {
+    secciones: [
+      {
+        titulo: 'Auriculares en el Cyber Monday: marcas y copias',
+        parrafos: [
+          'Los auriculares son una compra de impulso en el Cyber Monday (lunes 2 al miércoles 4 de noviembre), y es justo ahí donde más se ven imitaciones y precios que parecen un regalo. Una marca conocida a un valor muy inferior al resto de las publicaciones casi siempre esconde un producto no original o un vendedor sin respaldo. Antes de comprar, comparalo contra el precio de la tienda oficial y contra el historial del modelo para entender cuánto de la baja es real.',
+          'Pensá también para qué los vas a usar: lo que sirve para ir al gimnasio no es lo mejor para trabajar ocho horas.',
+        ],
+      },
+      {
+        titulo: 'Tipo, sonido y comodidad',
+        parrafos: [
+          'In-ear, on-ear u over-ear: los primeros son livianos y portátiles, los últimos suelen ser más cómodos en uso largo. La cancelación de ruido activa vale la pena si viajás o hacés ruido de fondo. Mirá la autonomía de batería, si el estuche carga por USB-C y si tienen micrófono decente para llamadas.',
+        ],
+      },
+      {
+        titulo: 'Verificar antes de pagar',
+        parrafos: [
+          'Buscá el modelo en /precio y revisá /descuentos-inflados para ver si la oferta se sostiene. Priorizá tiendas oficiales o vendedores con reputación verde, y fijate la política de devolución: en un producto que se prueba puesto, poder cambiarlo es muy valioso. Compará envío y cuotas con /calculadora-envio-gratis.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cómo reconozco unos auriculares falsos?',
+        a: 'Sospechá cuando el precio es muy inferior al de la tienda oficial, cuando el vendedor no tiene reputación y cuando las fotos son genéricas. Comprar en tiendas oficiales reduce el riesgo.',
+      },
+      {
+        q: '¿Vale la pena la cancelación de ruido?',
+        a: 'Si viajás, usás transporte o trabajás en ambientes ruidosos, sí. Para escuchar música en casa puede no justificar la diferencia de precio.',
+      },
+      {
+        q: '¿Inalámbricos o con cable?',
+        a: 'Los inalámbricos son más cómodos pero dependen de la batería; los de cable no se quedan sin carga y suelen dar mejor sonido por el mismo valor.',
+      },
+    ],
+  },
+  'ofertas-black-friday': {
+    secciones: [
+      {
+        titulo: 'Black Friday en Argentina: qué es y qué no',
+        parrafos: [
+          'El Black Friday es el viernes 27 de noviembre y, a diferencia del Cyber Monday, no tiene un organizador único en el país: cada tienda decide si participa, cuánto dura y qué descuentos hace. Eso significa que no hay una lista oficial de ofertas y que el nivel de promoción varía mucho de un comercio a otro. Al venir apenas después del Cyber Monday, algunas tiendas simplemente repiten o estiran sus promos, así que conviene comparar entre ambos eventos y no asumir que el viernes siempre es mejor.',
+          'Lo importante es la misma regla de siempre: el descuento vale solo si el precio de hoy es bajo respecto del historial.',
+        ],
+      },
+      {
+        titulo: 'Cómo verificar una oferta',
+        parrafos: [
+          'Antes de pagar, buscá el producto en /precio y mirá su precio mínimo registrado y cómo se movió las semanas previas. Si subió justo antes del evento, el descuento no es tal. En /descuentos-inflados juntamos los casos más claros. Si el producto ya estuvo más barato hace poco, esperar al próximo evento o a una oferta puntual puede salir mejor.',
+        ],
+      },
+      {
+        titulo: 'Cuotas, envío y plazos',
+        parrafos: [
+          'En una compra grande, fijate si las cuotas son sin interés reales y comparalas con /calculadora-cuotas-sin-interes. Confirmá el costo del envío (/calculadora-envio-gratis) y la fecha de entrega: con la Navidad cerca, los plazos se alargan. Mirá también la política de cambios y la garantía antes de confirmar.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuándo es el Black Friday 2026?',
+        a: 'El viernes 27 de noviembre, el día siguiente al Día de Acción de Gracias de Estados Unidos. En Argentina no hay un organizador oficial: cada tienda define sus promociones.',
+      },
+      {
+        q: '¿Es mejor el Black Friday o el Cyber Monday?',
+        a: 'No hay una regla fija. Depende del producto y de la tienda; compará el precio de cada evento contra el historial en lugar de dar por hecho que uno es mejor.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparando el precio actual con el mínimo registrado del producto. Si el "antes" subió en las semanas previas, el porcentaje no significa una baja de verdad.',
+      },
+    ],
+  },
+  'regalos-de-navidad': {
+    secciones: [
+      {
+        titulo: 'Cómo organizar los regalos de Navidad',
+        parrafos: [
+          'Navidad y Reyes juntan muchos regalos en poco tiempo y mucha gente termina comprando a las apuradas, con menos opciones y envíos que no llegan al 24 de diciembre. La salida es armar una lista con nombres, presupuesto por persona y una idea para cada uno, y empezar a mirar precios con anticipación, incluso en noviembre durante el Cyber Monday y el Black Friday. Así comparás con calma, distribuís el gasto y evitás pagar de más por urgencia.',
+          'Si el regalo es para un chico, fijate la edad recomendada y las baterías o accesorios que no vienen incluidos.',
+        ],
+      },
+      {
+        titulo: 'Presupuesto y descuentos verificados',
+        parrafos: [
+          'Definí un tope total y repartilo; la tabla de esta página agrupa regalos por rango de presupuesto para que veas qué entra en cada uno. Para cada candidato, consultá /precio y revisá su mínimo registrado: en diciembre los precios de referencia suelen estar inflados por la temporada. /descuentos-inflados te ayuda a descartar los que solo cambiaron el cartel.',
+        ],
+      },
+      {
+        titulo: 'Entrega, cambios y cuotas',
+        parrafos: [
+          'Comprá con al menos una semana de margen y mirá la fecha prometida de cada publicación. El envío Full y las tiendas oficiales simplifican los cambios si el regalo no sirve. Usá /calculadora-cuotas-sin-interes para decidir entre pagar de contado o en cuotas y /calculadora-envio-gratis para ver el monto mínimo del envío sin cargo.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuándo conviene comprar los regalos de Navidad?',
+        a: 'Cuanto antes mejor: noviembre permite aprovechar los eventos de descuentos y diciembre trae envíos más cargados. Comprá con al menos una semana de margen sobre el 24.',
+      },
+      {
+        q: '¿Cómo repartir el presupuesto?',
+        a: 'Fijá un tope total, asignale un monto a cada persona y reservá una pequeña parte para imprevistos. Filtrar por rango de precio ayuda a no pasarte.',
+      },
+      {
+        q: '¿Qué hago si el regalo no sirve?',
+        a: 'Comprá con envío Full o en tiendas oficiales con devolución simple, y guardá el comprobante y el embalaje original hasta que lo entreguen.',
+      },
+    ],
+  },
 }

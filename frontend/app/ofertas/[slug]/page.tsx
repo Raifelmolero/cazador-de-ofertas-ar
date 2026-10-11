@@ -8,6 +8,8 @@ import { getScrapedAt } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { DEALS_URL } from '@/lib/marca'
+import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
+import CtaFijoML from '@/components/CtaFijoML'
 import { LANDINGS, bajasDeLaSemana, getLanding, indexableLanding, productosLanding } from '@/lib/landings'
 
 const MAX = 24
@@ -55,6 +57,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
   }))
+  const destacado = l.tipo === 'bajaron' ? undefined : elegirDestacado(light)
   const items =
     l.tipo === 'bajaron'
       ? bajas.slice(0, MAX).map(b => ({ name: b.s.titulo, url: `${DEALS_URL}/precio/${b.s.slug}` }))
@@ -89,7 +92,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className={destacado ? 'min-h-screen pb-20 sm:pb-0' : 'min-h-screen'}>
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
@@ -148,11 +151,18 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             </table>
           </div>
         ) : (
+          <>
+          {destacado && (
+            <div className="max-w-3xl mx-auto">
+              <DestacadoML producto={destacado} lista={light} />
+            </div>
+          )}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {light.map((o, i) => (
               <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
             ))}
           </div>
+          </>
         )}
       </section>
 
@@ -206,6 +216,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         </nav>
       </article>
       <Footer brand="ofertas" />
+      {destacado && <CtaFijoML titulo={destacado.titulo} precio={precio(destacado.precio_actual)} url={destacado.url_producto} />}
     </main>
   )
 }

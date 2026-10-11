@@ -14,6 +14,8 @@ import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
+import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
+import CtaFijoML from '@/components/CtaFijoML'
 import {
   enlacesRelacionados,
   faqDatos,
@@ -96,6 +98,8 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
     historial: historial[o.id_ml],
   }))
 
+  const destacado = elegirDestacado(ofertasLight)
+
   // Igual que /hoy: las ofertas se refrescan 3 veces por día, así que valen hasta hoy
   const validUntil = new Date()
   validUntil.setHours(23, 59, 59, 0)
@@ -154,7 +158,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className={destacado ? 'min-h-screen pb-20 sm:pb-0' : 'min-h-screen'}>
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
@@ -237,11 +241,18 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </a>
           </div>
         ) : (
+          <>
+          {destacado && (
+            <div className="max-w-3xl mx-auto">
+              <DestacadoML producto={destacado} lista={ofertasLight} rotulo={`Destacado de ${c.nombre.toLowerCase()} hoy`} />
+            </div>
+          )}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {ofertasLight.map((o, i) => (
               <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
             ))}
           </div>
+          </>
         )}
 
         <div className="mt-6 text-center">
@@ -494,6 +505,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
       </article>
 
       <Footer brand="ofertas" />
+      {destacado && <CtaFijoML titulo={destacado.titulo} precio={precio(destacado.precio_actual)} url={destacado.url_producto} />}
     </main>
   )
 }

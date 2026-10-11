@@ -11,6 +11,8 @@ import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
+import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
+import CtaFijoML from '@/components/CtaFijoML'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -76,6 +78,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     .slice(0, productos.length < 3 ? 10 : 6) // tabla flaca: más modelos con historial para que no quede vacía
 
   const contenido = CONTENIDO[c.slug]
+  const destacado = elegirDestacado(productos)
 
   const jsonLd = [
     {
@@ -190,6 +193,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         <p className="inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5 mb-8">
           <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} en la comparativa
         </p>
+
+        {destacado && <DestacadoML producto={destacado} lista={productos} />}
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativa de precios de hoy</h2>
@@ -484,23 +489,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
 
       <Footer brand="ofertas" />
 
-      {/* Celular: la #1 de la comparativa queda a mano mientras se baja por la lista */}
-      {productos[0] && (
-        <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="text-[11px] text-zinc-500 truncate">🏆 #1: {productos[0].titulo}</p>
-            <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(productos[0].precio_actual)}</p>
-          </div>
-          <a
-            href={productos[0].url_producto}
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black active:scale-[0.97] transition-transform"
-          >
-            Ver en ML 🛒
-          </a>
-        </div>
-      )}
+      {/* Celular: barra fija que aparece al scrollear, con el destacado a mano */}
+      {destacado && <CtaFijoML titulo={destacado.titulo} precio={precio(destacado.precio_actual)} url={destacado.url_producto} />}
     </main>
   )
 }

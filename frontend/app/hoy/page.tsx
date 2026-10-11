@@ -15,6 +15,8 @@ import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
+import TendenciasML from '@/components/TendenciasML'
+import { getTendencias } from '@/lib/tendencias'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
@@ -63,6 +65,7 @@ export default function HoyPage() {
   const estudio = getEstudio()
   const conHistorial = Object.keys(getHistorial()).length
   const infladas = getInfladas()
+  const tendencias = getTendencias()
 
   // Solo los campos que la grilla usa; en el HTML van las primeras, el resto
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
@@ -336,6 +339,7 @@ export default function HoyPage() {
           aparecía tras 4 filas de chips). */}
       <TopOfertasHoy ofertas={ofertasLight} />
       <LoMasSeCompra ofertas={ofertasLight} />
+      {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />
       <AtajosVerano />
 

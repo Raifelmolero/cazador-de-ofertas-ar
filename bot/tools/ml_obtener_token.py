@@ -118,6 +118,10 @@ def _leer_secreto(prompt: str) -> str:
     return getpass.getpass(prompt) if sys.stdin.isatty() else sys.stdin.readline().strip()
 
 
+def _leer_visible(prompt: str) -> str:
+    return input(prompt) if sys.stdin.isatty() else sys.stdin.readline().strip()
+
+
 def _motivo_http(e: urllib.error.HTTPError) -> str:
     try:
         cuerpo = json.loads(e.read().decode("utf-8", "replace"))
@@ -152,7 +156,10 @@ def main(argv: list[str] | None = None, leer_secreto=_leer_secreto, post=_post) 
     print("\n2) Te redirige a tu Redirect URI con ?code=TG-... (la página puede dar error, no importa).")
     print("   Copiá el code o la URL completa de la barra y pegala acá (no se muestra).")
     try:
-        pegado = input("code o URL: ") if sys.stdin.isatty() else leer_secreto("code o URL: ")
+        # el code no es secreto: con el lector por defecto se pide visible (el
+        # pegado oculto en la consola de Windows confundía); con uno inyectado, ese.
+        leer_code = _leer_visible if leer_secreto is _leer_secreto else leer_secreto
+        pegado = leer_code("code o URL: ")
         code = extraer_code(pegado, state)
         print(f"(code leido: {len(code)} caracteres, empieza con {code[:3]}, redirect_uri enviada: {redirect_uri})")
     except ValueError as e:

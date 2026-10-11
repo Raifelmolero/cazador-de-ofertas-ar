@@ -707,6 +707,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-notebooks',
+    categoria: 'notebooks',
     nombre: 'notebooks',
     titulo: `Mejores notebooks en oferta ${AÑO}: comparativa de precios`,
     descripcion:
@@ -725,6 +726,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-celulares',
+    categoria: 'celulares',
     nombre: 'celulares',
     titulo: `Mejores celulares en oferta ${AÑO}: comparativa de precios`,
     descripcion:
@@ -744,6 +746,7 @@ export const COMPARATIVAS: Comparativa[] = [
   },
   {
     slug: 'mejores-celulares-gama-alta',
+    categoria: 'celulares',
     nombre: 'celulares de gama alta',
     titulo: `Mejores celulares de gama alta en oferta ${AÑO}: iPhone, Galaxy S y más`,
     descripcion:

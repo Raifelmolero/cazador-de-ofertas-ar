@@ -188,6 +188,39 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
       { q: '¿Cómo cuido la vista frente a un monitor?', a: 'Ajustá el brillo al ambiente, ubicá la pantalla a la altura de los ojos, hacé pausas cada tanto y mirá un punto lejano. Algunos monitores tienen modos que reducen la luz azul.' },
     ],
   },
+  notebooks: {
+    intro:
+      'Una notebook es una compra que se usa todos los días durante años, y por eso conviene decidir por lo que vas a hacer con ella y no por el precio o la marca. Dos equipos que se ven parecidos en la publicación pueden diferir mucho en procesador, memoria, tipo de disco y calidad de pantalla, y esas diferencias se notan a diario: cuánto tarda en encender, si se traba con varias pestañas abiertas, cuánto dura la batería fuera de casa. Además, el título suele destacar la marca y esconde lo importante en la ficha técnica. Lo más sensato es definir primero el uso (estudio, oficina, diseño, juegos), fijar un piso de memoria y almacenamiento, y recién después comparar precios entre equipos equivalentes y verificar que el descuento sea real contra el historial.',
+    criterios: [
+      { t: 'Uso principal', d: 'Estudiar y navegar pide poco; editar video, programar o jugar exige procesador y placa de video más potentes. Comprar de más es tan malo como quedarse corto.' },
+      { t: 'Memoria y disco', d: 'La combinación de RAM suficiente y disco SSD pesa más en el día a día que el nombre del procesador. Revisá si se puede ampliar o si viene soldado.' },
+      { t: 'Pantalla y tamaño', d: 'Si la vas a mover seguido, el peso y el tamaño importan; si la usás en el escritorio, una pantalla más grande y con buen panel cansa menos la vista.' },
+      { t: 'Batería y portabilidad', d: 'Mirá la autonomía real que cuentan las reseñas, no solo los números del fabricante, y si el cargador es chico o un ladrillo.' },
+      { t: 'Garantía y servicio técnico', d: 'Priorizá garantía oficial en Argentina y marcas con servicio técnico cerca: una notebook parada en plena cursada o trabajo es un problema.' },
+    ],
+    faqs: [
+      { q: '¿Conviene una notebook nueva o una reacondicionada?', a: 'La reacondicionada puede ser buena opción si el vendedor ofrece garantía clara y detalla el estado de batería y pantalla. Si no hay garantía real ni historial del vendedor, el ahorro suele no valer el riesgo.' },
+      { q: '¿Cada cuánto cambia el precio de las notebooks?', a: 'Varían seguido, sobre todo con el dólar y en fechas de promociones. Por eso conviene mirar el historial de precios del modelo antes de decidir si la oferta de hoy es realmente baja.' },
+      { q: '¿Windows, macOS o ChromeOS?', a: 'Depende de tus programas y de tu ecosistema. Windows es lo más compatible, macOS se elige por integración con otros equipos Apple y ChromeOS alcanza para quien usa casi todo en el navegador.' },
+    ],
+  },
+
+  celulares: {
+    intro:
+      'El celular es probablemente el aparato que más usás en el día, y también uno de los que más cambian de precio: un mismo modelo puede variar bastante entre vendedores y semanas. Al comparar conviene mirar más allá de la marca y de los megapíxeles de la cámara: el almacenamiento, la memoria, la batería, cuántos años de actualizaciones promete el fabricante y si es la versión oficial para Argentina definen cuánto te va a durar y cómo se va a comportar. En esta categoría los descuentos grandes y las cuotas sin interés son frecuentes, así que la comparación correcta es el precio final contra el historial del producto, no el porcentaje que muestra la publicación.',
+    criterios: [
+      { t: 'Gama según tu uso', d: 'Para mensajes, redes y fotos casuales alcanza una gama media; la gama alta se justifica por cámara, rendimiento sostenido y años de actualizaciones.' },
+      { t: 'Almacenamiento', d: 'Es lo más difícil de corregir después, porque casi ningún equipo moderno acepta tarjeta de memoria. Conviene pecar por exceso.' },
+      { t: 'Versión y bandas de red', d: 'Confirmá que sea la versión para Argentina, con las bandas de 4G/5G de las compañías locales, y que tenga garantía oficial.' },
+      { t: 'Actualizaciones y soporte', d: 'Un equipo con más años de parches de seguridad conserva mejor su valor de reventa y es más seguro para usar con apps bancarias.' },
+      { t: 'Cuotas y precio final', d: 'Comparé el precio en un pago contra el de las cuotas: las cuotas sin interés pueden ocultar un precio de lista más alto.' },
+    ],
+    faqs: [
+      { q: '¿Conviene comprar un celular nuevo o uno usado?', a: 'Uno nuevo con garantía oficial te cubre ante fallas y trae batería en buen estado. Uno usado puede ahorrar bastante, pero revisá la salud de la batería, que no esté bloqueado y la reputación del vendedor.' },
+      { q: '¿Vale la pena pagar más por un iPhone o un Galaxy S?', a: 'Si valorás la cámara, el rendimiento sostenido y varios años de actualizaciones, sí. Para uso básico, un gama media actual cumple sin problema y cuesta mucho menos.' },
+      { q: '¿Por qué un mismo celular tiene tantos precios distintos?', a: 'Cambian el vendedor, la garantía, las cuotas y si es envío internacional o stock local. Comparar siempre el mismo modelo y la misma capacidad, y mirar el historial, evita comprar un "descuento" que no lo es.' },
+    ],
+  },
 }
 
 export function getContenidoCategoria(slug: string): CategoriaContenido | undefined {

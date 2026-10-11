@@ -118,17 +118,38 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           : []),
       ],
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: c.titulo,
+      url,
+      description: c.descripcion,
+      inLanguage: 'es-AR',
+      dateModified: scrapedAt,
+      isPartOf: { '@type': 'WebSite', name: 'Cazador de Ofertas AR', url: DEALS_URL },
+    },
     ...(productos.length > 0
       ? [
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: c.titulo,
+            numberOfItems: productos.length,
             itemListElement: productos.map((p, i) => ({
               '@type': 'ListItem',
               position: i + 1,
-              name: p.titulo,
-              url: p.url_producto,
+              item: {
+                '@type': 'Product',
+                name: p.titulo,
+                sku: p.id_ml,
+                ...(p.url_imagen ? { image: p.url_imagen } : {}),
+                offers: {
+                  '@type': 'Offer',
+                  price: p.precio_actual,
+                  priceCurrency: 'ARS',
+                  url: p.url_producto,
+                },
+              },
             })),
           },
         ]

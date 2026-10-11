@@ -120,6 +120,17 @@ ${LANDINGS.filter(indexableLanding)
   .map(l => `- [${l.titulo}](${DEALS_URL}/ofertas/${l.slug}): ${l.descripcion}`)
   .join('\n')}
 
+## Estudios, datos y herramientas
+
+- [Estudio: descuentos inflados en Mercado Libre](${DEALS_URL}/estudio/descuentos-inflados-mercado-libre): dato propio, con CSV en ${DEALS_URL}/datos/estudio.csv
+- [Datos abiertos](${DEALS_URL}/datos)
+- [Precio hoy](${DEALS_URL}/precio-hoy): cuánto sale hoy cada tipo de producto
+- [Historial de precios por producto](${DEALS_URL}/precio): mínimo registrado y evolución
+- [Cupones de Mercado Libre](${DEALS_URL}/cupones-mercado-libre)
+- [Calculadora de frigorías](${DEALS_URL}/calculadora-frigorias)
+- [Calculadora de consumo eléctrico](${DEALS_URL}/calculadora-consumo-electrico)
+- [Cyber Monday](${DEALS_URL}/cyber-monday), [Black Friday](${DEALS_URL}/black-friday), [Día de la Madre](${DEALS_URL}/dia-de-la-madre) y [regalos de Navidad](${DEALS_URL}/regalos-navidad)
+
 ## Guías
 
 Índice: ${DEALS_URL}/guias

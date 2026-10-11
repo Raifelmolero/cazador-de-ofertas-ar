@@ -8,7 +8,8 @@
 // a mano: no se genera del JSON de ofertas porque ese cambia 3×/día y este
 // archivo describe el SITIO, no el catálogo del momento.
 import { getEstudio } from '@/lib/estudio'
-import { getComparativa, indexable } from '@/lib/comparativas'
+import { COMPARATIVAS, getComparativa, indexable } from '@/lib/comparativas'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/lib/marca'
 
 const E = getEstudio()
@@ -269,8 +270,27 @@ function sinNoindex(texto: string): string {
     .join('\n')
 }
 
+// Comparativas y landings indexables que no están en el texto curado de arriba:
+// se agregan solas para que llms.txt no quede atrás cuando se suma una página.
+const NL = String.fromCharCode(10)
+function seccionAutomatica(): string {
+  const faltantes = COMPARATIVAS.filter(indexable).filter(c => !CONTENT.includes(`/mejores/${c.slug})`))
+  const landings = LANDINGS.filter(indexableLanding).filter(l => !CONTENT.includes(`/ofertas/${l.slug})`))
+  const partes: string[] = []
+  if (faltantes.length) {
+    partes.push('## Más comparativas', faltantes.map(c => `- [${c.titulo}](https://cazadordeofertas.com.ar/mejores/${c.slug})`).join(NL))
+  }
+  if (landings.length) {
+    partes.push(
+      '## Ofertas de hoy por tipo',
+      landings.map(l => `- [${l.titulo}](https://cazadordeofertas.com.ar/ofertas/${l.slug}): ${l.descripcion}`).join(NL),
+    )
+  }
+  return partes.length ? NL + partes.join(NL + NL) + NL : ''
+}
+
 export async function GET() {
-  return new Response(sinNoindex(CONTENT), {
+  return new Response(sinNoindex(CONTENT) + seccionAutomatica(), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   })
 }

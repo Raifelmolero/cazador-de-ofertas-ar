@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
+import { landingsDeGuia } from '@/lib/landings'
 
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
@@ -193,6 +194,24 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                 {e.texto}
               </a>
             ))}
+          </nav>
+        )}
+
+        {landingsDeGuia(g).length > 0 && (
+          <nav aria-label="Ofertas relacionadas" className="mb-8">
+            <p className="text-sm font-bold text-zinc-300 mb-2">Mirá las ofertas de hoy</p>
+            <ul className="flex flex-wrap gap-2">
+              {landingsDeGuia(g).map(l => (
+                <li key={l.slug}>
+                  <a
+                    href={`/ofertas/${l.slug}`}
+                    className="block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2"
+                  >
+                    {l.nombre.charAt(0).toUpperCase() + l.nombre.slice(1)} en oferta →
+                  </a>
+                </li>
+              ))}
+            </ul>
           </nav>
         )}
 

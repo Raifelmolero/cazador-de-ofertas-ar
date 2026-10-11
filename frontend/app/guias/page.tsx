@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import { GUIAS } from '@/lib/guias'
+import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
 const url = `${DEALS_URL}/guias`
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 // Índice de todas las guías: antes solo se llegaba a cada una desde la home o
 // desde otra guía; este hub las enlaza a todas y las anuncia como colección.
 export default function GuiasIndex() {
+  const landings = LANDINGS.filter(indexableLanding)
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -75,6 +77,24 @@ export default function GuiasIndex() {
           </Link>
           .
         </p>
+        {landings.length > 0 && (
+          <section className="mb-10" aria-labelledby="landings-h">
+            <h2 id="landings-h" className="font-display text-xl font-black mb-3">
+              Ofertas de hoy por rubro
+            </h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {landings.map(l => (
+                <li key={l.slug} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
+                  <a href={`/ofertas/${l.slug}`} className="font-bold text-zinc-50 hover:text-yellow-400">
+                    {l.h1}
+                  </a>
+                  <p className="mt-1 text-sm text-zinc-400 line-clamp-2">{l.descripcion}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <h2 className="font-display text-xl font-black mb-3">Todas las guías</h2>
         <ul className="space-y-4">
           {GUIAS.map(g => (
             <li key={g.slug} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">

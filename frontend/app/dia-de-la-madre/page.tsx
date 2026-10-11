@@ -96,6 +96,116 @@ const DESTACADOS = [
 ] as const
 const POR_DESTACADO = 2
 
+const DIAS_SEMANA = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']
+/** "martes 13": el día que queda `faltan` días antes del Día de la Madre. */
+function etiquetaDia(faltan: number): string {
+  const d = new Date(`${FECHA}T12:00:00Z`)
+  d.setUTCDate(d.getUTCDate() - faltan)
+  return `${DIAS_SEMANA[d.getUTCDay()]} ${d.getUTCDate()}`
+}
+
+/** Etapas de la última semana según los días que faltan. Son recomendaciones
+ *  nuestras de margen, NO fechas de corte de Mercado Libre: la fecha real la
+ *  muestra cada publicación para el código postal de quien compra. */
+const TRAMOS = [
+  {
+    id: 'margen',
+    min: 5,
+    max: Infinity,
+    titulo: 'Faltan 5 o más días',
+    cuando: `hasta el ${etiquetaDia(5)}`,
+    texto: `Todavía hay margen. Pedí primero lo grande (smart TV, lavarropas, colchón, notebook) y elegí publicaciones cuya fecha de entrega sea anterior al domingo 18. Recomendación nuestra: que la fecha prometida sea, como mucho, el ${etiquetaDia(3)}, para tener margen si se demora.`,
+  },
+  {
+    id: 'ajustado',
+    min: 3,
+    max: 4,
+    titulo: 'Faltan 3 o 4 días',
+    cuando: `${etiquetaDia(4)} y ${etiquetaDia(3)}`,
+    texto:
+      'Ya hay que ser selectivo: mirá solo publicaciones con fecha de entrega anterior al domingo y dales prioridad a las que tengan envío Full. Si el regalo grande ya roza el domingo, conviene pasar a uno más chico que sí llegue.',
+  },
+  {
+    id: 'ultimo',
+    min: 1,
+    max: 2,
+    titulo: 'Faltan 1 o 2 días',
+    cuando: `${etiquetaDia(2)} y ${etiquetaDia(1)}`,
+    texto:
+      'Último momento: solo cuentan las publicaciones con fecha de entrega anterior al domingo. Si la que querías ya no llega, fijate si ofrece retiro en una sucursal o punto de retiro (compará la fecha con la entrega a domicilio) o elegí algo más chico que sí llegue. Y si no llega, regalalo igual con una tarjeta que diga que ya viene en camino.',
+  },
+] as const
+
+/** Checklist de regalo por perfil. Los ítems salen de nuestras guías de compra;
+ *  los links a comparativas y guías se muestran solo si existen. */
+const PERFILES = [
+  {
+    id: 'cocina',
+    emoji: '🍳',
+    titulo: 'Le gusta cocinar o tomar café',
+    regalos: 'Freidora de aire, cafetera, batidora',
+    checks: [
+      'Freidora: de 2 a 4 litros para una o dos personas, de 5 o más para una familia.',
+      'Cafetera: de filtro si hacen varias tazas, espresso (con vaporizador si toma con leche) o de cápsulas si quiere rapidez.',
+      'Garantía oficial en Argentina, y que consiga el café o las cápsulas que usa.',
+    ],
+    comps: ['mejores-freidoras-de-aire', 'mejores-cafeteras', 'mejores-batidoras'],
+    guias: ['que-freidora-de-aire-comprar', 'que-cafetera-comprar'],
+  },
+  {
+    id: 'belleza',
+    emoji: '🌸',
+    titulo: 'Le gusta arreglarse',
+    regalos: 'Perfume, planchita, secador de pelo',
+    checks: [
+      'Perfume de tienda oficial o de un vendedor con muy buena reputación: evitás réplicas y la devolución es más simple.',
+      'Si no sabés qué fragancia usa, fijate en la que tiene en el tocador y buscá la misma marca o línea.',
+      'Planchita o secador: garantía oficial en Argentina y vendedor con buena reputación.',
+    ],
+    comps: ['mejores-perfumes', 'mejores-planchitas-y-secadores-de-pelo'],
+    guias: [],
+  },
+  {
+    id: 'movimiento',
+    emoji: '⌚',
+    titulo: 'Siempre con el celular o sale a caminar',
+    regalos: 'Smartwatch, tablet, celular',
+    checks: [
+      'Smartwatch: confirmá que sea compatible con su celular (el Apple Watch solo funciona con iPhone).',
+      'Smartband si le alcanza con pasos, sueño y notificaciones; smartwatch si quiere responder mensajes o usar apps.',
+      'Mirá la autonomía real, la resistencia al agua y la garantía en Argentina.',
+    ],
+    comps: ['mejores-smartwatch', 'mejores-tablets', 'mejores-celulares'],
+    guias: ['que-smartwatch-comprar', 'que-celular-comprar-segun-presupuesto', 'que-tablet-comprar'],
+  },
+  {
+    id: 'casa',
+    emoji: '🏠',
+    titulo: 'Para la casa',
+    regalos: 'Aspiradora, lavarropas, colchón',
+    checks: [
+      'Aspiradora: de arrastre para casa grande o alfombras; vertical inalámbrica o robot para el mantenimiento diario en departamento.',
+      'Con mascotas, cepillo antienredos; con alergias, filtro HEPA.',
+      'Los regalos grandes (lavarropas, colchón) pedilos primero y chequeá la fecha de entrega con tu código postal.',
+    ],
+    comps: ['mejores-aspiradoras', 'mejores-lavarropas', 'mejores-colchones'],
+    guias: ['que-aspiradora-comprar', 'que-lavarropas-comprar', 'que-colchon-comprar-firmeza-y-material'],
+  },
+  {
+    id: 'grande',
+    emoji: '🎁',
+    titulo: 'Regalo grande entre hermanos',
+    regalos: 'Notebook, smart TV, celular de gama media o alta',
+    checks: [
+      'Acordá quién compra y quién recibe, para que alguien esté en casa el día de la entrega.',
+      'Antes de pagar, compará el precio contra el historial: en ticket alto, un descuento inflado se nota en el bolsillo.',
+      'Leé la guía del producto: explica qué mirar según el uso, antes de mirar el precio.',
+    ],
+    comps: ['mejores-notebooks', 'mejores-smart-tv', 'mejores-celulares'],
+    guias: ['que-notebook-comprar', 'que-smart-tv-comprar', 'que-celular-gama-alta-comprar'],
+  },
+] as const
+
 const TITULO = `Regalos para el Día de la Madre ${AÑO}: ofertas reales por presupuesto`
 const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $50.000, de $50.000 a $150.000 y más de $150.000: perfumes, electro de cocina, notebooks, celulares, smart TV, colchones), con el descuento verificado contra el historial.`
 
@@ -201,6 +311,12 @@ export default function DiaDeLaMadrePage() {
   )
 
   const guias = GUIAS_REGALO.map(s => GUIAS.find(g => g.slug === s)).filter(g => g !== undefined)
+  const tramoActual = TRAMOS.find(t => dias >= t.min && dias <= t.max)
+  const perfiles = PERFILES.map(p => ({
+    ...p,
+    comparativas: p.comps.map(c => getComparativa(c)).filter(c => c !== undefined),
+    guiasPerfil: p.guias.map(s => GUIAS.find(g => g.slug === s)).filter(g => g !== undefined),
+  }))
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
 
   const faqs = [
@@ -223,6 +339,18 @@ export default function DiaDeLaMadrePage() {
     {
       q: `¿Hasta cuándo conviene pedir el regalo para que llegue el ${FECHA_TEXTO}?`,
       a: `No hay una fecha única: depende del vendedor, del tipo de envío y de tu código postal. Antes de pagar, Mercado Libre muestra la fecha estimada de entrega; elegí una publicación cuya fecha sea anterior al ${FECHA_TEXTO}. En productos grandes (colchones, lavarropas, smart TV) revisala con más cuidado.`,
+    },
+    {
+      q: `¿Qué hago si el regalo no llega antes del ${FECHA_TEXTO}?`,
+      a: `Lo mejor es evitarlo antes de pagar: mirá la fecha de entrega que muestra Mercado Libre en la publicación con tu código postal y elegí una anterior al ${FECHA_TEXTO}. Si ya compraste y no llega, seguí el envío desde tus compras en Mercado Libre. Si todavía no pagaste, buscá otra publicación del mismo producto con fecha anterior, fijate si ofrece retiro en una sucursal o punto de retiro, o elegí un regalo más chico. Y siempre queda regalarlo igual: una tarjeta que diga que ya viene en camino.`,
+    },
+    {
+      q: '¿Qué es el envío Full de Mercado Libre y sirve para el Día de la Madre?',
+      a: 'En las publicaciones con la etiqueta Full, el producto sale de un depósito de Mercado Libre, que se encarga del envío. Sirve para el Día de la Madre porque suele tener fechas de entrega más cortas, pero no es una garantía: la fecha que cuenta es la que muestra la publicación con tu código postal antes de pagar.',
+    },
+    {
+      q: '¿Qué regalo conviene si no sé qué le gusta a mi mamá?',
+      a: 'Empezá por lo que usa todos los días: si toma café o cocina, una cafetera o una freidora de aire; si le gusta arreglarse, un perfume de tienda oficial (mirá cuál usa hoy); si está siempre con el celular, un smartwatch compatible con su teléfono. En esta página tenés un checklist por perfil con qué revisar en cada caso.',
     },
     {
       q: '¿Qué regalos grandes hay en oferta para el Día de la Madre?',
@@ -318,6 +446,14 @@ export default function DiaDeLaMadrePage() {
               </Link>
             )}
             <div className="mt-3 flex flex-wrap gap-2">
+              {tramoActual && (
+                <a href="#ultima-semana" className="text-xs font-bold rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1 text-yellow-200 hover:border-yellow-400">
+                  ⏰ Qué pedir antes de que no llegue
+                </a>
+              )}
+              <a href="#por-perfil" className="text-xs font-bold rounded-full border border-pink-400/30 px-3 py-1 text-pink-200 hover:border-pink-400/60">
+                🎁 Checklist por perfil
+              </a>
               {rangos.map(r => (
                 <a key={r.id} href={`#${r.id}`} className="text-xs font-bold rounded-full border border-pink-400/30 px-3 py-1 text-pink-200 hover:border-pink-400/60">
                   {r.titulo} ({r.total})
@@ -327,6 +463,65 @@ export default function DiaDeLaMadrePage() {
           </div>
         </div>
       </section>
+
+      {tramoActual && (
+        <section id="ultima-semana" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
+          <div className="max-w-3xl mb-4">
+            <h2 className="font-display text-xl sm:text-2xl font-black [text-wrap:balance]">
+              ⏰ {dias <= 7 ? 'Última semana' : 'Se acerca'}: qué pedir antes de que no llegue
+            </h2>
+            <p className="mt-1 text-sm text-zinc-400 leading-relaxed">
+              No hay una fecha de corte única: depende del vendedor, del tipo de envío y de tu código postal. La única
+              referencia confiable es la fecha de entrega que muestra Mercado Libre en la publicación antes de pagar:
+              tiene que ser anterior al {FECHA_TEXTO}.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {TRAMOS.map(t => {
+              const actual = t.id === tramoActual.id
+              return (
+                <div
+                  key={t.id}
+                  className={`rounded-2xl border p-4 ${actual ? 'border-pink-400/60 bg-pink-500/[0.08]' : 'border-zinc-800 bg-zinc-900/60'}`}
+                >
+                  <p className="text-xs font-bold uppercase tracking-wider text-pink-300">
+                    {actual ? 'Hoy estás acá' : t.cuando}
+                  </p>
+                  <h3 className="mt-1 font-display text-lg font-black text-zinc-50">{t.titulo}</h3>
+                  {actual && <p className="text-xs text-zinc-500">({t.cuando})</p>}
+                  <p className="mt-2 text-sm text-zinc-400 leading-relaxed">{t.texto}</p>
+                </div>
+              )
+            })}
+          </div>
+          <div className="mt-4 max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:p-5">
+            <h3 className="font-display text-base font-black text-zinc-100">Cómo chequear la fecha de entrega en 4 pasos</h3>
+            <ol className="mt-2 list-decimal pl-5 space-y-1.5 text-sm text-zinc-400 leading-relaxed">
+              <li>
+                <strong className="text-zinc-200">Cargá tu código postal</strong> en la publicación: Mercado Libre calcula
+                la fecha de entrega para tu zona.
+              </li>
+              <li>
+                <strong className="text-zinc-200">Compará con el domingo 18.</strong> Si la publicación muestra un rango de
+                fechas, tomá la más tardía.
+              </li>
+              <li>
+                <strong className="text-zinc-200">Buscá la etiqueta Full.</strong> El producto sale de un depósito de
+                Mercado Libre, que se encarga del envío. No garantiza llegar a tiempo: mirá la fecha igual.
+              </li>
+              <li>
+                <strong className="text-zinc-200">Revisá la fecha en el resumen de compra</strong>, antes de pagar: puede
+                cambiar según el tipo de envío que elijas (a domicilio o retiro).
+              </li>
+            </ol>
+            <p className="mt-3 text-xs text-zinc-500">
+              Los tramos de arriba son recomendaciones nuestras de margen, no fechas de corte de Mercado Libre. Cuando
+              compares precios, usá el{' '}
+              <a href={`${DEALS_URL}/#verificador`} className="text-yellow-400 hover:underline">verificador de descuentos</a>.
+            </p>
+          </div>
+        </section>
+      )}
 
       {destacados.length > 0 && (
         <section id="destacados" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
@@ -416,6 +611,46 @@ export default function DiaDeLaMadrePage() {
           ))}
         </section>
       )}
+
+      <section id="por-perfil" className="max-w-7xl mx-auto px-4 sm:px-6 pb-8 scroll-mt-20">
+        <div className="max-w-3xl mb-4">
+          <h2 className="font-display text-xl sm:text-2xl font-black">🎁 Checklist de regalo por perfil</h2>
+          <p className="mt-1 text-sm text-zinc-400 leading-relaxed">
+            Si no sabés qué elegir, empezá por lo que ella hace todos los días. Para cada perfil, qué revisar antes de pagar
+            y dónde ver las ofertas comparadas.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {perfiles.map(p => (
+            <div key={p.id} className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:p-5">
+              <h3 className="font-display text-lg font-black text-zinc-50">
+                {p.emoji} {p.titulo}
+              </h3>
+              <p className="text-xs font-semibold text-pink-300">{p.regalos}</p>
+              <ul className="mt-3 space-y-1.5 text-sm text-zinc-400 leading-relaxed">
+                {p.checks.map(c => (
+                  <li key={c} className="flex gap-2">
+                    <span aria-hidden="true" className="text-zinc-600">☐</span>
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm font-bold">
+                {p.comparativas.map(c => (
+                  <Link key={c.slug} href={`/mejores/${c.slug}`} className="text-yellow-400 hover:underline">
+                    📊 {c.titulo}
+                  </Link>
+                ))}
+                {p.guiasPerfil.map(g => (
+                  <Link key={g.slug} href={`/guias/${g.slug}`} className="text-yellow-400/80 hover:underline">
+                    📖 {g.titulo}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
         <section className="mb-10">

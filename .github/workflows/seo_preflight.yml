@@ -1,0 +1,25 @@
+name: SEO preflight (sitemap, canonicals, noindex, links)
+
+# Revisa el sitio en vivo: sitemap, canonicals, indexabilidad y links internos.
+# No falla el workflow (solo informa en el resumen del job) para no mandar mails
+# de "Run failed"; leer el resumen cuando llegue el aviso semanal.
+on:
+  schedule:
+    - cron: "17 13 * * 1"   # lunes 10:17 ART
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Acción de terceros fijada por commit (MIT, solo hace requests de lectura
+      # al sitio; sin IndexNow: el repo ya tiene su propio ping).
+      - uses: iamphera/sitepreflight@e77c619de0142a04e94ddd14cf8c56e94053fae2
+        with:
+          url: https://cazadordeofertas.com.ar
+          limit: "150"
+          fail-on-issues: "false"

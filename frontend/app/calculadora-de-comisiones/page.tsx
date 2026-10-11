@@ -4,6 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraComisiones from '@/components/CalculadoraComisiones'
 import Footer from '@/components/Footer'
+import CtaCalculadora from '@/components/CtaCalculadora'
+import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
 import {
   CARGO_MAX,
   CARGO_MIN,
@@ -77,6 +79,14 @@ export default function CalculadoraComisionesPage() {
         </p>
 
         <CalculadoraComisiones />
+
+        <CtaCalculadora
+          className="mt-6 max-w-3xl"
+          titulo="¿Querés bajar tu costo? Mirá las ofertas de hoy"
+          texto="Si comprás para revender, un mejor precio de compra se lleva el margen que la comisión te saca. Descuentos reales, verificados contra el historial de precios."
+          ml={ML_OFERTAS}
+          internos={enlacesOfertas()}
+        />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Preguntas frecuentes</h2>

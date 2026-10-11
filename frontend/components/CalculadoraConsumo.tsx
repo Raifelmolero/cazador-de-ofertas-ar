@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { EQUIPOS, calcularConsumo, wattsDesdeKwhAnio } from '@/lib/consumo'
+import CtaCalculadora, { type EnlaceCta } from '@/components/CtaCalculadora'
 
 export interface OfertaEquipo {
   id: string
@@ -32,9 +33,12 @@ const aTexto = (n: number) => String(n).replace('.', ',')
 export default function CalculadoraConsumo({
   ofertas,
   busquedas,
+  landings = {},
 }: {
   ofertas: Record<string, OfertaEquipo[]>
   busquedas: Record<string, string>
+  /** Landing /ofertas/* indexable por equipo (la arma la página). */
+  landings?: Record<string, EnlaceCta | undefined>
 }) {
   const [equipo, setEquipo] = useState(EQUIPOS[0].id)
   const [watts, setWatts] = useState(aTexto(EQUIPOS[0].watts))
@@ -110,6 +114,7 @@ export default function CalculadoraConsumo({
           </div>
         </div>
 
+        <div className="space-y-4">
         <div className="bg-zinc-900 border border-yellow-400/30 rounded-2xl p-5 sm:p-6" aria-live="polite">
           <p className="text-xs text-zinc-400 font-medium">Consumo estimado</p>
           <p className="font-display text-4xl sm:text-5xl font-black text-yellow-400 my-1">{dec(r.kwhMes)} kWh/mes</p>
@@ -125,6 +130,18 @@ export default function CalculadoraConsumo({
             Cuenta: {dec(num(watts))} W × {dec(num(horas), 2)} h × {dec(num(dias), 0)} días ÷ 1000. El costo no incluye cargo
             fijo ni impuestos de la factura, y el precio del kWh puede cambiar según tu escalón de consumo.
           </p>
+        </div>
+        {eq && r.kwhMes > 0 && (
+          <CtaCalculadora
+            titulo={`¿Gasta mucho? Mirá ${eq.nombre.toLowerCase()} en Mercado Libre`}
+            texto="Comparalos por el consumo en kWh de la etiqueta de eficiencia energética: a lo largo de los años pesa más que la diferencia de precio."
+            ml={{ href: busquedas[eq.id], texto: `Ver ${eq.nombre.toLowerCase()}` }}
+            internos={[
+              ...(landings[eq.id] ? [landings[eq.id] as EnlaceCta] : []),
+              ...(eq.comparativa ? [{ href: `/mejores/${eq.comparativa}`, texto: `Comparativa de ${eq.nombre.toLowerCase()} en oferta` }] : []),
+            ]}
+          />
+        )}
         </div>
       </section>
 

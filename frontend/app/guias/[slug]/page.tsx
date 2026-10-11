@@ -6,6 +6,8 @@ import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { landingsDeGuia } from '@/lib/landings'
+import { ctaDeGuia } from '@/lib/ctaguias'
+import CtaCalculadora from '@/components/CtaCalculadora'
 
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
@@ -38,6 +40,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   const ofertas = comp ? productosDe(comp).slice(0, 4) : []
   const fechas = fechasGuia(g.slug)
+  const cta = ctaDeGuia(g)
+  // La caja del medio va después de la mitad de las secciones (en guías cortas, tras la primera).
+  const medio = Math.ceil(g.secciones.length / 2) - 1
   const org = { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL }
 
   const ctaHref = g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL
@@ -137,15 +142,26 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </section>
         )}
 
-        {g.secciones.map(s => (
-          <section key={s.h} className="mb-8">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{s.h}</h2>
-            <div className="space-y-3 text-zinc-400 leading-relaxed">
-              {s.p.map(t => (
-                <p key={t}>{t}</p>
-              ))}
-            </div>
-          </section>
+        {g.secciones.map((s, i) => (
+          <div key={s.h}>
+            <section className="mb-8">
+              <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{s.h}</h2>
+              <div className="space-y-3 text-zinc-400 leading-relaxed">
+                {s.p.map(t => (
+                  <p key={t}>{t}</p>
+                ))}
+              </div>
+            </section>
+            {cta && i === medio && g.secciones.length > 1 && (
+              <CtaCalculadora
+                className="mb-8"
+                titulo={`¿Ya sabés qué buscás? Mirá ${cta.nombre} en oferta hoy`}
+                texto="Comparamos precio, descuento y el mínimo registrado de cada uno. Se actualiza 3 veces por día."
+                ml={cta.ml}
+                internos={cta.internos}
+              />
+            )}
+          </div>
         ))}
 
         {g.faq && g.faq.length > 0 && (
@@ -160,6 +176,16 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
           </section>
+        )}
+
+        {cta && (
+          <CtaCalculadora
+            className="mb-8"
+            titulo={`Pasá de la guía a la compra: ${cta.nombre} en Mercado Libre`}
+            texto="Antes de pagar, chequeá que el descuento sea real contra el historial de precios."
+            ml={cta.ml}
+            internos={cta.internos}
+          />
         )}
 
         {comp && ofertas.length > 0 && (

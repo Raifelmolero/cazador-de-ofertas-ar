@@ -4,6 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraPrecioVenta from '@/components/CalculadoraPrecioVenta'
 import Footer from '@/components/Footer'
+import CtaCalculadora from '@/components/CtaCalculadora'
+import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
 import {
   CARGO_MAX,
   CARGO_MIN,
@@ -79,6 +81,14 @@ export default function CalculadoraPrecioVentaPage() {
         </p>
 
         <CalculadoraPrecioVenta />
+
+        <CtaCalculadora
+          className="mt-6 max-w-3xl"
+          titulo="¿Todavía buscás qué vender? Mirá lo que está en oferta"
+          texto="Un costo de compra más bajo es margen extra. Ofertas de hoy con descuento real verificado, para comparar contra tu precio de costo."
+          ml={ML_OFERTAS}
+          internos={enlacesOfertas()}
+        />
 
         <p className="mt-6 text-sm text-zinc-400 max-w-3xl">
           ¿Ya tenés un precio y querés ver cuánto te queda?{' '}

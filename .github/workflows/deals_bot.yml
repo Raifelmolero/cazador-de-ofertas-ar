@@ -69,6 +69,12 @@ jobs:
           ML_AFFILIATE_ID: ${{ secrets.ML_AFFILIATE_ID }}
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          # Token de usuario (opcional, ver docs/ML-API-TOKEN-USUARIO.md): si el
+          # secret está vacío el bot sigue con client_credentials como siempre.
+          # ML rota el refresh_token en cada uso: el nuevo cae en este archivo y
+          # el paso siguiente lo guarda como secret.
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_REFRESH_TOKEN_OUT: ${{ runner.temp }}/ml_refresh_token
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
@@ -95,6 +101,28 @@ jobs:
             exit 0
           fi
           python bot/cazador_bot.py
+
+      # Los refresh tokens de ML rotan: sin este paso el siguiente run encontraría
+      # un token ya usado (y caería a client_credentials). Nunca frena al bot.
+      - name: Guardar refresh token rotado de ML
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ML_TOKEN_FILE: ${{ runner.temp }}/ml_refresh_token
+          ADMIN_CHAT: '8701191351'
+        run: |
+          [ -s "$ML_TOKEN_FILE" ] || { echo "ML no rotó el refresh_token; nada que guardar."; exit 0; }
+          echo "::add-mask::$(cat "$ML_TOKEN_FILE")"
+          if [ -n "$GH_TOKEN" ] && gh secret set ML_REFRESH_TOKEN --repo "${GITHUB_REPOSITORY}" < "$ML_TOKEN_FILE"; then
+            echo "Secret ML_REFRESH_TOKEN actualizado."
+          else
+            echo "::error::No se pudo actualizar ML_REFRESH_TOKEN (¿GH_PAT sin permiso de secrets?). Hay que correr bot/tools/ml_obtener_token.py de nuevo."
+            curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              -H "Content-Type: application/json" \
+              -d "{\"chat_id\":${ADMIN_CHAT},\"text\":\"🔴 ML rotó el refresh_token y no se pudo guardar el secret ML_REFRESH_TOKEN. Correr bot/tools/ml_obtener_token.py de nuevo.\"}" || true
+          fi
+          rm -f "$ML_TOKEN_FILE"
 
       - name: Actualizar panel de la oficina
         run: python bot/tools/oficina.py || echo "oficina.py falló (no frena al bot)"

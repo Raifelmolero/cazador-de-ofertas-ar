@@ -16,6 +16,7 @@ if not tok:
     sys.exit(0)
 
 PRUEBAS = [
+    "@PRODUCTOS",
     "/users/me",
     "/sites/MLA",
     "/sites/MLA/categories",
@@ -29,6 +30,18 @@ PRUEBAS = [
     "/items/MLA1",
     "/sites/MLA/domain_discovery/search?q=celular",
 ]
+def _get(path):
+    req = urllib.request.Request(API + path, headers={
+        "Authorization": f"Bearer {tok}", "Accept": "application/json", "User-Agent": "Mozilla/5.0"})
+    return json.loads(urllib.request.urlopen(req, timeout=20).read().decode())
+
+
+try:
+    pid = _get("/products/search?status=active&site_id=MLA&q=celular&limit=1")["results"][0]["id"]
+    PRUEBAS += [f"/products/{pid}", f"/products/{pid}/items", f"/products/{pid}/items?limit=3"]
+except Exception as e:  # noqa: BLE001
+    print("sin producto de catalogo:", type(e).__name__)
+PRUEBAS = [x for x in PRUEBAS if x != "@PRODUCTOS"]
 for path in PRUEBAS:
     req = urllib.request.Request(API + path, headers={
         "Authorization": f"Bearer {tok}", "Accept": "application/json",
@@ -46,3 +59,4 @@ for path in PRUEBAS:
         print(f"{path} -> {e.code} {cod}")
     except Exception as e:  # noqa: BLE001
         print(f"{path} -> error {type(e).__name__}")
+

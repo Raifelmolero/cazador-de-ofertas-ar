@@ -83,8 +83,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   detectar descuentos inflados y ofertas de hoy verificadas contra el historial.
 - [Día de la Madre 2026 en Argentina](https://cazadordeofertas.com.ar/dia-de-la-madre):
   domingo 18 de octubre de 2026 (tercer domingo de octubre); regalos en oferta
-  hoy en Mercado Libre por presupuesto (hasta $30.000, $30.000-$80.000 y más de
-  $80.000), verificados contra el historial de precios.
+  hoy en Mercado Libre por presupuesto (hasta $50.000, $50.000-$150.000 y más de
+  $150.000), verificados contra el historial de precios.
 - [Regalos de Navidad 2026](https://cazadordeofertas.com.ar/regalos-navidad):
   Navidad viernes 25 de diciembre de 2026 y Reyes miércoles 6 de enero de 2027;
   regalos en oferta hoy en Mercado Libre por presupuesto y por destinatario

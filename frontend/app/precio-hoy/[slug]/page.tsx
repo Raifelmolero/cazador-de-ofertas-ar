@@ -179,8 +179,16 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
                         </a>
                         {o.minimo_historico && <span className="ml-1 text-emerald-400 text-xs font-bold">mínimo histórico</span>}
                       </td>
-                      <td className="px-3 py-2 whitespace-nowrap font-semibold">{precio(o.precio_actual)}</td>
-                      <td className="px-3 py-2 whitespace-nowrap text-zinc-400">{o.descuento_pct ? `${o.descuento_pct}% OFF` : '—'}</td>
+                      <td className="px-3 py-2 whitespace-nowrap font-semibold">
+                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">
+                          {precio(o.precio_actual)}
+                        </a>
+                      </td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-400">
+                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">
+                          {o.descuento_pct ? `${o.descuento_pct}% OFF` : 'Ver en ML'}
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

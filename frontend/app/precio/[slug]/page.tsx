@@ -225,7 +225,15 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             <h1 className="font-display text-xl sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">
               {s.titulo}: historial de precios
             </h1>
-            <p className="font-display text-2xl font-black text-yellow-400 leading-tight sm:hidden tabular-nums">{precio(hoy)}</p>
+            <a
+              href={s.url}
+              data-seccion="precio_cabecera"
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="block font-display text-2xl font-black text-yellow-400 leading-tight sm:hidden tabular-nums"
+            >
+              {precio(hoy)}
+            </a>
             <p className="hidden sm:block text-sm text-zinc-500">Seguimos este precio en Mercado Libre 3 veces por día desde el {fecha(s.desde)}.</p>
           </div>
         </div>

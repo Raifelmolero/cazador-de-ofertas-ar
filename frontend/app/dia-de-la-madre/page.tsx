@@ -21,6 +21,9 @@ import { GUIAS } from '@/lib/guias'
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
+import { busquedaML } from '@/lib/afiliado'
+import { temporadaActual } from '@/lib/temporada'
+import CuentaRegresivaMadre from './CuentaRegresivaMadre'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/dia-de-la-madre`
@@ -33,9 +36,9 @@ const FECHA_TEXTO = 'domingo 18 de octubre'
 const POR_RANGO = 8
 
 const RANGOS = [
-  { id: 'mas-de-300000', titulo: 'Más de $300.000', min: 300000, max: Infinity },
-  { id: '100000-a-300000', titulo: 'De $100.000 a $300.000', min: 100000, max: 300000 },
-  { id: 'hasta-100000', titulo: 'Hasta $100.000', min: 0, max: 100000 },
+  { id: 'mas-de-150000', titulo: 'Más de $150.000', min: 150000, max: Infinity },
+  { id: '50000-a-150000', titulo: 'De $50.000 a $150.000', min: 50000, max: 150000 },
+  { id: 'hasta-50000', titulo: 'Hasta $50.000', min: 0, max: 50000 },
 ] as const
 
 const CATEGORIAS_REGALO = [
@@ -82,8 +85,19 @@ const RUBROS_REGALO = [
 ] as const
 const POR_RUBRO = 4
 
+/** Regalos de comisión alta (belleza, perfumes, cuidado del cabello, electro de
+ *  cocina): se muestran arriba de todo. `busqueda` arma el link de afiliado
+ *  (matt_word=web) con el helper de lib/afiliado. */
+const DESTACADOS = [
+  { comp: 'mejores-perfumes', titulo: 'Perfumes', emoji: '🌸', busqueda: 'perfume mujer' },
+  { comp: 'mejores-planchitas-y-secadores-de-pelo', titulo: 'Cuidado del cabello', emoji: '💇', busqueda: 'planchita de pelo' },
+  { comp: 'mejores-cafeteras', titulo: 'Cafeteras', emoji: '☕', busqueda: 'cafetera' },
+  { comp: 'mejores-freidoras-de-aire', titulo: 'Freidoras de aire', emoji: '🍟', busqueda: 'freidora de aire' },
+] as const
+const POR_DESTACADO = 2
+
 const TITULO = `Regalos para el Día de la Madre ${AÑO}: ofertas reales por presupuesto`
-const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $100.000, de $100.000 a $300.000 y más de $300.000: notebooks, celulares, smart TV, lavarropas, colchones), con el descuento verificado contra el historial.`
+const DESCRIPCION = `El Día de la Madre ${AÑO} en Argentina es el ${FECHA_TEXTO}. Ideas de regalo en oferta en Mercado Libre por rango de precio (hasta $50.000, de $50.000 a $150.000 y más de $150.000: perfumes, electro de cocina, notebooks, celulares, smart TV, colchones), con el descuento verificado contra el historial.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -154,12 +168,23 @@ export default function DiaDeLaMadrePage() {
   const pool = [...regalos, ...deRubros].filter(
     (p, i, a) => esRegalo(p) && a.findIndex(x => x.id_ml === p.id_ml || claveTitulo(x) === claveTitulo(p)) === i,
   )
+  // Destacados de comisión alta: arriba de todo; después no se repiten en los rangos.
+  const destacados = DESTACADOS.flatMap(d => {
+    const c = getComparativa(d.comp)
+    if (!c) return []
+    const productos = productosDe(c).filter(p => esRegalo(p)).slice(0, POR_DESTACADO)
+    return productos.length ? [{ ...d, productos }] : []
+  })
+  const claveDestacados = new Set(destacados.flatMap(d => d.productos.map(claveTitulo)))
+  const idsDestacados = new Set(destacados.flatMap(d => d.productos.map(p => p.id_ml)))
   const rangos = RANGOS.map(r => {
-    const todos = pool.filter(p => p.precio_actual >= r.min && p.precio_actual < r.max)
+    const todos = pool.filter(
+      p => p.precio_actual >= r.min && p.precio_actual < r.max && !idsDestacados.has(p.id_ml) && !claveDestacados.has(claveTitulo(p)),
+    )
     return { ...r, total: todos.length, productos: todos.slice(0, POR_RANGO) }
   })
   // Se va completando: un regalo no se repite entre rangos ni entre rubros
-  const yaEnRangos = new Set(rangos.flatMap(r => r.productos.map(claveTitulo)))
+  const yaEnRangos = new Set([...claveDestacados, ...rangos.flatMap(r => r.productos.map(claveTitulo))])
   // Por rubro, solo ticket medio/alto (≥ $30.000): lo que más comisión deja.
   const rubros = RUBROS_REGALO.flatMap(r => {
     const c = getComparativa(r.comp)
@@ -171,7 +196,7 @@ export default function DiaDeLaMadrePage() {
     productos.forEach(p => yaEnRangos.add(claveTitulo(p)))
     return todos.length ? [{ ...r, slug: c.slug, compTitulo: c.titulo, total: todos.length, productos }] : []
   })
-  const mostrados = [...rangos.flatMap(r => r.productos), ...rubros.flatMap(r => r.productos)].filter(
+  const mostrados = [...destacados.flatMap(d => d.productos), ...rangos.flatMap(r => r.productos), ...rubros.flatMap(r => r.productos)].filter(
     (p, i, a) => a.findIndex(x => x.id_ml === p.id_ml) === i,
   )
 
@@ -193,7 +218,7 @@ export default function DiaDeLaMadrePage() {
     },
     {
       q: '¿Qué regalar según el presupuesto?',
-      a: 'Depende de lo que haya en oferta ese día: en esta página separamos las ofertas regalables de hoy en tres rangos: hasta $100.000 (perfumes, cuidado personal, electro de cocina), de $100.000 a $300.000 (freidoras, celulares, colchones) y más de $300.000 (notebooks, smart TV, lavarropas). Para los regalos grandes tenemos guías de compra que explican qué mirar en cada uno.',
+      a: 'Depende de lo que haya en oferta ese día: en esta página separamos las ofertas regalables de hoy en tres rangos: hasta $50.000 (perfumes, cuidado del cabello, electro de cocina chico), de $50.000 a $150.000 (freidoras, cafeteras, tablets, celulares de entrada) y más de $150.000 (notebooks, smart TV, lavarropas, colchones). Para los regalos grandes tenemos guías de compra que explican qué mirar en cada uno.',
     },
     {
       q: `¿Hasta cuándo conviene pedir el regalo para que llegue el ${FECHA_TEXTO}?`,
@@ -231,6 +256,8 @@ export default function DiaDeLaMadrePage() {
       : []),
   ]
 
+  // Después del 18/10: la página sigue útil y apunta a la temporada vigente (Cyber/Navidad)
+  const siguiente = dias < 0 ? temporadaActual() : null
   const estado = dias > 1 ? `Faltan ${dias} días` : dias === 1 ? 'Es mañana' : dias === 0 ? 'Es hoy' : 'Ya pasó'
 
   return (
@@ -284,6 +311,12 @@ export default function DiaDeLaMadrePage() {
                   ? 'Queda poco: priorizá envío Full o retiro y chequeá la fecha de entrega antes de pagar.'
                   : 'Igual te dejamos los regalos en oferta de hoy, con el descuento verificado.'}
             </p>
+            <CuentaRegresivaMadre fecha={FECHA} diasBuild={dias} />
+            {siguiente && (
+              <Link href={siguiente.href} className="mt-3 block rounded-xl border border-yellow-400/40 bg-yellow-400/10 px-4 py-3 text-sm font-bold text-yellow-200 hover:border-yellow-400">
+                El Día de la Madre ya pasó. Ahora: {siguiente.titulo} →
+              </Link>
+            )}
             <div className="mt-3 flex flex-wrap gap-2">
               {rangos.map(r => (
                 <a key={r.id} href={`#${r.id}`} className="text-xs font-bold rounded-full border border-pink-400/30 px-3 py-1 text-pink-200 hover:border-pink-400/60">
@@ -294,6 +327,34 @@ export default function DiaDeLaMadrePage() {
           </div>
         </div>
       </section>
+
+      {destacados.length > 0 && (
+        <section id="destacados" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
+          <div className="max-w-3xl mb-4">
+            <h2 className="font-display text-xl sm:text-2xl font-black">⭐ Los regalos que más conviene mirar primero</h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Perfumes, cuidado del cabello y electro de cocina: lo que más se elige para mamá, con el descuento comparado
+              contra el mínimo registrado.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {destacados.flatMap(d => d.productos.map(o => <OfertaCard key={o.id_ml} producto={light(o)} priority />))}
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {destacados.map(d => (
+              <a
+                key={d.comp}
+                href={busquedaML(d.busqueda)}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-4 py-2 transition-colors"
+              >
+                {d.emoji} {d.titulo}: Ver en Mercado Libre
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       {rangos.map(r => (
         <section key={r.id} id={r.id} className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
@@ -314,7 +375,7 @@ export default function DiaDeLaMadrePage() {
           {r.productos.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {r.productos.map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'mas-de-300000' && i < 4} />
+                <OfertaCard key={o.id_ml} producto={light(o)} priority={r.id === 'mas-de-150000' && i < 4} />
               ))}
             </div>
           )}

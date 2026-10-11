@@ -30,6 +30,7 @@ import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
 import ComparacionTestigo from '@/components/ComparacionTestigo'
 import { BLACK_FRIDAY, CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/cyber-monday`
@@ -93,6 +94,67 @@ export default function CyberMondayPage() {
   const guias = GUIAS.filter(g => g.slug.includes('cyber-monday') || GUIAS_TICKET_ALTO.includes(g.slug))
 
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
+  const testigo = getTestigo()
+  const guiaDe = (slug: string) => GUIAS.find(g => g.slug === slug)
+  const linkGuia = (slug: string) => {
+    const g = guiaDe(slug)
+    return g ? [{ href: `/guias/${g.slug}`, texto: g.titulo }] : []
+  }
+  const pasos: { titulo: string; texto: string; links: { href: string; texto: string; externo?: boolean }[] }[] = [
+    {
+      titulo: 'Mirá cuánto sale hoy y cuánto salió antes',
+      texto:
+        'En el historial de precios ves el precio de hoy, el más bajo que registramos y desde cuándo seguimos cada producto. Si el que querés ya está ahí, anotá el número: es tu punto de partida.',
+      links: [
+        { href: '/precio', texto: 'Historial de precios' },
+        { href: '/precio-hoy', texto: 'Precio de hoy por producto' },
+      ],
+    },
+    {
+      titulo: 'Anotá tu precio testigo',
+      texto: `Nuestro precio testigo es el más bajo que registramos de cada producto entre el ${fechaAR(testigo.desde)} y el ${fechaAR(testigo.hasta)}, siempre que tenga al menos ${TESTIGO_MIN_DIAS} días de registro. Hacé lo mismo con tu lista: producto, precio de hoy y precio en cuotas. Cuando arranque el evento, saber si bajó es cuestión de segundos.`,
+      links: [{ href: '#comparativas', texto: 'Comparativas del evento' }],
+    },
+    {
+      titulo: 'Cuotas: compará el total, no la cuota',
+      texto:
+        'Multiplicá el valor de la cuota por la cantidad de cuotas y fijate si el total es el precio publicado: si da más, hay interés. Después sumá el envío y los reintegros del banco, que suelen tener tope y fecha de acreditación: leé las condiciones de ese día.',
+      links: [
+        ...linkGuia('como-ahorrar-en-mercado-libre-argentina'),
+        ...linkGuia('hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre'),
+      ],
+    },
+    {
+      titulo: 'Cupones: revisá los de tu cuenta antes de pagar',
+      texto:
+        'Mercado Libre los muestra por usuario en mercadolibre.com.ar/cupones, con la sesión iniciada. Cada uno tiene sus condiciones (vigencia, productos alcanzados y tope) y, en general, se usa uno por compra. Un cupón no garantiza que el precio sea bueno: descuenta sobre el precio publicado.',
+      links: [{ href: '/cupones-mercado-libre', texto: 'Guía de cupones, con fuentes oficiales' }],
+    },
+    {
+      titulo: 'Verificá que el descuento sea real',
+      texto:
+        'Pegá el link de la publicación en el verificador: compara el precio de hoy con el historial que registramos. Si ya estuvo igual o más barato en un día común, el “% OFF” del evento no te ahorra nada.',
+      links: [
+        { href: `${DEALS_URL}/#verificador`, texto: 'Verificador de descuentos', externo: true },
+        { href: '/descuentos-inflados', texto: 'Los descuentos inflados de hoy' },
+        { href: '/estudio/descuentos-inflados-mercado-libre', texto: 'El estudio de descuentos inflados' },
+        { href: '/metodologia', texto: 'Cómo lo medimos' },
+        ...linkGuia('como-saber-si-un-descuento-de-mercado-libre-es-real'),
+        ...linkGuia('que-es-el-minimo-historico-en-mercado-libre'),
+      ],
+    },
+    {
+      titulo: 'Armá tu lista por rubro y poné una alerta',
+      texto:
+        'Elegí qué necesitás de verdad (en los rubros de ticket alto, la diferencia en pesos es mayor), leé la guía del producto antes de mirar el precio y seguinos para enterarte cuando una oferta llega a su mínimo registrado.',
+      links: [
+        { href: '#guias', texto: 'Guías para elegir antes del evento' },
+        { href: '/mejores/ofertas-cyber-monday', texto: 'Ofertas del Cyber comparadas' },
+        { href: TELEGRAM_URL, texto: 'Canal de Telegram', externo: true },
+        { href: WHATSAPP_URL, texto: 'Canal de WhatsApp', externo: true },
+      ],
+    },
+  ]
   const faqs = [
     {
       q: `¿Cuándo es el Cyber Monday ${CM.año} en Argentina?`,
@@ -115,6 +177,18 @@ export default function CyberMondayPage() {
     {
       q: '¿Conviene esperar al Cyber Monday para comprar?',
       a: 'Depende del producto. Si lo que buscás ya está en su precio más bajo registrado, esperar no suma. Si no, conviene anotar el precio de hoy y compararlo cuando arranque el evento: así sabés si la baja es real o si solo cambió el cartel. Sumá al cálculo envío, cuotas y reintegros con tope.',
+    },
+    {
+      q: `¿Cómo me preparo para el Cyber Monday ${CM.año}?`,
+      a: 'En seis pasos: mirá el historial de precios de lo que querés, anotá el precio de hoy como testigo, compará el total en cuotas (no el valor de la cuota), revisá los cupones de tu cuenta de Mercado Libre, verificá el descuento contra el historial y armá tu lista por rubro con las guías de compra. El checklist completo, con los links a cada herramienta, está en esta misma página.',
+    },
+    {
+      q: '¿Qué es el precio testigo?',
+      a: `Es el precio más bajo que registramos de cada producto en las semanas previas al evento (entre el ${fechaAR(testigo.desde)} y el ${fechaAR(testigo.hasta)}), siempre que tenga al menos ${TESTIGO_MIN_DIAS} días de registro. Cuando arranca el evento comparamos el precio de ese día contra el testigo: si es al menos 3% más barato, lo contamos como una baja real; si no, estuvo igual o más barato antes.`,
+    },
+    {
+      q: '¿Sirven los cupones en el Cyber Monday?',
+      a: 'No sabemos qué cupones habrá en el evento: Mercado Libre los muestra por usuario en mercadolibre.com.ar/cupones, con la sesión iniciada. Revisá los de tu cuenta antes de pagar y leé sus condiciones; en las campañas publicadas se usa, en general, un cupón por compra. Un cupón descuenta sobre el precio publicado, así que igual conviene comprobar que ese precio sea bueno.',
     },
   ]
 
@@ -225,7 +299,10 @@ export default function CyberMondayPage() {
                   </a>{' '}
                   (verificado el {fechaAR(CM.verificado)}). El{' '}
                   <Link href="/black-friday" className="font-semibold text-cyan-300 hover:underline">Black Friday</Link> es el{' '}
-                  {BLACK_FRIDAY.fechasTexto}.
+                  {BLACK_FRIDAY.fechasTexto}.{' '}
+                  <a href="#como-preparar" className="font-semibold text-cyan-300 hover:underline">
+                    Cómo prepararte: checklist →
+                  </a>
                 </>
               ) : (
                 <>
@@ -262,6 +339,54 @@ export default function CyberMondayPage() {
               año, y comparamos cada precio contra el historial que registramos.
             </p>
           </div>
+        </section>
+
+        <section id="como-preparar" className="mb-10 scroll-mt-20">
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cómo preparar el Cyber</h2>
+          <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
+            {etapa === 'antes'
+              ? 'Hasta que arranque el evento hay tiempo de sobra: con estos seis pasos llegás al lunes con tus números anotados y sabiendo qué mirar.'
+              : etapa === 'durante'
+                ? 'El evento está en curso: estos seis pasos te sirven para no pagar de más hoy.'
+                : 'El evento ya terminó, pero los seis pasos sirven igual para cualquier compra grande (el Black Friday es el ' + BLACK_FRIDAY.fechasTexto + ').'}
+          </p>
+          <ol className="space-y-3">
+            {pasos.map((p, i) => (
+              <li key={p.titulo} className="flex gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
+                <span
+                  aria-hidden="true"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 text-sm font-black text-cyan-300"
+                >
+                  {i + 1}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-base sm:text-lg font-black text-zinc-100">{p.titulo}</h3>
+                  <p className="mt-1 text-sm text-zinc-400 leading-relaxed [text-wrap:pretty]">{p.texto}</p>
+                  {p.links.length > 0 && (
+                    <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-bold">
+                      {p.links.map(l => (
+                        <li key={l.href + l.texto}>
+                          {l.externo ? (
+                            <a
+                              href={l.href}
+                              {...(l.href.startsWith(DEALS_URL) ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                              className="text-yellow-400 hover:underline"
+                            >
+                              {l.texto} →
+                            </a>
+                          ) : l.href.startsWith('#') ? (
+                            <a href={l.href} className="text-yellow-400 hover:underline">{l.texto} →</a>
+                          ) : (
+                            <Link href={l.href} className="text-yellow-400 hover:underline">{l.texto} →</Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="mb-10">
@@ -347,7 +472,7 @@ export default function CyberMondayPage() {
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
         {comparativas.length > 0 && (
-          <section className="mb-10">
+          <section id="comparativas" className="mb-10 scroll-mt-20">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativas por rubro</h2>
             <p className="text-sm text-zinc-400 mb-3">Precio de hoy, descuento y mínimo registrado de cada producto.</p>
             <ul className="space-y-1.5">
@@ -366,7 +491,7 @@ export default function CyberMondayPage() {
         )}
 
         {guias.length > 0 && (
-          <section className="mb-10">
+          <section id="guias" className="mb-10 scroll-mt-20">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Guías para elegir antes del evento</h2>
             <ul className="space-y-2">
               {guias.map(g => (

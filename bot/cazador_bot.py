@@ -40,6 +40,8 @@ from html import unescape
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR))
+import ml_api  # noqa: E402
 CONFIG_PATH = BASE_DIR / "config.json"
 STATE_PATH = BASE_DIR / "state" / "posted_ids.json"
 POSTS_LOG_PATH = BASE_DIR / "state" / "posts_log.jsonl"
@@ -207,6 +209,44 @@ def fmt_price(n: int) -> str:
 
 # ---------------------------------------------------------------- scraping
 
+SCRAPE_BLOCKED = False
+BLOCK_MARKERS = ("negative_traffic", "account-verification")
+ALERT_STATE_PATH = BASE_DIR / "state" / "scraper_alert.json"
+ALERT_COOLDOWN_H = 12
+
+
+def is_blocked_html(html: str) -> bool:
+    """True si ML devolvió la pantalla anti-bot en vez del listado."""
+    return any(m in html for m in BLOCK_MARKERS)
+
+
+def should_send_scrape_alert(path: Path = ALERT_STATE_PATH, now: datetime | None = None,
+                             cooldown_h: int = ALERT_COOLDOWN_H) -> bool:
+    """Anti-spam: True si pasaron >= cooldown_h desde la última alerta; la registra."""
+    now = now or datetime.now(timezone.utc)
+    try:
+        last = datetime.fromisoformat(json.loads(path.read_text(encoding="utf-8"))["last_alert"])
+        if now - last < timedelta(hours=cooldown_h):
+            return False
+    except Exception:  # noqa: BLE001 — sin estado o ilegible: alertar
+        pass
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"last_alert": now.isoformat(timespec="seconds")}), encoding="utf-8")
+    except OSError as e:
+        print(f"[warn] no se pudo guardar estado de alerta: {e}")
+    return True
+
+
+def scrape_alert_text(blocked: bool, n: int) -> str:
+    if blocked:
+        return ("🚫 Cazador: Mercado Libre bloquea al bot (pantalla anti-bot / negative_traffic). "
+                f"Ofertas parseadas: {n}. No se publica nada hasta resolverlo. "
+                "Solución: cargar ML_CLIENT_ID y ML_CLIENT_SECRET (API oficial).")
+    return (f"⚠️ Cazador: el scraper trajo {n} ofertas (menos de 5). "
+            "Revisar si ML cambió el HTML.")
+
+
 def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0) -> list[dict]:
     """Baja y parsea las páginas de ofertas (y las de ofertas relámpago y las
     de categorías de ticket alto)."""
@@ -218,12 +258,17 @@ def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int =
         for cat, nombre in CATEGORIAS_TICKET_ALTO.items()
         for p in range(1, categoria_pages + 1)
     ]
+    global SCRAPE_BLOCKED
+    SCRAPE_BLOCKED = False
     for base, url, page in urls:
         try:
             html = http_get(url).decode("utf-8", "replace")
         except Exception as e:  # noqa: BLE001 — red hostil, seguimos con lo que haya
             print(f"[warn] página {page} falló: {e}")
             continue
+        if is_blocked_html(html):
+            SCRAPE_BLOCKED = True
+            print(f"[warn] página {page}: ML devolvió la pantalla anti-bot (login/verificación)")
         page_deals = parse_cards(html)
         for d in page_deals:
             if base is RELAMPAGO_URL:
@@ -233,6 +278,9 @@ def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int =
                 deals.append(d)
         print(f"[info] página {page}: {len(page_deals)} tarjetas válidas")
         time.sleep(random.uniform(1.5, 3.0))
+    if not deals and ml_api.has_credentials():
+        print("[info] scraping sin ofertas: probando API oficial de ML")
+        deals = ml_api.fetch_deals_api()
     return deals
 
 
@@ -2152,12 +2200,11 @@ def main() -> int:
         log_scan(len(deals), n_low, n_inf)
 
     if len(deals) < 5:
-        alert_admin(
-            token,
-            cfg["admin_chat"],
-            "⚠️ Cazador: el scraper trajo menos de 5 ofertas. Revisar si ML cambió el HTML.",
-            dry,
-        )
+        print(f"::warning::Cazador: {len(deals)} ofertas parseadas"
+              + (" (ML anti-bot / scraper bloqueado)" if SCRAPE_BLOCKED else ""))
+        if dry or should_send_scrape_alert():
+            alert_admin(token, cfg["admin_chat"],
+                        scrape_alert_text(SCRAPE_BLOCKED, len(deals)), dry)
 
     candidates = [
         d

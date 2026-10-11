@@ -42,6 +42,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR))
 import ml_api  # noqa: E402
+
+MIN_API_CON_DESCUENTO = 20  # ofertas con descuento real para aceptar la fuente API
 CONFIG_PATH = BASE_DIR / "config.json"
 STATE_PATH = BASE_DIR / "state" / "posted_ids.json"
 POSTS_LOG_PATH = BASE_DIR / "state" / "posts_log.jsonl"
@@ -281,6 +283,13 @@ def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int =
     if not deals and ml_api.has_credentials():
         print("[info] scraping sin ofertas: probando API oficial de ML")
         deals = ml_api.fetch_deals_api()
+        # Guarda: sin descuento real y volumen suficiente la API no sirve de
+        # fuente y NO debe pisar los datos del sitio con un puñado de productos.
+        con_desc = [d for d in deals if (d.get("discount") or 0) > 0]
+        if len(con_desc) < MIN_API_CON_DESCUENTO:
+            print(f"[warn] API de ML: {len(con_desc)} ofertas con descuento real "
+                  f"(mínimo {MIN_API_CON_DESCUENTO}); descarto la fuente API para no pisar el sitio")
+            deals = []
     return deals
 
 

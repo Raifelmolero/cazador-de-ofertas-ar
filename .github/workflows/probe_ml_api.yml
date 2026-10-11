@@ -1,0 +1,24 @@
+name: Probe ML API
+
+# Sonda de solo lectura de endpoints de la API de ML con el token de la app. A mano.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Probar
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+        run: python bot/tools/probe_ml_api.py

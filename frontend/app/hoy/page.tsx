@@ -13,8 +13,8 @@ import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
-import AtajosTicketAlto from '@/components/AtajosTicketAlto'
-import AtajosLandings from '@/components/AtajosLandings'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import LoMasSeCompra from '@/components/LoMasSeCompra'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
@@ -68,7 +68,10 @@ export default function HoyPage() {
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
-  const colchones = catColchones ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo)) : []
+  const top3Ids = new Set(ofertasLight.slice(0, 3).map(o => o.id_ml))
+  const colchones = catColchones
+    ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo) && !top3Ids.has(o.id_ml))
+    : []
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
   // el resto no aporta y agranda el HTML). priceValidUntil = fin del día
@@ -295,15 +298,6 @@ export default function HoyPage() {
         </p>
 
         {/* Rubros + los dos atajos con datos propios */}
-        {/* Celular: rubros en una fila deslizable (la grilla ocupaba 1.100 px) */}
-        <nav aria-label="Rubros" className="sm:hidden -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none]">
-          {NICHOS.map(n => (
-            <a key={n.slug} href={`/${n.slug}`} className="shrink-0 rounded-full border border-zinc-800 bg-zinc-900/60 px-3.5 py-2 text-sm font-semibold text-zinc-200">
-              {n.emoji} {n.marca.replace('Cazador de ', '')}
-            </a>
-          ))}
-          <Link href="/precio-hoy" className="shrink-0 rounded-full border border-emerald-500/30 px-3.5 py-2 text-sm font-semibold text-emerald-300">$ Precio hoy</Link>
-        </nav>
         <div className="max-w-5xl mx-auto mt-8 hidden sm:grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {NICHOS.map(n => (
             <a
@@ -337,8 +331,11 @@ export default function HoyPage() {
 
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
       <BannerTemporada />
-      <AtajosTicketAlto />
-      <AtajosLandings />
+      {/* Celular: 3 ofertas con botón antes de cualquier fila de atajos y recién
+          después los rubros que más venden (antes la 1ª tarjeta con botón
+          aparecía tras 4 filas de chips). */}
+      <TopOfertasHoy ofertas={ofertasLight} />
+      <LoMasSeCompra ofertas={ofertasLight} />
       <ColchonesDestacados ofertas={colchones} />
       <AtajosVerano />
 

@@ -170,7 +170,9 @@ class TestTokenUsuario(unittest.TestCase):
         env = {**ENV_USER, "ML_REFRESH_TOKEN_OUT": str(self.out)}
         with mock.patch.dict(os.environ, env, clear=True), contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(ml_api.fetch_deals_api(["MLA1"], request=req), [])
-        self.assertEqual(vistos, ["Bearer ACC-USER"])
+        # highlights y, al no dar nada, el catálogo: todo con el mismo token de usuario
+        self.assertTrue(vistos)
+        self.assertEqual(set(vistos), {"Bearer ACC-USER"})
 
     def test_has_user_token(self):
         with mock.patch.dict(os.environ, ENV_USER, clear=True):

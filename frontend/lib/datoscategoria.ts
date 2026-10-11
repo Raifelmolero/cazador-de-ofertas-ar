@@ -215,7 +215,7 @@ export interface Enlace {
 }
 
 /** Páginas del sitio que tratan el mismo rubro: hub del nicho, comparativas
- *  (solo las indexables: con menos de 3 productos llevan noindex), "precio hoy"
+ *  (solo las indexables, ver indexable() en comparativas.ts), "precio hoy"
  *  y guías cuya categoría o comparativa es esta. */
 export function enlacesRelacionados(c: Categoria): Enlace[] {
   const comparativas = COMPARATIVAS.filter(x => x.categoria === c.slug)

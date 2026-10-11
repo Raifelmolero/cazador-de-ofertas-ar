@@ -960,7 +960,11 @@ export function categoriaDe(c: Comparativa): Categoria | undefined {
 }
 
 // Con menos productos la página es flaca: no va al sitemap y lleva noindex
-// (vuelve sola cuando el catálogo del día tiene suficientes).
+// (vuelve sola cuando el catálogo del día tiene suficientes), SALVO que tenga
+// contenido propio (CONTENIDO en comparativas-contenido.ts) o sea perenne: ahí
+// el catálogo vacío por un corte del bot no la saca del índice. Una comparativa
+// nueva sin CONTENIDO ni PERENNES sí queda noindex cuando no hay productos
+// (thin content real).
 export const MIN_PRODUCTOS_INDEXABLE = 3
 
 export function indexable(c: Comparativa): boolean {

@@ -13,6 +13,8 @@ import { normalizar } from '@/lib/categorias'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
+import SinOfertas from '@/components/SinOfertas'
+import { enlacesAfines } from '@/lib/afines'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -199,13 +201,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativa de precios de hoy</h2>
           {productos.length === 0 ? (
-            <p className="text-zinc-400">
-              Hoy no hay {c.nombre} en oferta con descuento verificado. La tabla se actualiza 3 veces por día;{' '}
-              <a href={DEALS_URL} className="text-yellow-400 hover:underline">
-                mirá todas las ofertas de hoy
-              </a>
-              .
-            </p>
+            <SinOfertas que={`de ${c.nombre}`} enlaces={enlacesAfines({ categoria: c.categoria })} />
           ) : (
             <>
             {/* Celular: tarjetas con foto y botón (la tabla dejaba el precio y la compra fuera de pantalla) */}

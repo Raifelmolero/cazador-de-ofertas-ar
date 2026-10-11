@@ -14,6 +14,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import AtajosTicketAlto from '@/components/AtajosTicketAlto'
+import AtajosLandings from '@/components/AtajosLandings'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
@@ -337,6 +338,7 @@ export default function HoyPage() {
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
       <BannerTemporada />
       <AtajosTicketAlto />
+      <AtajosLandings />
       <ColchonesDestacados ofertas={colchones} />
       <AtajosVerano />
 

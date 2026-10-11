@@ -400,3 +400,25 @@ export function cantidadLanding(l: Landing): number {
 export function indexableLanding(l: Landing): boolean {
   return cantidadLanding(l) >= (l.min ?? MIN_LANDING)
 }
+
+/** Landings indexables que corresponden a una guía (por categoría o, si la guía no
+ *  la declara, por el tema que lleva en el slug). Sirve para el link contextual. */
+export function landingsDeGuia(g: { slug: string; categoria?: { slug: string } }): Landing[] {
+  let cat = g.categoria?.slug
+  if (!cat) {
+    if (g.slug.includes('smart-tv')) cat = 'smart-tv'
+    else if (g.slug.includes('aire-acondicionado')) cat = 'aire-acondicionado'
+  }
+  if (!cat) return []
+  return LANDINGS.filter(l => l.categoria === cat && indexableLanding(l))
+}
+
+/** Landings de ticket alto / comisión 15% que van como chips en la home. */
+export const LANDINGS_RENTABLES = [
+  'ofertas-ticket-alto',
+  'aires-acondicionados-inverter-en-oferta',
+  'colchones-2-plazas-queen-king-en-oferta',
+  'smart-tv-55-pulgadas-o-mas-en-oferta',
+  'herramientas-electricas-en-oferta',
+  'heladeras-no-frost-en-oferta',
+]

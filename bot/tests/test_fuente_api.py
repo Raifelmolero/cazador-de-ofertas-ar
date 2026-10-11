@@ -88,8 +88,8 @@ class TestApi(unittest.TestCase):
         with mock.patch.object(bot, "http_get", return_value=b"<html></html>"), \
              mock.patch.object(bot.time, "sleep"), \
              mock.patch.dict(os.environ, ENV, clear=True), \
-             mock.patch.object(ml_api, "fetch_deals_api", return_value=[{"id": "MLA9"}]) as m:
-            self.assertEqual(bot.fetch_deals(pages=1), [{"id": "MLA9"}])
+             mock.patch.object(ml_api, "fetch_deals_api", return_value=[{"id": f"MLA{i}", "discount": 30} for i in range(25)]) as m:
+            self.assertEqual(len(bot.fetch_deals(pages=1)), 25)
             m.assert_called_once()
 
 
@@ -330,3 +330,10 @@ class TestWriteSiteDataCatalogo(unittest.TestCase):
         self.assertIsNone(items[0]["precio_anterior"])
         self.assertIsNone(items[0]["descuento_pct"])
         self.assertEqual((items[1]["precio_anterior"], items[1]["descuento_pct"]), (100000, 50))
+
+
+class TestGuardaFuenteApi(unittest.TestCase):
+    def test_descarta_api_con_pocas_ofertas_con_descuento(self):
+        with mock.patch.object(bot, "http_get", return_value=b"<html></html>"),              mock.patch.object(bot.time, "sleep"),              mock.patch.dict(os.environ, ENV, clear=True),              mock.patch.object(ml_api, "fetch_deals_api",
+                               return_value=[{"id": "MLA9", "discount": 0}]):
+            self.assertEqual(bot.fetch_deals(pages=1), [])

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import CalculadoraFrigorias, { type AireOferta } from '@/components/CalculadoraFrigorias'
+import CalculadoraFrigorias, { type AireOferta, type LandingsAire } from '@/components/CalculadoraFrigorias'
 import Footer from '@/components/Footer'
 import { busquedaML } from '@/lib/afiliado'
 import { getComparativa, productosDe } from '@/lib/comparativas'
+import { getLanding, indexableLanding } from '@/lib/landings'
 import { BTU_POR_FRIGORIA, FRIGORIAS_POR_KW, btuAFrigorias, frigoriasDelTitulo } from '@/lib/frigorias'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 
@@ -57,8 +58,19 @@ function airesEnOferta(): AireOferta[] {
   })
 }
 
+function landingEnlace(slug: string) {
+  const l = getLanding(slug)
+  if (!l || !indexableLanding(l)) return undefined
+  return { href: `/ofertas/${l.slug}`, texto: l.nombre.charAt(0).toUpperCase() + l.nombre.slice(1) }
+}
+
 export default function CalculadoraFrigoriasPage() {
   const aires = airesEnOferta()
+  const landings: LandingsAire = {
+    hasta3000: landingEnlace('aires-acondicionados-hasta-3000-frigorias'),
+    mas3000: landingEnlace('aires-acondicionados-mas-de-3000-frigorias'),
+    inverter: landingEnlace('aires-acondicionados-inverter-en-oferta'),
+  }
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -100,7 +112,7 @@ export default function CalculadoraFrigoriasPage() {
           comprar y qué aires de ese tamaño están en oferta hoy.
         </p>
 
-        <CalculadoraFrigorias aires={aires} busqueda={busquedaML('aire acondicionado split')} />
+        <CalculadoraFrigorias aires={aires} busqueda={busquedaML('aire acondicionado split')} landings={landings} />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>

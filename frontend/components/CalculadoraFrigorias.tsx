@@ -9,6 +9,8 @@ import {
   sirvePara,
   type Sol,
 } from '@/lib/frigorias'
+import { busquedaML } from '@/lib/afiliado'
+import CtaCalculadora, { type EnlaceCta } from '@/components/CtaCalculadora'
 
 export interface AireOferta {
   id: string
@@ -35,7 +37,21 @@ function Campo({ label, ayuda, value, onChange }: { label: string; ayuda?: strin
   )
 }
 
-export default function CalculadoraFrigorias({ aires, busqueda }: { aires: AireOferta[]; busqueda: string }) {
+export interface LandingsAire {
+  hasta3000?: EnlaceCta
+  mas3000?: EnlaceCta
+  inverter?: EnlaceCta
+}
+
+export default function CalculadoraFrigorias({
+  aires,
+  busqueda,
+  landings = {},
+}: {
+  aires: AireOferta[]
+  busqueda: string
+  landings?: LandingsAire
+}) {
   const [m2, setM2] = useState('20')
   const [altura, setAltura] = useState('2,6')
   const [sol, setSol] = useState<Sol>('normal')
@@ -43,6 +59,13 @@ export default function CalculadoraFrigorias({ aires, busqueda }: { aires: AireO
   const [watts, setWatts] = useState('0')
   const r = calcularFrigorias({ m2: num(m2), altura: num(altura), sol, personas: num(personas), watts: num(watts) })
   const aptos = aires.filter(a => sirvePara(a.frig, r.total, r.recomendado)).slice(0, 8)
+  const hayResultado = r.total > 0
+  const busquedaCta = r.recomendado ? busquedaML(`aire acondicionado ${r.recomendado} frigorias`) : busqueda
+  const internosCta: EnlaceCta[] = [
+    ...(r.recomendado ? [r.recomendado <= 3000 ? landings.hasta3000 : landings.mas3000] : [landings.mas3000]),
+    landings.inverter,
+    { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires en oferta' },
+  ].filter((e): e is EnlaceCta => Boolean(e))
 
   // Conversor libre
   const [conv, setConv] = useState('3000')
@@ -79,6 +102,7 @@ export default function CalculadoraFrigorias({ aires, busqueda }: { aires: AireO
           </fieldset>
         </div>
 
+        <div className="space-y-4">
         <div className="bg-zinc-900 border border-yellow-400/30 rounded-2xl p-5 sm:p-6" aria-live="polite">
           <p className="text-xs text-zinc-400 font-medium">Necesitás aproximadamente</p>
           <p className="font-display text-4xl sm:text-5xl font-black text-yellow-400 my-1">{miles(r.total)} frigorías</p>
@@ -101,6 +125,19 @@ export default function CalculadoraFrigorias({ aires, busqueda }: { aires: AireO
           <p className="text-xs text-zinc-600 mt-4">
             Estimación orientativa: para ambientes especiales, pedí el cálculo a un instalador matriculado.
           </p>
+        </div>
+        {hayResultado && (
+          <CtaCalculadora
+            titulo={
+              r.recomendado
+                ? `Ver aires de ${miles(r.recomendado)} frigorías en Mercado Libre`
+                : 'Ver aires de más de 6.000 frigorías en Mercado Libre'
+            }
+            texto="Precio y cuotas actualizados en la publicación. Confirmá las frigorías en la ficha antes de comprar."
+            ml={{ href: busquedaCta, texto: r.recomendado ? `Aires de ${miles(r.recomendado)} frigorías` : 'Ver aires en Mercado Libre' }}
+            internos={internosCta}
+          />
+        )}
         </div>
       </section>
 

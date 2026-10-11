@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { busquedaML } from '@/lib/afiliado'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { EQUIPOS } from '@/lib/consumo'
+import { getLanding, indexableLanding } from '@/lib/landings'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -59,6 +60,20 @@ function ofertasPorEquipo(): Record<string, OfertaEquipo[]> {
 export default function CalculadoraConsumoPage() {
   const ofertas = ofertasPorEquipo()
   const busquedas = Object.fromEntries(EQUIPOS.map(e => [e.id, busquedaML(e.busqueda)]))
+  // Landing /ofertas/* del equipo, solo si hoy es indexable (tiene productos).
+  const LANDING_POR_EQUIPO: Record<string, string> = {
+    aire: 'aires-acondicionados-inverter-en-oferta',
+    heladera: 'heladeras-no-frost-en-oferta',
+    termotanque: 'termotanques-y-calefones-en-oferta',
+    tv: 'smart-tv-55-pulgadas-o-mas-en-oferta',
+  }
+  const landings = Object.fromEntries(
+    Object.entries(LANDING_POR_EQUIPO).flatMap(([id, slug]) => {
+      const l = getLanding(slug)
+      if (!l || !indexableLanding(l)) return []
+      return [[id, { href: `/ofertas/${l.slug}`, texto: l.nombre.charAt(0).toUpperCase() + l.nombre.slice(1) }]]
+    }),
+  )
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -99,7 +114,7 @@ export default function CalculadoraConsumoPage() {
           por mes y, si ponés el precio del kWh de tu factura, cuánto te cuesta. Abajo, las ofertas de hoy de ese equipo.
         </p>
 
-        <CalculadoraConsumo ofertas={ofertas} busquedas={busquedas} />
+        <CalculadoraConsumo ofertas={ofertas} busquedas={busquedas} landings={landings} />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>

@@ -3,10 +3,12 @@ import path from 'node:path'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getOfertas } from '@/lib/productos'
+import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import type { OfertaLight } from '@/components/OfertaCard'
 import OfertaCard from '@/components/OfertaCard'
+import IgTop from '@/components/IgTop'
+import LastUpdated from '@/components/LastUpdated'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosTicketAlto from '@/components/AtajosTicketAlto'
@@ -78,7 +80,19 @@ export default function InstagramPage() {
     historial: historial[o.id_ml],
   })
 
+  // las 3 más fuertes de hoy (orden de ganancia esperada del bot), con foto;
+  // salen del feed de abajo para no repetirlas
   const vistas = new Set<string>()
+  const top: OfertaLight[] = []
+  const titulosTop = new Set<string>()
+  for (const o of todas) {
+    if (top.length >= 3) break
+    if (!o.url_imagen || titulosTop.has(norm(o.titulo))) continue
+    titulosTop.add(norm(o.titulo))
+    vistas.add(o.id_ml)
+    top.push(light(o))
+  }
+  const enMinimo = todas.filter(o => o.minimo_historico).length
   const ofertas: OfertaLight[] = []
   for (const p of publicadosEnIG()) {
     const o = porId.get(p.id) ?? porTitulo.get(norm(p.title))
@@ -96,25 +110,31 @@ export default function InstagramPage() {
 
   return (
     <main className="min-h-screen">
-      <section className="max-w-3xl mx-auto px-4 pt-6 pb-4">
+      <section className="max-w-3xl mx-auto px-4 pt-3 pb-3">
         <div className="flex items-center gap-3">
-          <Image src="/personaje/avatar-256.webp" alt="Don Ofertín" width={64} height={64} className="rounded-full shrink-0" priority />
-          <div>
-            <h1 className="font-display text-2xl sm:text-3xl font-black leading-tight">Lo que viste en Instagram</h1>
-            <p className="text-sm text-zinc-400">Las últimas ofertas que publiqué, la más nueva primero.</p>
+          <Image src="/personaje/avatar-256.webp" alt="Don Ofertín" width={44} height={44} className="rounded-full shrink-0" priority />
+          <div className="min-w-0">
+            <h1 className="font-display text-xl font-black leading-tight">Las ofertas de hoy 👇</h1>
+            <p className="text-xs text-zinc-400 flex flex-wrap items-center gap-x-2">
+              <span>{todas.length} verificadas{enMinimo > 0 ? ` · ${enMinimo} en su mínimo histórico` : ''}</span>
+              <LastUpdated scrapedAt={getScrapedAt().toISOString()} />
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 pb-8">
-        {ofertas.length === 0 ? (
-          <p className="text-center text-zinc-500 py-6">Las ofertas que publiqué ya se terminaron, pero acá tenés las mejores de hoy.</p>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {ofertas.map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
-            ))}
-          </div>
+      <IgTop top={top} />
+
+      <section className="max-w-5xl mx-auto px-4 pb-8 pt-4">
+        {ofertas.length > 0 && (
+          <>
+            <h2 className="font-display text-lg font-black mb-3">Lo que viste en Instagram</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {ofertas.map((o, i) => (
+                <OfertaCard key={o.id_ml} producto={o} priority={i < 2} />
+              ))}
+            </div>
+          </>
         )}
         {/* si no le cerró esa oferta, a las comparativas que más venden */}
         <div className="-mx-4 sm:-mx-6 mt-2">

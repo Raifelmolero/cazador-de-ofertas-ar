@@ -151,6 +151,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             '@context': 'https://schema.org',
             '@type': 'Product',
             name: s.titulo,
+            sku: s.id,
+            url,
+            description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
             ...(s.img ? { image: s.img } : {}),
             offers: {
               '@type': 'Offer',
@@ -159,7 +162,6 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               availability: 'https://schema.org/InStock',
               url: s.url,
               validFrom: s.ultimo_visto,
-              priceValidUntil: s.ultimo_visto,
               description: veredicto,
             },
           },

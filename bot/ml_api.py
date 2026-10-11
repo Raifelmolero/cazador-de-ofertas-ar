@@ -85,8 +85,13 @@ def _get(path: str, token: str, request=_request):
             "Authorization": f"Bearer {token}", "Accept": "application/json"})
     except urllib.error.HTTPError as e:
         if e.code in (401, 403):
+            try:
+                cuerpo = e.read().decode("utf-8", "replace")[:300].replace("
+", " ")
+            except Exception:  # noqa: BLE001
+                cuerpo = ""
             print(f"[warn] ml_api: HTTP {e.code} en {path.split('?')[0]} — "
-                  "la app no tiene permiso para este recurso o el token no sirve")
+                  f"la app no tiene permiso para este recurso o el token no sirve | {cuerpo}")
         else:
             print(f"[warn] ml_api: HTTP {e.code} en {path.split('?')[0]}")
         return None

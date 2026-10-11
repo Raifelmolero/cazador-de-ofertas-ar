@@ -7,8 +7,9 @@ import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { CATEGORIAS, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
+import { CATEGORIAS, enFrase, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
+import { getContenidoCategoria } from '@/lib/categorias-contenido'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
@@ -65,7 +66,15 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
   const datos = getDatosCategoria(c)
   const resumen = resumenDatos(c, datos)
   const faqCalculada = faqDatos(c, datos)
-  const faqs = faqCalculada ? [faqCalculada, ...c.faqs] : c.faqs
+  const contenido = getContenidoCategoria(c.slug)
+  const faqsBase = faqCalculada ? [faqCalculada, ...c.faqs] : c.faqs
+  // Preguntas extra del contenido propio (sin repetir ninguna ya existente)
+  const faqs = [
+    ...faqsBase,
+    ...(contenido?.faqs ?? []).filter(f => !faqsBase.some(b => b.q.toLowerCase() === f.q.toLowerCase())),
+  ]
+  const mejoresCat = COMPARATIVAS.filter(x => x.categoria === c.slug && indexable(x))
+  const ofertasCat = LANDINGS.filter(x => x.categoria === c.slug && indexableLanding(x))
   const relacionados = enlacesRelacionados(c)
   // Tabla de precios de referencia: solo productos con ≥1 día de historia
   // propia (el dato que nadie más tiene y que buscadores/IAs pueden citar).
@@ -259,6 +268,37 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             <p className="text-sm text-zinc-400 mt-1">{g.descripcion}</p>
           </Link>
         ))}
+        {contenido && (
+          <section className="mb-10" aria-labelledby="comprar-mejor">
+            <h2 id="comprar-mejor" className="font-display text-xl sm:text-2xl font-black mb-3">
+              Cómo comprar {enFrase(c)} sin equivocarte
+            </h2>
+            <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">{contenido.intro}</p>
+            <h3 className="font-bold text-zinc-200 mt-5 mb-2">Criterios para decidir</h3>
+            <ol className="space-y-3 text-zinc-400 leading-relaxed list-decimal pl-5 marker:text-yellow-400">
+              {contenido.criterios.map(k => (
+                <li key={k.t}>
+                  <strong className="text-zinc-200">{k.t}.</strong> {k.d}
+                </li>
+              ))}
+            </ol>
+            {(mejoresCat.length > 0 || ofertasCat.length > 0) && (
+              <p className="mt-4 text-sm text-zinc-500">
+                Para pasar a la práctica:{' '}
+                {[
+                  ...mejoresCat.slice(0, 3).map(x => ({ href: `/mejores/${x.slug}`, texto: `comparativa de ${x.nombre}` })),
+                  ...ofertasCat.slice(0, 2).map(x => ({ href: `/ofertas/${x.slug}`, texto: x.titulo })),
+                ].map((e, i, arr) => (
+                  <span key={e.href}>
+                    <Link href={e.href} className="text-yellow-400/80 hover:text-yellow-400">{e.texto}</Link>
+                    {i < arr.length - 1 ? ' · ' : ''}
+                  </span>
+                ))}
+              </p>
+            )}
+          </section>
+        )}
+
         <section className="mb-10" aria-labelledby="datos-historial">
           <h2 id="datos-historial" className="font-display text-xl sm:text-2xl font-black mb-4">
             Datos del historial: {c.nombre.toLowerCase()}

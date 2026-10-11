@@ -249,6 +249,29 @@ def scrape_alert_text(blocked: bool, n: int) -> str:
             "Revisar si ML cambió el HTML.")
 
 
+SCRAPED_SNAPSHOT_PATH = BASE_DIR / "state" / "scraped_local.json"
+SNAPSHOT_MAX_HORAS = 14   # entre corridas manuales en la PC del dueño
+SNAPSHOT_MIN_DEALS = 20
+
+
+def load_scraped_snapshot(path: Path | None = None, ahora: datetime | None = None) -> list[dict]:
+    """Ofertas que bajó bot/tools/scraper_local.py desde la PC del dueño.
+    Solo si son recientes y suficientes; si no, lista vacía (sin efectos)."""
+    path = path or SCRAPED_SNAPSHOT_PATH
+    ahora = ahora or datetime.now(timezone.utc)
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+        ts = datetime.fromisoformat(d["scraped_at"])
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone.utc)
+        deals = [x for x in d.get("deals", []) if isinstance(x, dict) and x.get("id")]
+    except Exception:  # noqa: BLE001 — sin archivo o ilegible
+        return []
+    if ahora - ts > timedelta(hours=SNAPSHOT_MAX_HORAS) or len(deals) < SNAPSHOT_MIN_DEALS:
+        return []
+    return deals
+
+
 def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0) -> list[dict]:
     """Baja y parsea las páginas de ofertas (y las de ofertas relámpago y las
     de categorías de ticket alto)."""
@@ -280,6 +303,10 @@ def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int =
                 deals.append(d)
         print(f"[info] página {page}: {len(page_deals)} tarjetas válidas")
         time.sleep(random.uniform(1.5, 3.0))
+    if not deals:
+        deals = load_scraped_snapshot()
+        if deals:
+            print(f"[info] scraping directo sin ofertas: uso el snapshot local ({len(deals)} ofertas)")
     if not deals and ml_api.has_credentials():
         print("[info] scraping sin ofertas: probando API oficial de ML")
         deals = ml_api.fetch_deals_api()

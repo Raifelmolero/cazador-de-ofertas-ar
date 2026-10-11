@@ -87,6 +87,7 @@ class TestApi(unittest.TestCase):
     def test_fetch_deals_usa_api_solo_si_scraping_0(self):
         with mock.patch.object(bot, "http_get", return_value=b"<html></html>"), \
              mock.patch.object(bot.time, "sleep"), \
+             mock.patch.object(bot, "SCRAPED_SNAPSHOT_PATH", Path("/no/existe.json")), \
              mock.patch.dict(os.environ, ENV, clear=True), \
              mock.patch.object(ml_api, "fetch_deals_api", return_value=[{"id": f"MLA{i}", "discount": 30} for i in range(25)]) as m:
             self.assertEqual(len(bot.fetch_deals(pages=1)), 25)
@@ -334,6 +335,33 @@ class TestWriteSiteDataCatalogo(unittest.TestCase):
 
 class TestGuardaFuenteApi(unittest.TestCase):
     def test_descarta_api_con_pocas_ofertas_con_descuento(self):
-        with mock.patch.object(bot, "http_get", return_value=b"<html></html>"),              mock.patch.object(bot.time, "sleep"),              mock.patch.dict(os.environ, ENV, clear=True),              mock.patch.object(ml_api, "fetch_deals_api",
+        with mock.patch.object(bot, "http_get", return_value=b"<html></html>"),              mock.patch.object(bot.time, "sleep"),              mock.patch.object(bot, "SCRAPED_SNAPSHOT_PATH", Path("/no/existe.json")), \
+             mock.patch.dict(os.environ, ENV, clear=True),              mock.patch.object(ml_api, "fetch_deals_api",
                                return_value=[{"id": "MLA9", "discount": 0}]):
             self.assertEqual(bot.fetch_deals(pages=1), [])
+
+
+class TestSnapshotLocal(unittest.TestCase):
+    def _escribir(self, tmp, horas, n):
+        import json
+        from datetime import datetime, timedelta, timezone
+        ts = datetime.now(timezone.utc) - timedelta(hours=horas)
+        pth = Path(tmp) / "scraped.json"
+        pth.write_text(json.dumps({"scraped_at": ts.isoformat(),
+                                   "deals": [{"id": f"MLA{i}", "discount": 20} for i in range(n)]}),
+                       encoding="utf-8")
+        return pth
+
+    def test_usa_snapshot_fresco(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(len(bot.load_scraped_snapshot(self._escribir(tmp, 2, 30))), 30)
+
+    def test_descarta_viejo_o_chico(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(bot.load_scraped_snapshot(self._escribir(tmp, 30, 30)), [])
+            self.assertEqual(bot.load_scraped_snapshot(self._escribir(tmp, 1, 5)), [])
+
+    def test_sin_archivo(self):
+        self.assertEqual(bot.load_scraped_snapshot(Path("/no/existe.json")), [])

@@ -660,14 +660,17 @@ def write_site_data(deals: list[dict], affiliate_id: str,
         margen_premium = precio - precio * COMISION_PREMIUM_PCT - fijo
         if margen_clasico <= 0:
             continue
+        # Fuente catálogo sin precio anterior (discount 0): no se inventa
+        # tachado ni "0% OFF"; el sitio los trata como precio sin descuento.
+        con_desc = d["discount"] > 0 and d["price_prev"] > d["price_cur"]
         items.append(
             {
                 "id_ml": d["id"],
                 "titulo": d["title"],
                 "categoria_principal": "ofertas del día",
                 "precio_actual": round(precio, 2),
-                "precio_anterior": d["price_prev"],
-                "descuento_pct": d["discount"],
+                "precio_anterior": d["price_prev"] if con_desc else None,
+                "descuento_pct": d["discount"] if con_desc else None,
                 "minimo_historico": bool(d.get("hist_low")),
                 "relampago": bool(d.get("relampago")),
                 # Ganancia esperada relativa (precio × peso de comisión): la

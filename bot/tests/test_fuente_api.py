@@ -36,7 +36,8 @@ class TestAlerta(unittest.TestCase):
 
     def test_fetch_deals_marca_bloqueo(self):
         with mock.patch.object(bot, "http_get", return_value=b"negative_traffic"), \
-             mock.patch.object(bot.time, "sleep"), mock.patch.dict(os.environ, {}, clear=True):
+             mock.patch.object(bot.time, "sleep"), mock.patch.dict(os.environ, {}, clear=True), \
+             mock.patch.object(bot, "load_scraped_snapshot", return_value=[]):
             self.assertEqual(bot.fetch_deals(pages=1), [])
         self.assertTrue(bot.SCRAPE_BLOCKED)
 

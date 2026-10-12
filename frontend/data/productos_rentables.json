@@ -1,8 +1,8 @@
 {
  "metadata": {
-  "scraped_at": "2026-10-12T19:10:36+00:00",
+  "scraped_at": "2026-10-12T19:46:21+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 30
+  "total_items": 28
  },
  "items": [
   {
@@ -50,29 +50,6 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 121011.38,
    "margen_neto_premium_ars": 102003.62
-  },
-  {
-   "id_ml": "MLA43472281",
-   "titulo": "Compresor De Aire Portátil Gadnic Para Inflador De Neumáticos 50W Pantalla Dual LCD 150 PSI 17 Lmin",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 53149.0,
-   "precio_anterior": 105599,
-   "descuento_pct": 49,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 14450,
-   "precio_minimo_registrado": 53149,
-   "seguimiento_desde": "2026-10-12",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/compresor-de-aire-portatil-gadnic-para-inflador-de-neumaticos-50w-pantalla-dual-lcd-150-psi-17-lmin/p/MLA43472281?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_888368-MLA110992831005_042026-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 45341.41,
-   "margen_neto_premium_ars": 38219.45
   },
   {
    "id_ml": "MLA1055308632",
@@ -257,29 +234,6 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 279815.95,
    "margen_neto_premium_ars": 235864.08
-  },
-  {
-   "id_ml": "T3617978640809476942",
-   "titulo": "Desmalezadora Motoguadaña 52cc Omaha 3hp + Cuchilla Omaha",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 146911.0,
-   "precio_anterior": 264581,
-   "descuento_pct": 44,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 22037,
-   "precio_minimo_registrado": 146911,
-   "seguimiento_desde": "2026-10-12",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/desmalezadora-motoguadana-52cc-omaha-3hp--cuchilla-omaha/up/MLAU4613538871?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_654838-MLA114596967418_082026-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 125329.77,
-   "margen_neto_premium_ars": 105643.7
   },
   {
    "id_ml": "MLA62318945",

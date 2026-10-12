@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-12T19:10:36+00:00",
+  "generado": "2026-10-12T19:47:35+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,16 +8,37 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-08T20:41:39+00:00",
+      "ultima_actividad": "2026-10-12T19:47:35+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
           "tarea": "Revisó 48 productos en la última corrida"
         }
       ],
-      "metricas": [],
+      "metricas": [
+        {
+          "label": "Telegram",
+          "valor": 5
+        },
+        {
+          "label": "whatsapp_kit",
+          "valor": 5
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Threads",
+          "valor": 1
+        },
+        {
+          "label": "Facebook",
+          "valor": 1
+        }
+      ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Aire Acondicionado Split TCL Elite Frio Calor On Off 3350W 2900 Frigorías TACA-3"
+      "ultimo_trabajo": "Compresor De Aire Portátil Gadnic Para Inflador De Neumáticos 50W Pantalla Dual "
     },
     {
       "id": "investigacion",

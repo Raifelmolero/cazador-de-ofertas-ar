@@ -210,16 +210,24 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
         {/* Móvil: foto chica al costado + precio y botón de compra visibles sin scroll */}
         <div className="flex flex-row gap-4 sm:gap-5 mb-5">
           {s.img && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={s.img}
-              alt={s.titulo}
-              width={160}
-              height={160}
-              fetchPriority="high"
-              decoding="async"
-              className="w-24 h-24 sm:w-40 sm:h-40 object-contain bg-white rounded-xl p-1.5 sm:p-2 shrink-0"
-            />
+            <a
+              href={s.url}
+              data-seccion="precio_foto"
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="shrink-0"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={s.img}
+                alt={s.titulo}
+                width={160}
+                height={160}
+                fetchPriority="high"
+                decoding="async"
+                className="w-24 h-24 sm:w-40 sm:h-40 object-contain bg-white rounded-xl p-1.5 sm:p-2"
+              />
+            </a>
           )}
           <div className="min-w-0">
             <h1 className="font-display text-xl sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">

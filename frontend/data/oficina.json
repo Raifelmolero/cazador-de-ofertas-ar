@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-12T19:47:35+00:00",
+  "generado": "2026-10-12T22:31:14+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-12T19:47:35+00:00",
+      "ultima_actividad": "2026-10-12T22:31:13+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,7 +18,7 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 5
+          "valor": 10
         },
         {
           "label": "whatsapp_kit",
@@ -26,19 +26,19 @@
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Facebook",
-          "valor": 1
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Compresor De Aire Portátil Gadnic Para Inflador De Neumáticos 50W Pantalla Dual "
+      "ultimo_trabajo": "Freidora De Aire Unnic Air Fryer Frei100 Con Pantalla Digital 10 Litros Con 8 Pr"
     },
     {
       "id": "investigacion",
@@ -92,17 +92,17 @@
         },
         {
           "label": "Comparativas",
-          "valor": 48
+          "valor": 56
         }
       ],
       "entregas": [
         {
           "fecha": "",
-          "titulo": "mejores piletas"
+          "titulo": "mejores cintas de correr"
         },
         {
           "fecha": "",
-          "titulo": "mejores bicicletas"
+          "titulo": "mejores aspiradoras robot"
         },
         {
           "fecha": "",
@@ -194,7 +194,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-11T16:33:38+00:00",
+      "ultima_actividad": "2026-10-12T20:06:56+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -206,7 +206,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 68 h"
+          "titulo": "✔ Última publicación hace 0 h"
         },
         {
           "fecha": "",

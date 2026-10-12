@@ -1,8 +1,8 @@
 {
  "metadata": {
-  "scraped_at": "2026-10-12T19:46:21+00:00",
+  "scraped_at": "2026-10-12T22:30:07+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 28
+  "total_items": 27
  },
  "items": [
   {
@@ -167,29 +167,6 @@
    "margen_neto_premium_ars": 286818.07
   },
   {
-   "id_ml": "MLA32455147",
-   "titulo": "Escalera Articulada Dieléctrica Stanley 16 Escalones 4x4 Aluminio 150 Kg",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 276366.0,
-   "precio_anterior": 407771,
-   "descuento_pct": 32,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 6909,
-   "precio_minimo_registrado": 274227,
-   "seguimiento_desde": "2026-10-03",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/escalera-articulada-dielectrica-stanley-16-escalones-4x4-aluminio-150-kg/p/MLA32455147?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_765870-MLA99936631785_112025-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 235767.83,
-   "margen_neto_premium_ars": 198734.79
-  },
-  {
    "id_ml": "T6718919765637735318",
    "titulo": "Crema Anticelulitis Y Reafirmante Altiér + Masajeador Neutra",
    "categoria_principal": "ofertas del día",
@@ -234,6 +211,29 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 279815.95,
    "margen_neto_premium_ars": 235864.08
+  },
+  {
+   "id_ml": "MLA55516866",
+   "titulo": "Freidora De Aire Unnic Air Fryer Frei100 Con Pantalla Digital 10 Litros Con 8 Programas Preestablecidos Cocina Saludable Sin Aceite 1700 W Ideal Para",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 111799.0,
+   "precio_anterior": 169999,
+   "descuento_pct": 34,
+   "minimo_historico": false,
+   "relampago": false,
+   "prioridad": 14087,
+   "precio_minimo_registrado": 111799,
+   "seguimiento_desde": "2026-10-12",
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/freidora-de-aire-unnic-air-fryer-frei100-con-pantalla-digital-10-litros-con-8-programas-preestablecidos-cocina-saludable-sin-aceite-1700-w-ideal-para-hogar-oficina-color-negro/p/MLA55516866?matt_word=web&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_888110-MLA99502623390_112025-AB.webp",
+   "comision_clasica_pct": 0.1469,
+   "comision_premium_pct": 0.2809,
+   "retencion_iibb_pct": 0.0,
+   "costo_envio_base_ars": 0.0,
+   "margen_neto_clasico_ars": 95375.73,
+   "margen_neto_premium_ars": 80394.66
   },
   {
    "id_ml": "MLA62318945",
@@ -418,29 +418,6 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 237843.43,
    "margen_neto_premium_ars": 200484.36
-  },
-  {
-   "id_ml": "T2976479575994104278",
-   "titulo": "Secadora De Ropa Por Calor Electrico 4 Kilo Kanji Drymchwt4k Blanco",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 299678.0,
-   "precio_anterior": 447972,
-   "descuento_pct": 33,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 7492,
-   "precio_minimo_registrado": 299678,
-   "seguimiento_desde": "2026-10-12",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/secadora-de-ropa-por-calor-electrico-4-kilo-kanji-drymchwt4k/up/MLAU3687428319?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_681325-MLA101664837928_122025-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 255655.3,
-   "margen_neto_premium_ars": 215498.45
   },
   {
    "id_ml": "T2557377425489284156",

@@ -18,7 +18,11 @@ jobs:
     steps:
       # Acción de terceros fijada por commit (MIT, solo hace requests de lectura
       # al sitio; sin IndexNow: el repo ya tiene su propio ping).
+      # continue-on-error: con 0 problemas ("All clear") la acción sale con código 1
+      # (su grep de "N issue" no matchea bajo pipefail); eso mandaba un mail de
+      # "Run failed" justo cuando el sitio está bien.
       - uses: iamphera/sitepreflight@e77c619de0142a04e94ddd14cf8c56e94053fae2
+        continue-on-error: true
         with:
           url: https://cazadordeofertas.com.ar
           limit: "150"

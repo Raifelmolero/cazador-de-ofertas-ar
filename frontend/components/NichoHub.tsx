@@ -116,10 +116,37 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
           <p className="mt-4 inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
             <LastUpdated scrapedAt={scrapedAt} /> · {ofertas.length} {ofertas.length === 1 ? 'oferta' : 'ofertas'} hoy
           </p>
+          {n.busquedas[0] && (
+            <a
+              href={busquedaML(n.busquedas[0], n.etiqueta)}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              data-seccion={`hub_${n.slug}_hero`}
+              className="mt-4 flex w-full items-center justify-center rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black transition-colors hover:bg-yellow-300 sm:inline-flex sm:w-auto"
+            >
+              Ver {n.busquedas[0]} en Mercado Libre ↗
+            </a>
+          )}
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div data-seccion={`hub_${n.slug}_ofertas`}>
+        <h2 className="font-display text-xl sm:text-2xl font-black mb-4">En oferta hoy</h2>
+        {ofertas.length === 0 ? (
+          <p className="text-sm text-zinc-500 mb-8">
+            Hoy no apareció ningún producto de este rubro con descuento real. Las ofertas cambian 3 veces por día:
+            mientras tanto, usá las búsquedas de arriba o sumate al canal.
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+            {ofertasLight.map((o, i) => (
+              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+            ))}
+          </div>
+        )}
+        </div>
+
         {cats.length > 1 && (
           <>
             <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Por rubro</h2>
@@ -144,19 +171,6 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
           ))}
         </ul>
 
-        <h2 className="font-display text-xl sm:text-2xl font-black mb-4">En oferta hoy</h2>
-        {ofertas.length === 0 ? (
-          <p className="text-sm text-zinc-500 mb-6">
-            Hoy no apareció ningún producto de este rubro con descuento real. Las ofertas cambian 3 veces por día:
-            mientras tanto, usá las búsquedas de arriba o sumate al canal.
-          </p>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertasLight.map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
-            ))}
-          </div>
-        )}
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">

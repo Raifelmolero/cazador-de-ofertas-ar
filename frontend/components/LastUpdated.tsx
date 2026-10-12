@@ -12,20 +12,33 @@ function formatRelative(date: Date, ahora: number): string {
   return `hace ${d} día${d !== 1 ? 's' : ''}`
 }
 
+// Fecha fija en hora argentina (UTC-3), sin depender de Intl/locale del entorno.
+function fechaAbsoluta(date: Date): string {
+  const d = new Date(date.getTime() - 3 * 3_600_000)
+  const p = (n: number) => String(n).padStart(2, '0')
+  return `el ${p(d.getUTCDate())}/${p(d.getUTCMonth() + 1)} a las ${p(d.getUTCHours())}:${p(d.getUTCMinutes())}`
+}
+
 export default function LastUpdated({ scrapedAt }: { scrapedAt: string }) {
   const date = useMemo(() => new Date(scrapedAt), [scrapedAt])
   // Un solo "ahora" en estado, que el intervalo refresca: leer el reloj durante
   // el render es impuro (Next 16 lo marca) y además daba dos lecturas distintas
   // para el texto y para el semáforo.
-  const [ahora, setAhora] = useState(() => Date.now())
+  // Inicia en null: servidor y primer render del cliente emiten el mismo texto
+  // (fecha absoluta, determinista); el "hace X min" aparece tras montar.
+  const [ahora, setAhora] = useState<number | null>(null)
 
   useEffect(() => {
+    const t = setTimeout(() => setAhora(Date.now()), 0)
     const id = setInterval(() => setAhora(Date.now()), 60_000)
-    return () => clearInterval(id)
+    return () => {
+      clearTimeout(t)
+      clearInterval(id)
+    }
   }, [])
 
-  const label = formatRelative(date, ahora)
-  const isStale = ahora - date.getTime() > 48 * 3_600_000
+  const label = ahora === null ? fechaAbsoluta(date) : formatRelative(date, ahora)
+  const isStale = ahora !== null && ahora - date.getTime() > 48 * 3_600_000
 
   return (
     <span className="inline-flex items-center gap-1.5">

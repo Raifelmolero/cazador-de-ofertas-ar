@@ -19,6 +19,7 @@ import TendenciasML from '@/components/TendenciasML'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { getTendencias } from '@/lib/tendencias'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
+import DesdeAsistenteIA from '@/components/DesdeAsistenteIA'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
@@ -91,7 +92,6 @@ export default function HoyPage() {
     name: 'Ofertas de hoy — Cazador de Ofertas AR',
     url: DEALS_URL,
     numberOfItems: ofertas.length,
-    dateModified: scrapedAt,
     itemListElement: ofertas.slice(0, 20).map((o, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -124,6 +124,16 @@ export default function HoyPage() {
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${DEALS_URL}/#webpage`,
+        url: DEALS_URL,
+        name: 'Ofertas de Mercado Libre Argentina hoy',
+        inLanguage: 'es-AR',
+        dateModified: scrapedAt,
+        isPartOf: { '@id': WEBSITE_ID },
+        about: { '@id': ORG_ID },
+      },
       {
         '@type': 'Organization',
         '@id': ORG_ID,
@@ -334,6 +344,7 @@ export default function HoyPage() {
       </section>
 
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
+      <DesdeAsistenteIA />
       <BannerTemporada />
       {/* Celular: 3 ofertas con botón antes de cualquier fila de atajos y recién
           después los rubros que más venden (antes la 1ª tarjeta con botón

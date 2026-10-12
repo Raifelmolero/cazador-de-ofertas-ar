@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import { getEstudio } from '@/lib/estudio'
-import { DEALS_URL, ORG_ID } from '@/lib/marca'
+import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 const URL = `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`
 
 const e = getEstudio()
@@ -11,6 +11,11 @@ const numero = (n: number) => n.toLocaleString('es-AR')
 const fecha = (iso: string) => iso.split('-').reverse().join('/')
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
 const nombreMes = (ym: string) => `${MESES[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
+/** Fecha en que se publicó el estudio (primer commit de esta página). */
+const PUBLICADO = '2026-09-26'
+const fechaAR = (iso: string) =>
+  new Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(iso))
+const LICENCIA = 'https://creativecommons.org/licenses/by/4.0/'
 const unoCada = Math.max(1, Math.round(100 / (e.pctInfladas || 100)))
 
 const TITULO = `1 de cada ${unoCada} ofertas de Mercado Libre Argentina tiene el descuento inflado`
@@ -53,6 +58,34 @@ export default function EstudioPage() {
       spatialCoverage: 'Argentina',
       variableMeasured: ['ofertas revisadas', 'ofertas con descuento inflado'],
       isAccessibleForFree: true,
+      license: LICENCIA,
+      datePublished: PUBLICADO,
+      inLanguage: 'es-AR',
+      isPartOf: { '@id': WEBSITE_ID },
+      distribution: [{ '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: `${DEALS_URL}/datos/estudio.csv` }],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: TITULO,
+      description: DATO,
+      url: URL,
+      mainEntityOfPage: URL,
+      inLanguage: 'es-AR',
+      datePublished: PUBLICADO,
+      ...(e.ultima ? { dateModified: e.ultima } : {}),
+      author: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+      publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+      isPartOf: { '@id': WEBSITE_ID },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
+        { '@type': 'ListItem', position: 2, name: 'Datos abiertos', item: `${DEALS_URL}/datos` },
+        { '@type': 'ListItem', position: 3, name: 'Estudio de descuentos inflados', item: URL },
+      ],
     },
     {
       '@context': 'https://schema.org',
@@ -88,6 +121,13 @@ export default function EstudioPage() {
           </Link>
           .
         </p>
+
+        {e.ultima && (
+          <p className="text-xs text-zinc-500 mb-6">
+            Última actualización: <time dateTime={e.ultima}>{fechaAR(e.ultima)}</time> · datos del {fecha(e.desde)} al{' '}
+            {fecha(e.hasta)}. Se recalculan con cada pasada del bot.
+          </p>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
           <div className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 p-4">

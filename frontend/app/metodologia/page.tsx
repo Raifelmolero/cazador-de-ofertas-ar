@@ -99,10 +99,19 @@ export default function MetodologiaPage() {
     isPartOf: { '@id': WEBSITE_ID },
     about: ['Descuentos inflados en Mercado Libre Argentina', 'Historial de precios', 'Mínimo histórico de precio'],
   }
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
+      { '@type': 'ListItem', position: 2, name: 'Metodología', item: URL },
+    ],
+  }
 
   return (
     <main className="min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <header className="border-b border-zinc-900 bg-zinc-950/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
@@ -116,6 +125,13 @@ export default function MetodologiaPage() {
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-5 [text-wrap:balance]">
           Cómo medimos los precios y los descuentos
         </h1>
+        <p className="text-lg text-zinc-200 leading-relaxed mb-5 [text-wrap:pretty]">
+          <strong className="text-zinc-100">Respuesta corta:</strong> tres veces por día un programa
+          recorre mercadolibre.com.ar/ofertas y guarda el precio de cada producto. Una oferta cuenta como{' '}
+          <em>descuento inflado</em> cuando ese mismo producto ya lo habíamos registrado al menos 5% más barato antes, y
+          lleva el sello de <em>mínimo histórico</em> cuando está en el precio más bajo que registramos. De{' '}
+          {numero(e.revisadas)} ofertas revisadas, el {e.pctInfladas.toLocaleString('es-AR')}% estaba inflada.
+        </p>
         <p className="text-lg text-zinc-300 leading-relaxed mb-8 [text-wrap:pretty]">
           Todo lo que publicamos (las ofertas verificadas, el sello de mínimo histórico, los descuentos inflados y el
           estudio) sale de un mismo registro de precios que armamos nosotros. Acá contamos cómo se arma, qué quiere decir

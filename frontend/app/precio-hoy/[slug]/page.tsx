@@ -9,6 +9,7 @@ import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
 import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
+import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
@@ -83,6 +84,18 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   const jsonLd = [
     {
       '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: titulo(p.nombre),
+      description: respuesta,
+      url,
+      inLanguage: 'es-AR',
+      dateModified: scrapedAt,
+      isPartOf: { '@id': WEBSITE_ID },
+      publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+      about: p.nombre,
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
@@ -101,6 +114,8 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
             '@context': 'https://schema.org',
             '@type': 'Product',
             name: p.nombre,
+            description: respuesta,
+            url,
             offers: {
               '@type': 'AggregateOffer',
               priceCurrency: 'ARS',

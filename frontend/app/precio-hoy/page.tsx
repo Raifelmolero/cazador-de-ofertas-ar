@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import LastUpdated from '@/components/LastUpdated'
+import { getScrapedAt } from '@/lib/productos'
 import { PRECIOS_HOY, ofertasDe } from '@/lib/preciohoy'
+import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/precio-hoy`
@@ -19,8 +22,43 @@ export const metadata: Metadata = {
 const precio = (n: number) => '$' + Math.round(n).toLocaleString('es-AR')
 
 export default function PrecioHoyIndex() {
+  const scrapedAt = getScrapedAt().toISOString()
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: TITULO,
+      description: DESC,
+      url: URL,
+      inLanguage: 'es-AR',
+      dateModified: scrapedAt,
+      isPartOf: { '@id': WEBSITE_ID },
+      publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: PRECIOS_HOY.length,
+        itemListElement: PRECIOS_HOY.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: `Precio de ${p.nombre} hoy`,
+          url: `${DEALS_URL}/precio-hoy/${p.slug}`,
+        })),
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
+        { '@type': 'ListItem', position: 2, name: 'Precio hoy', item: URL },
+      ],
+    },
+  ]
   return (
     <main className="min-h-screen">
+      {jsonLd.map((j, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
+      ))}
       <header className="border-b border-zinc-900 bg-zinc-950/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
@@ -30,7 +68,13 @@ export default function PrecioHoyIndex() {
       </header>
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <h1 className="font-display text-3xl sm:text-4xl font-black leading-[1.1] tracking-tight mb-4">{TITULO}</h1>
-        <p className="text-zinc-400 mb-8">{DESC}</p>
+        <p className="text-zinc-300 mb-4">
+          <strong className="text-zinc-100">Respuesta corta:</strong> {DESC} Cada página tiene el precio más bajo de
+          hoy, la mediana y la cantidad de ofertas reales, con fecha de actualización.
+        </p>
+        <p className="mb-8 inline-flex text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
+          <LastUpdated scrapedAt={scrapedAt} />
+        </p>
         <ul className="divide-y divide-zinc-800 rounded-xl border border-zinc-800">
           {PRECIOS_HOY.map(p => {
             const o = ofertasDe(p)

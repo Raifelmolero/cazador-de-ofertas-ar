@@ -151,12 +151,22 @@ export default function CuponesPage() {
             vas a encontrar códigos inventados: te explicamos dónde están los reales y cómo comprobar que el precio
             con descuento sea de verdad bajo.
           </p>
-          <a
-            href="#ofertas-hoy"
-            className="mt-4 flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 font-black text-black hover:bg-yellow-300 transition-colors"
-          >
-            🔥 Ver las ofertas de hoy con descuento real ↓
-          </a>
+          <div data-seccion="cupones_hero" className="mt-4 flex flex-col gap-2">
+            <a
+              href={paginaML('https://www.mercadolibre.com.ar/cupones')}
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 font-black text-black hover:bg-yellow-300 transition-colors"
+            >
+              🎟️ Ver mis cupones en Mercado Libre ↗
+            </a>
+            <a
+              href="#ofertas-hoy"
+              className="flex items-center justify-center rounded-xl border border-yellow-400/40 px-4 py-3 font-bold text-yellow-200 hover:border-yellow-400 transition-colors"
+            >
+              🔥 Ver las ofertas de hoy con descuento real ↓
+            </a>
+          </div>
         </div>
 
         <div className="space-y-8 text-zinc-400 leading-relaxed">

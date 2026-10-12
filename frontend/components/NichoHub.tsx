@@ -5,6 +5,8 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { topDescuento } from '@/lib/relacionados'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria, ofertasDeCategoria, type Categoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
@@ -46,6 +48,7 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
   }))
+  const top3 = topDescuento(ofertasLight, 3)
   const guias = GUIAS.filter(g => g.categoria && n.categorias.includes(g.categoria.slug))
   const comparativas = COMPARATIVAS.filter(c => c.categoria && n.categorias.includes(c.categoria))
   const seguidos = n.categorias.flatMap(seguidosDeCategoria).slice(0, 30)
@@ -103,13 +106,13 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
         </div>
       </header>
 
-      <section className="border-b border-zinc-900 px-4 py-8 sm:py-12">
+      <section className="border-b border-zinc-900 px-4 py-5 sm:py-12">
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">{n.marca}</span>
           </nav>
-          <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
+          <h1 className="font-display text-2xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-3 sm:mb-4 [text-wrap:balance]">
             {n.titulo}
           </h1>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">{n.intro}</p>
@@ -129,6 +132,13 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
           )}
         </div>
       </section>
+
+      <TopOfertasHoy
+        ofertas={top3}
+        titulo="🔥 Las 3 ofertas con más descuento hoy"
+        seccion={`hub_${n.slug}_top3`}
+        id={`top3-${n.slug}`}
+      />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div data-seccion={`hub_${n.slug}_ofertas`}>

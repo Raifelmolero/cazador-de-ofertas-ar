@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
+import TambienTeServira from '@/components/TambienTeServira'
+import { extrasDeCategoria, relacionadosDePrecio } from '@/lib/relacionados'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import Footer from '@/components/Footer'
@@ -111,6 +113,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const ficha = getProductoById(s.id)
   const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidosPrincipales())
   const nombre = nombreCorto(s)
+  const tambien = relacionadosDePrecio(s, 4)
+  const tambienExtras = extrasDeCategoria(cat?.slug)
 
   const veredicto = !enOferta
     ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(s.min)} el ${fecha(s.min_ts)}.`
@@ -306,6 +310,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             </ul>
           </section>
         )}
+
+        <TambienTeServira items={tambien} extras={tambienExtras} seccion="precio_tambien" />
 
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
           <Dato label={enOferta ? 'Precio hoy' : 'Último precio'} valor={precio(hoy)} />

@@ -18,6 +18,8 @@ import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { topDescuento } from '@/lib/relacionados'
 import {
   enlacesRelacionados,
   faqDatos,
@@ -101,6 +103,9 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
   }))
 
   const destacado = elegirDestacado(ofertasLight)
+  const top3 = topDescuento(ofertasLight, 3)
+  // El destacado solo va aparte si no está ya entre las 3 de arriba (no duplicar)
+  const destacadoAparte = destacado && !top3.some(o => o.id_ml === destacado.id_ml)
 
   // Igual que /hoy: las ofertas se refrescan 3 veces por día, así que valen hasta hoy
   const validUntil = new Date()
@@ -191,7 +196,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
         </div>
       </header>
 
-      <section className="border-b border-zinc-900 px-4 py-8 sm:py-12">
+      <section className="border-b border-zinc-900 px-4 py-5 sm:py-12">
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
@@ -226,12 +231,19 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
         </div>
       </section>
 
+      <TopOfertasHoy
+        ofertas={top3}
+        titulo={`🔥 Las 3 ofertas con más descuento en ${c.nombre.toLowerCase()}`}
+        seccion={`cat_${c.slug}_top3`}
+        id="top3-categoria"
+      />
+
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {ofertas.length === 0 ? (
           <SinOfertas que={`de ${enFrase(c)}`} enlaces={enlacesAfines({ categoria: c.slug })} />
         ) : (
           <>
-          {destacado && (
+          {destacado && destacadoAparte && (
             <div className="max-w-3xl mx-auto">
               <DestacadoML producto={destacado} lista={ofertasLight} rotulo={`Destacado de ${c.nombre.toLowerCase()} hoy`} />
             </div>

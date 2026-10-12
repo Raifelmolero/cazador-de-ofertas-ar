@@ -10,6 +10,8 @@ import { busquedaML } from '@/lib/afiliado'
 import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
+import TambienTeServira from '@/components/TambienTeServira'
+import { extrasDeCategoria, relacionadosDePrecioHoy } from '@/lib/relacionados'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
@@ -61,6 +63,10 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   const max = precios[precios.length - 1]
   const med = mediana(precios)
   const cat = p.categoria ? getCategoria(p.categoria) : undefined
+  // Fichas de la categoría que no son de este producto genérico (ya listadas arriba)
+  const referencia = med || mediana(seguidos.map(precioActual))
+  const tambien = relacionadosDePrecioHoy(p.categoria, new Set(seguidos.map(x => x.id)), referencia, 4)
+  const tambienExtras = extrasDeCategoria(p.categoria, p.slug)
 
   // El párrafo que un buscador o una IA puede citar tal cual
   const respuesta = ofertas.length
@@ -244,6 +250,8 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
             </div>
           </section>
         )}
+
+        <TambienTeServira items={tambien} extras={tambienExtras} seccion="preciohoy_tambien" />
 
         <div className="flex flex-wrap gap-3 mb-10">
           <a

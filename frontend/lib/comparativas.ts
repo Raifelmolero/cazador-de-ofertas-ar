@@ -949,6 +949,170 @@ export const COMPARATIVAS: Comparativa[] = [
       'Superficie nivelada y lona de base para que no se rompa el piso de la pileta.',
     ],
   },
+  {
+    slug: 'mejores-iphone',
+    categoria: 'celulares',
+    nombre: 'iPhone',
+    titulo: `Mejores iPhone en oferta ${AÑO}: qué modelo comprar`,
+    descripcion:
+      'Comparativa de iPhone en oferta hoy en Mercado Libre Argentina: modelo, almacenamiento, precio, descuento y precio mínimo registrado. Qué mirar antes de pagar un equipo de gama alta.',
+    intro:
+      'Los iPhone en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada modelo y capacidad. La tabla se actualiza 3 veces por día.',
+    keywords: ['iphone'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para iphone', 'case', 'carcasa', 'reacondicionado'],
+    permitir: ['funda'],
+    criterios: [
+      'Generación: el modelo anterior suele bajar bastante cuando sale el nuevo y cubre casi todo el uso diario.',
+      'Versión: Pro y Pro Max suman cámaras y pantalla; los básicos y los "e" son más baratos con lo esencial.',
+      'Almacenamiento: no se amplía. 256 GB es el piso cómodo si grabás video; 128 GB queda justo en pocos años.',
+      'Vendedor: tienda oficial o distribuidor autorizado para tener garantía de Apple en Argentina.',
+      'Cuotas sin interés: en equipos de varios millones compará el precio en cuotas contra el de un pago.',
+    ],
+    guia: 'que-celular-gama-alta-comprar',
+  },
+  {
+    slug: 'mejores-samsung-galaxy',
+    categoria: 'celulares',
+    nombre: 'celulares Samsung Galaxy',
+    titulo: `Mejores Samsung Galaxy en oferta ${AÑO}: serie A, S y plegables`,
+    descripcion:
+      'Comparativa de celulares Samsung Galaxy (serie A, S y Z) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Cómo elegir entre las series.',
+    intro:
+      'Los Samsung Galaxy en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['samsung galaxy', 'galaxy a', 'galaxy s', 'galaxy z', 'galaxy m'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para samsung', 'tablet', 'watch', 'buds', 'reloj', 'auricular', 'case', 'carcasa'],
+    permitir: ['funda'],
+    criterios: [
+      'Serie: la A es la gama media (la que más se vende); la S es gama alta con mejores cámaras y más años de actualizaciones; la Z son plegables.',
+      'Dentro de la serie A, los números más altos suman pantalla AMOLED y mejor cámara que los de entrada.',
+      'Memoria: 128 GB y 6 u 8 GB de RAM como piso si querés que dure; con 4 GB de RAM se queda corto antes.',
+      'Conectividad 5G y que sea la versión oficial para Argentina, con garantía de Samsung.',
+      'Años de actualizaciones: los Galaxy S y los A más nuevos prometen varios años de parches de seguridad.',
+    ],
+    guia: 'que-celular-comprar-segun-presupuesto',
+  },
+  {
+    slug: 'mejores-motorola',
+    categoria: 'celulares',
+    nombre: 'celulares Motorola',
+    titulo: `Mejores celulares Motorola en oferta ${AÑO}: Moto G, Moto E y Edge`,
+    descripcion:
+      'Comparativa de celulares Motorola (Moto G, Moto E, Edge) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Cuál conviene según el uso.',
+    intro:
+      'Los Motorola en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['motorola', 'moto g', 'moto e', 'moto edge', 'razr'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para moto', 'case', 'carcasa', 'tablet', 'auricular'],
+    permitir: ['funda'],
+    criterios: [
+      'Línea: Moto E es la de entrada, Moto G la gama media más elegida y Edge la gama alta; Razr son los plegables.',
+      'Android casi puro: es liviano y sin tantas apps preinstaladas, pero fijate cuántas actualizaciones promete el modelo.',
+      'Batería: los Moto G suelen traer 5.000 mAh; en general aguantan un día completo de uso fuerte.',
+      'Almacenamiento y RAM: 128 GB y 4 GB es lo mínimo; con 256 GB y 8 GB se siente mucho más fluido.',
+      'Ranura para tarjeta microSD: muchos Moto G la conservan y los iPhone o Galaxy de gama alta ya no.',
+    ],
+    guia: 'que-celular-comprar-segun-presupuesto',
+  },
+  {
+    slug: 'mejores-aires-inverter',
+    categoria: 'aire-acondicionado',
+    nombre: 'aires acondicionados inverter',
+    titulo: `Mejores aires acondicionados inverter en oferta ${AÑO}: vale la pena`,
+    descripcion:
+      'Comparativa de aires acondicionados split inverter frío/calor en oferta hoy en Mercado Libre Argentina: frigorías, precio, descuento y precio mínimo registrado. Cuánto ahorran de verdad.',
+    intro:
+      'Los aires acondicionados inverter en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['inverter'],
+    excluir: ['portatil'],
+    criterios: [
+      'Inverter regula la velocidad del compresor en vez de prenderse y apagarse: consume menos y hace menos ruido, sobre todo si lo usás muchas horas.',
+      'Frigorías según el ambiente: volumen (m² × altura) × 50. Un aire chico en un ambiente grande trabaja al límite y gasta de más.',
+      'Frío/calor: en invierno calefacciona con bomba de calor, más eficiente que una estufa eléctrica.',
+      'Etiqueta de eficiencia energética A o superior: es lo que más pesa en la factura de luz a lo largo de los años.',
+      'Instalación: casi nunca viene incluida; sumala al presupuesto (caños, soporte y mano de obra).',
+    ],
+    guia: 'cuantas-frigorias-necesito-aire-acondicionado',
+    enlaces: [{ href: '/mejores/mejores-aires-acondicionados', texto: 'Todos los aires acondicionados' }],
+  },
+  {
+    slug: 'mejores-tv-55-65-pulgadas',
+    categoria: 'smart-tv',
+    nombre: 'smart TV de 55 y 65 pulgadas',
+    titulo: `Mejores smart TV de 55 y 65 pulgadas en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de smart TV de 55, 65 y 75 pulgadas en oferta hoy en Mercado Libre Argentina: panel, resolución, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Los smart TV grandes (55, 65 y 75 pulgadas) en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['55', '65', '70', '75', '85'],
+    excluir: ['soporte', 'rack', 'mueble', 'control remoto', 'antena', 'cable'],
+    criterios: [
+      'Tamaño según la distancia: a 2,5 o 3 metros del sillón, 55 pulgadas es el punto justo y 65 se disfruta más en livings amplios.',
+      '4K (UHD) es el estándar a partir de 55 pulgadas: con Full HD se nota la falta de definición en pantallas grandes.',
+      'Panel: LED común, QLED o Mini LED mejoran colores y brillo; OLED da el mejor negro. Mirá HDR10 y 120 Hz si jugás.',
+      'Sistema: Google TV, Tizen, webOS o Roku; fijate que tengan las apps de streaming que usás.',
+      'Conexiones: al menos 3 HDMI, uno con eARC si vas a conectar barra de sonido, y Wi-Fi de doble banda.',
+    ],
+    guia: 'que-smart-tv-comprar',
+    enlaces: [{ href: '/mejores/mejores-smart-tv', texto: 'Todos los smart TV' }],
+  },
+  {
+    slug: 'mejores-heladeras-no-frost',
+    categoria: 'heladeras',
+    nombre: 'heladeras no frost y side by side',
+    titulo: `Mejores heladeras no frost y side by side en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de heladeras no frost, inverter y side by side en oferta hoy en Mercado Libre Argentina: capacidad, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las heladeras no frost, inverter y side by side en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['no frost', 'nofrost', 'side by side', 'french door', 'inverter'],
+    excluir: ['exhibidora', 'bajo mesada', 'vitrina', 'burlete', 'repuesto'],
+    criterios: [
+      'No frost: no forma hielo en las paredes, no hay que descongelar y mantiene la temperatura pareja. Cuesta más que una cíclica.',
+      'Capacidad: unos 100 a 150 litros por persona alcanza. Para familias de cuatro, desde 350 litros.',
+      'Inverter: el compresor varía su velocidad, consume menos y hace menos ruido que el on/off.',
+      'Side by side: dos puertas verticales y mucha capacidad; medí el ancho y el espacio para abrirlas antes de comprar.',
+      'Eficiencia energética A o superior y puertas reversibles si la cocina tiene poco espacio.',
+    ],
+    guia: 'que-heladera-comprar',
+    enlaces: [{ href: '/mejores/mejores-heladeras', texto: 'Todas las heladeras' }],
+  },
+  {
+    slug: 'mejores-aspiradoras-robot',
+    categoria: 'aspiradoras',
+    nombre: 'aspiradoras robot',
+    titulo: `Mejores aspiradoras robot en oferta ${AÑO}: aspiran y trapean`,
+    descripcion:
+      'Comparativa de aspiradoras robot que aspiran y trapean en oferta hoy en Mercado Libre Argentina: succión, navegación, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las aspiradoras robot en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['robot'],
+    excluir: ['cortacesped', 'cortador', 'repuesto', 'cepillo', 'filtro', 'bolsa', 'mop', 'accesorio'],
+    criterios: [
+      'Navegación: los que mapean con láser (LiDAR/LDS) recorren ordenado y no se pierden; los de sensores simples van al azar y tardan más.',
+      'Succión en Pa: de 2.500 a 3.000 Pa alcanza para piso duro; con alfombras y mascotas, 5.000 Pa o más.',
+      'Trapeado: tanque de agua y paño; los que levantan el paño al detectar alfombra evitan mojarla.',
+      'Base de autovaciado: suma comodidad y cuesta más; sin base, hay que vaciarlo cada uno o dos usos.',
+      'Repuestos y app: conseguí filtros y cepillos en el país y que la app esté en español, con horarios y zonas.',
+    ],
+    enlaces: [{ href: '/mejores/mejores-aspiradoras', texto: 'Todas las aspiradoras' }],
+  },
+  {
+    slug: 'mejores-cintas-de-correr',
+    nombre: 'cintas de correr y caminadoras',
+    titulo: `Mejores cintas de correr y caminadoras eléctricas en oferta ${AÑO}`,
+    descripcion:
+      'Comparativa de cintas de correr, caminadoras plegables y bicicletas fijas en oferta hoy en Mercado Libre Argentina: motor, velocidad, precio, descuento y precio mínimo registrado.',
+    intro:
+      'Las cintas de correr, caminadoras y bicicletas fijas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+    keywords: ['cinta de correr', 'caminadora', 'cinta caminadora', 'walking pad', 'bicicleta fija', 'spinning', 'eliptico'],
+    excluir: ['alfombra', 'cubre', 'repuesto', 'correa', 'banda', 'lubricante', 'silicona'],
+    criterios: [
+      'Para caminar alcanza un motor de 1,5 a 2 HP y 6 a 8 km/h; para correr, 2,5 HP o más y 12 km/h o más.',
+      'Peso máximo del usuario: dejá margen de al menos 20 kg sobre el tuyo; es lo que determina la durabilidad.',
+      'Superficie de la cinta: 40 cm de ancho es el mínimo para trotar cómodo; menos es para caminar.',
+      'Plegable con ruedas si el espacio es chico; las walking pad se guardan debajo de la cama o el sillón.',
+      'Tipo de equipo: la bicicleta fija es de menor impacto para las rodillas; la cinta da más gasto calórico.',
+    ],
+  },
 ]
 
 export function getComparativa(slug: string) {

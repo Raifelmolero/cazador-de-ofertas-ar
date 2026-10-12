@@ -1805,4 +1805,390 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       },
     ],
   },
+
+  'mejores-iphone': {
+    titulo: 'Mejores iPhone en oferta 2026: qué modelo comprar y cuándo',
+    secciones: [
+      {
+        titulo: 'Qué iPhone te conviene según cómo lo usás',
+        parrafos: [
+          'La línea tiene tres escalones. El modelo base alcanza para casi todo: WhatsApp, redes, fotos, banca y juegos. Los "e" son la puerta de entrada más económica y ya traen lo esencial de la generación. Los Pro y Pro Max suman mejores cámaras, pantalla más fluida y materiales premium; se justifican si sacás muchas fotos, grabás video o querés el equipo más duradero.',
+          'Una regla práctica: si no vas a usar el zoom óptico ni grabar video en alta calidad, un modelo no Pro rinde igual en el día a día y ahorrás una diferencia grande.',
+        ],
+      },
+      {
+        titulo: 'Almacenamiento y generación anterior',
+        parrafos: [
+          'El iPhone no tiene ranura para tarjeta de memoria, así que la capacidad que elegís es la que vas a tener durante años. 256 GB es un piso cómodo si sacás fotos y videos; 128 GB sirve si dependés de iCloud y no grabás mucho.',
+          'Cuando sale una generación nueva, la anterior baja de precio y sigue recibiendo actualizaciones durante muchos años. Para la mayoría, comprar el modelo del año pasado es la mejor relación entre precio y prestaciones.',
+        ],
+      },
+      {
+        titulo: 'Cómo comprarlo bien en Argentina',
+        parrafos: [
+          'Comprá siempre a una tienda oficial o a un distribuidor autorizado: es la única forma de tener garantía de Apple en el país y factura. Desconfiá de equipos "importados" muy baratos, reacondicionados o sin caja sellada.',
+          'En equipos de varios millones, las cuotas sin interés pueden pesar más que un pequeño descuento en un pago. Comparalas siempre, y fijate en la tabla el precio mínimo que registramos para saber si el descuento es real.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué iPhone conviene comprar hoy?',
+        a: 'Si buscás la mejor relación entre precio y prestaciones, el modelo base de la generación actual o el de la anterior. Los Pro valen la pena solo si vas a aprovechar las cámaras y la pantalla.',
+      },
+      {
+        q: '¿128 GB alcanzan o conviene 256 GB?',
+        a: 'Si grabás video o tomás muchas fotos, 256 GB. Con 128 GB alcanza para un uso moderado apoyado en iCloud, pero no se puede ampliar después.',
+      },
+      {
+        q: '¿Conviene comprar el iPhone del año pasado?',
+        a: 'Sí, en general. Baja de precio al salir el nuevo, rinde casi igual en el uso diario y sigue recibiendo actualizaciones de iOS durante varios años.',
+      },
+      {
+        q: '¿Dónde comprar un iPhone con garantía oficial en Argentina?',
+        a: 'En tiendas oficiales o distribuidores autorizados, con factura y caja sellada. Evitá vendedores sin reputación y equipos reacondicionados sin garantía.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'Comparalo con el precio mínimo registrado que mostramos en cada oferta: si el precio actual está cerca de ese piso, es una buena oportunidad.',
+      },
+    ],
+  },
+
+  'mejores-samsung-galaxy': {
+    titulo: 'Mejores Samsung Galaxy en oferta 2026: serie A, S y plegables',
+    secciones: [
+      {
+        titulo: 'Cómo se ordena la línea Galaxy',
+        parrafos: [
+          'La serie A es la gama media y la que más se vende: buena pantalla, batería para el día y cámaras correctas. La serie S es la gama alta, con el mejor procesador, cámaras más versátiles y más años de actualizaciones. La serie Z agrupa los plegables, pensados para quien quiere un formato distinto y paga la diferencia.',
+          'Dentro de la serie A, el número indica el escalón: los más altos suman pantalla AMOLED, más RAM y mejores cámaras que los de entrada.',
+        ],
+      },
+      {
+        titulo: 'Qué mirar en la ficha',
+        parrafos: [
+          'Memoria: 128 GB de almacenamiento es el piso razonable y 6 u 8 GB de RAM mantienen el equipo fluido por más tiempo; con 4 GB anda justo. Pantalla: AMOLED a 90 o 120 Hz se ve y se siente mejor que una LCD básica.',
+          'Años de actualizaciones: Samsung promete varios años de parches de seguridad en los modelos recientes. Es lo que más estira la vida útil del equipo, más que cualquier número de megapíxeles.',
+        ],
+      },
+      {
+        titulo: 'Comprar sin sorpresas',
+        parrafos: [
+          'Verificá que sea la versión oficial para Argentina (con las bandas de 4G y 5G de las compañías locales) y que el vendedor sea tienda oficial o tenga buena reputación. Un mismo modelo aparece con varios colores y vendedores; el precio puede variar bastante entre ellos, por eso conviene mirar el mínimo registrado.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué diferencia hay entre la serie A y la serie S de Samsung?',
+        a: 'La A es gama media, más económica y suficiente para el uso diario. La S es gama alta: mejor procesador, cámaras y pantalla, y más años de actualizaciones.',
+      },
+      {
+        q: '¿Qué Samsung Galaxy conviene comprar?',
+        a: 'Para uso diario, un A con 128 GB y al menos 6 GB de RAM. Si sacás muchas fotos o querés que dure más, un S del año anterior en oferta.',
+      },
+      {
+        q: '¿Cuántos años de actualizaciones tiene un Galaxy?',
+        a: 'Los modelos recientes de Samsung prometen varios años de parches de seguridad; consultá la ficha del modelo concreto antes de comprar.',
+      },
+      {
+        q: '¿Vale la pena un Galaxy plegable?',
+        a: 'Solo si te interesa el formato y aceptás pagar bastante más por lo mismo en potencia. Para uso general, un S rinde mejor por el precio.',
+      },
+      {
+        q: '¿Cómo detecto una oferta real?',
+        a: 'Compará el precio actual con el mínimo registrado que mostramos en cada producto, y con el de otros vendedores del mismo modelo.',
+      },
+    ],
+  },
+
+  'mejores-motorola': {
+    titulo: 'Mejores celulares Motorola en oferta 2026: Moto G, Moto E y Edge',
+    secciones: [
+      {
+        titulo: 'Las líneas de Motorola, en limpio',
+        parrafos: [
+          'Moto E es la entrada: para llamadas, WhatsApp y redes sin exigirle mucho. Moto G es la gama media y el corazón de la marca: buena batería, pantalla fluida y precio razonable. Edge es la gama alta, con mejores cámaras y pantalla; y Razr son los plegables.',
+          'Dentro de la línea G, los números más altos y las versiones con más RAM se sienten mejor a lo largo del tiempo.',
+        ],
+      },
+      {
+        titulo: 'Por qué se eligen',
+        parrafos: [
+          'Motorola usa una versión de Android muy cercana a la original: es liviana, con pocas aplicaciones preinstaladas y con gestos propios (como girar la muñeca para abrir la cámara). Muchos modelos conservan ranura para tarjeta microSD y entrada de auriculares, algo que ya casi no existe en la gama alta.',
+          'La contra es el soporte: fijate cuántas actualizaciones de Android y de seguridad promete el modelo, porque en la gama media suele ser menor que en un Galaxy S o un iPhone.',
+        ],
+      },
+      {
+        titulo: 'Qué configuración elegir',
+        parrafos: [
+          'Con 128 GB y 4 GB de RAM funciona; con 256 GB y 8 GB el equipo sigue andando bien varios años más. Si usás mucho la cámara, mirá que tenga estabilización óptica. Fijate también que sea la versión oficial para Argentina y de qué vendedor es.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué Motorola conviene comprar?',
+        a: 'Para la mayoría, un Moto G de la generación actual con al menos 128 GB. Si querés mejores cámaras y pantalla, un Edge; si solo necesitás lo básico, un Moto E.',
+      },
+      {
+        q: '¿Cuál es la diferencia entre Moto G y Moto E?',
+        a: 'La Moto E es la entrada: más económica y con componentes más simples. La Moto G suma mejor pantalla, más batería, más RAM y mejores cámaras.',
+      },
+      {
+        q: '¿Los Motorola tienen ranura para tarjeta de memoria?',
+        a: 'Muchos modelos Moto G y Moto E sí. Es algo que conviene verificar en la ficha, porque en los de gama alta ya casi no existe.',
+      },
+      {
+        q: '¿Cuánto duran las actualizaciones de un Motorola?',
+        a: 'Depende del modelo y suele ser menos que en la gama alta de otras marcas. Revisá en la ficha o en el sitio de Motorola cuántas actualizaciones promete el equipo.',
+      },
+      {
+        q: '¿Cómo sé si está en su precio más bajo?',
+        a: 'En cada oferta mostramos el precio mínimo que registramos para ese producto: si el actual está cerca, es un buen momento.',
+      },
+    ],
+  },
+
+  'mejores-aires-inverter': {
+    titulo: 'Mejores aires acondicionados inverter 2026: cuánto ahorran y cuál elegir',
+    secciones: [
+      {
+        titulo: 'Qué es un inverter y por qué ahorra',
+        parrafos: [
+          'Un aire convencional se prende a máxima potencia y se apaga al llegar a la temperatura, una y otra vez. El inverter, en cambio, baja y sube la velocidad del compresor para mantener la temperatura pareja. Ese funcionamiento continuo a baja potencia consume menos energía, hace menos ruido y evita los picos de arranque.',
+          'El ahorro depende de cuántas horas lo uses: si lo prendés pocas horas por semana, la diferencia contra un on/off es chica; si lo usás todo el día o también para calefaccionar, se nota mucho en la factura de luz.',
+        ],
+      },
+      {
+        titulo: 'Cuántas frigorías necesitás',
+        parrafos: [
+          'La cuenta práctica es multiplicar el volumen del ambiente (superficie por altura) por 50. Un ambiente de 20 m² con techo estándar necesita unas 2.500 a 3.000 frigorías. Si da al sol, tiene vidrios grandes o hay mucha gente, subí un escalón.',
+          'Un equipo corto para el ambiente trabaja siempre al máximo y gasta más; uno demasiado grande se apaga rápido y deshumidifica mal. Usá la calculadora de frigorías del sitio para afinar el número.',
+        ],
+      },
+      {
+        titulo: 'Qué más mirar antes de comprar',
+        parrafos: [
+          'Frío/calor: casi todos los inverter calefaccionan con bomba de calor, más eficiente que una estufa eléctrica. Eficiencia energética: etiqueta A o superior. Conectividad Wi-Fi: útil para programarlo desde el celular.',
+          'La instalación casi nunca viene incluida y puede sumar un costo importante. Pedí presupuesto a un instalador matriculado antes de decidir, y sumá caños, soporte de la unidad exterior y mano de obra.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Vale la pena un aire inverter?',
+        a: 'Si lo vas a usar muchas horas por día o también en invierno, sí: consume menos y es más silencioso. Para uso muy esporádico, la diferencia de precio tarda más en recuperarse.',
+      },
+      {
+        q: '¿Cuánto ahorra un aire inverter?',
+        a: 'Depende del uso y del equipo. A mayor cantidad de horas de funcionamiento, mayor es la diferencia de consumo contra un aire convencional.',
+      },
+      {
+        q: '¿Cuántas frigorías necesito?',
+        a: 'Volumen del ambiente en m³ por 50. Para 20 m² con altura estándar, aproximadamente 2.500 a 3.000 frigorías, y un poco más si da al sol.',
+      },
+      {
+        q: '¿El inverter sirve para calefaccionar?',
+        a: 'Sí, los modelos frío/calor calefaccionan con bomba de calor, que es más eficiente que una estufa eléctrica, aunque pierde rendimiento con mucho frío.',
+      },
+      {
+        q: '¿La instalación está incluida?',
+        a: 'En general no. Pedí presupuesto a un instalador y sumalo al costo del equipo.',
+      },
+    ],
+  },
+
+  'mejores-tv-55-65-pulgadas': {
+    titulo: 'Mejores smart TV de 55 y 65 pulgadas 2026: cuál elegir',
+    secciones: [
+      {
+        titulo: 'Qué tamaño conviene según tu living',
+        parrafos: [
+          'La regla es simple: dividí la distancia entre el sillón y la tele por 1,5 a 2 y tenés el tamaño ideal en pulgadas multiplicando por 40 aproximadamente. En la práctica, a 2,5 o 3 metros, 55 pulgadas es el punto justo; para 3,5 metros o más, 65 pulgadas se disfruta mejor; 75 u 85 son para livings amplios o salas de cine.',
+          'Medí también el mueble o la pared: un 65 pulgadas ocupa unos 145 cm de ancho, y el pie o la base suma más que el panel.',
+        ],
+      },
+      {
+        titulo: 'Resolución, panel y frecuencia',
+        parrafos: [
+          'A estos tamaños, 4K (UHD) es lo razonable: con Full HD se nota la falta de definición. Entre los paneles, el LED común es el más económico; QLED y Mini LED suben brillo y color; OLED da el negro más profundo y es el preferido para cine en ambientes oscuros.',
+          'Para jugar con consola, buscá 120 Hz y modo de baja latencia. Para ver series y fútbol alcanza con 60 Hz; fijate que tenga HDR10 y buen procesamiento de movimiento.',
+        ],
+      },
+      {
+        titulo: 'Sistema y conexiones',
+        parrafos: [
+          'El sistema operativo importa: Google TV, Tizen (Samsung), webOS (LG) o Roku. Todos traen las apps principales, pero cambian la fluidez y la interfaz. Revisá las conexiones: al menos tres entradas HDMI, una con eARC para barra de sonido, y Wi-Fi de doble banda para streaming sin cortes.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué tamaño de televisor comprar: 55 o 65 pulgadas?',
+        a: 'A 2,5 o 3 metros del sillón, 55 pulgadas; a 3,5 metros o más, o si querés efecto cine, 65. Medí antes el espacio disponible.',
+      },
+      {
+        q: '¿Vale la pena un QLED u OLED?',
+        a: 'QLED mejora brillo y color por poco más. OLED da el mejor contraste, ideal para ver en ambientes oscuros, pero cuesta bastante más.',
+      },
+      {
+        q: '¿Qué es mejor, Google TV o Tizen?',
+        a: 'Todos traen las apps principales. Google TV tiene catálogo más amplio y recomendaciones; Tizen y webOS son más simples. Elegí por la que te resulte más cómoda.',
+      },
+      {
+        q: '¿Necesito 120 Hz?',
+        a: 'Solo si jugás con consola o PC. Para series, películas y fútbol, 60 Hz con buen procesamiento alcanza.',
+      },
+      {
+        q: '¿Cómo sé si el descuento es real?',
+        a: 'En cada oferta mostramos el precio mínimo que registramos; si el actual está cerca, es un buen momento. Los eventos como Cyber Monday suelen traer los mejores precios del año.',
+      },
+    ],
+  },
+
+  'mejores-heladeras-no-frost': {
+    titulo: 'Mejores heladeras no frost y side by side 2026: cuál conviene',
+    secciones: [
+      {
+        titulo: 'No frost vs cíclica: qué cambia en el día a día',
+        parrafos: [
+          'La cíclica forma escarcha en el freezer y hay que descongelarla cada tanto. La no frost circula aire frío por ventilación, no forma hielo y mantiene la temperatura más pareja, lo que ayuda a conservar mejor la comida. A cambio, cuesta más y consume algo más si no es inverter.',
+          'Si cocinás mucho, guardás verdura fresca o tenés freezer cargado, la no frost se paga sola en comodidad. Si es para una casa chica o un departamento con poco uso, una cíclica alcanza.',
+        ],
+      },
+      {
+        titulo: 'Capacidad, inverter y formato',
+        parrafos: [
+          'La capacidad se calcula en 100 a 150 litros por persona. Para una familia de cuatro, desde 350 litros. Más litros no siempre es mejor: una heladera grande y vacía consume de más.',
+          'Inverter es lo que más reduce el consumo y el ruido. En formato, el top mount (freezer arriba) es el más común; el bottom freezer deja la comida fresca a la altura de los ojos; y el side by side tiene dos puertas verticales y mucha capacidad, pero necesita espacio para abrirlas y un enchufe y una cocina preparados.',
+        ],
+      },
+      {
+        titulo: 'Antes de comprarla, medí',
+        parrafos: [
+          'Medí el hueco, la puerta de entrada y los pasillos. Dejá unos centímetros libres a los costados y atrás para que ventile. Revisá si las puertas son reversibles y la etiqueta de eficiencia energética: A o superior baja el consumo año tras año. Fijate en la tabla el precio mínimo que registramos para no comprar en un pico.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué es una heladera no frost?',
+        a: 'Es una heladera que enfría con aire circulante y no forma hielo en las paredes, por lo que no hay que descongelarla manualmente.',
+      },
+      {
+        q: '¿La no frost consume más?',
+        a: 'Un poco más que una cíclica comparable, salvo que sea inverter, que baja bastante el consumo y el ruido.',
+      },
+      {
+        q: '¿Cuántos litros necesito?',
+        a: 'Entre 100 y 150 litros por persona. Para cuatro personas, desde 350 litros.',
+      },
+      {
+        q: '¿Qué ventajas tiene una side by side?',
+        a: 'Mucha capacidad y acceso cómodo, a veces con dispenser de agua. Necesita más espacio para abrir las puertas y suele costar bastante más.',
+      },
+      {
+        q: '¿Qué mido antes de comprarla?',
+        a: 'El hueco donde va, la puerta de entrada y los pasillos, más un margen para ventilación a los costados y atrás.',
+      },
+    ],
+  },
+
+  'mejores-aspiradoras-robot': {
+    titulo: 'Mejores aspiradoras robot 2026: cuál comprar y qué mirar',
+    secciones: [
+      {
+        titulo: 'Qué tiene que tener un robot que valga la pena',
+        parrafos: [
+          'Lo que más separa a un robot bueno de uno barato es la navegación. Los que mapean con láser (LiDAR o LDS) recorren la casa ordenadamente, guardan el plano y permiten definir zonas y habitaciones. Los de sensores simples van al azar, repiten tramos y a veces se quedan trabados.',
+          'El segundo punto es la succión, medida en Pascales (Pa). Para piso duro alcanza con 2.500 a 3.000 Pa; si hay alfombras o mascotas, buscá 5.000 Pa o más.',
+        ],
+      },
+      {
+        titulo: 'Aspirar y trapear: lo que realmente hacen',
+        parrafos: [
+          'Muchos modelos combinan aspirado y trapeado con un tanque de agua y un paño. Funcionan bien para mantener el piso, no para limpiar manchas pegadas. Los más completos levantan el paño al detectar alfombra, y los de gama alta traen base que vacía el polvo sola y hasta lava el paño.',
+          'La base de autovaciado cuesta más, pero evita tener que vaciar el depósito cada uno o dos usos. Si el presupuesto es ajustado, priorizá navegación láser antes que la base.',
+        ],
+      },
+      {
+        titulo: 'Mantenimiento y repuestos',
+        parrafos: [
+          'Un robot necesita cambiar filtros, cepillos y paños cada tanto. Antes de comprar, fijate que haya repuestos en el país y que la aplicación esté en español, con horarios y mapas. Las marcas conocidas suelen tener mejor soporte, y en las de nicho conviene leer opiniones de compradores sobre el servicio posventa.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Una aspiradora robot reemplaza a la aspiradora tradicional?',
+        a: 'Mantiene la casa limpia a diario, pero para rincones, escaleras y suciedad pesada sigue siendo útil una aspiradora común.',
+      },
+      {
+        q: '¿Cuántos Pa de succión necesito?',
+        a: 'Con piso duro, 2.500 a 3.000 Pa. Con alfombras y mascotas, 5.000 Pa o más.',
+      },
+      {
+        q: '¿Qué es la navegación láser?',
+        a: 'Un sensor LiDAR o LDS que mapea el ambiente y permite al robot recorrer de forma ordenada, guardar el plano y limpiar por zonas.',
+      },
+      {
+        q: '¿Trapea bien?',
+        a: 'Mantiene el piso limpio y retira polvo húmedo, pero no reemplaza una limpieza profunda para manchas pegadas.',
+      },
+      {
+        q: '¿Conviene la base de autovaciado?',
+        a: 'Si querés olvidarte del mantenimiento, sí. Sin base, hay que vaciar el depósito cada uno o dos usos.',
+      },
+    ],
+  },
+
+  'mejores-cintas-de-correr': {
+    titulo: 'Mejores cintas de correr y caminadoras 2026: cuál elegir',
+    secciones: [
+      {
+        titulo: 'Para caminar, trotar o correr: cada uso pide otra máquina',
+        parrafos: [
+          'Las caminadoras plegables y las walking pad están pensadas para caminar a ritmo suave en casa o debajo del escritorio: motor de 1,5 a 2 HP y velocidades de 6 a 8 km/h alcanzan. Para trotar y correr necesitás una cinta de correr con motor de 2,5 HP o más, velocidad de 12 km/h o más y superficie más ancha.',
+          'Comprar una cinta que quede justa para tu uso es la causa más común de que se rompa o termine arrumbada.',
+        ],
+      },
+      {
+        titulo: 'Qué mirar en la ficha',
+        parrafos: [
+          'El peso máximo del usuario es el dato más importante: dejá un margen de al menos 20 kg por encima del tuyo. La superficie de la cinta debería tener unos 40 cm de ancho para trotar cómodo. Revisá que tenga inclinación, amortiguación y pantalla con datos básicos (tiempo, distancia, calorías).',
+          'Si el espacio es chico, buscá un modelo plegable con ruedas. Las walking pad se guardan solas debajo de la cama o del sillón.',
+        ],
+      },
+      {
+        titulo: 'Y las bicicletas fijas',
+        parrafos: [
+          'La bicicleta fija o de spinning es una alternativa de menor impacto articular: mejor si tenés problemas de rodillas o querés entrenar cardio sin saltos. Fijate en el peso del volante (cuanto más pesado, más suave el pedaleo), en el ajuste de resistencia y en que el asiento y el manubrio regulen para tu altura.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Qué motor necesito en una cinta de correr?',
+        a: 'Para caminar, 1,5 a 2 HP. Para correr, 2,5 HP o más y velocidad máxima de 12 km/h o más.',
+      },
+      {
+        q: '¿Qué es una walking pad?',
+        a: 'Una caminadora plana y compacta, pensada para caminar a ritmo suave, que se guarda debajo de la cama o del sillón.',
+      },
+      {
+        q: '¿Qué peso máximo debe soportar?',
+        a: 'El tuyo más al menos 20 kg de margen, para que la máquina no trabaje al límite.',
+      },
+      {
+        q: '¿Cinta o bicicleta fija?',
+        a: 'La cinta da más gasto calórico y entrena una actividad natural; la bicicleta fija tiene menos impacto en las articulaciones y suele ser más silenciosa.',
+      },
+      {
+        q: '¿Se puede usar en un departamento?',
+        a: 'Sí, pero poné una base antivibratoria debajo y elegí un modelo con buena amortiguación para no molestar a los vecinos.',
+      },
+    ],
+  },
 }

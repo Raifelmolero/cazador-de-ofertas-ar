@@ -36,6 +36,8 @@ export interface Landing {
   criterios: string[]
   faq: { q: string; a: string }[]
   min?: number
+  /** enlaces internos extra que se muestran bajo los criterios */
+  enlaces?: { href: string; label: string }[]
 }
 
 const porDescuento = (a: ProductWithMargins, b: ProductWithMargins) => (b.descuento_pct ?? 0) - (a.descuento_pct ?? 0)
@@ -414,6 +416,236 @@ export const LANDINGS: Landing[] = [
       { q: '¿Cómo sé si el descuento es real?', a: 'Mirá si figura como mínimo histórico y abrí el historial de precios del producto cuando esté disponible.' },
     ],
   },
+  {
+    slug: 'regalos-dia-de-la-madre-mas-de-150000',
+    nombre: 'regalos para mamá de más de $150.000',
+    titulo: 'Regalos para el Día de la Madre de más de $150.000 — ofertas hoy',
+    descripcion:
+      'Regalos de más de $150.000 para el Día de la Madre (domingo 18/10) en oferta hoy en Mercado Libre Argentina: tecnología, electro y hogar con descuento e historial de precio.',
+    h1: 'Regalos para mamá de más de $150.000',
+    intro:
+      'Si el presupuesto para mamá pasa los $150.000, lo que más rinde es un producto durable que use todos los días. Estos son los que hoy están en oferta en Mercado Libre Argentina, con su descuento y mínimo registrado. El Día de la Madre es el domingo 18 de octubre: en compras grandes conviene pedir con tiempo por el envío.',
+    tipo: 'ofertas',
+    filtrar: p => p.precio_actual >= 150000 && !/(repuesto|funda|cable|soporte|cargador|protector)/.test(normalizar(p.titulo)),
+    ordenar: porDescuento,
+    min: 4,
+    criterios: [
+      'Elegí algo de uso diario (electro, celular, TV, colchón) antes que un regalo de una sola vez: se agradece más.',
+      'Comparalo con el mínimo registrado: en compras de más de $150.000 una diferencia de 10% son varios miles de pesos.',
+      'Confirmá la fecha de entrega: pedí con al menos una semana de margen antes del 18 de octubre y fijate si el envío es Full.',
+      'Revisá cuotas sin interés y garantía oficial en Argentina.',
+    ],
+    faq: [
+      { q: '¿Cuándo es el Día de la Madre en Argentina?', a: 'El tercer domingo de octubre: en 2026 es el domingo 18 de octubre.' },
+      { q: '¿Qué regalar si el presupuesto es de más de $150.000?', a: 'Algo durable y de uso diario: un electrodoméstico, un celular, una TV o un colchón. Compará siempre con el mínimo registrado.' },
+      { q: '¿Cómo sé si el descuento es real?', a: 'Fijate si figura como mínimo histórico y abrí el historial de precios del producto cuando esté disponible.' },
+      { q: '¿Llega a tiempo si pido la semana anterior?', a: 'Depende del vendedor y de tu zona. Priorizá publicaciones con envío Full o con fecha de entrega confirmada en la ficha.' },
+    ],
+    enlaces: [
+      { href: '/dia-de-la-madre', label: 'Guía del Día de la Madre' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'regalos-para-mama-de-50000-a-150000',
+    nombre: 'regalos para mamá de $50.000 a $150.000',
+    titulo: 'Regalos para mamá de $50.000 a $150.000 — ofertas hoy en Mercado Libre',
+    descripcion:
+      'Regalos para el Día de la Madre entre $50.000 y $150.000 en oferta hoy en Mercado Libre Argentina: electro, belleza y hogar con descuento y mínimo registrado.',
+    h1: 'Regalos para mamá de $50.000 a $150.000',
+    intro:
+      'Un presupuesto medio alcanza para buenos regalos: electro de cocina, cuidado personal y hogar. Estos son los productos de entre $50.000 y $150.000 que hoy están en oferta en Mercado Libre Argentina, del que más descuento tiene al que menos.',
+    tipo: 'ofertas',
+    filtrar: p =>
+      p.precio_actual >= 50000 &&
+      p.precio_actual < 150000 &&
+      (p.descuento_pct ?? 0) >= 10 &&
+      !/(repuesto|funda|cable|soporte|protector)/.test(normalizar(p.titulo)),
+    ordenar: porDescuento,
+    min: 5,
+    criterios: [
+      'Pensá en lo que mamá usa o pidió: un regalo útil le gana a uno vistoso.',
+      'En este rango el descuento real importa: compará con el mínimo registrado antes de pagar.',
+      'Sumá el envío al precio final y fijate si se puede pagar en cuotas sin interés.',
+      'Si dudás entre dos, elegí el de mejor reputación del vendedor y garantía oficial.',
+    ],
+    faq: [
+      { q: '¿Qué regalar a mamá con $100.000?', a: 'Electro de cocina (cafetera, freidora de aire, batidora), cuidado personal (secador, planchita) o algo para el hogar. Compará el precio con el mínimo registrado.' },
+      { q: '¿Y si el presupuesto es mayor?', a: 'Mirá los regalos de más de $150.000, con tecnología y electrodomésticos grandes.' },
+      { q: '¿Los precios cambian antes del Día de la Madre?', a: 'Sí, se mueven varias veces por día. Revisamos Mercado Libre 3 veces por día y la lista se actualiza con cada corrida.' },
+      { q: '¿Los links tienen costo extra?', a: 'No. Son links de afiliado: el precio para vos es el mismo.' },
+    ],
+    enlaces: [
+      { href: '/dia-de-la-madre', label: 'Guía del Día de la Madre' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'electro-para-regalar-dia-de-la-madre',
+    nombre: 'electro para regalar en el Día de la Madre',
+    titulo: 'Electro para regalar en el Día de la Madre — ofertas hoy',
+    descripcion:
+      'Cafeteras, freidoras de aire, aspiradoras, licuadoras y secadores en oferta hoy en Mercado Libre Argentina para regalar el Día de la Madre (18/10).',
+    h1: 'Electro para regalar en el Día de la Madre',
+    intro:
+      'Pequeños electrodomésticos en oferta hoy en Mercado Libre Argentina: cafeteras, freidoras de aire, aspiradoras, licuadoras, batidoras y secadores de pelo. Son de los regalos que más se usan y más se compran para el Día de la Madre.',
+    tipo: 'ofertas',
+    filtrar: p =>
+      /(cafetera|freidora|air fryer|airfryer|aspiradora|licuadora|batidora|procesadora|secador de pelo|planchita|tostadora|pava electrica|horno electrico|multiprocesadora)/.test(
+        normalizar(p.titulo),
+      ),
+    ordenar: porDescuento,
+    min: 3,
+    criterios: [
+      'Fijate la potencia (W) y la capacidad: una freidora de 4 litros alcanza para 2 o 3 personas, 6 litros o más para una familia.',
+      'Verificá que haya service y repuestos en Argentina para la marca.',
+      'Desconfiá de descuentos de 60% o más: compará con el mínimo registrado.',
+      'Revisá si trae accesorios y la garantía.',
+    ],
+    faq: [
+      { q: '¿Qué electrodoméstico es buen regalo para mamá?', a: 'Los que usa a diario: cafetera, freidora de aire, licuadora o aspiradora. Evitá lo que ya tiene salvo que lo quiera mejorar.' },
+      { q: '¿Freidora de aire o horno eléctrico?', a: 'La freidora cocina más rápido y consume menos; el horno eléctrico tiene más capacidad. Depende de cuántas personas cocinen.' },
+      { q: '¿Cómo sé si el precio es bueno?', a: 'Mirá si figura como mínimo histórico y abrí el historial de precios del producto cuando esté disponible.' },
+      { q: '¿Cuándo es el Día de la Madre?', a: 'El domingo 18 de octubre de 2026.' },
+    ],
+    enlaces: [
+      { href: '/dia-de-la-madre', label: 'Guía del Día de la Madre' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'descuentos-reales-cyber-monday-mas-de-100000',
+    nombre: 'productos en mínimo histórico de más de $100.000',
+    titulo: 'Productos en mínimo histórico de más de $100.000 para el Cyber Monday',
+    descripcion:
+      'Productos de más de $100.000 que hoy están en su precio más bajo registrado en Mercado Libre Argentina: referencia para saber qué es un descuento real en el Cyber Monday (2 al 4 de noviembre).',
+    h1: 'Mínimos históricos de más de $100.000: la vara para el Cyber Monday',
+    intro:
+      'Antes del Cyber Monday (2 al 4 de noviembre) conviene saber cuánto cuestan hoy las cosas. Estos productos de más de $100.000 están en su precio más bajo registrado desde que los seguimos: si en el Cyber cuestan más que esto, no es una oferta.',
+    tipo: 'ofertas',
+    filtrar: p => !!p.minimo_historico && p.precio_actual >= 100000,
+    ordenar: porDescuento,
+    min: 3,
+    criterios: [
+      'Anotá el precio de hoy de lo que querés comprar y usalo de vara cuando llegue el Cyber.',
+      'Si en el Cyber el precio es igual o mayor al mínimo registrado, el descuento es solo un porcentaje contra un precio inflado.',
+      '"Mínimo histórico" es el más bajo desde que seguimos ese producto, no desde que existe.',
+      'Si hoy está en mínimo y lo necesitás, no hace falta esperar al Cyber.',
+    ],
+    faq: [
+      { q: '¿Conviene esperar al Cyber Monday?', a: 'Solo si el precio del Cyber baja del mínimo registrado. Si hoy ya está en su mínimo, esperar no garantiza mejorar.' },
+      { q: '¿Cuándo es el Cyber Monday de Mercado Libre?', a: 'Del 2 al 4 de noviembre de 2026.' },
+      { q: '¿Qué es un mínimo histórico?', a: 'El precio más bajo que registramos para ese producto desde que lo seguimos (3 revisiones por día).' },
+      { q: '¿Se infla el precio antes del Cyber?', a: 'A veces sube el precio "anterior" para que el porcentaje de descuento se vea mayor. Por eso comparamos con nuestro propio historial.' },
+    ],
+    enlaces: [
+      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/descuentos-inflados', label: 'Cómo detectar descuentos inflados' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'descuentos-moderados-ticket-alto-sin-inflar',
+    nombre: 'ofertas de 10% a 40% OFF en productos de más de $100.000',
+    titulo: 'Ofertas de 10% a 40% OFF en productos de más de $100.000',
+    descripcion:
+      'Productos de más de $100.000 con descuentos moderados (10% a 40%) hoy en Mercado Libre Argentina: menos propensos a precios inflados, con historial para verificarlos.',
+    h1: 'Ofertas moderadas (10% a 40% OFF) en productos de más de $100.000',
+    intro:
+      'Los descuentos del 70% u 80% son los que más se inflan. Esta lista junta productos caros con descuentos moderados, de 10% a 40%, que suelen ser más creíbles. Igual verificalos con el historial de cada uno antes del Cyber Monday.',
+    tipo: 'ofertas',
+    filtrar: p => p.precio_actual >= 100000 && (p.descuento_pct ?? 0) >= 10 && (p.descuento_pct ?? 0) <= 40,
+    ordenar: porDescuento,
+    min: 5,
+    criterios: [
+      'Un descuento moderado sobre un precio estable es mejor que uno enorme sobre un precio que subió la semana anterior.',
+      'Abrí el historial de precios: si el "precio anterior" no existió nunca, el descuento es ficticio.',
+      'Compará con la misma publicación en otros vendedores.',
+      'En compras de ticket alto, sumá cuotas sin interés y garantía al análisis.',
+    ],
+    faq: [
+      { q: '¿Por qué descuentos de hasta 40%?', a: 'Porque los descuentos extremos se inflan con más frecuencia. Un 10% a 40% sobre un precio estable suele ser más real.' },
+      { q: '¿Un 40% OFF puede ser falso?', a: 'Sí. El porcentaje se mide contra el precio anterior que pone el vendedor. Verificá el historial.' },
+      { q: '¿Cómo detectan precios inflados?', a: 'Registramos cada precio 3 veces por día y comparamos contra nuestro historial, no contra el precio declarado.' },
+      { q: '¿Sirve para el Cyber Monday?', a: 'Sí: te da una referencia de cómo se ve un descuento razonable antes del 2 de noviembre.' },
+    ],
+    enlaces: [
+      { href: '/descuentos-inflados', label: 'Cómo detectar descuentos inflados' },
+      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'tecnologia-para-el-cyber-monday-tablets-consolas-monitores',
+    nombre: 'tecnología para el Cyber Monday',
+    titulo: 'Tecnología para el Cyber Monday: tablets, consolas, auriculares y monitores',
+    descripcion:
+      'Tablets, consolas, auriculares, monitores y smartwatches en oferta hoy en Mercado Libre Argentina, con mínimo registrado para comparar antes del Cyber Monday (2 al 4/11).',
+    h1: 'Tecnología para el Cyber Monday: tablets, consolas, auriculares y monitores',
+    intro:
+      'Tablets, consolas, auriculares, monitores, parlantes y smartwatches en oferta hoy en Mercado Libre Argentina. Son de los rubros que más se compran en el Cyber Monday (2 al 4 de noviembre): conocé hoy el precio base para saber si la oferta es real.',
+    tipo: 'ofertas',
+    filtrar: p =>
+      /(tablet|auricular|smartwatch|reloj inteligente|consola|playstation|xbox|nintendo|monitor|parlante|barra de sonido|joystick|camara)/.test(normalizar(p.titulo)),
+    ordenar: porPrecio,
+    min: 4,
+    criterios: [
+      'Definí el uso: estudiar, jugar o consumir contenido cambia por completo qué especificaciones importan.',
+      'Comparalo con el mínimo registrado: en tecnología el precio se mueve seguido.',
+      'Confirmá compatibilidad y garantía oficial en Argentina (consolas y tablets, sobre todo).',
+      'Evitá accesorios genéricos sin marca ni reputación de vendedor.',
+    ],
+    faq: [
+      { q: '¿Conviene comprar tecnología en el Cyber?', a: 'Si el precio baja del mínimo registrado, sí. Si no, puede que hoy ya esté igual o mejor.' },
+      { q: '¿Qué mirar en una tablet?', a: 'Memoria (4 GB de RAM mínimo), almacenamiento (64 GB o más) y la versión del sistema operativo.' },
+      { q: '¿Cómo comparar monitores?', a: 'Tamaño, resolución, frecuencia (Hz) y tipo de panel. Para oficina, 24 pulgadas Full HD alcanza.' },
+      { q: '¿Cuándo es el Cyber Monday?', a: 'Del 2 al 4 de noviembre de 2026.' },
+    ],
+    enlaces: [
+      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
+  {
+    slug: 'electrodomesticos-grandes-cyber-monday-lavarropas-cocinas-freezers',
+    nombre: 'electrodomésticos grandes para el Cyber Monday',
+    titulo: 'Electrodomésticos grandes para el Cyber Monday: lavarropas, cocinas y freezers',
+    descripcion:
+      'Lavarropas, secarropas, lavavajillas, cocinas, microondas y freezers en oferta hoy en Mercado Libre Argentina para tener la referencia antes del Cyber Monday (2 al 4/11).',
+    h1: 'Electrodomésticos grandes para el Cyber Monday',
+    intro:
+      'Lavarropas, secarropas, lavavajillas, cocinas, microondas y freezers en oferta hoy en Mercado Libre Argentina. En compras de este tamaño las cuotas y el envío pesan tanto como el descuento: tomá estos precios como base antes del Cyber Monday (2 al 4 de noviembre).',
+    tipo: 'ofertas',
+    filtrar: p =>
+      /(lavarropas|lavasecarropas|lavavajillas|secarropas|freezer|microondas|cocina a gas|cocina electrica|cocina multigas|cocina industrial|anafe|horno empotrable)/.test(
+        normalizar(p.titulo),
+      ),
+    ordenar: porPrecio,
+    min: 4,
+    criterios: [
+      'Medí el lugar de instalación y por dónde pasa el equipo antes de comprar.',
+      'Compará cuotas sin interés y costo de envío: en electro grande pueden pesar más que el descuento.',
+      'Revisá la etiqueta de eficiencia energética y la capacidad según tu hogar (lavarropas de 7 a 8 kg para 4 personas).',
+      'Pedí factura y confirmá la garantía oficial en Argentina.',
+    ],
+    faq: [
+      { q: '¿Qué capacidad de lavarropas necesito?', a: 'Para 1 o 2 personas, 5 a 6 kg; para una familia de 4, entre 7 y 8 kg.' },
+      { q: '¿Conviene esperar al Cyber para electro grande?', a: 'Solo si el precio del Cyber baja del mínimo registrado. Con el historial del producto podés verificarlo.' },
+      { q: '¿Lavarropas de carga frontal o superior?', a: 'La frontal gasta menos agua y lava mejor; la superior ocupa menos y es más barata.' },
+      { q: '¿Cuánto tarda el envío de electro grande?', a: 'Entre 2 y 7 días hábiles según la zona; fijate la fecha estimada en la publicación.' },
+    ],
+    enlaces: [
+      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/mejores', label: 'Comparativas de los mejores productos' },
+      { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
+    ],
+  },
 ]
 
 export const getLanding = (slug: string) => LANDINGS.find(l => l.slug === slug)
@@ -535,4 +767,6 @@ export const LANDINGS_RENTABLES = [
   'heladeras-no-frost-en-oferta',
   'notebooks-en-oferta',
   'celulares-en-oferta',
+  'regalos-dia-de-la-madre-mas-de-150000',
+  'descuentos-reales-cyber-monday-mas-de-100000',
 ]

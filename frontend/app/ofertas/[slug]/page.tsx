@@ -219,6 +219,14 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </p>
         </section>
 
+        {l.enlaces && l.enlaces.length > 0 && (
+          <ul className="mb-8 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            {l.enlaces.map(e => (
+              <li key={e.href}><Link href={e.href} className="font-bold text-yellow-400 hover:underline">{e.label} →</Link></li>
+            ))}
+          </ul>
+        )}
+
         {l.categoria && (
           <p className="mb-8 text-sm text-zinc-300">
             <a href={`/categoria/${l.categoria}`} className="font-bold text-yellow-400 hover:underline">Ver toda la categoría →</a>

@@ -9,13 +9,23 @@ const precio = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
  *  de 4 filas de atajos. Una fila = un solo link a Mercado Libre (el mismo
  *  url_producto con etiqueta de afiliado que usa la grilla; el clic lo cuenta
  *  clics-ml.tsx con seccion="top3_home"). Datos reales, sin textos inventados. */
-export default function TopOfertasHoy({ ofertas }: { ofertas: OfertaLight[] }) {
+export default function TopOfertasHoy({
+  ofertas,
+  titulo = '🎯 3 ofertas destacadas de hoy',
+  seccion = 'top3_home',
+  id = 'top3-hoy',
+}: {
+  ofertas: OfertaLight[]
+  titulo?: string
+  seccion?: string
+  id?: string
+}) {
   const top = ofertas.slice(0, 3)
   if (top.length === 0) return null
   return (
-    <section aria-labelledby="top3-hoy" data-seccion="top3_home" className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-      <h2 id="top3-hoy" className="font-display text-base sm:text-xl font-black mb-2">
-        🎯 3 ofertas destacadas de hoy
+    <section aria-labelledby={id} data-seccion={seccion} className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+      <h2 id={id} className="font-display text-base sm:text-xl font-black mb-2">
+        {titulo}
       </h2>
       <ul className="grid gap-2.5 md:grid-cols-3">
         {top.map((o, i) => {

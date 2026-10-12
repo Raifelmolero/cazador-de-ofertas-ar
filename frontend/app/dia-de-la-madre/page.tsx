@@ -440,6 +440,24 @@ export default function DiaDeLaMadrePage() {
                   : 'Igual te dejamos los regalos en oferta de hoy, con el descuento verificado.'}
             </p>
             <CuentaRegresivaMadre fecha={FECHA} diasBuild={dias} />
+            {dias >= 0 && (
+              <div data-seccion="madre_hero" className="mt-3 flex flex-col gap-2 sm:flex-row">
+                <a
+                  href={busquedaML('regalos dia de la madre')}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black transition-colors hover:bg-yellow-300"
+                >
+                  🎁 Ver regalos en Mercado Libre
+                </a>
+                <a
+                  href="#destacados"
+                  className="inline-flex items-center justify-center rounded-xl border border-pink-400/40 px-5 py-3 text-sm font-bold text-pink-200 hover:border-pink-400"
+                >
+                  Ver los verificados ↓
+                </a>
+              </div>
+            )}
             {siguiente && (
               <Link href={siguiente.href} className="mt-3 block rounded-xl border border-yellow-400/40 bg-yellow-400/10 px-4 py-3 text-sm font-bold text-yellow-200 hover:border-yellow-400">
                 El Día de la Madre ya pasó. Ahora: {siguiente.titulo} →
@@ -463,6 +481,34 @@ export default function DiaDeLaMadrePage() {
           </div>
         </div>
       </section>
+
+      {destacados.length > 0 && (
+        <section id="destacados" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
+          <div className="max-w-3xl mb-4">
+            <h2 className="font-display text-xl sm:text-2xl font-black">⭐ Los regalos que más conviene mirar primero</h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Perfumes, cuidado del cabello y electro de cocina: lo que más se elige para mamá, con el descuento comparado
+              contra el mínimo registrado.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {destacados.flatMap(d => d.productos.map(o => <OfertaCard key={o.id_ml} producto={light(o)} priority />))}
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {destacados.map(d => (
+              <a
+                key={d.comp}
+                href={busquedaML(d.busqueda)}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-4 py-2 transition-colors"
+              >
+                {d.emoji} {d.titulo}: Ver en Mercado Libre
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       {tramoActual && (
         <section id="ultima-semana" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
@@ -519,34 +565,6 @@ export default function DiaDeLaMadrePage() {
               compares precios, usá el{' '}
               <a href={`${DEALS_URL}/#verificador`} className="text-yellow-400 hover:underline">verificador de descuentos</a>.
             </p>
-          </div>
-        </section>
-      )}
-
-      {destacados.length > 0 && (
-        <section id="destacados" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
-          <div className="max-w-3xl mb-4">
-            <h2 className="font-display text-xl sm:text-2xl font-black">⭐ Los regalos que más conviene mirar primero</h2>
-            <p className="mt-1 text-sm text-zinc-400">
-              Perfumes, cuidado del cabello y electro de cocina: lo que más se elige para mamá, con el descuento comparado
-              contra el mínimo registrado.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {destacados.flatMap(d => d.productos.map(o => <OfertaCard key={o.id_ml} producto={light(o)} priority />))}
-          </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {destacados.map(d => (
-              <a
-                key={d.comp}
-                href={busquedaML(d.busqueda)}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-4 py-2 transition-colors"
-              >
-                {d.emoji} {d.titulo}: Ver en Mercado Libre
-              </a>
-            ))}
           </div>
         </section>
       )}

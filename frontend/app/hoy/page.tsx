@@ -16,6 +16,7 @@ import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
+import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { getTendencias } from '@/lib/tendencias'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
 import LastUpdated from '@/components/LastUpdated'
@@ -338,6 +339,14 @@ export default function HoyPage() {
           después los rubros que más venden (antes la 1ª tarjeta con botón
           aparecía tras 4 filas de chips). */}
       <TopOfertasHoy ofertas={ofertasLight} />
+      {/* Compras grandes (el tráfico de asistentes de IA llega con intención de
+          ticket alto): las 3 mejores que no estén ya en el top 3. */}
+      <TopOfertasHoy
+        ofertas={ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml))}
+        titulo="💎 Compras grandes: lo mejor de hoy"
+        seccion="ticket_alto_home"
+        id="ticket-alto-hoy"
+      />
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />

@@ -275,6 +275,8 @@ class TestInfladas(unittest.TestCase):
                            "log_scan", "save_state", "alert_admin"):
                 st.enter_context(mock.patch.object(bot, nombre))
             st.enter_context(mock.patch.object(bot, "fetch_deals", return_value=[self.deal("MLA1", 100000)]))
+            # Camino con el escaneo ACTIVO, aunque el config.json real lo tenga pausado.
+            st.enter_context(mock.patch.object(bot, "load_config", return_value={**bot.load_config(), "scrape_ml": True}))
             st.enter_context(mock.patch.object(bot, "load_price_history", return_value={}))
             st.enter_context(mock.patch.object(bot, "load_state", return_value={"posted_ids": []}))
             st.enter_context(mock.patch.object(bot, "post_deal", return_value=False))

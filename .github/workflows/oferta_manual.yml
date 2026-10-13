@@ -1,0 +1,80 @@
+name: Agregar oferta manual
+
+# Carga una oferta que elegiste vos en Mercado Libre. El bot NO escanea ML (ML
+# confirmó que el scrapeo no está permitido), así que las ofertas salen de acá.
+# Se corre desde el celular: app de GitHub → Actions → Agregar oferta manual → Run workflow.
+# No hace ningún pedido a ML: publica lo que escribas.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Link LARGO del producto (mercadolibre.com.ar/...MLA...), no el corto meli.la'
+        required: true
+        type: string
+      titulo:
+        description: 'Título del producto (como lo muestra ML)'
+        required: true
+        type: string
+      precio_actual:
+        description: 'Precio actual, solo el número (ej. 749999)'
+        required: true
+        type: string
+      precio_anterior:
+        description: 'Precio anterior tachado, solo el número (ej. 1100000)'
+        required: true
+        type: string
+      imagen:
+        description: 'Link de la foto (opcional; http2.mlstatic.com/...). Sin foto no sale en Instagram'
+        required: false
+        type: string
+      publicar_ya:
+        description: 'Publicar ahora en los canales (si no, sale en la próxima corrida de las 12/17/21)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: deals-bot
+  cancel-in-progress: false
+
+jobs:
+  agregar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Identidad de git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      # Los datos entran por variables de entorno (nunca interpolados en el script).
+      - name: Validar y guardar la oferta
+        env:
+          OFERTA_URL: ${{ inputs.url }}
+          OFERTA_TITULO: ${{ inputs.titulo }}
+          OFERTA_ACTUAL: ${{ inputs.precio_actual }}
+          OFERTA_ANTERIOR: ${{ inputs.precio_anterior }}
+          OFERTA_IMAGEN: ${{ inputs.imagen }}
+        run: python bot/tools/oferta_manual.py
+      - name: Guardar en el repo
+        run: |
+          git add bot/state/ofertas_manuales.json
+          git commit -m "oferta manual: agregada desde Actions [skip ci]"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
+      - name: Publicar ahora
+        if: ${{ inputs.publicar_ya }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deals_bot.yml --ref main

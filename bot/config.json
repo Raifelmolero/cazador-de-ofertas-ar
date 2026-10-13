@@ -7,5 +7,6 @@
   "exclusive_posts": 2,
   "pages": 20,
   "relampago_pages": 6,
-  "categoria_pages": 3
+  "categoria_pages": 3,
+  "scrape_ml": false
 }

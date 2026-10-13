@@ -31,7 +31,19 @@ el mismo, así que el bloqueo NO es por volumen: ML rechaza las IP de GitHub Act
 Bajar páginas o frecuencia no lo arregla. (Antes de 05/10 esas mismas IP pasaban; qué cambió
 del lado de ML no se puede saber desde acá.)
 
-## Opciones (ninguna evade el bloqueo de ML; las tres son legítimas)
+## Respuesta de ML y decisión (13/10, tarde)
+Agustina (Afiliados ML) contestó por WhatsApp: «el tema de tener una API abierta por el momento
+no se permite scrapeo» → la API abierta para afiliados se está desarrollando y **el scrapeo no
+está permitido**. Decisión del dueño: **pausar el escaneo y trabajar con ofertas cargadas a mano**.
+Hecho: `scrape_ml=false` en `bot/config.json` (cero pedidos a ML), `bot/tools/oferta_manual.py` +
+workflow «Agregar oferta manual» (`oferta_manual.yml`), documentado en `bot/README.md`.
+Se descartan: el scraper local en la PC/celular, proxies y cualquier forma de evadir el bloqueo.
+Se borró `probe_scraping` (pedía páginas de ML). Ojo: `probe_video_ml.py` y `scraper_local.py`
+también piden páginas de ML (solo a mano): NO usarlos. Pendiente: preguntar a ML por el acceso
+anticipado a la API y si hay un listado oficial de ofertas en el panel de afiliados.
+Las páginas `/precio` se mantienen 60 días sin refresco (`SEGUIMIENTO_MAX_DIAS`).
+
+## Opciones que se evaluaron (ninguna evade el bloqueo de ML; las tres son legítimas)
 1. **Scraper local programado en la PC del dueño** (`bot/tools/scraper_local.py`,
    IP residencial, pocas páginas, pausas largas, frena en la primera pantalla
    anti-bot). Hoy se corrió una sola vez a mano (12/10). Programarlo 3×/día con el

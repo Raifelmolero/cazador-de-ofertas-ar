@@ -5,6 +5,14 @@ Bot que caza las mejores ofertas de Mercado Libre y las publica solo en
 Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 **No requiere mantenimiento**: hasta los tokens de IG/Threads se renuevan solos.
 
+> ## ⚠️ Escaneo de Mercado Libre PAUSADO (13/10/2026)
+> Mercado Libre confirmó que **no permite el scrapeo** (y su API abierta para afiliados
+> todavía no existe). Por eso `scrape_ml` está en `false` en `config.json`: el bot **no
+> pide ninguna página de ML**. Las ofertas salen de las que cargás a mano
+> (ver «Cargar una oferta a mano» abajo). Para reanudar el escaneo cuando ML habilite
+> una vía oficial: `"scrape_ml": true` (y revisar `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`).
+> Lo de abajo («Qué hace en cada corrida») describe el modo con escaneo activo.
+
 ## Qué hace en cada corrida
 
 1. Descarga `mercadolibre.com.ar/ofertas` (20 páginas + 6 de relámpago) y la
@@ -77,6 +85,28 @@ Los tokens de IG y Threads vencen a los 60 días. `ig_token_refresh.yml` los
 renueva todos los lunes y actualiza los secrets solo. Si alguna renovación
 falla, te llega alerta por Telegram con los pasos para regenerarlo a mano.
 
+## Cargar una oferta a mano (modo actual)
+
+Desde el celular: app de GitHub → repo → **Actions → «Agregar oferta manual» → Run workflow**.
+
+| Campo | Qué poner |
+|---|---|
+| `url` | Link **largo** del producto (`https://www.mercadolibre.com.ar/...MLA...`), el de la barra del navegador. **No** el corto `meli.la`. |
+| `titulo` | El título como lo muestra ML. |
+| `precio_actual` | Solo el número (`749999`). |
+| `precio_anterior` | El precio tachado que muestra ML (`1100000`). Es obligatorio: sin precio anterior no es una oferta. |
+| `imagen` | Opcional. Link `https://http2.mlstatic.com/...` (mantené apretada la foto → «Copiar dirección de la imagen»). Sin foto no sale en Instagram. |
+| `publicar_ya` | Tildado: publica ahora en los canales. Sin tildar: sale en la próxima corrida (12/17/21 hs). |
+
+Qué pasa: `bot/tools/oferta_manual.py` valida los datos (no hace ningún pedido a ML), la guarda en
+`bot/state/ofertas_manuales.json` y el bot la trata como una oferta más: ranking, historial de
+precios, links de afiliado por canal, placas, y la suma al catálogo de la web.
+Reglas: una oferta manual vale **7 días** (después el precio ya envejeció); no se le exige el
+descuento/precio mínimo del config; igual **no sale** si ya se publicó, si el mismo título salió en los
+últimos 14 días o si el historial la marca inflada. Con el escaneo pausado las ofertas nuevas **se suman**
+al catálogo de la web (no lo reemplazan) y `scraped_at` conserva la fecha vieja, para que el cartel
+«Actualizado» diga la verdad.
+
 ## Configuración (bot/config.json)
 
 | Campo | Qué hace | Valor actual |
@@ -87,6 +117,7 @@ falla, te llega alerta por Telegram con los pasos para regenerarlo a mano.
 | `min_price` | Precio mínimo ARS | 10000 |
 | `max_posts` | Posts por corrida | 3 |
 | `pages` | Páginas de /ofertas a leer | 3 |
+| `scrape_ml` | `false` = NO escanea ML, solo ofertas manuales (ML no permite el scrapeo) | `false` |
 
 Editás el JSON, hacés commit y push, y la próxima corrida usa los valores nuevos.
 

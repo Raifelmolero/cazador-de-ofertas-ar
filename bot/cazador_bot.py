@@ -35,7 +35,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from html import unescape
 from pathlib import Path
 
@@ -272,9 +272,51 @@ def load_scraped_snapshot(path: Path | None = None, ahora: datetime | None = Non
     return deals
 
 
-def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0) -> list[dict]:
+MANUAL_PATH = BASE_DIR / "state" / "ofertas_manuales.json"
+MANUAL_MAX_DIAS = 7   # una oferta cargada a mano deja de usarse a los 7 días (el precio envejece)
+
+
+def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list[dict]:
+    """Ofertas que el dueño carga a mano (workflow «Agregar oferta manual»).
+    Es la fuente cuando el escaneo de ML está pausado (scrape_ml=false en
+    config.json) y también se suma a las escaneadas. Las vencidas se ignoran."""
+    path = path or MANUAL_PATH
+    hoy = hoy or datetime.now(timezone.utc).date()
+    try:
+        items = json.loads(path.read_text(encoding="utf-8")).get("items", [])
+    except Exception:  # noqa: BLE001 — sin archivo o ilegible: no hay manuales
+        return []
+    out = []
+    for it in items:
+        try:
+            edad = (hoy - date.fromisoformat(it["agregada"])).days
+            if edad > MANUAL_MAX_DIAS or not it.get("id") or it["price_cur"] >= it["price_prev"]:
+                continue
+            out.append({
+                "relampago": False,
+                "id": it["id"],
+                "title": it["title"],
+                "url": it["url"],
+                "price_prev": int(it["price_prev"]),
+                "price_cur": int(it["price_cur"]),
+                "discount": int(it["discount"]),
+                "img": it.get("img"),
+                "manual": True,
+            })
+        except (KeyError, ValueError, TypeError):
+            continue
+    return out
+
+
+def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0,
+                scrape: bool = True) -> list[dict]:
     """Baja y parsea las páginas de ofertas (y las de ofertas relámpago y las
-    de categorías de ticket alto)."""
+    de categorías de ticket alto). Con scrape=False NO se hace ningún pedido a
+    ML (Mercado Libre confirmó el 13/10/2026 que el scrapeo no está permitido):
+    solo se devuelven las ofertas cargadas a mano."""
+    if not scrape:
+        print("[info] escaneo de ML PAUSADO (scrape_ml=false): solo ofertas cargadas a mano")
+        return load_manual_deals()
     deals, seen = [], set()
     urls = [(OFERTAS_URL, OFERTAS_URL.format(page=p), p) for p in range(1, pages + 1)]
     urls += [(RELAMPAGO_URL, RELAMPAGO_URL.format(page=p), p) for p in range(1, relampago_pages + 1)]
@@ -317,6 +359,8 @@ def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int =
             print(f"[warn] API de ML: {len(con_desc)} ofertas con descuento real "
                   f"(mínimo {MIN_API_CON_DESCUENTO}); descarto la fuente API para no pisar el sitio")
             deals = []
+    ids = {d["id"] for d in deals}
+    deals += [d for d in load_manual_deals() if d["id"] not in ids]
     return deals
 
 
@@ -677,8 +721,14 @@ def update_seguimiento(deals: list[dict], history: dict, affiliate_id: str,
 
 def write_site_data(deals: list[dict], affiliate_id: str,
                     exclusive_ids: set[str] | None = None,
-                    history: dict | None = None) -> None:
+                    history: dict | None = None,
+                    mezclar: bool = False) -> None:
     """Actualiza el JSON de CalculadoraML con las ofertas del día.
+
+    mezclar=True (escaneo de ML pausado): las ofertas nuevas se SUMAN al
+    catálogo que ya está (no lo reemplazan, así el sitio no se queda con 2
+    productos) y `scraped_at` conserva la fecha vieja: el cartel «Actualizado»
+    de la web tiene que decir la verdad sobre la edad de la mayor parte.
 
     Las ofertas exclusivas del canal de Telegram se excluyen de la web para
     que el "SOLO EN EL CANAL" sea verdad — es el gancho para sumar miembros.
@@ -729,9 +779,19 @@ def write_site_data(deals: list[dict], affiliate_id: str,
                 "margen_neto_premium_ars": round(margen_premium, 2),
             }
         )
+    scraped_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    if mezclar:
+        try:
+            with open(SITE_DATA_PATH, encoding="utf-8") as f:
+                previo = json.load(f)
+            nuevos = {i["id_ml"] for i in items}
+            items = items + [i for i in previo.get("items", []) if i.get("id_ml") not in nuevos]
+            scraped_at = previo.get("metadata", {}).get("scraped_at", scraped_at)
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass
     payload = {
         "metadata": {
-            "scraped_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "scraped_at": scraped_at,
             "fuente": "mercadolibre.com.ar/ofertas",
             "total_items": len(items),
         },
@@ -2192,6 +2252,17 @@ def publish_story(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> bool
 
 # ---------------------------------------------------------------- main
 
+def es_candidata(d: dict, cfg: dict, posted: set) -> bool:
+    """¿Se publica esta oferta? Las cargadas a mano (manual=True) las eligió el
+    dueño: no se les exige el descuento ni el precio mínimo del config, pero
+    siguen sin salir si ya se publicaron o si el historial las marca infladas."""
+    if d["id"] in posted or d["inflada"]:
+        return False
+    if d.get("manual"):
+        return True
+    return d["discount"] >= cfg.get("min_discount", 25) and d["price_cur"] >= cfg.get("min_price", 10000)
+
+
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -2219,10 +2290,12 @@ def main() -> int:
     state = load_state()
     posted = set(state["posted_ids"])
 
+    scrape = cfg.get("scrape_ml", True)
     deals = fetch_deals(
         pages=cfg.get("pages", 3),
         relampago_pages=cfg.get("relampago_pages", 0),
         categoria_pages=cfg.get("categoria_pages", 0),
+        scrape=scrape,
     )
     print(f"[info] {len(deals)} ofertas únicas parseadas")
 
@@ -2238,21 +2311,14 @@ def main() -> int:
     if deals:
         log_scan(len(deals), n_low, n_inf)
 
-    if len(deals) < 5:
+    if scrape and len(deals) < 5:
         print(f"::warning::Cazador: {len(deals)} ofertas parseadas"
               + (" (ML anti-bot / scraper bloqueado)" if SCRAPE_BLOCKED else ""))
         if dry or should_send_scrape_alert():
             alert_admin(token, cfg["admin_chat"],
                         scrape_alert_text(SCRAPE_BLOCKED, len(deals)), dry)
 
-    candidates = [
-        d
-        for d in deals
-        if d["discount"] >= cfg.get("min_discount", 25)
-        and d["price_cur"] >= cfg.get("min_price", 10000)
-        and d["id"] not in posted
-        and not d["inflada"]
-    ]
+    candidates = [d for d in deals if es_candidata(d, cfg, posted)]
     # Ganancia esperada primero (ticket × comisión, con plus por mínimo
     # histórico y relámpago): pocas ventas grandes valen más que muchas chicas.
     candidates.sort(key=ganancia_esperada, reverse=True)
@@ -2278,7 +2344,9 @@ def main() -> int:
     # SOLO_DATOS=1: corrida de la mañana que solo refresca precios y la web (no
     # publica en ningún canal, así que tampoco marca exclusivas del canal).
     solo_datos = os.getenv("SOLO_DATOS") == "1"
-    n_excl = 0 if solo_datos else min(cfg.get("exclusive_posts", 0), max(0, len(to_post) - 1))
+    # Con el escaneo pausado hay pocas ofertas (las cargó el dueño a mano) y
+    # todas tienen que verse en la web: no se reservan exclusivas del canal.
+    n_excl = 0 if (solo_datos or not scrape) else min(cfg.get("exclusive_posts", 0), max(0, len(to_post) - 1))
     for d in to_post[len(to_post) - n_excl:] if n_excl else []:
         d["canal_exclusiva"] = True  # marca para el caption y el filtro de la web
     exclusive_ids = set(state.get("exclusive_ids", []))
@@ -2290,12 +2358,14 @@ def main() -> int:
     )
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
-        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history)
+        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history,
+                        mezclar=not scrape)
         update_seguimiento(deals, history, affiliate_id)
-        try:  # best-effort: la muestra de infladas nunca frena la publicación
-            write_infladas(deals)
-        except Exception as e:  # noqa: BLE001
-            print(f"[warn] infladas.json no se pudo escribir: {e}")
+        if scrape:  # con el escaneo pausado hay pocas ofertas: la muestra de infladas queda como está
+            try:  # best-effort: la muestra de infladas nunca frena la publicación
+                write_infladas(deals)
+            except Exception as e:  # noqa: BLE001
+                print(f"[warn] infladas.json no se pudo escribir: {e}")
 
     if solo_datos:
         save_state(state)

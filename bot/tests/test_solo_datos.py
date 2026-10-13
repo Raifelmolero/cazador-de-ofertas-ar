@@ -7,7 +7,7 @@ def test_solo_datos_no_publica():
     i_solo = src.index('if solo_datos:\n        save_state(state)')
     i_tg = src.index("for i, deal in enumerate(to_post):")
     assert i_solo < i_tg
-    assert 'n_excl = 0 if solo_datos else' in src
+    assert 'n_excl = 0 if (solo_datos or not scrape) else' in src  # SOLO_DATOS (o escaneo pausado) no marca exclusivas
 
 
 def test_workflow_cron_manana_es_solo_datos():

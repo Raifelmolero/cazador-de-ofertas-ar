@@ -220,3 +220,9 @@ sitio quedó con 25 productos (antes ~280). La API oficial no rescata (403 de po
 en highlights/items). Detalle, números y opciones: `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`.
 Es la causa más probable del "estancamiento" y hay que resolverla antes del Cyber (2/11).
 No se intenta evadir el bloqueo. Mismo día: Cyber con ofertas arriba y recordatorios `.ics`.
+
+**Actualización (misma tarde):** ML (Agustina, Afiliados) confirmó que **el scrapeo no está permitido** y
+que la API abierta para afiliados todavía se está desarrollando. Decisión del dueño: **escaneo PAUSADO**
+(`scrape_ml=false` en `bot/config.json`: el bot no pide ninguna página de ML) y **ofertas cargadas a mano**
+desde Actions → «Agregar oferta manual» (`bot/tools/oferta_manual.py`, ver `bot/README.md`). **No volver a
+scrapear ni armar scrapers locales/proxies.** Pendiente: acceso anticipado a la API y listado oficial.

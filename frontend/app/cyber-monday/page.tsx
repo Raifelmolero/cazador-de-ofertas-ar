@@ -13,6 +13,7 @@ import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
+import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import { COMPARATIVAS, getComparativa, productosDe } from '@/lib/comparativas'
 import { GUIAS } from '@/lib/guias'
 
@@ -75,7 +76,8 @@ export default function CyberMondayPage() {
   // de /hoy. Ya vienen ordenadas por ganancia esperada, igual que /hoy.
   const cyber = getComparativa('ofertas-cyber-monday')
   const deRubros = cyber ? productosDe(cyber) : []
-  const ofertas = (deRubros.length >= 4 ? deRubros : getOfertas()).slice(0, MAX_OFERTAS)
+  // Ticket alto primero: es donde cada clic vale más (igual que /hoy y /categoria).
+  const ofertas = ticketAltoPrimero(deRubros.length >= 4 ? deRubros : getOfertas()).slice(0, MAX_OFERTAS)
   const ofertasLight: OfertaLight[] = ofertas.map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
@@ -314,8 +316,48 @@ export default function CyberMondayPage() {
                 </>
               )}
             </p>
+            {CM.oficial && etapa === 'antes' && (
+              <a
+                href="/cyber-monday/agenda.ics"
+                download
+                className="mt-4 inline-block text-sm font-bold bg-cyan-400 hover:bg-cyan-300 text-black rounded-xl px-5 py-2.5 transition-colors"
+              >
+                📅 Agendá el Cyber en tu calendario
+              </a>
+            )}
           </div>
         </div>
+      </section>
+
+      <section data-seccion="cyber_ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
+        <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
+          <h2 className="font-display text-xl sm:text-2xl font-black">Ofertas reales de hoy en los rubros del Cyber Monday</h2>
+          <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+            {etapa === 'antes'
+              ? 'Todavía no son precios del evento: son las ofertas de hoy con descuento verificado. Sirven de referencia para comparar cuando arranque.'
+              : etapa === 'durante'
+                ? 'Las ofertas de hoy con descuento verificado contra el historial de precios.'
+                : 'El evento ya terminó: estas son las ofertas de hoy con descuento verificado contra el historial de precios.'}{' '}
+            <span className="text-zinc-500">
+              <LastUpdated scrapedAt={scrapedAt} />.
+            </span>
+          </p>
+        </div>
+        {ofertas.length === 0 ? (
+          <p className="text-sm text-zinc-500">
+            Estamos cazando las ofertas de hoy. Volvé en un rato o{' '}
+            <a href={DEALS_URL} className="text-yellow-400 hover:underline">mirá todas las ofertas</a>.
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            {ofertasLight.map((o, i) => (
+              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+            ))}
+          </div>
+        )}
+        <a href={DEALS_URL} className="mt-5 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-300">
+          Ver todas las ofertas de hoy, con buscador y filtros →
+        </a>
       </section>
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
@@ -439,36 +481,6 @@ export default function CyberMondayPage() {
         </section>
       </article>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
-        <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
-          <h2 className="font-display text-xl sm:text-2xl font-black">Ofertas reales de hoy en los rubros del Cyber Monday</h2>
-          <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-            {etapa === 'antes'
-              ? 'Todavía no son precios del evento: son las ofertas de hoy con descuento verificado. Sirven de referencia para comparar cuando arranque.'
-              : etapa === 'durante'
-                ? 'Las ofertas de hoy con descuento verificado contra el historial de precios.'
-                : 'El evento ya terminó: estas son las ofertas de hoy con descuento verificado contra el historial de precios.'}{' '}
-            <span className="text-zinc-500">
-              <LastUpdated scrapedAt={scrapedAt} />.
-            </span>
-          </p>
-        </div>
-        {ofertas.length === 0 ? (
-          <p className="text-sm text-zinc-500">
-            Estamos cazando las ofertas de hoy. Volvé en un rato o{' '}
-            <a href={DEALS_URL} className="text-yellow-400 hover:underline">mirá todas las ofertas</a>.
-          </p>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertasLight.map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
-            ))}
-          </div>
-        )}
-        <a href={DEALS_URL} className="mt-5 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-300">
-          Ver todas las ofertas de hoy, con buscador y filtros →
-        </a>
-      </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
         {comparativas.length > 0 && (

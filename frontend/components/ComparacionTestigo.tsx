@@ -55,6 +55,11 @@ export default function ComparacionTestigo({
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-bold border border-emerald-400/60 text-emerald-300 rounded-xl px-5 py-2.5">
             Avisame por WhatsApp
           </a>
+          {evento === 'Cyber Monday' && (
+            <a href="/cyber-monday/agenda.ics" download className="inline-block text-sm font-bold border border-cyan-400/60 text-cyan-300 rounded-xl px-5 py-2.5">
+              📅 Agendar el Cyber
+            </a>
+          )}
         </div>
       </section>
     )

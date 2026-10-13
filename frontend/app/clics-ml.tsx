@@ -18,6 +18,10 @@ export default function ClicsML() {
       } catch {
         return
       }
+      if (url.pathname.endsWith('.ics')) {
+        track('agenda_click', { pagina: window.location.pathname })
+        return
+      }
       if (url.hostname === 't.me' && url.searchParams.get('start')?.startsWith('MLA')) {
         track('alerta_click', { pagina: window.location.pathname })
         return

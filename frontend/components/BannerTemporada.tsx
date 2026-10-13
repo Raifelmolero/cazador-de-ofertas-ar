@@ -21,6 +21,11 @@ export default function BannerTemporada({ ahora = new Date() }: { ahora?: Date }
         <span className="block text-xs sm:text-sm text-zinc-300 mt-0.5 sm:mt-1">{t.bajada}</span>
         </span>
       </Link>
+      {t.agenda && ahora.getTime() < new Date(`${t.agenda.inicio}T00:00:00-03:00`).getTime() && (
+        <a href={t.agenda.href} download className={`mt-2 block text-center text-xs sm:text-sm font-bold hover:underline ${t.texto}`}>
+          📅 Agendá el aviso en tu calendario
+        </a>
+      )}
     </section>
   )
 }

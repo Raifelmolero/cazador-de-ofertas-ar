@@ -20,6 +20,8 @@ export interface Temporada {
   cuenta?: boolean
   /** ilustración de Don Ofertín (public/personaje), apaisada, 480 px de ancho */
   escena?: string
+  /** archivo .ics de recordatorios; se ofrece en el banner hasta el día `inicio` */
+  agenda?: { href: string; inicio: string }
 }
 
 const diaSiguiente = (f: string) => {
@@ -50,6 +52,7 @@ export const TEMPORADAS: Temporada[] = [
     desde: '2026-10-19',
     hasta: CYBER_MONDAY.fin,
     escena: '/personaje/escena-cyber-monday.webp',
+    agenda: { href: '/cyber-monday/agenda.ics', inicio: CYBER_MONDAY.inicio },
   },
   {
     id: 'blackfriday',
@@ -62,6 +65,7 @@ export const TEMPORADAS: Temporada[] = [
     hasta: BLACK_FRIDAY.fecha,
     cuenta: true,
     escena: '/personaje/escena-cyber-monday.webp',
+    agenda: { href: '/black-friday/agenda.ics', inicio: BLACK_FRIDAY.fecha },
   },
   {
     id: 'navidad',

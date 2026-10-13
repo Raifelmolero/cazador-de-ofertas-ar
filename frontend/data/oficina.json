@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-13T17:04:45+00:00",
+  "generado": "2026-10-13T20:35:48+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -18,23 +18,19 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 14
-        },
-        {
-          "label": "whatsapp_kit",
-          "valor": 5
+          "valor": 9
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 1
         },
         {
           "label": "Threads",
-          "valor": 2
+          "valor": 1
         },
         {
           "label": "Facebook",
-          "valor": 2
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
@@ -194,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-12T20:06:56+00:00",
+      "ultima_actividad": "2026-10-13T17:56:35+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -206,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✔ Última publicación hace 0 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

@@ -226,3 +226,10 @@ que la API abierta para afiliados todavía se está desarrollando. Decisión del
 (`scrape_ml=false` en `bot/config.json`: el bot no pide ninguna página de ML) y **ofertas cargadas a mano**
 desde Actions → «Agregar oferta manual» (`bot/tools/oferta_manual.py`, ver `bot/README.md`). **No volver a
 scrapear ni armar scrapers locales/proxies.** Pendiente: acceso anticipado a la API y listado oficial.
+
+**Cierre 2026-10-13 (celular):** carga manual en lote lista (campo `lote` en «Agregar oferta manual»).
+El dueño preguntó por scrapeo externo/nube: **no, sigue siendo scrapeo** y la sanción cae sobre su
+cuenta. Claude no ve ML desde el sandbox: para cargar ofertas necesita link largo, título, precio
+actual, precio tachado e imagen que pase el dueño por el chat. El panel de afiliados no muestra
+exportación. Detalle y pendientes en el final de `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`.
+Trello #31.

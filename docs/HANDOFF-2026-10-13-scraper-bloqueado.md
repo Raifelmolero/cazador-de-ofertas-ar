@@ -71,3 +71,30 @@ el propio `scraper_local.py` se frena a propósito en la primera verificación.
 Cyber Monday: ofertas de ticket alto arriba en /cyber-monday, recordatorio de
 calendario `/cyber-monday/agenda.ics` y `/black-friday/agenda.ics`, link «Agendá»
 en el banner de temporada (`lib/agenda.ts`).
+
+## Cierre de la sesión del 13/10 (desde el celular) — dónde quedamos
+- **Estado**: escaneo PAUSADO (`scrape_ml=false`). Carga manual lista en main, incluida la
+  carga de varias a la vez: Actions → «Agregar oferta manual» → campo `lote`
+  (`url | título | actual | anterior | imagen` separadas por `;;`, todo o nada). Commit 89006d3.
+- **El dueño preguntó** si se puede scrapear «de forma externa» (nube, repo de GitHub, otra app,
+  sin la cuenta). **Respuesta firme: no.** Sigue siendo scrapeo (ML lo prohíbe), las IPs de
+  datacenter ya están bloqueadas y los links publicados llevan su etiqueta de afiliado, así que la
+  sanción caería sobre su cuenta. No armar scrapers en la nube/PC/repos externos.
+- **Panel de afiliados (app de ML, capturas del 13/10)**: secciones Más vendidos, pestañas
+  Para vos/Tecnología/Hogar/Electro, Listas de afiliados, Campañas de videos, Campañas con
+  incentivos, Ingresos, Colaboradores, canal de WhatsApp y de Telegram del programa. **No se ve
+  exportación/descarga.** Falta ver qué trae «Listas de afiliados» y un producto abierto.
+- **Claude no puede ver ML ni meli.la** desde el sandbox (proxy). Para cargar ofertas necesita que el
+  dueño pase por el chat: link LARGO (mercadolibre.com.ar/...MLA...), título, precio actual, precio
+  tachado (y, para Instagram, link de imagen http2.mlstatic.com). Con capturas Claude arma el lote y lo
+  carga sin publicar (commit directo a `bot/state/ofertas_manuales.json`, o vía Actions).
+- **Mensaje para Agus (aún no enviado)**: dónde ver/descargar las listas, si hay exportación o
+  catálogo, y cómo pedir acceso anticipado a la API de afiliados (afiliado 37267219; el dueño debe
+  confirmar el ID en el panel).
+- **Números 7 días hasta el 13/10**: 301 clics, 38 pedidos, $1.170.558 estimados (anterior $1.013.911).
+- **Trello**: tarjeta #31 creada (ML bloquea el scraping); comentario en #30 (videos).
+- **Pendiente del dueño**: mandar capturas (producto abierto de Más vendidos y «Listas de afiliados»),
+  enviar el mensaje a Agus, unirse al canal WhatsApp/Telegram del programa, probar «Agregar oferta
+  manual» sin `publicar_ya`.
+- **Pendiente de Claude**: cuando lleguen datos, cargar el lote; verificar el CI Bot Tests de
+  89006d3; opcional: parser de texto pegado del panel (si el formato lo permite).

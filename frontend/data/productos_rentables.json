@@ -1,8 +1,8 @@
 {
  "metadata": {
-  "scraped_at": "2026-10-12T22:30:07+00:00",
+  "scraped_at": "2026-10-13T05:18:57+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 27
+  "total_items": 25
  },
  "items": [
   {
@@ -420,29 +420,6 @@
    "margen_neto_premium_ars": 200484.36
   },
   {
-   "id_ml": "T2557377425489284156",
-   "titulo": "Mochila Viagem Feminina Masculina Impermeable Y Duradero Negro Liso",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 46170.0,
-   "precio_anterior": 68888,
-   "descuento_pct": 32,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 1154,
-   "precio_minimo_registrado": 46170,
-   "seguimiento_desde": "2026-10-12",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/mochila-viagem-feminina-masculina-impermeable-y-duradero/up/MLAU4188729372?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_661838-MLA112737637174_062026-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 39387.63,
-   "margen_neto_premium_ars": 33200.85
-  },
-  {
    "id_ml": "MLA47437602",
    "titulo": "Máquina De Soda Color Blanco Sodastream Megapack Rendimiento Terra",
    "categoria_principal": "ofertas del día",
@@ -510,29 +487,6 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 469204.15,
    "margen_neto_premium_ars": 395504.28
-  },
-  {
-   "id_ml": "MLA53156415",
-   "titulo": "Yogurtera Yelmo Yg-1708v 8 Jarros 1,4 Litros Verde Verde Claro",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 49499.0,
-   "precio_anterior": 79999,
-   "descuento_pct": 38,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 1237,
-   "precio_minimo_registrado": 47499,
-   "seguimiento_desde": "2026-09-24",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/yogurtera-yelmo-yg-1708v-8-jarros-14-litros-verde-verde-claro/p/MLA53156415?matt_word=web&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_Q_NP_2X_994744-MLA112624706032_062026-AB.webp",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0.0,
-   "costo_envio_base_ars": 0.0,
-   "margen_neto_clasico_ars": 42227.6,
-   "margen_neto_premium_ars": 35594.73
   },
   {
    "id_ml": "T1241059600587016890",

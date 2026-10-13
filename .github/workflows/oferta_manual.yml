@@ -7,21 +7,25 @@ name: Agregar oferta manual
 on:
   workflow_dispatch:
     inputs:
+      lote:
+        description: 'VARIAS a la vez (si lo llenás, se ignoran los 4 campos de abajo): url | título | actual | anterior | imagen, separadas por ;;'
+        required: false
+        type: string
       url:
         description: 'Link LARGO del producto (mercadolibre.com.ar/...MLA...), no el corto meli.la'
-        required: true
+        required: false
         type: string
       titulo:
         description: 'Título del producto (como lo muestra ML)'
-        required: true
+        required: false
         type: string
       precio_actual:
         description: 'Precio actual, solo el número (ej. 749999)'
-        required: true
+        required: false
         type: string
       precio_anterior:
         description: 'Precio anterior tachado, solo el número (ej. 1100000)'
-        required: true
+        required: false
         type: string
       imagen:
         description: 'Link de la foto (opcional; http2.mlstatic.com/...). Sin foto no sale en Instagram'
@@ -57,6 +61,7 @@ jobs:
       # Los datos entran por variables de entorno (nunca interpolados en el script).
       - name: Validar y guardar la oferta
         env:
+          OFERTA_LOTE: ${{ inputs.lote }}
           OFERTA_URL: ${{ inputs.url }}
           OFERTA_TITULO: ${{ inputs.titulo }}
           OFERTA_ACTUAL: ${{ inputs.precio_actual }}

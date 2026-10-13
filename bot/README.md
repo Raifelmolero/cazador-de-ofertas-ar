@@ -87,6 +87,9 @@ falla, te llega alerta por Telegram con los pasos para regenerarlo a mano.
 
 ## Cargar una oferta a mano (modo actual)
 
+**Varias a la vez:** en el campo «lote» pegá una oferta por bloque con campos separados por `|` y ofertas separadas por `;;`:
+`url | título | precio actual | precio anterior | imagen (opcional) ;; url | ...`. Todo o nada: si una está mal, el error dice cuál y no se carga ninguna.
+
 Desde el celular: app de GitHub → repo → **Actions → «Agregar oferta manual» → Run workflow**.
 
 | Campo | Qué poner |

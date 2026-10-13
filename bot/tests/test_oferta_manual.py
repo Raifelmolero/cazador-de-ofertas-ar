@@ -173,3 +173,22 @@ def test_mensaje_de_pesos_sin_comas_sueltas():
     with pytest.raises(om.OfertaInvalida) as e:
         oferta(actual="120000", anterior="100000")
     assert "($100.000)" in str(e.value) and "si no tiene, no es" in str(e.value)
+
+
+A = "https://www.mercadolibre.com.ar/p/MLA123456789 | Heladera Samsung 400L | 900.000 | 1.200.000"
+B = "https://www.mercadolibre.com.ar/p/MLA987654321 | Notebook Lenovo 15 | 700000 | 900000 | https://http2.mlstatic.com/D_1.jpg"
+
+
+def test_lote_por_lineas_o_separador():
+    assert len(om.parsear_lote(A + "\n" + B)) == 2
+    assert len(om.parsear_lote(A + " ;; " + B)) == 2
+
+
+def test_lote_todo_o_nada():
+    with pytest.raises(om.OfertaInvalida, match="Oferta 2"):
+        om.parsear_lote(A + "\nhttps://meli.la/xx | Algo largo | 10 | 20")
+
+
+def test_lote_campos_de_menos():
+    with pytest.raises(om.OfertaInvalida):
+        om.parsear_lote("solo | tres | campos")

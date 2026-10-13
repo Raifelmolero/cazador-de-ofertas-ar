@@ -127,12 +127,49 @@ def guardar(oferta: dict, path: Path | None = None) -> int:
     return len(vigentes)
 
 
+def parsear_lote(texto: str) -> list[dict]:
+    """Varias ofertas en un texto: una por línea (o separadas por ';;'), campos con '|':
+    url | titulo | precio actual | precio anterior | imagen (opcional).
+    Todo o nada: si una línea está mal, no se carga ninguna y el error dice cuál."""
+    lineas = [l.strip() for l in re.split(r"\n|;;", texto or "") if l.strip()]
+    if not lineas:
+        raise OfertaInvalida("El lote está vacío. Formato: url | título | precio actual | precio anterior | imagen (opcional)")
+    ofertas, errores = [], []
+    for i, linea in enumerate(lineas, 1):
+        campos = [c.strip() for c in linea.split("|")]
+        if len(campos) not in (4, 5):
+            errores.append(f"Oferta {i}: hay {len(campos)} campos y tienen que ser 4 o 5 separados por «|».")
+            continue
+        try:
+            ofertas.append(armar_oferta(*campos))
+        except OfertaInvalida as e:
+            errores.append(f"Oferta {i}: {e}")
+    if errores:
+        raise OfertaInvalida("No se cargó ninguna. " + " ".join(errores))
+    return ofertas
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--lote", default=os.getenv("OFERTA_LOTE", ""))
     for k in ("url", "titulo", "actual", "anterior"):
         ap.add_argument(f"--{k}", default=os.getenv(f"OFERTA_{k.upper()}", ""))
     ap.add_argument("--imagen", default=os.getenv("OFERTA_IMAGEN", ""))
     a = ap.parse_args()
+    if a.lote.strip():
+        try:
+            ofertas = parsear_lote(a.lote)
+        except OfertaInvalida as e:
+            print(f"::error::{e}")
+            return 1
+        for o in ofertas:
+            n = guardar(o)
+            print(f"OK: «{o['title']}» a {pesos(o['price_cur'])} ({o['discount']}% OFF)")
+        print(f"Cargadas {len(ofertas)}. Ofertas manuales vigentes: {n}.")
+        sin_img = sum(1 for o in ofertas if not o["img"])
+        if sin_img:
+            print(f"Aviso: {sin_img} sin imagen (no salen en Instagram).")
+        return 0
     try:
         oferta = armar_oferta(a.url, a.titulo, a.actual, a.anterior, a.imagen)
     except OfertaInvalida as e:

@@ -213,3 +213,10 @@ Leer `docs/HANDOFF-2026-10-06-celular.md` (detalle) y, para plata, `docs/PROYECC
 - **Recordatorio activo**: sáb 31/10 12:00 ART, cargar los posts del Cyber (`docs/CYBER-POSTS-2026.md`).
 - Estado de `main` al cierre: CI de frontend en verde (último run: revert d9cf505). Trello: tarjetas #24 a #30 creadas.
 
+## Estado al 2026-10-13 — ALERTA: ML bloquea al bot (leer primero)
+Desde ~el 06/10 el scraping de `/ofertas` desde Actions devuelve la pantalla anti-bot:
+el escaneo bajó de ~1.500 a ~48 productos, las publicaciones de 20–50/día a 4–21 y el
+sitio quedó con 25 productos (antes ~280). La API oficial no rescata (403 de política
+en highlights/items). Detalle, números y opciones: `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`.
+Es la causa más probable del "estancamiento" y hay que resolverla antes del Cyber (2/11).
+No se intenta evadir el bloqueo. Mismo día: Cyber con ofertas arriba y recordatorios `.ics`.

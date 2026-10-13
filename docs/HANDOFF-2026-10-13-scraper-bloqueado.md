@@ -24,6 +24,13 @@ Con el bot casi parado, IG baja de seguidores (1.498 → 1.490) y la web muestra
 Los clics de la semana al 06/10 (409) son de ANTES del bloqueo: la semana siguiente
 va a verse peor si no se resuelve. Faltan 3 semanas para el Cyber Monday (2/11).
 
+## Prueba de volumen (13/10, run 38448756654, solo lectura)
+`probe_scraping.yml` pidió 4 páginas con 20 s de pausa (ofertas p1/p2, relámpago, categoría):
+**0 de 4 pasaron** (anti-bot en todas, ~41 KB iguales). Con tan pocos pedidos el resultado es
+el mismo, así que el bloqueo NO es por volumen: ML rechaza las IP de GitHub Actions.
+Bajar páginas o frecuencia no lo arregla. (Antes de 05/10 esas mismas IP pasaban; qué cambió
+del lado de ML no se puede saber desde acá.)
+
 ## Opciones (ninguna evade el bloqueo de ML; las tres son legítimas)
 1. **Scraper local programado en la PC del dueño** (`bot/tools/scraper_local.py`,
    IP residencial, pocas páginas, pausas largas, frena en la primera pantalla

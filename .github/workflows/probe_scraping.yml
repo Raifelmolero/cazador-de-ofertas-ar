@@ -1,0 +1,25 @@
+name: Probe scraping ML
+
+# Sonda de solo lectura (4 pedidos a ML): ¿el bloqueo anti-bot es por volumen o por IP?
+# No publica ni commitea nada. Se corre a mano.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Probar
+        working-directory: bot/tools
+        env:
+          PYTHONPATH: ..
+        run: python probe_scraping.py

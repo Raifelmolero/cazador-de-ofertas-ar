@@ -37,7 +37,7 @@ class TestAlerta(unittest.TestCase):
     def test_fetch_deals_marca_bloqueo(self):
         with mock.patch.object(bot, "http_get", return_value=b"negative_traffic"), \
              mock.patch.object(bot.time, "sleep"), mock.patch.dict(os.environ, {}, clear=True), \
-             mock.patch.object(bot, "load_scraped_snapshot", return_value=[]):
+             mock.patch.object(bot, "load_scraped_snapshot", return_value=[]),              mock.patch.object(bot, "MANUAL_PATH", Path("/no/existe_manuales.json")):
             self.assertEqual(bot.fetch_deals(pages=1), [])
         self.assertTrue(bot.SCRAPE_BLOCKED)
 
@@ -89,6 +89,7 @@ class TestApi(unittest.TestCase):
         with mock.patch.object(bot, "http_get", return_value=b"<html></html>"), \
              mock.patch.object(bot.time, "sleep"), \
              mock.patch.object(bot, "SCRAPED_SNAPSHOT_PATH", Path("/no/existe.json")), \
+             mock.patch.object(bot, "MANUAL_PATH", Path("/no/existe_manuales.json")), \
              mock.patch.dict(os.environ, ENV, clear=True), \
              mock.patch.object(ml_api, "fetch_deals_api", return_value=[{"id": f"MLA{i}", "discount": 30} for i in range(25)]) as m:
             self.assertEqual(len(bot.fetch_deals(pages=1)), 25)
@@ -337,6 +338,7 @@ class TestWriteSiteDataCatalogo(unittest.TestCase):
 class TestGuardaFuenteApi(unittest.TestCase):
     def test_descarta_api_con_pocas_ofertas_con_descuento(self):
         with mock.patch.object(bot, "http_get", return_value=b"<html></html>"),              mock.patch.object(bot.time, "sleep"),              mock.patch.object(bot, "SCRAPED_SNAPSHOT_PATH", Path("/no/existe.json")), \
+             mock.patch.object(bot, "MANUAL_PATH", Path("/no/existe_manuales.json")), \
              mock.patch.dict(os.environ, ENV, clear=True),              mock.patch.object(ml_api, "fetch_deals_api",
                                return_value=[{"id": "MLA9", "discount": 0}]):
             self.assertEqual(bot.fetch_deals(pages=1), [])

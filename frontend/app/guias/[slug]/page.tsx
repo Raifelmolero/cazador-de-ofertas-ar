@@ -8,6 +8,8 @@ import { getComparativa, productosDe } from '@/lib/comparativas'
 import { landingsDeGuia } from '@/lib/landings'
 import { ctaDeGuia } from '@/lib/ctaguias'
 import CtaCalculadora from '@/components/CtaCalculadora'
+import CtaFijoML from '@/components/CtaFijoML'
+import { elegirDestacado } from '@/components/DestacadoML'
 
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
@@ -39,6 +41,8 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const url = `${DEALS_URL}/guias/${g.slug}`
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   const ofertas = comp ? productosDe(comp).slice(0, 4) : []
+  // Barra fija de compra en celular: solo si la guía muestra ofertas reales del día.
+  const destacado = ofertas.length > 0 ? elegirDestacado(ofertas) : undefined
   const fechas = fechasGuia(g.slug)
   const cta = ctaDeGuia(g)
   // La caja del medio va después de la mitad de las secciones (en guías cortas, tras la primera).
@@ -320,6 +324,13 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       </div>
       <div className="sm:hidden h-20" aria-hidden="true" />
       <Footer brand="ofertas" />
+      {destacado && (
+        <CtaFijoML
+          titulo={destacado.titulo}
+          precio={'$' + Math.round(destacado.precio_actual).toLocaleString('es-AR')}
+          url={destacado.url_producto}
+        />
+      )}
     </main>
   )
 }

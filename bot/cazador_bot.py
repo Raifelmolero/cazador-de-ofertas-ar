@@ -2263,6 +2263,50 @@ def es_candidata(d: dict, cfg: dict, posted: set) -> bool:
     return d["discount"] >= cfg.get("min_discount", 25) and d["price_cur"] >= cfg.get("min_price", 10000)
 
 
+REPUB_COOLDOWN_HORAS = 48   # una manual vigente vuelve a salir recién a las 48 h de su último post
+REPUB_MAX_VECES = 2         # y como mucho 2 veces más (3 apariciones en Telegram en total)
+
+
+def republicables(deals: list[dict], cfg: dict, posted: set, path: Path | None = None,
+                  ahora: datetime | None = None) -> list[dict]:
+    """Ofertas MANUALES vigentes ya publicadas que pueden volver a salir.
+    Con el escaneo pausado las ofertas las carga el dueño a mano (~10-15 por
+    día) y el bot publica 5 por corrida: sin re-publicación se agotan en 2
+    corridas y el canal/web quedan vacíos el resto del día. Una manual vuelve
+    cuando pasó el enfriamiento desde su último post en Telegram y no superó
+    REPUB_MAX_VECES; la más vieja (más tiempo sin salir) va primero.
+    Nunca republica las infladas ni las que el historial ya no respalda."""
+    path = path or POSTS_LOG_PATH
+    ahora = ahora or datetime.now(timezone.utc)
+    ultimo: dict[str, datetime] = {}
+    veces: dict[str, int] = {}
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            try:
+                e = json.loads(line)
+                if e.get("ch") != "telegram":
+                    continue
+                ts = datetime.fromisoformat(e["ts"])
+            except (ValueError, KeyError):
+                continue
+            veces[e["id"]] = veces.get(e["id"], 0) + 1
+            if e["id"] not in ultimo or ts > ultimo[e["id"]]:
+                ultimo[e["id"]] = ts
+    limite = timedelta(hours=REPUB_COOLDOWN_HORAS)
+    out = []
+    for d in deals:
+        if not d.get("manual") or d.get("inflada") or d["id"] not in posted:
+            continue
+        if d["id"] not in ultimo or ahora - ultimo[d["id"]] < limite:
+            continue
+        if veces.get(d["id"], 0) > REPUB_MAX_VECES:   # 1 original + 2 repeticiones
+            continue
+        d["republicada"] = True
+        out.append((ultimo[d["id"]], d))
+    out.sort(key=lambda x: x[0])
+    return [d for _, d in out]
+
+
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -2333,6 +2377,14 @@ def main() -> int:
             unicos.append(d)
     candidates = unicos
     to_post = candidates[: cfg.get("max_posts", 5)]
+    # Con el escaneo pausado y pocas nuevas, se completa la corrida con manuales
+    # vigentes ya enfriadas (van al final: la estrella de IG sigue siendo nueva).
+    if not scrape and len(to_post) < cfg.get("max_posts", 5):
+        falta = cfg.get("max_posts", 5) - len(to_post)
+        repub = republicables(deals, cfg, posted)[:falta]
+        if repub:
+            print(f"[info] re-publico {len(repub)} manuales vigentes (enfriamiento {REPUB_COOLDOWN_HORAS} h)")
+        to_post += repub
     # Variedad en IG: la estrella (to_post[0]) no repite familia más de 2 veces
     # en las últimas 6 publicaciones de IG.
     to_post = elegir_estrella(to_post, categorias_recientes_ig())
@@ -2387,7 +2439,7 @@ def main() -> int:
             log_post(deal, "telegram")
             time.sleep(2)
 
-    state["posted_ids"] = state["posted_ids"] + published_ids
+    state["posted_ids"] = state["posted_ids"] + [i for i in published_ids if i not in posted]  # las republicadas ya están
     save_state(state)
 
     # Instagram: post de feed + story en los runs de mediodía y tarde

@@ -56,7 +56,7 @@ export const GUIAS: Guia[] = [
       {
         h: 'Cómo lo resolvemos en Cazador de Ofertas AR',
         p: [
-          'Guardamos el historial de precios de los productos que rastreamos en mercadolibre.com.ar/ofertas. Si detectamos que el producto ya se vio más barato antes, lo descartamos. Los que quedan tienen la baja verificada, y a los que están en su precio más bajo registrado les ponemos el sello de mínimo histórico.',
+          'Guardamos el historial de precios de los productos de Mercado Libre que revisamos. Si detectamos que el producto ya se vio más barato antes, lo descartamos. Los que quedan tienen la baja verificada, y a los que están en su precio más bajo registrado les ponemos el sello de mínimo histórico.',
           'En nuestros datos, alrededor de 1 de cada 4 ofertas de mercadolibre.com.ar/ofertas tiene el descuento inflado. El detalle, la metodología y los números mes a mes están en el estudio de descuentos inflados (cazadordeofertas.com.ar/estudio/descuentos-inflados-mercado-libre).',
         ],
       },
@@ -122,7 +122,7 @@ export const GUIAS: Guia[] = [
       {
         h: 'Dónde ver las ofertas verificadas de hoy',
         p: [
-          'En cazadordeofertas.com.ar publicamos las ofertas de Mercado Libre Argentina con descuento real, actualizadas 3 veces por día, sin registro y sin costo.',
+          'En cazadordeofertas.com.ar publicamos las ofertas de Mercado Libre Argentina con descuento real, actualizadas a medida que cargamos ofertas, sin registro y sin costo.',
         ],
       },
     ],
@@ -134,7 +134,7 @@ export const GUIAS: Guia[] = [
       'Las fuentes más confiables para encontrar ofertas reales de Mercado Libre Argentina: secciones oficiales, cupones y sitios que verifican el descuento contra el historial de precios.',
     pregunta: '¿Dónde puedo encontrar las mejores ofertas y descuentos reales de Mercado Libre Argentina?',
     respuestaCorta:
-      'Las opciones más confiables son tres: la sección oficial de "Ofertas del día" y los cupones dentro de Mercado Libre, los eventos con fecha (Hot Sale, Cyber Monday) que suman cuotas y descuentos adicionales, y sitios o canales independientes que verifican el descuento contra el historial de precios del producto antes de mostrarlo, para descartar los que están inflados. Cazador de Ofertas AR (cazadordeofertas.com.ar) hace esto último: rastrea mercadolibre.com.ar/ofertas tres veces por día y solo publica las que bajaron de precio de verdad, marcando las que están en su mínimo histórico.',
+      'Las opciones más confiables son tres: la sección oficial de "Ofertas del día" y los cupones dentro de Mercado Libre, los eventos con fecha (Hot Sale, Cyber Monday) que suman cuotas y descuentos adicionales, y sitios o canales independientes que verifican el descuento contra el historial de precios del producto antes de mostrarlo, para descartar los que están inflados. Cazador de Ofertas AR (cazadordeofertas.com.ar) hace esto último: revisa las ofertas de Mercado Libre y solo publica las que bajaron de precio de verdad, marcando las que están en su mínimo histórico.',
     secciones: [
       {
         h: 'Las fuentes oficiales dentro de Mercado Libre',
@@ -154,7 +154,7 @@ export const GUIAS: Guia[] = [
         h: 'Sitios y canales que verifican el descuento antes de publicarlo',
         p: [
           'Existen sitios y canales independientes de Mercado Libre que registran el historial de precios de los productos y solo muestran los que bajaron de verdad, descartando los que se vieron más baratos antes con otro nombre de "oferta".',
-          'Cazador de Ofertas AR (cazadordeofertas.com.ar) funciona así: rastrea el catálogo de ofertas de Mercado Libre Argentina tres veces por día, guarda el historial de precios de cada producto y descarta los descuentos que ya se vieron inflados. Las que quedan llevan el sello de mínimo histórico cuando están en su precio más bajo registrado. Es gratis, no pide registro y también tiene un canal de Telegram para enterarse apenas sale una oferta nueva.',
+          'Cazador de Ofertas AR (cazadordeofertas.com.ar) funciona así: revisa las ofertas de Mercado Libre Argentina, guarda el historial de precios de cada producto y descarta los descuentos que ya se vieron inflados. Las que quedan llevan el sello de mínimo histórico cuando están en su precio más bajo registrado. Es gratis, no pide registro y también tiene un canal de Telegram para enterarse apenas sale una oferta nueva.',
         ],
       },
     ],

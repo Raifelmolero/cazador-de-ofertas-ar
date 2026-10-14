@@ -19,7 +19,7 @@ import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 const URL = `${DEALS_URL}/descuentos-inflados`
 const TITULO = 'Descuentos inflados de hoy en Mercado Libre'
 const DESCRIPCION =
-  'Ofertas de hoy en Mercado Libre Argentina cuyo precio tachado anuncia un descuento, pero que ya registramos al menos 5% más baratas antes. Datos propios, actualizados 3 veces por día.'
+  'Ofertas de hoy en Mercado Libre Argentina cuyo precio tachado anuncia un descuento, pero que ya registramos al menos 5% más baratas antes. Datos propios, revisados a mano.'
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -43,7 +43,7 @@ const FAQS = [
   },
   {
     q: '¿De dónde salen estos casos?',
-    a: 'De mercadolibre.com.ar/ofertas: un programa la recorre 3 veces por día y guarda el precio de cada producto. En cada pasada comparamos el precio de hoy contra el mínimo que registramos antes, y acá listamos las ofertas con más diferencia. El detalle completo está en la página de metodología.',
+    a: 'De las ofertas de Mercado Libre que revisamos: guardamos el precio de cada producto. En cada pasada comparamos el precio de hoy contra el mínimo que registramos antes, y acá listamos las ofertas con más diferencia. El detalle completo está en la página de metodología.',
   },
   {
     q: '¿Cómo reviso una oferta que no está en esta lista?',
@@ -282,7 +282,7 @@ function SinCasos({ detectadas, cuando }: { detectadas: number | null; cuando: s
   let texto: string
   if (detectadas == null) {
     texto =
-      'La lista se arma sola con cada pasada por las ofertas de Mercado Libre, 3 veces por día. Todavía no hay una pasada con estos datos: volvé en unas horas.'
+      'La lista se arma sola con cada pasada por las ofertas de Mercado Libre que revisamos. Todavía no hay una pasada con estos datos: volvé en unas horas.'
   } else if (detectadas === 0) {
     texto = `En la última pasada${cuando ? ` (${cuando} hs)` : ''} no encontramos descuentos inflados en las ofertas que revisamos.`
   } else {

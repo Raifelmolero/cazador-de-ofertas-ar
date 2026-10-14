@@ -31,7 +31,7 @@ export default function PreciosIndex() {
           Historial de precios
         </h1>
         <p className="text-zinc-400 mb-8">
-          Productos de Mercado Libre Argentina que seguimos 3 veces por día: precio de hoy, precio más bajo registrado
+          Productos de Mercado Libre Argentina que seguimos: precio de hoy, precio más bajo registrado
           y desde cuándo los seguimos.
         </p>
         {orden.map(n => (

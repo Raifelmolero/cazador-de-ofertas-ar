@@ -36,7 +36,7 @@ const FAQS = [
   },
   {
     q: '¿Cómo se hizo el estudio?',
-    a: 'Un programa recorre mercadolibre.com.ar/ofertas (páginas generales, ofertas relámpago y algunas categorías) tres veces por día y guarda el precio de cada producto. Cada oferta se compara contra el precio más bajo que registramos antes de ese producto. Los datos se actualizan solos con cada pasada. La metodología completa está en cazadordeofertas.com.ar/metodologia.',
+    a: 'Guardamos el precio de cada producto. Cada oferta se compara contra el precio más bajo que registramos antes de ese producto. Los datos se actualizan con cada revisión. La metodología completa está en cazadordeofertas.com.ar/metodologia.',
   },
   {
     q: '¿Cómo sé si una oferta puntual es real?',

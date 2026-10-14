@@ -56,7 +56,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de los aires acondicionados split en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
     intro:
-      'Los aires acondicionados en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los aires acondicionados en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'aire-acondicionado',
     criterios: [
       'Frigorías según el ambiente: volumen (m² × altura) × 50. Un cuarto de 20 m² necesita unas 2.600 frigorías.',
@@ -74,7 +74,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de smart TV en oferta hoy en Mercado Libre Argentina: 32 a 75 pulgadas, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los smart TV en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Los smart TV en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'smart-tv',
     criterios: [
       'Tamaño según la distancia: a 2 metros va bien uno de 50 a 55 pulgadas.',
@@ -92,7 +92,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de lavarropas y lavasecarropas en oferta hoy en Mercado Libre Argentina: carga, centrifugado, precio y precio mínimo registrado.',
     intro:
-      'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'lavarropas',
     excluir: ['lavavajillas', 'lava vajillas'],
     guia: 'que-lavarropas-comprar',
@@ -111,7 +111,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de lavavajillas en oferta hoy en Mercado Libre Argentina: 45 o 60 cm, cubiertos, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los lavavajillas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los lavavajillas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'lavarropas',
     keywords: ['lavavajillas', 'lava vajillas', 'lavaplatos'],
     excluir: ['detergente', 'pastillas', 'abrillantador', 'sal para', 'canasto', 'manguera', 'repuesto'],
@@ -131,7 +131,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de heladeras en oferta hoy en Mercado Libre Argentina: no frost o cíclica, litros, precio y precio mínimo registrado.',
     intro:
-      'Las heladeras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Las heladeras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'heladeras',
     guia: 'que-heladera-comprar',
     criterios: [
@@ -149,7 +149,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de colchones en oferta hoy en Mercado Libre Argentina: espuma, resortes o viscoelástico, medidas, precio y precio mínimo registrado.',
     intro:
-      'Los colchones en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Los colchones en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'colchones',
     criterios: [
       'Firmeza según tu peso y postura: de costado, algo menos firme.',
@@ -185,7 +185,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de amoladoras angulares en oferta hoy en Mercado Libre Argentina: 115 y 230 mm, precio, descuento y precio mínimo registrado.',
     intro:
-      'Las amoladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las amoladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'herramientas-electricas',
     keywords: ['amoladora', 'esmeril angular', 'amoladora angular'],
     criterios: [
@@ -204,7 +204,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de soldadoras inverter y MIG en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las soldadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las soldadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'herramientas-electricas',
     keywords: ['soldadora'],
     criterios: [
@@ -223,7 +223,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de hidrolavadoras en oferta hoy en Mercado Libre Argentina: presión, precio, descuento y precio mínimo registrado.',
     intro:
-      'Las hidrolavadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las hidrolavadoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'herramientas-electricas',
     keywords: ['hidrolavadora'],
     criterios: [
@@ -242,7 +242,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de neumáticos para auto y camioneta en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los neumáticos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los neumáticos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'vehiculos',
     keywords: ['neumatico'],
     criterios: [
@@ -291,7 +291,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Ofertas del Cyber Monday 2026 en Mercado Libre Argentina (lunes 2 al miércoles 4 de noviembre, fechas de la CACE): notebooks, celulares, smart TV, aires, electrodomésticos y herramientas, con el precio comparado contra el mínimo registrado.',
     intro:
-      'El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas oficiales de la CACE) y muchas tiendas estiran las promos toda esa semana. Antes y durante el evento, cada producto de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un "antes" inflado. Se actualiza 3 veces por día.',
+      'El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas oficiales de la CACE) y muchas tiendas estiran las promos toda esa semana. Antes y durante el evento, cada producto de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un "antes" inflado. Se actualiza a medida que cargamos ofertas nuevas.',
     keywords: [
       'notebook', 'celular', 'smart tv', 'aire acondicionado', 'heladera',
       'lavarropas', 'colchon', 'freidora de aire', 'taladro', 'amoladora',
@@ -314,7 +314,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Smart TV en oferta para el Cyber Monday 2026 en Mercado Libre Argentina (2 al 4 de noviembre): precio de hoy, descuento y mínimo registrado de cada modelo.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza 3 veces por día, antes y durante el evento.',
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas, antes y durante el evento.',
     categoria: 'smart-tv',
     excluir: ['monitor'],
     criterios: [
@@ -421,7 +421,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Ofertas de Black Friday 2026 en Mercado Libre Argentina (viernes 27 de noviembre): smart TV, notebooks, celulares, consolas y electrodomésticos, con el descuento comparado contra el historial de precios.',
     intro:
-      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben los precios las semanas previas para anunciar descuentos más grandes: por eso acá cada oferta se compara contra el precio más bajo que registramos. La tabla se actualiza 3 veces por día, también antes del evento.',
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben los precios las semanas previas para anunciar descuentos más grandes: por eso acá cada oferta se compara contra el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas, también antes del evento.',
     keywords: [
       'smart tv', 'notebook', 'celular', 'consola', 'playstation', 'nintendo',
       'lavarropas', 'heladera', 'monitor', 'tablet', 'aire acondicionado',
@@ -463,7 +463,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de cocinas a gas, multigas, eléctricas y hornos en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las cocinas y hornos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Las cocinas y hornos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'cocinas-y-hornos',
     guia: 'que-cocina-comprar',
     criterios: [
@@ -480,7 +480,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de termotanques a gas y eléctricos en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
-      'Los termotanques en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los termotanques en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'termotanques',
     criterios: [
       'Capacidad según cuántos viven: como referencia, 50 litros para 1-2 personas, 80 litros para 3-4 y 120 litros o más para familias grandes.',
@@ -497,7 +497,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de freezers horizontales y verticales en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
-      'Los freezers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los freezers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'freezers',
     criterios: [
       'Horizontal o vertical: el horizontal guarda más por el mismo precio; el vertical ocupa menos piso y es más fácil de ordenar.',
@@ -515,7 +515,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de aspiradoras, robots aspiradores y aspiradoras de mano en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las aspiradoras en oferta hoy (robots, verticales, de mano y de arrastre), comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las aspiradoras en oferta hoy (robots, verticales, de mano y de arrastre), comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'aspiradoras',
     criterios: [
       'Robot: sirve para el mantenimiento diario sin esfuerzo; fijate si tiene mapeo (recorre ordenado) o navegación aleatoria, y si también pasa el trapo.',
@@ -531,7 +531,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de perfumes de mujer y hombre en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Consejos para comprar originales.',
     intro:
-      'Los perfumes en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los perfumes en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'perfumes',
     presupuestos: [50000, 150000],
     criterios: [
@@ -549,7 +549,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de freidoras de aire (air fryer) en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
-      'Las freidoras de aire en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+      'Las freidoras de aire en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'freidoras-de-aire',
     guia: 'que-freidora-de-aire-comprar',
     criterios: [
@@ -583,7 +583,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las cafeteras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+      'Las cafeteras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
     keywords: ['cafetera'],
     criterios: [
@@ -601,7 +601,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de microondas en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
-      'Los microondas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los microondas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
     keywords: ['microondas'],
     criterios: [
@@ -618,7 +618,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de licuadoras y minipimers (mixers de mano) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las licuadoras y minipimers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las licuadoras y minipimers en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
     keywords: ['licuadora', 'minipimer', 'mixer de mano'],
     criterios: [
@@ -635,7 +635,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de batidoras planetarias y de mano en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las batidoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+      'Las batidoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
     keywords: ['batidora'],
     criterios: [
@@ -653,7 +653,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de monitores para PC, gamer y oficina en oferta hoy en Mercado Libre Argentina: precio, descuento, pulgadas, Hz y precio mínimo registrado.',
     intro:
-      'Los monitores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los monitores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'monitores',
     criterios: [
       'Para oficina: 24 pulgadas Full HD con panel IPS alcanza y cuida la vista.',
@@ -669,7 +669,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de monitores gamer en oferta hoy en Mercado Libre Argentina: pulgadas, Hz, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los monitores gamer en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los monitores gamer en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'gamer',
     keywords: ['monitor'],
     criterios: [
@@ -691,7 +691,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de sillas gamer en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar: peso máximo, tela o cuero sintético, reclinación y apoyabrazos.',
     intro:
-      'Las sillas gamer en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las sillas gamer en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'gamer',
     keywords: ['silla'],
     excluir: ['funda', 'repuesto', 'piston', 'rueda', 'almohad'],
@@ -713,7 +713,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de notebooks en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
     intro:
-      'Las notebooks en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+      'Las notebooks en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['notebook', 'laptop', 'macbook'],
     excluir: ['monitor', 'mochila', 'cargador', 'funda', 'soporte', 'base para'],
     criterios: [
@@ -732,7 +732,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de celulares Samsung, Motorola, iPhone y otras marcas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Los celulares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los celulares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
     excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
     permitir: ['funda', 'cargador'],
@@ -752,7 +752,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de celulares de gama alta en oferta hoy en Mercado Libre Argentina (iPhone, Samsung Galaxy S, Motorola Edge, Xiaomi tope de gama): precio, descuento y precio mínimo registrado.',
     intro:
-      'Los celulares de gama alta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los celulares de gama alta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['iphone', 'galaxy s2', 'galaxy z fold', 'galaxy z flip', 'motorola edge', 'moto edge', 'motorola razr', 'pixel 9', 'pixel 10', 'xiaomi 15', 'xiaomi 16'],
     excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'cable', 'auricular', 'reacondicionado'],
     permitir: ['funda'],
@@ -772,7 +772,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de tablets Android y iPad en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las tablets en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza 3 veces por día.',
+      'Las tablets en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['tablet', 'tableta', 'ipad'],
     excluir: ['funda', 'vidrio templado', 'protector', 'soporte', 'teclado para', 'cargador', 'grafica', 'digitalizadora'],
     permitir: ['funda'],
@@ -792,7 +792,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de smartwatch y smartbands en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar antes de comprar.',
     intro:
-      'Los smartwatch y smartbands en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza 3 veces por día.',
+      'Los smartwatch y smartbands en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['smartwatch', 'smart watch', 'reloj inteligente', 'smartband', 'smart band'],
     excluir: ['malla', 'correa', 'vidrio templado', 'protector', 'cargador', 'funda'],
     criterios: [
@@ -810,7 +810,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de planchitas, secadores y rizadores de pelo en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las planchitas, secadores y rizadores de pelo en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las planchitas, secadores y rizadores de pelo en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['planchita', 'plancha de pelo', 'plancha pelo', 'alisador', 'secador de pelo', 'secador', 'rizador', 'buclera', 'ondulador'],
     excluir: ['secador de manos', 'secarropas', 'secador de ropa', 'plancha de ropa', 'plancha a vapor', 'plancha de vapor', 'protector termico para'],
     permitir: ['funda', 'protector'],
@@ -829,7 +829,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de afeitadoras, cortadoras de pelo, trimmers y depiladoras en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
     intro:
-      'Las afeitadoras, cortadoras de pelo, trimmers y depiladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Las afeitadoras, cortadoras de pelo, trimmers y depiladoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['afeitadora', 'cortadora de pelo', 'cortadora de barba', 'maquina cortar pelo', 'maquina de cortar pelo', 'trimmer', 'patillera', 'clipper', 'shaver', 'depiladora'],
     excluir: ['cuchilla', 'repuesto', 'aceite para', 'peine para'],
     criterios: [
@@ -847,7 +847,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Colchones de 2 plazas, queen y king en oferta hoy en Mercado Libre Argentina: medida, material, precio y precio mínimo registrado.',
     intro:
-      'Los colchones de 2 plazas, queen y king en oferta hoy (solos o con sommier), comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Los colchones de 2 plazas, queen y king en oferta hoy (solos o con sommier), comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'colchones',
     keywords: ['2 plazas', 'dos plazas', 'queen', 'king', '130x190', '140x190', '140x200', '160x200', '180x200', '200x200'],
     excluir: ['practicuna', 'cuna', 'funda', 'protector', 'almohada'],
@@ -867,7 +867,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Sommiers y conjuntos sommier + colchón en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los sommiers y conjuntos sommier + colchón en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Los sommiers y conjuntos sommier + colchón en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'colchones',
     keywords: ['sommier', 'somier', 'box spring'],
     excluir: ['funda', 'cubre sommier', 'pollera'],
@@ -886,7 +886,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Gazebos, reposeras, sillas, mesas y guardado de exterior en oferta hoy en Mercado Libre Argentina, con precio mínimo registrado.',
     intro:
-      'Gazebos, reposeras, sillas, mesas y guardado de exterior en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Gazebos, reposeras, sillas, mesas y guardado de exterior en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['gazebo', 'glorieta', 'pergola', 'sombrilla', 'reposera', 'camastro', 'hamaca', 'jardin', 'exterior', 'gardenlife'],
     excluir: ['bordeadora', 'cortadora', 'desmalezadora', 'motosierra', 'bomba', 'manguera', 'tijera', 'hidrolavadora', 'sopladora', 'luz', 'lampara', 'camara'],
     criterios: [
@@ -904,7 +904,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Parrillas, asadores, fogoneros y parrillas eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las parrillas y asadores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Las parrillas y asadores en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'parrillas',
     excluir: ['cocina', 'anafe', 'horno'],
     criterios: [
@@ -922,7 +922,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Bicicletas urbanas, mountain bike, de ruta, plegables y eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
-      'Las bicicletas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Las bicicletas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'bicicletas',
     criterios: [
       'Tipo según el uso: urbana o paseo para ciudad, mountain bike para tierra y ripio, ruta para asfalto y distancia.',
@@ -939,7 +939,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Piletas de lona, estructurales e inflables, bombas y filtros en oferta hoy en Mercado Libre Argentina, con precio mínimo registrado.',
     intro:
-      'Piletas y equipamiento para la pileta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza 3 veces por día.',
+      'Piletas y equipamiento para la pileta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['pileta', 'piscina', 'pelopincho'],
     excluir: ['termometro', 'cloro', 'pastilla', 'barrefondo', 'saca hojas'],
     criterios: [
@@ -957,7 +957,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de iPhone en oferta hoy en Mercado Libre Argentina: modelo, almacenamiento, precio, descuento y precio mínimo registrado. Qué mirar antes de pagar un equipo de gama alta.',
     intro:
-      'Los iPhone en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada modelo y capacidad. La tabla se actualiza 3 veces por día.',
+      'Los iPhone en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada modelo y capacidad. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['iphone'],
     excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para iphone', 'case', 'carcasa', 'reacondicionado'],
     permitir: ['funda'],
@@ -978,7 +978,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de celulares Samsung Galaxy (serie A, S y Z) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Cómo elegir entre las series.',
     intro:
-      'Los Samsung Galaxy en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los Samsung Galaxy en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['samsung galaxy', 'galaxy a', 'galaxy s', 'galaxy z', 'galaxy m'],
     excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para samsung', 'tablet', 'watch', 'buds', 'reloj', 'auricular', 'case', 'carcasa'],
     permitir: ['funda'],
@@ -999,7 +999,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de celulares Motorola (Moto G, Moto E, Edge) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Cuál conviene según el uso.',
     intro:
-      'Los Motorola en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los Motorola en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['motorola', 'moto g', 'moto e', 'moto edge', 'razr'],
     excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para moto', 'case', 'carcasa', 'tablet', 'auricular'],
     permitir: ['funda'],
@@ -1020,7 +1020,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de aires acondicionados split inverter frío/calor en oferta hoy en Mercado Libre Argentina: frigorías, precio, descuento y precio mínimo registrado. Cuánto ahorran de verdad.',
     intro:
-      'Los aires acondicionados inverter en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los aires acondicionados inverter en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['inverter'],
     excluir: ['portatil'],
     criterios: [
@@ -1041,7 +1041,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de smart TV de 55, 65 y 75 pulgadas en oferta hoy en Mercado Libre Argentina: panel, resolución, precio, descuento y precio mínimo registrado.',
     intro:
-      'Los smart TV grandes (55, 65 y 75 pulgadas) en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Los smart TV grandes (55, 65 y 75 pulgadas) en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['55', '65', '70', '75', '85'],
     excluir: ['soporte', 'rack', 'mueble', 'control remoto', 'antena', 'cable'],
     criterios: [
@@ -1062,7 +1062,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de heladeras no frost, inverter y side by side en oferta hoy en Mercado Libre Argentina: capacidad, precio, descuento y precio mínimo registrado.',
     intro:
-      'Las heladeras no frost, inverter y side by side en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las heladeras no frost, inverter y side by side en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['no frost', 'nofrost', 'side by side', 'french door', 'inverter'],
     excluir: ['exhibidora', 'bajo mesada', 'vitrina', 'burlete', 'repuesto'],
     criterios: [
@@ -1083,7 +1083,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de aspiradoras robot que aspiran y trapean en oferta hoy en Mercado Libre Argentina: succión, navegación, precio, descuento y precio mínimo registrado.',
     intro:
-      'Las aspiradoras robot en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las aspiradoras robot en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['robot'],
     excluir: ['cortacesped', 'cortador', 'repuesto', 'cepillo', 'filtro', 'bolsa', 'mop', 'accesorio'],
     criterios: [
@@ -1102,7 +1102,7 @@ export const COMPARATIVAS: Comparativa[] = [
     descripcion:
       'Comparativa de cintas de correr, caminadoras plegables y bicicletas fijas en oferta hoy en Mercado Libre Argentina: motor, velocidad, precio, descuento y precio mínimo registrado.',
     intro:
-      'Las cintas de correr, caminadoras y bicicletas fijas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza 3 veces por día.',
+      'Las cintas de correr, caminadoras y bicicletas fijas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['cinta de correr', 'caminadora', 'cinta caminadora', 'walking pad', 'bicicleta fija', 'spinning', 'eliptico'],
     excluir: ['alfombra', 'cubre', 'repuesto', 'correa', 'banda', 'lubricante', 'silicona'],
     criterios: [

@@ -125,7 +125,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const faqs = [
     {
       q: `¿Cuál es el precio más bajo de ${nombre}?`,
-      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(s.min)}, el ${fecha(s.min_ts)}. Revisamos el precio 3 veces por día desde el ${fecha(s.desde)}.`,
+      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(s.min)}, el ${fecha(s.min_ts)}. Seguimos el precio desde el ${fecha(s.desde)}.`,
     },
     {
       q: `¿Conviene comprar ${nombre} hoy?`,
@@ -246,7 +246,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             >
               {precio(hoy)}
             </a>
-            <p className="hidden sm:block text-sm text-zinc-500">Seguimos este precio en Mercado Libre 3 veces por día desde el {fecha(s.desde)}.</p>
+            <p className="hidden sm:block text-sm text-zinc-500">Seguimos este precio en Mercado Libre desde el {fecha(s.desde)}.</p>
           </div>
         </div>
 

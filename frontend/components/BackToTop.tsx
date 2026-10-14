@@ -30,7 +30,7 @@ export default function BackToTop() {
         window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
       }}
       aria-label="Volver arriba"
-      className="fixed bottom-5 right-4 z-20 w-11 h-11 rounded-full bg-yellow-400 text-black text-xl font-black shadow-lg shadow-black/40 hover:bg-yellow-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      className="fixed bottom-24 sm:bottom-5 right-4 z-20 w-11 h-11 rounded-full bg-yellow-400 text-black text-xl font-black shadow-lg shadow-black/40 hover:bg-yellow-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
     >
       ↑
     </button>

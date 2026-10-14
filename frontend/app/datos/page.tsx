@@ -176,7 +176,7 @@ export default function DatosPage() {
         <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Metodología y cómo citar</h2>
         <div className="space-y-3 text-zinc-300 leading-relaxed mb-10">
           <p>
-            Un programa recorre mercadolibre.com.ar/ofertas 3 veces por día y guarda el precio de cada producto. Una oferta
+            Registramos el precio de cada producto de Mercado Libre que revisamos. Una oferta
             cuenta como inflada cuando ya la habíamos registrado al menos 5% más barata en una pasada anterior. Detalle,
             fuentes y limitaciones en la{' '}
             <Link href="/metodologia" className="text-yellow-400 underline">

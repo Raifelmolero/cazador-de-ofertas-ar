@@ -5,6 +5,7 @@ import { getOfertas, getScrapedAt } from '@/lib/productos'
 import OfertasGrid, { OFERTAS_EN_HTML } from '@/components/OfertasGrid'
 import { conDestacada, ofertasHoyLight } from '@/lib/ofertashoy'
 import BackToTop from '@/components/BackToTop'
+import CtaFijoML from '@/components/CtaFijoML'
 import AnclaVerificador from '@/components/AnclaVerificador'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import Verificador from '@/components/Verificador'
@@ -36,7 +37,7 @@ const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? WHATSAPP_DE
 export const metadata: Metadata = {
   title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
   description:
-    'Ofertas y descuentos reales de Mercado Libre Argentina, cazados y verificados 3 veces por día contra el historial de precios. Sin descuentos inflados.',
+    'Ofertas y descuentos reales de Mercado Libre Argentina, cazados y verificados contra el historial de precios. Sin descuentos inflados.',
   keywords: [
     'ofertas mercado libre argentina',
     'descuentos mercadolibre hoy',
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ofertas de Mercado Libre Argentina hoy — Cazador de Ofertas AR',
     description:
-      'Ofertas y descuentos reales de Mercado Libre Argentina, verificados contra el historial de precios y actualizados 3 veces por día.',
+      'Ofertas y descuentos reales de Mercado Libre Argentina, verificados contra el historial de precios y revisados a mano.',
     url: DEALS_URL,
     siteName: 'Cazador de Ofertas AR',
     locale: 'es_AR',
@@ -185,11 +186,11 @@ export default function HoyPage() {
     },
     {
       q: '¿Cada cuánto se actualizan las ofertas?',
-      a: 'El catálogo se actualiza 3 veces por día (mañana, tarde y noche, hora Argentina), rastreando mercadolibre.com.ar/ofertas.',
+      a: 'El catálogo se actualiza a medida que cargamos ofertas nuevas (mañana, tarde y noche, hora Argentina).',
     },
     {
       q: '¿Cuáles son las mejores ofertas de Mercado Libre Argentina hoy?',
-      a: 'Las de hoy están arriba en esta página, ordenadas por relevancia: primero las que están en su mínimo histórico y después las de mayor descuento real. Se actualizan 3 veces por día, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
+      a: 'Las de hoy están arriba en esta página, ordenadas por relevancia: primero las que están en su mínimo histórico y después las de mayor descuento real. Se actualizan a medida que cargamos ofertas nuevas, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
     },
     {
       q: '¿Cuándo conviene comprar en Mercado Libre: Hot Sale, Cyber Monday o un día común?',
@@ -292,7 +293,7 @@ export default function HoyPage() {
           {[
             [estudio.revisadas.toLocaleString('es-AR'), 'ofertas revisadas', `desde el ${estudio.desde.split('-').reverse().join('/')}`],
             [estudio.infladas.toLocaleString('es-AR'), 'descuentos inflados', 'detectados y descartados'],
-            [conHistorial.toLocaleString('es-AR'), 'productos con historial', 'precio registrado 3 veces por día'],
+            [conHistorial.toLocaleString('es-AR'), 'productos con historial', 'precio registrado en cada revisión'],
             [ofertas.length.toLocaleString('es-AR'), 'ofertas reales hoy', minimos > 0 ? `${minimos} en su mínimo histórico` : 'verificadas contra el historial'],
           ].map(([n, t, d]) => (
             <div key={t} className="px-4 py-4 sm:py-5">
@@ -575,6 +576,14 @@ export default function HoyPage() {
       </section>
 
       <Footer brand="ofertas" />
+      {ofertasLight[0] && (
+        <CtaFijoML
+          titulo={ofertasLight[0].titulo}
+          precio={'$' + Math.round(ofertasLight[0].precio_actual).toLocaleString('es-AR')}
+          url={ofertasLight[0].url_producto}
+          desde={500}
+        />
+      )}
       <BackToTop />
       <AnclaVerificador />
     </main>

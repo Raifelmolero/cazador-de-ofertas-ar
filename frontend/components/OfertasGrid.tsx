@@ -27,6 +27,32 @@ function BuscarEnML({ q }: { q: string }) {
   )
 }
 
+// Atajos de búsqueda en ML: con catálogo chico, mucha gente busca algo que no
+// cargamos. Es un link de afiliado a un listado, no consulta nada a ML.
+const RUBROS_ML = ['Heladeras', 'Aires acondicionados', 'Celulares', 'Notebooks', 'Smart TV', 'Colchones', 'Zapatillas', 'Lavarropas']
+
+function BuscaPorRubro() {
+  return (
+    <section className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5">
+      <h2 className="font-display text-lg font-black mb-1">¿No ves lo que buscás?</h2>
+      <p className="text-sm text-zinc-400 mb-3">Buscalo directo en Mercado Libre. El precio para vos es el mismo.</p>
+      <div className="flex flex-wrap gap-2" data-seccion="buscar_ml">
+        {RUBROS_ML.map(r => (
+          <a
+            key={r}
+            href={busquedaML(r)}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="text-sm font-bold bg-zinc-900 border border-zinc-700 hover:border-yellow-400/60 text-white rounded-full px-4 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+          >
+            {r} ↗
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 const CHIPS = [
   { id: 'all', label: 'Todas' },
   { id: 'flash', label: '⚡ Relámpago' },
@@ -122,6 +148,9 @@ export default function OfertasGrid({
   // hidratación en mobile. Se muestran de a PASO; búsqueda/filtros siguen
   // corriendo sobre todas las ofertas.
   const [limite, setLimite] = useState(PASO)
+  // Con pocas ofertas, buscador/orden/chips son fricción: empujan las tarjetas
+  // hacia abajo en mobile y no hay nada que filtrar.
+  const catalogoChico = Math.max(ofertas.length, total ?? 0) < 40
   const nq = normalizar(q.trim())
   const filtrando = chip !== 'all' || nq !== '' || orden !== 'relevancia'
   const visibles = useMemo(() => {
@@ -135,6 +164,7 @@ export default function OfertasGrid({
   return (
     <>
       {/* Búsqueda + filtros */}
+      {!catalogoChico && (
       <div className="mb-4 sm:mb-5 space-y-3">
         <div className="flex gap-2">
           <input
@@ -180,6 +210,7 @@ export default function OfertasGrid({
           })}
         </div>
       </div>
+      )}
 
       {nq.length >= 3 && (
         <div className="mb-4">
@@ -190,7 +221,7 @@ export default function OfertasGrid({
       {visibles.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-zinc-400 mb-4">
-            Nada con ese filtro por ahora 🎯 — el catálogo cambia 3 veces por día.
+            Nada con ese filtro por ahora 🎯 — sumamos ofertas nuevas seguido.
           </p>
           <button
             onClick={() => {
@@ -215,7 +246,7 @@ export default function OfertasGrid({
               ))}
 
               {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}
-              {visibles.length > 7 && (
+              {visibles.length > 7 && !catalogoChico && (
                 <div className="col-span-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow-400 rounded-2xl px-5 py-4 sm:px-6 my-1">
                   <p className="text-black font-extrabold text-sm sm:text-base text-center sm:text-left [text-wrap:balance]">
                     📲 Las 3 mejores del día van directo al canal de Telegram, gratis
@@ -238,6 +269,24 @@ export default function OfertasGrid({
           )}
         </div>
       )}
+
+      {catalogoChico && !filtrando && visibles.length > 7 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow-400 rounded-2xl px-5 py-4 sm:px-6 mt-6">
+          <p className="text-black font-extrabold text-sm sm:text-base text-center sm:text-left [text-wrap:balance]">
+            📲 Las mejores del día van directo al canal de Telegram, gratis
+          </p>
+          <a
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-black text-yellow-400 font-bold text-sm rounded-xl px-5 py-2.5 transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+          >
+            Unirme al canal ✈️
+          </a>
+        </div>
+      )}
+
+      <BuscaPorRubro />
 
       {visibles.length > limite && (
         <div className="mt-6 text-center">

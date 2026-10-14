@@ -116,7 +116,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   text:
                     `Hoy la primera de nuestra comparativa es ${productos[0].titulo} a ${precio(productos[0].precio_actual)}` +
                     (productos[0].descuento_pct != null ? ` (${productos[0].descuento_pct}% OFF)` : '') +
-                    `. Comparamos ${productos.length} ${c.nombre} en oferta por precio, descuento y precio mínimo registrado; la tabla se actualiza 3 veces por día.`,
+                    `. Comparamos ${productos.length} ${c.nombre} en oferta por precio, descuento y precio mínimo registrado; la tabla se actualiza a medida que cargamos ofertas nuevas.`,
                 },
               },
             ]
@@ -306,7 +306,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           )}
           <p className="text-xs text-zinc-500 mt-3">
             Cómo armamos esta comparativa: no probamos los productos. Comparamos precio, descuento e historial de
-            precios que registramos revisando Mercado Libre 3 veces por día. Los links son de afiliado: el precio
+            precios que registramos revisando las ofertas de Mercado Libre. Los links son de afiliado: el precio
             para vos es el mismo.
           </p>
         </section>

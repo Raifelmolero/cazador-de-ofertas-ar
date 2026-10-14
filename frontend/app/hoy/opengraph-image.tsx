@@ -78,7 +78,7 @@ export default async function Image() {
           ) : null}
 
           <div style={{ display: 'flex', fontSize: 28, color: '#a1a1aa' }}>
-            Ofertas reales, cazadas y verificadas 3 veces por día →
+            Ofertas reales, cazadas y verificadas →
           </div>
         </div>
       </div>

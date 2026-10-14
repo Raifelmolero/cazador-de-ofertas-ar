@@ -575,7 +575,7 @@ export default function DiaDeLaMadrePage() {
             <h2 className="font-display text-xl sm:text-2xl font-black">🎁 Regalos {r.titulo.toLowerCase()}</h2>
             <p className="mt-1 text-sm text-zinc-400">
               {r.total === 0
-                ? 'Hoy no hay ofertas regalables en este rango. Volvé en unas horas: revisamos 3 veces por día.'
+                ? 'Hoy no hay ofertas regalables en este rango. Volvé en unas horas: cargamos ofertas nuevas seguido.'
                 : r.total > r.productos.length
                   ? `Las ${r.productos.length} mejores de ${r.total} ofertas de hoy en este rango.`
                   : `${r.total} ${r.total === 1 ? 'oferta' : 'ofertas'} de hoy en este rango.`}{' '}

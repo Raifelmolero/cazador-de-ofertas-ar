@@ -156,7 +156,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
               <CtaCalculadora
                 className="mb-8"
                 titulo={`¿Ya sabés qué buscás? Mirá ${cta.nombre} en oferta hoy`}
-                texto="Comparamos precio, descuento y el mínimo registrado de cada uno. Se actualiza 3 veces por día."
+                texto="Comparamos precio, descuento y el mínimo registrado de cada uno. Se actualiza a medida que cargamos ofertas nuevas."
                 ml={cta.ml}
                 internos={cta.internos}
               />
@@ -192,7 +192,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           <section className="mb-8 rounded-2xl border border-zinc-800 p-5">
             <h2 className="font-display text-lg font-black mb-1">En oferta hoy</h2>
             <p className="text-xs text-zinc-500 mb-3">
-              Del catálogo del día (se actualiza 3 veces por día). Links de afiliado de Mercado Libre: no cambian tu precio.
+              Del catálogo del día (se actualiza a medida que cargamos ofertas nuevas). Links de afiliado de Mercado Libre: no cambian tu precio.
             </p>
             <ul className="space-y-2">
               {ofertas.map(p => (
@@ -264,7 +264,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
               ? `Ofertas de ${g.categoria.nombre} de hoy, ya verificadas`
               : 'Las ofertas reales de hoy, ya verificadas'}
           </p>
-          <p className="text-sm text-zinc-400 mb-5">Sin registro, sin costo, actualizadas 3 veces por día.</p>
+          <p className="text-sm text-zinc-400 mb-5">Sin registro, sin costo, actualizadas a medida que cargamos ofertas.</p>
           <a
             href={g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL}
             className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-8 py-3"

@@ -83,7 +83,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
     { q: `¿Qué mirar antes de comprar ${art(p, false)} ${p.nombre}?`, a: p.consejo },
     {
       q: '¿De dónde salen estos precios?',
-      a: 'Revisamos las ofertas de mercadolibre.com.ar/ofertas tres veces por día y guardamos el precio de cada producto. Acá solo aparecen ofertas con descuento real: descartamos las que ya habíamos visto más baratas antes.',
+      a: 'Revisamos las ofertas de Mercado Libre y guardamos el precio de cada producto. Acá solo aparecen ofertas con descuento real: descartamos las que ya habíamos visto más baratas antes.',
     },
   ]
 

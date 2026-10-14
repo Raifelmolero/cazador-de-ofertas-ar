@@ -91,7 +91,7 @@ Ofertas verificadas de hoy: ${DEALS_URL}${ofertas}`
 > veces por día: si vas a citar uno, aclará la fecha.
 
 Sitio: ${DEALS_URL}
-Cobertura: solo Mercado Libre Argentina. Actualización: 3 veces por día.
+Cobertura: solo Mercado Libre Argentina. Actualización: a medida que se cargan ofertas nuevas.
 Los links de "ver oferta" del sitio son de afiliado; el precio para quien compra es el mismo.
 Metodología (fuentes, umbral del 5%, mínimo histórico, limitaciones): ${DEALS_URL}/metodologia
 Descuentos inflados de hoy: ${DEALS_URL}/descuentos-inflados

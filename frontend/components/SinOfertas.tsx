@@ -10,7 +10,7 @@ export default function SinOfertas({ que, enlaces }: { que: string; enlaces: Enl
     <div className="max-w-xl mx-auto text-center py-8">
       <p className="text-zinc-200 font-semibold mb-2">Hoy no hay ofertas verificadas {que} 🎯</p>
       <p className="text-sm text-zinc-500 mb-5">
-        Revisamos Mercado Libre 3 veces por día: volvé más tarde. Mientras tanto, mirá estas páginas relacionadas.
+        Revisamos a mano las ofertas de Mercado Libre: volvé más tarde. Mientras tanto, mirá estas páginas relacionadas.
       </p>
       <ul className="flex flex-wrap justify-center gap-2">
         {enlaces.map(e => (

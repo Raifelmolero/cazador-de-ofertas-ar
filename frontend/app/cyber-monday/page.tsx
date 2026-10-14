@@ -377,7 +377,7 @@ export default function CyberMondayPage() {
               {BLACK_FRIDAY.fechasTexto} y cada tienda arma sus promos por su cuenta (<Link href="/black-friday" className="text-yellow-400 hover:underline">todo sobre el Black Friday</Link>).
             </p>
             <p>
-              Nosotros no somos parte del evento: revisamos las ofertas de Mercado Libre Argentina 3 veces por día, todo el
+              Nosotros no somos parte del evento: revisamos a mano las ofertas de Mercado Libre Argentina, todo el
               año, y comparamos cada precio contra el historial que registramos.
             </p>
           </div>

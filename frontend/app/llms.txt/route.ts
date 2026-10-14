@@ -15,14 +15,14 @@ import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WH
 const E = getEstudio()
 const CONTENT = `# Cazador de Ofertas AR
 
-> Sitio argentino que rastrea Mercado Libre Argentina varias veces al día y
+> Sitio argentino que revisa ofertas de Mercado Libre Argentina y
 > publica únicamente las ofertas con descuento real, verificado contra el
 > historial de precios del producto (no descuentos inflados sobre un precio
 > "de lista" que nunca se cobró).
 
 Cazador de Ofertas AR (cazadordeofertas.com.ar) es un buscador de ofertas y
 descuentos de Mercado Libre Argentina. Actualiza el listado de productos en
-oferta 3 veces por día (mañana, tarde y noche, hora Argentina). Cada oferta
+oferta a medida que se cargan ofertas nuevas (se publican hasta 3 veces por día, hora Argentina). Cada oferta
 muestra precio anterior, precio actual, porcentaje de descuento y, cuando hay
 suficiente historial, si el precio actual es el mínimo histórico registrado
 para ese producto.
@@ -62,7 +62,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
 - [Descuentos inflados de hoy](https://cazadordeofertas.com.ar/descuentos-inflados):
   ofertas de la última pasada cuyo precio tachado anuncia un descuento, pero que
   ya registramos al menos 5% más baratas antes (precio tachado, % anunciado,
-  mínimo registrado y su fecha). Dato propio, se actualiza 3 veces por día.
+  mínimo registrado y su fecha). Dato propio, se actualiza a medida que cargamos ofertas nuevas.
 - [Datos abiertos](https://cazadordeofertas.com.ar/datos): estadísticas
   agregadas y citables (CC BY 4.0): % de descuentos inflados mes a mes,
   ofertas revisadas, productos con historial y rubros; tabla en CSV
@@ -240,7 +240,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   el link de un producto de Mercado Libre (y, si querés, el precio objetivo) y
   te avisa por privado una sola vez cuando lo vemos a ese precio o menos. Gratis;
   /stop borra tus datos. Solo ve precios de productos que aparecen en las
-  ofertas que revisamos 3 veces por día.
+  ofertas que revisamos.
 - [Instagram](${INSTAGRAM_URL}) y
   [Threads](${THREADS_URL}): la oferta destacada
   del día en formato imagen/video.

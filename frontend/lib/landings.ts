@@ -56,7 +56,7 @@ export const LANDINGS: Landing[] = [
       'Productos con más de 30% de descuento hoy en Mercado Libre Argentina, de mayor a menor descuento y con historial de precios propio para detectar inflados.',
     h1: 'Ofertas de más de 30% OFF en Mercado Libre',
     intro:
-      'Los productos que hoy tienen 30% o más de descuento en Mercado Libre Argentina, de mayor a menor descuento. Un porcentaje alto no garantiza un buen precio: revisamos 3 veces por día y marcamos los que están en su mínimo registrado.',
+      'Los productos que hoy tienen 30% o más de descuento en Mercado Libre Argentina, de mayor a menor descuento. Un porcentaje alto no garantiza un buen precio: revisamos cada precio y marcamos los que están en su mínimo registrado.',
     tipo: 'ofertas',
     filtrar: p => (p.descuento_pct ?? 0) >= 30,
     ordenar: porDescuento,
@@ -67,7 +67,7 @@ export const LANDINGS: Landing[] = [
     ],
     faq: [
       { q: '¿Un 30% OFF es siempre una buena oferta?', a: 'No. El porcentaje se mide contra el precio anterior que publica el vendedor, que a veces está inflado. Por eso mostramos el precio mínimo que registramos y el historial de cada producto.' },
-      { q: '¿Cada cuánto se actualiza esta lista?', a: 'Revisamos Mercado Libre 3 veces por día y la lista cambia con cada corrida.' },
+      { q: '¿Cada cuánto se actualiza esta lista?', a: 'Revisamos a mano las ofertas de Mercado Libre y la lista cambia con cada corrida.' },
     ],
   },
   {
@@ -101,7 +101,7 @@ export const LANDINGS: Landing[] = [
       'Productos de Mercado Libre Argentina que hoy están en el precio más bajo que registramos, con descuento y link directo a la oferta.',
     h1: 'Productos en su mínimo histórico hoy',
     intro:
-      'Estos productos están hoy en el precio más bajo que registramos desde que los seguimos (revisamos 3 veces por día). Es el mejor momento que vimos para comprarlos, aunque no sabemos qué pasó antes de empezar a seguirlos.',
+      'Estos productos están hoy en el precio más bajo que registramos desde que los seguimos (revisamos cada precio). Es el mejor momento que vimos para comprarlos, aunque no sabemos qué pasó antes de empezar a seguirlos.',
     tipo: 'ofertas',
     filtrar: p => !!p.minimo_historico,
     ordenar: porDescuento,
@@ -112,7 +112,7 @@ export const LANDINGS: Landing[] = [
     ],
     faq: [
       { q: '¿Qué significa mínimo histórico?', a: 'Que el precio de hoy es igual o menor al más bajo que registramos para ese producto desde que lo seguimos.' },
-      { q: '¿Cuánto dura un mínimo histórico?', a: 'Puede ser de horas o de días. La lista se actualiza 3 veces por día.' },
+      { q: '¿Cuánto dura un mínimo histórico?', a: 'Puede ser de horas o de días. La lista se actualiza a medida que cargamos ofertas nuevas.' },
     ],
   },
   {
@@ -131,7 +131,7 @@ export const LANDINGS: Landing[] = [
       'Abrí el historial de cada producto para ver si hoy está cerca de su mínimo.',
     ],
     faq: [
-      { q: '¿Cómo detectan que un precio bajó?', a: 'Registramos el precio de cada producto 3 veces por día. Si el de hoy es al menos 5% menor al máximo de los 7 días anteriores, entra en esta lista.' },
+      { q: '¿Cómo detectan que un precio bajó?', a: 'Registramos el precio de cada producto que revisamos. Si el de hoy es al menos 5% menor al máximo de los 7 días anteriores, entra en esta lista.' },
       { q: '¿Es lo mismo que el descuento que muestra Mercado Libre?', a: 'No. El descuento de ML se calcula contra un precio anterior que fija el vendedor; esta lista usa nuestro propio historial.' },
     ],
   },
@@ -473,7 +473,7 @@ export const LANDINGS: Landing[] = [
     faq: [
       { q: '¿Qué regalar a mamá con $100.000?', a: 'Electro de cocina (cafetera, freidora de aire, batidora), cuidado personal (secador, planchita) o algo para el hogar. Compará el precio con el mínimo registrado.' },
       { q: '¿Y si el presupuesto es mayor?', a: 'Mirá los regalos de más de $150.000, con tecnología y electrodomésticos grandes.' },
-      { q: '¿Los precios cambian antes del Día de la Madre?', a: 'Sí, se mueven varias veces por día. Revisamos Mercado Libre 3 veces por día y la lista se actualiza con cada corrida.' },
+      { q: '¿Los precios cambian antes del Día de la Madre?', a: 'Sí, se mueven varias veces por día. Revisamos a mano las ofertas de Mercado Libre y la lista se actualiza con cada corrida.' },
       { q: '¿Los links tienen costo extra?', a: 'No. Son links de afiliado: el precio para vos es el mismo.' },
     ],
     enlaces: [
@@ -570,7 +570,7 @@ export const LANDINGS: Landing[] = [
     faq: [
       { q: '¿Por qué descuentos de hasta 40%?', a: 'Porque los descuentos extremos se inflan con más frecuencia. Un 10% a 40% sobre un precio estable suele ser más real.' },
       { q: '¿Un 40% OFF puede ser falso?', a: 'Sí. El porcentaje se mide contra el precio anterior que pone el vendedor. Verificá el historial.' },
-      { q: '¿Cómo detectan precios inflados?', a: 'Registramos cada precio 3 veces por día y comparamos contra nuestro historial, no contra el precio declarado.' },
+      { q: '¿Cómo detectan precios inflados?', a: 'Registramos cada precio y comparamos contra nuestro historial, no contra el precio declarado.' },
       { q: '¿Sirve para el Cyber Monday?', a: 'Sí: te da una referencia de cómo se ve un descuento razonable antes del 2 de noviembre.' },
     ],
     enlaces: [

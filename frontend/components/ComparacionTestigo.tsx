@@ -40,10 +40,10 @@ export default function ComparacionTestigo({
             <>
               {anotando ? `Desde el ${fechaAR(testigo.desde)} registramos` : `Entre el ${fechaAR(testigo.desde)} y el ${fechaAR(testigo.hasta)} registramos`}{' '}
               el precio de <strong className="text-zinc-100">{nTestigo.toLocaleString('es-AR')} productos</strong> de
-              Mercado Libre, 3 veces por día.
+              Mercado Libre que revisamos.
             </>
           ) : (
-            <>Desde el {fechaAR(testigo.desde)} registramos el precio de cada producto en oferta de Mercado Libre, 3 veces por día.</>
+            <>Desde el {fechaAR(testigo.desde)} registramos el precio de cada producto en oferta de Mercado Libre que revisamos.</>
           )}{' '}
           Cuando arranque el {evento} vas a ver acá cuáles bajaron de verdad contra su precio de octubre y cuáles solo
           cambiaron el cartel.

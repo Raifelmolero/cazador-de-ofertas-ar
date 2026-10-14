@@ -169,7 +169,7 @@ export function resumenDatos(c: Categoria, d: DatosCategoria): string[] {
     parrafos.push(t.trim())
   } else {
     parrafos.push(
-      `En la revisión del ${dia} no quedó ninguna oferta de ${cat} con descuento real para listar. Revisamos Mercado Libre Argentina 3 veces por día, así que puede cambiar en la próxima pasada.`
+      `En la revisión del ${dia} no quedó ninguna oferta de ${cat} con descuento real para listar. Revisamos a mano las ofertas de Mercado Libre Argentina, así que puede cambiar en la próxima pasada.`
     )
   }
 

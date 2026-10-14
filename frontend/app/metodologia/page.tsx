@@ -126,8 +126,8 @@ export default function MetodologiaPage() {
           Cómo medimos los precios y los descuentos
         </h1>
         <p className="text-lg text-zinc-200 leading-relaxed mb-5 [text-wrap:pretty]">
-          <strong className="text-zinc-100">Respuesta corta:</strong> tres veces por día un programa
-          recorre mercadolibre.com.ar/ofertas y guarda el precio de cada producto. Una oferta cuenta como{' '}
+          <strong className="text-zinc-100">Respuesta corta:</strong> guardamos el precio de cada producto de
+          Mercado Libre que revisamos. Una oferta cuenta como{' '}
           <em>descuento inflado</em> cuando ese mismo producto ya lo habíamos registrado al menos 5% más barato antes, y
           lleva el sello de <em>mínimo histórico</em> cuando está en el precio más bajo que registramos. De{' '}
           {numero(e.revisadas)} ofertas revisadas, el {e.pctInfladas.toLocaleString('es-AR')}% estaba inflada.
@@ -263,7 +263,7 @@ export default function MetodologiaPage() {
               Un producto que vemos por primera vez no tiene historia: no se puede clasificar como inflado ni como
               mínimo histórico.
             </li>
-            <li>Miramos el precio como mucho 3 veces por día: lo que cambia entre una pasada y otra no queda registrado.</li>
+            <li>Miramos el precio solo cuando revisamos el producto: lo que cambia entre una revisión y otra no queda registrado.</li>
             <li>
               Registramos el precio que muestra la tarjeta de la oferta. No incluye cupones, descuentos por medio de pago,
               cuotas ni envío, y puede corresponder a una variante o a un vendedor distinto del que ves al entrar.

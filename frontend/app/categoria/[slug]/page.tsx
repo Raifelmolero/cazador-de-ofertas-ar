@@ -354,7 +354,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </h2>
             <p className="text-sm text-zinc-500 mb-4">
               Precio de hoy contra el más bajo que registramos desde que seguimos cada producto
-              (revisamos Mercado Libre 3 veces por día). Si el precio de hoy es igual al mínimo, es
+              (revisamos a mano las ofertas de Mercado Libre). Si el precio de hoy es igual al mínimo, es
               el mejor momento que vimos para comprarlo.
             </p>
             <div className="overflow-x-auto rounded-xl border border-zinc-800">

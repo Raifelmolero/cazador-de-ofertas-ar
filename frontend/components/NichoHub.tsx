@@ -145,7 +145,7 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
         <h2 className="font-display text-xl sm:text-2xl font-black mb-4">En oferta hoy</h2>
         {ofertas.length === 0 ? (
           <p className="text-sm text-zinc-500 mb-8">
-            Hoy no apareció ningún producto de este rubro con descuento real. Las ofertas cambian 3 veces por día:
+            Hoy no apareció ningún producto de este rubro con descuento real. Sumamos ofertas nuevas seguido:
             mientras tanto, usá las búsquedas de arriba o sumate al canal.
           </p>
         ) : (

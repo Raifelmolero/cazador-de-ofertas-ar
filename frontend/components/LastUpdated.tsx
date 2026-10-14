@@ -38,13 +38,15 @@ export default function LastUpdated({ scrapedAt }: { scrapedAt: string }) {
   }, [])
 
   const label = ahora === null ? fechaAbsoluta(date) : formatRelative(date, ahora)
-  const isStale = ahora !== null && ahora - date.getTime() > 48 * 3_600_000
+  // Ofertas cargadas a mano: la fecha envejece sin que eso sea un problema.
+  // El rojo queda para más de 7 días sin revisar nada.
+  const isStale = ahora !== null && ahora - date.getTime() > 7 * 24 * 3_600_000
 
   return (
     <span className="inline-flex items-center gap-1.5">
       <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isStale ? 'bg-red-400' : 'bg-yellow-400 motion-safe:animate-pulse'}`} />
       <span className={isStale ? 'text-red-400' : undefined}>
-        Actualizado {label}
+        Última revisión {label}
       </span>
     </span>
   )

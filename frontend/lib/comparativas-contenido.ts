@@ -65,7 +65,7 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       },
       {
         q: '¿Cada cuánto cambian los precios de las piletas en Mercado Libre?',
-        a: 'Cambian varias veces por semana y suben en temporada alta. Revisamos Mercado Libre tres veces por día y guardamos el precio más bajo registrado de cada modelo para que compares.',
+        a: 'Cambian varias veces por semana y suben en temporada alta. Revisamos a mano las ofertas de Mercado Libre y guardamos el precio más bajo registrado de cada modelo para que compares.',
       },
     ],
   },

@@ -96,14 +96,22 @@ export default function OfertasGrid({
   ofertas: iniciales,
   total,
   telegramUrl,
+  omitirIds,
 }: {
   ofertas: OfertaLight[]
   total?: number
   telegramUrl: string
+  /** Ya mostradas arriba (top 3): con catálogo chico no se repiten en la grilla. */
+  omitirIds?: string[]
 }) {
   // Primero las del HTML (pinta rápido en celular); apenas el navegador queda
   // libre, todas las de hoy para que búsqueda, filtros y "ver más" las tengan.
-  const [ofertas, setOfertas] = useState(iniciales)
+  const [todasOfertas, setOfertas] = useState(iniciales)
+  const ofertas = useMemo(() => {
+    if (!omitirIds?.length) return todasOfertas
+    const fuera = new Set(omitirIds)
+    return todasOfertas.filter(o => !fuera.has(o.id_ml))
+  }, [todasOfertas, omitirIds])
   useEffect(() => {
     if (!total || total <= iniciales.length) return
     let vivo = true

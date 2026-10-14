@@ -371,7 +371,12 @@ export default function HoyPage() {
             Estamos cazando las ofertas de hoy… volvé en un rato 🎯
           </p>
         ) : (
-          <OfertasGrid ofertas={ofertasLight.slice(0, OFERTAS_EN_HTML)} total={ofertasLight.length} telegramUrl={TELEGRAM_URL} />
+          <OfertasGrid
+            ofertas={ofertasLight.slice(0, OFERTAS_EN_HTML)}
+            total={ofertasLight.length}
+            telegramUrl={TELEGRAM_URL}
+            omitirIds={ofertasLight.length > 6 && ofertasLight.length < 40 ? Array.from(top3Ids) : undefined}
+          />
         )}
       </section>
 

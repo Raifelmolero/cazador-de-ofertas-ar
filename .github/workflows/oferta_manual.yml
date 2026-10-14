@@ -70,7 +70,7 @@ jobs:
         run: python bot/tools/oferta_manual.py
       - name: Guardar en el repo
         run: |
-          git add bot/state/ofertas_manuales.json
+          git add bot/state/ofertas_manuales.json bot/state/posted_ids.json
           git commit -m "oferta manual: agregada desde Actions [skip ci]"
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin main && exit 0

@@ -25,7 +25,10 @@ from urllib.parse import urlparse
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "bot"))
-from cazador_bot import MANUAL_MAX_DIAS, MANUAL_PATH  # noqa: E402
+from cazador_bot import MANUAL_MAX_DIAS, MANUAL_PATH, STATE_PATH, title_key  # noqa: E402
+
+BAJA_REPUBLICAR_PCT = 5   # si el precio bajó al menos esto, la oferta vuelve a poder publicarse
+DESCUENTO_MAX_PCT = 80    # más que esto casi seguro es un número mal tipeado
 
 HOSTS_ML = ("mercadolibre.com.ar",)
 
@@ -92,6 +95,9 @@ def armar_oferta(url: str, titulo: str, actual: str, anterior: str, imagen: str 
     if prev <= cur:
         raise OfertaInvalida(f"El precio anterior ({pesos(prev)}) tiene que ser mayor que el actual ({pesos(cur)}). "
                              "Es el precio tachado que muestra ML; si no tiene, no es una oferta.")
+    if prev > cur * 10 or round((prev - cur) / prev * 100) > DESCUENTO_MAX_PCT:
+        raise OfertaInvalida(f"El precio anterior ({pesos(prev)}) es demasiado alto frente al actual ({pesos(cur)}): "
+                             f"más de {DESCUENTO_MAX_PCT}% de descuento casi siempre es un número mal tipeado. Revisalo.")
     hoy = hoy or datetime.now(timezone.utc)
     return {
         "id": deal_id,
@@ -105,7 +111,41 @@ def armar_oferta(url: str, titulo: str, actual: str, anterior: str, imagen: str 
     }
 
 
-def guardar(oferta: dict, path: Path | None = None) -> int:
+def avisos(oferta: dict, items: list[dict], posted: set[str]) -> list[str]:
+    """Cosas a mirar antes de que salga (no frenan la carga)."""
+    out = []
+    previa = next((i for i in items if i.get("id") == oferta["id"]), None)
+    if previa:
+        out.append(f"ya estaba cargada (antes {pesos(previa['price_cur'])}); se reemplaza con el precio nuevo.")
+    clave = title_key(oferta["title"])
+    otra = next((i for i in items if i.get("id") != oferta["id"] and title_key(i.get("title", "")) == clave), None)
+    if otra:
+        out.append(f"el título es igual a otra oferta vigente ({otra['id']}): puede ser el mismo producto con otro link.")
+    if oferta["id"] in posted:
+        baja = previa and previa["price_cur"] and (previa["price_cur"] - oferta["price_cur"]) / previa["price_cur"] * 100 >= BAJA_REPUBLICAR_PCT
+        out.append("ya se publicó antes y el bot no repite ids" + (": como el precio bajó, se libera para volver a salir." if baja else
+                   " (no vuelve a salir salvo que el precio baje 5% o más respecto de la carga anterior)."))
+    if oferta["discount"] < 10:
+        out.append(f"descuento de solo {oferta['discount']}%: va al final del ranking.")
+    return out
+
+
+def _liberar_publicada(oferta_id: str, state_path: Path | None = None) -> bool:
+    """Saca el id de posted_ids.json para que el bot pueda volver a publicarlo."""
+    state_path = state_path or STATE_PATH
+    try:
+        data = json.loads(state_path.read_text(encoding="utf-8"))
+        ids = data.get("posted_ids", [])
+        if oferta_id not in ids:
+            return False
+        data["posted_ids"] = [i for i in ids if i != oferta_id]
+        state_path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        return True
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def guardar(oferta: dict, path: Path | None = None, state_path: Path | None = None) -> int:
     """Suma (o reemplaza por id) la oferta; descarta las vencidas. Devuelve cuántas quedan."""
     from datetime import date
     path = path or MANUAL_PATH
@@ -113,6 +153,16 @@ def guardar(oferta: dict, path: Path | None = None) -> int:
         items = json.loads(path.read_text(encoding="utf-8")).get("items", [])
     except Exception:  # noqa: BLE001
         items = []
+    try:
+        posted = set(json.loads((state_path or STATE_PATH).read_text(encoding="utf-8")).get("posted_ids", []))
+    except Exception:  # noqa: BLE001
+        posted = set()
+    for a in avisos(oferta, items, posted):
+        print(f"::warning::«{oferta['title'][:60]}»: {a}")
+    previa = next((i for i in items if i.get("id") == oferta["id"]), None)
+    if previa and oferta["id"] in posted and previa.get("price_cur"):
+        if (previa["price_cur"] - oferta["price_cur"]) / previa["price_cur"] * 100 >= BAJA_REPUBLICAR_PCT:
+            _liberar_publicada(oferta["id"], state_path)
     hoy = date.fromisoformat(oferta["agregada"])
     vigentes = []
     for it in items:

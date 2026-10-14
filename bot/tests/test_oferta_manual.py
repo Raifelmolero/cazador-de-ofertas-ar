@@ -192,3 +192,27 @@ def test_lote_todo_o_nada():
 def test_lote_campos_de_menos():
     with pytest.raises(om.OfertaInvalida):
         om.parsear_lote("solo | tres | campos")
+
+
+# ---------------------------------------------------------------- validaciones nuevas
+
+def test_descuento_absurdo_es_error():
+    with pytest.raises(om.OfertaInvalida):
+        oferta(actual="10000", anterior="900000")
+
+
+def test_avisos_duplicado_por_titulo(tmp_path):
+    a = oferta()
+    otro = dict(a, id="MLA999999999")
+    av = om.avisos(otro, [a], set())
+    assert any("igual a otra oferta" in x for x in av)
+
+
+def test_baja_de_precio_libera_el_id_publicado(tmp_path):
+    manual, state = tmp_path / "m.json", tmp_path / "p.json"
+    state.write_text(json.dumps({"posted_ids": ["MLA12345678", "MLA1"]}))
+    om.guardar(oferta(actual="500000", anterior="749999"), manual, state)
+    assert "MLA12345678" in json.loads(state.read_text())["posted_ids"]   # sin carga previa no se toca
+    om.guardar(oferta(actual="450000", anterior="749999"), manual, state)   # baja 10% vs la carga previa
+    assert "MLA12345678" not in json.loads(state.read_text())["posted_ids"]
+    assert "MLA1" in json.loads(state.read_text())["posted_ids"]

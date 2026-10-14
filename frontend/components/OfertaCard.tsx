@@ -93,6 +93,8 @@ export default function OfertaCard(props: {
   producto: OfertaLight
   featured?: boolean
   priority?: boolean
+  /** lugar de la tarjeta en la grilla (1 = primera): se manda a Clarity al hacer clic */
+  posicion?: number
 }) {
   const slug = props.producto.historial
   // «Avisame si baja»: solo ticket alto, donde esperar la baja vale más plata
@@ -127,10 +129,12 @@ function Tarjeta({
   producto,
   featured = false,
   priority = false,
+  posicion,
 }: {
   producto: OfertaLight
   featured?: boolean
   priority?: boolean
+  posicion?: number
 }) {
   const ticketAlto = producto.precio_actual >= TICKET_ALTO_DESDE ? '' : undefined
   const ahorro =
@@ -145,6 +149,7 @@ function Tarjeta({
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-destacada
+        data-posicion={posicion}
         data-ticket-alto={ticketAlto}
         className="rise-in group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
       >
@@ -223,6 +228,7 @@ function Tarjeta({
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      data-posicion={posicion}
       data-ticket-alto={ticketAlto}
       className="rise-in group flex-1 flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
     >

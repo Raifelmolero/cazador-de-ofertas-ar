@@ -63,6 +63,9 @@ export default function Clarity() {
         } catch {
           // href raro: sin etiqueta
         }
+        // Lugar de la tarjeta en la grilla (1 = primera): dice hasta dónde baja la gente
+        const pos = Number(a.getAttribute('data-posicion'))
+        if (pos > 0) c('set', 'click_ml_posicion', String(Math.min(pos, 99)))
         // Sección de la página donde estaba el botón (data-seccion en el contenedor)
         const sec = a.closest('[data-seccion]')?.getAttribute('data-seccion')
         if (sec) {

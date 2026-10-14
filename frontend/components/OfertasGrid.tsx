@@ -245,12 +245,12 @@ export default function OfertasGrid({
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {filtrando ? (
-            visibles.slice(0, limite).map(o => <OfertaCard key={o.id_ml} producto={o} />)
+            visibles.slice(0, limite).map((o, i) => <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />)
           ) : (
             <>
-              <OfertaCard producto={visibles[0]} featured priority />
+              <OfertaCard producto={visibles[0]} featured priority posicion={1} />
               {visibles.slice(1, 7).map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={o} priority={i < 3} />
+                <OfertaCard key={o.id_ml} producto={o} priority={i < 3} posicion={i + 2} />
               ))}
 
               {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}
@@ -270,8 +270,8 @@ export default function OfertasGrid({
                 </div>
               )}
 
-              {visibles.slice(7, limite).map(o => (
-                <OfertaCard key={o.id_ml} producto={o} />
+              {visibles.slice(7, limite).map((o, i) => (
+                <OfertaCard key={o.id_ml} producto={o} posicion={i + 8} />
               ))}
             </>
           )}

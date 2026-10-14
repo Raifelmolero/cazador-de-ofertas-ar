@@ -152,6 +152,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   '@type': 'Offer',
                   price: p.precio_actual,
                   priceCurrency: 'ARS',
+                  availability: 'https://schema.org/InStock',
+                  itemCondition: 'https://schema.org/NewCondition',
                   url: p.url_producto,
                 },
               },

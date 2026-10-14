@@ -4,6 +4,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import { CATEGORIAS } from '@/lib/categorias'
+import { categoriaIndexable } from '@/lib/categoria-indexable'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
@@ -63,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: DEALS_URL, lastModified, changeFrequency: 'hourly', priority: 1 },
     // URLs estables (el listado de adentro rota, la página no): a diferencia de
     // /calculadora/[id] no se caen del sitio, así que sí se anuncian.
-    ...CATEGORIAS.map(c => ({
+    ...CATEGORIAS.filter(categoriaIndexable).map(c => ({
       url: `${DEALS_URL}/categoria/${c.slug}`,
       lastModified,
       changeFrequency: 'daily' as const,

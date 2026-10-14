@@ -10,6 +10,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { CATEGORIAS, enFrase, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { getContenidoCategoria } from '@/lib/categorias-contenido'
+import { categoriaIndexable } from '@/lib/categoria-indexable'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { enlacesAfines } from '@/lib/afines'
@@ -48,6 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: descripcion,
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },
+    ...(categoriaIndexable(c) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: titulo,
       description: descripcion,

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-13T20:35:48+00:00",
+  "generado": "2026-10-14T03:24:50+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-13T05:19:07+00:00",
+      "ultima_actividad": "2026-10-14T03:24:49+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 48 productos en la última corrida"
+          "tarea": "Revisó 11 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -21,20 +21,24 @@
           "valor": 9
         },
         {
-          "label": "Instagram",
+          "label": "whatsapp_kit",
+          "valor": 5
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
           "valor": 1
         },
         {
           "label": "Threads",
           "valor": 1
-        },
-        {
-          "label": "Facebook",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Mochila Viagem Feminina Masculina Impermeable Y Duradero Negro Liso"
+      "ultimo_trabajo": "Buclera Rizador 3 Barriles Ceramica Vgr V-599 Triple Ondas 230° Color Blanco y R"
     },
     {
       "id": "investigacion",

@@ -28,7 +28,7 @@ export default function Clarity() {
     // la etiqueta siga aunque la persona navegue a otra página sin UTM.
     try {
       const params = new URLSearchParams(window.location.search)
-      for (const k of ['utm_source', 'utm_medium', 'utm_campaign']) {
+      for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']) {
         let v = params.get(k)
         if (v) sessionStorage.setItem(k, v)
         else v = sessionStorage.getItem(k)

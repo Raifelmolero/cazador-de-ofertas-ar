@@ -962,14 +962,14 @@ def test_web_deal_url_ficha_existente(tmp_path):
     p.write_text(_json.dumps({"items": {"MLA1": {"slug": "tv-55-mla1"}}}), encoding="utf-8")
     pag = paginas_existentes(p)
     assert web_deal_url({"id": "MLA1"}, "threads", pag) == (
-        "https://cazadordeofertas.com.ar/precio/tv-55-mla1?utm_source=threads&utm_medium=social")
+        "https://cazadordeofertas.com.ar/precio/tv-55-mla1?utm_source=threads&utm_medium=social&utm_content=MLA1")
 
 
 def test_web_deal_url_sin_ficha_va_a_hoy(tmp_path):
     from cazador_bot import paginas_existentes, web_deal_url
     assert paginas_existentes(tmp_path / "no.json") == {}
     url = web_deal_url({"id": "MLA9"}, "instagram", {})
-    assert url == "https://cazadordeofertas.com.ar/hoy?utm_source=instagram&utm_medium=social"
+    assert url == "https://cazadordeofertas.com.ar/hoy?utm_source=instagram&utm_medium=social&utm_content=MLA9"
     assert "mercadolibre" not in url
 
 
@@ -977,7 +977,7 @@ def test_web_deal_url_sin_ficha_va_a_su_comparativa():
     from cazador_bot import web_deal_url
     url = web_deal_url({"id": "MLA9", "title": "Notebook Lenovo IdeaPad 15"}, "telegram", {})
     assert url == ("https://cazadordeofertas.com.ar/mejores/mejores-notebooks"
-                   "?utm_source=telegram&utm_medium=social")
+                   "?utm_source=telegram&utm_medium=social&utm_content=MLA9")
     assert "/mejores/mejores-colchones?" in web_deal_url({"id": "X", "title": "Colchón Piero 2 Plazas"}, "ig", {})
     assert "/mejores/mejores-celulares?" in web_deal_url({"id": "X", "title": "Smartphone Moto G"}, "ig", {})
     # accesorios y fichas existentes no cambian
@@ -1001,7 +1001,7 @@ class TestTelegramAWeb(unittest.TestCase):
     def test_con_ficha_va_a_la_web_y_ml_queda_secundario(self):
         link, ml = bot.telegram_links(self.DEAL, "aff", "telegram", {"MLA1": "aire-split"})
         self.assertEqual(
-            link, f"https://{bot.SITE_DOMAIN}/precio/aire-split?utm_source=telegram&utm_medium=social")
+            link, f"https://{bot.SITE_DOMAIN}/precio/aire-split?utm_source=telegram&utm_medium=social&utm_content=MLA1")
         self.assertIn("matt_word=telegram", ml)
         kb = bot.tg_keyboard(self.DEAL, link, ml)["inline_keyboard"]
         self.assertEqual(kb[0][0]["url"], link)

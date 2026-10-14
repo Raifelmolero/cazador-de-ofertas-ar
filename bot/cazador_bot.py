@@ -907,6 +907,11 @@ def web_deal_url(deal: dict, source: str, paginas: dict[str, str] | None = None)
     Instagram/Threads mandan acá en vez del link de ML: la web convierte ~12%
     y las redes directo a ML no vendían."""
     utm = f"utm_source={source}&utm_medium=social"
+    # utm_content = qué oferta mandó la visita (Clarity lo guarda como etiqueta).
+    # Solo en links a NUESTRO sitio: los links de afiliado a ML no se tocan.
+    contenido = re.sub(r"[^A-Za-z0-9_-]", "", str(deal.get("id", "")))[:40]
+    if contenido:
+        utm += f"&utm_content={contenido}"
     slug = (paginas or {}).get(deal.get("id", ""))
     ruta = f"/precio/{slug}" if slug else comparativa_de(deal.get("title", "")) or "/hoy"
     return f"https://{SITE_DOMAIN}{ruta}?{utm}"

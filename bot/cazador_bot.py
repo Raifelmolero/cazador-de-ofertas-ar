@@ -302,6 +302,7 @@ def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list
                 "discount": int(it["discount"]),
                 "img": it.get("img"),
                 "manual": True,
+                "agregada": it["agregada"],
             })
         except (KeyError, ValueError, TypeError):
             continue
@@ -719,6 +720,19 @@ def update_seguimiento(deals: list[dict], history: dict, affiliate_id: str,
     return data
 
 
+def manual_vencida(item: dict, hoy: date | None = None) -> bool:
+    """¿Es una oferta manual del sitio con más de MANUAL_MAX_DIAS desde que se
+    vio el precio? Sin `precio_visto` (productos viejos del escaneo) no se poda."""
+    visto = item.get("precio_visto")
+    if not visto:
+        return False
+    hoy = hoy or datetime.now(timezone.utc).date()
+    try:
+        return (hoy - date.fromisoformat(visto)).days > MANUAL_MAX_DIAS
+    except ValueError:
+        return False
+
+
 def write_site_data(deals: list[dict], affiliate_id: str,
                     exclusive_ids: set[str] | None = None,
                     history: dict | None = None,
@@ -770,6 +784,7 @@ def write_site_data(deals: list[dict], affiliate_id: str,
                 "ventas_estimadas": None,
                 "url_producto": affiliate_url(d["url"], affiliate_id, word_web),
                 "url_imagen": d["img"],
+                **({"precio_visto": d["agregada"]} if d.get("agregada") else {}),
                 "comision_clasica_pct": COMISION_CLASICA_PCT,
                 "comision_premium_pct": COMISION_PREMIUM_PCT,
                 "retencion_iibb_pct": 0.0,
@@ -785,7 +800,9 @@ def write_site_data(deals: list[dict], affiliate_id: str,
             with open(SITE_DATA_PATH, encoding="utf-8") as f:
                 previo = json.load(f)
             nuevos = {i["id_ml"] for i in items}
-            items = items + [i for i in previo.get("items", []) if i.get("id_ml") not in nuevos]
+            vigentes = [i for i in previo.get("items", [])
+                        if i.get("id_ml") not in nuevos and not manual_vencida(i)]
+            items = items + vigentes
             scraped_at = previo.get("metadata", {}).get("scraped_at", scraped_at)
         except (FileNotFoundError, json.JSONDecodeError):
             pass
@@ -1244,7 +1261,7 @@ IG_HOOKS = [
     "🎯 CAZADA DEL DÍA",
     "🔥 OFERTA REAL, CERO HUMO",
     "⚡ BAJÓN DE PRECIO",
-    "👀 ESTO NO DURA NADA",
+    "👀 PRECIO VISTO HOY",
 ]
 
 TH_HOOKS = [
@@ -2410,7 +2427,10 @@ def main() -> int:
     )
 
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
-        write_site_data(select_site_deals(deals), affiliate_id, exclusive_ids, history,
+        # Con el escaneo pausado todas las manuales se ven en la web: la marca
+        # "exclusiva del canal" de corridas viejas no las esconde.
+        write_site_data(select_site_deals(deals), affiliate_id,
+                        exclusive_ids if scrape else set(), history,
                         mezclar=not scrape)
         update_seguimiento(deals, history, affiliate_id)
         if scrape:  # con el escaneo pausado hay pocas ofertas: la muestra de infladas queda como está

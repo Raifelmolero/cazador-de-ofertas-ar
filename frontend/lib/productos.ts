@@ -15,6 +15,8 @@ export interface ProductWithMargins {
   prioridad?: number
   precio_minimo_registrado?: number | null
   seguimiento_desde?: string | null
+  /** fecha (YYYY-MM-DD) en que se vio el precio; solo ofertas cargadas a mano */
+  precio_visto?: string
   moneda: string
   ventas_estimadas: number | string | null
   url_producto: string

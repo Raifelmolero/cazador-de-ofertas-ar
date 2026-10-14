@@ -48,6 +48,7 @@ export function ofertasHoyLight(): OfertaLight[] {
     relampago: o.relampago,
     url_producto: o.url_producto,
     url_imagen: o.url_imagen,
+    precio_visto: o.precio_visto,
     historial: historial[o.id_ml],
   }))
 }

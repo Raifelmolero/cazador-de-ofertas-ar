@@ -17,12 +17,20 @@ export interface OfertaLight {
   relampago?: boolean
   url_producto: string
   url_imagen: string | null
+  /** fecha (YYYY-MM-DD) en que se vio el precio; solo ofertas cargadas a mano */
+  precio_visto?: string
   /** slug de /precio/[slug] si el producto tiene historial propio */
   historial?: string
 }
 
 function precio(n: number) {
   return `$${Math.round(n).toLocaleString('es-AR')}`
+}
+
+/** «precio visto el 14/10» a partir de YYYY-MM-DD (sin Date: evita desfases de zona). */
+function precioVisto(fecha?: string): string | null {
+  const m = fecha ? /^\d{4}-(\d{2})-(\d{2})$/.exec(fecha) : null
+  return m ? `Precio visto el ${m[2]}/${m[1]}` : null
 }
 
 function shareWhatsApp(e: React.MouseEvent, producto: OfertaLight) {
@@ -185,6 +193,9 @@ function Tarjeta({
               📉 El precio más bajo que registramos
             </span>
           )}
+          {precioVisto(producto.precio_visto) && (
+            <span className="mt-1.5 text-xs text-zinc-500">{precioVisto(producto.precio_visto)}</span>
+          )}
           <span className="mt-3 inline-flex w-fit items-center text-sm sm:text-base font-extrabold bg-yellow-400 text-black rounded-xl px-6 py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
             Comprar en Mercado Libre ↗
           </span>
@@ -255,6 +266,9 @@ function Tarjeta({
 
         {producto.minimo_historico && (
           <div className="mt-1.5 text-[11px] font-extrabold text-yellow-300">📉 Precio más bajo que registramos</div>
+        )}
+        {precioVisto(producto.precio_visto) && (
+          <div className="mt-1.5 text-[11px] text-zinc-500">{precioVisto(producto.precio_visto)}</div>
         )}
         <span className="mt-3 block w-full text-center text-sm sm:text-[15px] font-extrabold bg-yellow-400 text-black rounded-xl py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
           Comprar en ML ↗

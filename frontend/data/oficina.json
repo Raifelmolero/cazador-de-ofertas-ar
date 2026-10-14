@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-14T14:34:13+00:00",
+  "generado": "2026-10-14T19:17:26+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-14T03:24:49+00:00",
+      "ultima_actividad": "2026-10-14T19:17:26+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,11 +18,15 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 5
+          "valor": 10
         },
         {
           "label": "whatsapp_kit",
-          "valor": 5
+          "valor": 10
+        },
+        {
+          "label": "Threads",
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -33,12 +37,16 @@
           "valor": 1
         },
         {
-          "label": "Threads",
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Facebook",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Buclera Rizador 3 Barriles Ceramica Vgr V-599 Triple Ondas 230° Color Blanco y R"
+      "ultimo_trabajo": "Vaso Térmico 1200ml Antiderrame Manija Sorbete Acero Inox"
     },
     {
       "id": "investigacion",
@@ -194,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-13T17:56:35+00:00",
+      "ultima_actividad": "2026-10-14T15:42:41+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -206,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 12 h"
         },
         {
           "fecha": "",

@@ -40,6 +40,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ve "modificado hoy" en todo y termina ignorando el dato. Subir esta fecha solo
   // cuando se edite de verdad el contenido (guías, metodología, calculadoras).
   const textoModificado = new Date('2026-10-07T00:00:00Z')
+  // Texto permanente de las comparativas (lib/comparativas-contenido.ts): su fecha
+  // real de cambio, no la del scraper. Subirla solo cuando se edite ese archivo.
+  const comparativasModificado = new Date('2026-10-15T00:00:00Z')
 
   // El mismo deploy sirve los dos dominios. Google marca error si un sitemap
   // lista URLs de otro dominio (le pasaba al de cazadordeofertas: 1 error y
@@ -72,8 +75,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...COMPARATIVAS.filter(indexable).map(c => ({
       url: `${DEALS_URL}/mejores/${c.slug}`,
-      lastModified,
-      changeFrequency: 'daily' as const,
+      lastModified: comparativasModificado,
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     })),
     ...LANDINGS.filter(indexableLanding).map(l => ({ url: `${DEALS_URL}/ofertas/${l.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.7 })),
@@ -85,7 +88,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/datos`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/calculadora-consumo-electrico`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/metodologia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.6 },
-    { url: `${DEALS_URL}/familia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.5 },
     { url: `${DEALS_URL}/cyber-monday`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/dia-de-la-madre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },

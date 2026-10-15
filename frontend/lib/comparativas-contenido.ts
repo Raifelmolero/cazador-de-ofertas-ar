@@ -351,6 +351,14 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
         q: '¿La instalación está incluida?',
         a: 'Casi nunca. Sumá al presupuesto el costo de un instalador, que depende de la distancia entre la unidad interior y la exterior.',
       },
+      {
+        q: '¿Cuál es el mejor aire split inverter en Argentina en 2026?',
+        a: 'No hay uno solo: depende de los m² del ambiente y del uso. Para un dormitorio o living chico alcanza uno de 2.250 a 3.000 frigorías; para ambientes grandes o con mucho sol, 4.500 o más. Entre los modelos comparables elegí el inverter con mejor eficiencia energética (etiqueta A) y revisá en esta página el precio más bajo que registramos antes de pagar.',
+      },
+      {
+        q: '¿Cuánto sale un aire acondicionado en Argentina?',
+        a: 'El precio varía mucho según frigorías, marca y si es inverter o frío/calor, y cambia seguido en Mercado Libre. Por eso mostramos el precio de hoy junto al más bajo que registramos: si el de hoy está cerca del mínimo, es un buen momento; si está muy arriba, conviene esperar o poner una alerta.',
+      },
     ],
   },
 
@@ -412,6 +420,10 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
         q: '¿Qué medida de colchón necesito para dos personas?',
         a: 'Para dos, 140 cm (2 plazas) es lo mínimo; queen (160 cm) o king (180 a 200 cm) dan más espacio.',
       },
+      {
+        q: '¿Cuánto sale un colchón queen en Argentina?',
+        a: 'Depende de la densidad de la espuma o de si es de resortes, del grosor y de la marca. Un queen de espuma de alta densidad suele ser más barato que uno de resortes con pillow top. Compará el precio de hoy con el más bajo que registramos antes de comprar: en colchones los descuentos del evento suelen ser sobre listas infladas.',
+      },
     ],
   },
 
@@ -439,6 +451,10 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       {
         q: '¿Una freidora de aire gasta mucha luz?',
         a: 'Menos que un horno eléctrico: cocina más rápido y no necesita precalentar, aunque la potencia ronda los 1.400 a 2.000 W.',
+      },
+      {
+        q: '¿Qué freidora de aire tiene mejor relación calidad precio?',
+        a: 'La que tenga la capacidad justa para tu familia (3 a 4 litros para 1-2 personas, 5 a 7 para una familia), potencia de 1.400 W o más y cesta antiadherente desmontable. Las más baratas funcionan, pero suelen tener menos control de temperatura y más ruido; comparalas contra el precio mínimo que registramos.',
       },
     ],
   },
@@ -482,6 +498,14 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       {
         q: '¿QLED u OLED?',
         a: 'OLED ofrece el mejor negro y contraste, ideal para cuarto oscuro; QLED es más brillante, mejor para ambientes con mucha luz y suele costar menos.',
+      },
+      {
+        q: '¿Cuánto sale un smart TV de 55 pulgadas en Argentina?',
+        a: 'El precio de un 55" cambia según la tecnología (LED, QLED, OLED) y la marca, y varía seguido en Mercado Libre. Mirá el precio de hoy contra el mínimo que registramos para saber si el descuento es real, y comparalo también con el de 50" y el de 65" de la misma línea.',
+      },
+      {
+        q: '¿Qué tamaño de smart TV conviene según la distancia?',
+        a: 'Una regla práctica: dividí la distancia al sillón en centímetros por 2,5 y obtenés las pulgadas aproximadas. A unos 2,5 m queda bien uno de 55"; a 3 m o más, de 65" en adelante.',
       },
     ],
   },
@@ -568,6 +592,14 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       {
         q: '¿Qué notebook sirve para estudiar?',
         a: 'Una liviana, con buena batería, 8 GB de RAM, SSD y pantalla Full HD. No hace falta placa de video dedicada salvo para diseño, edición o juegos.',
+      },
+      {
+        q: '¿Cuánto sale una notebook en Argentina hoy?',
+        a: 'Depende del procesador, la memoria RAM y el almacenamiento. Para estudio y oficina alcanza con 8 GB de RAM y un SSD; para trabajo pesado o edición conviene 16 GB o más. En esta página ves el precio de hoy de cada modelo comparado con el más bajo que registramos, y la comisión no cambia lo que pagás.',
+      },
+      {
+        q: '¿Qué notebook conviene para estudiar o trabajar?',
+        a: 'Priorizá SSD (no disco rígido) y al menos 8 GB de RAM; después pantalla, peso y batería según si la llevás encima. Un procesador de gama media actual rinde de sobra para estudio, oficina y videollamadas.',
       },
     ],
   },

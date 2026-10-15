@@ -166,6 +166,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               availability: 'https://schema.org/InStock',
               url: s.url,
               validFrom: s.ultimo_visto,
+              // el precio lo seguimos a diario: se declara válido 2 días desde la última vez que se vio
+              priceValidUntil: new Date(new Date(s.ultimo_visto).getTime() + 2 * 86400000).toISOString().slice(0, 10),
               description: veredicto,
             },
           },

@@ -221,6 +221,91 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
       { q: '¿Por qué un mismo celular tiene tantos precios distintos?', a: 'Cambian el vendedor, la garantía, las cuotas y si es envío internacional o stock local. Comparar siempre el mismo modelo y la misma capacidad, y mirar el historial, evita comprar un "descuento" que no lo es.' },
     ],
   },
+
+  freezers: {
+    intro:
+      'Un freezer es una compra que se amortiza con el tiempo: guarda carne, comida hecha y compras grandes, y te deja aprovechar promociones sin apuro. Lo que más pesa en la decisión no es el precio de góndola sino el espacio que ocupa, cuánto consume y qué tipo de apertura te conviene. Un modelo horizontal rinde más por litro y mantiene mejor el frío al abrirlo, pero necesita más superficie; uno vertical entra en cualquier cocina y es más cómodo para ordenar. Como funciona las 24 horas, la diferencia de consumo entre un equipo eficiente y uno común se nota en la factura todos los meses. Mirá el historial del modelo antes de comprar: los freezers suelen tener promociones fuertes antes del verano.',
+    criterios: [
+      { t: 'Capacidad real que necesitás', d: 'Calculá por cantidad de personas y frecuencia de compra. Uno de más litros no siempre conviene: un freezer vacío igual consume.' },
+      { t: 'Horizontal o vertical', d: 'El horizontal da más capacidad por precio y conserva mejor el frío; el vertical ocupa menos superficie y ordena mejor por estantes.' },
+      { t: 'Eficiencia energética', d: 'Fijate la etiqueta de eficiencia. Al estar prendido todo el año, un modelo mejor clasificado se paga con el ahorro de luz.' },
+      { t: 'Lugar y ventilación', d: 'Necesita espacio libre alrededor para disipar calor. En un lugar muy cerrado o caluroso, consume más y se desgasta antes.' },
+      { t: 'Garantía y servicio técnico', d: 'Pedí garantía oficial y confirmá que haya service en tu zona: si falla con la mercadería adentro, el costo es mucho mayor que el del equipo.' },
+    ],
+    faqs: [
+      { q: '¿Qué capacidad de freezer necesito para una familia?', a: 'Como referencia general, se piensa en unos 50 a 100 litros por persona según cuánto congeles. Si hacés compras grandes de carne o cocinás para toda la semana, andá hacia el rango alto.' },
+      { q: '¿Conviene un freezer horizontal o vertical?', a: 'Si tenés lugar, el horizontal suele rendir más por el mismo dinero y conservar mejor el frío. El vertical es mejor para departamentos y para encontrar las cosas sin vaciar todo.' },
+      { q: '¿Cuánto consume un freezer?', a: 'Depende de la capacidad y de la eficiencia, y se mide por año en la etiqueta. Usá la calculadora de consumo del sitio con los datos del modelo para estimar el costo mensual con tu tarifa.' },
+    ],
+  },
+
+  'cocinas-y-hornos': {
+    intro:
+      'La cocina es el electrodoméstico que más años dura en una casa, así que conviene elegirla pensando en cómo cocinás y no solo en el precio. Antes de comparar modelos hay que definir el ancho disponible, si tenés gas natural o envasado, y si te alcanza con un horno básico o necesitás funciones como grill, ventilación o doble capa de vidrio. La limpieza y la seguridad también cuentan: válvulas de seguridad en las hornallas, vidrio templado y tapa de mejor calidad se notan en el uso diario. Un detalle que suele olvidarse es la instalación: una mala conexión de gas es un riesgo y puede invalidar la garantía, así que presupuestá un gasista matriculado.',
+    criterios: [
+      { t: 'Ancho y tipo de gas', d: 'Medí el hueco disponible y confirmá si tu conexión es de red o garrafa: algunos modelos vienen preparados para uno y requieren kit para el otro.' },
+      { t: 'Tipo de horno', d: 'El horno a gas es el más común y económico; el eléctrico o con ventilación reparte mejor el calor y es más parejo para repostería.' },
+      { t: 'Seguridad', d: 'Buscá válvula de seguridad en hornallas y horno, y vidrio templado en la puerta: previenen escapes y accidentes.' },
+      { t: 'Limpieza y materiales', d: 'El acero inoxidable y las superficies lisas se limpian más rápido; los esmaltes de baja calidad se manchan y se descascaran.' },
+      { t: 'Instalación y service', d: 'Incluí en el presupuesto la instalación por gasista matriculado y verificá que la marca tenga repuestos en tu zona.' },
+    ],
+    faqs: [
+      { q: '¿Qué ancho de cocina conviene?', a: 'Depende del hueco que tengas: las medidas más comunes van de 50 a 60 cm, y las de 90 cm son más cómodas si cocinás para muchos. Medí antes de comprar, incluyendo espacio para ventilación.' },
+      { q: '¿Se puede usar una cocina a gas natural con garrafa?', a: 'Depende del modelo: algunos vienen para un tipo de gas y necesitan inyectores o un kit para convertirse. Confirmalo en la ficha y que lo haga un gasista matriculado.' },
+      { q: '¿Cada cuánto conviene revisar la instalación de gas?', a: 'Se recomienda una revisión periódica por un gasista matriculado y revisar mangueras y conexiones ante cualquier olor o llama amarilla. No improvises reparaciones.' },
+    ],
+  },
+
+  piletas: {
+    intro:
+      'Comprar una pileta es una decisión de ticket alto que se usa pocos meses al año, así que conviene pensarla al revés: primero cuánto espacio tenés, quién la va a usar y quién se encarga del mantenimiento, y después el modelo. Las desmontables y las de estructura tienen diferencias grandes de durabilidad y de instalación: una desmontable se arma en un día y se guarda, mientras que una de estructura necesita base nivelada y más cuidado. Los accesorios cuentan: una pileta sin bomba y filtro adecuados termina con agua verde en poco tiempo. Como la demanda se concentra antes del verano, mirar el historial ayuda a no comprar en el pico de precio.',
+    criterios: [
+      { t: 'Espacio y base', d: 'Medí el lugar con margen alrededor. El suelo tiene que estar nivelado y firme: una base despareja es la causa más común de problemas.' },
+      { t: 'Capacidad y uso', d: 'Pensá cuántas personas la usan y si es para chicos o adultos: profundidad y diámetro cambian la seguridad y la comodidad.' },
+      { t: 'Bomba y filtro', d: 'Fijate que el equipo de filtrado sea adecuado al volumen de agua; uno subdimensionado no mantiene el agua limpia.' },
+      { t: 'Materiales y durabilidad', d: 'La calidad del PVC y de la estructura define cuántas temporadas dura. Las muy baratas suelen rendir una sola.' },
+      { t: 'Mantenimiento', d: 'Sumá al presupuesto cloro, limpiafondos y cobertor. El costo de mantenerla pesa en pocas temporadas.' },
+    ],
+    faqs: [
+      { q: '¿Qué pileta conviene para un patio chico?', a: 'Las desmontables redondas u ovaladas de poca profundidad se adaptan mejor a espacios reducidos y se guardan en invierno. Medí el lugar y dejá margen alrededor para circular.' },
+      { q: '¿Necesito bomba y filtro?', a: 'Para cualquier pileta de tamaño medio en adelante, sí: sin recirculación y filtrado el agua se ensucia rápido. Elegí un equipo dimensionado al volumen de agua del modelo.' },
+      { q: '¿Cuándo conviene comprar una pileta?', a: 'Los precios suelen subir cerca del verano por la demanda. Consultar el historial del modelo ayuda a ver si el precio de hoy es bajo para ese producto.' },
+    ],
+  },
+
+  bicicletas: {
+    intro:
+      'La bicicleta correcta depende más de cómo y dónde la vas a usar que del precio: una para ir al trabajo, una de montaña y una de ruta piden cosas distintas. El rodado, el tamaño del cuadro y el tipo de frenos definen si es cómoda o un problema, y se deciden antes que la marca. En el rango medio conviene mirar los componentes (cambios, frenos, ruedas) más que el diseño, porque ahí está la diferencia de rendimiento y de mantenimiento. Verificá el talle con la tabla del vendedor y contá con un armado y ajuste final en un taller si no tenés experiencia.',
+    criterios: [
+      { t: 'Uso principal', d: 'Ciudad, paseo, montaña o ruta: cada uso pide geometría, rodado y neumáticos distintos. Elegí por lo que más vas a hacer.' },
+      { t: 'Rodado y talle', d: 'El tamaño del cuadro y el rodado dependen de tu altura. Una bicicleta de talle incorrecto es incómoda y menos segura.' },
+      { t: 'Frenos', d: 'Los frenos a disco frenan mejor en mojado y en bajadas; los de zapata son más simples y baratos de mantener.' },
+      { t: 'Cambios y componentes', d: 'Más velocidades no siempre es mejor. Mirá la calidad de los componentes, que definen la durabilidad y el mantenimiento.' },
+      { t: 'Armado y garantía', d: 'Muchas llegan sin armar o con ajuste básico. Presupuestá una revisión en taller y confirmá la garantía del cuadro.' },
+    ],
+    faqs: [
+      { q: '¿Qué rodado me conviene?', a: 'Depende de tu altura y del uso. Revisá la tabla de talles de cada modelo antes de comprar: rodados mayores ruedan mejor en terreno parejo y los menores son más ágiles.' },
+      { q: '¿Frenos a disco o de zapata?', a: 'El disco da mejor frenada en lluvia y bajadas y requiere más cuidado al ajustar; la zapata es más simple de mantener y suele venir en modelos más económicos.' },
+      { q: '¿Conviene comprar una bicicleta por internet?', a: 'Sí, si verificás talle y medidas y contás con un ajuste final en taller. Priorizá vendedores con garantía y devolución, porque es difícil probarla antes de pagarla.' },
+    ],
+  },
+
+  aspiradoras: {
+    intro:
+      'Una aspiradora se elige por el tipo de piso, el tamaño de la casa y si hay mascotas, no por la potencia que dice la caja. Los watts engañan: lo que mejora la limpieza es el diseño del cepillo, el filtrado y la succión real. Entre una de trineo, una vertical, una inalámbrica o una robot cambia más la comodidad que la limpieza: la robot mantiene el piso a diario sin esfuerzo pero no reemplaza una pasada a fondo; la inalámbrica es cómoda pero tiene batería limitada. Antes de comprar revisá el costo de repuestos y filtros, que es un gasto recurrente que se olvida.',
+    criterios: [
+      { t: 'Tipo de piso', d: 'Alfombras y pisos duros piden cepillos distintos. Uno mal elegido arrastra la suciedad en vez de levantarla.' },
+      { t: 'Tipo de equipo', d: 'Trineo, vertical, inalámbrica o robot: elegí según el tamaño de la casa y cuánto tiempo querés dedicarle.' },
+      { t: 'Filtrado', d: 'Si hay alergias o mascotas, un filtro de mejor calidad evita que el polvo fino vuelva al ambiente.' },
+      { t: 'Autonomía y capacidad', d: 'En inalámbricas y robots, fijate cuánto dura la batería y el tamaño del depósito: define si limpiás toda la casa de una vez.' },
+      { t: 'Repuestos', d: 'Bolsas, filtros y baterías cuestan. Verificá que se consigan en tu zona antes de elegir un modelo poco común.' },
+    ],
+    faqs: [
+      { q: '¿Cuál conviene si tengo mascotas?', a: 'Buscá una con buen filtrado, cepillo que no se enrede con el pelo y depósito fácil de vaciar. Las verticales e inalámbricas suelen ser cómodas para el pelo diario.' },
+      { q: '¿Una aspiradora robot reemplaza a una común?', a: 'Mantiene el piso limpio a diario, pero no suele llegar a rincones ni reemplaza una limpieza a fondo. Muchos la usan como complemento.' },
+      { q: '¿Cuánto duran los filtros y las baterías?', a: 'Depende del uso y del modelo: los filtros se lavan o reemplazan periódicamente y las baterías pierden capacidad con los años. Confirmá que haya repuestos disponibles.' },
+    ],
+  },
 }
 
 export function getContenidoCategoria(slug: string): CategoriaContenido | undefined {

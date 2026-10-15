@@ -306,6 +306,74 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
       { q: '¿Cuánto duran los filtros y las baterías?', a: 'Depende del uso y del modelo: los filtros se lavan o reemplazan periódicamente y las baterías pierden capacidad con los años. Confirmá que haya repuestos disponibles.' },
     ],
   },
+
+  parrillas: {
+    intro:
+      'Una parrilla se elige por cómo y cuánto asás, no por el tamaño. Entre una de carbón, una a gas y una eléctrica cambia el sabor, la comodidad y el lugar donde la podés usar: la de carbón da el asado clásico pero lleva más tiempo y limpieza; la a gas enciende rápido y se controla mejor; la eléctrica sirve para espacios chicos y balcones. Antes de comprar medí el lugar y pensá cuántas personas solés recibir: una parrilla enorme en un patio chico estorba, y una chica se queda corta en cada reunión. Revisá el material de la parrilla y de la estructura, porque a la intemperie la corrosión es el problema más común.',
+    criterios: [
+      { t: 'Tipo de combustible', d: 'Carbón, gas o eléctrica: define sabor, tiempo de encendido, limpieza y dónde se puede usar. Si es para balcón, revisá las normas del edificio.' },
+      { t: 'Superficie de cocción', d: 'Pensá en cuántas personas asás normalmente. Más superficie no siempre es mejor: consume más combustible y ocupa más.' },
+      { t: 'Materiales', d: 'Hierro fundido, acero inoxidable y chapa gruesa duran más a la intemperie. La chapa fina se deforma y se oxida rápido.' },
+      { t: 'Regulación de altura y calor', d: 'Poder subir o bajar la parrilla y controlar el fuego evita quemar la comida y da más versatilidad.' },
+      { t: 'Limpieza y almacenamiento', d: 'Una bandeja de cenizas o grasa extraíble ahorra trabajo. Si no la vas a usar todo el año, una funda protege la inversión.' },
+    ],
+    faqs: [
+      { q: '¿Parrilla a gas o a carbón?', a: 'La de carbón da el sabor tradicional y es más económica de comprar; la a gas enciende rápido, se regula mejor y es más limpia. Depende de si priorizás sabor o comodidad.' },
+      { q: '¿Qué tamaño de parrilla necesito?', a: 'Para una familia chica alcanza una de superficie media; si recibís amigos seguido, conviene una más grande. Medí también el lugar donde va a quedar.' },
+      { q: '¿Cómo evito que se oxide?', a: 'Limpiala después de cada uso, secala bien y cubrila con una funda. Los materiales de mejor calidad resisten más, pero ninguno se salva de la humedad sin cuidado.' },
+    ],
+  },
+
+  'freidoras-de-aire': {
+    intro:
+      'Una freidora de aire es un electrodoméstico que se usa casi todos los días o termina en un placard, y eso depende de elegir bien la capacidad y la comodidad de limpieza. Para una o dos personas alcanza una de pocos litros; para una familia conviene una de mayor capacidad o con doble cesta, que permite cocinar dos cosas a la vez. Más potencia no siempre es mejor: lo importante es que la temperatura sea pareja y que el control sea claro. Un detalle que se nota con el uso es el revestimiento de la cesta: uno de buena calidad se limpia fácil y dura más sin descascararse.',
+    criterios: [
+      { t: 'Capacidad', d: 'Calculá según cuántas personas cocinan. Una muy chica obliga a hacer varias tandas; una muy grande ocupa lugar y consume de más.' },
+      { t: 'Tipo de cesta', d: 'De una cesta es más simple; de doble cesta permite cocinar dos alimentos distintos al mismo tiempo.' },
+      { t: 'Limpieza', d: 'Cesta antiadherente y apta para lavavajillas ahorra trabajo, y un buen revestimiento define cuánto dura.' },
+      { t: 'Controles y funciones', d: 'Digital o analógico, con programas o manual: elegí el que vayas a usar. Más funciones no siempre significan mejor resultado.' },
+      { t: 'Consumo y espacio', d: 'Revisá la potencia y dónde la vas a guardar. Es un equipo que conviene tener a mano para usarlo seguido.' },
+    ],
+    faqs: [
+      { q: '¿Qué capacidad conviene?', a: 'Para una o dos personas suelen alcanzar entre 3 y 4 litros; para una familia, más de 5. Si vas a cocinar para varios seguido, la doble cesta ayuda.' },
+      { q: '¿Cocina igual que un horno?', a: 'Hace comidas rápidas y crocantes con poco aceite, pero no reemplaza al horno para cantidades grandes. Se complementan.' },
+      { q: '¿Se puede usar papel o aluminio adentro?', a: 'Depende del modelo y del uso: siempre revisá el manual y no bloquees la circulación de aire. Usar accesorios aprobados por el fabricante es lo más seguro.' },
+    ],
+  },
+
+  ventiladores: {
+    intro:
+      'Un ventilador no enfría el aire: lo mueve y te da sensación de frescura, por eso rinde más cuanto mejor se adapta al lugar donde lo usás. De pie, de mesa, de pared o de techo cambian la cobertura, el ruido y el espacio que ocupan; el de techo cubre mejor un ambiente grande y no estorba, mientras que el de pie se mueve de una habitación a otra. Antes de comprar, fijate el nivel de ruido, la cantidad de velocidades y si tiene control remoto o temporizador, que se agradecen de noche. Como funciona muchas horas en verano, el consumo es bajo comparado con un aire, pero la diferencia entre modelos igual se nota.',
+    criterios: [
+      { t: 'Tipo y ubicación', d: 'De pie, de mesa, de pared o de techo: elegí según el lugar y si necesitás moverlo entre ambientes.' },
+      { t: 'Ruido', d: 'En el dormitorio importa más que la potencia. Un motor de calidad y aspas equilibradas hacen una diferencia grande.' },
+      { t: 'Velocidades y control', d: 'Varias velocidades, temporizador y control remoto dan comodidad, sobre todo para dormir.' },
+      { t: 'Caudal y tamaño de aspas', d: 'Aspas más grandes mueven más aire a menor velocidad y con menos ruido que unas chicas a máxima potencia.' },
+      { t: 'Estabilidad y seguridad', d: 'Una base firme y rejilla bien diseñada son importantes si hay chicos o mascotas.' },
+    ],
+    faqs: [
+      { q: '¿Ventilador de techo o de pie?', a: 'El de techo cubre mejor ambientes grandes y no ocupa espacio, pero requiere instalación. El de pie es más flexible y fácil de mover.' },
+      { q: '¿Un ventilador reemplaza a un aire acondicionado?', a: 'No enfría el ambiente, solo mejora la sensación térmica. Sirve para días templados o como complemento; con calor fuerte, un aire rinde más.' },
+      { q: '¿Cuánto consume un ventilador?', a: 'Mucho menos que un aire acondicionado. Usá la calculadora de consumo del sitio con la potencia del modelo para estimar el gasto mensual.' },
+    ],
+  },
+
+  'muebles-de-jardin': {
+    intro:
+      'Los muebles de jardín viven a la intemperie, así que el material importa más que el diseño. El aluminio, el hierro con pintura de calidad y los plásticos reforzados resisten sol y lluvia; la madera sin tratamiento se arruina rápido. Antes de elegir un juego, medí el espacio y pensá en cómo lo vas a usar: para comer, para descansar o ambos. Un set de varias piezas ahorra plata, pero mirá que cada una se pueda usar sola. También cuenta cuánto pesa y si se puede guardar, porque mover y proteger los muebles en invierno alarga mucho su vida útil.',
+    criterios: [
+      { t: 'Material', d: 'Aluminio, hierro tratado, plástico reforzado o madera con protección: define cuánto aguanta sol, humedad y óxido.' },
+      { t: 'Uso previsto', d: 'Comedor, descanso o ambos. Una mesa alta y sillas rígidas es distinto a un sillón con almohadones.' },
+      { t: 'Medidas y espacio', d: 'Medí el lugar y dejá espacio para circular. Un juego grande en un espacio chico se vuelve incómodo.' },
+      { t: 'Mantenimiento', d: 'Algunos materiales piden barniz o pintura cada tanto; otros solo agua y jabón. Contá con ese trabajo.' },
+      { t: 'Almacenamiento', d: 'Piezas apilables o plegables y una funda facilitan guardarlos y protegerlos en invierno.' },
+    ],
+    faqs: [
+      { q: '¿Qué material dura más a la intemperie?', a: 'El aluminio y los plásticos reforzados no se oxidan y resisten bien; el hierro necesita buena pintura y mantenimiento. La madera pide barniz periódico.' },
+      { q: '¿Conviene cubrirlos?', a: 'Sí: una funda alarga la vida de cualquier material y evita decoloración y acumulación de suciedad, sobre todo en invierno.' },
+      { q: '¿Cómo elijo el tamaño del juego?', a: 'Medí el espacio y dejá al menos un paso cómodo alrededor de la mesa. Pensá en cuántas personas usan el jardín en un día normal, no en el máximo.' },
+    ],
+  },
 }
 
 export function getContenidoCategoria(slug: string): CategoriaContenido | undefined {

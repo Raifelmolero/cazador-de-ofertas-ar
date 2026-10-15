@@ -26,3 +26,13 @@
 - Mensaje a ML Afiliados por API (docs/PREGUNTAS-PARA-ML-AFILIADOS.md): pendiente de Raifel, es lo que restituye el sistema.
 - Medir el domingo 18/10 (comparar vs 254 clics / 29 pedidos).
 - Método extracción: sessionStorage acumulado entre páginas de /ofertas?page=N (eval puede bloquearse por CSP: pegar el script de nuevo en cada página).
+
+## Cierre noche 15/10 (lotes #7-#9, vencimientos, OK de Agus)
+- **Lotes**: #7 +15, #8 +9, #9 +21 → **158 manuales** (10 del 14/10, 148 del 15/10). El contenedor `mercadolibre.com.ar/ofertas?container_id=MLA779357-1` rinde mucho más que paginar `/ofertas?page=N` (la 22 repetía productos de la 21).
+- **OK de Agus (ML Afiliados, 15/10 13:51)**: "Sí, no hay problema con eso" — usar el asistente en el navegador del dueño para elegir ofertas (una página, pocas por vez, su sesión) está permitido. Mantener ese perfil: nada masivo ni fuera del navegador.
+- **Precipicio de vencimiento**: `MANUAL_MAX_DIAS = 7` → las 10 del 14/10 caen el 22/10 y las 148 del 15/10 el 23/10. Recargar escalonado 16–22/10 (lotes de ~20, precios frescos) para llegar al Cyber (2/11) con ~100–150 vigentes.
+- **Auditoría de links**: 165/165 links a ML del HTML publicado llevan `matt_tool=37267219`; 0 enlaces internos rotos en guías long-tail y llms.txt. (Ojo al auditar: el RSC escapa `&` como `\u0026`; contar solo `href="…"`.) La caída de clics/ventas no viene de links.
+- **Tendencia del escaneo (scan_log)**: 11 → 47 → 94 productos por corrida con las manuales (14–15/10). Falta ver el efecto en el panel (domingo 18/10).
+- **Kit WhatsApp**: ya existe (`wa_kit` → chat admin de Telegram, canal `whatsapp_kit` en posts_log). WhatsApp no tiene API de publicación en canales: lo pega Raifel.
+- **Clarity (3 días)**: home 30 sesiones, scroll 17% PC / 29% móvil; sin rage clicks. Muy poco volumen: no tocar la home hasta ≥300 sesiones (CRO #34 en espera).
+- **Pendientes**: Raifel regenera GH_PAT antes del lun 19/10 y responde "gracias" a Agus; Claude: lote ~20/día hasta el 22/10, corrida de las 17 hs, panel 18/10, Search Console 29/10.

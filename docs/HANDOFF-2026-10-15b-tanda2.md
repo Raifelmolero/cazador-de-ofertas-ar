@@ -14,3 +14,8 @@
 ## Entorno
 - Disco C: lleno (72 MB libres) → `next build` falla con ENOSPC. Se compiló en `D:\wt\g2b` (copia de frontend con node_modules copiado, no junction cross-drive). Liberar espacio en C:.
 - Junction `wt-guias2/frontend/node_modules` → bot-repo/frontend/node_modules (funciona para tsc/eslint).
+
+## Actualización: lote ML cargado (con OK de Raifel, vía su Chrome)
+- Raifel autorizó mirar /ofertas con su Chrome (extensión). Se cargaron 10 ofertas de ticket alto de la página 4 (ahora 57 manuales): extractor Smartbuy, pluma hidráulica, bici fija, secador Philips, MTB Ghepard, Redmi 15C, 2 cafeteras, trimmer Babyliss, monitor Noblex. Run 38721754531 OK.
+- Método que anda: en la pestaña de /ofertas, `.poly-card` → link `/p/MLA…`, precios `.andes-money-amount__fraction` (0 = tachado, 1 = actual), imagen `img.src` (mlstatic). Output del JS se corta ~1000 caracteres: leer en tramos.
+- Lote nuevo antes del 21/10 (vencen las primeras 11).

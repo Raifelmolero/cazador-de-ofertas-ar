@@ -363,6 +363,20 @@ export default function HoyPage() {
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />
+      {/* Importados: el menú y los rubros están ocultos en celular, así que el
+          acceso a /aliexpress va visible en todos los tamaños. */}
+      <section aria-label="Importados" className="max-w-5xl mx-auto px-4 sm:px-6 pt-2 pb-2">
+        <Link
+          href="/aliexpress"
+          className="flex items-center justify-between gap-3 rounded-xl border border-orange-500/30 bg-orange-500/5 px-4 py-3 transition-colors hover:border-orange-400/60"
+        >
+          <span>
+            <span className="block font-bold text-zinc-100">🌎 Importados: ofertas de AliExpress</span>
+            <span className="block text-xs text-zinc-400">Tecnología y accesorios baratos, con envío internacional (15 a 40 días)</span>
+          </span>
+          <span className="text-sm font-bold text-orange-300 whitespace-nowrap">Ver →</span>
+        </Link>
+      </section>
       <AtajosVerano />
 
       {/* Grid con búsqueda y filtros */}

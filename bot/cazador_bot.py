@@ -301,6 +301,7 @@ def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list
                 "price_cur": int(it["price_cur"]),
                 "discount": int(it["discount"]),
                 "img": it.get("img"),
+                "cuotas": it.get("cuotas"),
                 "manual": True,
                 "agregada": it["agregada"],
             })
@@ -1033,6 +1034,7 @@ def deal_caption(deal: dict, link: str, whatsapp: bool = False) -> str:
         f"❌ Antes: <s>{fmt_price(deal['price_prev'])}</s>\n"
         f"✅ Ahora: <b>{fmt_price(deal['price_cur'])}</b>\n"
         f"💸 Te ahorrás {fmt_price(ahorro)}\n"
+        f"{('💳 ' + esc(deal['cuotas']) + chr(10)) if deal.get('cuotas') else ''}"
         f"{badge}\n"
         f"🛒 {link}"
     )
@@ -1733,6 +1735,7 @@ def ig_caption(deal: dict) -> str:
         f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
         f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
         f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
+        f"{('💳 ' + deal['cuotas'] + chr(10)) if deal.get('cuotas') else ''}"
         f"{badge}\n"
         # La web va primero y sola: en IG los links del caption no son
         # clickeables (y la cuenta hoy no puede poner link en la bio), así que

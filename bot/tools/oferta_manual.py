@@ -84,8 +84,18 @@ def limpiar_imagen(imagen: str | None) -> str | None:
     return imagen
 
 
+def limpiar_cuotas(cuotas: str | None) -> str | None:
+    """Texto corto de financiación, ej. «12 cuotas de $124.999 sin interés». Opcional."""
+    cuotas = re.sub(r"\s+", " ", (cuotas or "").strip())
+    if not cuotas:
+        return None
+    if len(cuotas) > 50 or re.search(r"[<>]", cuotas):
+        raise OfertaInvalida("Cuotas: texto corto (hasta 50 letras), sin < ni >. Ej.: 12 cuotas de $124.999 sin interés.")
+    return cuotas
+
+
 def armar_oferta(url: str, titulo: str, actual: str, anterior: str, imagen: str | None = None,
-                 hoy: datetime | None = None) -> dict:
+                 cuotas: str | None = None, hoy: datetime | None = None) -> dict:
     limpia, deal_id = limpiar_url(url)
     titulo = re.sub(r"\s+", " ", (titulo or "").strip())
     if len(titulo) < 5:
@@ -107,6 +117,7 @@ def armar_oferta(url: str, titulo: str, actual: str, anterior: str, imagen: str 
         "price_cur": cur,
         "discount": round((prev - cur) / prev * 100),
         "img": limpiar_imagen(imagen),
+        "cuotas": limpiar_cuotas(cuotas),
         "agregada": hoy.date().isoformat(),
     }
 
@@ -179,7 +190,7 @@ def guardar(oferta: dict, path: Path | None = None, state_path: Path | None = No
 
 def parsear_lote(texto: str) -> list[dict]:
     """Varias ofertas en un texto: una por línea (o separadas por ';;'), campos con '|':
-    url | titulo | precio actual | precio anterior | imagen (opcional).
+    url | titulo | precio actual | precio anterior | imagen (opcional) | cuotas (opcional).
     Todo o nada: si una línea está mal, no se carga ninguna y el error dice cuál."""
     lineas = [l.strip() for l in re.split(r"\n|;;", texto or "") if l.strip()]
     if not lineas:
@@ -187,8 +198,8 @@ def parsear_lote(texto: str) -> list[dict]:
     ofertas, errores = [], []
     for i, linea in enumerate(lineas, 1):
         campos = [c.strip() for c in linea.split("|")]
-        if len(campos) not in (4, 5):
-            errores.append(f"Oferta {i}: hay {len(campos)} campos y tienen que ser 4 o 5 separados por «|».")
+        if len(campos) not in (4, 5, 6):
+            errores.append(f"Oferta {i}: hay {len(campos)} campos y tienen que ser 4 a 6 separados por «|».")
             continue
         try:
             ofertas.append(armar_oferta(*campos))
@@ -205,6 +216,7 @@ def main() -> int:
     for k in ("url", "titulo", "actual", "anterior"):
         ap.add_argument(f"--{k}", default=os.getenv(f"OFERTA_{k.upper()}", ""))
     ap.add_argument("--imagen", default=os.getenv("OFERTA_IMAGEN", ""))
+    ap.add_argument("--cuotas", default=os.getenv("OFERTA_CUOTAS", ""))
     a = ap.parse_args()
     if a.lote.strip():
         try:
@@ -221,7 +233,7 @@ def main() -> int:
             print(f"Aviso: {sin_img} sin imagen (no salen en Instagram).")
         return 0
     try:
-        oferta = armar_oferta(a.url, a.titulo, a.actual, a.anterior, a.imagen)
+        oferta = armar_oferta(a.url, a.titulo, a.actual, a.anterior, a.imagen, a.cuotas)
     except OfertaInvalida as e:
         print(f"::error::{e}")
         return 1

@@ -216,3 +216,14 @@ def test_baja_de_precio_libera_el_id_publicado(tmp_path):
     om.guardar(oferta(actual="450000", anterior="749999"), manual, state)   # baja 10% vs la carga previa
     assert "MLA12345678" not in json.loads(state.read_text())["posted_ids"]
     assert "MLA1" in json.loads(state.read_text())["posted_ids"]
+
+
+def test_cuotas_opcional_y_validada():
+    from tools.oferta_manual import armar_oferta, OfertaInvalida, limpiar_cuotas
+    o = armar_oferta("https://www.mercadolibre.com.ar/x/p/MLA123456", "Producto de prueba", "100000", "150000",
+                     None, "12 cuotas de $8.333 sin interés")
+    assert o["cuotas"] == "12 cuotas de $8.333 sin interés"
+    assert armar_oferta("https://www.mercadolibre.com.ar/x/p/MLA123456", "Producto de prueba", "100000", "150000")["cuotas"] is None
+    import pytest
+    with pytest.raises(OfertaInvalida):
+        limpiar_cuotas("<b>x</b>")

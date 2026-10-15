@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       lote:
-        description: 'VARIAS a la vez (si lo llenás, se ignoran los 4 campos de abajo): url | título | actual | anterior | imagen, separadas por ;;'
+        description: 'VARIAS a la vez (si lo llenás, se ignoran los 4 campos de abajo): url | título | actual | anterior | imagen | cuotas, separadas por ;;'
         required: false
         type: string
       url:
@@ -29,6 +29,10 @@ on:
         type: string
       imagen:
         description: 'Link de la foto (opcional; http2.mlstatic.com/...). Sin foto no sale en Instagram'
+        required: false
+        type: string
+      cuotas:
+        description: 'Cuotas (opcional), ej. 12 cuotas de $124.999 sin interés'
         required: false
         type: string
       publicar_ya:
@@ -67,6 +71,7 @@ jobs:
           OFERTA_ACTUAL: ${{ inputs.precio_actual }}
           OFERTA_ANTERIOR: ${{ inputs.precio_anterior }}
           OFERTA_IMAGEN: ${{ inputs.imagen }}
+          OFERTA_CUOTAS: ${{ inputs.cuotas }}
         run: python bot/tools/oferta_manual.py
       - name: Guardar en el repo
         run: |

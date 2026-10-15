@@ -423,6 +423,195 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    slug: 'como-leer-medida-neumatico',
+    titulo: 'Cómo leer la medida de un neumático: 205/55 R16 91V explicado',
+    descripcion:
+      'Qué significa cada número de la medida de un neumático (ancho, perfil, radial, llanta, índice de carga y velocidad) y cómo ver la fecha de fabricación DOT.',
+    pregunta: '¿Cómo se lee la medida de un neumático?',
+    respuestaCorta:
+      'En 205/55 R16 91V: 205 es el ancho en milímetros, 55 es el perfil (la altura del flanco como porcentaje del ancho), R indica construcción radial, 16 es el diámetro de la llanta en pulgadas, 91 es el índice de carga y V el índice de velocidad. La fecha de fabricación está en el código DOT: las cuatro últimas cifras son semana y año.',
+    secciones: [
+      {
+        h: 'Los números del flanco, uno por uno',
+        p: [
+          'Ejemplo: 205/55 R16 91V. El primer número (205) es el ancho de la banda de rodamiento en milímetros.',
+          'El segundo (55) es el perfil: la altura del flanco expresada como porcentaje del ancho. Un perfil menor significa un flanco más bajo.',
+          'La letra R indica construcción radial, la habitual hoy. El 16 es el diámetro de la llanta en pulgadas: tiene que coincidir con tu rodado.',
+        ],
+      },
+      {
+        h: 'Índice de carga y de velocidad',
+        p: [
+          'El 91 es el índice de carga: un código que corresponde a un peso máximo por neumático según una tabla estandarizada.',
+          'La letra final (V en el ejemplo) es el índice de velocidad máxima para la que está homologado. No conviene bajar de lo que indica el manual de tu auto.',
+        ],
+      },
+      {
+        h: 'La fecha de fabricación (DOT)',
+        p: [
+          'Buscá en el flanco la sigla DOT seguida de un código. Las últimas cuatro cifras son la semana y el año de fabricación: 2423 significa semana 24 de 2023.',
+          'Un neumático sin uso pero muy viejo igual envejece el caucho, así que conviene mirar la fecha antes de comprar.',
+        ],
+      },
+      {
+        h: 'Qué medida poner en tu auto',
+        p: [
+          'La medida original está en el manual, en una etiqueta en el marco de la puerta del conductor o en el flanco de los neumáticos actuales.',
+          'Si querés cambiar de medida, hacelo con asesoramiento de un gomero de confianza: el diámetro total tiene que quedar parecido al original.',
+        ],
+      },
+    ],
+    categoria: { slug: 'vehiculos', nombre: 'vehículos' },
+    comparativa: 'mejores-neumaticos',
+    cta: { href: '/mejores/mejores-neumaticos', titulo: 'Neumáticos en oferta hoy, comparados', boton: 'Ver la comparativa de neumáticos' },
+    faq: [
+      {
+        q: '¿Qué significa la R en la medida de un neumático?',
+        a: 'Indica construcción radial, que es la que usan prácticamente todos los neumáticos de auto actuales.',
+      },
+      {
+        q: '¿Puedo usar un neumático con otro índice de velocidad?',
+        a: 'Conviene respetar como mínimo el que indica el fabricante del auto. Uno con índice menor no está pensado para la velocidad que puede alcanzar tu vehículo.',
+      },
+      {
+        q: '¿Cómo sé qué tan viejo es un neumático?',
+        a: 'Mirá el código DOT en el flanco: las últimas cuatro cifras son la semana y el año de fabricación.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/cuando-cambiar-los-neumaticos', texto: 'Cuándo cambiar los neumáticos' },
+      { href: '/mejores/mejores-neumaticos', texto: 'Mejores neumáticos en oferta' },
+      { href: '/categoria/vehiculos', texto: 'Vehículos y repuestos en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'cuando-cambiar-los-neumaticos',
+    titulo: 'Cuándo cambiar los neumáticos: desgaste, edad y señales',
+    descripcion:
+      'Cómo saber si hay que cambiar los neumáticos: profundidad mínima del dibujo (indicador TWI de 1,6 mm), edad, grietas, deformaciones y desgaste irregular.',
+    pregunta: '¿Cuándo hay que cambiar los neumáticos?',
+    respuestaCorta:
+      'Cuando el dibujo llega a 1,6 mm (los indicadores TWI quedan a ras de la banda), cuando hay grietas, cortes o deformaciones en el flanco, o cuando son muy viejos aunque tengan dibujo. Revisalos cada tanto: el desgaste irregular suele avisar de problemas de alineación o presión.',
+    secciones: [
+      {
+        h: 'El dibujo: el límite de 1,6 mm',
+        p: [
+          'Los neumáticos traen indicadores de desgaste (TWI) en los surcos principales. Cuando la banda queda a ras con ellos, el dibujo llegó a 1,6 mm y hay que cambiarlos.',
+          'Con poco dibujo aumenta la distancia de frenado en piso mojado y el riesgo de aquaplaning.',
+        ],
+      },
+      {
+        h: 'Edad y estado del caucho',
+        p: [
+          'El caucho envejece aunque el auto ande poco. Revisá la fecha en el código DOT y desconfiá de neumáticos muy viejos, sobre todo si tienen microgrietas.',
+          'Grietas, cortes, ampollas o deformaciones en el flanco son motivo de cambio inmediato.',
+        ],
+      },
+      {
+        h: 'Desgaste irregular',
+        p: [
+          'Si se gastan más de un lado, puede haber problemas de alineación o de presión. Corregir la causa antes de poner neumáticos nuevos evita repetirlo.',
+          'Rotarlos cada cierto kilometraje, según indique el fabricante, ayuda a que se gasten parejo.',
+        ],
+      },
+      {
+        h: 'Antes de comprar',
+        p: [
+          'Confirmá la medida original en el manual o en el flanco. Si tenés dudas, mirá la guía de cómo leer la medida.',
+          'Cambiá siempre de a pares por eje como mínimo, para mantener el comportamiento del auto.',
+        ],
+      },
+    ],
+    categoria: { slug: 'vehiculos', nombre: 'vehículos' },
+    comparativa: 'mejores-neumaticos',
+    cta: { href: '/mejores/mejores-neumaticos', titulo: 'Neumáticos en oferta hoy, comparados', boton: 'Ver la comparativa de neumáticos' },
+    faq: [
+      {
+        q: '¿Con cuántos milímetros hay que cambiar un neumático?',
+        a: 'El límite de uso es 1,6 mm de profundidad de dibujo. Muchos conductores los cambian antes para mejorar el agarre en piso mojado.',
+      },
+      {
+        q: '¿Los neumáticos vencen aunque no se usen?',
+        a: 'El caucho envejece con el tiempo. Revisá la fecha de fabricación (DOT) y el estado del flanco.',
+      },
+      {
+        q: '¿Hay que cambiar los cuatro a la vez?',
+        a: 'Lo ideal es cambiar al menos de a pares por eje, con la misma medida y características.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/como-leer-medida-neumatico', texto: 'Cómo leer la medida de un neumático' },
+      { href: '/mejores/mejores-neumaticos', texto: 'Mejores neumáticos en oferta' },
+      { href: '/categoria/vehiculos', texto: 'Vehículos y repuestos en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'cuantos-gb-necesito-celular',
+    titulo: 'Cuántos GB necesito en un celular: almacenamiento y RAM',
+    descripcion:
+      'Cuánto almacenamiento y cuánta RAM conviene según tu uso: fotos, videos, juegos y apps. Diferencia entre GB de memoria interna y de RAM.',
+    pregunta: '¿Cuántos GB necesito en un celular?',
+    respuestaCorta:
+      'Para uso básico (WhatsApp, redes, algunas fotos) alcanzan 64 a 128 GB de almacenamiento; si sacás muchas fotos y videos o instalás juegos, 256 GB. La RAM es otra cosa: 4 a 6 GB para uso cotidiano y 8 GB o más para juegos y multitarea. Ojo: el sistema ocupa parte del almacenamiento.',
+    secciones: [
+      {
+        h: 'Almacenamiento y RAM no son lo mismo',
+        p: [
+          'El almacenamiento (memoria interna) es donde guardás apps, fotos, videos y archivos. La RAM es la memoria de trabajo: cuánto puede tener abierto el celular a la vez.',
+          'Se suelen mostrar juntas, por ejemplo 8/256 GB: 8 de RAM y 256 de almacenamiento.',
+        ],
+      },
+      {
+        h: 'Cuánto almacenamiento según tu uso',
+        p: [
+          'Uso básico (mensajes, redes, pocas fotos): 64 a 128 GB.',
+          'Muchas fotos y videos, música offline y varias apps: 128 a 256 GB.',
+          'Juegos pesados, video en alta resolución o si no usás la nube: 256 GB o más.',
+          'Parte del espacio lo ocupa el sistema y las apps preinstaladas, así que el disponible es menor al que figura en la ficha.',
+        ],
+      },
+      {
+        h: 'Cuánta RAM',
+        p: [
+          'Para el uso cotidiano, 4 a 6 GB alcanzan. Con 8 GB o más tenés más margen para juegos y para tener muchas apps abiertas sin que se recarguen.',
+          'Más RAM no compensa un procesador flojo: mirá el conjunto.',
+        ],
+      },
+      {
+        h: 'Tarjeta microSD y nube',
+        p: [
+          'No todos los celulares aceptan tarjeta microSD: confirmalo en la ficha.',
+          'Usar la nube para fotos y archivos permite comprar menos almacenamiento, siempre que tengas buena conexión.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-celulares',
+    cta: { href: '/mejores/mejores-celulares', titulo: 'Celulares en oferta hoy, comparados', boton: 'Ver la comparativa de celulares' },
+    faq: [
+      {
+        q: '¿128 GB alcanzan hoy?',
+        a: 'Para la mayoría del uso cotidiano sí, sobre todo si usás la nube para fotos. Si grabás mucho video o instalás juegos pesados, conviene 256 GB.',
+      },
+      {
+        q: '¿Cuál es la diferencia entre RAM y almacenamiento?',
+        a: 'La RAM es la memoria de trabajo del equipo; el almacenamiento es donde guardás tus archivos y apps.',
+      },
+      {
+        q: '¿Se puede ampliar la memoria con una microSD?',
+        a: 'Solo en los modelos que tienen ranura para tarjeta. Revisá la ficha técnica antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según tu presupuesto' },
+      { href: '/mejores/mejores-celulares', texto: 'Mejores celulares en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
 ]
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

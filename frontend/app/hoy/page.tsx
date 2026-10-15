@@ -439,7 +439,7 @@ export default function HoyPage() {
             ¿Querés las ofertas apenas salen? 🔥
           </h2>
           <p className="text-sm text-zinc-400 mb-5">
-            Publicamos las mejores 3 veces por día, con alerta de mínimos
+            Publicamos las mejores a diario, con alerta de mínimos
             históricos.
           </p>
           {/* WhatsApp primero: en Argentina casi todos lo tienen; Telegram no.

@@ -26,7 +26,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Herramientas eléctricas en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Guías para elegir taladro, amoladora, soldadora e hidrolavadora.',
     intro:
-      'Todo lo del taller en un solo lugar: las herramientas que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día), comparativas y guías cortas para elegir bien antes de comprar.',
+      'Todo lo del taller en un solo lugar: las herramientas que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios), comparativas y guías cortas para elegir bien antes de comprar.',
     etiqueta: 'herramientas',
     categorias: ['herramientas-electricas'],
     busquedas: [
@@ -43,7 +43,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Aires acondicionados, colchones, heladeras, lavarropas y más electrodomésticos en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'Lo grande de la casa en un solo lugar: aires, colchones, heladeras, lavarropas, cocinas y termotanques con descuento real hoy en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Son compras caras: por eso sumamos comparativas y guías para elegir bien.',
+      'Lo grande de la casa en un solo lugar: aires, colchones, heladeras, lavarropas, cocinas y termotanques con descuento real hoy en Mercado Libre (lo verificamos contra el historial de precios). Son compras caras: por eso sumamos comparativas y guías para elegir bien.',
     etiqueta: 'hogar',
     categorias: [
       'aire-acondicionado', 'colchones', 'heladeras', 'lavarropas',
@@ -63,7 +63,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Smart TV y monitores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Comparativas y guías para elegir pulgadas, panel y frecuencia.',
     intro:
-      'Pantallas en un solo lugar: los smart TV y monitores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día), con comparativas para elegir tamaño, resolución y panel.',
+      'Pantallas en un solo lugar: los smart TV y monitores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios), con comparativas para elegir tamaño, resolución y panel.',
     etiqueta: 'tecno',
     categorias: ['smart-tv', 'monitores'],
     busquedas: [
@@ -80,7 +80,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Hornos pizzeros, freidoras industriales, anafes, cortadoras de fiambre, batidoras planetarias y heladeras exhibidoras en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'Para equipar la cocina de un local, una rotisería, una panadería o un foodtruck: los equipos que hoy tienen descuento real en Mercado Libre (lo chequeamos contra el historial de precios, 3 veces por día) y guías para no comprar de más ni de menos. Antes de comprar, confirmá con tu gasista o electricista que la instalación banca el equipo.',
+      'Para equipar la cocina de un local, una rotisería, una panadería o un foodtruck: los equipos que hoy tienen descuento real en Mercado Libre (lo chequeamos contra el historial de precios) y guías para no comprar de más ni de menos. Antes de comprar, confirmá con tu gasista o electricista que la instalación banca el equipo.',
     etiqueta: 'gastronomia',
     categorias: ['equipamiento-gastronomico'],
     busquedas: [
@@ -97,7 +97,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Monitores gamer, notebooks gamer, consolas, joysticks, auriculares, teclados, mouse y sillas gamer en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'Todo el setup gamer en un solo lugar: monitores, notebooks, consolas, joysticks, auriculares, teclados, mouse y sillas que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Antes de comprar, fijate que tu equipo aproveche lo que pagás: un monitor de 240 Hz no sirve de mucho si tu placa de video no llega a esos cuadros.',
+      'Todo el setup gamer en un solo lugar: monitores, notebooks, consolas, joysticks, auriculares, teclados, mouse y sillas que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios). Antes de comprar, fijate que tu equipo aproveche lo que pagás: un monitor de 240 Hz no sirve de mucho si tu placa de video no llega a esos cuadros.',
     etiqueta: 'gamer',
     categorias: ['gamer'],
     busquedas: [
@@ -114,7 +114,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Cochecitos, butacas, cunas, sillitas, juguetes y juegos de exterior en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'Lo de bebés y chicos en un solo lugar: cochecitos, butacas, cunas, juguetes y juegos que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Se pone más movido antes de Navidad y Reyes: fijate el mínimo registrado antes de comprar.',
+      'Lo de bebés y chicos en un solo lugar: cochecitos, butacas, cunas, juguetes y juegos que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios). Se pone más movido antes de Navidad y Reyes: fijate el mínimo registrado antes de comprar.',
     etiqueta: 'bebes',
     categorias: ['bebes-y-jugueteria'],
     busquedas: [
@@ -130,7 +130,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Freidoras de aire, aspiradoras y robots, cafeteras, microondas, licuadoras, batidoras y ventiladores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'El electro chico de la casa en un solo lugar: freidoras de aire, aspiradoras y robots, cafeteras, microondas, licuadoras, batidoras y ventiladores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Aparecen todos los días en las ofertas de ML, así que antes de comprar compará capacidad, potencia y garantía, no solo el % OFF.',
+      'El electro chico de la casa en un solo lugar: freidoras de aire, aspiradoras y robots, cafeteras, microondas, licuadoras, batidoras y ventiladores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios). Aparecen todos los días en las ofertas de ML, así que antes de comprar compará capacidad, potencia y garantía, no solo el % OFF.',
     etiqueta: 'electro',
     categorias: ['freidoras-de-aire', 'electro-de-cocina', 'aspiradoras', 'ventiladores'],
     busquedas: [
@@ -147,7 +147,7 @@ export const NICHOS: Nicho[] = [
     descripcion:
       'Neumáticos, llantas, arrancadores de batería, escáneres, estéreos y accesorios para autos y motos en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios.',
     intro:
-      'Todo para el auto y la moto en un solo lugar: neumáticos, llantas, arrancadores, escáneres, estéreos y accesorios que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios, 3 veces por día). Antes de comprar confirmá la medida y la compatibilidad con tu vehículo, no solo el % OFF.',
+      'Todo para el auto y la moto en un solo lugar: neumáticos, llantas, arrancadores, escáneres, estéreos y accesorios que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios). Antes de comprar confirmá la medida y la compatibilidad con tu vehículo, no solo el % OFF.',
     etiqueta: 'vehiculos',
     categorias: ['vehiculos'],
     busquedas: [

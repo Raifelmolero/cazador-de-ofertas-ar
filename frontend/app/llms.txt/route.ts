@@ -22,7 +22,7 @@ const CONTENT = `# Cazador de Ofertas AR
 
 Cazador de Ofertas AR (cazadordeofertas.com.ar) es un buscador de ofertas y
 descuentos de Mercado Libre Argentina. Actualiza el listado de productos en
-oferta a medida que se cargan ofertas nuevas (se publican hasta 3 veces por día, hora Argentina). Cada oferta
+oferta a medida que se cargan ofertas nuevas (el bot corre a las 12, 17 y 21 hs, hora Argentina, cuando hay ofertas nuevas). Cada oferta
 muestra precio anterior, precio actual, porcentaje de descuento y, cuando hay
 suficiente historial, si el precio actual es el mínimo histórico registrado
 para ese producto.

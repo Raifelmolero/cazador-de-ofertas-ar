@@ -319,7 +319,7 @@ export default function BlackFridayPage() {
         <section className="rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-8 text-center mb-10">
           <h2 className="font-display text-xl font-black mb-2">¿Querés las bajas reales apenas salen?</h2>
           <p className="text-sm text-zinc-400 mb-5">
-            Publicamos las ofertas verificadas 3 veces por día, con alerta de mínimos históricos.
+            Publicamos las ofertas verificadas a diario, con alerta de mínimos históricos.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a

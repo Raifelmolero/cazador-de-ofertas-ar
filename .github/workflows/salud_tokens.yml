@@ -1,0 +1,43 @@
+name: Salud de tokens
+
+# Una vez por día prueba cada credencial (Telegram, IG, Threads, FB, ML, YouTube,
+# TikTok) con llamadas de solo lectura y avisa por Telegram privado si alguna
+# dejó de andar. No rota ni publica nada. Ver bot/salud_tokens.py.
+
+on:
+  schedule:
+    - cron: '41 11 * * *'   # 08:41 ART; minuto 41 porque GitHub atrasa los crons en punto
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: salud-tokens
+  cancel-in-progress: false
+
+jobs:
+  chequeo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Chequear tokens
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+        run: python bot/salud_tokens.py

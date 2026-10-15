@@ -417,6 +417,121 @@ export const LANDINGS: Landing[] = [
     ],
   },
   {
+    slug: 'samsung-en-oferta',
+    nombre: 'Samsung en oferta',
+    titulo: 'Productos Samsung en oferta hoy en Mercado Libre',
+    descripcion:
+      'Celulares, TV y electro Samsung en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado para comparar antes de comprar.',
+    h1: 'Productos Samsung en oferta',
+    intro:
+      'Productos Samsung en oferta hoy en Mercado Libre Argentina, del más barato al más caro, con su descuento y el mínimo registrado. Compará el precio contra el historial antes de pagar y confirmá que sea la versión con garantía oficial en Argentina.',
+    tipo: 'ofertas',
+    filtrar: p => ['samsung', 'galaxy'].some(k => normalizar(p.titulo).includes(k)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Confirmá que sea el modelo exacto: Samsung vende variantes parecidas con distinta memoria y año.',
+      'Verificá que figure la garantía oficial en Argentina.',
+      'Mirá si el precio es mínimo histórico antes de decidir.',
+    ],
+    faq: [
+      { q: '¿Cómo sé si una oferta de Samsung es real?', a: 'Mirá si figura como mínimo histórico y compará con el historial de precios del producto.' },
+      { q: '¿Los Samsung de Mercado Libre tienen garantía?', a: 'Depende del vendedor: priorizá los que indican garantía oficial en Argentina y revisá la ficha.' },
+    ],
+  },
+  {
+    slug: 'motorola-en-oferta',
+    nombre: 'Motorola en oferta',
+    titulo: 'Celulares Motorola en oferta hoy en Mercado Libre',
+    descripcion:
+      'Celulares Motorola (Moto G, Moto E, Edge) en oferta hoy en Mercado Libre Argentina con precio, descuento y mínimo registrado.',
+    h1: 'Celulares Motorola en oferta',
+    intro:
+      'Celulares Motorola en oferta hoy en Mercado Libre Argentina, del más barato al más caro, con su descuento y el mínimo registrado. Compará el precio contra el historial antes de pagar y confirmá que sea la versión con garantía oficial en Argentina.',
+    tipo: 'ofertas',
+    filtrar: p => ['motorola', 'moto g', 'moto e', 'moto edge'].some(k => normalizar(p.titulo).includes(k)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Compará memoria RAM y almacenamiento entre variantes del mismo modelo.',
+      'Confirmá que sea versión para Argentina y con garantía.',
+      'Fijate si trae cargador y funda, que no siempre vienen incluidos.',
+    ],
+    faq: [
+      { q: '¿Qué Motorola conviene?', a: 'Depende del presupuesto: los Moto G cubren la gama media y los Edge la alta. Compará RAM, almacenamiento y cámara entre las ofertas de hoy.' },
+      { q: '¿Cómo sé si el precio es bueno?', a: 'Mirá si figura como mínimo histórico y abrí el historial de precios cuando esté disponible.' },
+    ],
+  },
+  {
+    slug: 'iphone-apple-en-oferta',
+    nombre: 'iPhone y Apple en oferta',
+    titulo: 'iPhone y productos Apple en oferta hoy en Mercado Libre',
+    descripcion:
+      'iPhone y productos Apple en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado para comparar antes de comprar.',
+    h1: 'iPhone y productos Apple en oferta',
+    intro:
+      'iPhone y productos Apple en oferta hoy en Mercado Libre Argentina, del más barato al más caro, con su descuento y el mínimo registrado. Compará el precio contra el historial antes de pagar y confirmá que sea la versión con garantía oficial en Argentina.',
+    tipo: 'ofertas',
+    filtrar: p => ['iphone', 'apple', 'macbook', 'ipad', 'airpods'].some(k => normalizar(p.titulo).includes(k)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Verificá modelo y almacenamiento: dos iPhone del mismo año pueden costar muy distinto según los GB.',
+      'Priorizá vendedores que indiquen distribuidor autorizado y garantía.',
+      'Compará el precio al contado con las cuotas.',
+    ],
+    faq: [
+      { q: '¿Conviene comprar un iPhone en Mercado Libre?', a: 'Sí si el vendedor es distribuidor autorizado y la ficha indica garantía. Compará siempre con el historial de precios.' },
+      { q: '¿Qué almacenamiento elegir?', a: 'Desde 128 GB: fotos, videos y apps llenan 64 GB rápido.' },
+    ],
+  },
+  {
+    slug: 'philco-en-oferta',
+    nombre: 'Philco en oferta',
+    titulo: 'Productos Philco en oferta hoy en Mercado Libre',
+    descripcion:
+      'Aires acondicionados, TV y electro Philco en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Productos Philco en oferta',
+    intro:
+      'Productos Philco en oferta hoy en Mercado Libre Argentina, del más barato al más caro, con su descuento y el mínimo registrado. Compará el precio contra el historial antes de pagar y confirmá que sea la versión con garantía oficial en Argentina.',
+    tipo: 'ofertas',
+    filtrar: p => ['philco'].some(k => normalizar(p.titulo).includes(k)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'Para aires, confirmá las frigorías contra los metros cuadrados del ambiente.',
+      'Verificá si es inverter y la clase de eficiencia energética.',
+      'Revisá si incluye instalación o no.',
+    ],
+    faq: [
+      { q: '¿Cómo elijo un aire Philco?', a: 'Calculá las frigorías según los metros cuadrados y el sol del ambiente; la calculadora de frigorías del sitio lo hace por vos.' },
+      { q: '¿Cómo sé si el descuento es real?', a: 'Mirá si figura como mínimo histórico en el historial de precios del producto.' },
+    ],
+  },
+  {
+    slug: 'noblex-en-oferta',
+    nombre: 'Noblex en oferta',
+    titulo: 'Productos Noblex en oferta hoy en Mercado Libre',
+    descripcion:
+      'Smart TV, aires y electro Noblex en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado.',
+    h1: 'Productos Noblex en oferta',
+    intro:
+      'Productos Noblex en oferta hoy en Mercado Libre Argentina, del más barato al más caro, con su descuento y el mínimo registrado. Compará el precio contra el historial antes de pagar y confirmá que sea la versión con garantía oficial en Argentina.',
+    tipo: 'ofertas',
+    filtrar: p => ['noblex'].some(k => normalizar(p.titulo).includes(k)),
+    ordenar: porPrecio,
+    min: 3,
+    criterios: [
+      'En TV, fijate en pulgadas según la distancia, resolución (4K) y sistema operativo.',
+      'Verificá el modelo exacto: hay versiones con distinta resolución y panel.',
+      'Confirmá la garantía oficial.',
+    ],
+    faq: [
+      { q: '¿Qué pulgadas necesito?', a: 'Depende de la distancia de visión; la guía de smart TV del sitio tiene la regla práctica.' },
+      { q: '¿Cómo sé si el precio es bueno?', a: 'Mirá si figura como mínimo histórico y compará con otros modelos similares.' },
+    ],
+  },
+  {
     slug: 'regalos-dia-de-la-madre-mas-de-150000',
     nombre: 'regalos para mamá de más de $150.000',
     titulo: 'Regalos para el Día de la Madre de más de $150.000 — ofertas hoy',

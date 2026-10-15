@@ -4,6 +4,7 @@
 // ofertas del día, donde están los links de afiliado.
 
 import { FECHAS_GUIAS_TICKET_ALTO, GUIAS_TICKET_ALTO } from './guias-ticket-alto'
+import { FECHAS_GUIAS_LONG_TAIL, GUIAS_LONG_TAIL } from './guias-long-tail'
 
 export interface Guia {
   slug: string
@@ -29,6 +30,7 @@ export interface Guia {
 
 export const GUIAS: Guia[] = [
   ...GUIAS_TICKET_ALTO,
+  ...GUIAS_LONG_TAIL,
   {
     slug: 'como-saber-si-un-descuento-de-mercado-libre-es-real',
     titulo: 'Cómo saber si un descuento de Mercado Libre es real o está inflado',
@@ -2710,6 +2712,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
   ...FECHAS_GUIAS_TICKET_ALTO,
+  ...FECHAS_GUIAS_LONG_TAIL,
   'climatizador-o-ventilador-o-aire': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-bicicleta-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },

@@ -18,6 +18,7 @@ from cazador_bot import (
     FB_GRAPH,
     alert_admin,
     ig_call,
+    tg_call,
     load_config,
     publish_threads,
 )
@@ -86,6 +87,28 @@ def main() -> int:
                 results.append(f"Threads ❌ {str(e)[:150]}")
     else:
         results.append("Threads ⏭ sin texto o sin credenciales")
+
+    tg_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    if data.get("telegram") and tg_token:
+        try:
+            if dry:
+                print("=" * 60)
+                print(f"[DRY] Telegram texto → {cfg['channel']}")
+                print(data["telegram"])
+                results.append("Telegram ✅ DRY_RUN")
+            else:
+                tg_call(tg_token, "sendMessage", {
+                    "chat_id": cfg["channel"],
+                    "text": data["telegram"],
+                    "parse_mode": "HTML",
+                    "disable_web_page_preview": False,
+                })
+                results.append("Telegram ✅ publicado")
+        except Exception as e:  # noqa: BLE001
+            print(f"[error] Telegram texto falló: {e}")
+            results.append(f"Telegram ❌ {str(e)[:150]}")
+    else:
+        results.append("Telegram ⏭ sin texto o sin credenciales")
 
     summary = "📝 Post de texto:\n" + "\n".join(results)
     alert_admin(os.getenv("TELEGRAM_BOT_TOKEN", ""), cfg["admin_chat"], summary, dry)

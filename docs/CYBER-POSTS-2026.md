@@ -24,7 +24,7 @@ Links siempre con utm: `cazadordeofertas.com.ar/cyber?utm_source=<canal>&utm_cam
 > #cybermonday #ofertas #mercadolibre #argentina
 
 **Threads**
-> Falta una semana para el Cyber Monday. Antes de comprar nada, anotá el precio de hoy de lo que querés: es la única forma de saber si el 40% OFF del lunes es real. Nosotros lo hacemos solos 3 veces por día → cazadordeofertas.com.ar/cyber
+> Falta una semana para el Cyber Monday. Antes de comprar nada, anotá el precio de hoy de lo que querés: es la única forma de saber si el 40% OFF del lunes es real. Nosotros guardamos ese historial todos los días → cazadordeofertas.com.ar/cyber
 
 ## 2. Vie 30/10 — Checklist (story, 3 placas)
 1. "Anotá el precio de HOY de lo que querés"

@@ -6,6 +6,7 @@ import { track } from '@vercel/analytics'
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
 const ML = /(^|\.)(mercadolibre\.com(\.ar)?|meli\.la)$/
+const ALIEXPRESS = /(^|\.)(aliexpress\.com|s\.click\.aliexpress\.com)$/
 
 export default function ClicsML() {
   useVistasSeccion()
@@ -25,6 +26,10 @@ export default function ClicsML() {
       }
       if (url.hostname === 't.me' && url.searchParams.get('start')?.startsWith('MLA')) {
         track('alerta_click', { pagina: window.location.pathname })
+        return
+      }
+      if (ALIEXPRESS.test(url.hostname)) {
+        track('clic_aliexpress', { pagina: window.location.pathname })
         return
       }
       if (!ML.test(url.hostname) || url.pathname.startsWith('/ayuda')) return

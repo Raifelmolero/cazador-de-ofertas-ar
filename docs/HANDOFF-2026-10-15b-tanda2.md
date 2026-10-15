@@ -36,3 +36,11 @@
 - **Kit WhatsApp**: ya existe (`wa_kit` → chat admin de Telegram, canal `whatsapp_kit` en posts_log). WhatsApp no tiene API de publicación en canales: lo pega Raifel.
 - **Clarity (3 días)**: home 30 sesiones, scroll 17% PC / 29% móvil; sin rage clicks. Muy poco volumen: no tocar la home hasta ≥300 sesiones (CRO #34 en espera).
 - **Pendientes**: Raifel regenera GH_PAT antes del lun 19/10 y responde "gracias" a Agus; Claude: lote ~20/día hasta el 22/10, corrida de las 17 hs, panel 18/10, Search Console 29/10.
+
+## Panel de afiliados leído por etiqueta (15/10 tarde, vía Chrome del dueño)
+- Etiqueta `web`: 24-30/9 → 337 clics / 34 u / 10,1% / $982.864 · 1-7/10 → 338 / 62 / 16,0% / $1.309.106 · 8-14/10 → 190 / 29 / 13,7% / $446.462.
+- Conclusión: la caída es de TRÁFICO WEB (−44%), no de conversión ni de links. Ganancia por clic web ≈ $2.350 → un test de anuncios rinde si el clic cuesta < ~$1.000 (docs/META-ADS-TEST-2026.md, tope $10.000; decisión del dueño, adelantarlo si el domingo 18/10 los clics siguen < 300).
+- `extension`: 47/49/60 clics por semana y 0 ventas en 3 semanas. content.js solo actúa al tocar "Comprar con Cazador" (recarga la ficha con matt_word=extension). Inflaba "clics totales" (253 = 190 web + 60 ext + 3 otros). Medir solo `web`. Sin cambios de código.
+- Instagram/Threads/Telegram ≈ 0 clics directos: su rol es llevar a la web.
+- Clics diarios (todas las etiquetas): 2/10=66, 11/10=23, 12/10=33, 13/10≈33, 14/10=53, 15/10=5 hasta las 12:51.
+- Ruta del panel: mercadolibre.com.ar/afiliados/dashboard?filter_time_range=<ini>--<fin> (pestaña "Etiquetas de seguimiento").

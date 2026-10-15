@@ -243,6 +243,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Comparativa de neumáticos para auto y camioneta en oferta hoy en Mercado Libre Argentina: medida, precio, descuento y precio mínimo registrado.',
     intro:
       'Los neumáticos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
+    guia: 'como-leer-medida-neumatico',
     categoria: 'vehiculos',
     keywords: ['neumatico'],
     criterios: [

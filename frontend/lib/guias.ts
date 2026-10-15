@@ -1046,6 +1046,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en un celular' },
       { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
       { href: '/mejores/mejores-celulares', texto: 'Celulares en oferta: comparativa de precios' },
       { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },

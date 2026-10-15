@@ -8,6 +8,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
+import CuentaRegresivaEvento from '@/components/CuentaRegresivaEvento'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -284,6 +285,7 @@ export default function CyberMondayPage() {
             Cuándo es, quién lo organiza y cómo no caer en un descuento inflado. Abajo, las ofertas de hoy en los rubros
             del evento, cada una comparada contra el precio más bajo que registramos.
           </p>
+          <CuentaRegresivaEvento fecha={CM.inicio} nombre="Cyber Monday" />
 
           <div className="mt-6 rounded-2xl border border-cyan-400/30 bg-cyan-500/[0.07] p-5 sm:p-6">
             <p className="text-xs font-bold uppercase tracking-wider text-cyan-300">

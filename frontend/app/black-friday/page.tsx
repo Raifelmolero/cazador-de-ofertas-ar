@@ -8,6 +8,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
+import CuentaRegresivaEvento from '@/components/CuentaRegresivaEvento'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
@@ -173,6 +174,7 @@ export default function BlackFridayPage() {
             Cuándo es, por qué en Argentina no tiene organizador y cómo no caer en un descuento inflado. Abajo, las ofertas
             de hoy, cada una comparada contra el precio más bajo que registramos.
           </p>
+          <CuentaRegresivaEvento fecha={BF.fecha} nombre="Black Friday" />
 
           <div className="mt-6 rounded-2xl border border-zinc-700 bg-zinc-900/80 p-5 sm:p-6">
             <p className="text-xs font-bold uppercase tracking-wider text-yellow-300">Fecha de referencia · {estado}</p>

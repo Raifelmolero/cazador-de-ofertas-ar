@@ -33,3 +33,9 @@ Creatividad: placa del bot o escena de Don Ofertín de Cyber (`escena-cyber-mond
 1. Tener la cuenta publicitaria de Meta con método de pago.
 2. (Opcional, recomendado) crear la etiqueta `meta` en el panel de ML y avisarme.
 3. Aprobar el tope y las fechas.
+
+## Actualización 15/10 (con datos reales del panel por etiqueta)
+- Etiqueta `web`: 190 clics/sem, 13,7% de conversión, ganancia $446.462 → **~$2.350 por clic web** (1-7/10: $3.870 por clic).
+- Un clic de anuncio rinde ~1/3 (llega frío): **vale ~$780**. Corte propuesto: costo por clic < $400 (margen 2x). Con $10.000 de tope se compran 25-35 clics → ~$20-27k de ganancia: sirve para APRENDER el costo real, no para mover el mes.
+- Para mover octubre al escenario optimista haría falta ~250 clics extra/semana: ~$75.000/semana a $300 por clic, con retorno ~2,6x (neto ~+$120k/semana). Eso supera el tope de reinversión de $10k/mes (#00): decisión de Raifel.
+- Recomendación: adelantar el arranque del 26/10 a ~19-20/10 con el tope de $10.000 para medir el costo real, y escalar solo si el costo por clic < $300 y se ven pedidos. Crear la etiqueta `meta` antes de arrancar.

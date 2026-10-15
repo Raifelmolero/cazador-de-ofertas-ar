@@ -612,6 +612,191 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    slug: 'que-iphone-comprar',
+    titulo: '¿Qué iPhone comprar? Modelo, almacenamiento y qué pagar de más',
+    descripcion:
+      'Cómo elegir un iPhone: diferencias entre modelo base, Plus, Pro y Pro Max, cuánto almacenamiento conviene, si vale la pena un modelo anterior y qué revisar al comprar.',
+    pregunta: '¿Qué iPhone conviene comprar?',
+    respuestaCorta:
+      'Si no necesitás las cámaras más avanzadas, el modelo base o uno de la generación anterior suele ser la mejor relación precio-prestación. Los Pro suman mejores cámaras y pantalla; el almacenamiento es lo que más cuesta ampliar después, así que elegilo según cuántas fotos y videos guardás.',
+    secciones: [
+      {
+        h: 'Base, Plus, Pro y Pro Max',
+        p: [
+          'El modelo base cubre el uso cotidiano: buena cámara, buen rendimiento y años de actualizaciones de software.',
+          'Los modelos Pro suman cámaras adicionales y mejoras de pantalla; los Max son simplemente más grandes. Pagás de más por funciones que tal vez no uses.',
+        ],
+      },
+      {
+        h: 'Cuánto almacenamiento elegir',
+        p: [
+          'No se puede ampliar con tarjeta: lo que elegís al comprar es lo que tenés.',
+          'Si guardás pocas fotos y usás la nube, alcanza con la capacidad más baja; si grabás mucho video, conviene subir un escalón.',
+        ],
+      },
+      {
+        h: 'Nuevo o generación anterior',
+        p: [
+          'Un modelo de la generación anterior suele ser más barato y cubre casi todo lo que usa la mayoría. Compará la diferencia de precio contra lo que realmente cambia.',
+        ],
+      },
+      {
+        h: 'Qué revisar antes de pagar',
+        p: [
+          'Que el vendedor sea oficial o un distribuidor autorizado y que figure la garantía.',
+          'Modelo exacto y almacenamiento en la ficha, y si incluye cargador y cable.',
+          'Que el precio no esté inflado: compará con el historial.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-iphone',
+    cta: { href: '/mejores/mejores-iphone', titulo: 'iPhone en oferta hoy, comparados', boton: 'Ver la comparativa de iPhone' },
+    faq: [
+      {
+        q: '¿Conviene comprar un iPhone de la generación anterior?',
+        a: 'Si la diferencia de precio es grande y no necesitás las novedades de cámara, suele ser la mejor compra.',
+      },
+      {
+        q: '¿Qué almacenamiento elegir?',
+        a: 'Depende de cuántas fotos y videos guardes y de si usás la nube. No se puede ampliar después, así que conviene no quedarse justo.',
+      },
+      {
+        q: '¿Cómo sé que el iPhone es original?',
+        a: 'Comprá a vendedores oficiales o distribuidores autorizados y revisá que figure la garantía en la publicación.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en un celular' },
+      { href: '/mejores/mejores-iphone', texto: 'Mejores iPhone en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-monitor-gamer-comprar',
+    titulo: 'Qué monitor gamer comprar: Hz, tiempo de respuesta y panel',
+    descripcion:
+      'Cómo elegir un monitor gamer: tasa de refresco en Hz, tiempo de respuesta, tipo de panel (IPS, VA, TN), resolución y tamaño, según tu placa de video y tu presupuesto.',
+    pregunta: '¿Qué monitor gamer conviene comprar?',
+    respuestaCorta:
+      'Para la mayoría, un monitor Full HD de 24 a 27 pulgadas con 144 Hz y panel IPS es el punto dulce. Los Hz solo se aprovechan si tu PC genera esos cuadros por segundo, así que ajustá la resolución y la tasa de refresco a tu placa de video.',
+    secciones: [
+      {
+        h: 'Hz: la tasa de refresco',
+        p: [
+          'Un monitor de 60 Hz muestra 60 imágenes por segundo; uno de 144 Hz o más se ve más fluido en juegos rápidos.',
+          'Para aprovecharlos, tu PC tiene que entregar esos cuadros por segundo. Si no, pagás de más.',
+        ],
+      },
+      {
+        h: 'Tiempo de respuesta y panel',
+        p: [
+          'El tiempo de respuesta (ms) indica qué tan rápido cambia un píxel; menor es mejor para evitar el efecto estela.',
+          'IPS tiene mejores colores y ángulos de visión; VA, mejor contraste; TN, el más rápido pero con peores colores.',
+        ],
+      },
+      {
+        h: 'Resolución y tamaño',
+        p: [
+          'Full HD en 24 a 27 pulgadas es lo más exigente que cualquier placa media mueve bien. 2K o 4K piden una placa potente.',
+          'Elegí el tamaño según la distancia a la que te sentás.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Hz reales (no solo "overclock"), tiempo de respuesta, tipo de panel y resolución.',
+          'Conexiones: HDMI o DisplayPort según tu placa, y que el soporte sea ajustable.',
+          'Garantía y si el envío es gratis.',
+        ],
+      },
+    ],
+    categoria: { slug: 'monitores', nombre: 'monitores' },
+    comparativa: 'mejores-monitores-gamer',
+    cta: { href: '/mejores/mejores-monitores-gamer', titulo: 'Monitores gamer en oferta hoy', boton: 'Ver la comparativa de monitores gamer' },
+    faq: [
+      {
+        q: '¿144 Hz se nota frente a 60 Hz?',
+        a: 'Sí, en juegos rápidos y siempre que tu PC genere esos cuadros por segundo. Para uso de oficina casi no se nota.',
+      },
+      {
+        q: '¿IPS, VA o TN para gaming?',
+        a: 'IPS es el equilibrio entre colores y velocidad; TN es el más rápido y VA ofrece mejor contraste. Para la mayoría conviene IPS.',
+      },
+      {
+        q: '¿Vale la pena un monitor 4K para jugar?',
+        a: 'Solo si tu placa de video lo mueve con fluidez. Con una placa media, Full HD o 2K rinden mejor.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-monitor-comprar', texto: 'Qué monitor comprar' },
+      { href: '/guias/que-silla-gamer-comprar', texto: 'Qué silla gamer comprar' },
+      { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer en oferta' },
+      { href: '/categoria/monitores', texto: 'Monitores en oferta' },
+    ],
+  },
+  {
+    slug: 'que-samsung-galaxy-comprar',
+    titulo: 'Qué Samsung Galaxy comprar: serie A, S o Z, según tu uso',
+    descripcion:
+      'Cómo elegir un Samsung Galaxy: diferencias entre la serie A (gama media y de entrada), la S (gama alta) y la Z (plegables), y qué mirar en la ficha antes de comprar.',
+    pregunta: '¿Qué Samsung Galaxy conviene comprar?',
+    respuestaCorta:
+      'La serie A cubre gama de entrada y media con la mejor relación precio-prestación; la serie S es la gama alta, con mejores cámaras y pantalla; la serie Z son los plegables. Para la mayoría alcanza con un A de gama media; la S se justifica si usás mucho la cámara o querés más años de rendimiento.',
+    secciones: [
+      {
+        h: 'Serie A: la más vendida',
+        p: [
+          'Reúne desde modelos de entrada hasta gama media. Suele tener buena pantalla y batería, con menos potencia y cámara que la serie S.',
+        ],
+      },
+      {
+        h: 'Serie S: gama alta',
+        p: [
+          'Procesador más potente, mejores cámaras y pantalla, y en general más años de rendimiento fluido. Cuesta bastante más.',
+        ],
+      },
+      {
+        h: 'Serie Z: plegables',
+        p: [
+          'Son los plegables: pantalla grande que se pliega. Son una compra de nicho; mirá bien el uso real antes de pagar la diferencia.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Almacenamiento y RAM, capacidad de batería y tipo de pantalla.',
+          'Si tiene versión con más memoria a un precio razonable.',
+          'Garantía oficial y envío gratis.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-samsung-galaxy',
+    cta: { href: '/mejores/mejores-samsung-galaxy', titulo: 'Samsung Galaxy en oferta hoy', boton: 'Ver la comparativa de Samsung Galaxy' },
+    faq: [
+      {
+        q: '¿Qué diferencia hay entre la serie A y la serie S?',
+        a: 'La A es gama de entrada y media; la S es gama alta, con más potencia, mejores cámaras y pantalla, y precio mayor.',
+      },
+      {
+        q: '¿Conviene un Galaxy A de gama media?',
+        a: 'Para uso cotidiano suele ser la mejor relación precio-prestación.',
+      },
+      {
+        q: '¿Vale la pena un plegable?',
+        a: 'Solo si te interesa la pantalla grande o el formato; es más caro y de uso específico.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según tu presupuesto' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en un celular' },
+      { href: '/mejores/mejores-samsung-galaxy', texto: 'Mejores Samsung Galaxy en oferta' },
+      { href: '/ofertas/samsung-en-oferta', texto: 'Samsung en oferta' },
+    ],
+  },
 ]
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

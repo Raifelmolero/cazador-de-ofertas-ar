@@ -1046,6 +1046,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
       { href: '/mejores/mejores-celulares', texto: 'Celulares en oferta: comparativa de precios' },
       { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },
       { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
@@ -1196,6 +1197,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED: diferencias de pantalla' },
       { href: '/mejores/mejores-smart-tv', texto: 'Smart TV en oferta: comparativa de precios' },
       { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
     ],

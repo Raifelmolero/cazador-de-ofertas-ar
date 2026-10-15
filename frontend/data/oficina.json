@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-15T19:01:36+00:00",
+  "generado": "2026-10-15T23:00:20+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-15T19:01:35+00:00",
+      "ultima_actividad": "2026-10-15T23:00:20+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -22,7 +22,7 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 15
+          "valor": 10
         },
         {
           "label": "Threads",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Colchón En Caja Sueño Dorado Box Prime 1 Plaza 80x190 X25 cm Espuma Alta Densida"
+      "ultimo_trabajo": "Smart Tv Led 50 Pulgadas Dv50x8580 4k Google Tv - Noblex"
     },
     {
       "id": "investigacion",

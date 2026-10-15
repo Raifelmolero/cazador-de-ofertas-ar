@@ -19,3 +19,10 @@
 - Raifel autorizó mirar /ofertas con su Chrome (extensión). Se cargaron 10 ofertas de ticket alto de la página 4 (ahora 57 manuales): extractor Smartbuy, pluma hidráulica, bici fija, secador Philips, MTB Ghepard, Redmi 15C, 2 cafeteras, trimmer Babyliss, monitor Noblex. Run 38721754531 OK.
 - Método que anda: en la pestaña de /ofertas, `.poly-card` → link `/p/MLA…`, precios `.andes-money-amount__fraction` (0 = tachado, 1 = actual), imagen `img.src` (mlstatic). Output del JS se corta ~1000 caracteres: leer en tramos.
 - Lote nuevo antes del 21/10 (vencen las primeras 11).
+
+## Diagnóstico de la caída (panel 15/10: 254 clics, 29 pedidos, $446k vs $1,01M el 6/10)
+- Causa más probable: bloqueo de ML al scraper desde ~6/10. Escaneo ~1.600 → ~45 productos; posts/día 20-50 → 0-26 (cero los días 6, 7, 9, 10, 11); catálogo del sitio ~280 → 60 (productos_rentables.json).
+- Plan de remontada (OK de Raifel, "cada vez más, no menos"): lotes manuales grandes (20-30) cada 2 días priorizando ticket alto. Hoy: +25 (6+9+... → 94 manuales totales). Próximo antes del 21/10; objetivo ≥150 vigentes para el Cyber (2/11).
+- Mensaje a ML Afiliados por API (docs/PREGUNTAS-PARA-ML-AFILIADOS.md): pendiente de Raifel, es lo que restituye el sistema.
+- Medir el domingo 18/10 (comparar vs 254 clics / 29 pedidos).
+- Método extracción: sessionStorage acumulado entre páginas de /ofertas?page=N (eval puede bloquearse por CSP: pegar el script de nuevo en cada página).

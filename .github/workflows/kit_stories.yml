@@ -1,0 +1,29 @@
+name: Kit de historias a Telegram
+
+# Manda al Telegram privado del dueño las placas de historias de IG con su link y
+# el texto del sticker (docs/stories-kit/<set>/kit.json). No publica en Instagram.
+
+on:
+  workflow_dispatch:
+    inputs:
+      set:
+        description: 'Carpeta dentro de docs/stories-kit'
+        default: 'madre'
+
+permissions:
+  contents: read
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Enviar kit
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          SET: ${{ inputs.set }}
+        run: python bot/tools/enviar_kit_stories.py "$SET"

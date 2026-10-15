@@ -82,6 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...LANDINGS.filter(indexableLanding).map(l => ({ url: `${DEALS_URL}/ofertas/${l.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.7 })),
     ...NICHOS.map(n => ({ url: `${DEALS_URL}/${n.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 })),
     { url: `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${DEALS_URL}/aliexpress`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.5 },
     { url: `${DEALS_URL}/cupones-mercado-libre`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/descuentos-inflados`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/calculadora-frigorias`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },

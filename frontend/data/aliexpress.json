@@ -1,4 +1,61 @@
 {
   "actualizado": "2026-10-14",
-  "productos": []
+  "productos": [
+    {
+      "titulo": "Auriculares Bluetooth inalámbricos X15 TWS con display LED y micrófono",
+      "link": "https://s.click.aliexpress.com/e/_c333r2Iv",
+      "precio": "USD 4,75",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/S6d2c72d674e0491db255be135851f2c0W.jpg",
+      "nota": "Más de 410.000 vendidos en AliExpress."
+    },
+    {
+      "titulo": "Auriculares in-ear QKZ AK6 con 6 drivers y micrófono",
+      "link": "https://s.click.aliexpress.com/e/_c3dxd7JB",
+      "precio": "USD 4,12",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/Scf4023f868304166aba763c7f28a15463.jpg",
+      "nota": "Más de 410.000 vendidos. Con cable."
+    },
+    {
+      "titulo": "Tira LED RGB con control remoto de 44 teclas (1 a 20 m)",
+      "link": "https://s.click.aliexpress.com/e/_c3MAEb8Z",
+      "precio": "USD 1,97",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/Sd186cfb6004f4157bf98fd2b491f01e4a.jpg",
+      "nota": "Más de 410.000 vendidos. El precio depende del largo que elijas."
+    },
+    {
+      "titulo": "Tira LED RGB con control por app (5 a 30 m) para ambientar cuartos",
+      "link": "https://s.click.aliexpress.com/e/_c3yxIgdJ",
+      "precio": "USD 6,81",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/S68bc844cef4e43d8aa593135470f1af6x.jpg",
+      "nota": "Más de 550.000 vendidos."
+    },
+    {
+      "titulo": "Set de 46 piezas de herramientas: dados, trinquete y puntas",
+      "link": "https://s.click.aliexpress.com/e/_c3IWAhjP",
+      "precio": "USD 5,93",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/Se140b44b69a54542b2c1214515ac358bB.jpg",
+      "nota": "Más de 510.000 vendidos."
+    },
+    {
+      "titulo": "Juego de 25 destornilladores de precisión para electrónica",
+      "link": "https://s.click.aliexpress.com/e/_c3kygJgh",
+      "precio": "USD 5,94",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/S20e5242a1d9f46baae783a883b1ed146j.jpg",
+      "nota": "Más de 350.000 vendidos."
+    },
+    {
+      "titulo": "Cortadora de pelo y barba T9 recargable con recortadora de nariz",
+      "link": "https://s.click.aliexpress.com/e/_c2xVuYUV",
+      "precio": "USD 5,00",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/Sfd3278c1e6c84d07adccf055406a4b7f1.jpg",
+      "nota": "Más de 550.000 vendidos."
+    },
+    {
+      "titulo": "Monocular telescopio HD 2000x25 compacto para viajes y camping",
+      "link": "https://s.click.aliexpress.com/e/_c4dTzuvr",
+      "precio": "USD 4,01",
+      "imagen": "https://ae-pic-a1.aliexpress-media.com/kf/S565b9067baf4485c8b4aad66c8812f2ax.jpg",
+      "nota": "Más de 110.000 vendidos."
+    }
+  ]
 }

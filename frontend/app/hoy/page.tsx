@@ -244,6 +244,7 @@ export default function HoyPage() {
               </a>
             ))}
             <Link href="/precio-hoy" className="hover:text-yellow-300 transition-colors">Precio hoy</Link>
+            <Link href="/aliexpress" className="hover:text-yellow-300 transition-colors">Importados</Link>
           </nav>
           <a
             href={TELEGRAM_URL}

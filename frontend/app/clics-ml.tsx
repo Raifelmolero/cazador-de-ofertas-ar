@@ -8,6 +8,7 @@ import { track } from '@vercel/analytics'
 const ML = /(^|\.)(mercadolibre\.com(\.ar)?|meli\.la)$/
 
 export default function ClicsML() {
+  useVistasSeccion()
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
@@ -39,4 +40,28 @@ export default function ClicsML() {
     return () => document.removeEventListener('click', onClick, { capture: true })
   }, [])
   return null
+}
+
+// Vistas de sección: una vez por sección y página, para comparar vistas vs clics
+// (ej. destacado visto N veces, M clics). Solo mide secciones marcadas con data-seccion.
+export function useVistasSeccion() {
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return
+    const vistas = new Set<string>()
+    const io = new IntersectionObserver(
+      entries => {
+        for (const en of entries) {
+          if (!en.isIntersecting) continue
+          const s = (en.target as HTMLElement).dataset.seccion
+          if (!s || vistas.has(s)) continue
+          vistas.add(s)
+          io.unobserve(en.target)
+          track('vista_seccion', { pagina: window.location.pathname, seccion: s })
+        }
+      },
+      { threshold: 0.5 },
+    )
+    document.querySelectorAll('[data-seccion]').forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
 }

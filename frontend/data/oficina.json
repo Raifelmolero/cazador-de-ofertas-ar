@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-16T14:01:52+00:00",
+  "generado": "2026-10-16T18:45:48+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-16T03:00:34+00:00",
+      "ultima_actividad": "2026-10-16T18:45:48+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 15
+          "valor": 20
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Facebook",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Bicicleta Fija De Spinning Force By Gadnic Disco De Inercia 18 Kg Con Amortiguad"
+      "ultimo_trabajo": "Microondas Aiwa Cook 700w 20l 10 Niveles Cocción Panel Touch"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-15T15:30:07+00:00",
+      "ultima_actividad": "2026-10-16T15:12:40+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

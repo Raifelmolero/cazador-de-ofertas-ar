@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T17:51:00+00:00",
+  "generado": "2026-10-17T22:11:04+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-17T17:51:00+00:00",
+      "ultima_actividad": "2026-10-17T22:11:03+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -22,7 +22,7 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 15
+          "valor": 10
         },
         {
           "label": "Threads",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Aspiradora Robot Trapeadora Fika Limpieza SENSE Antichoque Con App Wifi Color Ne"
+      "ultimo_trabajo": "Lenovo Tab Plus 11.5 Octacore 8gb 256gb Octa Jbl Speakers Color Gris oscuro"
     },
     {
       "id": "investigacion",

@@ -797,8 +797,580 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/ofertas/samsung-en-oferta', texto: 'Samsung en oferta' },
     ],
   },
+  {
+    slug: 'lavasecarropas-secarropas-o-bomba-de-calor',
+    titulo: 'Lavasecarropas, lavarropas + secarropas o bomba de calor: cuál conviene',
+    descripcion:
+      'Diferencias entre un lavasecarropas (todo en uno), un lavarropas con secarropas aparte y un secarropas con bomba de calor: espacio, tiempo, consumo y qué elegir según tu casa.',
+    pregunta: '¿Conviene un lavasecarropas o un lavarropas con secarropas aparte?',
+    respuestaCorta:
+      'Si tenés poco lugar, el lavasecarropas (lava y seca en la misma máquina) resuelve todo en un solo equipo, aunque el secado es más lento y suele admitir menos ropa que el lavado. Si tenés espacio y lavás mucho, dos equipos separados (lavarropas más secarropas) son más rápidos; y el secarropas con bomba de calor seca con menos consumo que uno común, a costa de un precio mayor.',
+    secciones: [
+      {
+        h: 'Lavasecarropas: un solo equipo para lavar y secar',
+        p: [
+          'Es una máquina que lava y seca en el mismo tambor. Ocupa el lugar de un solo electrodoméstico, lo que ayuda en departamentos o lavaderos chicos.',
+          'Lo habitual es que la capacidad de secado sea menor que la de lavado: si lavás una carga completa, es probable que tengas que secar en dos tandas. Además el ciclo completo de lavar y secar lleva más tiempo.',
+        ],
+      },
+      {
+        h: 'Lavarropas más secarropas: dos equipos',
+        p: [
+          'Con dos equipos, mientras uno seca el otro puede lavar la siguiente carga. Es más rápido para una familia que lava a diario.',
+          'Ojo con el nombre: en Argentina muchos "secarropas" son centrífugos, que solo exprimen el agua girando; no secan con calor. Revisá en la ficha si dice centrifugado o secado por calor, porque son productos muy distintos.',
+        ],
+      },
+      {
+        h: 'Secarropas con bomba de calor',
+        p: [
+          'Seca con calor a menor temperatura que un secarropas convencional por resistencia. Eso suele traducirse en menor consumo de energía y menos castigo para las telas.',
+          'En general no necesita sacar el aire caliente al exterior: junta el agua en un depósito o la desagota. A cambio, el precio de compra es más alto y el ciclo puede ser más largo.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha antes de pagar',
+        p: [
+          'Capacidad de lavado y, por separado, capacidad de secado en kilos.',
+          'Si es de carga frontal (la que se usa para lavasecarropas) y las medidas, para confirmar que entra por la puerta y el lugar.',
+          'Eficiencia energética y consumo de agua informados por el fabricante.',
+          'Garantía y si el envío es gratis; son equipos pesados.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: { href: '/mejores/mejores-lavarropas', titulo: 'Lavarropas y lavasecarropas en oferta hoy', boton: 'Ver la comparativa de lavarropas' },
+    faq: [
+      {
+        q: '¿Un lavasecarropas seca tanta ropa como lava?',
+        a: 'En general no: la capacidad de secado suele ser menor que la de lavado. Mirá los dos números en la ficha técnica.',
+      },
+      {
+        q: '¿Qué es un secarropas centrífugo?',
+        a: 'Un equipo que solo exprime el agua girando a alta velocidad. No seca con calor, así que la ropa sale húmeda aunque mucho menos mojada.',
+      },
+      {
+        q: '¿Vale la pena la bomba de calor?',
+        a: 'Si secás mucha ropa seguido, el menor consumo puede compensar el precio más alto. Si lo vas a usar poco, un secarropas convencional alcanza.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/mejores/mejores-lavarropas', texto: 'Mejores lavarropas en oferta' },
+      { href: '/categoria/lavarropas', texto: 'Lavarropas en oferta' },
+      { href: '/guias/que-termotanque-comprar', texto: 'Qué termotanque comprar' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'sommier-o-colchon-cual-conviene',
+    titulo: 'Sommier o colchón: cuál conviene y qué incluye cada uno',
+    descripcion:
+      'Diferencia entre sommier (colchón con base) y colchón solo: qué necesitás ya tener, medidas, altura, soporte y cuándo conviene cada uno.',
+    pregunta: '¿Conviene comprar un sommier o solo el colchón?',
+    respuestaCorta:
+      'Un sommier es el colchón más su base (el "box") en un conjunto; sirve si todavía no tenés dónde apoyar el colchón. Si ya tenés una cama o una base en buen estado y de la medida correcta, comprar solo el colchón sale más barato. Lo clave es que la medida coincida y que la base sostenga el colchón sin hundirse.',
+    secciones: [
+      {
+        h: 'Qué es cada cosa',
+        p: [
+          'El colchón es la parte blanda donde dormís. El sommier es el conjunto de colchón y base (también llamada box o somier), que reemplaza a una cama con patas o somier de tablas.',
+          'Hay sommiers que ya traen patas y sommiers para apoyar sobre una cama armada. Revisá cuál es en la ficha del producto.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene el sommier',
+        p: [
+          'Si estás armando el dormitorio desde cero o tu base actual está hundida o no es de la medida que querés.',
+          'Un conjunto completo suele ser práctico porque colchón y base están pensados para trabajar juntos.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene solo el colchón',
+        p: [
+          'Si tenés una cama o base firme y de la medida exacta, no hace falta pagar otra base.',
+          'Una base en mal estado arruina un colchón nuevo: tiene que ser pareja y sin partes que se hundan.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'La medida exacta (por ejemplo 1 plaza, 2 plazas, queen o king) y el largo, para que coincida con tu cama o con el lugar.',
+          'La altura total del conjunto: con base y patas puede quedar muy alto o muy bajo.',
+          'El tipo de relleno (resortes o espuma) y la firmeza, que depende de tu peso y de cómo dormís.',
+          'Si el envío es gratis y cómo se entrega: son bultos grandes y pesados, y conviene confirmar que pasan por la puerta.',
+        ],
+      },
+    ],
+    categoria: { slug: 'colchones', nombre: 'colchones' },
+    comparativa: 'mejores-sommiers',
+    cta: { href: '/mejores/mejores-sommiers', titulo: 'Sommiers en oferta hoy, comparados', boton: 'Ver la comparativa de sommiers' },
+    faq: [
+      {
+        q: '¿El sommier incluye el colchón?',
+        a: 'Depende del producto: muchos se venden como conjunto (colchón y base) y otros solo la base. Fijate en el título y la descripción qué trae.',
+      },
+      {
+        q: '¿Puedo usar un colchón nuevo sobre una base vieja?',
+        a: 'Sí, siempre que la base sea de la medida correcta, pareja y no esté hundida. Si no, el colchón nuevo se deforma antes.',
+      },
+      {
+        q: '¿Qué medida de sommier elijo?',
+        a: 'La del colchón que querés usar: 1 plaza, 2 plazas, queen o king. Medí el lugar donde va y confirmá el largo.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-colchon-comprar-firmeza-y-material', texto: 'Qué colchón comprar: firmeza y material' },
+      { href: '/mejores/mejores-sommiers', texto: 'Mejores sommiers en oferta' },
+      { href: '/mejores/mejores-colchones-2-plazas', texto: 'Mejores colchones de 2 plazas' },
+      { href: '/categoria/colchones', texto: 'Colchones en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-motorola-comprar-moto-g-o-edge',
+    titulo: 'Motorola Moto G o Edge: cuál conviene comprar',
+    descripcion:
+      'Cómo elegir entre las líneas Moto G y Moto Edge de Motorola: diferencias generales, qué mirar en RAM, almacenamiento, NFC y 5G, y para quién sirve cada una.',
+    pregunta: '¿Conviene un Motorola Moto G o un Edge?',
+    respuestaCorta:
+      'En general la línea Moto G apunta a la gama de entrada y media, con buen precio para uso cotidiano; la línea Edge suele ser de gama media-alta, con más prestaciones y mayor precio. Dentro de cada una cambia mucho de un modelo a otro, así que lo que decide es la ficha: RAM, almacenamiento, NFC, 5G y batería.',
+    secciones: [
+      {
+        h: 'Moto G: la línea de uso diario',
+        p: [
+          'Es la familia más amplia de Motorola y la que suele tener los precios más accesibles. Sirve para mensajes, redes, fotos y videos sin pedirle demasiado.',
+          'Dentro de la línea hay modelos muy distintos; mirá la ficha del modelo puntual en vez de asumir que todos los Moto G son iguales.',
+        ],
+      },
+      {
+        h: 'Moto Edge: un paso hacia la gama alta',
+        p: [
+          'Edge suele ubicarse arriba de la línea G, con más prestaciones. Es la opción si querés más rendimiento o mejores componentes sin llegar a lo más caro del mercado.',
+          'El precio es mayor, así que conviene comparar contra los Moto G más completos antes de decidir.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha de cualquier modelo',
+        p: [
+          'RAM y almacenamiento interno: son lo que más se nota con el tiempo. Si guardás muchas fotos o apps, evitá quedarte corto.',
+          'NFC, si querés pagar con el celular; y 5G, si lo necesitás en tu zona.',
+          'Capacidad de la batería y si trae cargador en la caja.',
+          'Si es un modelo oficial para Argentina y qué garantía ofrece el vendedor.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-motorola',
+    cta: { href: '/mejores/mejores-motorola', titulo: 'Motorola en oferta hoy, comparados', boton: 'Ver la comparativa de Motorola' },
+    faq: [
+      {
+        q: '¿Qué diferencia hay entre Moto G y Moto Edge?',
+        a: 'En general, Moto G es gama de entrada y media y Edge es gama media-alta, con más prestaciones y mayor precio. Dentro de cada línea los modelos varían bastante.',
+      },
+      {
+        q: '¿Qué conviene mirar primero?',
+        a: 'La RAM y el almacenamiento, después NFC y 5G, y por último la batería. El nombre de la línea importa menos que esos datos.',
+      },
+      {
+        q: '¿Conviene más memoria o un modelo más nuevo?',
+        a: 'Para uso diario suele convenir más memoria interna y RAM antes que un modelo apenas más nuevo con menos almacenamiento.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según tu presupuesto' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en un celular' },
+      { href: '/mejores/mejores-motorola', texto: 'Mejores Motorola en oferta' },
+      { href: '/mejores/mejores-celulares', texto: 'Mejores celulares en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+    ],
+  },
+  {
+    slug: 'aire-acondicionado-solo-frio-o-frio-calor',
+    titulo: 'Aire acondicionado solo frío o frío-calor: cuál conviene',
+    descripcion:
+      'Diferencia entre un split solo frío y uno frío-calor (bomba de calor): para qué sirve cada uno, qué clima te conviene y cuándo vale la pena pagar de más.',
+    pregunta: '¿Conviene un aire acondicionado solo frío o frío-calor?',
+    respuestaCorta:
+      'Un split frío-calor enfría en verano y también calefacciona en invierno usando la misma unidad; el solo frío únicamente enfría y suele costar menos. Si vas a usarlo todo el año o no tenés otra calefacción, el frío-calor suele convenir; si solo lo necesitás para el verano, el solo frío alcanza.',
+    secciones: [
+      {
+        h: 'Qué hace cada uno',
+        p: [
+          'El solo frío saca el calor del ambiente y lo manda afuera. Funciona únicamente para refrescar.',
+          'El frío-calor (bomba de calor) puede invertir el ciclo: en invierno toma calor del exterior y lo entrega adentro. Es un equipo que sirve en las dos estaciones.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene el frío-calor',
+        p: [
+          'Si no tenés calefacción central o querés evitar estufas, porque calefaccionar con bomba de calor suele consumir menos energía que una estufa eléctrica común.',
+          'Si el aire va en un ambiente que usás todo el año, como un dormitorio o una oficina.',
+        ],
+      },
+      {
+        h: 'Cuándo alcanza el solo frío',
+        p: [
+          'Si ya tenés una calefacción que te alcanza y solo querés combatir el calor del verano.',
+          'Si el presupuesto es lo principal: el modelo solo frío suele ser más barato. Compará igual contra el frío-calor del mismo fabricante y capacidad, porque a veces la diferencia es chica.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha antes de pagar',
+        p: [
+          'Que diga explícitamente "frío/calor" o "bomba de calor" si querés calefaccionar.',
+          'Las frigorías (y las calorías informadas) para tu ambiente: mirá la guía de cálculo de frigorías.',
+          'Si es inverter, que regula la potencia y suele gastar menos.',
+          'La instalación: casi todos los split necesitan instalador y no suele estar incluida en el precio.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-acondicionados',
+    cta: { href: '/mejores/mejores-aires-acondicionados', titulo: 'Aires acondicionados en oferta hoy, comparados', boton: 'Ver la comparativa de aires' },
+    faq: [
+      {
+        q: '¿El aire frío-calor calefacciona bien en invierno?',
+        a: 'Sí en climas templados; en frío extremo pierde rendimiento. Para una casa en Buenos Aires u otras zonas templadas suele alcanzar para un ambiente.',
+      },
+      {
+        q: '¿Gasta más electricidad que una estufa?',
+        a: 'En general gasta menos para entregar la misma cantidad de calor, porque mueve calor en vez de generarlo con una resistencia.',
+      },
+      {
+        q: '¿La instalación viene incluida?',
+        a: 'Normalmente no. Consultá con el vendedor o un instalador matriculado y sumalo al presupuesto.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/guias/aire-acondicionado-inverter-o-convencional', texto: 'Aire inverter o convencional' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Mejores aires acondicionados en oferta' },
+      { href: '/categoria/aire-acondicionado', texto: 'Aires acondicionados en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'tablet-o-notebook-cual-conviene',
+    titulo: 'Tablet o notebook: cuál conviene según lo que hacés',
+    descripcion:
+      'Cuándo alcanza una tablet y cuándo necesitás una notebook: estudiar, trabajar, mirar contenido o jugar. Diferencias de teclado, programas, batería y precio.',
+    pregunta: '¿Conviene más una tablet o una notebook?',
+    respuestaCorta:
+      'Una tablet es mejor para mirar contenido, leer, dibujar y llevar a todos lados; una notebook es mejor para escribir mucho, trabajar con planillas o programas completos y tener varias ventanas abiertas. Si vas a estudiar o trabajar la mayor parte del día, la notebook rinde más; si es para consumo y uso liviano, una tablet alcanza.',
+    secciones: [
+      {
+        h: 'Cuándo alcanza una tablet',
+        p: [
+          'Para ver series y videos, leer, videollamadas, juegos livianos y tareas simples. Es más liviana y la batería suele durar bastante.',
+          'Con un teclado externo se puede escribir más cómodo, pero sigue siendo un sistema pensado para apps táctiles.',
+        ],
+      },
+      {
+        h: 'Cuándo necesitás una notebook',
+        p: [
+          'Si escribís textos largos, usás planillas de cálculo, programas de edición o varias ventanas a la vez.',
+          'Si tu trabajo o tu facultad piden un programa que solo corre en Windows o macOS, una tablet no lo va a resolver.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de decidir',
+        p: [
+          'Qué programas vas a usar y si existen en versión tablet.',
+          'RAM, almacenamiento y procesador en cualquiera de los dos; son lo que más se nota con el uso.',
+          'Si necesitás teclado y si viene incluido o se compra aparte.',
+          'El peso y la duración de la batería, si la vas a llevar todos los días.',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    comparativa: 'mejores-notebooks',
+    cta: { href: '/mejores/mejores-notebooks', titulo: 'Notebooks en oferta hoy, comparadas', boton: 'Ver la comparativa de notebooks' },
+    faq: [
+      {
+        q: '¿Una tablet reemplaza a una notebook para estudiar?',
+        a: 'Para leer, tomar apuntes y hacer trabajos simples sí. Si necesitás programas específicos o escribir mucho, la notebook es más cómoda.',
+      },
+      {
+        q: '¿Qué es mejor para un chico en edad escolar?',
+        a: 'Para tareas y videoconferencias, una tablet o una notebook económica alcanzan. Depende de si la escuela pide programas de computadora.',
+      },
+      {
+        q: '¿Hay tablets con teclado que sirvan como notebook?',
+        a: 'Hay modelos con teclado, pero el sistema sigue siendo de tablet. Mirá qué apps necesitás antes de pensarla como reemplazo.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-tablet-comprar', texto: 'Qué tablet comprar' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/mejores/mejores-tablets', texto: 'Mejores tablets en oferta' },
+      { href: '/categoria/notebooks', texto: 'Notebooks en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-notebook-gamer-comprar',
+    titulo: 'Qué notebook gamer comprar: placa de video, RAM y pantalla',
+    descripcion:
+      'Cómo elegir una notebook para jugar: qué importa más (placa de video), cuánta RAM, qué pantalla y Hz, refrigeración y qué evitar al comparar precios.',
+    pregunta: '¿Qué mirar al comprar una notebook gamer?',
+    respuestaCorta:
+      'En una notebook gamer lo que más pesa es la placa de video (GPU) dedicada: define a qué juegos y con qué calidad vas a poder jugar. Después fijate en 16 GB de RAM como punto de partida, un SSD, una pantalla con buena tasa de refresco y una refrigeración que aguante sesiones largas.',
+    secciones: [
+      {
+        h: 'La placa de video es lo principal',
+        p: [
+          'Para jugar necesitás una placa de video dedicada, no integrada en el procesador. Es la pieza que más cambia el rendimiento en juegos.',
+          'Compará modelos de la misma generación: una placa de gama media actual puede rendir más que una gama alta de hace varios años. Fijate el nombre exacto del modelo en la ficha.',
+        ],
+      },
+      {
+        h: 'Procesador, RAM y almacenamiento',
+        p: [
+          'Un procesador de gama media-alta alcanza para casi todos los juegos si la placa de video acompaña.',
+          '16 GB de RAM es un buen punto de partida actual; con menos, algunos juegos y programas se sienten justos.',
+          'Un SSD hace que el sistema y los juegos carguen mucho más rápido que un disco mecánico. Elegí una capacidad que te alcance para varios juegos grandes.',
+        ],
+      },
+      {
+        h: 'Pantalla y refrigeración',
+        p: [
+          'Una pantalla con mayor tasa de refresco (por ejemplo 120 o 144 Hz) se ve más fluida, si la placa de video puede entregar esos cuadros por segundo.',
+          'La refrigeración importa: una notebook que se recalienta baja el rendimiento. Conviene un diseño con buena ventilación y, para sesiones largas, una base con ventiladores.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Que la ficha indique claramente la placa de video dedicada y su modelo exacto.',
+          'Cuántos puertos y qué tipo de conexión tiene para monitor y periféricos.',
+          'La garantía y quién la presta, porque son equipos caros.',
+          'Si el cargador es el original y su potencia, ya que estas notebooks consumen bastante.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'gamer' },
+    comparativa: 'mejores-notebooks',
+    cta: { href: '/mejores/mejores-notebooks', titulo: 'Notebooks en oferta hoy, comparadas', boton: 'Ver la comparativa de notebooks' },
+    faq: [
+      {
+        q: '¿Cuánta RAM necesita una notebook gamer?',
+        a: '16 GB es un punto de partida razonable hoy. Con 8 GB algunos juegos funcionan pero con menos margen.',
+      },
+      {
+        q: '¿Sirve una notebook sin placa de video dedicada para jugar?',
+        a: 'Para juegos livianos o antiguos puede alcanzar; para juegos actuales exigentes necesitás una placa dedicada.',
+      },
+      {
+        q: '¿Conviene más una notebook o una PC de escritorio para jugar?',
+        a: 'La PC de escritorio rinde más por el mismo precio y se puede mejorar; la notebook gana en portabilidad. Depende de si necesitás moverla.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/guias/que-monitor-gamer-comprar', texto: 'Qué monitor gamer comprar' },
+      { href: '/mejores/mejores-notebooks', texto: 'Mejores notebooks en oferta' },
+      { href: '/categoria/gamer', texto: 'Productos gamer en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-camara-de-seguridad-wifi-comprar',
+    titulo: 'Qué cámara de seguridad wifi comprar: resolución, visión nocturna y almacenamiento',
+    descripcion:
+      'Cómo elegir una cámara de seguridad wifi para casa o negocio: resolución, visión nocturna, dónde se guardan las grabaciones, si es para interior o exterior y qué revisar antes de comprar.',
+    pregunta: '¿Qué mirar al comprar una cámara de seguridad wifi?',
+    respuestaCorta:
+      'Fijate en que sea apta para donde la vas a poner (interior o exterior), en la resolución de imagen, en la visión nocturna y en cómo guarda las grabaciones: tarjeta de memoria o servicio en la nube. También conviene confirmar que funcione con el wifi de tu casa y que la app sea clara.',
+    secciones: [
+      {
+        h: 'Interior o exterior',
+        p: [
+          'Las de interior no están preparadas para lluvia ni polvo. Si va afuera, buscá una que indique resistencia al agua o al clima en la ficha.',
+          'También conviene que alcance la señal de wifi en ese lugar: una cámara sin buena señal pierde video.',
+        ],
+      },
+      {
+        h: 'Resolución y visión nocturna',
+        p: [
+          'Una mayor resolución permite ver más detalle, por ejemplo una cara o una patente, a más distancia.',
+          'La visión nocturna es clave: la mayoría de los problemas de seguridad pasan de noche. Confirmá que la ficha la mencione y a qué distancia llega.',
+        ],
+      },
+      {
+        h: 'Dónde se guardan las grabaciones',
+        p: [
+          'Algunas usan una tarjeta de memoria que se compra aparte; otras ofrecen guardado en la nube, a veces con un costo mensual.',
+          'Antes de comprar, revisá si el almacenamiento viene incluido y cuánto tiempo de grabación te da.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'La compatibilidad con la app que vas a usar y con tu red wifi (muchas funcionan solo en 2,4 GHz).',
+          'Si tiene alarma o aviso de movimiento en el celular.',
+          'La alimentación: enchufe, batería o cable.',
+          'Garantía y reputación del vendedor, y si el envío es gratis.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Necesito tarjeta de memoria?',
+        a: 'Depende del modelo: muchas graban en una tarjeta que se vende aparte. Revisá en la ficha si viene incluida o si usa nube.',
+      },
+      {
+        q: '¿Funciona sin internet?',
+        a: 'Algunas siguen grabando en la tarjeta aunque se corte internet, pero no podés verlas desde el celular hasta que vuelva.',
+      },
+      {
+        q: '¿Sirve para exterior una cámara de interior?',
+        a: 'No: la lluvia y el polvo la dañan. Para afuera elegí una que indique resistencia al agua en la ficha.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/guias/cupones-y-codigos-de-descuento-de-mercado-libre-argentina', texto: 'Cupones de descuento' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'microondas-u-horno-electrico-cual-conviene',
+    titulo: 'Microondas u horno eléctrico: cuál conviene para tu cocina',
+    descripcion:
+      'Diferencias entre microondas y horno eléctrico: qué hace cada uno, tiempos, espacio y qué cocinás. Cuándo alcanza uno y cuándo conviene tener los dos.',
+    pregunta: '¿Conviene un microondas o un horno eléctrico?',
+    respuestaCorta:
+      'El microondas es ideal para recalentar y descongelar rápido; el horno eléctrico cocina, dora y gratina como un horno común. Si recalentás y cocinás poco, alcanza con el microondas; si querés asar, hornear o gratinar sin usar el horno de la cocina, conviene un horno eléctrico, y algunos microondas con grill cubren parte de esa función.',
+    secciones: [
+      {
+        h: 'Qué hace mejor el microondas',
+        p: [
+          'Calienta rápido y descongela. Es práctico para recalentar comida, hervir agua o preparar cosas simples.',
+          'No dora ni da textura crocante por sí solo, salvo que tenga función grill.',
+        ],
+      },
+      {
+        h: 'Qué hace mejor el horno eléctrico',
+        p: [
+          'Hornea, gratina y dora de manera parecida a un horno de cocina. Sirve para pizzas, tartas, carnes y pan.',
+          'Es útil si no querés prender el horno grande de la cocina o si la cocina no tiene horno. Suele ocupar más espacio en la mesada.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'La capacidad en litros: confirmá que entran las fuentes que usás.',
+          'La potencia en watts y si el horno tiene resistencia superior e inferior, además de temperatura regulable.',
+          'Las medidas externas para saber si entra en la mesada y dejá espacio para ventilar.',
+          'La garantía y si el envío es gratis.',
+        ],
+      },
+    ],
+    categoria: { slug: 'electro-de-cocina', nombre: 'electro de cocina' },
+    comparativa: 'mejores-microondas',
+    cta: { href: '/mejores/mejores-microondas', titulo: 'Microondas en oferta hoy, comparados', boton: 'Ver la comparativa de microondas' },
+    faq: [
+      {
+        q: '¿Un microondas con grill reemplaza a un horno eléctrico?',
+        a: 'Cubre parte de la función (gratinar y dorar), pero un horno eléctrico hornea con más espacio y mejor control de temperatura.',
+      },
+      {
+        q: '¿Puedo usar los dos?',
+        a: 'Sí: el microondas para recalentar rápido y el horno eléctrico para cocinar. Si tenés lugar, se complementan.',
+      },
+      {
+        q: '¿Qué conviene si vivo solo?',
+        a: 'Un microondas compacto suele alcanzar. Si querés hornear, sumá un horno eléctrico chico.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
+      { href: '/guias/que-freidora-de-aire-comprar', texto: 'Qué freidora de aire comprar' },
+      { href: '/mejores/mejores-microondas', texto: 'Mejores microondas en oferta' },
+      { href: '/categoria/electro-de-cocina', texto: 'Electro de cocina en oferta' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-parlante-bluetooth-comprar',
+    titulo: 'Qué parlante bluetooth comprar: potencia, batería y resistencia al agua',
+    descripcion:
+      'Cómo elegir un parlante bluetooth o torre de sonido: potencia real, duración de batería, resistencia al agua, conexiones y para qué lo vas a usar.',
+    pregunta: '¿Qué mirar al comprar un parlante bluetooth?',
+    respuestaCorta:
+      'Para llevar a todos lados, priorizá batería y resistencia al agua; para una reunión en casa, una torre de sonido de más potencia. Ojo con las cifras de "watts" de algunos anuncios, que suelen ser potencia máxima y no real: compará contra el tamaño del parlante y las conexiones que ofrece.',
+    secciones: [
+      {
+        h: 'Portátil o torre de sonido',
+        p: [
+          'Un parlante portátil es chico, tiene batería y se lleva a la playa o la pileta. Suele priorizar autonomía y resistencia al agua.',
+          'Una torre de sonido es más grande y potente, pensada para una casa o una reunión. Suele enchufarse y a veces trae micrófono.',
+        ],
+      },
+      {
+        h: 'Potencia, batería y agua',
+        p: [
+          'Algunas fichas informan la potencia en valores muy altos que no son la potencia real sostenida. Comparar con el tamaño del equipo y con modelos conocidos ayuda a no confundirse.',
+          'Si es portátil, mirá las horas de batería declaradas y si indica resistencia al agua (por ejemplo, grado IP) para usarlo cerca de la pileta.',
+        ],
+      },
+      {
+        h: 'Conexiones y funciones',
+        p: [
+          'Bluetooth es lo básico; entrada auxiliar, USB o tarjeta suman opciones.',
+          'Algunos permiten conectar dos parlantes para estéreo y traen luces o micrófono para karaoke.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Para qué lo vas a usar y dónde: interior, exterior, de viaje.',
+          'La duración real de la batería según lo que declare el fabricante.',
+          'Garantía y si el vendedor es oficial.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Cuántos watts necesito?',
+        a: 'Depende del lugar: para uso personal alcanza uno pequeño; para una reunión en casa conviene más potencia. Desconfiá de cifras muy altas en parlantes chicos.',
+      },
+      {
+        q: '¿Sirve para la pileta?',
+        a: 'Solo si la ficha indica resistencia al agua. Si no la tiene, evitá mojarlo.',
+      },
+      {
+        q: '¿Se pueden conectar dos parlantes juntos?',
+        a: 'Algunos modelos lo permiten para sonido estéreo. Revisalo en la ficha antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
 ]
 
+// Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
+const FECHAS_NUEVAS: Record<string, string> = {
+  'aire-acondicionado-solo-frio-o-frio-calor': '2026-10-16',
+  'tablet-o-notebook-cual-conviene': '2026-10-16',
+  'que-notebook-gamer-comprar': '2026-10-16',
+  'que-camara-de-seguridad-wifi-comprar': '2026-10-16',
+  'microondas-u-horno-electrico-cual-conviene': '2026-10-16',
+  'que-parlante-bluetooth-comprar': '2026-10-16',
+  'lavasecarropas-secarropas-o-bomba-de-calor': '2026-10-16',
+  'sommier-o-colchon-cual-conviene': '2026-10-16',
+  'que-motorola-comprar-moto-g-o-edge': '2026-10-16',
+}
+
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
-  GUIAS_LONG_TAIL.map(g => [g.slug, { publicada: '2026-10-15', modificada: '2026-10-15' }]),
+  GUIAS_LONG_TAIL.map(g => {
+    const f = FECHAS_NUEVAS[g.slug] ?? '2026-10-15'
+    return [g.slug, { publicada: f, modificada: f }]
+  }),
 )

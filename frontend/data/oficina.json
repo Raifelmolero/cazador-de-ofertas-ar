@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-16T22:45:27+00:00",
+  "generado": "2026-10-17T02:52:27+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-16T22:45:26+00:00",
+      "ultima_actividad": "2026-10-17T02:52:26+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 158 productos en la última corrida"
+          "tarea": "Revisó 200 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -22,31 +22,31 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 10
+          "valor": 15
         },
         {
           "label": "Threads",
           "valor": 4
         },
         {
-          "label": "Instagram",
-          "valor": 3
-        },
-        {
-          "label": "Facebook",
-          "valor": 3
-        },
-        {
           "label": "Reels IG",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Historias IG",
-          "valor": 1
+          "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 2
+        },
+        {
+          "label": "Facebook",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Xiaomi Poco X8 Pro Negro 12+512 Gb"
+      "ultimo_trabajo": "Microondas Digital Grill Atma Disney Matdgb23ud 23l 900w"
     },
     {
       "id": "investigacion",

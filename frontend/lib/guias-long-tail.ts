@@ -1353,6 +1353,217 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    slug: 'que-silla-de-oficina-comprar',
+    titulo: 'Qué silla de oficina comprar: ergonomía, regulaciones y materiales',
+    descripcion:
+      'Cómo elegir una silla de escritorio u oficina: respaldo, apoyabrazos, regulación de altura, materiales y qué mirar si pasás muchas horas sentado.',
+    pregunta: '¿Qué mirar al comprar una silla de oficina?',
+    respuestaCorta:
+      'Si vas a pasar muchas horas sentado, priorizá regulación de altura, un respaldo que acompañe la zona lumbar y un asiento cómodo. Las sillas "gerenciales" lucen bien, pero compará siempre qué regulaciones tienen en la ficha y no solo el tapizado.',
+    secciones: [
+      {
+        h: 'Regulaciones que importan',
+        p: [
+          'La altura del asiento regulable es lo mínimo: tus pies tienen que apoyar en el piso y tus codos quedar a la altura del escritorio.',
+          'Si la ficha indica respaldo reclinable, apoyabrazos regulables o soporte lumbar, son detalles que se notan en jornadas largas.',
+        ],
+      },
+      {
+        h: 'Materiales y mantenimiento',
+        p: [
+          'El cuero ecológico o PU se limpia fácil pero puede calentar en verano; la malla ventila mejor; el tapizado de tela es más cálido.',
+          'Mirá el tipo de base (nylon o metal) y las ruedas: si tenés piso de madera, conviene que sean aptas para ese piso.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'El peso máximo que soporta, según la ficha del vendedor.',
+          'Si trae manual y si el armado es sencillo.',
+          'Garantía y si el vendedor es oficial.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Silla de oficina o silla gamer?',
+        a: 'Las dos pueden servir. Lo importante es la regulación y el soporte lumbar más que el diseño: comparalas por esas características.',
+      },
+      {
+        q: '¿Conviene la malla?',
+        a: 'Ventila mejor, algo útil en verano. Es cuestión de preferencia y de cómo se sienta el asiento.',
+      },
+      {
+        q: '¿Cada cuánto conviene levantarse?',
+        a: 'Ninguna silla reemplaza moverse: levantarte y estirarte cada tanto ayuda más que cualquier accesorio.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/que-silla-gamer-comprar', texto: 'Qué silla gamer comprar' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-cochecito-de-bebe-comprar',
+    titulo: 'Qué cochecito de bebé comprar: travel system, plegado y seguridad',
+    descripcion:
+      'Cómo elegir un cochecito de bebé: travel system con huevito, peso, plegado, ruedas, arnés y qué revisar antes de comprar.',
+    pregunta: '¿Qué mirar al comprar un cochecito de bebé?',
+    respuestaCorta:
+      'Pensá en cómo lo vas a usar: si viajás en auto, un travel system con huevito te ahorra pasar al bebé de un lado a otro; si vivís en departamento o usás transporte, mirá el peso y el plegado. Chequeá siempre el arnés y los frenos en la ficha.',
+    secciones: [
+      {
+        h: 'Travel system o cochecito simple',
+        p: [
+          'El travel system incluye el huevito (silla para auto) que se engancha al chasis del cochecito. Es práctico en los primeros meses.',
+          'Un cochecito simple, sin huevito, suele ser más liviano y sirve si ya tenés silla para auto aparte.',
+        ],
+      },
+      {
+        h: 'Peso, plegado y ruedas',
+        p: [
+          'Si lo vas a subir y bajar seguido, el peso y el plegado compacto importan más que el diseño.',
+          'Las ruedas más grandes suelen andar mejor en veredas irregulares; las chicas, en superficies lisas.',
+        ],
+      },
+      {
+        h: 'Seguridad y comodidad',
+        p: [
+          'Revisá que tenga arnés de varios puntos, freno firme y respaldo reclinable.',
+          'Una capota amplia y un canasto para cosas se agradecen en el día a día.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Hace falta el huevito?',
+        a: 'Para viajar en auto con un recién nacido, necesitás una silla de seguridad apta. El travel system la incluye y se acopla al cochecito.',
+      },
+      {
+        q: '¿Hasta qué edad sirve?',
+        a: 'Depende del modelo y del peso máximo que indique el fabricante. Revisalo en la ficha.',
+      },
+      {
+        q: '¿Conviene comprar usado?',
+        a: 'Es una decisión personal; si lo hacés, revisá que los frenos, el arnés y el plegado funcionen bien.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/guias/que-es-el-minimo-historico-en-mercado-libre', texto: 'Qué es el mínimo histórico' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'kindle-o-tablet-para-leer',
+    titulo: 'Kindle o tablet para leer: cuál conviene según cómo leas',
+    descripcion:
+      'Diferencias entre un lector de libros electrónicos (Kindle) y una tablet: pantalla, batería, luz, usos y para quién conviene cada uno.',
+    pregunta: '¿Conviene un Kindle o una tablet para leer?',
+    respuestaCorta:
+      'Si lo tuyo es leer libros durante horas, el Kindle (pantalla de tinta electrónica) cansa menos la vista y la batería dura mucho más. Si además querés ver videos, usar apps o navegar, una tablet es más versátil.',
+    secciones: [
+      {
+        h: 'Pantalla y lectura',
+        p: [
+          'El lector electrónico usa una pantalla pensada para parecerse al papel, que se ve bien incluso con sol.',
+          'La tablet tiene pantalla más vistosa y a color, pero tiene más reflejos y puede cansar más en lecturas largas.',
+        ],
+      },
+      {
+        h: 'Batería y uso',
+        p: [
+          'El lector suele durar semanas con una carga, según el uso y lo que declare el fabricante.',
+          'La tablet se carga con más frecuencia, pero sirve para mucho más que leer.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Si necesitás leer PDF, revistas o cómics a color, comprobá cómo los muestra el modelo.',
+          'Cuánta memoria trae y si tiene luz integrada para leer de noche.',
+          'Garantía y si el vendedor es oficial.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Se pueden usar libros de otras tiendas?',
+        a: 'Depende del modelo y del formato. Revisalo en la ficha o en la página del fabricante antes de comprar.',
+      },
+      {
+        q: '¿Sirve para leer de noche?',
+        a: 'Muchos traen luz integrada. Si la ficha no la menciona, asumí que no la tiene.',
+      },
+      {
+        q: '¿Una tablet reemplaza al lector?',
+        a: 'Sirve para leer, pero si leés mucho, la pantalla del lector suele ser más cómoda.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/que-tablet-comprar', texto: 'Qué tablet comprar' },
+      { href: '/guias/tablet-o-notebook-cual-conviene', texto: 'Tablet o notebook' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'aspiradora-inalambrica-o-con-cable',
+    titulo: 'Aspiradora inalámbrica o con cable: cuál conviene',
+    descripcion:
+      'Comparación entre aspiradoras verticales inalámbricas y las de cable: potencia, autonomía, peso, filtros y qué conviene según tu casa.',
+    pregunta: '¿Conviene una aspiradora inalámbrica o una con cable?',
+    respuestaCorta:
+      'La inalámbrica es más cómoda para limpiar rápido y por zonas; la de cable no depende de la batería y suele rendir parejo en casas grandes. Mirá la autonomía declarada, el tipo de filtro y el tamaño del depósito antes de decidir.',
+    secciones: [
+      {
+        h: 'Comodidad y autonomía',
+        p: [
+          'La inalámbrica se usa sin enchufar ni arrastrar cable, ideal para limpiezas rápidas. La contra es que depende de la batería.',
+          'La de cable puede usarse el tiempo que haga falta sin quedarse sin carga.',
+        ],
+      },
+      {
+        h: 'Filtros, depósito y accesorios',
+        p: [
+          'Un filtro HEPA ayuda a retener polvo fino, algo útil si hay alergias. Fijate si es lavable o hay que reponerlo.',
+          'Cuanto más grande el depósito, menos veces lo vaciás. Los accesorios (cepillos, boquillas) suman en tapizados y rincones.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'La autonomía real suele ser menor en el modo de máxima potencia.',
+          'Si la batería se puede reemplazar o comprar aparte.',
+          'Garantía y si el vendedor es oficial.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Una inalámbrica reemplaza a una de cable?',
+        a: 'Para departamentos y limpiezas diarias, sí suele alcanzar. Para casas grandes, podés quedarte corto de batería.',
+      },
+      {
+        q: '¿Y el robot aspirador?',
+        a: 'Limpia solo de forma recurrente, pero no reemplaza una limpieza profunda. Mirá nuestra guía del robot aspirador.',
+      },
+      {
+        q: '¿Sirve para mascotas?',
+        a: 'Hay modelos con cepillos pensados para pelo de mascotas; revisá si la ficha lo indica.',
+      },
+    ],
+    enlaces: [
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/que-aspiradora-comprar', texto: 'Qué aspiradora comprar' },
+      { href: '/guias/que-aspiradora-robot-comprar', texto: 'Qué aspiradora robot comprar' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -1366,6 +1577,10 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'lavasecarropas-secarropas-o-bomba-de-calor': '2026-10-16',
   'sommier-o-colchon-cual-conviene': '2026-10-16',
   'que-motorola-comprar-moto-g-o-edge': '2026-10-16',
+  'que-silla-de-oficina-comprar': '2026-10-17',
+  'que-cochecito-de-bebe-comprar': '2026-10-17',
+  'kindle-o-tablet-para-leer': '2026-10-17',
+  'aspiradora-inalambrica-o-con-cable': '2026-10-17',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

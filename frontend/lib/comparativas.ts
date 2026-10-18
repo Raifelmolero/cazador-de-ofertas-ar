@@ -43,7 +43,7 @@ const PERENNES = new Set([
   // Cyber Monday (2 al 4/11): tienen que estar indexadas semanas antes del evento,
   // y "aire acondicionado cyber monday" ya rankea en la posición ~17 (GSC 04/10).
   'ofertas-cyber-monday', 'cyber-monday-smart-tv', 'cyber-monday-aires-acondicionados',
-  'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares',
+  'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares', 'cyber-monday-cafeteras',
 ])
 
 const AÑO = 2026
@@ -414,6 +414,24 @@ export const COMPARATIVAS: Comparativa[] = [
       'Desconfiá de las marcas famosas muy por debajo de su precio: preferí tiendas oficiales.',
     ],
     guia: 'que-auriculares-comprar-cyber-monday',
+  },
+  {
+    slug: 'cyber-monday-cafeteras',
+    nombre: 'cafeteras en el Cyber Monday',
+    titulo: `Cafeteras en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Cafeteras en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: espresso, de cápsulas y de filtro, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Las cafeteras suelen estar entre los electrodomésticos con más descuentos. Cada modelo se compara contra el precio más bajo que registramos.',
+    keywords: ['cafetera', 'espresso', 'nespresso', 'dolce gusto'],
+    excluir: ['capsulas de cafe', 'cápsulas de café', 'filtro de papel', 'molinillo'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Elegí el tipo según cómo tomás café: de filtro (jarra), espresso (con presión) o de cápsulas (más práctica, con costo por taza mayor).',
+      'Si es espresso, mirá la presión en bares y si tiene vaporizador para leche.',
+      'Confirmá qué cápsulas usa antes de comprar: no todas son compatibles.',
+    ],
+    guia: 'que-cafetera-comprar',
   },
   {
     slug: 'ofertas-black-friday',

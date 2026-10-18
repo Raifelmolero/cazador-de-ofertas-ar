@@ -1763,6 +1763,43 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
       },
     ],
   },
+  'cyber-monday-cafeteras': {
+    secciones: [
+      {
+        titulo: 'Cafeteras en el Cyber Monday: qué conviene mirar',
+        parrafos: [
+          'Las cafeteras son un clásico del Cyber Monday (lunes 2 al miércoles 4 de noviembre) y un regalo fácil. El riesgo es el mismo de siempre: un "antes" inflado semanas atrás para que el porcentaje de descuento se vea más grande. Comparalo contra el historial del modelo y contra el precio de la tienda oficial para saber cuánto de la baja es real.',
+          'Pensá primero cómo tomás café: de filtro para jarras grandes, espresso para café con presión y leche, o de cápsulas si priorizás la practicidad.',
+        ],
+      },
+      {
+        titulo: 'Tipo, presión y cápsulas',
+        parrafos: [
+          'En una espresso, la presión se informa en bares y el vaporizador permite espumar leche. En las de cápsulas, confirmá qué sistema usa antes de comprar: no todas las cápsulas son compatibles y el costo por taza es mayor que con café molido.',
+        ],
+      },
+      {
+        titulo: 'Verificar antes de pagar',
+        parrafos: [
+          'Buscá el modelo en /precio y revisá /descuentos-inflados para ver si la oferta se sostiene. Priorizá tiendas oficiales o vendedores con buena reputación y fijate la garantía. Compará envío y cuotas con /calculadora-envio-gratis.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: '¿Espresso o de cápsulas?',
+        a: 'La de cápsulas es más práctica y constante; la espresso con café molido suele salir más barata por taza y permite elegir el café.',
+      },
+      {
+        q: '¿Cuántos bares de presión necesito?',
+        a: 'Para espresso, la ficha indica la presión en bares. Más que perseguir el número más alto, compará modelos del mismo tipo y revisá si trae vaporizador.',
+      },
+      {
+        q: '¿Conviene esperar al Cyber Monday?',
+        a: 'Solo si el precio del evento queda por debajo del mínimo registrado. Si no, la oferta de hoy puede ser igual o mejor.',
+      },
+    ],
+  },
   'ofertas-black-friday': {
     secciones: [
       {

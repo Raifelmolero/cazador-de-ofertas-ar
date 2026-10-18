@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-18T13:22:23+00:00",
+  "generado": "2026-10-18T18:00:26+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-18T02:53:30+00:00",
+      "ultima_actividad": "2026-10-18T18:00:26+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 221 productos en la última corrida"
+          "tarea": "Revisó 266 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Termotanque SeÃ±orial Tesz-95 95 Litros Electrico Superior Blanco"
+      "ultimo_trabajo": "Taladro De Banco Mandril 16mm 500w TiendaNext TB500-16 5 Velocidades"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-17T14:03:57+00:00",
+      "ultima_actividad": "2026-10-18T14:18:41+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

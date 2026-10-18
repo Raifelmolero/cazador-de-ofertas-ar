@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T22:11:04+00:00",
+  "generado": "2026-10-18T02:53:30+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,17 +8,17 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-17T22:11:03+00:00",
+      "ultima_actividad": "2026-10-18T02:53:30+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 200 productos en la última corrida"
+          "tarea": "Revisó 221 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 20
+          "valor": 15
         },
         {
           "label": "whatsapp_kit",
@@ -26,15 +26,15 @@
         },
         {
           "label": "Threads",
-          "valor": 4
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Lenovo Tab Plus 11.5 Octacore 8gb 256gb Octa Jbl Speakers Color Gris oscuro"
+      "ultimo_trabajo": "Termotanque SeÃ±orial Tesz-95 95 Litros Electrico Superior Blanco"
     },
     {
       "id": "investigacion",
@@ -100,7 +100,7 @@
         },
         {
           "label": "Comparativas",
-          "valor": 56
+          "valor": 57
         }
       ],
       "entregas": [

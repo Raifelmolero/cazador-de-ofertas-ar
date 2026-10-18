@@ -1801,6 +1801,120 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    slug: 'bicicleta-rodado-26-27-5-o-29',
+    titulo: 'Bicicleta de montaña: rodado 26, 27,5 o 29, cuál elegir',
+    descripcion:
+      'Qué cambia entre un rodado 26, 27,5 y 29 en una bicicleta de montaña: altura del ciclista, estabilidad, maniobrabilidad, talle de cuadro y qué mirar antes de comprar.',
+    pregunta: '¿Qué rodado de bicicleta conviene: 26, 27,5 o 29?',
+    respuestaCorta:
+      'El rodado 29 rueda mejor sobre terreno irregular y mantiene la velocidad, pero es menos ágil y puede quedar grande para personas bajas. El 26 es más maniobrable y más chico; el 27,5 queda en el medio. Lo que más pesa es tu altura y dónde vas a andar: elegí el talle de cuadro según la tabla del fabricante antes de decidir.',
+    secciones: [
+      {
+        h: 'Qué cambia con el tamaño de la rueda',
+        p: [
+          'La rueda grande supera mejor los baches y conserva el impulso, por eso se siente más estable en caminos de tierra y subidas.',
+          'La rueda chica acelera más rápido y gira con más agilidad, útil en trazados cerrados y para ciclistas de menor estatura.',
+        ],
+      },
+      {
+        h: 'Altura del ciclista y talle de cuadro',
+        p: [
+          'El rodado no es lo único: el talle del cuadro tiene que acompañar tu altura. Cada fabricante publica una tabla con la relación entre altura y talle.',
+          'Un cuadro demasiado grande o chico genera mala postura y menos control, aunque la rueda sea la correcta.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Tipo de freno: a disco ofrece más potencia de frenado que los de zapata, sobre todo con barro o lluvia.',
+          'Cantidad de cambios y marca de los componentes.',
+          'Material del cuadro (acero o aluminio) y peso total.',
+        ],
+      },
+    ],
+    categoria: { slug: 'bicicletas', nombre: 'bicicletas' },
+    comparativa: 'mejores-bicicletas',
+    cta: { href: '/mejores/mejores-bicicletas', titulo: 'Bicicletas en oferta hoy, comparadas', boton: 'Ver la comparativa de bicicletas' },
+    faq: [
+      {
+        q: '¿Qué rodado uso si soy bajo?',
+        a: 'Suele convenir un rodado menor o un talle de cuadro chico. Consultá la tabla de talles del fabricante.',
+      },
+      {
+        q: '¿Aluminio o acero?',
+        a: 'El aluminio es más liviano y no se oxida; el acero suele ser más económico y resistente.',
+      },
+      {
+        q: '¿Sirve para ciudad?',
+        a: 'Sí, aunque para uso urbano también hay rodados y cubiertas pensadas para asfalto.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-bicicletas', texto: 'Bicicletas en oferta' },
+      { href: '/categoria/bicicletas', texto: 'Bicicletas en oferta' },
+      { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'pc-de-escritorio-o-notebook',
+    titulo: 'PC de escritorio o notebook: cuál conviene',
+    descripcion:
+      'Comparación entre una PC de escritorio y una notebook: rendimiento por precio, portabilidad, actualización de piezas, consumo y para qué uso conviene cada una.',
+    pregunta: '¿Conviene una PC de escritorio o una notebook?',
+    respuestaCorta:
+      'Si vas a trabajar siempre en el mismo lugar, la PC de escritorio suele rendir más por el mismo dinero y se puede actualizar pieza por pieza. La notebook gana si necesitás moverte, ya que trae pantalla, teclado y batería incluidos. Fijate en el procesador, la memoria RAM, el tipo de disco (SSD) y, en la PC, si incluye monitor.',
+    secciones: [
+      {
+        h: 'Rendimiento y precio',
+        p: [
+          'En una PC de escritorio, el espacio y la ventilación permiten componentes más potentes por el mismo precio.',
+          'En una notebook, parte del costo va a la pantalla, la batería y el diseño compacto.',
+        ],
+      },
+      {
+        h: 'Portabilidad y actualización',
+        p: [
+          'La notebook se lleva a cualquier lado y funciona sin enchufar un rato.',
+          'La PC de escritorio permite cambiar memoria, disco o placa de video más adelante. En la notebook las mejoras suelen ser más limitadas.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Procesador y memoria RAM: para uso de oficina y estudio alcanza con gamas medias; para edición o juegos conviene más potencia.',
+          'Un disco SSD acelera mucho el arranque y la apertura de programas.',
+          'En una PC armada, confirmá si incluye monitor, teclado, mouse y sistema operativo.',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    comparativa: 'mejores-notebooks',
+    cta: { href: '/mejores/mejores-notebooks', titulo: 'Notebooks en oferta hoy, comparadas', boton: 'Ver la comparativa de notebooks' },
+    faq: [
+      {
+        q: '¿Una PC armada sirve para estudiar o trabajar?',
+        a: 'Sí, siempre que el procesador, la RAM y el disco SSD acompañen el uso. Mirá qué incluye en la ficha.',
+      },
+      {
+        q: '¿Cuánta RAM necesito?',
+        a: 'Para oficina y estudio suele alcanzar con una cantidad media; para edición o juegos conviene más.',
+      },
+      {
+        q: '¿Y si juego?',
+        a: 'Tenemos una guía específica de notebooks gamer con qué mirar en la placa de video.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-notebooks', texto: 'Notebooks en oferta' },
+      { href: '/categoria/notebooks', texto: 'Notebooks en oferta' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/guias/que-notebook-gamer-comprar', texto: 'Qué notebook gamer comprar' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -1822,6 +1936,8 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'anafe-vitroceramico-o-induccion': '2026-10-18',
   'desmalezadora-a-explosion-o-a-bateria': '2026-10-18',
   'lavarropas-inverter-que-es-y-conviene': '2026-10-18',
+  'bicicleta-rodado-26-27-5-o-29': '2026-10-18',
+  'pc-de-escritorio-o-notebook': '2026-10-18',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

@@ -233,6 +233,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [anafe vitrocerámico o de inducción](https://cazadordeofertas.com.ar/guias/anafe-vitroceramico-o-induccion),
   [desmalezadora a explosión o a batería](https://cazadordeofertas.com.ar/guias/desmalezadora-a-explosion-o-a-bateria),
   [lavarropas inverter: qué es y si conviene](https://cazadordeofertas.com.ar/guias/lavarropas-inverter-que-es-y-conviene),
+  [bicicleta de montaña: rodado 26, 27,5 o 29](https://cazadordeofertas.com.ar/guias/bicicleta-rodado-26-27-5-o-29),
+  [PC de escritorio o notebook](https://cazadordeofertas.com.ar/guias/pc-de-escritorio-o-notebook),
   [qué lavarropas comprar](https://cazadordeofertas.com.ar/guias/que-lavarropas-comprar),
   [qué lavavajillas comprar](https://cazadordeofertas.com.ar/guias/que-lavavajillas-comprar),
   [qué freidora de aire comprar](https://cazadordeofertas.com.ar/guias/que-freidora-de-aire-comprar),

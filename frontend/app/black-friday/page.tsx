@@ -38,7 +38,7 @@ const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 const MAX_OFERTAS = 16
 
-const TITULO = `Black Friday ${BF.año} en Argentina: fecha y ofertas reales`
+const TITULO = `Black Friday ${BF.año} Argentina: cuándo es y ofertas reales`
 const DESCRIPCION = `El Black Friday ${BF.año} es el ${BF.fechasTexto}. En Argentina no tiene organizador oficial: cada tienda arma sus promos. Cómo detectar descuentos inflados y ofertas de Mercado Libre verificadas contra el historial.`
 
 export const metadata: Metadata = {

@@ -1385,6 +1385,8 @@ export const GUIAS_LONG_TAIL: Guia[] = [
         ],
       },
     ],
+    comparativa: 'mejores-sillas-gamer',
+    cta: { href: '/mejores/mejores-sillas-gamer', titulo: 'Sillas en oferta hoy, comparadas', boton: 'Ver la comparativa de sillas' },
     faq: [
       {
         q: '¿Silla de oficina o silla gamer?',
@@ -1400,6 +1402,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/mejores-sillas-gamer', texto: 'Sillas en oferta' },
       { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
       { href: '/guias/que-silla-gamer-comprar', texto: 'Qué silla gamer comprar' },
       { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
@@ -1437,6 +1440,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
         ],
       },
     ],
+    categoria: { slug: 'bebes-y-jugueteria', nombre: 'bebés y juguetería' },
     faq: [
       {
         q: '¿Hace falta el huevito?',
@@ -1452,6 +1456,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/categoria/bebes-y-jugueteria', texto: 'Bebés y juguetería en oferta' },
       { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
       { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
       { href: '/guias/que-es-el-minimo-historico-en-mercado-libre', texto: 'Qué es el mínimo histórico' },
@@ -1490,6 +1495,8 @@ export const GUIAS_LONG_TAIL: Guia[] = [
         ],
       },
     ],
+    comparativa: 'mejores-tablets',
+    cta: { href: '/mejores/mejores-tablets', titulo: 'Tablets en oferta hoy, comparadas', boton: 'Ver la comparativa de tablets' },
     faq: [
       {
         q: '¿Se pueden usar libros de otras tiendas?',
@@ -1505,6 +1512,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/mejores-tablets', texto: 'Tablets en oferta' },
       { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
       { href: '/guias/que-tablet-comprar', texto: 'Qué tablet comprar' },
       { href: '/guias/tablet-o-notebook-cual-conviene', texto: 'Tablet o notebook' },
@@ -1543,6 +1551,9 @@ export const GUIAS_LONG_TAIL: Guia[] = [
         ],
       },
     ],
+    categoria: { slug: 'aspiradoras', nombre: 'aspiradoras' },
+    comparativa: 'mejores-aspiradoras',
+    cta: { href: '/mejores/mejores-aspiradoras', titulo: 'Aspiradoras en oferta hoy, comparadas', boton: 'Ver la comparativa de aspiradoras' },
     faq: [
       {
         q: '¿Una inalámbrica reemplaza a una de cable?',
@@ -1558,6 +1569,8 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/mejores-aspiradoras', texto: 'Aspiradoras en oferta' },
+      { href: '/categoria/aspiradoras', texto: 'Aspiradoras en oferta' },
       { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
       { href: '/guias/que-aspiradora-comprar', texto: 'Qué aspiradora comprar' },
       { href: '/guias/que-aspiradora-robot-comprar', texto: 'Qué aspiradora robot comprar' },

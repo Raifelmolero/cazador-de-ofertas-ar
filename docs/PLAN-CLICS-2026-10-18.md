@@ -30,3 +30,7 @@ Base: etiqueta `web` 11-17/10 = 149 clics/semana (~21/día), $253.596. Pico: 322
 - GSC cada 28 días (base 74 clics, 4,47K impresiones): 29/10.
 - Clarity: sesiones por canal (OrganicSearch, Other, Social).
 - Regla: si una fase no mueve los clics en una semana, cambiar de palanca; no sumar más contenido a ciegas.
+
+## Avance Fase 2 (18/10 noche)
+GSC 28 d: 86 clics, 5,17K impresiones, CTR 1,7 %, pos. 18,2 (clics e impresiones SUBEN en los últimos días). Consultas con impresiones y 0 clics: black friday 2026 (109), iphone 17e (65), televisores smart (34), cyber monday 2024 argentina (31), cafetera oferta (30), cyber monday cafetera (26), oferta cafetera (20), cyber monday argentina (20), tv 55 pulgadas (17).
+Cambios: título /black-friday; `mejores-cafeteras` ("Cafeteras en oferta"), `mejores-smart-tv` ("Televisores smart TV") y descripción de `mejores-iphone` (17e). Siguen bajo posición ~11-26: el límite es el ranking, no solo el título; medir el 29/10.

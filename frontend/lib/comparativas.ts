@@ -70,9 +70,9 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-smart-tv',
     nombre: 'smart TV',
-    titulo: `Mejores smart TV en oferta ${AÑO}: comparativa de precios`,
+    titulo: `Televisores smart TV en oferta ${AÑO}: comparativa de precios`,
     descripcion:
-      'Comparativa de smart TV en oferta hoy en Mercado Libre Argentina: 32 a 75 pulgadas, precio, descuento y precio mínimo registrado.',
+      'Comparativa de televisores smart TV en oferta hoy en Mercado Libre Argentina: 32 a 75 pulgadas, precio, descuento y precio mínimo registrado.',
     intro:
       'Los smart TV en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'smart-tv',
@@ -598,7 +598,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-cafeteras',
     nombre: 'cafeteras',
-    titulo: `Mejores cafeteras en oferta ${AÑO}: comparativa de precios`,
+    titulo: `Cafeteras en oferta ${AÑO}: ofertas de hoy y comparativa de precios`,
     descripcion:
       'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
@@ -974,7 +974,7 @@ export const COMPARATIVAS: Comparativa[] = [
     nombre: 'iPhone',
     titulo: `Mejores iPhone en oferta ${AÑO}: qué modelo comprar`,
     descripcion:
-      'Comparativa de iPhone en oferta hoy en Mercado Libre Argentina: modelo, almacenamiento, precio, descuento y precio mínimo registrado. Qué mirar antes de pagar un equipo de gama alta.',
+      'Comparativa de iPhone en oferta hoy en Mercado Libre Argentina (el iPhone 17e aparece cuando tiene oferta verificada): modelo, almacenamiento, precio, descuento y precio mínimo registrado. Qué mirar antes de pagar un equipo de gama alta.',
     intro:
       'Los iPhone en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada modelo y capacidad. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['iphone'],

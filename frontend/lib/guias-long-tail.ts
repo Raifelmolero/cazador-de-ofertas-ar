@@ -1577,6 +1577,230 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    slug: 'maquina-de-soda-vale-la-pena',
+    titulo: 'Máquina de soda: vale la pena y qué mirar antes de comprar',
+    descripcion:
+      'Cómo funciona una máquina para hacer soda en casa, qué cuesta mantenerla (garrafas de CO2 y recargas), cuándo conviene y qué mirar: tipo de cilindro, compatibilidad y botellas.',
+    pregunta: '¿Vale la pena comprar una máquina para hacer soda en casa?',
+    respuestaCorta:
+      'Conviene si tomás soda o agua con gas todos los días: te ahorrás cargar botellas y siempre tenés a mano. La cuenta cambia según el costo de recargar el cilindro de CO2 y qué tan cerca tenés dónde hacerlo. Antes de comprar, fijate el tipo de cilindro que usa la máquina, si se recarga en tu zona y si trae botellas aptas.',
+    secciones: [
+      {
+        h: 'Cómo funciona y qué se gasta',
+        p: [
+          'La máquina carga agua fría con dióxido de carbono (CO2) que viene en un cilindro. Cuando el cilindro se agota, se cambia por uno lleno o se recarga.',
+          'El gasto fijo es el CO2; el agua sale de tu canilla. Por eso conviene mirar cuántos litros rinde un cilindro y cuánto cuesta cada recarga en tu zona antes de calcular si te ahorra.',
+        ],
+      },
+      {
+        h: 'Tipos de cilindro y compatibilidad',
+        p: [
+          'No todas las máquinas usan el mismo cilindro ni el mismo sistema de conexión. Confirmá en la ficha cuál usa y si se recarga en comercios cercanos.',
+          'Algunas incluyen dos cilindros: así podés seguir usando uno mientras el otro se recarga.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Qué trae en la caja: cantidad de cilindros y de botellas.',
+          'Si las botellas son aptas para la máquina y para lavar a mano o en lavavajillas.',
+          'Garantía y si el vendedor es oficial.',
+        ],
+      },
+    ],
+    categoria: { slug: 'electro-de-cocina', nombre: 'electro de cocina' },
+    cta: { href: '/categoria/electro-de-cocina', titulo: 'Electro de cocina en oferta hoy', boton: 'Ver electro de cocina en oferta' },
+    faq: [
+      {
+        q: '¿Qué pasa cuando se acaba el gas?',
+        a: 'Hay que cambiar o recargar el cilindro de CO2. Fijate que tu máquina use un tipo que se consiga cerca.',
+      },
+      {
+        q: '¿Se puede hacer agua saborizada?',
+        a: 'Depende del modelo: muchas solo están pensadas para agua. Revisá el manual antes de agregarle jugos o saborizantes.',
+      },
+      {
+        q: '¿Ocupa mucho lugar?',
+        a: 'Se apoya sobre la mesada y suele ser compacta. Verificá las medidas en la ficha.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/electro-de-cocina', texto: 'Electro de cocina en oferta' },
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'anafe-vitroceramico-o-induccion',
+    titulo: 'Anafe vitrocerámico o de inducción: diferencias y cuál conviene',
+    descripcion:
+      'Diferencias entre un anafe eléctrico vitrocerámico y uno de inducción: cómo calientan, ollas compatibles, consumo, instalación eléctrica y limpieza.',
+    pregunta: '¿Conviene un anafe vitrocerámico o uno de inducción?',
+    respuestaCorta:
+      'El de inducción calienta la olla directamente, por eso es más rápido y deja menos calor residual, pero solo funciona con ollas de material magnético. El vitrocerámico calienta una resistencia bajo el vidrio: sirve con cualquier olla, aunque tarda más y se mantiene caliente después de apagarlo. En ambos hay que revisar la potencia y que la instalación eléctrica de tu casa lo soporte.',
+    secciones: [
+      {
+        h: 'Cómo calienta cada uno',
+        p: [
+          'El vitrocerámico usa resistencias eléctricas debajo de un vidrio. Calienta la zona y de ahí la olla.',
+          'La inducción genera un campo magnético que calienta la base de la olla; el vidrio se calienta solo por contacto con ella.',
+        ],
+      },
+      {
+        h: 'Ollas, limpieza y seguridad',
+        p: [
+          'La inducción requiere ollas aptas (un imán debería pegarse en la base). Si tenés ollas de aluminio o vidrio, no sirven.',
+          'Ambos tienen superficie lisa fácil de limpiar. El indicador de calor residual avisa que la zona sigue caliente.',
+        ],
+      },
+      {
+        h: 'Instalación y potencia',
+        p: [
+          'Los anafes eléctricos consumen mucha potencia. Consultá con un electricista si tu tablero y tu cableado lo soportan antes de comprar.',
+          'Fijate si es empotrable o de apoyo y las medidas de la mesada.',
+        ],
+      },
+    ],
+    categoria: { slug: 'cocinas-y-hornos', nombre: 'cocinas y hornos' },
+    comparativa: 'mejores-cocinas-y-hornos',
+    cta: { href: '/mejores/mejores-cocinas-y-hornos', titulo: 'Cocinas y hornos en oferta hoy, comparados', boton: 'Ver la comparativa de cocinas y hornos' },
+    faq: [
+      {
+        q: '¿Cuál consume menos?',
+        a: 'La inducción aprovecha mejor la energía porque calienta la olla directamente. Igual depende de la potencia declarada y del uso.',
+      },
+      {
+        q: '¿Puedo usar mis ollas actuales?',
+        a: 'En vitrocerámico sí. En inducción solo las de base magnética: probá con un imán.',
+      },
+      {
+        q: '¿Necesita instalación especial?',
+        a: 'Suele requerir una conexión eléctrica adecuada a su potencia. Consultá con un electricista matriculado.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-cocinas-y-hornos', texto: 'Cocinas y hornos en oferta' },
+      { href: '/categoria/cocinas-y-hornos', texto: 'Cocinas y hornos en oferta' },
+      { href: '/guias/que-cocina-comprar', texto: 'Qué cocina comprar' },
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'desmalezadora-a-explosion-o-a-bateria',
+    titulo: 'Desmalezadora a explosión o a batería: cuál conviene',
+    descripcion:
+      'Diferencias entre desmalezadoras a nafta (explosión) y a batería: potencia, autonomía, ruido, mantenimiento y qué elegir según el tamaño de tu terreno.',
+    pregunta: '¿Conviene una desmalezadora a explosión o una a batería?',
+    respuestaCorta:
+      'La de explosión (nafta) rinde más en terrenos grandes y yuyos duros, a cambio de ruido, vibración y mantenimiento. La de batería es más liviana, silenciosa y práctica para jardines chicos o medianos, pero la autonomía limita el tiempo de trabajo. Mirá la potencia, el tipo de corte (hilo o cuchilla) y, en las de batería, la capacidad y si se vende la batería por separado.',
+    secciones: [
+      {
+        h: 'Potencia y autonomía',
+        p: [
+          'El motor a nafta se carga de combustible en segundos y trabaja mientras haya mezcla. Suele tener más fuerza para maleza densa.',
+          'La batería ofrece menos tiempo continuo: conviene tener una segunda o saber cuánto rinde una carga.',
+        ],
+      },
+      {
+        h: 'Ruido, peso y mantenimiento',
+        p: [
+          'La de nafta requiere mezclar combustible con aceite, limpiar filtros y revisar bujía. Hace más ruido y vibra más.',
+          'La de batería casi no necesita mantenimiento y es más fácil de arrancar.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Tipo de corte: hilo para pasto, cuchilla para yuyos más duros.',
+          'Si incluye arnés, protecciones y repuestos de hilo o cuchillas.',
+          'Disponibilidad de repuestos y service en tu zona.',
+        ],
+      },
+    ],
+    categoria: { slug: 'herramientas-electricas', nombre: 'herramientas' },
+    cta: { href: '/categoria/herramientas-electricas', titulo: 'Herramientas en oferta hoy', boton: 'Ver herramientas en oferta' },
+    faq: [
+      {
+        q: '¿Qué mezcla usa una de nafta?',
+        a: 'Depende del modelo: seguí la proporción de nafta y aceite que indica el manual del fabricante.',
+      },
+      {
+        q: '¿Sirve una de batería para un terreno grande?',
+        a: 'Puede quedarse corta de autonomía. Con una segunda batería se alarga el trabajo.',
+      },
+      {
+        q: '¿Hilo o cuchilla?',
+        a: 'El hilo es para pasto y bordes; la cuchilla corta yuyos y matas más duras.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/herramientas-electricas', texto: 'Herramientas en oferta' },
+      { href: '/hoy', texto: 'Ofertas del día en Mercado Libre' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'lavarropas-inverter-que-es-y-conviene',
+    titulo: 'Lavarropas inverter: qué es y si conviene',
+    descripcion:
+      'Qué significa que un lavarropas sea inverter: motor, consumo, ruido y durabilidad; y qué más mirar: capacidad en kilos, RPM de centrifugado y carga frontal o superior.',
+    pregunta: '¿Qué es un lavarropas inverter y conviene?',
+    respuestaCorta:
+      'Un lavarropas inverter tiene un motor que regula su velocidad según la carga, lo que suele traducirse en menos ruido, menos vibración y menor consumo eléctrico que un motor común. Suele costar más, y conviene sobre todo si lavás seguido. Además del motor, mirá la capacidad en kilos, las RPM de centrifugado y si es de carga frontal o superior.',
+    secciones: [
+      {
+        h: 'Qué cambia con el motor inverter',
+        p: [
+          'El motor inverter ajusta la velocidad con electrónica en lugar de usar siempre el mismo régimen. Eso reduce ruido y vibración.',
+          'Muchos fabricantes ofrecen garantías extendidas sobre el motor; verificá en la ficha qué cubre.',
+        ],
+      },
+      {
+        h: 'Capacidad, RPM y tipo de carga',
+        p: [
+          'La capacidad en kilos define cuánta ropa lavás por vez: pensá en cuántas personas son en casa.',
+          'Más RPM de centrifugado dejan la ropa menos húmeda, útil si secás en interior.',
+          'La carga frontal suele ahorrar agua y entra bajo mesada; la superior ocupa menos ancho y es más cómoda para cargar.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de pagar',
+        p: [
+          'Etiqueta de eficiencia energética y consumo de agua.',
+          'Medidas del lugar donde va, incluyendo el espacio para la puerta.',
+          'Garantía y service oficial en tu zona.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: { href: '/mejores/mejores-lavarropas', titulo: 'Lavarropas en oferta hoy, comparados', boton: 'Ver la comparativa de lavarropas' },
+    faq: [
+      {
+        q: '¿Inverter siempre es mejor?',
+        a: 'Suele ser más silencioso y eficiente, pero también más caro. Si lavás poco, la diferencia en consumo se nota menos.',
+      },
+      {
+        q: '¿Cuántos kilos necesito?',
+        a: 'Para una o dos personas alcanza con menos capacidad; para una familia, más kilos evita hacer varios lavados.',
+      },
+      {
+        q: '¿Y el lavasecarropas?',
+        a: 'Tenemos una guía que compara lavasecarropas, lavarropas con secarropas y bomba de calor.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-lavarropas', texto: 'Lavarropas en oferta' },
+      { href: '/categoria/lavarropas', texto: 'Lavarropas en oferta' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/guias/lavasecarropas-secarropas-o-bomba-de-calor', texto: 'Lavasecarropas, secarropas o bomba de calor' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -1594,6 +1818,10 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'que-cochecito-de-bebe-comprar': '2026-10-17',
   'kindle-o-tablet-para-leer': '2026-10-17',
   'aspiradora-inalambrica-o-con-cable': '2026-10-17',
+  'maquina-de-soda-vale-la-pena': '2026-10-18',
+  'anafe-vitroceramico-o-induccion': '2026-10-18',
+  'desmalezadora-a-explosion-o-a-bateria': '2026-10-18',
+  'lavarropas-inverter-que-es-y-conviene': '2026-10-18',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

@@ -33,9 +33,35 @@ export const metadata: Metadata = {
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
 }
 
+// Migas + lista de productos (sin precios: vienen en USD y como texto).
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
+      { '@type': 'ListItem', position: 2, name: 'Importados de AliExpress', item: URL },
+    ],
+  },
+  ...(productos.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: TITULO,
+          url: URL,
+          itemListElement: productos.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.link })),
+        },
+      ]
+    : []),
+]
+
 export default function AliExpressPage() {
   return (
     <main className="min-h-screen">
+      {jsonLd.map((j, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
+      ))}
       <header className="border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">

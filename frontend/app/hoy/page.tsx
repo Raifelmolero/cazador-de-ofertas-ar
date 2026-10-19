@@ -76,8 +76,12 @@ export default function HoyPage() {
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
   const top3Ids = new Set(ofertasLight.slice(0, 3).map(o => o.id_ml))
+  const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml))
+  // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
+  // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
+  const yaMostrados = new Set([...top3Ids, ...ticketAlto.slice(0, 3).map(o => o.id_ml)])
   const colchones = catColchones
-    ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo) && !top3Ids.has(o.id_ml))
+    ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo) && !yaMostrados.has(o.id_ml))
     : []
 
   // Datos estructurados para rich results de Google (top 20 alcanza:
@@ -234,11 +238,11 @@ export default function HoyPage() {
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/85 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-          <span className="font-display text-lg font-extrabold tracking-tight flex items-center gap-2">
+          <span className="font-display text-lg font-extrabold tracking-tight flex shrink-0 items-center gap-2 whitespace-nowrap">
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" priority />
             <span className="text-yellow-400">Cazador de Ofertas</span>
           </span>
-          <nav aria-label="Rubros" className="hidden md:flex items-center gap-5 text-sm font-semibold text-zinc-400">
+          <nav aria-label="Rubros" className="hidden xl:flex items-center gap-3 whitespace-nowrap text-[13px] font-semibold text-zinc-400">
             {NICHOS.map(n => (
               <a key={n.slug} href={`/${n.slug}`} className="hover:text-yellow-300 transition-colors">
                 {n.marca.replace('Cazador de ', '')}
@@ -363,7 +367,7 @@ export default function HoyPage() {
       {/* Compras grandes (el tráfico de asistentes de IA llega con intención de
           ticket alto): las 3 mejores que no estén ya en el top 3. */}
       <TopOfertasHoy
-        ofertas={ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml))}
+        ofertas={ticketAlto}
         titulo="💎 Compras grandes: lo mejor de hoy"
         seccion="ticket_alto_home"
         id="ticket-alto-hoy"

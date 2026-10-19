@@ -3,7 +3,7 @@ import Link from 'next/link'
 /** Celular (68 % de las visitas): el menú de rubros está oculto y el buscador
  *  de la grilla aparece recién en la pantalla 4-5. Esta fila va dentro del
  *  header fijo: buscador (salta a la grilla con ?q=) + rubros de ticket alto
- *  deslizables. En escritorio no se muestra (ahí está el menú). */
+ *  deslizables. En pantallas grandes no se muestra (ahí está el menú). */
 const RUBROS: { label: string; href: string }[] = [
   { label: '❄️ Aires', href: '/categoria/aire-acondicionado' },
   { label: '📱 Celulares', href: '/categoria/celulares' },
@@ -17,7 +17,7 @@ const RUBROS: { label: string; href: string }[] = [
 
 export default function AtajosCelular() {
   return (
-    <div className="md:hidden border-t border-zinc-900 px-4 pb-2.5 pt-2">
+    <div className="xl:hidden border-t border-zinc-900 px-4 pb-2.5 pt-2">
       <form method="get" role="search" className="flex gap-2">
         <label htmlFor="buscar-celular" className="sr-only">Buscar ofertas</label>
         <input

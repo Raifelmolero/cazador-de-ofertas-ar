@@ -2600,6 +2600,10 @@ def main() -> int:
                             dry,
                         )
                         log_shorts(r_deal, extra)
+                        # También al log de Actions: el error de YouTube/TikTok
+                        # solo llegaba por Telegram privado y no se podía diagnosticar.
+                        for linea in extra:
+                            print(f"[info] shorts: {linea}")
                         if extra:
                             msg += "\n" + "\n".join(extra)
                     except Exception as e:  # noqa: BLE001 — jamás frena el resto

@@ -51,8 +51,29 @@ def medidas_webp(data: bytes) -> tuple[int, int] | None:
 
 def main() -> None:
     items = json.loads((ROOT / "frontend/data/productos_rentables.json").read_text(encoding="utf-8"))["items"]
-    fotos = [i["url_imagen"] for i in items if i.get("url_imagen")][:3]
-    for foto in fotos:
+    fotos = [i["url_imagen"] for i in items if i.get("url_imagen")]
+    if "--muestra" in sys.argv:
+        # Verificación amplia: 1 de cada 10 fotos, solo las 2 miniaturas que usa el sitio.
+        ok = 0
+        elegidas = fotos[::10]
+        for foto in elegidas:
+            vs = [v for v in variantes(foto) if "/D_Q_NP_" in v and "_2X_" not in v]
+            codigos = []
+            for v in vs:
+                try:
+                    with urllib.request.urlopen(urllib.request.Request(v, headers={"User-Agent": UA}), timeout=20) as r:
+                        codigos.append(r.status)
+                except urllib.error.HTTPError as e:
+                    codigos.append(e.code)
+                except Exception:  # noqa: BLE001
+                    codigos.append(0)
+                time.sleep(0.5)
+            ok += all(c == 200 for c in codigos) and len(codigos) == 2
+            if not (all(c == 200 for c in codigos) and len(codigos) == 2):
+                print(f"  FALLA {codigos} {foto}")
+        print(f"Miniaturas OK: {ok}/{len(elegidas)}")
+        return
+    for foto in fotos[:3]:
         print(f"\nFoto: {foto}")
         for v in variantes(foto):
             try:

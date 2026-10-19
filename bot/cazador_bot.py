@@ -758,8 +758,9 @@ def write_site_data(deals: list[dict], affiliate_id: str,
 
     mezclar=True (escaneo de ML pausado): las ofertas nuevas se SUMAN al
     catálogo que ya está (no lo reemplazan, así el sitio no se queda con 2
-    productos) y `scraped_at` conserva la fecha vieja: el cartel «Actualizado»
-    de la web tiene que decir la verdad sobre la edad de la mayor parte.
+    productos) y `scraped_at` conserva la fecha vieja salvo que haya ofertas
+    cargadas a mano después de esa fecha: el cartel «Actualizado» de la web
+    tiene que decir la verdad.
 
     Las ofertas exclusivas del canal de Telegram se excluyen de la web para
     que el "SOLO EN EL CANAL" sea verdad — es el gancho para sumar miembros.
@@ -820,7 +821,13 @@ def write_site_data(deals: list[dict], affiliate_id: str,
             vigentes = [i for i in previo.get("items", [])
                         if i.get("id_ml") not in nuevos and not manual_vencida(i)]
             items = items + vigentes
-            scraped_at = previo.get("metadata", {}).get("scraped_at", scraped_at)
+            # Si entraron ofertas cargadas después de la fecha que muestra el
+            # sitio, el catálogo SÍ se actualizó ahora (cartel «hace 6 días»
+            # con ofertas cargadas hoy espantaba compradores).
+            previo_ts = previo.get("metadata", {}).get("scraped_at")
+            ultima_carga = max((d["agregada"] for d in deals if d.get("agregada")), default="")
+            if previo_ts and ultima_carga <= previo_ts[:10]:
+                scraped_at = previo_ts
         except (FileNotFoundError, json.JSONDecodeError):
             pass
     payload = {

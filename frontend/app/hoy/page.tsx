@@ -15,6 +15,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
+import AtajosCelular from '@/components/AtajosCelular'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
@@ -255,6 +256,7 @@ export default function HoyPage() {
             Alertas gratis
           </a>
         </div>
+        <AtajosCelular />
       </header>
 
       {/* Hero: el verificador es lo primero que se ve */}

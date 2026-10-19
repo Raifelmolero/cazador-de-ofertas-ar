@@ -152,6 +152,15 @@ def test_con_escaneo_pausado_las_manuales_se_suman_al_catalogo(monkeypatch, tmp_
     assert d["metadata"]["total_items"] == 2
 
 
+def test_mezclar_con_carga_nueva_refresca_la_fecha(monkeypatch, tmp_path):
+    site = tmp_path / "productos.json"
+    site.write_text(json.dumps({"metadata": {"scraped_at": "2026-10-13T05:18:57+00:00"}, "items": []}), encoding="utf-8")
+    monkeypatch.setattr(bot, "SITE_DATA_PATH", site)
+    bot.write_site_data([_deal(agregada="2026-10-19")], "afi", mezclar=True)
+    d = json.loads(site.read_text(encoding="utf-8"))
+    assert d["metadata"]["scraped_at"] != "2026-10-13T05:18:57+00:00"      # entró una carga posterior: sí se actualizó
+
+
 def test_sin_mezclar_el_catalogo_se_reemplaza_como_siempre(monkeypatch, tmp_path):
     site = tmp_path / "productos.json"
     site.write_text(json.dumps({"metadata": {"scraped_at": "2026-10-13T05:18:57+00:00"}, "items": [{"id_ml": "MLA1"}]}), encoding="utf-8")

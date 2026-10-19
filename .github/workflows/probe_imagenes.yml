@@ -1,0 +1,20 @@
+name: Probe imágenes ML
+
+# Pide SOLO fotos del CDN de imágenes de ML (no páginas) para elegir una
+# miniatura liviana para el sitio. Ver bot/tools/probe_imagenes.py.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python bot/tools/probe_imagenes.py

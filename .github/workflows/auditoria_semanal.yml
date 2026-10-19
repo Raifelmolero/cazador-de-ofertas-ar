@@ -1,0 +1,25 @@
+name: Auditoría semanal del sitio
+
+# Revisa una muestra del sitio (HTTP, canonical, noindex, JSON-LD, cabeceras de
+# seguridad) y manda un resumen PRIVADO al admin por Telegram. No publica nada
+# público y no hace pedidos a Mercado Libre.
+on:
+  schedule:
+    - cron: '0 13 * * 1'  # lunes 10:00 ART
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Auditoría
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python bot/tools/auditoria_semanal.py

@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import Clarity from './clarity'
 import ClicsML from './clics-ml'
+import AppInstalable from '@/components/AppInstalable'
 
 const inter = Inter({ subsets: ['latin'] })
 // Fuente de titulares y precios: le da carácter propio a la marca de ofertas
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Clarity />
         <ClicsML />
+        <AppInstalable />
         <Analytics />
         <SpeedInsights />
       </body>

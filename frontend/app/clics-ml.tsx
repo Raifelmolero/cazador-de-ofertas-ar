@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { track } from '@vercel/analytics'
+import { enModoApp } from '@/components/AppInstalable'
 
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
@@ -39,6 +40,8 @@ export default function ClicsML() {
         etiqueta: url.searchParams.get('matt_word') ?? 'sin_etiqueta',
         ticket_alto: a.closest('[data-ticket-alto]') ? 'si' : 'no',
         seccion: a.closest('[data-seccion]')?.getAttribute('data-seccion') ?? 'grilla',
+        // Abierto como app instalada o en el navegador: ¿los que instalan compran más?
+        modo: enModoApp() ? 'app' : 'web',
       })
     }
     document.addEventListener('click', onClick, { capture: true })

@@ -1,0 +1,41 @@
+{
+  "id": "/?app=1",
+  "name": "Cazador de Ofertas AR",
+  "short_name": "Ofertas",
+  "description": "Ofertas reales de Mercado Libre, verificadas contra el historial de precios.",
+  "lang": "es-AR",
+  "start_url": "/?utm_source=app&utm_medium=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    { "src": "/app/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/app/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/app/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ofertas de hoy",
+      "url": "/?utm_source=app&utm_medium=atajo#ofertas",
+      "icons": [{ "src": "/app/atajo-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Precio de hoy",
+      "url": "/precio-hoy?utm_source=app&utm_medium=atajo",
+      "icons": [{ "src": "/app/atajo-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Cupones de Mercado Libre",
+      "url": "/cupones-mercado-libre?utm_source=app&utm_medium=atajo",
+      "icons": [{ "src": "/app/atajo-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Verificar un descuento",
+      "url": "/?utm_source=app&utm_medium=atajo#verificador-movil",
+      "icons": [{ "src": "/app/atajo-96.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ]
+}

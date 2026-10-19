@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { ofertasHoyLight } from '@/lib/ofertashoy'
 import { CATEGORIAS } from '@/lib/categorias'
 import { categoriaDeSeguido, getSeguidosPrincipales, type Seguido } from '@/lib/seguimiento'
 
@@ -19,6 +21,7 @@ export default function PreciosIndex() {
     const nombre = categoriaDeSeguido(s)?.nombre ?? 'Otros'
     grupos.set(nombre, [...(grupos.get(nombre) ?? []), s])
   }
+  const ofertasHoy = ofertasHoyLight()
   const orden = [...CATEGORIAS.map(c => c.nombre), 'Otros'].filter(n => grupos.has(n))
 
   return (
@@ -34,6 +37,9 @@ export default function PreciosIndex() {
           Productos de Mercado Libre Argentina que seguimos: precio de hoy, precio más bajo registrado
           y desde cuándo los seguimos.
         </p>
+        <div className="-mx-4 mb-8">
+          <TopOfertasHoy ofertas={ofertasHoy} seccion="top3_precio" id="top3-precio" />
+        </div>
         {orden.map(n => (
           <section key={n} className="mb-8">
             <h2 className="font-display text-xl font-black mb-2">{n}</h2>

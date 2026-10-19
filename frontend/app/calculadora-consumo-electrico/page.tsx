@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculadoraConsumo, { type OfertaEquipo } from '@/components/CalculadoraConsumo'
 import Footer from '@/components/Footer'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { CATEGORIAS, enCategoria } from '@/lib/categorias'
+import { ofertasHoyLight } from '@/lib/ofertashoy'
 import { busquedaML } from '@/lib/afiliado'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { EQUIPOS } from '@/lib/consumo'
@@ -59,6 +62,9 @@ function ofertasPorEquipo(): Record<string, OfertaEquipo[]> {
 
 export default function CalculadoraConsumoPage() {
   const ofertas = ofertasPorEquipo()
+  // Electro eficiente para el bloque de ofertas arriba (sin aires/ventiladores: hace frío).
+  const catsEficientes = CATEGORIAS.filter(c => ['heladeras', 'lavarropas', 'freidoras-de-aire', 'smart-tv'].includes(c.slug))
+  const eficientes = ofertasHoyLight().filter(o => catsEficientes.some(c => enCategoria(c, o.titulo)))
   const busquedas = Object.fromEntries(EQUIPOS.map(e => [e.id, busquedaML(e.busqueda)]))
   // Landing /ofertas/* del equipo, solo si hoy es indexable (tiene productos).
   const LANDING_POR_EQUIPO: Record<string, string> = {
@@ -113,6 +119,17 @@ export default function CalculadoraConsumoPage() {
           Elegí un electrodoméstico o cargá sus watts, las horas por día y los días de uso. Te decimos cuántos kWh consume
           por mes y, si ponés el precio del kWh de tu factura, cuánto te cuesta. Abajo, las ofertas de hoy de ese equipo.
         </p>
+
+        {eficientes.length > 0 && (
+          <div className="-mx-4 sm:-mx-6 mb-8">
+            <TopOfertasHoy
+              ofertas={eficientes}
+              titulo="⚡ Electro que gasta menos, en oferta hoy"
+              seccion="top3_calc_consumo"
+              id="top3-calc-consumo"
+            />
+          </div>
+        )}
 
         <CalculadoraConsumo ofertas={ofertas} busquedas={busquedas} landings={landings} />
 

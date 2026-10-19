@@ -10,6 +10,7 @@ import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import CuentaRegresivaEvento from '@/components/CuentaRegresivaEvento'
 import Footer from '@/components/Footer'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
@@ -191,6 +192,13 @@ export default function BlackFridayPage() {
           </div>
         </div>
       </section>
+
+      <TopOfertasHoy
+        ofertas={ofertasLight}
+        titulo="🎯 Ofertas de hoy con descuento verificado"
+        seccion="top3_black_friday"
+        id="top3-black-friday"
+      />
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
         <ComparacionTestigo evento="Black Friday" etapa={etapa} />

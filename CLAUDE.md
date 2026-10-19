@@ -234,14 +234,23 @@ actual, precio tachado e imagen que pase el dueño por el chat. El panel de afil
 exportación. Detalle y pendientes en el final de `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`.
 Trello #31.
 
-## Estado al 2026-10-19 (celular)
-- Panel ML 7 días al 19/10: 240 clics, 16 pedidos, $237.708 (vs 409/62/$1.013.911 al 6/10). La conversión
-  cayó de 15% a 6,7%; la ganancia por pedido casi no cambió. Causa: el bache sin ofertas del 6 al 14/10
-  (bloqueo de ML). Todo el ingreso viene de la etiqueta `web`.
-- 332 ofertas manuales vigentes; las 141 del 15/10 vencen el 23/10. Nuevo **aviso diario por Telegram**
-  (`aviso_reponer_manuales`) cuando quedan <100 vigentes o van a quedar <100 en 2 días.
-- Sitio: landings y categorías con pocas ofertas muestran «Mientras tanto, las mejores ofertas de hoy»;
-  filtros arreglados (Smart TV 55+ sin «pulgadas», «Aire Acond» abreviado); `oferta_manual` corrige
-  tildes rotas («ColchÃ³n»).
-- Faltan productos en aires ≤3000 fg, heladeras no frost, termotanques, notebooks y herramientas: es lo
-  que más rinde cargar. Comparar el panel el 27/10.
+## Estado al 2026-10-19 (celular) — leer `docs/PLAN-ACCION-2026-10-19.md`
+- Panel ML 7 días al 19/10: 240 clics, 16 pedidos, $237.708 (6/10: 409/62/$1.013.911). La conversión
+  cayó de 15 % a 6,7 %; ganancia por pedido estable. Causa principal: bache sin ofertas 6-14/10 y hoy
+  ~300 ofertas manuales contra ~280 frescas por día antes. Todo el ingreso es etiqueta `web`.
+- Hecho hoy (todo en main, 349 tests con pytest OK): aviso diario de manuales por vencer;
+  landings/categorías flacas con «Mientras tanto, las mejores ofertas de hoy»; filtros Smart TV 55+ y
+  «Aire Acond»; tildes rotas en carga manual; buscador + rubros en el header del celular
+  (`AtajosCelular`, hasta 1280 px); fecha del sitio se refresca con cargas nuevas (antes «hace 6 días»);
+  home sin colchones repetidos; menú de escritorio en 1 renglón; resultado de Shorts al log de Actions.
+- **YouTube Shorts falla en silencio**: token en verde (salud_tokens) pero ningún Short registrado
+  desde el 17/10. Desde el 19/10 el error se imprime como `[info] shorts:` en el log de la corrida
+  nocturna (~00 UTC) de «Cazador Deals Bot»: leerlo y arreglar.
+- Etiqueta `extension` del panel = nuestra extensión de Chrome (tarjeta #22), 91 clics / 0 ventas.
+- Competidor directo: mejorescompras.com.ar (dice 9.000 productos vía API oficial de ML). Usarlo como
+  argumento con Agustina. API nuestra sigue en 403 / catálogo sin precios.
+- `pytest` no viene en el sandbox: `pip install pytest` y `python -m pytest -q bot/tests` (corre los 349).
+- Prueba visual: `npx next dev` + playwright-core con `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
+  `next build` completo falla acá por `opengraph-image` (sin red); en Vercel/CI compila. Para cortar el
+  dev server NO usar `pkill -f` (mata la shell): matar los PID de `ps | grep [n]ext`.
+- Medir el domingo 26/10 contra 240 clics / 16 pedidos / $237.708.

@@ -38,8 +38,8 @@ const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 const MAX_OFERTAS = 16
 
-const TITULO = `Black Friday ${BF.año} Argentina: cuándo es y ofertas reales`
-const DESCRIPCION = `El Black Friday ${BF.año} es el ${BF.fechasTexto}. En Argentina no tiene organizador oficial: cada tienda arma sus promos. Cómo detectar descuentos inflados y ofertas de Mercado Libre verificadas contra el historial.`
+const TITULO = `Black Friday ${BF.año} Argentina: cuándo es y ofertas de hoy`
+const DESCRIPCION = `Black Friday ${BF.año} en Argentina: ${BF.fechasTexto}. Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo detectar descuentos inflados.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),

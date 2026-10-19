@@ -127,9 +127,9 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-heladeras',
     nombre: 'heladeras',
-    titulo: `Mejores heladeras en oferta ${AÑO}: comparativa de precios`,
+    titulo: `Mejores heladeras en Argentina ${AÑO}`,
     descripcion:
-      'Comparativa de heladeras en oferta hoy en Mercado Libre Argentina: no frost o cíclica, litros, precio y precio mínimo registrado.',
+      'Las mejores heladeras en Argentina 2026 en oferta hoy en Mercado Libre: no frost o cíclica, litros, marcas, precio y el mínimo que registramos.',
     intro:
       'Las heladeras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'heladeras',
@@ -598,7 +598,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-cafeteras',
     nombre: 'cafeteras',
-    titulo: `Cafeteras en oferta ${AÑO}: ofertas de hoy y comparativa de precios`,
+    titulo: `Cafeteras en oferta ${AÑO}: descuentos de hoy`,
     descripcion:
       'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
     intro:
@@ -650,9 +650,9 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-batidoras',
     nombre: 'batidoras',
-    titulo: `Mejores batidoras en oferta ${AÑO}: comparativa de precios`,
+    titulo: `Batidoras: precio hoy y ofertas ${AÑO}`,
     descripcion:
-      'Comparativa de batidoras planetarias y de mano en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+      'Precio de batidoras hoy en Mercado Libre Argentina (2026): planetarias, de mano y de vaso en oferta, con descuento y el precio mínimo registrado.',
     intro:
       'Las batidoras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
@@ -1016,7 +1016,7 @@ export const COMPARATIVAS: Comparativa[] = [
     nombre: 'celulares Motorola',
     titulo: `Mejores celulares Motorola en oferta ${AÑO}: Moto G, Moto E y Edge`,
     descripcion:
-      'Comparativa de celulares Motorola (Moto G, Moto E, Edge) en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Cuál conviene según el uso.',
+      '¿Cuál es el mejor Moto G en 2026? Celulares Motorola (Moto G, Moto E, Edge) en oferta hoy en Mercado Libre Argentina, con precio, descuento y cuál conviene.',
     intro:
       'Los Motorola en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['motorola', 'moto g', 'moto e', 'moto edge', 'razr'],

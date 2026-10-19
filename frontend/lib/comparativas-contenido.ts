@@ -1973,7 +1973,7 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
   },
 
   'mejores-motorola': {
-    titulo: 'Mejores celulares Motorola en oferta 2026: Moto G, Moto E y Edge',
+    titulo: 'Mejor Moto G 2026: celulares Motorola en oferta hoy',
     secciones: [
       {
         titulo: 'Las líneas de Motorola, en limpio',

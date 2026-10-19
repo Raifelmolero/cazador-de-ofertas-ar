@@ -10,9 +10,9 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/calculadora-consumo-electrico`
-const TITULO = 'Calculadora de consumo eléctrico: kWh y costo por aparato'
+const TITULO = 'Calculadora de consumo eléctrico 2026: kWh y costo'
 const DESCRIPCION =
-  'Calculá cuántos kWh por mes gasta tu aire, heladera, freidora, termotanque o estufa y cuánto cuesta con tu precio del kWh. Qué es la etiqueta A+.'
+  'Calculá cuántos kWh consume tu casa en Argentina y cuánto pagás por aparato: aire, heladera, caldera eléctrica, estufa. Gratis y actualizada a 2026.'
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} | Cazador de Ofertas`, t => t]),

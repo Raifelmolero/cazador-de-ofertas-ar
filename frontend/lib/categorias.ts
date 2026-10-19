@@ -90,9 +90,9 @@ export const CATEGORIAS: Categoria[] = [
   {
     slug: 'freidoras-de-aire',
     nombre: 'Freidoras de aire',
-    titulo: 'Ofertas de freidoras de aire (air fryer) en Mercado Libre Argentina',
+    titulo: 'Freidora de aire en oferta hoy: precios y descuentos 2026',
     descripcion:
-      'Freidoras de aire y hornos air fryer en oferta en Mercado Libre Argentina, con descuentos verificados. Qué capacidad elegir y qué mirar antes de comprar.',
+      'Freidoras de aire (airfryer) en oferta hoy en Mercado Libre Argentina, con descuentos verificados contra el historial. Precios 2026 y qué capacidad elegir.',
     intro:
       'Freidoras de aire y hornos air fryer que hoy tienen descuento real en Mercado Libre Argentina, verificado contra el historial de precios.',
     keywords: ['freidora de aire', 'freidora electrica', 'freidora sin aceite', 'air fryer', 'airfryer'],

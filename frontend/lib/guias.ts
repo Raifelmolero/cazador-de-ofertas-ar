@@ -33,9 +33,9 @@ export const GUIAS: Guia[] = [
   ...GUIAS_LONG_TAIL,
   {
     slug: 'como-saber-si-un-descuento-de-mercado-libre-es-real',
-    titulo: 'Cómo saber si un descuento de Mercado Libre es real o está inflado',
+    titulo: 'Cómo saber si un descuento de Mercado Libre es real (2026)',
     descripcion:
-      'Método simple para detectar descuentos falsos en Mercado Libre Argentina: historial de precios, precio "anterior" y mínimo histórico.',
+      'Cómo detectar en 1 minuto si un descuento de Mercado Libre Argentina es real o inflado: historial de precios, precio "anterior" y mínimo histórico. 2026.',
     pregunta: '¿Cómo sé si un descuento de Mercado Libre es real?',
     respuestaCorta:
       'Un descuento es real si el precio "anterior" que se muestra fue efectivamente el precio de venta en días previos. Si el producto ya se vendía al precio actual (o más barato) la semana pasada, el "40% OFF" es solo un precio de lista inflado. La forma de comprobarlo es mirar el historial de precios del producto.',

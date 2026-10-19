@@ -41,9 +41,9 @@ const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 const MAX_OFERTAS = 16
 
 const FECHAS = CM.oficial ? `${CM.fechasTexto} de ${CM.año}` : `${CM.fechasTexto} de ${CM.año} (a confirmar)`
-const TITULO = `Cyber Monday ${CM.año} en Argentina: fechas y ofertas reales`
+const TITULO = `Cyber Monday ${CM.año} Argentina: fechas y ofertas de hoy`
 const DESCRIPCION = CM.oficial
-  ? `El Cyber Monday ${CM.año} es ${CM.fechasTexto} (fechas oficiales de la CACE). Cómo detectar descuentos inflados y ofertas de Mercado Libre verificadas contra el historial de precios.`
+  ? `Cyber Monday ${CM.año} Argentina: ${CM.fechasTexto} (CACE). Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo evitar descuentos inflados.`
   : `Cuándo es el Cyber Monday ${CM.año} en Argentina (estimado: ${CM.fechasTexto}, a confirmar por la CACE), cómo detectar descuentos inflados y ofertas verificadas contra el historial de precios.`
 
 export const metadata: Metadata = {

@@ -13,6 +13,8 @@ import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
+import CtaFijoML from '@/components/CtaFijoML'
+import { elegirDestacado } from '@/components/DestacadoML'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import { COMPARATIVAS, getComparativa, productosDe } from '@/lib/comparativas'
@@ -91,6 +93,9 @@ export default function CyberMondayPage() {
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
   }))
+
+  // Producto principal para la barra fija de celular (78% de scroll y 0 clics a ML).
+  const destacado = elegirDestacado(ofertas)
 
   const comparativas = COMPARATIVAS.filter(c => c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-'))
   const blackFriday = getComparativa('ofertas-black-friday')
@@ -563,7 +568,16 @@ export default function CyberMondayPage() {
         </section>
       </article>
 
+      <div className="sm:hidden h-20" aria-hidden="true" />
       <Footer brand="ofertas" />
+      {destacado && (
+        <CtaFijoML
+          titulo={destacado.titulo}
+          precio={'$' + Math.round(destacado.precio_actual).toLocaleString('es-AR')}
+          url={destacado.url_producto}
+          seccion="sticky_guia"
+        />
+      )}
     </main>
   )
 }

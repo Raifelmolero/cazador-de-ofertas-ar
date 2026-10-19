@@ -12,15 +12,22 @@ export default function CtaFijoML({
   precio,
   url,
   desde = 380,
+  seccion = 'cta-fijo',
 }: {
   titulo: string
   precio: string
   url: string
   desde?: number
+  seccion?: string
 }) {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > desde)
+    // Se esconde cerca del footer para no tapar sus links.
+    const onScroll = () => {
+      const footer = document.querySelector('footer')
+      const cercaFooter = footer ? footer.getBoundingClientRect().top < window.innerHeight - 40 : false
+      setVisible(window.scrollY > desde && !cercaFooter)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -28,7 +35,7 @@ export default function CtaFijoML({
 
   return (
     <div
-      data-seccion="cta-fijo"
+      data-seccion={seccion}
       aria-hidden={!visible}
       className={`sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3 transition-transform duration-200 ${visible ? 'translate-y-0' : 'translate-y-full'}`}
     >

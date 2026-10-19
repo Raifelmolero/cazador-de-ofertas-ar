@@ -317,11 +317,15 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         </nav>
       </article>
       {/* Celular: el botón de compra siempre a mano mientras lee */}
-      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3">
-        <a href={ctaHref} className="block rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black">
-          {ctaBoton}
-        </a>
-      </div>
+      {/* Barra fija en celular: producto principal directo a ML si la guía tiene
+          ofertas del día; si no, botón a las ofertas de su categoría. Una sola barra. */}
+      {!destacado && (
+        <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3">
+          <a href={ctaHref} className="block rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black">
+            {ctaBoton}
+          </a>
+        </div>
+      )}
       <div className="sm:hidden h-20" aria-hidden="true" />
       <Footer brand="ofertas" />
       {destacado && (
@@ -329,6 +333,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           titulo={destacado.titulo}
           precio={'$' + Math.round(destacado.precio_actual).toLocaleString('es-AR')}
           url={destacado.url_producto}
+          seccion="sticky_guia"
         />
       )}
     </main>

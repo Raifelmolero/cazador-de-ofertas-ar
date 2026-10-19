@@ -44,16 +44,27 @@ export default function Clarity() {
     // Si el clic llega antes de que Clarity cargue (idle), se carga ya mismo: así
     // el evento no queda encolado en un stub que se pierde al abrir ML en la app.
     let cargarYa: () => void = () => {}
-    document.addEventListener(
-      'click',
-      e => {
-        const a = (e.target as Element | null)?.closest?.('a[href*="mercadolibre.com"]')
+    const onClickML = (e: MouseEvent) => {
+        // auxclick: solo botón del medio (abrir en pestaña nueva)
+        if (e.type === 'auxclick' && e.button !== 1) return
+        const a = (e.target as Element | null)?.closest?.(
+          'a[href*="mercadolibre.com"], a[href*="meli.la"], a[href*="mercadolibre.ar"]',
+        )
         if (!a) return
+        // Primero se pide el script real (si todavía es el stub): así arranca la
+        // descarga antes de que el celular pase a la app de ML y la pestaña quede
+        // en segundo plano. Los eventos quedan en clarity.q y se envían al cargar.
+        cargarYa()
         // window.clarity en el momento del clic: el script real reemplaza al stub al cargar
         const c = w.clarity as (...args: unknown[]) => void
         const pagina = window.location.pathname.split('/').slice(0, 2).join('/') || '/'
+        // Etiqueta de sesión: permite filtrar "sesiones con clic a ML" aunque el
+        // panel/API no muestre el evento personalizado.
+        c('set', 'click_ml', '1')
         c('set', 'click_ml_pagina', pagina)
-        c('event', a.closest('[data-destacada]') ? 'click_ml_destacada' : 'click_ml')
+        // Siempre el evento base click_ml (antes la destacada lo reemplazaba)
+        c('event', 'click_ml')
+        if (a.closest('[data-destacada]')) c('event', 'click_ml_destacada')
         // Ticket alto (colchones, herramientas, >= $250.000): lo que más ganancia deja
         if (a.closest('[data-ticket-alto]')) c('event', 'click_ml_ticket_alto')
         // Etiqueta de afiliado del link (web/nicho): cruza con el panel de ML
@@ -73,10 +84,13 @@ export default function Clarity() {
           // Además como evento: en Clarity los eventos se filtran más fácil que las etiquetas
           c('event', `click_ml_seccion_${sec.slice(0, 30)}`)
         }
-        cargarYa()
-      },
-      true,
-    )
+        // Marca la sesión como importante: Clarity la guarda aunque haya muestreo
+        c('upgrade', 'click_ml')
+    }
+    // Captura en document: cubre todos los links (también server components y
+    // los que frenan la propagación). target=_blank no corta: la pestaña sigue viva.
+    document.addEventListener('click', onClickML, true)
+    document.addEventListener('auxclick', onClickML, true)
 
     const script = document.createElement('script')
     script.id = 'clarity-script'

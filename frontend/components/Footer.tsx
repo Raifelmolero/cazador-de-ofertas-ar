@@ -1,3 +1,5 @@
+import { TELEGRAM_URL, INSTAGRAM_URL, X_URL } from '@/lib/marca'
+
 const BRANDS = {
   calculadora: {
     name: 'CalculadoraML',
@@ -51,6 +53,13 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
               <a href="https://cazadordeofertas.com.ar/mejores" className="underline hover:text-yellow-400 transition-colors">
                 Mejores en oferta
               </a>
+              <br />
+              Seguinos:{' '}
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">Telegram</a>
+              {' · '}
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">Instagram</a>
+              {' · '}
+              <a href={X_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">X (Twitter)</a>
             </>
           )}
         </p>

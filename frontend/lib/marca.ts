@@ -14,10 +14,11 @@ export const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 export const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 export const THREADS_URL = 'https://www.threads.com/@elcazadordeofertas.ar'
 export const INSTAGRAM_URL = 'https://instagram.com/elcazadordeofertas.ar'
+export const X_URL = 'https://x.com/cazaofertazas'
 /** Bot de alertas de precio por privado (bot/alertas.py, components/AlertaCTA.tsx). */
 export const BOT_ALERTAS_URL = 'https://t.me/cazador_ofertas_ar_bot'
 
-export const SAME_AS = [INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL]
+export const SAME_AS = [INSTAGRAM_URL, X_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL]
 
 /** Calculadora hermana (mismo deploy, otro dominio). */
 export const CALC_URL = 'https://calculadoraml.com.ar'

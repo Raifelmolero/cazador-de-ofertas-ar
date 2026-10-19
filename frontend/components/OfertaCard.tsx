@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { miniaturaML } from '@/lib/imagenml'
 import Link from 'next/link'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { alertaUrl } from '@/components/AlertaCTA'
@@ -158,7 +159,7 @@ function Tarjeta({
         <div className="relative w-[38%] max-w-72 shrink-0 self-stretch bg-white min-h-36">
           {producto.url_imagen ? (
             <Image
-              src={producto.url_imagen}
+              src={miniaturaML(producto.url_imagen)}
               alt={producto.titulo}
               fill
               priority={priority}
@@ -237,7 +238,7 @@ function Tarjeta({
       <div className="relative aspect-square bg-white">
         {producto.url_imagen ? (
           <Image
-            src={producto.url_imagen}
+            src={miniaturaML(producto.url_imagen)}
             alt={producto.titulo}
             fill
             priority={priority}

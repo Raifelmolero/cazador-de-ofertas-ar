@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { miniaturaML } from '@/lib/imagenml'
 import type { OfertaLight } from '@/components/OfertaCard'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 
@@ -41,7 +42,7 @@ export default function TopOfertasHoy({
               >
                 <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-white">
                   {o.url_imagen ? (
-                    <Image src={o.url_imagen} alt="" fill unoptimized priority={i === 0} sizes="96px" className="object-contain p-1.5" />
+                    <Image src={miniaturaML(o.url_imagen, 'chica')} alt="" fill unoptimized priority={i === 0} sizes="96px" className="object-contain p-1.5" />
                   ) : (
                     <span className="flex h-full items-center justify-center text-3xl text-zinc-300">📦</span>
                   )}

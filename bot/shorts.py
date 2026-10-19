@@ -165,6 +165,17 @@ def upload_tiktok(video: Path, deal: dict, access_token: str,
     return j["data"]["publish_id"]
 
 
+def motivo_youtube(e: Exception) -> str:
+    """Error de subida en palabras del dueño cuando se conoce la causa."""
+    txt = str(e)
+    if "youtubeSignupRequired" in txt:
+        # Visto el 19/10: el token se autorizó con una cuenta de Google sin canal.
+        return ("la cuenta de Google autorizada no tiene canal de YouTube. En la PC: "
+                "python bot/tools/setup_youtube.py y autorizar con elcazadordeofertas.ar@gmail.com "
+                "(la cuenta dueña del canal).")
+    return txt[:150]
+
+
 def cross_post(video: Path, deal: dict, site_link: str, ml_links: dict[str, str],
                dry: bool = False) -> list[str]:
     """Sube el reel a los destinos con credenciales. Devuelve líneas de resumen
@@ -186,7 +197,7 @@ def cross_post(video: Path, deal: dict, site_link: str, ml_links: dict[str, str]
                 )
                 out.append(f"▶️ YouTube Short: {url}")
             except Exception as e:  # noqa: BLE001 — best-effort
-                out.append(f"⚠️ YouTube Short falló: {str(e)[:150]}")
+                out.append(f"⚠️ YouTube Short falló: {motivo_youtube(e)}")
 
     if env("TIKTOK_CLIENT_KEY") and env("TIKTOK_CLIENT_SECRET") and env("TIKTOK_REFRESH_TOKEN"):
         if dry:

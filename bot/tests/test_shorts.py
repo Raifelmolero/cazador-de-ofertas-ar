@@ -76,3 +76,10 @@ class TestSubidaYouTube(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_motivo_youtube_sin_canal_se_explica():
+    import shorts as sh
+    e = RuntimeError('HTTP 401 en https://www.googleapis.com/upload/youtube/v3/videos: {"reason": "youtubeSignupRequired"}')
+    assert "no tiene canal de YouTube" in sh.motivo_youtube(e)
+    assert sh.motivo_youtube(RuntimeError("otro error")) == "otro error"

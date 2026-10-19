@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SITIO = "https://cazadordeofertas.com.ar"
 UA = "Mozilla/5.0 (CazadorAuditoriaSemanal)"
 MUESTRA = 80
+MAX_LINKS = 200   # links internos distintos a probar (sale de las páginas de la muestra)
 CLAVE = ["/", "/hoy", "/guias", "/cyber-monday", "/black-friday", "/dia-de-la-madre", "/aliexpress"]
 CABECERAS = ["strict-transport-security", "x-content-type-options", "x-frame-options",
              "referrer-policy", "permissions-policy"]
@@ -39,10 +40,25 @@ def urls_sitemap() -> list[str]:
     return re.findall(r"<loc>([^<]+)</loc>", xml)
 
 
+def links_internos(html: str) -> set[str]:
+    """Rutas internas («/algo») que enlaza la página, sin query ni ancla y sin
+    archivos estáticos: son las que se rompen cuando cambia un slug."""
+    out = set()
+    for h in re.findall(r'href="(/[^"#?]*)', html):
+        if h.startswith("//") or h.startswith("/_next") or re.search(r"\.(png|jpe?g|webp|svg|ico|xml|txt|json|js|css)$", h):
+            continue
+        out.add(h.rstrip("/") or "/")
+    return out
+
+
+ENLAZADAS: set[str] = set()
+
+
 def revisar(url: str) -> list[str]:
     st, _, html = get(url)
     if st != 200:
         return [f"HTTP {st}"]
+    ENLAZADAS.update(links_internos(html))
     problemas = []
     if re.search(r'<meta[^>]+name="robots"[^>]+noindex', html, re.I):
         problemas.append("noindex")
@@ -67,6 +83,10 @@ def main() -> None:
             fallas[u] = p
     _, headers, _ = get(SITIO + "/")
     faltan = [h for h in CABECERAS if h not in headers]
+    # Links internos rotos: los que enlazan las páginas revisadas (no solo el sitemap).
+    vistas = {u.replace(SITIO, "").rstrip("/") or "/" for u in muestra}
+    pendientes = sorted(ENLAZADAS - vistas)[:MAX_LINKS]
+    rotos = [p for p in pendientes if get(SITIO + p)[0] != 200]
 
     lineas = [f"🔎 Auditoría semanal del sitio",
               f"URLs en sitemap: {len(urls)} · revisadas: {len(muestra)} · con problemas: {len(fallas)}"]
@@ -74,6 +94,9 @@ def main() -> None:
         lineas.append(f"• {u.replace(SITIO, '') or '/'}: {', '.join(p)}")
     if len(fallas) > 8:
         lineas.append(f"… y {len(fallas) - 8} más")
+    lineas.append(f"Links internos probados: {len(pendientes)} · rotos: {len(rotos)}")
+    for p in rotos[:8]:
+        lineas.append(f"• roto: {p}")
     lineas.append("Cabeceras de seguridad: " + ("OK" if not faltan else "faltan " + ", ".join(faltan)))
     texto = "\n".join(lineas)
     sys.stdout.buffer.write((texto + chr(10)).encode("utf-8"))

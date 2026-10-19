@@ -53,3 +53,22 @@
 3. Cyber Monday 2-4/11: ofertas cargadas antes del 1/11.
 4. Bajar Telegram a 1 post por corrida (no suma clics; decide el dueño).
 5. Preguntar qué es la etiqueta `extension` (91 clics, 0 ventas la semana pasada).
+
+## 8. Segunda pasada (misma tarde)
+- **Rastreo del sitio** (dev server con Host del dominio de ofertas): sitemap de 1.563 URLs
+  (1.326 `/precio`, 89 guías, 58 comparativas, 27 landings, 25 categorías). Muestra de 278 páginas
+  (todas menos `/precio` + 40 `/precio` al azar): **0 errores**, 0 links internos rotos, 0 `noindex`,
+  0 títulos duplicados.
+- **Links a ML**: 2.965; solo 16 sin etiqueta, todos a propósito (12 en `/descuentos-inflados`, donde
+  no se gana con descuentos truchos, y 4 citas de fuentes legales en `/cupones-mercado-libre`).
+- Sin JSON-LD: `/precio` (índice), `/aliexpress`, `/privacidad`, `/terminos` (menor).
+- **Buscador del sitio**: buscaba la frase exacta → «aire inverter» daba 0 y «aires»/«colchones» no
+  encontraban nada. Arreglado (palabra por palabra + plurales); probado en navegador: 0 → 3 aires.
+- **Fecha del sitio**: confirmado en producción: `scraped_at` 19/10 13:32, 300 productos.
+- **Extensión de Chrome**: el link «Comprar con Cazador» está bien armado (matt_word=extension +
+  matt_tool); los 0 ventas son de uso, no un error.
+- **YouTube Shorts**: token OK pero 0 Shorts registrados desde el 17/10 → error visible en el log desde
+  el 19/10; revisión programada el 20/10.
+- **Comparativas**: las 57 ya tienen texto propio (pendiente del 07/10 cerrado).
+- No se pudo ver desde acá: Clarity, Search Console, panel de ML, peso real de imágenes en celular
+  (el sandbox no llega a mlstatic), Vercel.

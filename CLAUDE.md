@@ -253,4 +253,5 @@ Trello #31.
 - Prueba visual: `npx next dev` + playwright-core con `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
   `next build` completo falla acá por `opengraph-image` (sin red); en Vercel/CI compila. Para cortar el
   dev server NO usar `pkill -f` (mata la shell): matar los PID de `ps | grep [n]ext`.
+- Segunda auditoría 19/10 (sección 8 de AUDITORIA-2026-10-19.md): 278 páginas sin errores; buscador arreglado (palabra por palabra + plurales).
 - Medir el domingo 26/10 contra 240 clics / 16 pedidos / $237.708.

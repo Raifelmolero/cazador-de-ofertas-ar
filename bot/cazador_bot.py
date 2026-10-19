@@ -310,6 +310,22 @@ def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list
     return out
 
 
+def aviso_reponer_manuales(path: Path | None = None, hoy: date | None = None,
+                           minimo: int = 100) -> str | None:
+    """Texto de aviso al admin si las manuales vigentes se están por acabar:
+    quedan menos de `minimo`, o en 2 días vencen tantas que se baja de ese
+    piso. None si está todo bien."""
+    hoy = hoy or datetime.now(timezone.utc).date()
+    vigentes = load_manual_deals(path, hoy)
+    en_2_dias = load_manual_deals(path, hoy + timedelta(days=2))
+    if len(vigentes) >= minimo and len(en_2_dias) >= minimo:
+        return None
+    return (f"⏳ Ofertas manuales: hoy hay {len(vigentes)} vigentes y en 2 días "
+            f"quedan {len(en_2_dias)} (cada una dura {MANUAL_MAX_DIAS} días). "
+            "Cargá una tanda nueva (Actions → «Agregar oferta manual», campo lote) "
+            "o pasáselas a Claude por el chat.")
+
+
 def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0,
                 scrape: bool = True) -> list[dict]:
     """Baja y parsea las páginas de ofertas (y las de ofertas relámpago y las
@@ -2379,6 +2395,20 @@ def main() -> int:
     print(f"[info] historial: {len(history)} productos | {n_low} en mínimo | {n_inf} infladas")
     if deals:
         log_scan(len(deals), n_low, n_inf)
+
+    # Una vez por día: aviso si las manuales se están por acabar, para que el
+    # sitio no se vacíe de golpe (los crons llegan atrasados: se marca la fecha).
+    if not scrape and (aviso := aviso_reponer_manuales()):
+        hoy_txt = datetime.now(timezone.utc).date().isoformat()
+        marca = BASE_DIR / "state" / "aviso_manuales.txt"
+        try:
+            ya = marca.read_text(encoding="utf-8").strip() == hoy_txt
+        except OSError:
+            ya = False
+        if dry or not ya:
+            alert_admin(token, cfg["admin_chat"], aviso, dry)
+            if not dry:
+                marca.write_text(hoy_txt, encoding="utf-8")
 
     if scrape and len(deals) < 5:
         print(f"::warning::Cazador: {len(deals)} ofertas parseadas"

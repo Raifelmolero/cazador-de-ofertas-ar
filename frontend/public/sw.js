@@ -4,7 +4,7 @@
 // - Archivos estáticos (_next/static, íconos, personaje): primero la caché.
 // - Nunca toca pedidos a otros dominios: los links de afiliado a Mercado Libre
 //   salen tal cual, sin pasar por acá.
-const VERSION = 'v1'
+const VERSION = 'v2'
 const PAGINAS = `paginas-${VERSION}`
 const ESTATICOS = `estaticos-${VERSION}`
 const SIN_CONEXION = '/app/sin-conexion.html'

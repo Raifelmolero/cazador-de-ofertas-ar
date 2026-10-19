@@ -59,7 +59,7 @@ export default function AppInstalable() {
   useEffect(() => {
     if (!esDominioOfertas(window.location.hostname)) return
     agregarHead('link', { rel: 'manifest', href: '/app/manifest.webmanifest' })
-    agregarHead('link', { rel: 'apple-touch-icon', href: '/app/icon-192.png' })
+    agregarHead('link', { rel: 'apple-touch-icon', href: '/app/apple-touch-icon.png' })
     agregarHead('meta', { name: 'apple-mobile-web-app-title', content: 'Ofertas' })
     agregarHead('meta', { name: 'apple-mobile-web-app-capable', content: 'yes' })
 

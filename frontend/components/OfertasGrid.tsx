@@ -11,6 +11,22 @@ function normalizar(s: string) {
     .replace(/[\u0300-\u036f]/g, '')
 }
 
+/** «aire inverter» tiene que encontrar «Aire Acondicionado Split Inverter» y
+ *  «aires» a «aire»: cada palabra por separado, en cualquier orden, y sin la s
+ *  o es final (colchones → colchon, celulares → celular). */
+function raiz(palabra: string) {
+  if (palabra.length > 4 && palabra.endsWith('es')) return palabra.slice(0, -2)
+  if (palabra.length > 3 && palabra.endsWith('s')) return palabra.slice(0, -1)
+  return palabra
+}
+export function coincide(titulo: string, consulta: string) {
+  const t = normalizar(titulo)
+  return normalizar(consulta)
+    .split(/\s+/)
+    .filter(Boolean)
+    .every(w => t.includes(raiz(w)))
+}
+
 function BuscarEnML({ q }: { q: string }) {
   return (
     <a
@@ -171,7 +187,7 @@ export default function OfertasGrid({
   const visibles = useMemo(() => {
     const base =
       chip !== 'all' || nq !== ''
-        ? ofertas.filter(o => pasaChip(o, chip) && (!nq || normalizar(o.titulo).includes(nq)))
+        ? ofertas.filter(o => pasaChip(o, chip) && (!nq || coincide(o.titulo, nq)))
         : ofertas
     return ordenar(base, orden)
   }, [ofertas, chip, nq, orden])

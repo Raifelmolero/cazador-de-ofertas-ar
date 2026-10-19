@@ -146,8 +146,8 @@ export default function CuponesPage() {
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>
           <p className="text-zinc-200 leading-relaxed">
-            No hay un código mágico que sirva para todos. Los cupones de Mercado Libre se ven con tu cuenta en
-            mercadolibre.com.ar/cupones, cada uno con sus condiciones, y en general se usa uno por compra. Acá no
+            No hay un código mágico que sirva para todos. Los cupones de Mercado Libre se ven con tu cuenta en{' '}
+            <a href={paginaML('https://www.mercadolibre.com.ar/cupones')} target="_blank" rel="sponsored nofollow noopener" className={a}>mercadolibre.com.ar/cupones</a>, cada uno con sus condiciones, y en general se usa uno por compra. Acá no
             vas a encontrar códigos inventados: te explicamos dónde están los reales y cómo comprobar que el precio
             con descuento sea de verdad bajo.
           </p>
@@ -167,6 +167,13 @@ export default function CuponesPage() {
               🔥 Ver las ofertas de hoy con descuento real ↓
             </a>
           </div>
+          {ofertas.length > 0 && (
+            <div data-seccion="cupones_hero_ofertas" className="mt-4 grid grid-cols-2 gap-3">
+              {ofertas.slice(0, 4).map((o, i) => (
+                <OfertaCard key={o.id_ml} producto={o} priority={i < 2} />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="space-y-8 text-zinc-400 leading-relaxed">
@@ -286,8 +293,8 @@ export default function CuponesPage() {
           </p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertas.map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+            {ofertas.map(o => (
+              <OfertaCard key={o.id_ml} producto={o} />
             ))}
           </div>
         )}

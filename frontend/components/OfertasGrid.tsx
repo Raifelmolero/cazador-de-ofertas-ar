@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { busquedaML } from '@/lib/afiliado'
 
@@ -133,12 +133,19 @@ export default function OfertasGrid({
   const [q, setQ] = useState('')
   const [chip, setChip] = useState<ChipId>('all')
   const [orden, setOrden] = useState<OrdenId>('relevancia')
+  const [desdeUrl, setDesdeUrl] = useState(false)
+  const resultadosRef = useRef<HTMLDivElement>(null)
 
   // ?q=heladera en la URL: búsquedas compartibles (y que una IA pueda linkear).
   useEffect(() => {
     const inicial = new URLSearchParams(window.location.search).get('q')
+    if (!inicial) return
     // eslint-disable-next-line react-hooks/set-state-in-effect -- leer la URL solo existe en el cliente
-    if (inicial) setQ(inicial)
+    setQ(inicial)
+    setDesdeUrl(true)
+    // Llega con intención de compra (Google/IA): saltar directo a los resultados
+    // filtrados en vez de dejarlo en el hero.
+    requestAnimationFrame(() => resultadosRef.current?.scrollIntoView({ block: 'start' }))
   }, [])
 
   const counts = useMemo(() => {
@@ -171,6 +178,12 @@ export default function OfertasGrid({
 
   return (
     <>
+      <div ref={resultadosRef} className="scroll-mt-20" />
+      {desdeUrl && nq !== '' && visibles.length > 0 && (
+        <p className="mb-3 font-display text-base sm:text-lg font-black">
+          Resultados para «{q.trim()}» <span className="text-sm font-semibold text-zinc-400">({visibles.length})</span>
+        </p>
+      )}
       {/* Búsqueda + filtros */}
       {!catalogoChico && (
       <div className="mb-4 sm:mb-5 space-y-3">
@@ -229,8 +242,20 @@ export default function OfertasGrid({
       {visibles.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-zinc-400 mb-4">
-            Nada con ese filtro por ahora 🎯 — sumamos ofertas nuevas seguido.
+            {nq ? <>Hoy no tenemos «{q.trim()}» en oferta 🎯 — mirá en Mercado Libre o estas ofertas de hoy.</> : 'Nada con ese filtro por ahora 🎯 — sumamos ofertas nuevas seguido.'}
           </p>
+          {nq !== '' && nq.length < 3 && (
+            <div className="mb-4">
+              <BuscarEnML q={q} />
+            </div>
+          )}
+          {nq !== '' && ofertas.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 text-left">
+              {ordenar(ofertas, 'relevancia').slice(0, 4).map((o, i) => (
+                <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />
+              ))}
+            </div>
+          )}
           <button
             onClick={() => {
               setQ('')

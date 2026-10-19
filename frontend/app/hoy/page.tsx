@@ -346,12 +346,18 @@ export default function HoyPage() {
       </section>
 
       {/* Fecha comercial vigente: una sola fuente en lib/temporada.ts (se evalúa en cada rebuild, 3×/día) */}
-      <DesdeAsistenteIA />
-      <BannerTemporada />
-      {/* Celular: 3 ofertas con botón antes de cualquier fila de atajos y recién
-          después los rubros que más venden (antes la 1ª tarjeta con botón
-          aparecía tras 4 filas de chips). */}
-      <TopOfertasHoy ofertas={ofertasLight} />
+      {/* Celular: las 3 ofertas con botón a ML van primero (order) y los banners
+          debajo; en escritorio se respeta el orden del DOM. Clarity 16-18/10:
+          scroll medio 28% en celular y 0 clics a ML en la home. */}
+      <div className="flex flex-col">
+        <div className="order-2 sm:order-none">
+          <DesdeAsistenteIA />
+          <BannerTemporada />
+        </div>
+        <div className="order-1 sm:order-none">
+          <TopOfertasHoy ofertas={ofertasLight} />
+        </div>
+      </div>
       {/* Compras grandes (el tráfico de asistentes de IA llega con intención de
           ticket alto): las 3 mejores que no estén ya en el top 3. */}
       <TopOfertasHoy

@@ -25,6 +25,11 @@ están mejor que antes de la caída.
 | A9b | Buscador del sitio palabra por palabra y con plurales | «aire inverter», «aires», «colchones» ahora encuentran productos |
 | A9c | Segunda auditoría: 278 páginas rastreadas, 0 errores, links de afiliado OK | Descartadas fallas técnicas como causa |
 
+| A10 | YouTube: causa encontrada con «YouTube test upload» (privado): `youtubeSignupRequired`, token de una cuenta sin canal. Aviso en castellano | Falta B3b (Raifel) para que suban los Shorts |
+| A17 | Miniaturas livianas del CDN en tarjetas (30/30 verificadas) | Hasta 3,6× menos peso por foto en celular |
+| A18 | JSON-LD en /precio y /aliexpress | Todas las páginas de contenido con datos estructurados |
+| A19 | Auditoría semanal prueba también los links internos (hasta 200) | Links rotos detectados los lunes por Telegram |
+
 ### Próximas sesiones (Claude, sin depender de Raifel)
 | # | Cuándo | Qué | Qué mejora |
 |---|---|---|---|
@@ -46,6 +51,7 @@ están mejor que antes de la caída.
 | B1 | Mandar 20-30 productos por día (link largo + precio actual + tachado + foto), con prioridad aires, TV grandes, heladeras, notebooks, celulares | 10-15 min/día | Es el 70-80 % de la recuperación |
 | B2 | Mensaje a Agustina (ML): acceso a la API citando que mejorescompras.com.ar dice usarla | 5 min | Volver a ~280 ofertas automáticas |
 | B3 | YouTube Studio (elcazadordeofertas.ar@gmail.com): ver si Google aprobó la auditoría (#18) | 5 min | Shorts públicos |
+| B3b | En la PC: `python bot/tools/setup_youtube.py` con elcazadordeofertas.ar@gmail.com y correr «YouTube test upload» | 5 min | Shorts diarios a YouTube |
 | B4 | Search Console: pedir indexación de las páginas nuevas | 10 min | Google más rápido |
 | B5 | Decidir test de Meta Ads Cyber (≤ $10.000; cuenta con restricción) | — | Tráfico inmediato en el Cyber |
 | B6 | Captura del panel ML el domingo 26/10 | 2 min | Medición |

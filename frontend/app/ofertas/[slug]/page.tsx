@@ -13,6 +13,8 @@ import CtaFijoML from '@/components/CtaFijoML'
 import { LANDINGS, bajasDeLaSemana, getLanding, historialLanding, indexableLanding, minLanding, productosLanding } from '@/lib/landings'
 import { enlacesAfines } from '@/lib/afines'
 import SinOfertas from '@/components/SinOfertas'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { ofertasHoyLight } from '@/lib/ofertashoy'
 
 const MAX = 24
 const MAX_HISTORIAL = 12
@@ -66,6 +68,10 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
     historial: historial[o.id_ml],
   }))
   const destacado = l.tipo === 'bajaron' ? undefined : elegirDestacado(light)
+  // Lista flaca (carga manual de ofertas): que el que llega desde Google tenga
+  // igual algo para comprar hoy, en vez de irse sin ningún link a ML.
+  const ids = new Set(light.map(o => o.id_ml))
+  const respaldo = total < minLanding(l) ? ofertasHoyLight().filter(o => !ids.has(o.id_ml)) : []
   const items =
     l.tipo === 'bajaron'
       ? bajas.slice(0, MAX).map(b => ({ name: b.s.titulo, url: `${DEALS_URL}/precio/${b.s.slug}` }))
@@ -125,6 +131,13 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </p>
         </div>
       </section>
+
+      <TopOfertasHoy
+        ofertas={respaldo}
+        titulo="🔥 Mientras tanto, las mejores ofertas de hoy"
+        seccion={`landing_${l.slug}_respaldo`}
+        id="respaldo-hoy"
+      />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {total === 0 ? (

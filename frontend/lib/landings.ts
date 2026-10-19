@@ -280,9 +280,11 @@ export const LANDINGS: Landing[] = [
     intro:
       'Televisores smart de 55 pulgadas o más en oferta hoy en Mercado Libre Argentina, del más barato al más caro. En esta franja el precio cambia seguido: comparalo con el mínimo registrado.',
     tipo: 'ofertas',
+    // Tamaño suelto: ML suele escribir «Smart Tv Samsung 65 Qled» sin «"» ni
+    // «pulgadas». Los códigos de modelo (qn65q6) no matchean por el \b.
     filtrar: p => {
       const t = normalizar(p.titulo)
-      return /(smart tv|televisor|\btv\b)/.test(t) && /\b(55|58|60|65|70|75|85)\s?(\"|pulgadas|pulg|')/.test(t)
+      return /(smart tv|televisor|\btv\b)/.test(t) && /\b(55|58|60|65|70|75|85)\b/.test(t)
     },
     ordenar: porPrecio,
     min: 4,

@@ -37,3 +37,11 @@ class AvisoManuales(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ArreglarTildes(unittest.TestCase):
+    def test_mojibake(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
+        from oferta_manual import arreglar_tildes
+        self.assertEqual(arreglar_tildes("ColchÃ³n SueÃ±o"), "Colchón Sueño")
+        self.assertEqual(arreglar_tildes("Colchón Sueño"), "Colchón Sueño")

@@ -3,7 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { ticketAltoPrimero } from '@/lib/ofertashoy'
+import { ofertasHoyLight, ticketAltoPrimero } from '@/lib/ofertashoy'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
@@ -106,6 +106,10 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
 
   const destacado = elegirDestacado(ofertasLight)
   const top3 = topDescuento(ofertasLight, 3)
+  // Categoría con 0-2 ofertas hoy (carga manual): se completa con las mejores
+  // del día para que el que llega desde Google tenga algo para comprar.
+  const idsCat = new Set(ofertasLight.map(o => o.id_ml))
+  const respaldo = ofertasLight.length < 3 ? ofertasHoyLight().filter(o => !idsCat.has(o.id_ml)) : []
   // El destacado solo va aparte si no está ya entre las 3 de arriba (no duplicar)
   const destacadoAparte = destacado && !top3.some(o => o.id_ml === destacado.id_ml)
 
@@ -238,6 +242,13 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
         titulo={`🔥 Las 3 ofertas con más descuento en ${c.nombre.toLowerCase()}`}
         seccion={`cat_${c.slug}_top3`}
         id="top3-categoria"
+      />
+
+      <TopOfertasHoy
+        ofertas={respaldo}
+        titulo="🔥 Mientras tanto, las mejores ofertas de hoy"
+        seccion={`cat_${c.slug}_respaldo`}
+        id="respaldo-hoy"
       />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">

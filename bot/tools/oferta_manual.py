@@ -94,10 +94,24 @@ def limpiar_cuotas(cuotas: str | None) -> str | None:
     return cuotas
 
 
+def arreglar_tildes(texto: str) -> str:
+    """«ColchÃ³n» → «Colchón»: el título llega a veces con la UTF-8 leída como
+    Latin-1 (copiado de ML desde el celular). Si no se puede revertir, queda igual."""
+    if "Ã" not in texto and "Â" not in texto:
+        return texto
+    try:
+        return texto.encode("cp1252").decode("utf-8")
+    except UnicodeError:
+        try:
+            return texto.encode("latin-1").decode("utf-8")
+        except UnicodeError:
+            return texto
+
+
 def armar_oferta(url: str, titulo: str, actual: str, anterior: str, imagen: str | None = None,
                  cuotas: str | None = None, hoy: datetime | None = None) -> dict:
     limpia, deal_id = limpiar_url(url)
-    titulo = re.sub(r"\s+", " ", (titulo or "").strip())
+    titulo = arreglar_tildes(re.sub(r"\s+", " ", (titulo or "").strip()))
     if len(titulo) < 5:
         raise OfertaInvalida("Falta el título del producto (mínimo 5 letras).")
     cur = parsear_precio(actual, "Precio actual")

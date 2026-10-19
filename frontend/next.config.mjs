@@ -13,6 +13,21 @@ const nextConfig = {
       },
     ],
   },
+  // Cabeceras de seguridad básicas (sin CSP: el sitio carga scripts de analítica
+  // y una CSP mal armada rompería medición y botones).
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+        ],
+      },
+    ]
+  },
   // Direcciones cortas para placas de story y para tipear: llevan a la página
   // larga conservando los utm (?utm_source=...) que traiga el link.
   async redirects() {

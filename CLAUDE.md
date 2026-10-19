@@ -243,9 +243,13 @@ Trello #31.
   «Aire Acond»; tildes rotas en carga manual; buscador + rubros en el header del celular
   (`AtajosCelular`, hasta 1280 px); fecha del sitio se refresca con cargas nuevas (antes «hace 6 días»);
   home sin colchones repetidos; menú de escritorio en 1 renglón; resultado de Shorts al log de Actions.
-- **YouTube Shorts falla en silencio**: token en verde (salud_tokens) pero ningún Short registrado
-  desde el 17/10. Desde el 19/10 el error se imprime como `[info] shorts:` en el log de la corrida
-  nocturna (~00 UTC) de «Cazador Deals Bot»: leerlo y arreglar.
+- **YouTube Shorts: causa encontrada** (workflow «YouTube test upload», sube privado): HTTP 401
+  `youtubeSignupRequired` = el refresh token se autorizó con una cuenta de Google SIN canal.
+  salud_tokens lo da 🟢 porque solo prueba el refresh. Arreglo (solo Raifel, en la PC):
+  `python bot/tools/setup_youtube.py` autorizando con elcazadordeofertas.ar@gmail.com; después
+  correr «YouTube test upload» para confirmar. El aviso nocturno ya lo explica en castellano.
+- Fotos de tarjetas: `lib/imagenml.ts` usa la miniatura cuadrada del CDN (D_Q_NP_…-O, 500 px) en vez
+  de la grande (hasta 1200 px): hasta 3,6× menos peso. Verificado con «Probe imágenes ML».
 - Etiqueta `extension` del panel = nuestra extensión de Chrome (tarjeta #22), 91 clics / 0 ventas.
 - Competidor directo: mejorescompras.com.ar (dice 9.000 productos vía API oficial de ML). Usarlo como
   argumento con Agustina. API nuestra sigue en 403 / catálogo sin precios.

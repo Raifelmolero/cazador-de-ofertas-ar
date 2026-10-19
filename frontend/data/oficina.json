@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-19T03:07:05+00:00",
+  "generado": "2026-10-19T16:32:04+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 294 productos en la última corrida"
+          "tarea": "Revisó 332 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -164,7 +164,7 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
-      "ultima_actividad": "2026-10-12T08:28:25+00:00",
+      "ultima_actividad": "2026-10-19T07:13:34+00:00",
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -174,18 +174,18 @@
       "metricas": [
         {
           "label": "Seguidores IG",
-          "valor": 1490,
+          "valor": 1488,
           "delta": -2
         },
         {
           "label": "Seguidores Threads",
-          "valor": 102,
-          "delta": 1
+          "valor": 104,
+          "delta": 2
         },
         {
           "label": "Suscriptores TG",
-          "valor": 3,
-          "delta": 0
+          "valor": 4,
+          "delta": 1
         },
         {
           "label": "Seguidores FB",

@@ -233,3 +233,15 @@ cuenta. Claude no ve ML desde el sandbox: para cargar ofertas necesita link larg
 actual, precio tachado e imagen que pase el dueño por el chat. El panel de afiliados no muestra
 exportación. Detalle y pendientes en el final de `docs/HANDOFF-2026-10-13-scraper-bloqueado.md`.
 Trello #31.
+
+## Estado al 2026-10-19 (celular)
+- Panel ML 7 días al 19/10: 240 clics, 16 pedidos, $237.708 (vs 409/62/$1.013.911 al 6/10). La conversión
+  cayó de 15% a 6,7%; la ganancia por pedido casi no cambió. Causa: el bache sin ofertas del 6 al 14/10
+  (bloqueo de ML). Todo el ingreso viene de la etiqueta `web`.
+- 332 ofertas manuales vigentes; las 141 del 15/10 vencen el 23/10. Nuevo **aviso diario por Telegram**
+  (`aviso_reponer_manuales`) cuando quedan <100 vigentes o van a quedar <100 en 2 días.
+- Sitio: landings y categorías con pocas ofertas muestran «Mientras tanto, las mejores ofertas de hoy»;
+  filtros arreglados (Smart TV 55+ sin «pulgadas», «Aire Acond» abreviado); `oferta_manual` corrige
+  tildes rotas («ColchÃ³n»).
+- Faltan productos en aires ≤3000 fg, heladeras no frost, termotanques, notebooks y herramientas: es lo
+  que más rinde cargar. Comparar el panel el 27/10.

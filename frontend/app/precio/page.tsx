@@ -23,9 +23,34 @@ export default function PreciosIndex() {
   }
   const ofertasHoy = ofertasHoyLight()
   const orden = [...CATEGORIAS.map(c => c.nombre), 'Otros'].filter(n => grupos.has(n))
+  // Índice de fichas: migas + lista de las páginas de historial (sin precios,
+  // que viven en cada ficha y cambian a diario).
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
+        { '@type': 'ListItem', position: 2, name: 'Historial de precios', item: `${DEALS_URL}/precio` },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Historial de precios de Mercado Libre Argentina',
+      url: `${DEALS_URL}/precio`,
+      itemListElement: orden
+        .flatMap(n => grupos.get(n)!)
+        .slice(0, 50)
+        .map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.titulo, url: `${DEALS_URL}/precio/${s.slug}` })),
+    },
+  ]
 
   return (
     <main className="min-h-screen">
+      {jsonLd.map((j, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
+      ))}
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <a href={DEALS_URL} className="font-display text-lg font-extrabold">
           🎯 <span className="text-yellow-400">Cazador de Ofertas</span>

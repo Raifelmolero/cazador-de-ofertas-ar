@@ -268,7 +268,7 @@ export const CATEGORIAS: Categoria[] = [
       'Aires acondicionados split en oferta en Mercado Libre Argentina con descuento verificado contra el historial de precios. Cómo elegir frigorías, inverter o no y qué revisar antes de comprar.',
     intro:
       'Aires acondicionados split con descuento real hoy en Mercado Libre Argentina, verificado contra el historial de precios del producto.',
-    keywords: ['aire acondicionado', 'acondicionado split'],
+    keywords: ['aire acondicionado', 'acondicionado split', 'aire acond '],
     excluir: [
       'funda', 'soporte', 'control remoto', 'filtro', 'repuesto', 'cargador',
       'ventilador', 'portatil', 'camping',

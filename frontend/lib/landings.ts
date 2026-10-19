@@ -44,7 +44,8 @@ const porDescuento = (a: ProductWithMargins, b: ProductWithMargins) => (b.descue
 const porPrecio = (a: ProductWithMargins, b: ProductWithMargins) => a.precio_actual - b.precio_actual
 
 function esAire(p: ProductWithMargins) {
-  return normalizar(p.titulo).includes('aire acondicionado')
+  // ML abrevia a veces: «Aire Acond Carrier Split Inverter».
+  return /aire acond/.test(normalizar(p.titulo))
 }
 
 export const LANDINGS: Landing[] = [

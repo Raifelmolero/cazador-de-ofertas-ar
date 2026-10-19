@@ -22,6 +22,9 @@ están mejor que antes de la caída.
 | A8 | Resultado de YouTube Shorts al log de Actions | Poder diagnosticar por qué no sube ningún Short |
 | A9 | Auditoría, memoria (CLAUDE.md) y Trello al día | La próxima sesión arranca sin repetir |
 
+| A9b | Buscador del sitio palabra por palabra y con plurales | «aire inverter», «aires», «colchones» ahora encuentran productos |
+| A9c | Segunda auditoría: 278 páginas rastreadas, 0 errores, links de afiliado OK | Descartadas fallas técnicas como causa |
+
 ### Próximas sesiones (Claude, sin depender de Raifel)
 | # | Cuándo | Qué | Qué mejora |
 |---|---|---|---|
@@ -31,6 +34,10 @@ están mejor que antes de la caída.
 | A13 | 26/10 | Medición semanal (panel ML + GSC + Clarity) contra la base de arriba | Saber qué movió la aguja |
 | A14 | 26-30/10 | Cyber: ofertas Cyber arriba, cuenta regresiva, comparativas por rubro | Aprovechar la semana más fuerte del año |
 | A15 | 31/10-1/11 | Completar `CYBER-POSTS-2026.md` con precios testigo reales (dry-run, publica solo con permiso) | Posts del Cyber listos |
+| A17 | 20-21/10 | Probar desde Actions (solo imágenes del CDN, no páginas de ML) si hay miniaturas más livianas y usarlas en las tarjetas | Sitio más rápido en celular |
+| A18 | 21/10 | JSON-LD en `/precio` y `/aliexpress` | Detalle de SEO |
+| A19 | 24/10 | Chequeo semanal automático de links rotos (lychee en Actions, sin ML) | Que no aparezcan links muertos sin enterarnos |
+| A20 | 27-28/10 | Revisar el ranking de la home con los datos de la semana (qué rubros se clickean, vía `posts_log`/capturas) | Lo que más vende, más arriba |
 | A16 | Semanal | Títulos/descr. de páginas con impresiones y 0 clics en GSC (con datos que pase Raifel) | CTR de Google |
 
 ## B. Lo que necesita a Raifel (ordenado por impacto)

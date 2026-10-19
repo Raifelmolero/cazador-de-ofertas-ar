@@ -1665,6 +1665,59 @@ def categoria_clave(title: str) -> str | None:
     return None
 
 
+# Kit de WhatsApp: lo reenvía el dueño a mano, así que va lo mejor del catálogo
+# (no las 3 primeras publicadas en la corrida, que salían desmalezadoras y
+# hidrolavadoras industriales). Compra de casa, ticket alto, descuento real.
+WA_KIT_PRECIO_MIN = 150_000
+WA_KIT_DESC_MIN = 20
+WA_KIT_NO_CASA = re.compile(
+    r"industrial|gastron|amasadora|cortadora de fiambre|freidora industrial|horno pizzero|"
+    r"taladro de banco|desmalezadora|motoguada|soldadora|compresor", re.I)
+
+
+def recent_kit_ids(hours: int = 48, path: Path | None = None) -> set[str]:
+    """IDs mandados en el kit de WhatsApp en las últimas `hours` horas."""
+    path = path or POSTS_LOG_PATH
+    ids: set[str] = set()
+    if not path.exists():
+        return ids
+    limite = datetime.now(timezone.utc) - timedelta(hours=hours)
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            e = json.loads(line)
+            if e.get("ch") == "whatsapp_kit" and datetime.fromisoformat(e["ts"]) >= limite:
+                ids.add(e["id"])
+        except (ValueError, KeyError):
+            continue
+    return ids
+
+
+def elegir_kit_wa(deals: list[dict], respaldo: list[dict], recientes: set[str],
+                  n: int = 3) -> list[dict]:
+    """Las `n` mejores para el kit: mínimo histórico primero, después ganancia
+    esperada; una por familia de producto; sin infladas, sin equipos de
+    negocio y sin repetir lo mandado hace poco. Completa con `respaldo`."""
+    pool = [
+        d for d in deals
+        if not d.get("inflada") and d["id"] not in recientes
+        and d["price_cur"] >= WA_KIT_PRECIO_MIN and (d.get("discount") or 0) >= WA_KIT_DESC_MIN
+        and not WA_KIT_NO_CASA.search(d["title"])
+    ]
+    pool.sort(key=lambda d: (not d.get("hist_low"), -ganancia_esperada(d)))
+    elegidas: list[dict] = []
+    familias: set[str] = set()
+    for d in pool:
+        fam = categoria_clave(d["title"]) or title_key(d["title"])
+        if fam in familias:
+            continue
+        familias.add(fam)
+        elegidas.append(d)
+        if len(elegidas) == n:
+            return elegidas
+    ids = {d["id"] for d in elegidas}
+    return elegidas + [d for d in respaldo if d["id"] not in ids][: n - len(elegidas)]
+
+
 IG_CHANNELS = ("ig", "reel")
 IG_VENTANA = 6
 IG_MAX_MISMA_CATEGORIA = 2
@@ -2688,9 +2741,10 @@ def main() -> int:
             "📋 Para el canal de WhatsApp (copiá y pegá el mensaje de abajo):",
             dry,
         )
-        alert_admin(token, cfg["admin_chat"], wa_kit(to_post, affiliate_id, tool_wa, paginas), dry)
+        kit = elegir_kit_wa(deals, to_post, recent_kit_ids())
+        alert_admin(token, cfg["admin_chat"], wa_kit(kit, affiliate_id, tool_wa, paginas), dry)
         if not dry:  # una entrada por oferta del kit (canal "whatsapp_kit")
-            for d in to_post:
+            for d in kit:
                 log_post(d, "whatsapp_kit")
 
     print(f"[done] publicadas {len(published_ids)} ofertas")

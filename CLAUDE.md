@@ -272,3 +272,6 @@ Trello #31.
 - Manuales duran 14 días. Con `scrape_ml=false` TODAS van a la web (`deals_para_sitio`; antes había
   un tope de 300). `deals_bot.yml` tiene `solo_datos` para refrescar la web sin publicar.
 - `/precio`: tope 3.000 fichas (1.500 borraba páginas indexadas con cada carga grande).
+- Control 20/10 13:00 UTC (sesión del 19/10): 1.260 manuales vigentes (932 cargadas el 20/10), 1.228 en
+  la web; corridas del bot y Frontend CI en verde; «YouTube test upload» sigue `youtubeSignupRequired`
+  (falta setup_youtube.py en la PC). A20 (orden de la home) en pausa: hay otra sesión trabajando el sitio.

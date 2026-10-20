@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-20T15:51:52+00:00",
+  "generado": "2026-10-20T19:08:42+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-20T03:15:37+00:00",
+      "ultima_actividad": "2026-10-20T19:08:42+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Telegram",
-          "valor": 10
+          "valor": 11
         },
         {
           "label": "whatsapp_kit",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Threads",
-          "valor": 2
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
+          "valor": 3
         },
         {
           "label": "Facebook",
-          "valor": 1
+          "valor": 3
+        },
+        {
+          "label": "Instagram",
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Lavarropas LG WM10VVC4S6 ThinQ 10 Kg AI DD Inverter Direct Drive 1400 RPM Vapor "
+      "ultimo_trabajo": "Colchón Viggo Diamante 140x190 Cm Alta Densidad 300 Kg Negro"
     },
     {
       "id": "investigacion",
@@ -71,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },

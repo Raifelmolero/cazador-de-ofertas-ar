@@ -31,12 +31,21 @@ const MODIFICADO_TXT = '20/10/2026'
 const TICKET_ALTO = ['mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas', 'mejores-notebooks', 'mejores-celulares']
 const MAX_OFERTAS = 8
 
-export const metadata: Metadata = {
-  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
-  description: descripcionSeo(DESCRIPCION),
-  metadataBase: new globalThis.URL(DEALS_URL),
-  alternates: { canonical: URL },
-  openGraph: { title: TITULO, description: descripcionSeo(DESCRIPCION), url: URL, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+// Con cupón del día vigente, el título y la descripción lo nombran: es lo que
+// se busca ("cupón mercado libre hoy"). Se evalúa en cada build (varios por día).
+export function generateMetadata(): Metadata {
+  const [c] = cuponesVigentes()
+  const titulo = c
+    ? `Cupón de Mercado Libre hoy: ${c.codigo} ($${c.descuento.toLocaleString('es-AR')} OFF) y cómo usarlo`
+    : TITULO
+  const descripcion = c ? `Cupón de hoy: ${c.codigo}. ${textoCupon(c)} ${DESCRIPCION}` : DESCRIPCION
+  return {
+    title: tituloSeo(titulo, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+    description: descripcionSeo(descripcion),
+    metadataBase: new globalThis.URL(DEALS_URL),
+    alternates: { canonical: URL },
+    openGraph: { title: titulo, description: descripcionSeo(descripcion), url: URL, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+  }
 }
 
 const FUENTES = [

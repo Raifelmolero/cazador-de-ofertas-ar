@@ -104,7 +104,7 @@ Desde el celular: app de GitHub → repo → **Actions → «Agregar oferta manu
 Qué pasa: `bot/tools/oferta_manual.py` valida los datos (no hace ningún pedido a ML), la guarda en
 `bot/state/ofertas_manuales.json` y el bot la trata como una oferta más: ranking, historial de
 precios, links de afiliado por canal, placas, y la suma al catálogo de la web.
-Reglas: una oferta manual vale **7 días** (después el precio ya envejeció); no se le exige el
+Reglas: una oferta manual vale **14 días** (desde el 19/10; antes 7 — en la web la tarjeta dice «precio visto el …»); no se le exige el
 descuento/precio mínimo del config; igual **no sale** si ya se publicó, si el mismo título salió en los
 últimos 14 días o si el historial la marca inflada. Con el escaneo pausado las ofertas nuevas **se suman**
 al catálogo de la web (no lo reemplazan) y `scraped_at` conserva la fecha vieja, para que el cartel

@@ -273,7 +273,8 @@ def load_scraped_snapshot(path: Path | None = None, ahora: datetime | None = Non
 
 
 MANUAL_PATH = BASE_DIR / "state" / "ofertas_manuales.json"
-MANUAL_MAX_DIAS = 7   # una oferta cargada a mano deja de usarse a los 7 días (el precio envejece)
+MANUAL_MAX_DIAS = 14  # una oferta cargada a mano deja de usarse a los 14 días (el precio envejece;
+                      # la tarjeta muestra «precio visto el …» y la carga diaria refresca las que cambian)
 
 
 def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list[dict]:

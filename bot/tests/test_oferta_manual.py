@@ -88,7 +88,7 @@ def test_guardar_reemplaza_por_id_y_descarta_vencidas(tmp_path):
 def test_load_manual_deals_ignora_vencidas_y_rotas(tmp_path):
     p = tmp_path / "m.json"
     vigente = oferta()
-    vencida = dict(oferta(), id="MLA2", agregada="2026-10-01")
+    vencida = dict(oferta(), id="MLA2", agregada="2026-09-20")
     rota = {"id": "MLA3"}
     p.write_text(json.dumps({"items": [vigente, vencida, rota]}), encoding="utf-8")
     deals = bot.load_manual_deals(p, hoy=date(2026, 10, 14))

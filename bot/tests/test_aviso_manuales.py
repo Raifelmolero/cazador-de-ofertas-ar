@@ -25,7 +25,7 @@ class AvisoManuales(unittest.TestCase):
         self.assertIsNone(cb.aviso_reponer_manuales(p, date(2026, 10, 19)))
 
     def test_aviso_si_vencen_en_2_dias(self):
-        p = _archivo(["2026-10-15"] * 100 + ["2026-10-19"] * 30)
+        p = _archivo(["2026-10-08"] * 100 + ["2026-10-19"] * 30)
         txt = cb.aviso_reponer_manuales(p, date(2026, 10, 21))
         self.assertIn("130 vigentes", txt)
         self.assertIn("quedan 30", txt)

@@ -28,8 +28,8 @@ def escribir(bot_mod, monkeypatch, tmp_path, deals, exclusivas=None, previo=None
 
 def test_manual_vencida_solo_pasados_los_dias():
     hoy = date(2026, 10, 21)
-    assert not bot.manual_vencida({"precio_visto": "2026-10-14"}, hoy)   # 7 días: todavía vale
-    assert bot.manual_vencida({"precio_visto": "2026-10-13"}, hoy)       # 8 días: vencida
+    assert not bot.manual_vencida({"precio_visto": "2026-10-07"}, hoy)   # 14 días: todavía vale
+    assert bot.manual_vencida({"precio_visto": "2026-10-06"}, hoy)       # 15 días: vencida
     assert not bot.manual_vencida({}, hoy)                               # del escaneo viejo: no se poda
     assert not bot.manual_vencida({"precio_visto": "basura"}, hoy)
 

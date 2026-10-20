@@ -259,4 +259,7 @@ Trello #31.
   dev server NO usar `pkill -f` (mata la shell): matar los PID de `ps | grep [n]ext`.
 - Segunda auditoría 19/10 (sección 8 de AUDITORIA-2026-10-19.md): 278 páginas sin errores; buscador arreglado (palabra por palabra + plurales).
 - Kit de WhatsApp (12 y 21 hs por Telegram al admin): `elegir_kit_wa` toma las 3 mejores del catálogo (casa, ≥$150k, ≥20 %, mínimo histórico primero, 1 por familia, sin repetir 48 h).
+- Domingo 18/10 (Día de la Madre): 16 clics, 1 venta ($735). No hubo falla técnica: links y bot OK.
+- Workflows nuevos manuales: «YouTube test upload» (sube privado) y «Probe imágenes ML» (solo CDN).
 - Medir el domingo 26/10 contra 240 clics / 16 pedidos / $237.708.
+- **Para retomar**: `docs/PROMPT-CONTINUAR-2026-10-20.md`.

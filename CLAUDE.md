@@ -283,3 +283,11 @@ Trello #31.
   diaria. /ofertas trae muy pocos aires/heladeras (1 página); para esos rubros conviene buscar en la Central.
 - YouTube: `setup_youtube.py` pide Client ID y Client Secret (los pega el dueño, Claude no escribe
   credenciales); el token actual es de una cuenta sin canal → `youtubeSignupRequired`.
+- 20/10 tarde: Facebook 5 posts/día (2+2+1) y Telegram 1 por corrida (c1aa737, verificado en la corrida
+  real); celulares ≥ $1.000.000 entran con 10 % OFF si están en su mínimo registrado (77eda74); bloque
+  «Cupón de hoy» en /cupones-mercado-libre desde `frontend/data/cupones-del-dia.json` (la tarea diaria lo
+  llena leyendo SOLO el grupo de WhatsApp «Ofertas 🌟 MELI»). 1.753 ofertas vigentes.
+- **Diagnóstico de la caída (20/10)**: `docs/PLAN-REMONTAR-CLICS-2026-10-20.md`. Los clics web siguen al
+  inventario; conversión estable. Paradoja: Vercel/Clarity ven más tráfico que a principios de mes pero
+  el panel cuenta menos clics → posible fuente externa que republica nuestros links. Confirmar con la
+  tabla diaria panel vs `clic_ml` hasta el 26/10.

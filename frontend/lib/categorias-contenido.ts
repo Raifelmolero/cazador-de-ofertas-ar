@@ -374,6 +374,74 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
       { q: '¿Cómo elijo el tamaño del juego?', a: 'Medí el espacio y dejá al menos un paso cómodo alrededor de la mesa. Pensá en cuántas personas usan el jardín en un día normal, no en el máximo.' },
     ],
   },
+
+  gamer: {
+    intro:
+      'En lo gamer es fácil gastar de más en una pieza que después no se aprovecha. Un monitor de alta frecuencia no rinde si la PC o la consola no entrega esos cuadros por segundo, y una silla con luces no compensa una mala postura después de varias horas. Por eso conviene pensar el equipo como un conjunto: primero definí en qué jugás (PC, consola o notebook) y qué juegos, y a partir de ahí elegí qué pieza mejora más tu experiencia por la plata que cuesta. Muchos productos gamer suben antes de los eventos de ofertas para mostrar un descuento grande, así que mirá el historial antes de decidir.',
+    criterios: [
+      { t: 'Plataforma y juegos', d: 'No es lo mismo jugar competitivo en PC que juegos de historia en consola. Lo que jugás define qué conviene mejorar primero.' },
+      { t: 'Cuello de botella', d: 'Mejorá la pieza que hoy te limita: si la placa de video no llega a 144 cuadros, un monitor de 240 Hz no se va a notar.' },
+      { t: 'Comodidad en sesiones largas', d: 'En sillas, auriculares y teclados importa más la ergonomía y el peso que el diseño o las luces.' },
+      { t: 'Compatibilidad', d: 'Revisá conexiones (HDMI, DisplayPort, USB, Bluetooth) y que el periférico funcione con tu consola o sistema.' },
+      { t: 'Garantía oficial', d: 'Las consolas y placas importadas sin garantía local salen más baratas, pero una falla te deja sin service. Preferí tiendas oficiales.' },
+    ],
+    faqs: [
+      { q: '¿Conviene comprar una consola o armar una PC gamer?', a: 'La consola sale menos al principio y no requiere configurar nada; la PC cuesta más pero sirve para otras tareas y se puede mejorar por partes. Depende de qué juegos te interesan y de si ya tenés una computadora.' },
+      { q: '¿Qué conviene mejorar primero?', a: 'Lo que más limita hoy tu experiencia: en PC suele ser la placa de video; en consola, la pantalla o los auriculares. Una buena silla es la mejor inversión si jugás muchas horas.' },
+      { q: '¿Cuándo bajan los productos gamer?', a: 'Suele haber descuentos en el Cyber Monday (principios de noviembre) y el Black Friday. Igual mirá el historial: algunos productos suben antes del evento.' },
+    ],
+  },
+
+  'bebes-y-jugueteria': {
+    intro:
+      'Comprar para un bebé o para chicos mezcla dos cosas que no conviene confundir: lo que tiene que ver con la seguridad y lo que es solo comodidad o gusto. En butacas para auto, cunas y cochecitos la prioridad es que estén homologados y que correspondan a la edad y el peso del chico; ahí no vale la pena ahorrar con productos usados o sin marca. En juguetes, lo central es respetar la edad recomendada y elegir algo que se vaya a usar más de una semana. Los chicos crecen rápido, así que pensá cuánto tiempo va a servir cada compra, y si hay hermanos en camino, si se puede reutilizar.',
+    criterios: [
+      { t: 'Seguridad homologada', d: 'Butacas, cunas y cochecitos tienen que cumplir normas de seguridad. Buscá la etiqueta de homologación y desconfiá de productos sin marca.' },
+      { t: 'Edad y peso', d: 'Cada butaca y cada juguete tiene un rango de edad o peso. Comprar "para que le dure" una butaca grande es peligroso.' },
+      { t: 'Cuánto tiempo va a servir', d: 'Los sistemas convertibles (cuna que pasa a cama, butaca de varios grupos) cuestan más pero se usan años.' },
+      { t: 'Practicidad diaria', d: 'Peso del cochecito, facilidad para plegarlo, si se lava la funda: son cosas que se notan todos los días.' },
+      { t: 'Espacio', d: 'Medí el baúl antes de un cochecito y el cuarto antes de una cuna o un corralito.' },
+    ],
+    faqs: [
+      { q: '¿Conviene comprar butacas o cochecitos usados?', a: 'Un cochecito usado en buen estado puede servir. Una butaca para auto usada no conviene si no sabés su historia: después de un choque puede tener daños que no se ven.' },
+      { q: '¿Qué juguete regalar según la edad?', a: 'Respetá la edad recomendada del envase: para menores de 3 años, nada con piezas chicas. Para más grandes, los juegos de construcción y de mesa suelen durar más que los juguetes de moda.' },
+      { q: '¿Cuándo conviene comprar para Navidad y Reyes?', a: 'Antes de diciembre: en el Cyber Monday y el Black Friday suele haber descuentos reales, mientras que en diciembre muchos juguetes suben.' },
+    ],
+  },
+
+  'electro-de-cocina': {
+    intro:
+      'El electro chico de cocina es de las compras donde más se nota la diferencia entre lo que parece útil y lo que se usa de verdad. Una cafetera que se usa todos los días justifica pagar más; una máquina de helado que se usa dos veces por año, no. Antes de comparar modelos, pensá qué vas a preparar, cuántas personas hay en casa y dónde lo vas a guardar, porque muchos de estos aparatos terminan en un placard por falta de lugar en la mesada. También conviene sumar el costo de lo que consume cada uno: cápsulas, filtros o repuestos.',
+    criterios: [
+      { t: 'Uso real', d: 'Comprá según lo que preparás seguido. Un aparato multifunción sirve si de verdad vas a usar sus funciones.' },
+      { t: 'Espacio en la mesada', d: 'Medí dónde va a quedar. Si hay que sacarlo de un placard cada vez, se usa menos.' },
+      { t: 'Costo de uso', d: 'Cápsulas, filtros, bolsas o repuestos se pagan todos los meses: sumalos al precio.' },
+      { t: 'Limpieza', d: 'Partes desmontables y aptas para lavavajillas hacen la diferencia en lo que se usa a diario.' },
+      { t: 'Service y repuestos', d: 'Preferí marcas con repuestos y servicio técnico en Argentina, sobre todo en cafeteras espresso y procesadoras.' },
+    ],
+    faqs: [
+      { q: '¿Qué electro de cocina conviene comprar primero?', a: 'El que reemplace algo que hacés todos los días: una pava eléctrica, una cafetera o un microondas suelen usarse más que una procesadora o una waflera.' },
+      { q: '¿Las marcas más baratas duran?', a: 'En aparatos simples (pava, tostadora) la diferencia es chica. En los que tienen motor o bomba (licuadora, cafetera espresso, batidora planetaria) una marca con service suele durar bastante más.' },
+      { q: '¿Cuándo hay buenos descuentos?', a: 'En el Cyber Monday y el Black Friday, y antes del Día de la Madre y de Navidad, que son fechas de regalo. Mirá siempre el historial: algunos precios suben antes del evento.' },
+    ],
+  },
+
+  vehiculos: {
+    intro:
+      'En autos y motos, lo primero es la compatibilidad: un neumático, una batería o un estéreo que no corresponde al modelo no sirve aunque esté muy barato. Por eso, antes de mirar precios, tené a mano la medida exacta, el modelo y el año del vehículo. Lo segundo es el costo total: en neumáticos y llantas casi nunca está incluida la colocación, el alineado y el balanceo, y en estéreos puede hacer falta un marco o un arnés. En los productos de seguridad, como neumáticos y cascos, conviene priorizar marcas conocidas y homologación por sobre el precio.',
+    criterios: [
+      { t: 'Compatibilidad exacta', d: 'Medida, modelo y año. Si dudás, preguntale al vendedor con los datos del vehículo antes de comprar.' },
+      { t: 'Seguridad primero', d: 'En neumáticos y cascos la diferencia de precio con una marca reconocida y homologada vale la pena.' },
+      { t: 'Costo de instalación', d: 'Colocación, alineado, balanceo, marco adaptador o arnés: sumalos al presupuesto.' },
+      { t: 'Uso del vehículo', d: 'Ciudad, ruta o ripio cambian qué neumático conviene; un auto que se usa poco necesita más un arrancador que uno de uso diario.' },
+      { t: 'Garantía del vendedor', d: 'Revisá que la garantía cubra defectos de fabricación y si hay que hacerla en un lugar físico.' },
+    ],
+    faqs: [
+      { q: '¿Cada cuánto hay que cambiar los neumáticos?', a: 'Cuando la banda de rodamiento llega al indicador de desgaste (1,6 mm) o si tienen grietas o deformaciones, aunque no estén gastados. Con los años la goma se endurece y agarra menos.' },
+      { q: '¿Conviene comprar neumáticos por internet?', a: 'Sí, si tenés la medida exacta y una gomería que los coloque. Sumá colocación, alineado y balanceo al comparar con el precio de una gomería.' },
+      { q: '¿Qué casco de moto conviene?', a: 'Uno homologado, de tu talle exacto (medí la cabeza) y, si es para uso diario, integral o rebatible, que protegen más que los abiertos.' },
+    ],
+  },
 }
 
 export function getContenidoCategoria(slug: string): CategoriaContenido | undefined {

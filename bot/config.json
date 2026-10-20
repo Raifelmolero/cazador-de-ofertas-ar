@@ -8,5 +8,6 @@
   "pages": 20,
   "relampago_pages": 6,
   "categoria_pages": 3,
-  "scrape_ml": false
+  "scrape_ml": false,
+  "telegram_posts": 1
 }

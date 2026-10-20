@@ -867,6 +867,13 @@ def affiliate_url(url: str, affiliate_id: str, word: str | None = None) -> str:
     return f"{url}{sep}matt_word={word or affiliate_id}&matt_tool=37267219"
 
 
+def cuantos_facebook(slot: str) -> int:
+    """Posts de Facebook por run: 2 al mediodía y a la tarde, 1 a la noche
+    (5 por día). Facebook trajo 51 visitas en 7 días con 1-2 posts diarios
+    (20/10), más que IG y Telegram juntos. Runs fuera de horario: ninguno."""
+    return {"midday": 2, "evening": 2, "night": 1}.get(slot, 0)
+
+
 def run_slot(hour_utc: int) -> str:
     """En cuál de los 3 runs diarios estamos: 'midday', 'evening' o 'night'.
 
@@ -2560,12 +2567,15 @@ def main() -> int:
     slot = run_slot(hour_utc)
 
     published_ids = []
-    for i, deal in enumerate(to_post):
+    # Telegram: 1 por run (3 por día) desde el 20/10. Eran 15 por día para 4
+    # suscriptores; el resto del lote igual sale en la web y en Facebook.
+    tg_posts = to_post[: cfg.get("telegram_posts", len(to_post))]
+    for i, deal in enumerate(tg_posts):
         # A la ficha de la web si existe (como IG/Threads); ML queda de 2º botón.
         link, ml_link = telegram_links(deal, affiliate_id, tool_tg, paginas)
         # Canal de WhatsApp: una sola mención por día, al pie del último post
         # del run de la noche.
-        wa = slot == "night" and i == len(to_post) - 1
+        wa = slot == "night" and i == len(tg_posts) - 1
         if post_deal(token, cfg["channel"], deal, link, dry, whatsapp=wa, ml_link=ml_link):
             published_ids.append(deal["id"])
             log_post(deal, "telegram")
@@ -2716,35 +2726,42 @@ def main() -> int:
                     dry,
                 )
 
-    # Facebook: mismo horario que el post de feed de IG (15-17-20-21-22 UTC),
-    # siempre el producto estrella (to_post[0]). Best-effort total: nunca
-    # frena Telegram/IG/Threads, si falla solo avisa al admin. Sin secrets
-    # seteados (mientras no exista la página) esto no hace nada, no hace
-    # falta un flag de gateo aparte — FORCE_FACEBOOK es solo para testear.
-    if (os.getenv("FORCE_FACEBOOK") == "1" or ig_slot) and to_post:
-        fb_page_id = os.getenv("FB_PAGE_ID", "")
-        fb_page_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
-        if fb_page_id and fb_page_token:
-            fb_deal = to_post[0]
-            fb_link = canal_link(fb_deal, affiliate_id, tool_fb, "facebook", paginas)
-            try:
-                permalink = publish_facebook(fb_deal, fb_link, fb_page_id, fb_page_token, dry)
-                if permalink:
-                    log_post(fb_deal, "facebook")
-                    alert_admin(
-                        token,
-                        cfg["admin_chat"],
-                        f"📘 Publicado en Facebook: {fb_deal['title'][:60]}\n{permalink}",
-                        dry,
-                    )
-            except Exception as e:  # noqa: BLE001 — Facebook caído no frena el bot
-                print(f"[warn] Facebook publish falló: {e}")
+    # Facebook: los mejores del lote (to_post[:n], el 1º es el producto
+    # estrella), cuantos_facebook() por run = 5 por día. Best-effort total:
+    # nunca frena Telegram/IG/Threads, si falla solo avisa al admin. Sin
+    # secrets seteados esto no hace nada — FORCE_FACEBOOK es solo para testear.
+    n_fb = max(cuantos_facebook(slot), 1 if os.getenv("FORCE_FACEBOOK") == "1" else 0)
+    fb_page_id = os.getenv("FB_PAGE_ID", "")
+    fb_page_token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
+    fb_publicados = []
+    for n, fb_deal in enumerate(to_post[:n_fb] if fb_page_id and fb_page_token else []):
+        fb_link = canal_link(fb_deal, affiliate_id, tool_fb, "facebook", paginas)
+        try:
+            permalink = publish_facebook(fb_deal, fb_link, fb_page_id, fb_page_token, dry,
+                                         tag="fb" if n == 0 else f"fb{n + 1}")  # placa propia
+            if permalink:
+                log_post(fb_deal, "facebook")
+                fb_publicados.append(fb_deal["id"])
                 alert_admin(
                     token,
                     cfg["admin_chat"],
-                    f"⚠️ No pude publicar en Facebook ({str(e)[:150]}).",
+                    f"📘 Publicado en Facebook: {fb_deal['title'][:60]}\n{permalink}",
                     dry,
                 )
+        except Exception as e:  # noqa: BLE001 — Facebook caído no frena el bot
+            print(f"[warn] Facebook publish falló: {e}")
+            alert_admin(
+                token,
+                cfg["admin_chat"],
+                f"⚠️ No pude publicar en Facebook ({str(e)[:150]}).",
+                dry,
+            )
+    # Telegram ya no publica todo el lote: lo que salió solo en Facebook
+    # también cuenta como publicado, así no se repite en el run siguiente.
+    nuevos_fb = [i for i in fb_publicados if i not in state["posted_ids"]]
+    if nuevos_fb:
+        state["posted_ids"] = state["posted_ids"] + nuevos_fb
+        save_state(state)
 
     # Canal de WhatsApp (sin API): 2 veces por día el admin recibe el texto
     # armado por privado para copiarlo y pegarlo en el canal.

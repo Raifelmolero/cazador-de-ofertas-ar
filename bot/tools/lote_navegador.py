@@ -39,7 +39,7 @@ EXTRACTOR_JS = r"""(function(){const out=[];document.querySelectorAll('.poly-car
 
 # Clima frío (feedback de Raifel): nada de aires/verano; tampoco industrial ni repuestos.
 FUERA = re.compile(r"aire acondicionado|aire acond|\bsplit\b|ventilador|pileta|piscina|industrial|"
-                   r"gastron|neum[aá]tico|repuesto|cartucho", re.I)
+                   r"gastron|exhibidor|comercial|neum[aá]tico|repuesto|cartucho", re.I)
 REFRESCAR_DESDE_DIAS = 5   # una vigente cargada hace 5+ días se vuelve a cargar con el precio de hoy
 POR_LOTE = 120
 

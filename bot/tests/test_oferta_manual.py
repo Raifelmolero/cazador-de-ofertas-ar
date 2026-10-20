@@ -236,3 +236,11 @@ def test_cuotas_opcional_y_validada():
     import pytest
     with pytest.raises(OfertaInvalida):
         limpiar_cuotas("<b>x</b>")
+
+
+def test_sin_escaneo_todas_las_manuales_van_al_sitio():
+    deals = [dict(id=f"MLA{i}", title="Mate de calabaza", discount=30, price_cur=100, price_prev=150)
+             for i in range(500)]
+    deals[0]["inflada"] = True
+    assert len(bot.deals_para_sitio(deals, scrape=False)) == 499
+    assert len(bot.deals_para_sitio(deals, scrape=True)) < 499   # con escaneo sigue el recorte

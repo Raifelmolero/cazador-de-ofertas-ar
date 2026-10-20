@@ -665,6 +665,14 @@ def select_site_deals(deals: list[dict], limit: int = SITE_GENERAL_LIMIT) -> lis
     return [d for d in reales if d["id"] in elegidos]
 
 
+def deals_para_sitio(deals: list[dict], scrape: bool) -> list[dict]:
+    """Con escaneo, el recorte de select_site_deals. Con el escaneo pausado
+    van TODAS las manuales (sin infladas): los topes eran para ~1.500
+    escaneadas y con carga a mano dejaban afuera ofertas ya elegidas
+    (19/10: 362 cargadas, 300 en la web)."""
+    return select_site_deals(deals) if scrape else [d for d in deals if not d.get("inflada")]
+
+
 # ---------------------------------------------------------------- páginas de precio
 
 # Productos de ticket alto que seguimos con serie diaria de precios para las
@@ -2528,7 +2536,10 @@ def main() -> int:
     if deals and os.getenv("SKIP_SITE_DATA") != "1":
         # Con el escaneo pausado todas las manuales se ven en la web: la marca
         # "exclusiva del canal" de corridas viejas no las esconde.
-        write_site_data(select_site_deals(deals), affiliate_id,
+        # Escaneo pausado: TODAS las manuales van a la web. Los topes de
+        # select_site_deals (150 + 300) eran para recortar ~1.500 escaneadas;
+        # con carga a mano dejaban afuera ofertas ya elegidas (362 → 300, 19/10).
+        write_site_data(deals_para_sitio(deals, scrape), affiliate_id,
                         exclusive_ids if scrape else set(), history,
                         mezclar=not scrape)
         update_seguimiento(deals, history, affiliate_id)

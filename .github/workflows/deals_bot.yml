@@ -27,6 +27,10 @@ on:
         description: 'Forzar publicación de Facebook'
         type: boolean
         default: false
+      solo_datos:
+        description: 'Solo actualizar precios y la web, sin publicar (ej. después de una carga grande)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -94,7 +98,7 @@ jobs:
           FORCE_THREADS: ${{ inputs.force_threads == true && '1' || '0' }}
           FORCE_REEL: ${{ inputs.force_reel == true && '1' || '0' }}
           FORCE_FACEBOOK: ${{ inputs.force_facebook == true && '1' || '0' }}
-          SOLO_DATOS: ${{ github.event.schedule == '23 9 * * *' && '1' || '0' }}
+          SOLO_DATOS: ${{ (github.event.schedule == '23 9 * * *' || inputs.solo_datos) && '1' || '0' }}
         run: |
           if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
             echo "::warning::Falta el secreto TELEGRAM_BOT_TOKEN — agregalo en Settings → Secrets → Actions. Salgo sin publicar."

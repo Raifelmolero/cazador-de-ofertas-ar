@@ -12,7 +12,9 @@ Cómo se usa (lo hace Claude con Claude in Chrome):
    Cada producto queda como «W/ruta§título§actual§tachado§código-de-foto».
 2. Volcar todo a un <textarea>, Ctrl+C, y en PowerShell `Get-Clipboard -Raw` a un
    archivo (las herramientas del navegador cortan a ~50.000 caracteres).
-3. python bot/tools/lote_navegador.py <archivo> <carpeta_salida>
+3. python bot/tools/lote_navegador.py <archivo> <carpeta_salida> [--aires-hasta 3000]
+   (--aires-hasta: deja pasar aires acondicionados de hasta esa potencia en frigorías,
+   leída del título en Fg, kcal, BTU o W; sin la opción los aires quedan afuera por el frío)
    → lote_N.json listos para: gh workflow run oferta_manual.yml --json < lote_N.json
    (por stdin: Windows no acepta argumentos de más de 32 KB). De a uno: el
    workflow comparte grupo de concurrencia con el bot.
@@ -20,6 +22,10 @@ Cómo se usa (lo hace Claude con Claude in Chrome):
 Categorías útiles (ids de ML): Electrodomésticos MLA5726, Computación MLA1648,
 Celulares MLA1051, Electrónica MLA1000, Herramientas MLA407134, Hogar MLA1574,
 Deportes MLA1276, Belleza MLA1246, Bebés MLA1384, Juguetes MLA1132, Salud MLA409431.
+Subcategorías: Aires MLA1644, Refrigeración MLA1576, Notebooks MLA1652. En /ofertas esos rubros traen
+una sola página; para sumar más, el buscador de la Central de afiliados (afiliados/hub, «Productos
+seleccionados para vos») usa las mismas tarjetas .poly-card y el mismo extractor sirve (bajar de a
+poco: la lista es virtual).
 """
 from __future__ import annotations
 
@@ -40,13 +46,32 @@ EXTRACTOR_JS = r"""(function(){const out=[];document.querySelectorAll('.poly-car
 # Clima frío (feedback de Raifel): nada de aires/verano; tampoco industrial ni repuestos.
 FUERA = re.compile(r"aire acondicionado|aire acond|\bsplit\b|ventilador|pileta|piscina|industrial|"
                    r"gastron|exhibidor|comercial|neum[aá]tico|repuesto|cartucho", re.I)
+AIRE = re.compile(r"aire acond|aire port[aá]til|\bsplit\b", re.I)
+NO_ES_AIRE = re.compile(r"compresor|bomba de vac|mecha|mini aire|humidificador|repuesto|soporte", re.I)
 REFRESCAR_DESDE_DIAS = 5   # una vigente cargada hace 5+ días se vuelve a cargar con el precio de hoy
 POR_LOTE = 120
 
 
+def frigorias(titulo: str) -> int | None:
+    """Potencia de un aire según el título (Fg/frigorías/kcal, BTU o W); None si no la dice."""
+    m = re.search(r"(\d[\d.]{2,5})\s*(?:fg\b|f\b|frig|kcal)", titulo, re.I)
+    if m:
+        return int(m.group(1).replace(".", ""))
+    m = re.search(r"(\d{4,5})\s*btu", titulo, re.I)
+    if m:
+        return round(int(m.group(1)) * 0.252)
+    m = re.search(r"(\d{4})\s*w\b", titulo, re.I)
+    if m:
+        return round(int(m.group(1)) / 1.163)
+    return None
+
+
 def armar(lineas: list[str], vigentes: dict[str, str], historial: dict,
-          hoy: date | None = None) -> tuple[list[str], dict[str, int]]:
-    """Devuelve (líneas de lote ordenadas por precio, conteo de descartes)."""
+          hoy: date | None = None, aires_hasta: int | None = None) -> tuple[list[str], dict[str, int]]:
+    """Devuelve (líneas de lote ordenadas por precio, conteo de descartes).
+
+    aires_hasta: si viene, los aires acondicionados de hasta esas frigorías no se excluyen.
+    """
     hoy = hoy or datetime.now(timezone.utc).date()
     lote, desc, vistos = [], {}, set()
 
@@ -72,7 +97,13 @@ def armar(lineas: list[str], vigentes: dict[str, str], historial: dict,
         if idm in vigentes and (hoy - date.fromisoformat(vigentes[idm])).days < REFRESCAR_DESDE_DIAS:
             descartar("ya cargada")
             continue
-        if FUERA.search(titulo):
+        es_aire = aires_hasta is not None and AIRE.search(titulo) and not NO_ES_AIRE.search(titulo)
+        if es_aire:
+            fg = frigorias(titulo)
+            if fg is None or fg > aires_hasta:
+                descartar("aire fuera de potencia")
+                continue
+        elif FUERA.search(titulo):
             descartar("rubro excluido")
             continue
         pct = round((prev - cur) / prev * 100)
@@ -92,11 +123,18 @@ def armar(lineas: list[str], vigentes: dict[str, str], historial: dict,
 
 
 def main() -> None:
-    crudo, salida = Path(sys.argv[1]), Path(sys.argv[2])
+    args = sys.argv[1:]
+    aires_hasta = None
+    if "--aires-hasta" in args:
+        i = args.index("--aires-hasta")
+        aires_hasta = int(args[i + 1])
+        del args[i:i + 2]
+    crudo, salida = Path(args[0]), Path(args[1])
     items = json.loads((BASE / "state/ofertas_manuales.json").read_text(encoding="utf-8"))["items"]
     vigentes = {i["id"]: i["agregada"] for i in items}
     historial = json.loads((BASE / "state/price_history.json").read_text(encoding="utf-8"))
-    lineas, desc = armar(crudo.read_text(encoding="utf-8").splitlines(), vigentes, historial)
+    lineas, desc = armar(crudo.read_text(encoding="utf-8").splitlines(), vigentes, historial,
+                         aires_hasta=aires_hasta)
     if lineas:
         om.parsear_lote("\n".join(lineas))  # valida todo antes de mandar nada
     salida.mkdir(parents=True, exist_ok=True)

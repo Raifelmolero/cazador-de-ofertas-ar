@@ -41,3 +41,27 @@ def test_ordena_por_precio_y_acepta_links_de_articulo():
     lote, _ = ln.armar(lineas, {}, {}, HOY)
     assert lote[0].startswith("https://www.mercadolibre.com.ar/x/p/MLA10000009")
     assert lote[1].startswith("https://articulo.mercadolibre.com.ar/MLA-619144275") and lote[1].endswith("200000")
+
+
+def test_frigorias_desde_el_titulo():
+    assert ln.frigorias("Aire Split Frío/calor 2503 Fg Blanco") == 2503
+    assert ln.frigorias("Aire acondicionado Philco PHS32HA4CNE 2900F 3400W") == 2900
+    assert ln.frigorias("Aire Portátil Gadnic 9000 BTU Frío") == 2268
+    assert ln.frigorias("Aire Noblex Split On/off 2750 W") == 2365
+    assert ln.frigorias("Aire LG DualCool Inverter Blanco") is None
+
+
+def test_aires_solo_con_la_opcion_y_hasta_la_potencia_pedida():
+    lineas = [
+        linea("/a/p/MLA20000001", titulo="Aire Acondicionado Split 2503 Fg"),
+        linea("/b/p/MLA20000002", titulo="Aire Acondicionado Split 4601 Fg"),
+        linea("/c/p/MLA20000003", titulo="Aire Acondicionado Split Inverter"),  # sin potencia
+        linea("/d/p/MLA20000004", titulo="Compresor de aire portátil 150psi"),  # no es un aire
+        linea("/e/p/MLA20000005", titulo="Ventilador de pie 20 pulgadas"),
+    ]
+    lote, desc = ln.armar(lineas, {}, {}, HOY)
+    assert [l.split(" | ")[0].rsplit("/", 1)[1] for l in lote] == ["MLA20000004"]
+    assert desc == {"rubro excluido": 4}
+    lote, desc = ln.armar(lineas, {}, {}, HOY, aires_hasta=3000)
+    assert [l.split(" | ")[0].rsplit("/", 1)[1] for l in lote] == ["MLA20000001", "MLA20000004"]
+    assert desc == {"aire fuera de potencia": 2, "rubro excluido": 1}

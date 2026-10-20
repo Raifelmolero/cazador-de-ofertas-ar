@@ -275,3 +275,11 @@ Trello #31.
 - Control 20/10 13:00 UTC (sesión del 19/10): 1.260 manuales vigentes (932 cargadas el 20/10), 1.228 en
   la web; corridas del bot y Frontend CI en verde; «YouTube test upload» sigue `youtubeSignupRequired`
   (falta setup_youtube.py en la PC). A20 (orden de la home) en pausa: hay otra sesión trabajando el sitio.
+- 20/10 mañana (sesión sesion-1910b): las 25 `/categoria` ya tienen texto propio (gamer, bebés, electro de
+  cocina y vehículos en e8be831). Carga dirigida desde la Central de afiliados (buscador «Productos
+  seleccionados para vos», mismo extractor con otra clave de localStorage `__cz_acc_r` para no pisar la
+  tarea diaria): 52 ofertas, 1.312 vigentes. Aires de hasta 3.000 frigorías habilitados a pedido del
+  dueño (en la web: 8 aires, antes 0); `FUERA` de `lote_navegador.py` sigue excluyendo aires en la carga
+  diaria. /ofertas trae muy pocos aires/heladeras (1 página); para esos rubros conviene buscar en la Central.
+- YouTube: `setup_youtube.py` pide Client ID y Client Secret (los pega el dueño, Claude no escribe
+  credenciales); el token actual es de una cuenta sin canal → `youtubeSignupRequired`.

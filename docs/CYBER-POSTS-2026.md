@@ -11,7 +11,7 @@ Links siempre con utm: `cazadordeofertas.com.ar/cyber?utm_source=<canal>&utm_cam
 | Lun 26/10 | "Falta una semana" + guía para no caer en infladas | IG feed, Threads, Telegram |
 | Vie 30/10 | Checklist: qué mirar antes del lunes | IG story (link a /cyber), Threads |
 | Dom 1/11 noche | "Mañana arranca" + 3 productos con precio testigo | IG story, Telegram |
-| Lun 2/11 | Día 1: ticket alto (aires, TV, heladeras, colchones) | todos |
+| Lun 2/11 | Día 1: ticket alto (TV, heladeras, notebooks, colchones; aires solo si hace calor) | todos |
 | Mar 3/11 | Día 2: los que bajaron de verdad vs. los inflados | todos |
 | Mié 4/11 | Último día: mínimos históricos | todos |
 

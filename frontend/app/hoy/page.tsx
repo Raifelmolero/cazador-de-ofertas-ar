@@ -15,6 +15,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { elegirTop } from '@/lib/top3'
 import AtajosCelular from '@/components/AtajosCelular'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
@@ -75,11 +76,11 @@ export default function HoyPage() {
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
-  const top3Ids = new Set(ofertasLight.slice(0, 3).map(o => o.id_ml))
+  const top3Ids = new Set(elegirTop(ofertasLight, 3).map(o => o.id_ml))
   const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml))
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
   // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
-  const yaMostrados = new Set([...top3Ids, ...ticketAlto.slice(0, 3).map(o => o.id_ml)])
+  const yaMostrados = new Set([...top3Ids, ...elegirTop(ticketAlto, 3).map(o => o.id_ml)])
   const colchones = catColchones
     ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo) && !yaMostrados.has(o.id_ml))
     : []

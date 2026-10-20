@@ -85,7 +85,9 @@ class TestCifrado(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d) / "a.enc"
             al.guardar({"offset": 5, "alertas": [{"chat": 42}]}, p)
-            self.assertNotIn(b"42", p.read_bytes())
+            # Las comillas nunca aparecen en el base64 de Fernet: si se ven, el archivo quedó en claro.
+            # (Antes se buscaba b"42", que a veces sale por casualidad en el cifrado.)
+            self.assertNotIn(b'"chat"', p.read_bytes())
             self.assertEqual(al.cargar(p)["offset"], 5)
 
 

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { miniaturaML } from '@/lib/imagenml'
 import type { OfertaLight } from '@/components/OfertaCard'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
+import { elegirTop } from '@/lib/top3'
 
 const precio = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 
@@ -21,7 +22,7 @@ export default function TopOfertasHoy({
   seccion?: string
   id?: string
 }) {
-  const top = ofertas.slice(0, 3)
+  const top = elegirTop(ofertas, 3)
   if (top.length === 0) return null
   return (
     <section aria-labelledby={id} data-seccion={seccion} className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">

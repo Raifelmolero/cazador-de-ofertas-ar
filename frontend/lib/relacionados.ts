@@ -98,6 +98,8 @@ export function topDescuento<T extends OfertaLight>(ofertas: T[], n = 3): T[] {
     .filter(o => o.minimo_historico || (o.descuento_pct ?? 0) > 0)
     .sort(
       (a, b) =>
+        // ≥20 % OFF primero: un mínimo histórico con 7 % OFF no es "destacada".
+        Number((b.descuento_pct ?? 0) >= 20) - Number((a.descuento_pct ?? 0) >= 20) ||
         Number(b.minimo_historico ?? false) - Number(a.minimo_historico ?? false) ||
         (b.descuento_pct ?? 0) - (a.descuento_pct ?? 0) ||
         b.precio_actual - a.precio_actual,

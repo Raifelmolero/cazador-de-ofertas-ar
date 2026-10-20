@@ -263,3 +263,12 @@ Trello #31.
 - Workflows nuevos manuales: «YouTube test upload» (sube privado) y «Probe imágenes ML» (solo CDN).
 - Medir el domingo 26/10 contra 240 clics / 16 pedidos / $237.708.
 - **Para retomar**: `docs/PROMPT-CONTINUAR-2026-10-20.md`.
+
+## Estado al 2026-10-20 (noche 19→20, leer primero)
+- **1.260 ofertas manuales vigentes** (1.228 en la web), cargadas desde /ofertas por categoría en el
+  Chrome del dueño con `bot/tools/lote_navegador.py` (permiso de ML a un asistente en su navegador, a
+  ritmo humano; nunca desde Actions). Tarea programada diaria ~11:13 que carga y refresca; medición
+  semanal los domingos 21:00. Plan por fases: `docs/PLAN-NOCHE-2026-10-19.md`.
+- Manuales duran 14 días. Con `scrape_ml=false` TODAS van a la web (`deals_para_sitio`; antes había
+  un tope de 300). `deals_bot.yml` tiene `solo_datos` para refrescar la web sin publicar.
+- `/precio`: tope 3.000 fichas (1.500 borraba páginas indexadas con cada carga grande).

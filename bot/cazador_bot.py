@@ -683,7 +683,9 @@ SEGUIMIENTO_PATH = BASE_DIR.parent / "frontend" / "data" / "seguimiento.json"
 SEGUIMIENTO_MIN_GANANCIA = 12000   # ganancia esperada mínima para abrir página
 # 1500: con 500 se reemplazaba el 80% de las fichas por semana (27/09→04/10:
 # 403 de 500) y las páginas que Google ya indexaba pasaban a redirigir.
-SEGUIMIENTO_MAX_ITEMS = 1500
+SEGUIMIENTO_MAX_ITEMS = 3000
+# 3000 (19/10): con la carga manual masiva (898 en una noche) el tope de 1500
+# borró 207 fichas que Google ya conocía. El límite de 60 días sigue podando.
 SEGUIMIENTO_MAX_DIAS = 60          # sin verlo en /ofertas por más → se borra
 SEGUIMIENTO_MAX_PUNTOS = 180
 

@@ -1,0 +1,14 @@
+{
+  "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
+  "cupones": [
+    {
+      "codigo": "MODOMELI",
+      "descuento": 15000,
+      "minimo": 150000,
+      "hasta": "2026-10-20T23:59:00-03:00",
+      "condiciones": "1 uso por usuario",
+      "campania": "Wellness Week",
+      "link": "https://www.mercadolibre.com.ar/ofertas/wellnessweek"
+    }
+  ]
+}

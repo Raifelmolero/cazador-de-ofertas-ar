@@ -16,6 +16,7 @@ import { slugPorId } from '@/lib/seguimiento'
 import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import { getComparativa, indexable } from '@/lib/comparativas'
 import { getCategoria, enCategoria } from '@/lib/categorias'
+import { cuponesVigentes, textoCupon } from '@/lib/cupones'
 
 const URL = `${DEALS_URL}/cupones-mercado-libre`
 const TITULO = 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos'
@@ -24,8 +25,8 @@ const DESCRIPCION =
 /** Día en que se leyeron las fuentes oficiales citadas abajo. */
 const VERIFICADO = '28/09/2026'
 /** Última edición de esta guía (ISO, para JSON-LD y el texto visible). */
-const MODIFICADO = '2026-09-29'
-const MODIFICADO_TXT = '29/09/2026'
+const MODIFICADO = '2026-10-20'
+const MODIFICADO_TXT = '20/10/2026'
 /** Comparativas de ticket alto: donde un cupón con tope rinde más. */
 const TICKET_ALTO = ['mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas', 'mejores-notebooks', 'mejores-celulares']
 const MAX_OFERTAS = 8
@@ -48,7 +49,7 @@ const FUENTES = [
 const FAQS = [
   {
     q: '¿Hay códigos de descuento de Mercado Libre que sirvan para todos?',
-    a: 'No encontramos ninguno vigente publicado por Mercado Libre para todo el mundo. Los cupones se muestran por usuario en mercadolibre.com.ar/cupones (hay que iniciar sesión) y cada uno tiene sus condiciones. Desconfiá de páginas que listan "códigos" sin fuente: muchos son viejos o de otra campaña.',
+    a: 'A veces sí: Mercado Libre publica cupones del día para todos (con compra mínima y vigencia de un día) y cuando hay uno vigente lo mostramos arriba de esta página. El resto de los cupones se muestran por usuario en mercadolibre.com.ar/cupones (hay que iniciar sesión) y cada uno tiene sus condiciones. Desconfiá de páginas que listan "códigos" sin fuente ni fecha: muchos son viejos o de otra campaña.',
   },
   {
     q: '¿Dónde veo los cupones que tengo disponibles?',
@@ -74,6 +75,7 @@ const FAQS = [
 
 export default function CuponesPage() {
   const scrapedAt = getScrapedAt().toISOString()
+  const cupones = cuponesVigentes()
   const historial = slugPorId()
   // Quien busca cupones es comprador de casa: sin equipamiento gastronómico industrial
   const gastro = getCategoria('equipamiento-gastronomico')
@@ -142,6 +144,28 @@ export default function CuponesPage() {
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-6 [text-wrap:balance]">
           Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos
         </h1>
+
+        {cupones.map(c => (
+          <div key={c.codigo} data-seccion="cupon_del_dia" className="rounded-2xl border-2 border-green-400/50 bg-green-500/10 px-5 py-4 mb-6">
+            <p className="text-xs font-bold text-green-300 mb-2">🎟️ CUPÓN DE HOY{c.campania ? ` · ${c.campania.toUpperCase()}` : ''}</p>
+            <p className="font-display text-3xl sm:text-4xl font-black tracking-wider text-zinc-50 select-all">{c.codigo}</p>
+            <p className="text-zinc-200 mt-2">{textoCupon(c)}</p>
+            <p className="text-xs text-zinc-500 mt-1">
+              Lo publicó Mercado Libre en su canal oficial de afiliados. Se carga en el carrito antes de pagar; si el descuento no
+              aparece en el resumen, no aplica a esa compra.
+            </p>
+            {c.link && (
+              <a
+                href={paginaML(c.link)}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                className="mt-3 flex items-center justify-center rounded-xl bg-green-400 px-4 py-3 font-black text-black hover:bg-green-300 transition-colors"
+              >
+                Ver las ofertas donde usarlo ↗
+              </a>
+            )}
+          </div>
+        ))}
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>

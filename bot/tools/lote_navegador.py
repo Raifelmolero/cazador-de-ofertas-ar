@@ -41,13 +41,20 @@ import oferta_manual as om  # noqa: E402
 
 BASE = Path(__file__).resolve().parent.parent
 
-EXTRACTOR_JS = r"""(function(){const out=[];document.querySelectorAll('.poly-card').forEach(c=>{const a=c.querySelector('.poly-component__title a, a.poly-component__title')||c.querySelector('a');let link='';try{const u=new URL(a.href);link=(u.host.startsWith('articulo')?'A':'W')+u.pathname}catch(e){}const t=((c.querySelector('.poly-component__title')||a).textContent||'').trim().replace(/§/g,' ');const num=el=>el?parseInt((el.querySelector('.andes-money-amount__fraction')||el).textContent.replace(/\D/g,'')):0;const cur=num(c.querySelector('.poly-price__current .andes-money-amount'));const prev=num(c.querySelector('s.andes-money-amount--previous, .andes-money-amount--previous'));const img=c.querySelector('img');const s=img&&(img.getAttribute('data-src')||img.src)||'';const m=s.match(/_(\d+-ML[A-Z]\d+_\d+)/);if(link&&prev&&cur&&(prev-cur)/prev>=0.2)out.push([link,t,cur,prev,m?m[1]:''].join('§'))});const acc=JSON.parse(localStorage.getItem('__cz_acc')||'{}');out.forEach(l=>acc[l.split('§')[0]]=l);localStorage.setItem('__cz_acc',JSON.stringify(acc));return out.length+' nuevas-pag / acc '+Object.keys(acc).length})()"""
+EXTRACTOR_JS = r"""(function(){const out=[];document.querySelectorAll('.poly-card').forEach(c=>{const a=c.querySelector('.poly-component__title a, a.poly-component__title')||c.querySelector('a');let link='';try{const u=new URL(a.href);link=(u.host.startsWith('articulo')?'A':'W')+u.pathname}catch(e){}const t=((c.querySelector('.poly-component__title')||a).textContent||'').trim().replace(/§/g,' ');const num=el=>el?parseInt((el.querySelector('.andes-money-amount__fraction')||el).textContent.replace(/\D/g,'')):0;const cur=num(c.querySelector('.poly-price__current .andes-money-amount'));const prev=num(c.querySelector('s.andes-money-amount--previous, .andes-money-amount--previous'));const img=c.querySelector('img');const s=img&&(img.getAttribute('data-src')||img.src)||'';const m=s.match(/_(\d+-ML[A-Z]\d+_\d+)/);if(link&&prev&&cur&&((prev-cur)/prev>=0.2||(cur>=1000000&&(prev-cur)/prev>=0.1)))out.push([link,t,cur,prev,m?m[1]:''].join('§'))});const acc=JSON.parse(localStorage.getItem('__cz_acc')||'{}');out.forEach(l=>acc[l.split('§')[0]]=l);localStorage.setItem('__cz_acc',JSON.stringify(acc));return out.length+' nuevas-pag / acc '+Object.keys(acc).length})()"""
 
 # Clima frío (feedback de Raifel): nada de aires/verano; tampoco industrial ni repuestos.
 FUERA = re.compile(r"aire acondicionado|aire acond|\bsplit\b|ventilador|pileta|piscina|industrial|"
                    r"gastron|exhibidor|comercial|neum[aá]tico|repuesto|cartucho", re.I)
 AIRE = re.compile(r"aire acond|aire port[aá]til|\bsplit\b", re.I)
 NO_ES_AIRE = re.compile(r"compresor|bomba de vac|mecha|mini aire|humidificador|repuesto|soporte", re.I)
+# Celulares de gama alta (OK de Raifel 20/10): casi nunca llegan a 20 % OFF y una
+# sola venta deja ~$600.000. Entran con 10 % si cuestan $1.000.000 o más y están
+# en el precio más bajo que registramos (con historial; sin historial no se sabe).
+CELULAR = re.compile(r"\biphone\b|\bcelular\b|smartphone|galaxy (?:s|z)\d|motorola edge|pixel \d", re.I)
+NO_ES_CELULAR = re.compile(r"funda|cargador|cable|protector|vidrio|soporte|repuesto|power ?bank", re.I)
+CELULAR_DESDE = 1_000_000
+CELULAR_PCT_MIN = 10
 REFRESCAR_DESDE_DIAS = 5   # una vigente cargada hace 5+ días se vuelve a cargar con el precio de hoy
 POR_LOTE = 120
 
@@ -64,6 +71,12 @@ def frigorias(titulo: str) -> int | None:
     if m:
         return round(int(m.group(1)) / 1.163)
     return None
+
+
+def es_celular_en_minimo(titulo: str, cur: int, h) -> bool:
+    """Celular de $1.000.000+ en su precio más bajo registrado (regla del 10 %)."""
+    return (cur >= CELULAR_DESDE and bool(CELULAR.search(titulo)) and not NO_ES_CELULAR.search(titulo)
+            and isinstance(h, dict) and isinstance(h.get("min"), (int, float)) and cur <= h["min"])
 
 
 def armar(lineas: list[str], vigentes: dict[str, str], historial: dict,
@@ -107,10 +120,12 @@ def armar(lineas: list[str], vigentes: dict[str, str], historial: dict,
             descartar("rubro excluido")
             continue
         pct = round((prev - cur) / prev * 100)
-        if pct < 20 or pct > om.DESCUENTO_MAX_PCT:
+        h = historial.get(idm)
+        if CELULAR_PCT_MIN <= pct < 20 and es_celular_en_minimo(titulo, cur, h):
+            pass
+        elif pct < 20 or pct > om.DESCUENTO_MAX_PCT:
             descartar("descuento fuera de rango")
             continue
-        h = historial.get(idm)
         if isinstance(h, dict) and isinstance(h.get("min"), (int, float)) and h["min"] < cur * 0.95:
             descartar("historial: inflada")
             continue

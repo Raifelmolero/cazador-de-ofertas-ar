@@ -65,3 +65,24 @@ def test_aires_solo_con_la_opcion_y_hasta_la_potencia_pedida():
     lote, desc = ln.armar(lineas, {}, {}, HOY, aires_hasta=3000)
     assert [l.split(" | ")[0].rsplit("/", 1)[1] for l in lote] == ["MLA20000001", "MLA20000004"]
     assert desc == {"aire fuera de potencia": 2, "rubro excluido": 1}
+
+
+def test_celular_de_gama_alta_entra_con_10_si_esta_en_su_minimo():
+    tit = "Apple iPhone 17 Pro (256 GB) - Azul"
+    lineas = [
+        linea("/a/p/MLA30000001", titulo=tit, cur=2999999, prev=3599999),            # 17 %, en su mínimo
+        linea("/b/p/MLA30000002", titulo=tit, cur=2999999, prev=3599999),            # 17 %, ya estuvo más barato
+        linea("/c/p/MLA30000003", titulo=tit, cur=2999999, prev=3599999),            # 17 %, sin historial
+        linea("/d/p/MLA30000004", titulo="Funda iPhone 17 Pro", cur=1000000, prev=1150000),  # accesorio
+        linea("/e/p/MLA30000005", titulo="Apple iPhone 13", cur=900000, prev=1050000),     # menos de $1.000.000
+        linea("/f/p/MLA30000006", titulo=tit, cur=2999999, prev=3199999),            # 6 %
+    ]
+    hist = {"MLA30000001": {"min": 2999999}, "MLA30000002": {"min": 2899999},
+            "MLA30000004": {"min": 1000000}, "MLA30000005": {"min": 900000}, "MLA30000006": {"min": 2999999}}
+    lote, desc = ln.armar(lineas, {}, hist, HOY)
+    assert [l.split(" | ")[0].rsplit("/", 1)[1] for l in lote] == ["MLA30000001"]
+    assert desc == {"descuento fuera de rango": 5}
+
+
+def test_extractor_junta_10_por_ciento_solo_desde_un_millon():
+    assert "(cur>=1000000&&(prev-cur)/prev>=0.1)" in ln.EXTRACTOR_JS

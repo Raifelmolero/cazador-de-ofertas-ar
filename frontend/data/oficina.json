@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-21T22:15:14+00:00",
+  "generado": "2026-10-21T23:10:39+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-21T19:13:28+00:00",
+      "ultima_actividad": "2026-10-21T23:10:38+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Freezer Vertical Whirlpool Evox 231 Lts Evox"
+      "ultimo_trabajo": "Heladera Con Freezer No Frost 300 L Steel Drean Rda300fbrt Color Gris"
     },
     {
       "id": "investigacion",

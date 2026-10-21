@@ -11,6 +11,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { getCategoria, ofertasDeCategoria, type Categoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { PRECIOS_HOY, art } from '@/lib/preciohoy'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { busquedaML } from '@/lib/afiliado'
 import type { Nicho } from '@/lib/nichos'
@@ -51,6 +52,7 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
   const top3 = topDescuento(ofertasLight, 3)
   const guias = GUIAS.filter(g => g.categoria && n.categorias.includes(g.categoria.slug))
   const comparativas = COMPARATIVAS.filter(c => c.categoria && n.categorias.includes(c.categoria))
+  const precios = PRECIOS_HOY.filter(p => (p.categoria && n.categorias.includes(p.categoria)) || n.precios?.includes(p.slug))
   const seguidos = n.categorias.flatMap(seguidosDeCategoria).slice(0, 30)
   // Las 2 primeras preguntas de cada categoría: el hub no repite páginas enteras
   const faqs = cats.flatMap(c => c.faqs.slice(0, cats.length > 1 ? 2 : c.faqs.length))
@@ -184,6 +186,19 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
+        {precios.length > 0 && (
+          <section className="mb-8">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Precio de hoy</h2>
+            <ul className="space-y-1.5">
+              {precios.map(p => (
+                <li key={p.slug}>
+                  <a href={`/precio-hoy/${p.slug}`} className="font-bold text-yellow-400 hover:underline">💲 Cuánto sale {art(p, false)} {p.nombre} hoy →</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {comparativas.length > 0 && (
           <section className="mb-8">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativas</h2>

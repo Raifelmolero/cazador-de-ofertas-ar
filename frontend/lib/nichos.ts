@@ -15,6 +15,7 @@ export interface Nicho {
   etiqueta: string // matt_word en el panel de afiliados de ML
   categorias: string[] // slugs de /categoria/* que forman el nicho
   busquedas: string[] // accesos directos a búsquedas de ML
+  precios?: string[] // /precio-hoy/* sin categoría que también van en el hub
 }
 
 export const NICHOS: Nicho[] = [
@@ -58,19 +59,20 @@ export const NICHOS: Nicho[] = [
   {
     slug: 'tecno',
     marca: 'Cazador de Tecno',
-    emoji: '📺',
-    titulo: 'Ofertas de tecnología: smart TV y monitores',
+    emoji: '📱',
+    titulo: 'Ofertas de tecnología: celulares, iPhone, notebooks y smart TV',
     descripcion:
-      'Smart TV y monitores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Comparativas y guías para elegir pulgadas, panel y frecuencia.',
+      'Celulares, iPhone, Samsung Galaxy, Motorola, notebooks, smart TV y monitores en oferta hoy en Mercado Libre Argentina, con el descuento verificado contra el historial de precios. Guías y comparativas para elegir bien.',
     intro:
-      'Pantallas en un solo lugar: los smart TV y monitores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios), con comparativas para elegir tamaño, resolución y panel.',
+      'Toda la tecnología en un solo lugar: los celulares, notebooks, smart TV y monitores que hoy tienen descuento real en Mercado Libre (lo verificamos contra el historial de precios), el precio de hoy de los más buscados y guías para elegir sin pagar de más.',
     etiqueta: 'tecno',
-    categorias: ['smart-tv', 'monitores'],
+    categorias: ['celulares', 'notebooks', 'smart-tv', 'monitores'],
     busquedas: [
-      'smart tv 50 pulgadas', 'smart tv 55 4k', 'smart tv 65', 'google tv', 'monitor 24 pulgadas',
-      'monitor 27 pulgadas', 'monitor gamer 144hz', 'monitor curvo', 'soporte tv pared',
-      'barra de sonido', 'chromecast', 'proyector',
+      'iphone 17', 'iphone 17 pro max', 'samsung galaxy s26', 'motorola moto g', 'xiaomi redmi',
+      'notebook i5 16gb', 'notebook ryzen 7', 'macbook air', 'smart tv 55 4k', 'smart tv 65',
+      'monitor 27 pulgadas', 'auriculares bluetooth', 'smartwatch', 'tablet', 'playstation 5',
     ],
+    precios: ['smartwatch', 'auriculares-bluetooth'],
   },
   {
     slug: 'gastronomia',

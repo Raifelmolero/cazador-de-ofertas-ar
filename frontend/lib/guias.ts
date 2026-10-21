@@ -924,6 +924,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Guía para elegir notebook en Argentina para estudiar, trabajar o jugar: qué procesador, cuánta RAM y qué disco SSD conviene, y qué evitar.',
     pregunta: '¿Qué notebook me conviene comprar?',
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
     respuestaCorta:
       'Para estudiar o trabajar: procesador Ryzen 5 o Core i5 (o superior), 16 GB de RAM (8 GB como mínimo, mejor si se puede ampliar) y disco SSD de 512 GB (256 GB como mínimo). Para gaming: además, placa de video dedicada (NVIDIA GeForce RTX o AMD Radeon) y 16 GB de RAM. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana.',
     secciones: [
@@ -993,6 +994,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Guía para elegir celular en Argentina según el presupuesto: cuánta RAM y almacenamiento conviene, si hace falta 5G, batería, pantalla y años de actualizaciones.',
     pregunta: '¿Qué celular me conviene comprar según mi presupuesto?',
+    categoria: { slug: 'celulares', nombre: 'celulares' },
     respuestaCorta:
       'Para la mayoría, un gama media es la mejor relación precio-calidad: 128 GB de almacenamiento como mínimo (256 GB si sacás muchas fotos y videos), 6 a 8 GB de RAM, batería de 5.000 mAh y varios años de actualizaciones del fabricante. El 5G es un plus si tu compañía lo ofrece en tu zona, pero no es imprescindible. Preferí equipos con garantía oficial en Argentina.',
     secciones: [
@@ -1065,6 +1067,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Guía para elegir un celular de gama alta en Argentina: iPhone, Samsung Galaxy S, Motorola Edge o Xiaomi tope de gama. Qué mirar, cuotas sin interés y cuándo conviene esperar al Cyber Monday o al Black Friday.',
     pregunta: '¿Qué celular de gama alta conviene comprar en Argentina?',
+    categoria: { slug: 'celulares', nombre: 'celulares' },
     respuestaCorta:
       'En gama alta la elección pasa más por el ecosistema que por la ficha: si ya usás Mac, iPad o Apple Watch, un iPhone se integra mejor; si preferís Android, la serie Galaxy S de Samsung y los tope de gama de Motorola (Edge) y Xiaomi compiten en cámara, pantalla y rendimiento. Antes de pagar, compará el precio contra su historial, revisá que tenga garantía oficial en Argentina (tienda oficial o distribuidor autorizado) y hacé la cuenta de las cuotas: en un equipo de varios millones, las cuotas sin interés pueden convenir más que un descuento chico en un pago.',
     secciones: [
@@ -1147,6 +1150,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Guía para elegir smart TV en Argentina: cuántas pulgadas según la distancia al sillón, cuándo conviene 4K, LED vs. QLED vs. OLED y Google TV, Tizen o webOS.',
     pregunta: '¿Qué smart TV me conviene comprar?',
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
     respuestaCorta:
       'Elegí el tamaño según la distancia al sillón: a 1,5 metros, unas 43 pulgadas; a 2 metros, 50 a 55; a 2,5 metros o más, 65. Desde 43 pulgadas conviene 4K. El sistema operativo (Google TV, Tizen de Samsung o webOS de LG) tiene que tener las apps que usás. QLED y OLED dan mejor imagen que un LED común, pero cuestan más.',
     secciones: [
@@ -1215,6 +1219,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Cómo elegir una notebook en el Cyber Monday 2026 de Argentina: procesador, RAM, SSD y pantalla según el uso, y cómo saber si el descuento es real.',
     pregunta: '¿Qué notebook conviene comprar en el Cyber Monday?',
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
     respuestaCorta:
       'Para estudiar o trabajar, una notebook con procesador Ryzen 5 o Core i5 (o superior), 8 GB de RAM como mínimo (mejor 16 GB) y disco SSD de 256 GB o más. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, compará el precio contra el historial del modelo.',
     secciones: [
@@ -1254,6 +1259,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Cómo elegir un smart TV en el Cyber Monday 2026 de Argentina: tamaño según la distancia, 4K o Full HD, tipo de panel y sistema operativo.',
     pregunta: '¿Qué smart TV conviene comprar en el Cyber Monday?',
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
     respuestaCorta:
       'Elegí el tamaño según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas), 4K a partir de 43 pulgadas y un sistema operativo que tenga las apps que usás (Google TV, Tizen o webOS). QLED y OLED dan mejor imagen que un LED común, pero cuestan más. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
     secciones: [
@@ -1292,6 +1298,7 @@ export const GUIAS: Guia[] = [
     descripcion:
       'Cómo elegir un celular en el Cyber Monday 2026 de Argentina: memoria, batería, cámara y garantía, y cómo detectar descuentos inflados.',
     pregunta: '¿Qué celular conviene comprar en el Cyber Monday?',
+    categoria: { slug: 'celulares', nombre: 'celulares' },
     respuestaCorta:
       'Para la mayoría alcanza con 128 GB de almacenamiento, 6 a 8 GB de RAM y una batería de 5.000 mAh. Preferí equipos liberados con garantía oficial en Argentina y compará el mismo modelo en tiendas oficiales. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, mirá el precio contra el historial del modelo.',
     secciones: [

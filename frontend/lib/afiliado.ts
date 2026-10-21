@@ -18,7 +18,12 @@ export function busquedaML(q: string, etiqueta = 'web') {
  *  `web`; las etiquetas de nichos quedan como están. */
 export const ETIQUETA_SITIO = 'sitio'
 
-export function aEtiquetaSitio(href: string): string | null {
+/** Test de Meta Ads: quien llega con `utm_source=meta` hace sus clics con
+ *  `matt_word=meta`, así el panel separa los pedidos de los anuncios
+ *  (docs/META-ADS-TEST-2026.md). Requiere la etiqueta `meta` creada en el panel. */
+export const ETIQUETA_META = 'meta'
+
+export function aEtiquetaSitio(href: string, etiqueta = ETIQUETA_SITIO): string | null {
   let url: URL
   try {
     url = new URL(href)
@@ -26,7 +31,7 @@ export function aEtiquetaSitio(href: string): string | null {
     return null
   }
   if (url.searchParams.get('matt_word') !== 'web') return null
-  url.searchParams.set('matt_word', ETIQUETA_SITIO)
+  url.searchParams.set('matt_word', etiqueta)
   return url.toString()
 }
 

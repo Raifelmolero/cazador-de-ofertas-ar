@@ -291,3 +291,9 @@ Trello #31.
   inventario; conversión estable. Paradoja: Vercel/Clarity ven más tráfico que a principios de mes pero
   el panel cuenta menos clics → posible fuente externa que republica nuestros links. Confirmar con la
   tabla diaria panel vs `clic_ml` hasta el 26/10.
+
+## Experimento de etiqueta (en vivo desde el 20/10 noche, c6c7a00)
+- Es el «experimento `webcopia`» del plan, pero hecho al revés y con otro nombre: se creó la etiqueta **`sitio`**.
+  Los links siguen saliendo con `matt_word=web` en el HTML, `/ofertas-hoy.json` y el JSON-LD; `clics-ml.tsx`
+  los cambia a `sitio` justo antes del clic dentro del sitio. Panel desde el 21/10: `sitio` = clics nuestros,
+  `web` = links copiados/usados fuera del sitio. **No crear `webcopia`, ya está cubierto.**

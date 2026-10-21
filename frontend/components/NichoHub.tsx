@@ -186,6 +186,15 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
+        {n.destacados && n.destacados.length > 0 && (
+          <ul className="mb-8 space-y-1.5">
+            {n.destacados.map(d => (
+              <li key={d.href}>
+                <a href={d.href} className="font-bold text-cyan-300 hover:underline">{d.texto} →</a>
+              </li>
+            ))}
+          </ul>
+        )}
         {precios.length > 0 && (
           <section className="mb-8">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Precio de hoy</h2>

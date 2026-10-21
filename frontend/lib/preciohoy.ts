@@ -23,7 +23,7 @@ export interface PrecioHoy {
 }
 
 const TV_EXCLUIR = ['soporte', 'control', 'funda', 'cable', 'antena', 'rack', 'mesa']
-const CELU_EXCLUIR = ['funda', 'vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'case', 'lente', 'repuesto', 'modulo', 'pantalla', 'bateria', 'power', 'auricular', 'reloj', 'smartwatch', 'tablet', 'tab ', 'buds', 'watch', 'monitor', 'notebook', 'tv', 'pendrive', 'memoria', 'disco']
+export const CELU_EXCLUIR = ['funda', 'vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'case', 'lente', 'repuesto', 'modulo', 'pantalla', 'bateria', 'power', 'auricular', 'reloj', 'smartwatch', 'tablet', 'tab ', 'buds', 'watch', 'monitor', 'notebook', 'tv', 'pendrive', 'memoria', 'disco']
 
 export const PRECIOS_HOY: PrecioHoy[] = [
   { slug: 'smart-tv-32-pulgadas', nombre: 'smart TV de 32 pulgadas', patron: /(tv|televisor).*\b32\b/, excluir: TV_EXCLUIR, busqueda: 'smart tv 32', categoria: 'smart-tv', consejo: 'En 32" alcanza con resolución HD; fijate que sea Smart (Google TV, Android TV o webOS) y que tenga al menos 2 HDMI.' },

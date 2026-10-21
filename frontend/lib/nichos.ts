@@ -16,6 +16,7 @@ export interface Nicho {
   categorias: string[] // slugs de /categoria/* que forman el nicho
   busquedas: string[] // accesos directos a búsquedas de ML
   precios?: string[] // /precio-hoy/* sin categoría que también van en el hub
+  destacados?: { href: string; texto: string }[] // páginas propias del rubro (ej. Cyber)
 }
 
 export const NICHOS: Nicho[] = [
@@ -73,6 +74,7 @@ export const NICHOS: Nicho[] = [
       'monitor 27 pulgadas', 'auriculares bluetooth', 'smartwatch', 'tablet', 'playstation 5',
     ],
     precios: ['smartwatch', 'auriculares-bluetooth'],
+    destacados: [{ href: '/cyber-monday/tecnologia', texto: '🛒 Cyber Monday: ¿bajan de verdad los celulares y notebooks?' }],
   },
   {
     slug: 'gastronomia',

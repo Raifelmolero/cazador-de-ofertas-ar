@@ -370,6 +370,14 @@ export default function CyberMondayPage() {
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
         <ComparacionTestigo evento="Cyber Monday" etapa={etapa} />
 
+        <Link
+          href="/cyber-monday/tecnologia"
+          className="mb-10 block rounded-2xl border border-cyan-400/30 bg-cyan-500/[0.07] p-5 hover:border-cyan-300/60 transition-colors"
+        >
+          <p className="font-display text-lg sm:text-xl font-black text-zinc-50">📱 Celulares, iPhone y notebooks: ¿bajan de verdad?</p>
+          <p className="mt-1 text-sm text-zinc-400">El precio más bajo de octubre de cada uno, para comparar en el Cyber →</p>
+        </Link>
+
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué es el Cyber Monday</h2>
           <div className="space-y-3 text-zinc-400 leading-relaxed">

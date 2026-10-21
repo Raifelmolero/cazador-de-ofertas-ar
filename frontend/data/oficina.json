@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-21T03:10:37+00:00",
+  "generado": "2026-10-21T14:32:33+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -18,31 +18,31 @@
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 9
-        },
-        {
-          "label": "Telegram",
-          "valor": 8
+          "valor": 6
         },
         {
           "label": "Facebook",
           "valor": 5
         },
         {
-          "label": "Threads",
+          "label": "Telegram",
           "valor": 3
-        },
-        {
-          "label": "Reels IG",
-          "valor": 2
-        },
-        {
-          "label": "Historias IG",
-          "valor": 2
         },
         {
           "label": "Instagram",
           "valor": 2
+        },
+        {
+          "label": "Threads",
+          "valor": 2
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",

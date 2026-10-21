@@ -2,7 +2,7 @@
  "metadata": {
   "scraped_at": "2026-10-21T21:39:14+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 1891
+  "total_items": 1893
  },
  "items": [
   {
@@ -44596,6 +44596,54 @@
    "costo_envio_base_ars": 2740.0,
    "margen_neto_clasico_ars": 14514.8,
    "margen_neto_premium_ars": 11804.52
+  },
+  {
+   "id_ml": "MLA33981251",
+   "titulo": "Anker Soundcore Q20i Auriculares Inalámbricos / ANC Híbrido Activo / Hi-Res por AUX / BassUp Graves Potentes / Hasta 60h Batería / Modo Tran",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 91083.0,
+   "precio_anterior": 194990,
+   "descuento_pct": 53,
+   "minimo_historico": true,
+   "relampago": false,
+   "prioridad": 2960,
+   "precio_minimo_registrado": 91083,
+   "seguimiento_desde": "2026-09-25",
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/p/MLA33981251?matt_word=web&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_723267-MLU74511786436_022024-F.webp",
+   "precio_visto": "2026-10-21",
+   "comision_clasica_pct": 0.1469,
+   "comision_premium_pct": 0.2809,
+   "retencion_iibb_pct": 0.0,
+   "costo_envio_base_ars": 0.0,
+   "margen_neto_clasico_ars": 77702.91,
+   "margen_neto_premium_ars": 65497.79
+  },
+  {
+   "id_ml": "MLA42695635",
+   "titulo": "Maquina Fabrica Pastas Amasa Fideos Acero Inoxidable Waggs PAST01 Color Plateado",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 58990.0,
+   "precio_anterior": 101596,
+   "descuento_pct": 42,
+   "minimo_historico": false,
+   "relampago": false,
+   "prioridad": 1475,
+   "precio_minimo_registrado": 58990,
+   "seguimiento_desde": "2026-10-21",
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/p/MLA42695635?matt_word=web&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_986699-MLA99452322660_112025-F.webp",
+   "precio_visto": "2026-10-21",
+   "comision_clasica_pct": 0.1469,
+   "comision_premium_pct": 0.2809,
+   "retencion_iibb_pct": 0.0,
+   "costo_envio_base_ars": 0.0,
+   "margen_neto_clasico_ars": 50324.37,
+   "margen_neto_premium_ars": 42419.71
   },
   {
    "id_ml": "MLA41799285",

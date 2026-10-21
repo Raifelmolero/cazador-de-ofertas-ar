@@ -11,6 +11,25 @@ export function busquedaML(q: string, etiqueta = 'web') {
   return `https://listado.mercadolibre.com.ar/${slug}?matt_word=${etiqueta}&matt_tool=37267219`
 }
 
+/** Experimento de atribución: los links salen del sitio (HTML, /ofertas-hoy.json,
+ *  JSON-LD) con `matt_word=web`, y al hacer clic DENTRO del sitio se pasan a
+ *  `sitio`. En el panel: `sitio` = clics nuestros; `web` = links copiados y
+ *  usados afuera (docs/PLAN-REMONTAR-CLICS-2026-10-20.md, paso 3). Solo toca
+ *  `web`; las etiquetas de nichos quedan como están. */
+export const ETIQUETA_SITIO = 'sitio'
+
+export function aEtiquetaSitio(href: string): string | null {
+  let url: URL
+  try {
+    url = new URL(href)
+  } catch {
+    return null
+  }
+  if (url.searchParams.get('matt_word') !== 'web') return null
+  url.searchParams.set('matt_word', ETIQUETA_SITIO)
+  return url.toString()
+}
+
 /** Página de compra de ML (cupones, promociones) con el link de afiliado visible. */
 export function paginaML(url: string, etiqueta = 'web') {
   return `${url}${url.includes('?') ? '&' : '?'}matt_word=${etiqueta}&matt_tool=37267219`

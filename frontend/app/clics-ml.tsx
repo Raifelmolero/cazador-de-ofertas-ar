@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { track } from '@vercel/analytics'
 import { enModoApp } from '@/components/AppInstalable'
+import { aEtiquetaSitio } from '@/lib/afiliado'
 
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
@@ -12,6 +13,16 @@ const ALIEXPRESS = /(^|\.)(aliexpress\.com|s\.click\.aliexpress\.com)$/
 export default function ClicsML() {
   useVistasSeccion()
   useEffect(() => {
+    // Antes de que el navegador siga el link (clic, rueda, mantener apretado en
+    // el celular, «abrir en pestaña nueva»): web → sitio. Ver lib/afiliado.
+    const marcarSitio = (e: Event) => {
+      const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
+      if (!a || !ML.test(a.hostname)) return
+      const nuevo = aEtiquetaSitio(a.href)
+      if (nuevo) a.href = nuevo
+    }
+    const eventos = ['pointerdown', 'touchstart', 'mousedown', 'click', 'auxclick', 'contextmenu', 'keydown'] as const
+    for (const ev of eventos) document.addEventListener(ev, marcarSitio, { capture: true, passive: true })
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
       if (!a) return
@@ -45,7 +56,10 @@ export default function ClicsML() {
       })
     }
     document.addEventListener('click', onClick, { capture: true })
-    return () => document.removeEventListener('click', onClick, { capture: true })
+    return () => {
+      document.removeEventListener('click', onClick, { capture: true })
+      for (const ev of eventos) document.removeEventListener(ev, marcarSitio, { capture: true })
+    }
   }, [])
   return null
 }

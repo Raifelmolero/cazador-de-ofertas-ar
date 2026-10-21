@@ -36,6 +36,7 @@ CANALES = {
     "whatsapp": "WhatsApp (kit)",
     "youtube": "YouTube Shorts",
     "web": "Web (cazadordeofertas.com.ar)",
+    "sitio": "Web: clic dentro del sitio (experimento 10/2026)",
     "alertas": "Alertas de precio (Telegram privado)",
 }
 NICHOS = {"herramientas", "hogar", "tecno", "gastronomia", "gamer", "bebes",

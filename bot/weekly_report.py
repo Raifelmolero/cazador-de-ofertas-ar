@@ -276,7 +276,7 @@ def etiquetas_ml() -> list[str]:
         os.getenv("ML_WORD_TELEGRAM", "telegram"), os.getenv("ML_WORD_IG", "instagram"),
         os.getenv("ML_WORD_THREADS", "threads"), os.getenv("ML_WORD_FACEBOOK", "facebook"),
         os.getenv("ML_WORD_WHATSAPP", "whatsapp"), os.getenv("ML_WORD_YOUTUBE", "youtube"),
-        os.getenv("ML_WORD_WEB", "web"), "alertas",
+        os.getenv("ML_WORD_WEB", "web"), "sitio", "alertas",
     ]
     try:
         tags += re.findall(r"etiqueta:\s*'([a-z0-9_-]+)'",

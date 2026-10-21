@@ -102,6 +102,13 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre
   Argentina (más barato, mediana y rango de las ofertas con descuento real).
+- [Comparador de celulares](https://cazadordeofertas.com.ar/comparador/celulares) y
+  [de notebooks](https://cazadordeofertas.com.ar/comparador/notebooks): todos los equipos
+  a la venta hoy en Mercado Libre Argentina con su precio y el más bajo registrado, por
+  presupuesto, memoria, RAM y procesador. Duelos con precios de hoy en
+  https://cazadordeofertas.com.ar/vs/<modelo-vs-modelo> (por ejemplo
+  [iPhone 17 vs iPhone 17 Pro](https://cazadordeofertas.com.ar/vs/iphone-17-vs-iphone-17-pro) y
+  [Galaxy S26 vs iPhone 17](https://cazadordeofertas.com.ar/vs/samsung-galaxy-s26-vs-iphone-17)).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),

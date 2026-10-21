@@ -91,6 +91,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/metodologia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${DEALS_URL}/cyber-monday`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/cyber-monday/tecnologia`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${DEALS_URL}/comparador/celulares`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${DEALS_URL}/comparador/notebooks`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/dia-de-la-madre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/regalos-navidad`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },

@@ -26,7 +26,7 @@ const TITULO = `Cyber Monday ${CM.año}: celulares, iPhone y notebooks, ¿bajan 
 const DESCRIPCION = `El precio más bajo que registramos en octubre de cada iPhone, Samsung Galaxy, celular, notebook, smart TV y monitor de Mercado Libre, para comparar en el Cyber Monday ${CM.año} (${CM.fechasTexto}).`
 
 export const metadata: Metadata = {
-  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t, () => `Cyber Monday ${CM.año}: celulares y notebooks, ¿bajan de verdad?`]),
   description: descripcionSeo(DESCRIPCION),
   keywords: [
     `cyber monday ${CM.año} celulares`,
@@ -220,6 +220,8 @@ export default function CyberTecnologiaPage() {
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">Todo sobre el Cyber Monday {CM.año} →</Link>
             <Link href="/tecno" className="font-bold text-yellow-400 hover:underline">Ofertas de tecnología de hoy →</Link>
+            <Link href="/comparador/celulares" className="font-bold text-yellow-400 hover:underline">Comparador de celulares →</Link>
+            <Link href="/comparador/notebooks" className="font-bold text-yellow-400 hover:underline">Comparador de notebooks →</Link>
             <Link href="/descuentos-inflados" className="font-bold text-yellow-400 hover:underline">Descuentos inflados de hoy →</Link>
           </p>
         </section>

@@ -74,7 +74,11 @@ export const NICHOS: Nicho[] = [
       'monitor 27 pulgadas', 'auriculares bluetooth', 'smartwatch', 'tablet', 'playstation 5',
     ],
     precios: ['smartwatch', 'auriculares-bluetooth'],
-    destacados: [{ href: '/cyber-monday/tecnologia', texto: '🛒 Cyber Monday: ¿bajan de verdad los celulares y notebooks?' }],
+    destacados: [
+      { href: '/comparador/celulares', texto: '🔎 Comparador de celulares: filtrá por precio, memoria y 5G' },
+      { href: '/comparador/notebooks', texto: '🔎 Comparador de notebooks: filtrá por precio, procesador y RAM' },
+      { href: '/cyber-monday/tecnologia', texto: '🛒 Cyber Monday: ¿bajan de verdad los celulares y notebooks?' },
+    ],
   },
   {
     slug: 'gastronomia',

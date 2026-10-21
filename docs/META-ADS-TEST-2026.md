@@ -39,3 +39,12 @@ Creatividad: placa del bot o escena de Don Ofertín de Cyber (`escena-cyber-mond
 - Un clic de anuncio rinde ~1/3 (llega frío): **vale ~$780**. Corte propuesto: costo por clic < $400 (margen 2x). Con $10.000 de tope se compran 25-35 clics → ~$20-27k de ganancia: sirve para APRENDER el costo real, no para mover el mes.
 - Para mover octubre al escenario optimista haría falta ~250 clics extra/semana: ~$75.000/semana a $300 por clic, con retorno ~2,6x (neto ~+$120k/semana). Eso supera el tope de reinversión de $10k/mes (#00): decisión de Raifel.
 - Recomendación: adelantar el arranque del 26/10 a ~19-20/10 con el tope de $10.000 para medir el costo real, y escalar solo si el costo por clic < $300 y se ven pedidos. Crear la etiqueta `meta` antes de arrancar.
+
+## Actualización 21/10: medición por etiqueta lista (en main)
+- Quien entra con `utm_source=meta` hace sus clics con `matt_word=meta` (se recuerda en la pestaña, también
+  en las páginas siguientes). El resto sigue con el experimento `sitio`/`web`. Probado en navegador.
+- **ANTES de prender los anuncios**: crear la etiqueta `meta` en Central de afiliados → Administrar etiquetas.
+  Sin esa etiqueta, los clics del anuncio podrían no pagar comisión.
+- Destino del anuncio: `https://cazadordeofertas.com.ar/cyber?utm_source=meta&utm_medium=cpc&utm_campaign=cyber_test`
+  (o `https://cazadordeofertas.com.ar/?utm_source=meta&utm_medium=cpc&utm_campaign=test` antes del Cyber).
+- Medir en el panel: Métricas → Redes → etiqueta `meta` (clics, pedidos, ganancia) contra lo gastado en Meta.

@@ -3,22 +3,36 @@
 import { useEffect } from 'react'
 import { track } from '@vercel/analytics'
 import { enModoApp } from '@/components/AppInstalable'
-import { aEtiquetaSitio } from '@/lib/afiliado'
+import { aEtiquetaSitio, ETIQUETA_META, ETIQUETA_SITIO } from '@/lib/afiliado'
 
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
 const ML = /(^|\.)(mercadolibre\.com(\.ar)?|meli\.la)$/
 const ALIEXPRESS = /(^|\.)(aliexpress\.com|s\.click\.aliexpress\.com)$/
 
+// La visita vino de un anuncio de Meta: se recuerda en la pestaña para que los
+// clics de las páginas siguientes también salgan con la etiqueta `meta`.
+function etiquetaVisita(): string {
+  try {
+    if (new URLSearchParams(window.location.search).get('utm_source') === 'meta') {
+      sessionStorage.setItem('cz_origen', 'meta')
+    }
+    return sessionStorage.getItem('cz_origen') === 'meta' ? ETIQUETA_META : ETIQUETA_SITIO
+  } catch {
+    return ETIQUETA_SITIO
+  }
+}
+
 export default function ClicsML() {
   useVistasSeccion()
   useEffect(() => {
     // Antes de que el navegador siga el link (clic, rueda, mantener apretado en
-    // el celular, «abrir en pestaña nueva»): web → sitio. Ver lib/afiliado.
+    // el celular, «abrir en pestaña nueva»): web → sitio (o meta). Ver lib/afiliado.
+    const etiqueta = etiquetaVisita()
     const marcarSitio = (e: Event) => {
       const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
       if (!a || !ML.test(a.hostname)) return
-      const nuevo = aEtiquetaSitio(a.href)
+      const nuevo = aEtiquetaSitio(a.href, etiqueta)
       if (nuevo) a.href = nuevo
     }
     const eventos = ['pointerdown', 'touchstart', 'mousedown', 'click', 'auxclick', 'contextmenu', 'keydown'] as const

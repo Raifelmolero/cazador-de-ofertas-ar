@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-20T23:06:50+00:00",
+  "generado": "2026-10-21T03:10:37+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-20T23:06:50+00:00",
+      "ultima_actividad": "2026-10-21T03:10:37+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,36 +17,36 @@
       ],
       "metricas": [
         {
-          "label": "Telegram",
-          "valor": 7
+          "label": "whatsapp_kit",
+          "valor": 9
         },
         {
-          "label": "whatsapp_kit",
-          "valor": 6
+          "label": "Telegram",
+          "valor": 8
         },
         {
           "label": "Facebook",
-          "valor": 4
+          "valor": 5
         },
         {
           "label": "Threads",
           "valor": 3
         },
         {
-          "label": "Instagram",
+          "label": "Reels IG",
           "valor": 2
         },
         {
-          "label": "Reels IG",
-          "valor": 1
+          "label": "Historias IG",
+          "valor": 2
         },
         {
-          "label": "Historias IG",
-          "valor": 1
+          "label": "Instagram",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera 440l No Frost Side by Side Inverter ES40S"
+      "ultimo_trabajo": "Hidrolavadora Logus 2200W 85 Bar 10L/min Con Manguera Alta Presión 8m"
     },
     {
       "id": "investigacion",
@@ -71,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },

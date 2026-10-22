@@ -868,10 +868,11 @@ def affiliate_url(url: str, affiliate_id: str, word: str | None = None) -> str:
 
 
 def cuantos_facebook(slot: str) -> int:
-    """Posts de Facebook por run: 2 al mediodía y a la tarde, 1 a la noche
-    (5 por día). Facebook trajo 51 visitas en 7 días con 1-2 posts diarios
-    (20/10), más que IG y Telegram juntos. Runs fuera de horario: ninguno."""
-    return {"midday": 2, "evening": 2, "night": 1}.get(slot, 0)
+    """Posts de Facebook por run: 3 al mediodía y a la tarde, 2 a la noche
+    (8 por día). Facebook trajo 51 visitas en 7 días con 1-2 posts diarios
+    (20/10) y 87 con 5 por día (15-22/10): la segunda fuente después de
+    Google. Runs fuera de horario: ninguno."""
+    return {"midday": 3, "evening": 3, "night": 2}.get(slot, 0)
 
 
 def run_slot(hour_utc: int) -> str:
@@ -2727,7 +2728,7 @@ def main() -> int:
                 )
 
     # Facebook: los mejores del lote (to_post[:n], el 1º es el producto
-    # estrella), cuantos_facebook() por run = 5 por día. Best-effort total:
+    # estrella), cuantos_facebook() por run = 8 por día. Best-effort total:
     # nunca frena Telegram/IG/Threads, si falla solo avisa al admin. Sin
     # secrets seteados esto no hace nada — FORCE_FACEBOOK es solo para testear.
     n_fb = max(cuantos_facebook(slot), 1 if os.getenv("FORCE_FACEBOOK") == "1" else 0)

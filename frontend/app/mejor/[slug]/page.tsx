@@ -49,7 +49,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!x) return {}
   const url = `${DEALS_URL}/mejor/${x.p.slug}`
   const t = titulo(x)
-  const desc = `${x.equipos.length} ${plural(x)} de hasta $${x.p.texto} en Mercado Libre Argentina, ordenados por lo que trae cada uno, con el precio más bajo que registramos. ${resumen(x, fechaAR(getScrapedAt().toISOString().slice(0, 10)))}`
+  // La búsqueda primero y el recomendado de hoy, sin fecha: en Google se lee completa (~155 caracteres).
+  const r = x.recomendado
+  const corto = r.titulo.split(' ').slice(0, 5).join(' ')
+  const desc = `¿Qué ${nombre(x)} comprar con hasta $${x.p.texto}? Comparamos ${x.equipos.length} ${plural(x)} de Mercado Libre. Hoy recomendamos: ${corto}, a ${pesos(r.precio)}.`
   return {
     title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s]),
     description: descripcionSeo(desc),

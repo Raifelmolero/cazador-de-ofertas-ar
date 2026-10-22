@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { tituloSeo, descripcionSeo } from '@/lib/seo'
+import { tituloSeo, descripcionSeo, MAX_DESCRIPCION } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
@@ -49,7 +49,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!x) return {}
   const url = `${DEALS_URL}/vs/${x.duelo.slug}`
   const t = titulo(x)
-  const desc = `${resumen(x, fechaAR(getScrapedAt().toISOString().slice(0, 10)))} Comparalos lado a lado con el precio más bajo que registramos de cada uno.`
+  // "X vs Y:" primero (lo que se busca) y sin la fecha adelante, que gastaba caracteres del resultado de Google.
+  const dif = diferencia(x)
+  const [nb, nc] = [sinMarca(dif.barato.modelo.nombre), sinMarca(dif.caro.modelo.nombre)]
+  const base =
+    dif.pct <= 2
+      ? `${x.a.modelo.nombre} vs ${x.b.modelo.nombre}: hoy cuestan casi lo mismo, ${pesos(dif.eBarato.precio)} y ${pesos(dif.eCaro.precio)}.`
+      : `${x.a.modelo.nombre} vs ${x.b.modelo.nombre}: hoy el ${nb} sale ${pesos(dif.eBarato.precio)} y el ${nc} ${pesos(dif.eCaro.precio)} (${dif.pct} % más).`
+  const cola = ' Precios de Mercado Libre y el mínimo que registramos.'
+  const desc = (base + cola).length <= MAX_DESCRIPCION ? base + cola : base
   return {
     // "X vs Y" siempre entero al principio: con nombres largos se acorta la cola fija,
     // y si igual no entra, la marca ("Samsung Galaxy A16" → "Galaxy A16"), nunca a mitad de frase.

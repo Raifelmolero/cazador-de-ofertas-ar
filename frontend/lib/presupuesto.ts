@@ -1,20 +1,22 @@
-// Páginas "mejor celular / notebook hasta $X" (/mejor/[slug]) con los equipos
+// Páginas "mejor celular / notebook / smart TV hasta $X" (/mejor/[slug]) con los equipos
 // del comparador (lib/comparador.ts) que hoy entran en ese presupuesto.
 //
 // "Mejor" acá no es una opinión: es lo que más ofrece cada publicación por el
-// precio, según lo que dice su título (memoria, RAM, 5G, procesador, disco).
+// precio, según lo que dice su título (memoria, RAM, 5G, procesador, disco,
+// pulgadas, resolución, panel).
 // Si el título no lo dice, no suma: nunca se adivina una spec.
 import { equiposDe, getComparador, type Equipo } from '@/lib/comparador'
 
 export interface Presupuesto {
   slug: string
-  comparador: 'celulares' | 'notebooks'
+  comparador: 'celulares' | 'notebooks' | 'smart-tv'
   hasta: number
   texto: string // "300 mil"
 }
 
 const CELULARES = [200_000, 300_000, 400_000, 600_000, 1_000_000]
 const NOTEBOOKS = [600_000, 800_000, 1_000_000, 1_200_000, 1_500_000, 2_000_000]
+const SMART_TV = [400_000, 600_000, 800_000, 1_000_000, 1_500_000]
 
 /** 300_000 → "300 mil", 1_000_000 → "1 millón", 1_500_000 → "1,5 millones". */
 function texto(n: number): string {
@@ -32,6 +34,7 @@ function slugDe(n: number): string {
 export const PRESUPUESTOS: Presupuesto[] = [
   ...CELULARES.map(n => ({ slug: `celular-hasta-${slugDe(n)}`, comparador: 'celulares' as const, hasta: n, texto: texto(n) })),
   ...NOTEBOOKS.map(n => ({ slug: `notebook-hasta-${slugDe(n)}`, comparador: 'notebooks' as const, hasta: n, texto: texto(n) })),
+  ...SMART_TV.map(n => ({ slug: `smart-tv-hasta-${slugDe(n)}`, comparador: 'smart-tv' as const, hasta: n, texto: texto(n) })),
 ]
 
 /** Mínimo de equipos para que valga la pena la página. */
@@ -44,6 +47,13 @@ export function puntaje(c: Presupuesto['comparador'], e: Equipo): number {
     const mem = o.memoria > 0 ? Math.log2(o.memoria / 32) : 0 // 64 GB = 1, 128 = 2, 256 = 3...
     // Tope de 8 GB: los "12/16/24 GB de RAM" de los títulos suelen sumar memoria virtual.
     return mem * 2 + Math.min(o.ram, 8) / 2 + o.g5 * 2
+  }
+  if (c === 'smart-tv') {
+    // El tamaño pesa más (32" ≈ 1,3 · 55" ≈ 5,2 · 65" ≈ 6,8); después 4K y el tipo de panel.
+    const pul = o.pulgadas > 0 ? Math.max(o.pulgadas - 24, 0) / 6 : 0
+    const res = [0, 0.5, 1, 3, 4][o.resolucion] ?? 0 // HD, Full HD, 4K, 8K
+    const pan = [0, 0, 1.5, 3, 4][o.panel] ?? 0 // QLED/QNED, Mini LED, OLED
+    return pul + res + pan
   }
   const disco = o.disco >= 1024 ? 3 : o.disco >= 512 ? 2 : o.disco >= 256 ? 1 : 0
   // Procesador que el título no dice = básico (no cero); RAM con tope de 16 GB.
@@ -89,6 +99,19 @@ export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
 
 export const getPresupuesto = (slug: string) => PRESUPUESTOS.find(p => p.slug === slug)
 
+/** Comparadores donde un escalón que repite los 3 primeros del escalón de abajo
+ *  no se publica (sería la misma página con otro monto: contenido duplicado). */
+const SIN_REPETIDOS = new Set<Presupuesto['comparador']>(['smart-tv'])
+const top3 = (x: PresupuestoArmado) => x.equipos.slice(0, 3).map(e => e.id).join(',')
+
 /** Los presupuestos que hoy tienen equipos suficientes (los que se publican). */
-export const presupuestosConEquipos = (): PresupuestoArmado[] =>
-  PRESUPUESTOS.map(armarPresupuesto).filter((x): x is PresupuestoArmado => !!x)
+export function presupuestosConEquipos(): PresupuestoArmado[] {
+  const out: PresupuestoArmado[] = []
+  for (const x of PRESUPUESTOS.map(armarPresupuesto)) {
+    if (!x) continue
+    const anterior = out.findLast(o => o.p.comparador === x.p.comparador)
+    if (anterior && SIN_REPETIDOS.has(x.p.comparador) && top3(anterior) === top3(x)) continue
+    out.push(x)
+  }
+  return out
+}

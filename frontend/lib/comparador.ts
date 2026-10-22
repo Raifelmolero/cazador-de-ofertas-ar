@@ -1,4 +1,4 @@
-// Comparador de celulares y notebooks (/comparador/[slug]): junta las ofertas
+// Comparador de celulares, notebooks y smart TV (/comparador/[slug]): junta las ofertas
 // de hoy y los productos que seguimos (vistos en los últimos 7 días), saca del
 // título las specs que importan para elegir (memoria, RAM, procesador...) y
 // los ordena por precio. Tecnología fue más de la mitad de la ganancia de
@@ -45,6 +45,7 @@ export interface Comparador {
   categoria: string // /categoria/* relacionada
   incluye: RegExp // sobre el título normalizado: qué cuenta como equipo (sin accesorios)
   excluir: string[] // en las primeras 6 palabras
+  requiere?: string // clave de Equipo.orden que tiene que ser > 0 (ej. pulgadas en TV: sin eso suele ser un accesorio)
   nombre: string // "celular"
   plural: string // "celulares"
   fem: boolean
@@ -166,6 +167,80 @@ function parseNotebook(titulo: string): Pick<Equipo, 'marca' | 'specs' | 'orden'
   return { marca, specs, orden: { cpu: cpu?.[1] ?? 0, ram, disco, gamer: gamer ? 1 : 0 } }
 }
 
+const MARCAS_TV: [RegExp, string][] = [
+  [/\bsamsung\b/, 'Samsung'],
+  [/\blg\b/, 'LG'],
+  [/\bsony\b/, 'Sony'],
+  [/\btcl\b/, 'TCL'],
+  [/\bphilips\b/, 'Philips'],
+  [/\bhisense\b/, 'Hisense'],
+  [/\bnoblex\b/, 'Noblex'],
+  [/\bbgh\b/, 'BGH'],
+  [/\bphilco\b/, 'Philco'],
+  [/\brca\b/, 'RCA'],
+  [/\bmotorola\b/, 'Motorola'],
+  [/\bxiaomi\b/, 'Xiaomi'],
+  [/\bkanji\b/, 'Kanji'],
+  [/\benova\b/, 'Enova'],
+]
+const PULGADAS_TV = [24, 32, 39, 40, 42, 43, 48, 50, 55, 58, 60, 65, 70, 75, 77, 80, 82, 83, 85, 86, 98, 100]
+
+/** Pulgadas de un TV: primero las que el título marca ("55 pulgadas", 65'', 50"); si no, una medida estándar suelta ("Smart Tv 55"). */
+function pulgadas(t: string): number {
+  const m = t.match(/\b(\d{2,3})\s?(?:"|''|”|´´|pulgadas|pulg|plg)/)
+  if (m && PULGADAS_TV.includes(Number(m[1]))) return Number(m[1])
+  // Número suelto (no parte de un modelo como "43S5K" ni de un rango "32 a 55" de un soporte)
+  for (const x of t.matchAll(/(?<![\w*.,/-])(\d{2,3})(?![\w*.,/-])(?!\s?(?:a|-)\s?\d)/g)) {
+    if (PULGADAS_TV.includes(Number(x[1]))) return Number(x[1])
+  }
+  return 0
+}
+
+/** Resolución: 4 = 8K, 3 = 4K/UHD, 2 = Full HD, 1 = HD. Null si el título no lo dice. */
+function resolucion(t: string): [string, number] | null {
+  if (/\b8k\b/.test(t)) return ['8K', 4]
+  if (/\b(4k|uhd|ultra hd)\b/.test(t) || /\d4k\b/.test(t)) return ['4K UHD', 3]
+  if (/\b(full hd|fhd|1080p?)\b/.test(t)) return ['Full HD', 2]
+  if (/\bhd\b|\b1366\s?[*x]\s?768\b|\b720p?\b/.test(t)) return ['HD', 1]
+  return null
+}
+
+/** Panel: 4 = OLED, 3 = Mini LED / Neo QLED, 2 = QLED / QNED / NanoCell. Null = LED común o no lo dice. */
+function panel(t: string): [string, number] | null {
+  if (/\b(qd-?)?oled\b/.test(t)) return ['OLED', 4]
+  if (/\bmini\s?led\b|\bneo\s?qled\b/.test(t)) return ['Mini LED', 3]
+  if (/\bqned\b/.test(t)) return ['QNED', 2]
+  if (/\bqled\b/.test(t)) return ['QLED', 2]
+  if (/\bnanocell\b/.test(t)) return ['NanoCell', 2]
+  return null
+}
+
+const SISTEMAS_TV: [RegExp, string][] = [
+  [/\bgoogle\s?tv\b/, 'Google TV'],
+  [/\bandroid\b/, 'Android TV'],
+  [/\bweb\s?os\b/, 'webOS'],
+  [/\btizen\b/, 'Tizen'],
+  [/\broku\b/, 'Roku TV'],
+  [/\bvidaa\b/, 'Vidaa'],
+  [/\bwhale\b/, 'Whale TV'],
+  [/\btitan\s?os\b/, 'Titan OS'],
+]
+
+function parseTv(titulo: string): Pick<Equipo, 'marca' | 'specs' | 'orden'> {
+  const t = normalizar(titulo)
+  const marca = MARCAS_TV.find(([re]) => re.test(t))?.[1] ?? 'Otra'
+  const pul = pulgadas(t)
+  const res = resolucion(t)
+  const pan = panel(t)
+  const so = SISTEMAS_TV.find(([re]) => re.test(t))?.[1]
+  const specs: Record<string, string> = {}
+  if (pul) specs.pulgadas = `${pul}"`
+  if (res) specs.resolucion = res[0]
+  if (pan) specs.panel = pan[0]
+  if (so) specs.sistema = so
+  return { marca, specs, orden: { pulgadas: pul, resolucion: res?.[1] ?? 0, panel: pan?.[1] ?? 0 } }
+}
+
 export const COMPARADORES: Comparador[] = [
   {
     slug: 'celulares',
@@ -228,6 +303,37 @@ export const COMPARADORES: Comparador[] = [
     precioHoy: ['notebook'],
     parse: parseNotebook,
   },
+  {
+    slug: 'smart-tv',
+    categoria: 'smart-tv',
+    incluye: /\b(smart ?tv|televisor|television|tv)\b/,
+    excluir: ['soporte', 'rack', 'mueble', 'control', 'cable', 'funda', 'antena', 'barra', 'parlante', 'soundbar', 'proyector', 'stick', 'streamer', 'box', 'convertidor', 'chromecast', 'pedestal', 'mesa', 'protector', 'repuesto', 'tira led', 'placa', 'fuente', 'edifier', 'monitor'],
+    requiere: 'pulgadas',
+    nombre: 'smart TV',
+    plural: 'smart TV',
+    fem: false,
+    titulo: 'Comparador de smart TV: precios de hoy en Mercado Libre',
+    descripcion:
+      'Compará smart TV por precio, pulgadas, 4K y tipo de panel (QLED, Mini LED, OLED) con los precios reales de hoy en Mercado Libre Argentina y el más bajo que registramos de cada uno. Samsung, LG, TCL, Philips, Noblex y más.',
+    intro:
+      'Elegí tu presupuesto y el tamaño que te entra: te mostramos los smart TV que hoy están en Mercado Libre Argentina con su precio real y el más bajo que registramos. Desde 50" conviene 4K; QLED y Mini LED dan mejor color y brillo que un LED común. Tildá hasta 3 y comparalos lado a lado.',
+    rangos: [
+      { hasta: 400_000, texto: 'Hasta $400.000' },
+      { hasta: 700_000, texto: '$400.000 a $700.000' },
+      { hasta: 1_000_000, texto: '$700.000 a $1.000.000' },
+      { hasta: 1_500_000, texto: '$1.000.000 a $1.500.000' },
+      { hasta: null, texto: 'Más de $1.500.000' },
+    ],
+    filtros: [
+      { clave: 'pulgadas', nombre: 'Tamaño', opciones: [{ valor: 43, texto: '43" o más' }, { valor: 50, texto: '50" o más' }, { valor: 55, texto: '55" o más' }, { valor: 65, texto: '65" o más' }] },
+      { clave: 'resolucion', nombre: 'Resolución', opciones: [{ valor: 2, texto: 'Full HD o más' }, { valor: 3, texto: '4K' }] },
+      { clave: 'panel', nombre: 'Panel', opciones: [{ valor: 2, texto: 'QLED o mejor' }, { valor: 3, texto: 'Mini LED / OLED' }] },
+    ],
+    specs: ['pulgadas', 'resolucion', 'panel', 'sistema'],
+    guias: ['que-smart-tv-comprar', 'led-qled-u-oled-diferencias-smart-tv'],
+    precioHoy: ['smart-tv-32-pulgadas', 'smart-tv-43-pulgadas', 'smart-tv-50-pulgadas', 'smart-tv-55-pulgadas', 'smart-tv-65-pulgadas'],
+    parse: parseTv,
+  },
 ]
 
 export const getComparador = (slug: string) => COMPARADORES.find(c => c.slug === slug)
@@ -241,6 +347,7 @@ export function equiposDe(c: Comparador): Equipo[] {
     const inicio = t.split(/\s+/).slice(0, 6).join(' ')
     return c.incluye.test(t) && !c.excluir.some(x => inicio.includes(x))
   }
+  const valido = (e: Pick<Equipo, 'orden'>) => !c.requiere || e.orden[c.requiere] > 0
   const historial = slugPorId()
   const vistos = new Set<string>()
   const clave = (t: string) => normalizar(t).replace(/\s+/g, ' ').trim()
@@ -249,6 +356,8 @@ export function equiposDe(c: Comparador): Equipo[] {
 
   for (const o of getOfertas()) {
     if (!es(o.titulo) || vistos.has(clave(o.titulo))) continue
+    const datos = c.parse(o.titulo)
+    if (!valido(datos)) continue
     vistos.add(clave(o.titulo))
     out.push({
       id: o.id_ml,
@@ -262,13 +371,15 @@ export function equiposDe(c: Comparador): Equipo[] {
       url: o.url_producto,
       img: o.url_imagen,
       historial: historial[o.id_ml] ?? null,
-      ...c.parse(o.titulo),
+      ...datos,
     })
   }
 
   const limite = new Date(new Date(hoyIso).getTime() - DIAS_VISTO * 86_400_000).toISOString().slice(0, 10)
   for (const s of getSeguidosPrincipales()) {
     if (s.ultimo_visto < limite || !es(s.titulo) || vistos.has(clave(s.titulo))) continue
+    const datos = c.parse(s.titulo)
+    if (!valido(datos)) continue
     vistos.add(clave(s.titulo))
     out.push({
       id: s.id,
@@ -282,7 +393,7 @@ export function equiposDe(c: Comparador): Equipo[] {
       url: s.url,
       img: s.img,
       historial: s.slug,
-      ...c.parse(s.titulo),
+      ...datos,
     })
   }
   return out.sort((a, b) => a.precio - b.precio)

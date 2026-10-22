@@ -222,6 +222,7 @@ export default function CyberTecnologiaPage() {
             <Link href="/tecno" className="font-bold text-yellow-400 hover:underline">Ofertas de tecnología de hoy →</Link>
             <Link href="/comparador/celulares" className="font-bold text-yellow-400 hover:underline">Comparador de celulares →</Link>
             <Link href="/comparador/notebooks" className="font-bold text-yellow-400 hover:underline">Comparador de notebooks →</Link>
+            <Link href="/comparador/smart-tv" className="font-bold text-yellow-400 hover:underline">Comparador de smart TV →</Link>
             <Link href="/descuentos-inflados" className="font-bold text-yellow-400 hover:underline">Descuentos inflados de hoy →</Link>
           </p>
         </section>

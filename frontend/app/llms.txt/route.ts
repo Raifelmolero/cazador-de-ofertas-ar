@@ -102,18 +102,20 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   de 32/43/50/55/65", aire inverter, heladera no frost, lavarropas, colchón,
   freidora de aire, taladro, notebook, monitor o termotanque en Mercado Libre
   Argentina (más barato, mediana y rango de las ofertas con descuento real).
-- [Comparador de celulares](https://cazadordeofertas.com.ar/comparador/celulares) y
-  [de notebooks](https://cazadordeofertas.com.ar/comparador/notebooks): todos los equipos
+- [Comparador de celulares](https://cazadordeofertas.com.ar/comparador/celulares),
+  [de notebooks](https://cazadordeofertas.com.ar/comparador/notebooks) y
+  [de smart TV](https://cazadordeofertas.com.ar/comparador/smart-tv): todos los equipos
   a la venta hoy en Mercado Libre Argentina con su precio y el más bajo registrado, por
-  presupuesto, memoria, RAM y procesador. Duelos con precios de hoy en
+  presupuesto, memoria, RAM, procesador, pulgadas, 4K y tipo de panel. Duelos con precios de hoy en
   https://cazadordeofertas.com.ar/vs/<modelo-vs-modelo> (por ejemplo
   [iPhone 17 vs iPhone 17 Pro](https://cazadordeofertas.com.ar/vs/iphone-17-vs-iphone-17-pro) y
   [Galaxy S26 vs iPhone 17](https://cazadordeofertas.com.ar/vs/samsung-galaxy-s26-vs-iphone-17)).
   Mejor equipo por presupuesto, con lo que trae cada uno según su publicación:
   [mejor celular hasta $400 mil](https://cazadordeofertas.com.ar/mejor/celular-hasta-400-mil),
   [hasta $1 millón](https://cazadordeofertas.com.ar/mejor/celular-hasta-1-millon),
-  [mejor notebook hasta $1 millón](https://cazadordeofertas.com.ar/mejor/notebook-hasta-1-millon)
-  (más montos en https://cazadordeofertas.com.ar/mejor/<celular|notebook>-hasta-<monto>).
+  [mejor notebook hasta $1 millón](https://cazadordeofertas.com.ar/mejor/notebook-hasta-1-millon),
+  [mejor smart TV hasta $800 mil](https://cazadordeofertas.com.ar/mejor/smart-tv-hasta-800-mil)
+  (más montos en https://cazadordeofertas.com.ar/mejor/<celular|notebook|smart-tv>-hasta-<monto>).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),

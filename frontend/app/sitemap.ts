@@ -95,6 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/cyber-monday/tecnologia`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/comparador/celulares`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/comparador/notebooks`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${DEALS_URL}/comparador/smart-tv`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     ...duelosConPrecio().map(x => ({ url: `${DEALS_URL}/vs/${x.duelo.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     ...presupuestosConEquipos().map(x => ({ url: `${DEALS_URL}/mejor/${x.p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },

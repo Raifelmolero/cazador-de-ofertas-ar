@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
+import { getOfertas } from '@/lib/productos'
 import { landingsDeGuia } from '@/lib/landings'
 import { ctaDeGuia } from '@/lib/ctaguias'
 import CtaCalculadora from '@/components/CtaCalculadora'
@@ -40,7 +41,14 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   if (!g) notFound()
   const url = `${DEALS_URL}/guias/${g.slug}`
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
-  const ofertas = comp ? productosDe(comp).slice(0, 4) : []
+  // Sin comparativa propia: las ofertas del día en su precio más bajo registrado
+  // (58 de 84 guías no mostraban ningún producto). Guías de vendedores, no.
+  const deVendedor = /vend|comisi|tiendanube|factur|monotrib/.test(g.slug)
+  const ofertas = comp
+    ? productosDe(comp).slice(0, 4)
+    : deVendedor
+    ? []
+    : getOfertas().filter(p => p.minimo_historico).slice(0, 4)
   // Barra fija de compra en celular: solo si la guía muestra ofertas reales del día.
   const destacado = ofertas.length > 0 ? elegirDestacado(ofertas) : undefined
   const fechas = fechasGuia(g.slug)
@@ -120,9 +128,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </a>
         </div>
 
-        {comp && ofertas.length > 0 && (
+        {ofertas.length > 0 && (
           <section className="mb-8 -mx-4 sm:mx-0" aria-label="En oferta hoy">
-            <p className="px-4 sm:px-0 text-xs font-bold tracking-widest text-yellow-400 mb-2">🔥 EN OFERTA HOY</p>
+            <p className="px-4 sm:px-0 text-xs font-bold tracking-widest text-yellow-400 mb-2">{comp ? '🔥 EN OFERTA HOY' : '🔥 HOY EN SU PRECIO MÁS BAJO'}</p>
             <ul className="flex gap-3 overflow-x-auto px-4 sm:px-0 pb-1 snap-x">
               {ofertas.map(p => (
                 <li key={p.id_ml} className="snap-start shrink-0 w-40 rounded-2xl border border-zinc-800 bg-zinc-900 p-2">

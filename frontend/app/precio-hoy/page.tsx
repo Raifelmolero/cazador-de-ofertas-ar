@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { PRECIOS_HOY, ofertasDe } from '@/lib/preciohoy'
@@ -89,6 +90,7 @@ export default function PrecioHoyIndex() {
           })}
         </ul>
       </article>
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

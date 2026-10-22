@@ -11,6 +11,7 @@ import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import { getEstudio } from '@/lib/estudio'
 import { categoriaDe, diaMes, getInfladas, pesos, type CasoInflado } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
@@ -215,6 +216,7 @@ export default function DescuentosInfladosPage() {
         </div>
       </article>
 
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

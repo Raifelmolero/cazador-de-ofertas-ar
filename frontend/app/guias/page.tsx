@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import { GUIAS } from '@/lib/guias'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
@@ -106,6 +107,7 @@ export default function GuiasIndex() {
           ))}
         </ul>
       </article>
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

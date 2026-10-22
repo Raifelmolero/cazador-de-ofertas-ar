@@ -83,6 +83,15 @@ Los eventos ayudan: Cyber Monday (2-4/11), Black Friday (27/11) y Navidad pueden
 
 **Señal para saber en cuál estamos (dom 26/10):** ≥ 30 clics/día y `web` (afuera) volviendo a superar a `sitio` → escenario rápido. Si `web` sigue en ~10/día → base: todo el peso en SEO y en sumar tráfico propio (redes que lleven a la web, anuncios cuando Meta se destrabe).
 
-## Pregunta para Raifel
+## Respuesta de Raifel y lo que se chequeó (21/10, 23:40)
 
-¿Vos u otra persona compartían links de la web (o del canal) en grupos o estados de WhatsApp, en otro canal, o en una lista de ofertas, entre el 21/9 y el 10/10? Esos 30-50 clics diarios de afuera explican más de la mitad de la caída; si fueron tuyos, se recuperan volviendo a compartir.
+Raifel: **nadie compartía links por fuera de la web y los canales del bot.** Chequeos:
+
+- **Clarity** confirma a Vercel: 3-25 sesiones/día del 1 al 10/10 (4/10: 3 sesiones, con 36 clics web y 8 pedidos en el panel). Con dos medidores independientes de acuerdo, la web no pudo generar esos clics.
+- Los canales del bot **no** usan la etiqueta `web`: Telegram/IG/Threads llevan a /precio en la web (o a ML con su propia etiqueta), y el feed de Pinterest también lleva a la web. El evento clic_ml cubre todas las salidas a ML desde el 3/10.
+- Compradores 28/9-11/10: 69, de todo el país (PBA 45 %, CABA 19 %, Córdoba 7 %, Neuquén 7 %…) y de todas las edades → público amplio, no un grupo de conocidos.
+- En internet aparece un canal de WhatsApp ajeno, «CazadorDeOfertaML» (~8 mil seguidores), de ofertas de ML. No se puede ver qué links usa sin la app; no hay prueba de que sea el que usaba nuestros links.
+
+**Conclusión:** a principios de octubre ~80 % de los clics `web` y de las ventas vinieron de **terceros que usaban nuestros links de afiliado** (un canal o sitio que toma las ofertas de nuestra web/JSON, o buscadores/IAs que muestran el link directo). Se cortó cuando el sitio quedó casi vacío (8-19/10). Es plata que entra a nuestra cuenta, así que conviene que vuelva: con 1.925 ofertas desde el 20/10, si es automático debería reaparecer en días. La etiqueta `sitio` lo mide: **`web` alto = volvió el tercero**.
+
+**Cómo leer los próximos días:** 21/10 `web` 10 · `sitio` 6. Si para el 26/10 `web` pasa de ~30/día → escenario rápido. Si queda en ~10 → base, y el crecimiento depende solo de la web propia.

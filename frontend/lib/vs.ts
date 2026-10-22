@@ -49,6 +49,15 @@ const IDEAPAD_1: Modelo = { nombre: 'Lenovo IdeaPad 1', re: /\bideapad 1\b/ }
 const GALAXY_BOOK4: Modelo = { nombre: 'Samsung Galaxy Book4', re: /\bgalaxy book ?4\b/ }
 const LENOVO_LOQ: Modelo = { nombre: 'Lenovo LOQ', re: /\bloq\b/ }
 const HP_OMEN: Modelo = { nombre: 'HP OMEN', re: /\bomen\b/ }
+const IPHONE_17E: Modelo = { nombre: 'iPhone 17e', re: /\biphone 17 ?e\b/ }
+const GALAXY_S26_FE: Modelo = { nombre: 'Samsung Galaxy S26 FE', re: /\bgalaxy s26 ?fe\b/ }
+const GALAXY_S24_ULTRA: Modelo = { nombre: 'Samsung Galaxy S24 Ultra', re: /\bgalaxy s24 ultra\b/ }
+const GALAXY_A27: Modelo = { nombre: 'Samsung Galaxy A27', re: /\bgalaxy a27\b/ }
+const MOTO_G47: Modelo = { nombre: 'Motorola Moto G47', re: /\b(moto|motorola) ?g47\b/ }
+const MOTO_G67: Modelo = { nombre: 'Motorola Moto G67', re: /\b(moto|motorola) ?g67\b/ }
+const EDGE_60_FUSION: Modelo = { nombre: 'Motorola Edge 60 Fusion', re: /\bedge 60 fusion\b/ }
+const POCO_X8_PRO: Modelo = { nombre: 'Xiaomi Poco X8 Pro', re: /\bpoco x8 pro\b/ }
+const HP_OMNIBOOK_3: Modelo = { nombre: 'HP OmniBook 3', re: /\bomnibook 3\b/ }
 
 export const DUELOS: Duelo[] = [
   { slug: 'iphone-17-vs-iphone-17-pro', comparador: 'celulares', a: IPHONE_17, b: IPHONE_17_PRO, contexto: 'Es la duda más común de la línea nueva de Apple: cuánto más cuesta el Pro en Argentina y si conviene estirarse.' },
@@ -65,6 +74,18 @@ export const DUELOS: Duelo[] = [
   { slug: 'moto-g17-vs-samsung-galaxy-a17', comparador: 'celulares', a: MOTO_G17, b: GALAXY_A17, contexto: 'Motorola contra Samsung en la camada nueva de gama media.' },
   { slug: 'xiaomi-redmi-15c-vs-moto-g15', comparador: 'celulares', a: REDMI_15C, b: MOTO_G15, contexto: 'Xiaomi contra Motorola en el rango de precio más vendido.' },
   { slug: 'motorola-edge-70-fusion-vs-samsung-galaxy-a37', comparador: 'celulares', a: EDGE_70_FUSION, b: GALAXY_A37, contexto: 'Gama media alta: el Edge de Motorola contra el A37 de Samsung.' },
+  { slug: 'iphone-17-vs-iphone-17e', comparador: 'celulares', a: IPHONE_17, b: IPHONE_17E, contexto: 'El iPhone 17 contra su versión más accesible: cuánto cambia el precio entre los dos hoy.' },
+  { slug: 'iphone-16-vs-samsung-galaxy-s26', comparador: 'celulares', a: IPHONE_16, b: GALAXY_S26, contexto: 'El iPhone del año pasado contra el Samsung nuevo: dos formas de entrar a la gama alta.' },
+  { slug: 'samsung-galaxy-s26-vs-galaxy-s26-fe', comparador: 'celulares', a: GALAXY_S26, b: GALAXY_S26_FE, contexto: 'El S26 y su versión FE: cuánto ahorrás hoy eligiendo la edición más barata.' },
+  { slug: 'samsung-galaxy-s25-ultra-vs-galaxy-s26', comparador: 'celulares', a: GALAXY_S25_ULTRA, b: GALAXY_S26, contexto: 'El Ultra del año pasado contra el S26 nuevo: la duda clásica entre tope de gama anterior y modelo actual.' },
+  { slug: 'samsung-galaxy-s24-ultra-vs-galaxy-s25-ultra', comparador: 'celulares', a: GALAXY_S24_ULTRA, b: GALAXY_S25_ULTRA, contexto: 'Dos generaciones de Ultra cara a cara: cuánto más cuesta hoy el más nuevo.' },
+  { slug: 'moto-g06-vs-samsung-galaxy-a07', comparador: 'celulares', a: MOTO_G06, b: GALAXY_A07, contexto: 'Los celulares de entrada de Motorola y Samsung, los más baratos de cada marca.' },
+  { slug: 'moto-g17-vs-moto-g47', comparador: 'celulares', a: MOTO_G17, b: MOTO_G47, contexto: 'Dos Moto G de la camada nueva: cuánto más pagás por subir del G17 al G47.' },
+  { slug: 'moto-g47-vs-moto-g67', comparador: 'celulares', a: MOTO_G47, b: MOTO_G67, contexto: 'La gama media de Motorola: qué diferencia de precio hay hoy entre el G47 y el G67.' },
+  { slug: 'motorola-edge-60-fusion-vs-edge-70-fusion', comparador: 'celulares', a: EDGE_60_FUSION, b: EDGE_70_FUSION, contexto: 'El Edge Fusion anterior contra el nuevo: si conviene el modelo del año pasado.' },
+  { slug: 'samsung-galaxy-a17-vs-galaxy-a27', comparador: 'celulares', a: GALAXY_A17, b: GALAXY_A27, contexto: 'Dos escalones de la línea A de Samsung: cuánto separa al A17 del A27 hoy.' },
+  { slug: 'xiaomi-redmi-15c-vs-samsung-galaxy-a17', comparador: 'celulares', a: REDMI_15C, b: GALAXY_A17, contexto: 'Xiaomi contra Samsung entre los celulares de precio medio más vendidos.' },
+  { slug: 'xiaomi-poco-x8-pro-vs-samsung-galaxy-a57', comparador: 'celulares', a: POCO_X8_PRO, b: GALAXY_A57, contexto: 'Gama media alta: el Poco de Xiaomi contra el A57 de Samsung.' },
   // Notebooks: cada modelo se vende en varias configuraciones, así que la tabla
   // muestra qué procesadores y discos hay de cada uno.
   { slug: 'hp-255-g10-vs-acer-aspire-go-15', comparador: 'notebooks', a: HP_255_G10, b: ASPIRE_GO_15, contexto: 'Dos de las notebooks con Ryzen 7 más vendidas en Argentina, cara a cara.' },
@@ -74,6 +95,9 @@ export const DUELOS: Duelo[] = [
   { slug: 'samsung-galaxy-book4-vs-asus-vivobook-15', comparador: 'notebooks', a: GALAXY_BOOK4, b: VIVOBOOK_15, contexto: 'Samsung contra Asus en notebooks de 15" para el día a día.' },
   { slug: 'asus-vivobook-14-vs-asus-vivobook-15', comparador: 'notebooks', a: VIVOBOOK_14, b: VIVOBOOK_15, contexto: 'La misma línea de Asus en dos tamaños: cuánto cambia el precio.' },
   { slug: 'lenovo-loq-vs-hp-omen', comparador: 'notebooks', a: LENOVO_LOQ, b: HP_OMEN, contexto: 'Notebooks gamer: la LOQ de Lenovo contra la OMEN de HP.' },
+  { slug: 'hp-255-g10-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: HP_255_G10, b: IDEAPAD_SLIM_3, contexto: 'HP contra Lenovo en notebooks de 15" con Ryzen para trabajar y estudiar.' },
+  { slug: 'acer-aspire-go-15-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: ASPIRE_GO_15, b: IDEAPAD_SLIM_3, contexto: 'Acer contra Lenovo en la gama media de 15": cuánto cuesta cada una hoy.' },
+  { slug: 'hp-omnibook-3-vs-asus-vivobook-14', comparador: 'notebooks', a: HP_OMNIBOOK_3, b: VIVOBOOK_14, contexto: 'Dos notebooks de 14" livianas para el día a día: HP contra Asus.' },
 ]
 
 export interface Lado {

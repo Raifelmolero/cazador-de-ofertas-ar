@@ -95,7 +95,9 @@ function parseCelular(titulo: string): Pick<Equipo, 'marca' | 'specs' | 'orden'>
   const t = normalizar(titulo)
   const marca = MARCAS_CELU.find(([re]) => re.test(t))?.[1] ?? 'Otra'
   const nums = numerosGb(t)
-  const par = parGb(t)
+  // "4/128" o "8+256" sin "gb": RAM chica + memoria estándar, sin ambigüedad
+  const pelado = t.match(/\b(\d{1,2})\s?[/+]\s?(64|128|256|512)\b(?!\s?(gb|tb|mah|mp))/)
+  const par = parGb(t) ?? (pelado ? ([Number(pelado[1]), Number(pelado[2])] as [number, number]) : null)
   const almac = par && ALMACENAMIENTOS.includes(par[1]) ? par[1] : Math.max(0, ...nums.filter(n => ALMACENAMIENTOS.includes(n)))
   const ramTag = t.match(/(\d{1,2})\s?gb\s?(?:de\s)?ram|ram\s?(\d{1,2})\s?gb|(\d{1,2})\s?ram\b/)
   let ram = ramTag ? Number(ramTag[1] ?? ramTag[2] ?? ramTag[3]) : par && par[0] <= 24 ? par[0] : 0

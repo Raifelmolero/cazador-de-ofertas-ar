@@ -39,6 +39,16 @@ const MOTO_G15: Modelo = { nombre: 'Motorola Moto G15', re: /\b(moto|motorola) ?
 const MOTO_G17: Modelo = { nombre: 'Motorola Moto G17', re: /\b(moto|motorola) ?g17\b/ }
 const EDGE_70_FUSION: Modelo = { nombre: 'Motorola Edge 70 Fusion', re: /\bedge 70 fusion\b/ }
 const REDMI_15C: Modelo = { nombre: 'Xiaomi Redmi 15C', re: /\bredmi 15c\b/ }
+const HP_255_G10: Modelo = { nombre: 'HP 255 G10', re: /\bhp 255r? g10\b/ }
+const ASPIRE_GO_15: Modelo = { nombre: 'Acer Aspire Go 15', re: /\baspire go 15\b/ }
+const ASPIRE_LITE_15: Modelo = { nombre: 'Acer Aspire Lite 15', re: /\baspire lite (15\b|al15)/ }
+const VIVOBOOK_15: Modelo = { nombre: 'Asus Vivobook 15', re: /\bvivobook (15\b|f1504|m1502)/ }
+const VIVOBOOK_14: Modelo = { nombre: 'Asus Vivobook 14', re: /\bvivobook (14\b|x1404)/ }
+const IDEAPAD_SLIM_3: Modelo = { nombre: 'Lenovo IdeaPad Slim 3', re: /\bideapad (slim 3|3 slim)\b/ }
+const IDEAPAD_1: Modelo = { nombre: 'Lenovo IdeaPad 1', re: /\bideapad 1\b/ }
+const GALAXY_BOOK4: Modelo = { nombre: 'Samsung Galaxy Book4', re: /\bgalaxy book ?4\b/ }
+const LENOVO_LOQ: Modelo = { nombre: 'Lenovo LOQ', re: /\bloq\b/ }
+const HP_OMEN: Modelo = { nombre: 'HP OMEN', re: /\bomen\b/ }
 
 export const DUELOS: Duelo[] = [
   { slug: 'iphone-17-vs-iphone-17-pro', comparador: 'celulares', a: IPHONE_17, b: IPHONE_17_PRO, contexto: 'Es la duda más común de la línea nueva de Apple: cuánto más cuesta el Pro en Argentina y si conviene estirarse.' },
@@ -55,6 +65,15 @@ export const DUELOS: Duelo[] = [
   { slug: 'moto-g17-vs-samsung-galaxy-a17', comparador: 'celulares', a: MOTO_G17, b: GALAXY_A17, contexto: 'Motorola contra Samsung en la camada nueva de gama media.' },
   { slug: 'xiaomi-redmi-15c-vs-moto-g15', comparador: 'celulares', a: REDMI_15C, b: MOTO_G15, contexto: 'Xiaomi contra Motorola en el rango de precio más vendido.' },
   { slug: 'motorola-edge-70-fusion-vs-samsung-galaxy-a37', comparador: 'celulares', a: EDGE_70_FUSION, b: GALAXY_A37, contexto: 'Gama media alta: el Edge de Motorola contra el A37 de Samsung.' },
+  // Notebooks: cada modelo se vende en varias configuraciones, así que la tabla
+  // muestra qué procesadores y discos hay de cada uno.
+  { slug: 'hp-255-g10-vs-acer-aspire-go-15', comparador: 'notebooks', a: HP_255_G10, b: ASPIRE_GO_15, contexto: 'Dos de las notebooks con Ryzen 7 más vendidas en Argentina, cara a cara.' },
+  { slug: 'acer-aspire-lite-15-vs-hp-255-g10', comparador: 'notebooks', a: ASPIRE_LITE_15, b: HP_255_G10, contexto: 'Acer contra HP en la gama media para trabajar y estudiar.' },
+  { slug: 'asus-vivobook-15-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: VIVOBOOK_15, b: IDEAPAD_SLIM_3, contexto: 'Las dos notebooks de 15" más buscadas para estudiar y home office.' },
+  { slug: 'lenovo-ideapad-1-vs-acer-aspire-lite-15', comparador: 'notebooks', a: IDEAPAD_1, b: ASPIRE_LITE_15, contexto: 'Las de entrada de Lenovo y Acer: cuánto más cuesta dar el salto.' },
+  { slug: 'samsung-galaxy-book4-vs-asus-vivobook-15', comparador: 'notebooks', a: GALAXY_BOOK4, b: VIVOBOOK_15, contexto: 'Samsung contra Asus en notebooks de 15" para el día a día.' },
+  { slug: 'asus-vivobook-14-vs-asus-vivobook-15', comparador: 'notebooks', a: VIVOBOOK_14, b: VIVOBOOK_15, contexto: 'La misma línea de Asus en dos tamaños: cuánto cambia el precio.' },
+  { slug: 'lenovo-loq-vs-hp-omen', comparador: 'notebooks', a: LENOVO_LOQ, b: HP_OMEN, contexto: 'Notebooks gamer: la LOQ de Lenovo contra la OMEN de HP.' },
 ]
 
 export interface Lado {
@@ -62,7 +81,8 @@ export interface Lado {
   equipos: Equipo[] // de menor a mayor precio
   desde: number
   minimo: number | null // el más bajo registrado entre sus publicaciones
-  memorias: string[] // "128 GB", "256 GB"...
+  memorias: string[] // celulares: memoria interna; notebooks: disco ("256 GB", "1 TB"...)
+  procesadores: string[] // solo notebooks
   enOferta: number
 }
 
@@ -76,15 +96,17 @@ function lado(modelo: Modelo, equipos: Equipo[]): Lado | null {
   const xs = equipos.filter(e => modelo.re.test(normalizar(e.titulo)))
   if (!xs.length) return null
   const mins = xs.map(e => e.minimo).filter((n): n is number => typeof n === 'number')
-  const memorias = [...new Set(xs.map(e => e.orden.memoria).filter(n => n > 0))]
+  const memorias = [...new Set(xs.map(e => e.orden.memoria ?? e.orden.disco).filter(n => n > 0))]
     .sort((x, y) => x - y)
     .map(n => (n >= 1024 ? `${n / 1024} TB` : `${n} GB`))
+  const procesadores = [...new Set(xs.map(e => e.specs.procesador).filter((p): p is string => !!p))].sort()
   return {
     modelo,
     equipos: xs,
     desde: xs[0].precio,
     minimo: mins.length ? Math.min(...mins) : null,
     memorias,
+    procesadores,
     enOferta: xs.filter(e => e.enOferta).length,
   }
 }
@@ -111,21 +133,23 @@ export const getDuelo = (slug: string) => DUELOS.find(d => d.slug === slug)
 /** Los duelos que hoy tienen precio de los dos lados (los que se publican). */
 export const duelosConPrecio = (): DueloArmado[] => DUELOS.map(armarDuelo).filter((x): x is DueloArmado => !!x)
 
-/** El más barato de un lado con esa memoria (en GB). */
-const conMemoria = (l: Lado, gb: number) => l.equipos.find(e => e.orden.memoria === gb)
+/** Con qué se compara "a igual": la memoria en celulares, el procesador en notebooks. */
+const igualDe = (e: Equipo): string | undefined => e.specs.memoria ?? e.specs.procesador
 
 /**
- * Diferencia de precio entre los dos. Si comparten alguna memoria, se compara
- * a igual memoria (la más chica en común): comparar un 128 GB contra un 256 GB
+ * Diferencia de precio entre los dos. Si comparten alguna memoria (celulares)
+ * o procesador (notebooks), se compara a igual, en la que sale más barata:
+ * comparar un 128 GB contra un 256 GB, o un Celeron contra un Ryzen 7,
  * exageraría la diferencia. Si no, se compara el más barato de cada lado.
  */
 export function diferencia(x: DueloArmado) {
-  const comunes = [...new Set(x.a.equipos.map(e => e.orden.memoria))]
-    .filter(gb => gb > 0 && x.b.equipos.some(e => e.orden.memoria === gb))
-    .sort((p, q) => p - q)
-  const gb = comunes[0] ?? null
-  const ea = gb ? conMemoria(x.a, gb)! : x.a.equipos[0]
-  const eb = gb ? conMemoria(x.b, gb)! : x.b.equipos[0]
+  const comunes = [...new Set(x.a.equipos.map(igualDe))].filter(
+    (k): k is string => !!k && x.b.equipos.some(e => igualDe(e) === k),
+  )
+  // equipos ya viene de menor a mayor precio: el primero con esa clave es el más barato
+  const par = (k: string) => [x.a.equipos.find(e => igualDe(e) === k)!, x.b.equipos.find(e => igualDe(e) === k)!] as const
+  const igual = comunes.sort((p, q) => Math.min(...par(p).map(e => e.precio)) - Math.min(...par(q).map(e => e.precio)))[0] ?? null
+  const [ea, eb] = igual ? par(igual) : [x.a.equipos[0], x.b.equipos[0]]
   const [barato, caro, eBarato, eCaro] = ea.precio <= eb.precio ? [x.a, x.b, ea, eb] : [x.b, x.a, eb, ea]
   const pesos = eCaro.precio - eBarato.precio
   return {
@@ -133,7 +157,7 @@ export function diferencia(x: DueloArmado) {
     caro,
     eBarato,
     eCaro,
-    memoria: gb ? (gb >= 1024 ? `${gb / 1024} TB` : `${gb} GB`) : null,
+    igual, // "256 GB", "AMD Ryzen 7"... o null
     pesos,
     pct: Math.round((pesos / eBarato.precio) * 100),
   }

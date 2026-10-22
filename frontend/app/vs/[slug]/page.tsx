@@ -23,13 +23,23 @@ const titulo = (x: DueloArmado) => `${x.a.modelo.nombre} vs ${x.b.modelo.nombre}
 
 function resumen(x: DueloArmado, hoy: string): string {
   const d = diferencia(x)
-  // Sin memoria en común se aclara la de cada uno: si no, un 128 GB contra un 256 GB parece el mismo equipo.
-  const memoDe = (e: typeof d.eBarato) => (d.memoria ? ` con ${d.memoria}` : e.specs.memoria ? ` (${e.specs.memoria})` : '')
-  const [ma, mb] = x.a.equipos.includes(d.eBarato) ? [memoDe(d.eBarato), memoDe(d.eCaro)] : [memoDe(d.eCaro), memoDe(d.eBarato)]
-  if (d.pct <= 2) {
-    return `Hoy (${hoy}) el ${x.a.modelo.nombre}${ma} y el ${x.b.modelo.nombre}${mb} cuestan prácticamente lo mismo en Mercado Libre: ${pesos(d.eBarato.precio)} contra ${pesos(d.eCaro.precio)}.`
+  // Sin memoria/procesador en común se aclara el de cada uno: si no, un 128 GB contra un 256 GB parece el mismo equipo.
+  const memoDe = (e: typeof d.eBarato) => {
+    if (d.igual) return ` con ${d.igual}`
+    const propio = e.specs.memoria ?? e.specs.procesador
+    return propio ? ` (${propio})` : ''
   }
-  return `Hoy (${hoy}) el ${d.barato.modelo.nombre}${memoDe(d.eBarato)} más barato sale ${pesos(d.eBarato.precio)} y el ${d.caro.modelo.nombre}${memoDe(d.eCaro)} ${pesos(d.eCaro.precio)}: el ${d.caro.modelo.nombre} cuesta ${pesos(d.pesos)} más (${d.pct} %).`
+  const [ea, eb] = x.a.equipos.includes(d.eBarato) ? [d.eBarato, d.eCaro] : [d.eCaro, d.eBarato]
+  const [ma, mb] = [memoDe(ea), memoDe(eb)]
+  // Si se comparó a igual pero el más barato de alguno es otra versión, se avisa: el "a igual" solo no cuenta todo.
+  const otros =
+    d.igual && (d.eBarato !== d.barato.equipos[0] || d.eCaro !== d.caro.equipos[0])
+      ? ` Sin mirar ${x.duelo.comparador === 'notebooks' ? 'el procesador' : 'la memoria'}, el más barato de cada uno sale ${pesos(x.a.desde)} (${x.a.modelo.nombre}) y ${pesos(x.b.desde)} (${x.b.modelo.nombre}).`
+      : ''
+  if (d.pct <= 2) {
+    return `Hoy (${hoy}) el ${x.a.modelo.nombre}${ma} y el ${x.b.modelo.nombre}${mb} cuestan prácticamente lo mismo en Mercado Libre: ${pesos(ea.precio)} contra ${pesos(eb.precio)}.${otros}`
+  }
+  return `Hoy (${hoy}) el ${d.barato.modelo.nombre}${memoDe(d.eBarato)} más barato sale ${pesos(d.eBarato.precio)} y el ${d.caro.modelo.nombre}${memoDe(d.eCaro)} ${pesos(d.eCaro.precio)}: el ${d.caro.modelo.nombre} cuesta ${pesos(d.pesos)} más (${d.pct} %).${otros}`
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -92,10 +102,13 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
     ...otros.filter(o => ![o.a, o.b].some(l => l.modelo === x.a.modelo || l.modelo === x.b.modelo)),
   ].slice(0, 6)
 
+  const notebook = x.duelo.comparador === 'notebooks'
+  const nada = 'No figura en el título'
   const filas: [string, (l: Lado) => string][] = [
-    ['Más barato hoy', l => pesos(l.desde)],
+    [notebook ? 'La más barata hoy' : 'Más barato hoy', l => pesos(l.desde)],
     ['Más bajo que registramos', l => (l.minimo ? pesos(l.minimo) : 'Sin historial todavía')],
-    ['Memorias a la venta', l => l.memorias.join(', ') || 'No figura en el título'],
+    ...(notebook ? ([['Procesadores a la venta', (l: Lado) => l.procesadores.join(', ') || nada]] as [string, (l: Lado) => string][]) : []),
+    [notebook ? 'Discos a la venta' : 'Memorias a la venta', l => l.memorias.join(', ') || nada],
     ['Publicaciones encontradas', l => `${l.equipos.length} (${l.enOferta} en oferta hoy)`],
   ]
 
@@ -180,8 +193,8 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
               ))}
             </tbody>
           </table>
-          {dif.memoria && (
-            <p className="mt-2 text-xs text-zinc-500">La diferencia de la respuesta rápida compara los dos con {dif.memoria}, para que sea justa.</p>
+          {dif.igual && (
+            <p className="mt-2 text-xs text-zinc-500">La diferencia de la respuesta rápida compara los dos con {dif.igual}, para que sea justa.</p>
           )}
         </section>
 
@@ -197,7 +210,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Seguí comparando</h2>
           <ul className="space-y-1.5">
             <li>
-              <Link href={`/comparador/${x.duelo.comparador}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {x.duelo.comparador}: filtrá por precio, memoria y más →</Link>
+              <Link href={`/comparador/${x.duelo.comparador}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {x.duelo.comparador}: filtrá por precio, {notebook ? 'procesador y RAM' : 'memoria y 5G'} →</Link>
             </li>
             {relacionados.map(o => (
               <li key={o.duelo.slug}>
@@ -205,7 +218,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
               </li>
             ))}
             <li>
-              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad los celulares? →</Link>
+              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad los {x.duelo.comparador}? →</Link>
             </li>
           </ul>
         </section>

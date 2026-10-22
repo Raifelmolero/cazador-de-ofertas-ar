@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
@@ -86,6 +87,7 @@ export default function MejoresIndex() {
           ))}
         </ul>
       </article>
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

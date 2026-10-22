@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import { getEstudio } from '@/lib/estudio'
 import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 const URL = `${DEALS_URL}/estudio/descuentos-inflados-mercado-libre`
@@ -224,6 +225,7 @@ export default function EstudioPage() {
         </div>
       </article>
 
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

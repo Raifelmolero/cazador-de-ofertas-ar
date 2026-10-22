@@ -6,6 +6,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import { getInfladas } from '@/lib/infladas'
@@ -194,6 +195,7 @@ export default function DatosPage() {
           <p className="rounded-lg bg-zinc-900 border border-zinc-800 p-3 font-mono text-sm">{cita}</p>
         </div>
       </article>
+      <OfertasMinimoHoy />
       <Footer brand="ofertas" />
     </main>
   )

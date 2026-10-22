@@ -77,6 +77,7 @@ export const NICHOS: Nicho[] = [
     destacados: [
       { href: '/comparador/celulares', texto: '🔎 Comparador de celulares: filtrá por precio, memoria y 5G' },
       { href: '/comparador/notebooks', texto: '🔎 Comparador de notebooks: filtrá por precio, procesador y RAM' },
+      { href: '/comparador/smart-tv', texto: '🔎 Comparador de smart TV: filtrá por precio, pulgadas, 4K y QLED' },
       { href: '/cyber-monday/tecnologia', texto: '🛒 Cyber Monday: ¿bajan de verdad los celulares y notebooks?' },
     ],
   },

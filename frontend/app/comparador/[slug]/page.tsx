@@ -1,4 +1,4 @@
-// Comparador de celulares / notebooks con precios reales (lib/comparador.ts).
+// Comparador de celulares / notebooks / smart TV con precios reales (lib/comparador.ts).
 // Arriba, la "respuesta rápida" por presupuesto en HTML plano (lo que citan
 // Google y las IAs); abajo, el comparador interactivo con filtros.
 import Link from 'next/link'
@@ -42,8 +42,19 @@ const masBarato = (xs: Equipo[], f: (e: Equipo) => boolean) => xs.find(f)
 
 function respuestas(c: Comparador, equipos: Equipo[]): { q: string; e: Equipo }[] {
   const uno = c.fem ? 'la' : 'el'
+  const tv = [
+    { q: `el smart TV 4K más barato`, e: masBarato(equipos, e => e.orden.resolucion >= 3) },
+    { q: `el smart TV de 50" o más más barato`, e: masBarato(equipos, e => e.orden.pulgadas >= 50) },
+    { q: `el smart TV de 55" 4K más barato`, e: masBarato(equipos, e => e.orden.pulgadas >= 55 && e.orden.resolucion >= 3) },
+    { q: `el smart TV de 65" o más más barato`, e: masBarato(equipos, e => e.orden.pulgadas >= 65) },
+    { q: `el smart TV QLED (o mejor) más barato`, e: masBarato(equipos, e => e.orden.panel >= 2) },
+    { q: `el Samsung más barato`, e: masBarato(equipos, e => e.marca === 'Samsung') },
+    { q: `el LG más barato`, e: masBarato(equipos, e => e.marca === 'LG') },
+  ]
   const out: { q: string; e: Equipo | undefined }[] =
-    c.slug === 'celulares'
+    c.slug === 'smart-tv'
+      ? tv
+      : c.slug === 'celulares'
       ? [
           { q: `${uno} ${c.nombre} más barato con 128 GB`, e: masBarato(equipos, e => e.orden.memoria >= 128) },
           { q: `${uno} ${c.nombre} más barato con 256 GB`, e: masBarato(equipos, e => e.orden.memoria >= 256) },
@@ -74,7 +85,7 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
   const hoy = fechaAR(getScrapedAt().toISOString().slice(0, 10))
   const guias = GUIAS.filter(g => c.guias.includes(g.slug))
   const precios = c.precioHoy.map(getPrecioHoy).filter(p => !!p)
-  const otro = COMPARADORES.find(x => x.slug !== c.slug)
+  const otros = COMPARADORES.filter(x => x.slug !== c.slug)
   const duelos = duelosConPrecio().filter(x => x.duelo.comparador === c.slug)
   const presupuestos = presupuestosConEquipos().filter(x => x.p.comparador === c.slug)
 
@@ -216,7 +227,7 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Antes de elegir</h2>
           <ul className="space-y-1.5">
             <li>
-              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad los celulares y notebooks? →</Link>
+              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad {c.slug === 'smart-tv' ? 'los smart TV' : 'los celulares y notebooks'}? →</Link>
             </li>
             {precios.map(p => (
               <li key={p!.slug}>
@@ -228,11 +239,11 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
                 <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {g.titulo} →</a>
               </li>
             ))}
-            {otro && (
-              <li>
-                <Link href={`/comparador/${otro.slug}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {otro.plural} →</Link>
+            {otros.map(o => (
+              <li key={o.slug}>
+                <Link href={`/comparador/${o.slug}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {o.plural} →</Link>
               </li>
-            )}
+            ))}
             <li>
               <Link href="/tecno" className="font-bold text-yellow-400 hover:underline">📱 Todas las ofertas de tecnología de hoy →</Link>
             </li>

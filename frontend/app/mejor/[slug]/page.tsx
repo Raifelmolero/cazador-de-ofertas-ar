@@ -1,4 +1,4 @@
-// "Mejor celular / notebook hasta $X" con los equipos de hoy (lib/presupuesto.ts).
+// "Mejor celular / notebook / smart TV hasta $X" con los equipos de hoy (lib/presupuesto.ts).
 // Arriba la respuesta corta en HTML plano (la que citan Google y las IAs),
 // después lo mejor en la parte alta del presupuesto y la lista completa.
 import Link from 'next/link'
@@ -9,7 +9,7 @@ import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import type { Equipo } from '@/lib/comparador'
+import { getComparador, type Equipo } from '@/lib/comparador'
 import { armarPresupuesto, getPresupuesto, presupuestosConEquipos, type PresupuestoArmado } from '@/lib/presupuesto'
 import { duelosConPrecio } from '@/lib/vs'
 
@@ -21,15 +21,26 @@ export const dynamicParams = false
 
 const pesos = (n: number) => `$${n.toLocaleString('es-AR')}`
 const fechaAR = (iso: string) => iso.split('-').reverse().join('/')
-const nombre = (x: PresupuestoArmado) => (x.p.comparador === 'celulares' ? 'celular' : 'notebook')
+const nombre = (x: PresupuestoArmado) => getComparador(x.p.comparador)?.nombre ?? x.p.comparador
+/** "celulares", "notebooks", "smart TV" (para textos y migas). */
+const plural = (x: PresupuestoArmado) => getComparador(x.p.comparador)?.plural ?? x.p.comparador
+const esFem = (x: PresupuestoArmado) => getComparador(x.p.comparador)?.fem ?? false
+const COMO_ELEGIMOS: Record<PresupuestoArmado['p']['comparador'], string> = {
+  celulares:
+    'Sumamos lo que dice el título de cada publicación: memoria interna, RAM (hasta 8 GB, porque los números más altos suelen incluir memoria virtual) y si tiene 5G. Si el título no lo dice, no suma. Recomendamos solo marcas conocidas.',
+  notebooks:
+    'Sumamos lo que dice el título de cada publicación: procesador (pesa más), memoria RAM hasta 16 GB, tamaño del disco SSD y si es gamer. Si el título no lo dice, no suma. Recomendamos solo marcas conocidas.',
+  'smart-tv':
+    'Sumamos lo que dice el título de cada publicación: las pulgadas (pesan más), la resolución (4K suma mucho más que Full HD o HD) y el tipo de panel (QLED, Mini LED u OLED suman sobre un LED común). Si el título no lo dice, no suma. Recomendamos solo marcas conocidas.',
+}
 const titulo = (x: PresupuestoArmado) => `Mejor ${nombre(x)} hasta $${x.p.texto} hoy en Mercado Libre`
 const specsDe = (e: Equipo) => Object.values(e.specs).join(' · ')
 
 function resumen(x: PresupuestoArmado, hoy: string): string {
   const r = x.recomendado
-  const fem = x.p.comparador === 'notebooks'
+  const fem = esFem(x)
   const s = specsDe(r)
-  return `Hoy (${hoy}), con hasta $${x.p.texto} ${fem ? 'la notebook' : 'el celular'} que más trae por su precio es ${r.titulo} (${s ? s + ', ' : ''}${pesos(r.precio)}). ${fem ? 'La más barata' : 'El más barato'} que entra es ${x.masBarato.titulo}, a ${pesos(x.masBarato.precio)}.`
+  return `Hoy (${hoy}), con hasta $${x.p.texto} ${fem ? 'la' : 'el'} ${nombre(x)} que más trae por su precio es ${r.titulo} (${s ? s + ', ' : ''}${pesos(r.precio)}). ${fem ? 'La más barata' : 'El más barato'} que entra es ${x.masBarato.titulo}, a ${pesos(x.masBarato.precio)}.`
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -38,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!x) return {}
   const url = `${DEALS_URL}/mejor/${x.p.slug}`
   const t = titulo(x)
-  const desc = `${x.equipos.length} ${x.p.comparador} de hasta $${x.p.texto} en Mercado Libre Argentina, ordenados por lo que trae cada uno, con el precio más bajo que registramos. ${resumen(x, fechaAR(getScrapedAt().toISOString().slice(0, 10)))}`
+  const desc = `${x.equipos.length} ${plural(x)} de hasta $${x.p.texto} en Mercado Libre Argentina, ordenados por lo que trae cada uno, con el precio más bajo que registramos. ${resumen(x, fechaAR(getScrapedAt().toISOString().slice(0, 10)))}`
   return {
     title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s]),
     description: descripcionSeo(desc),
@@ -79,20 +90,15 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
   if (!x) notFound()
   const url = `${DEALS_URL}/mejor/${x.p.slug}`
   const hoy = fechaAR(getScrapedAt().toISOString().slice(0, 10))
-  const fem = x.p.comparador === 'notebooks'
+  const fem = esFem(x)
   const otros = presupuestosConEquipos().filter(o => o.p.comparador === x.p.comparador && o.p.slug !== x.p.slug)
   const duelos = duelosConPrecio().filter(d => d.duelo.comparador === x.p.comparador && Math.min(d.a.desde, d.b.desde) <= x.p.hasta).slice(0, 5)
   const alta = x.franjaAlta.filter(e => e !== x.recomendado)
 
   const faqs = [
-    { q: `¿Cuál es ${fem ? 'la mejor notebook' : 'el mejor celular'} hasta $${x.p.texto}?`, a: resumen(x, hoy) },
-    {
-      q: `¿Cómo elegimos ${fem ? 'la que más trae' : 'el que más trae'}?`,
-      a: fem
-        ? 'Sumamos lo que dice el título de cada publicación: procesador (pesa más), memoria RAM hasta 16 GB, tamaño del disco SSD y si es gamer. Si el título no lo dice, no suma. Recomendamos solo marcas conocidas.'
-        : 'Sumamos lo que dice el título de cada publicación: memoria interna, RAM (hasta 8 GB, porque los números más altos suelen incluir memoria virtual) y si tiene 5G. Si el título no lo dice, no suma. Recomendamos solo marcas conocidas.',
-    },
-    { q: '¿De dónde salen los precios?', a: `Son los ${x.p.comparador} en oferta hoy en Mercado Libre Argentina y los que seguimos día por día (vistos en la última semana). Guardamos el precio de cada uno para mostrar el más bajo registrado. Los precios cambian todos los días: confirmalo en Mercado Libre antes de comprar.` },
+    { q: `¿Cuál es ${fem ? 'la mejor' : 'el mejor'} ${nombre(x)} hasta $${x.p.texto}?`, a: resumen(x, hoy) },
+    { q: `¿Cómo elegimos ${fem ? 'la que más trae' : 'el que más trae'}?`, a: COMO_ELEGIMOS[x.p.comparador] },
+    { q: '¿De dónde salen los precios?', a: `Son los ${plural(x)} en oferta hoy en Mercado Libre Argentina y los que seguimos día por día (vistos en la última semana). Guardamos el precio de cada uno para mostrar el más bajo registrado. Los precios cambian todos los días: confirmalo en Mercado Libre antes de comprar.` },
   ]
 
   const jsonLd = [
@@ -101,7 +107,7 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: `Comparador de ${x.p.comparador}`, item: `${DEALS_URL}/comparador/${x.p.comparador}` },
+        { '@type': 'ListItem', position: 2, name: `Comparador de ${plural(x)}`, item: `${DEALS_URL}/comparador/${x.p.comparador}` },
         { '@type': 'ListItem', position: 3, name: `Hasta $${x.p.texto}`, item: url },
       ],
     },
@@ -138,12 +144,12 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
         <div className="max-w-5xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
-            <Link href={`/comparador/${x.p.comparador}`} className="hover:text-yellow-400">Comparador de {x.p.comparador}</Link> <span aria-hidden="true">/</span>{' '}
+            <Link href={`/comparador/${x.p.comparador}`} className="hover:text-yellow-400">Comparador de {plural(x)}</Link> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">Hasta ${x.p.texto}</span>
           </nav>
           <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">{titulo(x)}</h1>
           <p className="max-w-3xl text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            {x.equipos.length} {x.p.comparador} que hoy cuestan hasta ${x.p.texto} en Mercado Libre Argentina, ordenados por lo que trae cada {fem ? 'una' : 'uno'} según su publicación, con el precio más bajo que registramos.
+            {x.equipos.length} {plural(x)} que hoy cuestan hasta ${x.p.texto} en Mercado Libre Argentina, ordenados por lo que trae cada {fem ? 'una' : 'uno'} según su publicación, con el precio más bajo que registramos.
           </p>
           <p className="mt-3 text-sm text-zinc-500">
             <LastUpdated scrapedAt={getScrapedAt().toISOString()} />.
@@ -214,7 +220,7 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
           <ul className="space-y-1.5">
             {otros.map(o => (
               <li key={o.p.slug}>
-                <Link href={`/mejor/${o.p.slug}`} className="font-bold text-yellow-400 hover:underline">💲 {fem ? 'Mejor notebook' : 'Mejor celular'} hasta ${o.p.texto} →</Link>
+                <Link href={`/mejor/${o.p.slug}`} className="font-bold text-yellow-400 hover:underline">💲 Mejor {nombre(x)} hasta ${o.p.texto} →</Link>
               </li>
             ))}
             {duelos.map(d => (
@@ -223,7 +229,7 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
               </li>
             ))}
             <li>
-              <Link href={`/comparador/${x.p.comparador}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {x.p.comparador} con filtros →</Link>
+              <Link href={`/comparador/${x.p.comparador}`} className="font-bold text-yellow-400 hover:underline">🔎 Comparador de {plural(x)} con filtros →</Link>
             </li>
           </ul>
         </section>

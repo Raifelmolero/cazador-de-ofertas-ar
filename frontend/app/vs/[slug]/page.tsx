@@ -19,6 +19,7 @@ export const dynamicParams = false
 
 const pesos = (n: number) => `$${n.toLocaleString('es-AR')}`
 const fechaAR = (iso: string) => iso.split('-').reverse().join('/')
+const sinMarca = (s: string) => s.replace(/(Samsung|Motorola|Xiaomi|Apple) /g, '')
 const titulo = (x: DueloArmado) => `${x.a.modelo.nombre} vs ${x.b.modelo.nombre}: precio hoy en Mercado Libre`
 
 function resumen(x: DueloArmado, hoy: string): string {
@@ -50,7 +51,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const t = titulo(x)
   const desc = `${resumen(x, fechaAR(getScrapedAt().toISOString().slice(0, 10)))} Comparalos lado a lado con el precio más bajo que registramos de cada uno.`
   return {
-    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s]),
+    // "X vs Y" siempre entero al principio: con nombres largos se acorta la cola fija,
+    // y si igual no entra, la marca ("Samsung Galaxy A16" → "Galaxy A16"), nunca a mitad de frase.
+    title: tituloSeo(`${x.a.modelo.nombre} vs ${x.b.modelo.nombre}`, [
+      s => `${s}: precio hoy en Mercado Libre — Cazador de Ofertas AR`,
+      s => `${s}: precio hoy en Mercado Libre`,
+      s => `${s}: ¿cuál conviene? Precio hoy`,
+      s => `${s}: precio hoy`,
+      s => `${sinMarca(s)}: precio hoy`,
+    ]),
     description: descripcionSeo(desc),
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },

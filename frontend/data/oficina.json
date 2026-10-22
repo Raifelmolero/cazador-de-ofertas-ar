@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-22T03:09:16+00:00",
+  "generado": "2026-10-22T14:34:08+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,17 +12,17 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 1927 productos en la última corrida"
+          "tarea": "Revisó 2155 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 9
+          "valor": 6
         },
         {
           "label": "Facebook",
-          "valor": 6
+          "valor": 5
         },
         {
           "label": "Telegram",
@@ -33,16 +33,16 @@
           "valor": 3
         },
         {
-          "label": "Reels IG",
+          "label": "Instagram",
           "valor": 2
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
         },
         {
           "label": "Historias IG",
-          "valor": 2
-        },
-        {
-          "label": "Instagram",
-          "valor": 2
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
@@ -71,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },

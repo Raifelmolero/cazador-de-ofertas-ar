@@ -30,7 +30,7 @@ export function nichoMetadata(n: Nicho): Metadata {
   }
 }
 
-export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
+export default function NichoHub({ nicho: n, extra }: { nicho: Nicho; extra?: React.ReactNode }) {
   const url = `${DEALS_URL}/${n.slug}`
   const cats = n.categorias.map(getCategoria).filter((c): c is Categoria => !!c)
   const vistos = new Set<string>()
@@ -263,6 +263,8 @@ export default function NichoHub({ nicho: n }: { nicho: Nicho }) {
             </div>
           </section>
         )}
+
+        {extra}
 
         <p className="text-xs text-zinc-600">
           No probamos productos ni hacemos reseñas: comparamos precio, descuento y el historial que registramos. Los

@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import CuentaRegresivaEvento from '@/components/CuentaRegresivaEvento'
 import Footer from '@/components/Footer'
+import LinksTecno from '@/components/LinksTecno'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
@@ -252,6 +253,7 @@ export default function CyberTecnologiaPage() {
           </div>
         </section>
       </article>
+      <LinksTecno className="mx-auto max-w-4xl px-4 mt-10" />
       <Footer brand="ofertas" />
     </main>
   )

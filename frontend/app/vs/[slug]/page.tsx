@@ -129,6 +129,42 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
     ['Publicaciones encontradas', l => `${l.equipos.length} (${l.enOferta} en oferta hoy)`],
   ]
 
+  // "¿Cuál conviene según lo que buscás?": solo con lo que sale de las publicaciones de hoy, sin specs inventadas.
+  const gb = (s: string) => parseFloat(s) * (s.endsWith('TB') ? 1024 : 1)
+  const maxMem = (l: Lado) => (l.memorias.length ? l.memorias[l.memorias.length - 1] : null)
+  const [ma, mb] = [maxMem(x.a), maxMem(x.b)]
+  const cercaDelMinimo = (l: Lado) => (l.minimo ? l.desde / l.minimo : Infinity)
+  const usos: [string, string][] = [
+    dif.pct <= 2
+      ? ['Si querés gastar lo menos posible', `Hoy da casi lo mismo: ${pesos(dif.eBarato.precio)} contra ${pesos(dif.eCaro.precio)}. Elegí por la marca o el tamaño que prefieras.`]
+      : ['Si querés gastar lo menos posible', `El ${dif.barato.modelo.nombre}: hoy te ahorrás ${pesos(dif.pesos)} (${dif.pct} %) frente al ${dif.caro.modelo.nombre}${dif.igual ? `, comparando los dos con ${dif.igual}` : ''}.`],
+  ]
+  if (ma && mb) {
+    const label = notebook ? 'más disco' : 'más memoria'
+    usos.push(
+      gb(ma) === gb(mb)
+        ? [`Si querés ${label}`, `Los dos se consiguen hoy con hasta ${ma}: en eso empatan.`]
+        : gb(ma) > gb(mb)
+          ? [`Si querés ${label}`, `El ${x.a.modelo.nombre}: hoy hay publicaciones con hasta ${ma}, contra ${mb} del ${x.b.modelo.nombre}.`]
+          : [`Si querés ${label}`, `El ${x.b.modelo.nombre}: hoy hay publicaciones con hasta ${mb}, contra ${ma} del ${x.a.modelo.nombre}.`],
+    )
+  }
+  const [ca, cb] = [cercaDelMinimo(x.a), cercaDelMinimo(x.b)]
+  if (Number.isFinite(ca) || Number.isFinite(cb)) {
+    const mejor = ca <= cb ? x.a : x.b
+    usos.push([
+      'Si querés comprar en buen momento',
+      mejor.minimo && mejor.desde <= mejor.minimo
+        ? `El ${mejor.modelo.nombre}: hoy está en el precio más bajo que le registramos (${pesos(mejor.desde)}).`
+        : `El ${mejor.modelo.nombre} es el que hoy está más cerca de su precio más bajo registrado (${pesos(mejor.desde)} contra ${pesos(mejor.minimo!)}).`,
+    ])
+  }
+  const masPubs = x.a.equipos.length >= x.b.equipos.length ? x.a : x.b
+  const menosPubs = masPubs === x.a ? x.b : x.a
+  if (masPubs.equipos.length > menosPubs.equipos.length) {
+    usos.push(['Si querés elegir entre más vendedores', `El ${masPubs.modelo.nombre}: encontramos ${masPubs.equipos.length} publicaciones hoy, contra ${menosPubs.equipos.length} del ${menosPubs.modelo.nombre}.`])
+  }
+
   const faqs = [
     { q: `¿Qué conviene más, el ${x.a.modelo.nombre} o el ${x.b.modelo.nombre}?`, a: `${resumen(x, hoy)} Si la diferencia no te cambia nada, conviene el que más se acerque a su precio más bajo registrado; si estás justo, el ${dif.barato.modelo.nombre} te deja ${pesos(dif.pesos)} en el bolsillo.` },
     { q: `¿Cuánto sale el ${x.a.modelo.nombre} hoy en Argentina?`, a: `En Mercado Libre Argentina, desde ${pesos(x.a.desde)} hoy (${hoy})${x.a.minimo ? `; el más bajo que registramos fue ${pesos(x.a.minimo)}` : ''}.` },
@@ -150,6 +186,27 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `${x.a.modelo.nombre} vs ${x.b.modelo.nombre}`,
+      itemListElement: [x.a, x.b].map((l, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Product',
+          name: l.modelo.nombre,
+          ...(l.equipos[0].img ? { image: l.equipos[0].img } : {}),
+          offers: {
+            '@type': 'AggregateOffer',
+            priceCurrency: 'ARS',
+            lowPrice: l.desde,
+            highPrice: Math.max(...l.equipos.map(e => e.precio)),
+            offerCount: l.equipos.length,
+          },
+        },
+      })),
     },
   ]
 
@@ -185,9 +242,27 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
       </section>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
-        <section className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4">
+        <section data-seccion="vs-respuesta" className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Respuesta rápida</h2>
           <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">{resumen(x, hoy)}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {[x.a, x.b].map(l => (
+              <a key={l.modelo.nombre} href={l.equipos[0].url} target="_blank" rel="noopener noreferrer sponsored" className="rounded-full bg-yellow-400 px-4 py-2 text-sm font-bold text-black hover:bg-yellow-300">
+                Ver {l.modelo.nombre} desde {pesos(l.desde)} ↗
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-8 max-w-3xl">
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">¿Cuál te conviene según lo que buscás?</h2>
+          <ul className="space-y-2">
+            {usos.map(([cuando, cual]) => (
+              <li key={cuando} className="text-zinc-300 leading-relaxed [text-wrap:pretty]">
+                <strong className="text-zinc-100">{cuando}:</strong> {cual}
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="mb-8 overflow-x-auto">
@@ -208,6 +283,16 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
                   <td className="py-2 text-zinc-100">{f(x.b)}</td>
                 </tr>
               ))}
+              <tr data-seccion="vs-tabla">
+                <td className="py-3 pr-3 text-zinc-400">Comprar</td>
+                {[x.a, x.b].map(l => (
+                  <td key={l.modelo.nombre} className="py-3 pr-3">
+                    <a href={l.equipos[0].url} target="_blank" rel="noopener noreferrer sponsored" className="inline-block rounded-full bg-yellow-400 px-3 py-1.5 text-xs font-bold text-black hover:bg-yellow-300">
+                      Ver en Mercado Libre ↗
+                    </a>
+                  </td>
+                ))}
+              </tr>
             </tbody>
           </table>
           {dif.igual && (
@@ -215,7 +300,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
           )}
         </section>
 
-        <section className="mb-10">
+        <section data-seccion="vs-publicaciones" className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Las publicaciones de hoy</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <Columna l={x.a} />

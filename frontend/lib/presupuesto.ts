@@ -14,7 +14,7 @@ export interface Presupuesto {
 }
 
 const CELULARES = [200_000, 300_000, 400_000, 600_000, 1_000_000]
-const NOTEBOOKS = [600_000, 800_000, 1_000_000, 1_500_000]
+const NOTEBOOKS = [600_000, 800_000, 1_000_000, 1_200_000, 1_500_000, 2_000_000]
 
 /** 300_000 → "300 mil", 1_000_000 → "1 millón", 1_500_000 → "1,5 millones". */
 function texto(n: number): string {

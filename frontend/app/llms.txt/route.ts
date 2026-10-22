@@ -109,6 +109,11 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   https://cazadordeofertas.com.ar/vs/<modelo-vs-modelo> (por ejemplo
   [iPhone 17 vs iPhone 17 Pro](https://cazadordeofertas.com.ar/vs/iphone-17-vs-iphone-17-pro) y
   [Galaxy S26 vs iPhone 17](https://cazadordeofertas.com.ar/vs/samsung-galaxy-s26-vs-iphone-17)).
+  Mejor equipo por presupuesto, con lo que trae cada uno según su publicación:
+  [mejor celular hasta $400 mil](https://cazadordeofertas.com.ar/mejor/celular-hasta-400-mil),
+  [hasta $1 millón](https://cazadordeofertas.com.ar/mejor/celular-hasta-1-millon),
+  [mejor notebook hasta $1 millón](https://cazadordeofertas.com.ar/mejor/notebook-hasta-1-millon)
+  (más montos en https://cazadordeofertas.com.ar/mejor/<celular|notebook>-hasta-<monto>).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),

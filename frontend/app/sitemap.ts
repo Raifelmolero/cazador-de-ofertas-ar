@@ -11,6 +11,7 @@ import { NICHOS } from '@/lib/nichos'
 import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidosPrincipales } from '@/lib/seguimiento'
 import { duelosConPrecio } from '@/lib/vs'
+import { presupuestosConEquipos } from '@/lib/presupuesto'
 
 // Sin www: Vercel redirige www → calculadoraml.com.ar (307), y un sitemap o
 // canónico que apunta a una redirección confunde a Google.
@@ -95,6 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/comparador/celulares`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/comparador/notebooks`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     ...duelosConPrecio().map(x => ({ url: `${DEALS_URL}/vs/${x.duelo.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
+    ...presupuestosConEquipos().map(x => ({ url: `${DEALS_URL}/mejor/${x.p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     { url: `${DEALS_URL}/black-friday`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/dia-de-la-madre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/regalos-navidad`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },

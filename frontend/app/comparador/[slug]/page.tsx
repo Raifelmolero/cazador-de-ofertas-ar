@@ -13,6 +13,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { art, getPrecioHoy } from '@/lib/preciohoy'
 import { duelosConPrecio } from '@/lib/vs'
+import { presupuestosConEquipos } from '@/lib/presupuesto'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -75,6 +76,7 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
   const precios = c.precioHoy.map(getPrecioHoy).filter(p => !!p)
   const otro = COMPARADORES.find(x => x.slug !== c.slug)
   const duelos = duelosConPrecio().filter(x => x.duelo.comparador === c.slug)
+  const presupuestos = presupuestosConEquipos().filter(x => x.p.comparador === c.slug)
 
   const faqs = [
     ...rapidas.slice(0, 4).map(({ q, e }) => ({
@@ -183,6 +185,19 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Filtrá y compará</h2>
           <ComparadorEquipos equipos={equipos} rangos={c.rangos} filtros={c.filtros} specs={c.specs} plural={c.plural} />
         </section>
+
+        {presupuestos.length > 0 && (
+          <section className="mb-10 max-w-3xl">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{c.fem ? 'La mejor' : 'El mejor'} según tu presupuesto</h2>
+            <ul className="grid gap-1.5 sm:grid-cols-2">
+              {presupuestos.map(x => (
+                <li key={x.p.slug}>
+                  <Link href={`/mejor/${x.p.slug}`} className="font-bold text-yellow-400 hover:underline">💲 Mejor {c.nombre} hasta ${x.p.texto} →</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {duelos.length > 0 && (
           <section className="mb-10 max-w-3xl">

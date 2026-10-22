@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-21T23:10:39+00:00",
+  "generado": "2026-10-22T03:09:16+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-21T23:10:38+00:00",
+      "ultima_actividad": "2026-10-22T03:09:16+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,35 +18,35 @@
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Facebook",
-          "valor": 5
+          "valor": 6
         },
         {
           "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Instagram",
-          "valor": 2
-        },
-        {
           "label": "Threads",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Reels IG",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Historias IG",
-          "valor": 1
+          "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Con Freezer No Frost 300 L Steel Drean Rda300fbrt Color Gris"
+      "ultimo_trabajo": "Televisor Tcl 65 C655 Classic 4k Qled Pro Google Tv"
     },
     {
       "id": "investigacion",

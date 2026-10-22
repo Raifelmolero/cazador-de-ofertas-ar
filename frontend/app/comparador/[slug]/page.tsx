@@ -262,7 +262,7 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
           </div>
         </section>
       </div>
-      <Footer />
+      <Footer brand="ofertas" />
     </main>
   )
 }

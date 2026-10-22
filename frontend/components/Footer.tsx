@@ -54,6 +54,23 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
                 Mejores en oferta
               </a>
               <br />
+              Comparadores:{' '}
+              {[
+                ['/comparador/celulares', 'Celulares'],
+                ['/comparador/notebooks', 'Notebooks'],
+                ['/comparador/smart-tv', 'Smart TV'],
+                ['/mejor/celular-hasta-300-mil', 'Mejor celular hasta $300 mil'],
+                ['/mejor/celular-hasta-600-mil', 'Mejor celular hasta $600 mil'],
+                ['/mejor/notebook-hasta-1-millon', 'Mejor notebook hasta $1 millón'],
+              ].map(([href, txt], i) => (
+                <span key={href}>
+                  {i > 0 && ' · '}
+                  <a href={`https://cazadordeofertas.com.ar${href}`} className="underline hover:text-yellow-400 transition-colors">
+                    {txt}
+                  </a>
+                </span>
+              ))}
+              <br />
               Seguinos:{' '}
               <a href={TELEGRAM_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">Telegram</a>
               {' · '}

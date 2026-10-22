@@ -235,7 +235,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
           </div>
         </section>
       </div>
-      <Footer />
+      <Footer brand="ofertas" />
     </main>
   )
 }

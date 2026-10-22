@@ -252,7 +252,7 @@ export default function CyberTecnologiaPage() {
           </div>
         </section>
       </article>
-      <Footer />
+      <Footer brand="ofertas" />
     </main>
   )
 }

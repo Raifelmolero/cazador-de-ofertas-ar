@@ -246,7 +246,7 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
           </div>
         </section>
       </div>
-      <Footer />
+      <Footer brand="ofertas" />
     </main>
   )
 }

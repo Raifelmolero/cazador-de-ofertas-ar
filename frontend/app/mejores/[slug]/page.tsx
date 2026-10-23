@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { LANDINGS_CYBER } from '@/lib/cybertecno'
 import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
@@ -418,12 +420,21 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           <nav className="mb-10">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cyber Monday {new Date().getFullYear()} por rubro</h2>
             <div className="flex flex-wrap gap-2">
-              <a
+              <Link
                 href="/cyber-monday"
                 className="text-sm font-bold border border-cyan-400/40 hover:border-cyan-300 text-cyan-200 rounded-xl px-4 py-2"
               >
                 Fechas y cómo detectar inflados
-              </a>
+              </Link>
+              {LANDINGS_CYBER.filter(l => l.comparativa === c.slug).map(l => (
+                <Link
+                  key={l.slug}
+                  href={`/cyber-monday/${l.slug}`}
+                  className="text-sm font-bold border border-cyan-400/40 hover:border-cyan-300 text-cyan-200 rounded-xl px-4 py-2"
+                >
+                  Precio de octubre por marca
+                </Link>
+              ))}
               {COMPARATIVAS.filter(x => (x.slug === 'ofertas-cyber-monday' || x.slug.startsWith('cyber-monday-')) && x.slug !== c.slug).map(x => (
                 <a
                   key={x.slug}

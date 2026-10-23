@@ -13,7 +13,8 @@ import LinksTecno from '@/components/LinksTecno'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
-import { filasPorRubro, type FilaTecno } from '@/lib/cybertecno'
+import { filasPorRubro, landingsCyberConDatos } from '@/lib/cybertecno'
+import EstadoTestigo from '@/components/EstadoTestigo'
 import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
 import { GUIAS } from '@/lib/guias'
 import { getPrecioHoy, art } from '@/lib/preciohoy'
@@ -46,31 +47,6 @@ const diaMes = (iso: string) => iso.slice(8, 10) + '/' + iso.slice(5, 7)
 const fechaAR = (iso: string) => iso.split('-').reverse().join('/')
 const pesos = (n: number) => `$${n.toLocaleString('es-AR')}`
 
-function Estado({ f, etapa }: { f: FilaTecno; etapa: 'antes' | 'durante' | 'despues' }) {
-  if (!f.hoy) return <span className="text-zinc-500">Hoy no está en oferta · visto el {diaMes(f.testigo.ult)}</span>
-  const hoy = f.hoy.precio_actual
-  if (etapa === 'antes') {
-    const pct = Math.round((hoy / f.testigo.min - 1) * 100)
-    return (
-      <span>
-        Hoy <strong className="text-zinc-100">{pesos(hoy)}</strong>{' '}
-        {pct <= 2 ? (
-          <span className="text-emerald-300">· en su precio más bajo</span>
-        ) : (
-          <span className="text-amber-300">· {pct} % arriba de su mínimo</span>
-        )}
-      </span>
-    )
-  }
-  const txt = f.veredicto === 'bajo' ? '✅ Bajó de verdad' : f.veredicto === 'igual' ? '➖ Igual que en octubre' : '⚠️ Estaba más barato antes'
-  const color = f.veredicto === 'bajo' ? 'text-emerald-300' : f.veredicto === 'igual' ? 'text-zinc-300' : 'text-amber-300'
-  return (
-    <span>
-      Hoy <strong className="text-zinc-100">{pesos(hoy)}</strong> <span className={color}>· {txt}</span>
-    </span>
-  )
-}
-
 export default function CyberTecnologiaPage() {
   const { etapa } = etapaCyber()
   const testigo = getTestigo()
@@ -81,6 +57,7 @@ export default function CyberTecnologiaPage() {
   const iphones = grupos.find(g => g.rubro.slug === 'iphone')?.filas ?? []
   const iphoneMin = iphones.length ? Math.min(...iphones.map(f => f.testigo.min)) : 0
   const guias = GUIAS.filter(g => grupos.some(x => x.rubro.guia === g.slug))
+  const landings = landingsCyberConDatos()
 
   const faqs = [
     {
@@ -158,6 +135,15 @@ export default function CyberTecnologiaPage() {
           <p className="mt-4 text-sm text-zinc-500">
             Hoy {enOferta.length} están en oferta y {enMinimo} ya están en su precio más bajo. <LastUpdated scrapedAt={getScrapedAt().toISOString()} />.
           </p>
+          {landings.length > 0 && (
+            <p className="mt-3 flex flex-wrap gap-2 text-sm">
+              {landings.map(x => (
+                <Link key={x.l.slug} href={`/cyber-monday/${x.l.slug}`} className="rounded-full border border-cyan-400/30 bg-cyan-500/[0.07] px-3 py-1 font-bold text-cyan-200 hover:border-cyan-300/60">
+                  {x.l.nombre.charAt(0).toUpperCase() + x.l.nombre.slice(1)} por marca →
+                </Link>
+              ))}
+            </p>
+          )}
         </div>
       </section>
 
@@ -185,7 +171,7 @@ export default function CyberTecnologiaPage() {
                         <span>
                           Más bajo desde el {diaMes(testigo.desde)}: <strong className="text-cyan-300">{pesos(f.testigo.min)}</strong> ({diaMes(f.testigo.min_ts)})
                         </span>
-                        <Estado f={f} etapa={etapa} />
+                        <EstadoTestigo f={f} etapa={etapa} />
                         {f.historial && (
                           <a href={`/precio/${f.historial}`} className="text-yellow-400 hover:underline">historial →</a>
                         )}

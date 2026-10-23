@@ -66,3 +66,141 @@ export function filasPorRubro(): { rubro: RubroTecno; filas: FilaTecno[] }[] {
     filas: (grupos.get(rubro.slug) ?? []).sort((a, b) => Number(!!b.hoy) - Number(!!a.hoy) || a.testigo.min - b.testigo.min),
   })).filter(g => g.filas.length > 0)
 }
+
+/** Ofertas de hoy de celulares y notebooks, las más caras primero: en el
+ *  Cyber es donde cada venta deja más comisión (un iPhone ≈ 7 % de $1-2 M). */
+export function ofertasTecnoTicketAlto(n = 8, rubros = ['iphone', 'galaxy-s', 'celulares', 'notebooks']): ProductWithMargins[] {
+  return getOfertas()
+    .filter(o => {
+      const r = rubroDe(o.titulo)
+      return !!r && rubros.includes(r.slug)
+    })
+    .sort((a, b) => b.precio_actual - a.precio_actual)
+    .slice(0, n)
+}
+
+// ── Landings de cola larga: /cyber-monday/celulares, /notebooks y /smart-tv ──
+// Mismo precio testigo que /cyber-monday/tecnologia, pero de un solo rubro y
+// agrupado por marca (así se busca: «iphone cyber monday 2026»).
+
+export interface MarcaCyber {
+  nombre: string
+  patron: RegExp // sobre el título normalizado; la primera que coincide gana
+  busqueda: string // búsqueda en ML con link de afiliado
+}
+
+export interface LandingCyber {
+  slug: 'celulares' | 'notebooks' | 'smart-tv'
+  /** "celulares", "notebooks", "smart TV" */
+  nombre: string
+  rubros: string[]
+  marcas: MarcaCyber[]
+  /** Subgrupo destacado aparte (notebooks gamer), además de la marca */
+  destacado?: { id: string; nombre: string; patron: RegExp; texto: string }
+  comparativa: string // /mejores/*
+  comparador: string // /comparador/*
+  guias: string[]
+  keywords: string[]
+}
+
+export const LANDINGS_CYBER: LandingCyber[] = [
+  {
+    slug: 'celulares',
+    nombre: 'celulares',
+    rubros: ['iphone', 'galaxy-s', 'celulares'],
+    marcas: [
+      { nombre: 'iPhone', patron: /iphone/, busqueda: 'iphone' },
+      { nombre: 'Samsung Galaxy S', patron: /galaxy s\d{2}/, busqueda: 'samsung galaxy s25' },
+      { nombre: 'Motorola Edge', patron: /\bedge\b/, busqueda: 'motorola edge' },
+      { nombre: 'Samsung Galaxy A y otros', patron: /samsung|galaxy/, busqueda: 'samsung galaxy a' },
+      { nombre: 'Motorola Moto G y otros', patron: /motorola|\bmoto\b/, busqueda: 'motorola moto g' },
+      { nombre: 'Xiaomi', patron: /xiaomi|redmi|\bpoco\b/, busqueda: 'xiaomi redmi' },
+      { nombre: 'Otras marcas', patron: /./, busqueda: 'celular' },
+    ],
+    comparativa: 'cyber-monday-celulares',
+    comparador: 'celulares',
+    guias: ['que-celular-comprar-cyber-monday', 'que-celular-gama-alta-comprar', 'que-celular-comprar-segun-presupuesto'],
+    keywords: ['cyber monday 2026 celulares', 'iphone cyber monday 2026', 'samsung galaxy s25 cyber monday', 'motorola edge cyber monday', 'celulares cyber monday mercado libre'],
+  },
+  {
+    slug: 'notebooks',
+    nombre: 'notebooks',
+    rubros: ['notebooks'],
+    marcas: [
+      { nombre: 'MacBook', patron: /macbook/, busqueda: 'macbook' },
+      { nombre: 'Lenovo', patron: /lenovo|legion|ideapad|thinkpad/, busqueda: 'notebook lenovo' },
+      { nombre: 'HP', patron: /\bhp\b|omen|victus/, busqueda: 'notebook hp' },
+      { nombre: 'Asus', patron: /asus|\brog\b|\btuf\b|vivobook|zenbook/, busqueda: 'notebook asus' },
+      { nombre: 'Acer', patron: /acer|nitro|predator|aspire/, busqueda: 'notebook acer' },
+      { nombre: 'Dell', patron: /\bdell\b|inspiron|alienware/, busqueda: 'notebook dell' },
+      { nombre: 'Otras marcas', patron: /./, busqueda: 'notebook' },
+    ],
+    destacado: {
+      id: 'gamer',
+      nombre: 'Notebooks gamer',
+      patron: /\bgamer\b|gaming|\brtx\b|\bgtx\b|omen|legion|\brog\b|\btuf\b|nitro|victus|\bloq\b|predator|katana/,
+      texto: 'Las que traen placa de video dedicada (RTX o GTX) o son de líneas gamer: es donde más pesos hay en juego entre un día común y el Cyber.',
+    },
+    comparativa: 'cyber-monday-notebooks',
+    comparador: 'notebooks',
+    guias: ['que-notebook-comprar-cyber-monday', 'que-notebook-comprar'],
+    keywords: ['cyber monday 2026 notebooks', 'notebook gamer cyber monday', 'macbook cyber monday 2026', 'notebooks cyber monday mercado libre'],
+  },
+  {
+    slug: 'smart-tv',
+    nombre: 'smart TV',
+    rubros: ['smart-tv'],
+    marcas: [
+      { nombre: 'Samsung', patron: /samsung/, busqueda: 'smart tv samsung' },
+      { nombre: 'LG', patron: /\blg\b/, busqueda: 'smart tv lg' },
+      { nombre: 'TCL', patron: /\btcl\b/, busqueda: 'smart tv tcl' },
+      { nombre: 'Philips', patron: /philips/, busqueda: 'smart tv philips' },
+      { nombre: 'Noblex', patron: /noblex/, busqueda: 'smart tv noblex' },
+      { nombre: 'BGH', patron: /\bbgh\b/, busqueda: 'smart tv bgh' },
+      { nombre: 'Hisense', patron: /hisense/, busqueda: 'smart tv hisense' },
+      { nombre: 'Otras marcas', patron: /./, busqueda: 'smart tv' },
+    ],
+    comparativa: 'cyber-monday-smart-tv',
+    comparador: 'smart-tv',
+    guias: ['que-smart-tv-comprar-cyber-monday', 'que-smart-tv-comprar'],
+    keywords: ['cyber monday 2026 smart tv', 'televisores cyber monday 2026', 'smart tv cyber monday mercado libre', 'precio smart tv cyber monday'],
+  },
+]
+
+/** Con menos productos con precio testigo, la landing queda noindex (misma
+ *  regla que las comparativas: MIN_PRODUCTOS_INDEXABLE en lib/comparativas.ts). */
+export const MIN_CYBER_INDEXABLE = 3
+
+export const getLandingCyber = (slug: string) => LANDINGS_CYBER.find(l => l.slug === slug)
+
+export interface LandingCyberArmada {
+  l: LandingCyber
+  filas: FilaTecno[]
+  porMarca: { marca: MarcaCyber; filas: FilaTecno[] }[]
+  destacadas: FilaTecno[]
+}
+
+export function armarLandingCyber(l: LandingCyber): LandingCyberArmada {
+  // Lo que hoy se puede comprar primero; después lo más caro (ticket alto).
+  const filas = filasPorRubro()
+    .filter(g => l.rubros.includes(g.rubro.slug))
+    .flatMap(g => g.filas)
+    .sort((a, b) => Number(!!b.hoy) - Number(!!a.hoy) || b.testigo.min - a.testigo.min)
+  const grupos = new Map<string, FilaTecno[]>()
+  for (const f of filas) {
+    const t = normalizar(f.titulo)
+    const m = l.marcas.find(x => x.patron.test(t)) ?? l.marcas[l.marcas.length - 1]
+    grupos.set(m.nombre, [...(grupos.get(m.nombre) ?? []), f])
+  }
+  const porMarca = l.marcas.map(marca => ({ marca, filas: grupos.get(marca.nombre) ?? [] })).filter(g => g.filas.length > 0)
+  const d = l.destacado
+  const destacadas = d ? filas.filter(f => d.patron.test(normalizar(f.titulo))) : []
+  return { l, filas, porMarca, destacadas }
+}
+
+export const landingCyberIndexable = (x: LandingCyberArmada) => x.filas.length >= MIN_CYBER_INDEXABLE
+
+/** Landings con al menos un producto (las que no llegan al mínimo quedan noindex). */
+export function landingsCyberConDatos(): LandingCyberArmada[] {
+  return LANDINGS_CYBER.map(armarLandingCyber).filter(x => x.filas.length > 0)
+}

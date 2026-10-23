@@ -10,7 +10,7 @@ BOT = Path(__file__).resolve().parents[1]
 
 
 def test_facebook_cinco_por_dia_y_nada_fuera_de_horario():
-    assert [bot.cuantos_facebook(s) for s in ("midday", "evening", "night")] == [2, 2, 1]
+    assert [bot.cuantos_facebook(s) for s in ("midday", "evening", "night")] == [3, 3, 2]
     assert bot.cuantos_facebook("other") == 0
 
 

@@ -1,7 +1,9 @@
 import { getProductos, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
-import { notFound } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
+import { DEALS_URL } from '@/lib/marca'
+import { slugPorId } from '@/lib/seguimiento'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CARGO_REFERENCIA } from '@/lib/costosml'
@@ -60,7 +62,12 @@ export async function generateMetadata({
 export default async function CalculadoraPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const producto = getProductoById(id)
-  if (!producto) notFound()
+  if (!producto) {
+    // Fichas viejas (el producto ya no está en la lista): en vez de 404, a su
+    // historial de precios si lo seguimos, o a la portada de la calculadora.
+    const slug = slugPorId()[id]
+    permanentRedirect(slug ? `${DEALS_URL}/precio/${slug}` : `${CALC_URL}/`)
+  }
 
   const comisionArs = producto.precio_actual * producto.comision_clasica_pct
   const iibbArs = producto.precio_actual * producto.retencion_iibb_pct

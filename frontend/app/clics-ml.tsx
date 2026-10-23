@@ -3,23 +3,28 @@
 import { useEffect } from 'react'
 import { track } from '@vercel/analytics'
 import { enModoApp } from '@/components/AppInstalable'
-import { aEtiquetaSitio, ETIQUETA_META, ETIQUETA_SITIO } from '@/lib/afiliado'
+import { aEtiquetaSitio, ETIQUETA_CALC, ETIQUETA_META, ETIQUETA_SITIO } from '@/lib/afiliado'
 
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
 const ML = /(^|\.)(mercadolibre\.com(\.ar)?|meli\.la)$/
 const ALIEXPRESS = /(^|\.)(aliexpress\.com|s\.click\.aliexpress\.com)$/
 
+// Mismo deploy, dos dominios: los clics hechos en calculadoraml.com.ar llevan su
+// propia etiqueta (lib/afiliado: `sitio` hasta que se cree la del panel).
+const CALCULADORA = /(^|\.)calculadoraml\.com\.ar$/
+
 // La visita vino de un anuncio de Meta: se recuerda en la pestaña para que los
 // clics de las páginas siguientes también salgan con la etiqueta `meta`.
 function etiquetaVisita(): string {
+  const propia = CALCULADORA.test(window.location.hostname) ? ETIQUETA_CALC : ETIQUETA_SITIO
   try {
     if (new URLSearchParams(window.location.search).get('utm_source') === 'meta') {
       sessionStorage.setItem('cz_origen', 'meta')
     }
-    return sessionStorage.getItem('cz_origen') === 'meta' ? ETIQUETA_META : ETIQUETA_SITIO
+    return sessionStorage.getItem('cz_origen') === 'meta' ? ETIQUETA_META : propia
   } catch {
-    return ETIQUETA_SITIO
+    return propia
   }
 }
 

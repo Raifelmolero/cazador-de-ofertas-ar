@@ -13,9 +13,9 @@ import type { Guia } from './guias'
 export const GUIAS_TECNO: Guia[] = [
   {
     slug: 'mejor-celular-para-adultos-mayores',
-    titulo: 'Mejor celular para adultos mayores: qué mirar y cuáles convienen hoy',
+    titulo: 'Mejor celular para adultos mayores: cuáles convienen hoy',
     descripcion:
-      'Qué celular comprarle a una persona mayor en Argentina: pantalla grande, batería, memoria, modo simple y si conviene un smartphone o uno con teclas. Con los precios de hoy en Mercado Libre.',
+      'Qué celular comprarle a una persona mayor: pantalla, batería, 128 GB, modo fácil y si conviene uno con teclas. Con precios de hoy en Mercado Libre.',
     pregunta: '¿Cuál es el mejor celular para un adulto mayor?',
     respuestaCorta:
       'Para una persona mayor que usa WhatsApp, fotos y videollamadas conviene un smartphone simple de marca conocida (un Motorola Moto G o un Samsung Galaxy A de entrada) con pantalla grande, 128 GB de memoria y batería que aguante el día: no hace falta gama alta. Si solo va a llamar y mandar mensajes de texto, un celular con tapa y teclas grandes es más fácil de usar y casi no se descarga.',
@@ -40,7 +40,7 @@ export const GUIAS_TECNO: Guia[] = [
       {
         h: 'Smartphone o celular con teclas',
         p: [
-          'Un celular con tapa y teclas grandes (como el Nokia 2720 Flip que suele estar en oferta) es ideal para llamadas: se atiende abriendo la tapa, la batería dura días y no hay nada que configurar. La contra es que no está pensado para WhatsApp ni videollamadas.',
+          'Un celular con tapa y teclas grandes (como el Nokia 2720 Flip) es ideal para llamadas: se atiende abriendo la tapa, la batería dura días y no hay nada que configurar. La contra es que no está pensado para WhatsApp ni videollamadas.',
           'Si la familia se comunica por WhatsApp, conviene un smartphone simple. Un modelo de entrada de marca conocida rinde mejor que uno "potente" de marca desconocida con números inflados en el título.',
         ],
       },
@@ -57,6 +57,8 @@ export const GUIAS_TECNO: Guia[] = [
       comparador: 'celulares',
       titulo: 'Celulares simples de marca conocida, con el precio de hoy',
       incluye: /\b(2720 flip|galaxy a07|galaxy a16|galaxy a17|g06|g15|redmi 15c)\b/,
+      // La guía pide 128 GB: las versiones de 64 GB quedan afuera (el flip no dice memoria y entra).
+      excluye: /\b64 ?gb\b|[+/] ?64\b/,
       hasta: 450_000,
     },
     cta: { href: '/comparador/celulares', titulo: 'Compará los celulares de hoy por precio y memoria', boton: 'Abrir el comparador de celulares' },
@@ -86,7 +88,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'celular-con-mejor-bateria',
     titulo: 'Celular con mejor batería: qué mirar además de los mAh',
     descripcion:
-      'Cómo elegir un celular con batería que dure: mAh, procesador, pantalla de 120 Hz, carga rápida y cuidados. Con los celulares de hoy en Mercado Libre Argentina y su precio más bajo registrado.',
+      'Cómo elegir un celular con batería que dure: mAh, procesador, pantalla de 120 Hz y carga rápida. Con los modelos de hoy y su precio más bajo registrado.',
     pregunta: '¿Qué celular tiene mejor batería?',
     respuestaCorta:
       'La duración depende de tres cosas: la capacidad (hoy 5000 mAh es lo normal y más de 6000 mAh es mucho), un procesador eficiente y la pantalla. Los Motorola Moto G y los Xiaomi Redmi de entrada suelen ser los que más duran por su precio porque combinan baterías grandes con pantallas y procesadores que consumen poco. Más mAh no sirve si el celular tiene un procesador viejo o una pantalla que consume mucho.',
@@ -153,9 +155,9 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'primer-celular-para-chicos',
-    titulo: 'Primer celular para un chico: cuál comprar y cómo configurarlo',
+    titulo: 'Primer celular para tu hijo: cuál elegir y cómo configurarlo',
     descripcion:
-      'Qué celular comprarle a un chico o adolescente como primer celular: presupuesto, memoria, funda, control parental con Google Family Link y qué evitar. Con precios de hoy en Mercado Libre.',
+      'Qué celular comprarle a tu hijo como primer celular: presupuesto, 128 GB, funda y control parental con Family Link. Con precios de hoy en Mercado Libre.',
     pregunta: '¿Qué celular conviene comprarle a un chico como primer celular?',
     respuestaCorta:
       'Para un primer celular conviene un Android de entrada de marca conocida (Motorola Moto G, Samsung Galaxy A o Xiaomi Redmi) con 128 GB de memoria, una buena funda y vidrio templado. Con Android podés usar Google Family Link, gratis, para controlar el tiempo de pantalla, aprobar las apps que descarga y ver dónde está. No tiene sentido un gama alta: se cae, se rompe y se pierde.',
@@ -168,10 +170,18 @@ export const GUIAS_TECNO: Guia[] = [
         ],
       },
       {
+        h: 'Antes de dárselo: reglas claras',
+        p: [
+          'Acordá las reglas antes de entregarle el celular: en qué horarios se usa, dónde queda a la noche (mejor fuera del cuarto) y qué apps puede tener. Es más fácil empezar con reglas que ponerlas después.',
+          'Muchas apps tienen edad mínima: WhatsApp, Instagram y TikTok piden 13 años. Si es más chico, alcanza con llamadas y mensajes con la familia desde Family Link.',
+          'Hablá con tu hijo de lo básico de seguridad: no compartir la ubicación ni fotos con desconocidos, no aceptar contactos que no conoce en persona y contarte si algo lo incomoda.',
+        ],
+      },
+      {
         h: 'Control parental: Google Family Link',
         p: [
           'Family Link es la herramienta gratuita de Google para administrar la cuenta de un menor: limitar horas de uso, bloquear el celular a la hora de dormir, aprobar cada app que quiera instalar y ver la ubicación.',
-          'Se configura desde tu propio celular al crear la cuenta de Google del chico. Hacelo antes de dárselo: es mucho más fácil que agregarlo después.',
+          'Se configura desde tu propio celular al crear la cuenta de Google del chico. Hacelo antes de dárselo: es mucho más fácil que agregarlo después. Cuando cumple 13 años, Google le da la opción de administrar su propia cuenta: conviene charlarlo antes de que llegue ese momento.',
           'En YouTube conviene activar la experiencia supervisada, y en WhatsApp revisar quién puede agregarlo a grupos (Ajustes, Privacidad, Grupos).',
         ],
       },
@@ -198,6 +208,10 @@ export const GUIAS_TECNO: Guia[] = [
         a: 'No hay una edad fija: depende de la autonomía del chico (si viaja solo, si va y vuelve del colegio). Sea cuando sea, conviene empezar con un celular barato y Family Link configurado desde el primer día.',
       },
       {
+        q: '¿Desde qué edad se puede usar WhatsApp?',
+        a: 'WhatsApp pide tener al menos 13 años, igual que Instagram y TikTok. Antes de esa edad, el celular sirve para llamadas y mensajes con la familia, con Family Link configurado.',
+      },
+      {
         q: '¿Family Link es gratis?',
         a: 'Sí. Es de Google, funciona en celulares Android y se administra desde la app Family Link en el celular del padre o la madre.',
       },
@@ -218,7 +232,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'conviene-celular-5g-en-argentina',
     titulo: '¿Conviene comprar un celular 5G en Argentina?',
     descripcion:
-      'Si vale la pena pagar más por un celular 5G en Argentina: cobertura real, para quién conviene y para quién alcanza el 4G. Con los celulares 5G de hoy en Mercado Libre y su precio más bajo registrado.',
+      '¿Vale la pena pagar más por 5G en Argentina? Cobertura real, para quién conviene y cuándo alcanza el 4G. Con los celulares 5G de hoy y su precio mínimo.',
     pregunta: '¿Vale la pena un celular 5G en Argentina?',
     respuestaCorta:
       'Conviene si vivís en una ciudad grande con cobertura 5G de tu compañía y pensás usar el celular varios años: la red va a seguir creciendo y el 5G suele venir junto con mejores procesadores. Si vivís en una zona sin 5G o usás el celular para WhatsApp y redes, un buen 4G alcanza y ahorrás plata. No pagues de más solo por la sigla.',
@@ -277,9 +291,9 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'celular-con-mejor-camara',
-    titulo: 'Celular con mejor cámara: qué mirar además de los megapíxeles',
+    titulo: 'Celular con mejor cámara: qué mirar (no son los megapíxeles)',
     descripcion:
-      'Cómo elegir un celular para sacar buenas fotos y videos: sensor, estabilización óptica, zoom, video 4K y por qué los megapíxeles no lo son todo. Con los gama alta de hoy en Mercado Libre Argentina.',
+      'Cómo elegir un celular para buenas fotos y videos: sensor, estabilización óptica, zoom y video 4K. Con los gama alta de hoy en Mercado Libre Argentina.',
     pregunta: '¿Qué celular tiene la mejor cámara?',
     respuestaCorta:
       'Las mejores cámaras están en la gama alta: los iPhone Pro, los Samsung Galaxy S Ultra y los Motorola Edge Pro. Lo que las hace mejores no son los megapíxeles sino el tamaño del sensor, la estabilización óptica (OIS), el zoom óptico y el procesamiento de la imagen. Si te importa el zoom, los Galaxy Ultra; si grabás mucho video, los iPhone Pro son la referencia.',
@@ -303,7 +317,7 @@ export const GUIAS_TECNO: Guia[] = [
       {
         h: 'Cuál elegir según lo que fotografiás',
         p: [
-          'Zoom y fotos de lejos (recitales, partidos, viajes): los Samsung Galaxy S Ultra, que combinan sensor de muchos megapíxeles con teleobjetivos. El S25 Ultra de la lista lo detalla en su publicación (cámara cuádruple de 200 + 50 + 10 + 50 MP).',
+          'Zoom y fotos de lejos (recitales, partidos, viajes): los Samsung Galaxy S Ultra, que combinan sensor de muchos megapíxeles con teleobjetivos. El S25 Ultra, por ejemplo, combina una cámara principal de 200 MP con dos teleobjetivos (3x y 5x).',
           'Video y redes: los iPhone Pro. Graban video muy estable y con buen color sin tocar nada.',
           'Si el presupuesto no llega, el modelo Ultra o Pro del año anterior suele bajar bastante y sigue teniendo mejor cámara que un gama media nuevo. Mirá el duelo entre el Galaxy S24 Ultra y el S25 Ultra para ver cuánto ahorrás hoy.',
         ],
@@ -313,7 +327,7 @@ export const GUIAS_TECNO: Guia[] = [
     equipos: {
       comparador: 'celulares',
       titulo: 'Gama alta con las mejores cámaras, con el precio de hoy',
-      incluye: /iphone 17 pro|galaxy s2[456] ultra|galaxy s26\b|edge 60 pro|pixel/,
+      incluye: /iphone 17 pro|galaxy s2[456] ultra|galaxy s26\b(?! ?(fe|\+|plus|edge)\b)|edge 60 pro|pixel/,
     },
     cta: { href: '/comparador/celulares', titulo: 'Compará los gama alta de hoy lado a lado', boton: 'Abrir el comparador de celulares' },
     faq: [
@@ -342,7 +356,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'iphone-o-samsung-cual-conviene-argentina',
     titulo: 'iPhone o Samsung: cuál conviene comprar en Argentina',
     descripcion:
-      'iPhone o Samsung Galaxy en Argentina: precio, años de actualizaciones, reventa, service y ecosistema. Con los precios de hoy de cada uno en Mercado Libre y los duelos modelo a modelo.',
+      'iPhone o Samsung Galaxy en Argentina: precio, años de actualizaciones, reventa, service y ecosistema. Con los precios de hoy y duelos modelo a modelo.',
     pregunta: '¿Conviene más un iPhone o un Samsung en Argentina?',
     respuestaCorta:
       'Por plata, Samsung: a igual gama, un Galaxy S suele costar bastante menos que un iPhone en Argentina y además tenés Galaxy A para todos los presupuestos. Por reventa y por cuánto tiempo dura, el iPhone: se revende mejor y recibe actualizaciones por muchos años. Si ya usás Mac, iPad o Apple Watch, iPhone; si querés elegir cargador, personalizar y gastar menos, Samsung.',
@@ -409,9 +423,9 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'mejor-celular-para-jugar',
-    titulo: 'Mejor celular para jugar: qué mirar para Free Fire, COD y Genshin',
+    titulo: 'Mejor celular para jugar: Free Fire, COD y Genshin',
     descripcion:
-      'Qué celular comprar para jugar en Argentina: procesador, RAM real, pantalla de 120 Hz o más, batería y temperatura. Con los celulares de hoy en Mercado Libre y su precio más bajo registrado.',
+      'Qué celular comprar para jugar: procesador, RAM real, pantalla de 120 Hz, batería y temperatura. Con los modelos de hoy y su precio más bajo registrado.',
     pregunta: '¿Qué celular conviene para jugar?',
     respuestaCorta:
       'Para jugar fluido conviene un gama media alta con buen procesador, 8 GB de RAM real, pantalla de 120 Hz o más y 256 GB de memoria: el Motorola Edge Fusion, el Poco X de Xiaomi o los Galaxy A37 y A57 de Samsung. Para Free Fire alcanza con un gama media común; para Genshin Impact o COD con gráficos altos, cuanto mejor el procesador, mejor. Desconfiá de los "24 GB de RAM" en el título: suele ser memoria virtual.',
@@ -471,7 +485,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'notebook-para-la-facultad',
     titulo: 'Notebook para la facultad: qué comprar según tu carrera',
     descripcion:
-      'Qué notebook comprar para estudiar en la facultad en Argentina: procesador, RAM, SSD, peso y batería según la carrera. Con las notebooks de hoy en Mercado Libre y su precio más bajo registrado.',
+      'Qué notebook comprar para la facultad según tu carrera: procesador, RAM, SSD, peso y batería. Con las de hoy en Mercado Libre y su precio más bajo.',
     pregunta: '¿Qué notebook comprar para la facultad?',
     respuestaCorta:
       'Para la mayoría de las carreras alcanza una notebook con Intel Core i3 o AMD Ryzen 3 (mejor i5 o Ryzen 5), 8 GB de RAM y disco SSD de 256 GB o más. Si estudiás ingeniería, arquitectura o sistemas, apuntá a Ryzen 5 o i5 con 16 GB de RAM y 512 GB. Evitá las de Celeron con memoria eMMC: arrancan bien y al año se vuelven lentas.',
@@ -536,7 +550,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'que-notebook-comprar-para-programar',
     titulo: 'Qué notebook comprar para programar en 2026',
     descripcion:
-      'Qué notebook conviene para programar: 16 GB de RAM, SSD de 512 GB, Ryzen 5/7 o Intel i5/i7, pantalla y teclado. Con las notebooks de hoy en Mercado Libre Argentina y su precio más bajo registrado.',
+      'Qué notebook conviene para programar: 16 GB de RAM, SSD de 512 GB, Ryzen 5/7 o Core i5/i7 y buen teclado. Con las de hoy en Mercado Libre Argentina.',
     pregunta: '¿Qué notebook conviene para programar?',
     respuestaCorta:
       'Para programar, lo que más importa es la RAM: 16 GB como mínimo, porque el editor, el navegador con documentación, Docker o un emulador de Android se comen la memoria. Sumale un procesador AMD Ryzen 5 o 7 (o Intel Core i5 o i7), SSD de 512 GB y pantalla Full HD. No hace falta placa de video dedicada, salvo que quieras trabajar con inteligencia artificial o desarrollar juegos.',
@@ -597,10 +611,10 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'notebook-para-editar-video-y-diseno',
     titulo: 'Notebook para editar video y diseño gráfico: qué necesitás',
     descripcion:
-      'Qué notebook comprar para editar video (Premiere, DaVinci) y hacer diseño (Photoshop, Illustrator, 3D): placa de video, RAM, pantalla y disco. Con las de hoy en Mercado Libre Argentina.',
+      'Notebook para editar video (Premiere, DaVinci) y diseño (Photoshop, 3D): placa de video, RAM, pantalla y disco. Con las de hoy en Mercado Libre.',
     pregunta: '¿Qué notebook conviene para editar video y hacer diseño gráfico?',
     respuestaCorta:
-      'Para editar video conviene una notebook con placa de video dedicada (una NVIDIA RTX), 16 GB de RAM o más (32 GB si editás en 4K) y SSD de 1 TB. Para diseño gráfico 2D (Photoshop, Illustrator) pesa más una buena pantalla con colores fieles y 16 GB de RAM. Las notebooks gamer con RTX suelen ser la opción con más potencia por peso invertido.',
+      'Para editar video conviene una notebook con placa de video dedicada (una NVIDIA RTX), 16 GB de RAM o más (32 GB si editás en 4K) y SSD de 1 TB. Para diseño gráfico 2D (Photoshop, Illustrator) pesa más una buena pantalla con colores fieles y 16 GB de RAM. Las notebooks gamer con RTX suelen ser la opción con más potencia por la misma plata.',
     secciones: [
       {
         h: 'Video: la placa de video manda',
@@ -658,7 +672,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'notebook-14-o-15-pulgadas',
     titulo: 'Notebook de 14 o 15,6 pulgadas: cuál conviene',
     descripcion:
-      'Diferencias entre una notebook de 14 y una de 15,6 pulgadas: peso, teclado numérico, pantalla, batería y precio. Con las notebooks de 14" de hoy en Mercado Libre Argentina.',
+      'Notebook de 14 o 15,6 pulgadas: peso, teclado numérico, pantalla, batería y precio. Con las notebooks de 14" de hoy en Mercado Libre Argentina.',
     pregunta: '¿Conviene una notebook de 14 o de 15,6 pulgadas?',
     respuestaCorta:
       'Si la llevás todos los días (facultad, oficina, viajes), conviene una de 14 pulgadas: pesa menos, ocupa menos y suele tener mejor batería. Si la usás casi siempre en el mismo lugar o trabajás mucho con planillas, la de 15,6 pulgadas es más cómoda por pantalla y teclado numérico, y a igual procesador suele salir algo menos.',
@@ -690,7 +704,8 @@ export const GUIAS_TECNO: Guia[] = [
       comparador: 'notebooks',
       titulo: 'Notebooks de 14 pulgadas, con el precio de hoy',
       incluye: /\b14\b|x1404|al14|14-h/,
-      minimos: { ram: 8 },
+      // Procesador declarado y SSD de 256 GB o más: deja afuera equipos sin datos (suelen ser usados o reacondicionados).
+      minimos: { cpu: 2, ram: 8, disco: 256 },
     },
     cta: { href: '/comparador/notebooks', titulo: 'Todas las notebooks de hoy, de 14 y de 15,6 pulgadas', boton: 'Abrir el comparador de notebooks' },
     faq: [
@@ -717,19 +732,19 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'smart-tv-para-ps5',
-    titulo: 'Smart TV para jugar a la PS5 o Xbox: qué mirar (y qué es marketing)',
+    titulo: 'Smart TV para PS5 o Xbox: qué mirar y qué es marketing',
     descripcion:
-      'Qué smart TV conviene para PS5 o Xbox Series: 4K, HDR, 120 Hz nativos, HDMI 2.1, VRR y modo juego. Con los TV QLED y Mini LED de hoy en Mercado Libre Argentina y su precio más bajo registrado.',
+      'Qué smart TV conviene para PS5 o Xbox Series: 4K, HDR, 120 Hz nativos, HDMI 2.1, VRR y modo juego. Con los QLED y Mini LED de hoy en Mercado Libre.',
     pregunta: '¿Qué smart TV conviene para jugar a la PS5?',
     respuestaCorta:
-      'Para la PS5 o la Xbox Series conviene un TV 4K de 50 pulgadas o más con HDR y modo juego (ALLM) para tener poco retraso. Si querés jugar a 120 cuadros por segundo, necesitás un panel de 120 Hz nativos con HDMI 2.1, que suele estar en los QLED y Mini LED de gama media para arriba. Un 4K común de 60 Hz anda bien para la mayoría de los juegos: lo que más vas a notar es el brillo y el contraste.',
+      'Para la PS5 o la Xbox Series conviene un TV 4K de 50 pulgadas o más con HDR y modo juego para tener poco retraso. Si querés jugar a 120 cuadros por segundo, necesitás un panel de 120 Hz nativos con HDMI 2.1, que suele estar en los QLED y Mini LED de gama media para arriba. Un 4K común de 60 Hz anda bien para la mayoría de los juegos: lo que más vas a notar es el brillo y el contraste.',
     secciones: [
       {
         h: 'Lo básico: 4K, HDR y modo juego',
         p: [
           'La PS5 y la Xbox Series X juegan en 4K: con un TV Full HD desperdiciás buena parte de la consola. Desde 50 pulgadas, 4K es obligatorio.',
           'HDR mejora mucho los juegos, pero solo si el TV tiene brillo suficiente. En los LED básicos el HDR se ve apagado; en QLED y Mini LED se nota de verdad.',
-          'El modo juego (ALLM) apaga el procesamiento de imagen y baja el retraso entre el joystick y la pantalla. Casi todos los TV actuales lo tienen; algunos lo destacan como "Modo de juego" en la publicación.',
+          'El modo juego apaga el procesamiento de imagen y baja el retraso entre el joystick y la pantalla. Con ALLM, el TV lo activa solo cuando detecta la consola. Casi todos los TV actuales tienen modo juego; algunos lo destacan en la publicación.',
         ],
       },
       {
@@ -781,7 +796,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'de-cuantas-pulgadas-comprar-el-smart-tv',
     titulo: 'De cuántas pulgadas comprar el smart TV según la distancia',
     descripcion:
-      'Qué tamaño de smart TV conviene según la distancia al sillón: tabla de pulgadas por metros para 4K y Full HD, cuánto mide cada TV y qué mirar antes de comprar. Con los precios de hoy en Mercado Libre.',
+      'Qué tamaño de smart TV conviene según la distancia al sillón: tabla de pulgadas por metros, cuánto mide cada TV y qué mirar. Con precios de hoy.',
     pregunta: '¿De cuántas pulgadas tiene que ser el televisor según la distancia?',
     respuestaCorta:
       'Con un TV 4K, la regla práctica es sentarse a una distancia de 1 a 1,5 veces la diagonal de la pantalla: a 1,5 metros va un 43", a 2 metros un 50" o 55", a 2,5 metros un 55" o 65" y a 3 metros o más un 65" o 75". Con un Full HD conviene alejarse un poco más o elegir un tamaño menor. En la duda, la mayoría de la gente se arrepiente de haber comprado chico, no grande.',
@@ -845,9 +860,9 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'google-tv-roku-tizen-o-webos-cual-conviene',
-    titulo: 'Google TV, Roku, Tizen o webOS: qué sistema de smart TV conviene',
+    titulo: 'Google TV, Roku, Tizen o webOS: qué sistema conviene',
     descripcion:
-      'Diferencias entre los sistemas de los smart TV en Argentina: Google TV, Android TV, Roku, Tizen (Samsung), webOS (LG) y Vidaa. Apps, Chromecast, control por voz y actualizaciones. Con precios de hoy.',
+      'Google TV, Roku, Tizen, webOS o Vidaa: qué sistema de smart TV conviene en Argentina por apps, Chromecast y control por voz. Con precios de hoy.',
     pregunta: '¿Qué sistema operativo de smart TV es mejor?',
     respuestaCorta:
       'Google TV es el que tiene más apps y trae Chromecast integrado para mandar videos desde el celular; lo usan TCL, Philips, Noblex, BGH y Philco, entre otros. Roku es el más simple y rápido en TV económicos. Tizen (Samsung) y webOS (LG) son muy fluidos y vienen solo en esas marcas. Antes de comprar, confirmá que esté la app que más usás (por ejemplo la de tu cable o un servicio local).',
@@ -870,13 +885,13 @@ export const GUIAS_TECNO: Guia[] = [
         h: 'Tizen (Samsung) y webOS (LG)',
         p: [
           'Son los sistemas propios de Samsung y LG: rápidos, bien optimizados y con las apps principales. El control remoto de LG (Magic Remote) funciona como un puntero.',
-          'Tienen menos apps que Google TV, pero las grandes están todas. No traen Chromecast integrado, aunque sí AirPlay en muchos modelos recientes.',
+          'Tienen menos apps que Google TV, pero las grandes están todas. En general no traen Chromecast integrado (sí AirPlay en muchos modelos recientes): si mandás videos desde un Android, fijate en la ficha.',
         ],
       },
       {
         h: 'Vidaa, Whale y otros',
         p: [
-          'Vidaa (Hisense y algunos Noblex y Enova) y Whale TV vienen en TV económicos. Funcionan, pero tienen menos apps: verificá que estén las que usás antes de comprar.',
+          'Vidaa (el sistema de Hisense) y Whale TV vienen en varios TV económicos. Funcionan, pero tienen menos apps: verificá que estén las que usás antes de comprar.',
           'Si el TV que te gusta tiene un sistema limitado, un dispositivo de streaming externo (Chromecast con Google TV, Roku o un TV Box) lo resuelve por poca plata.',
         ],
       },
@@ -884,7 +899,7 @@ export const GUIAS_TECNO: Guia[] = [
     categoria: { slug: 'smart-tv', nombre: 'smart TV' },
     equipos: {
       comparador: 'smart-tv',
-      titulo: 'Smart TV con Google TV, Roku y Android, con el precio de hoy',
+      titulo: 'Smart TV de 40" o más según su sistema, con el precio de hoy',
       incluye: /google tv|roku|android|tizen|webos|vidaa/,
       minimos: { pulgadas: 40 },
     },
@@ -913,9 +928,9 @@ export const GUIAS_TECNO: Guia[] = [
   },
   {
     slug: 'conviene-esperar-al-cyber-monday-para-comprar-tecnologia',
-    titulo: 'Tecnología en Cyber Monday 2026: ¿conviene esperar o comprar ahora?',
+    titulo: 'Cyber Monday 2026: ¿esperar o comprar tecnología ahora?',
     descripcion:
-      'Si conviene esperar al Cyber Monday 2026 (2 al 4 de noviembre) para comprar celular, notebook o smart TV en Argentina, o comprar ahora: cuotas, precios inflados y qué ya está en su mínimo hoy.',
+      '¿Esperar al Cyber Monday 2026 (2 al 4 de noviembre) o comprar ya celular, notebook o TV? Cuotas, descuentos inflados y qué está hoy en su mínimo.',
     pregunta: '¿Conviene esperar al Cyber Monday para comprar tecnología?',
     respuestaCorta:
       'Conviene esperar si lo que querés no está hoy en su precio más bajo registrado y no lo necesitás ya: en el Cyber Monday 2026 (del 2 al 4 de noviembre) suelen sumarse cuotas sin interés y cupones que bajan el costo final de celulares, notebooks y TV. Si el equipo ya está en su mínimo, comprarlo ahora no te hace perder nada y evitás el riesgo de que se agote o de un "descuento" inflado. Antes de pagar, compará el precio contra el historial, no contra el "antes".',

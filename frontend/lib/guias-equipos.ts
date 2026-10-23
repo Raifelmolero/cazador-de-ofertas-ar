@@ -38,6 +38,8 @@ export interface SeleccionEquipos {
 
 export const MIN_EQUIPOS_GUIA = 3
 
+const USADOS = /\b(reacondicionad[oa]s?|usad[oa]s?|refurbished|open box|exhibicion|outlet)\b/
+
 const cache = new Map<string, Equipo[]>()
 function todos(slug: ComparadorSlug): Equipo[] {
   if (!cache.has(slug)) {
@@ -74,6 +76,8 @@ export function equiposDeGuia(g: Pick<Guia, 'equipos'>): Equipo[] {
     const t = normalizar(e.titulo)
     if (s.incluye && !s.incluye.test(t)) return false
     if (s.excluye && s.excluye.test(t)) return false
+    // Una guía de compra recomienda equipos nuevos: nada de usados ni reacondicionados.
+    if (USADOS.test(t)) return false
     if (conocidas && e.marca === 'Otra') return false
     if (s.desde != null && e.precio < s.desde) return false
     if (s.hasta != null && e.precio > s.hasta) return false

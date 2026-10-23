@@ -92,10 +92,10 @@ export const DUELOS: Duelo[] = [
   { slug: 'samsung-galaxy-a27-vs-galaxy-a37', comparador: 'celulares', a: GALAXY_A27, b: GALAXY_A37, contexto: 'Dos escalones de la gama media de Samsung: cuánto más cuesta hoy pasar del A27 al A37.' },
   { slug: 'moto-g67-vs-samsung-galaxy-a37', comparador: 'celulares', a: MOTO_G67, b: GALAXY_A37, contexto: 'Motorola contra Samsung en la gama media: el G67 frente al A37 con los precios de hoy.' },
   { slug: 'motorola-edge-70-fusion-vs-samsung-galaxy-a57', comparador: 'celulares', a: EDGE_70_FUSION, b: GALAXY_A57, contexto: 'Gama media alta: el Edge 70 Fusion de Motorola contra el A57 de Samsung.' },
-  { slug: 'xiaomi-poco-x8-pro-vs-motorola-edge-60-fusion', comparador: 'celulares', a: POCO_X8_PRO, b: EDGE_60_FUSION, contexto: 'Xiaomi contra Motorola en la gama media alta: el Poco X8 Pro frente al Edge 60 Fusion.' },
+  { slug: 'xiaomi-poco-x8-pro-vs-motorola-edge-70-fusion', comparador: 'celulares', a: POCO_X8_PRO, b: EDGE_70_FUSION, contexto: 'Xiaomi contra Motorola en la gama media alta: el Poco X8 Pro frente al Edge 70 Fusion con los precios de hoy.' },
   { slug: 'infinix-gt-30-pro-vs-xiaomi-poco-x8-pro', comparador: 'celulares', a: INFINIX_GT_30_PRO, b: POCO_X8_PRO, contexto: 'Dos celulares pensados para jugar: el GT 30 Pro de Infinix contra el Poco X8 Pro de Xiaomi.' },
   { slug: 'samsung-galaxy-s26-fe-vs-iphone-16', comparador: 'celulares', a: GALAXY_S26_FE, b: IPHONE_16, contexto: 'Dos formas de entrar a la gama alta sin pagar el tope: el S26 FE de Samsung contra el iPhone 16.' },
-  { slug: 'iphone-17-pro-max-vs-samsung-galaxy-s25-ultra', comparador: 'celulares', a: IPHONE_17_PRO_MAX, b: GALAXY_S25_ULTRA, contexto: 'Los dos más grandes y caros de Apple y Samsung: el 17 Pro Max contra el S25 Ultra con los precios de hoy.' },
+  { slug: 'iphone-17-pro-max-vs-samsung-galaxy-s25-ultra', comparador: 'celulares', a: IPHONE_17_PRO_MAX, b: GALAXY_S25_ULTRA, contexto: 'El iPhone más grande contra el Ultra de Samsung de la generación anterior: cuánto separa hoy al 17 Pro Max del S25 Ultra.' },
   // Notebooks: cada modelo se vende en varias configuraciones, así que la tabla
   // muestra qué procesadores y discos hay de cada uno.
   { slug: 'hp-255-g10-vs-acer-aspire-go-15', comparador: 'notebooks', a: HP_255_G10, b: ASPIRE_GO_15, contexto: 'Dos de las notebooks con Ryzen 7 más vendidas en Argentina, cara a cara.' },

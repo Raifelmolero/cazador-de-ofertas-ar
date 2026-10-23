@@ -173,7 +173,10 @@ export default function ComparadorEquipos({
                 <th className="p-3 text-zinc-500 font-semibold w-28"> </th>
                 {elegidos.map(e => (
                   <th key={e.id} className="p-3 align-top font-semibold text-zinc-100 [text-wrap:pretty]">
-                    {e.titulo}
+                    {/* Clarity 21-23/10: nombres y precios de la tabla se tocaban sin respuesta */}
+                    <a href={e.url} data-seccion="comparador_tabla" target="_blank" rel="noopener noreferrer sponsored" className="hover:text-yellow-400">
+                      {e.titulo}
+                    </a>
                   </th>
                 ))}
               </tr>
@@ -182,7 +185,11 @@ export default function ComparadorEquipos({
               <tr className="border-b border-zinc-800">
                 <td className="p-3 text-zinc-500">Precio hoy</td>
                 {elegidos.map(e => (
-                  <td key={e.id} className="p-3 font-bold text-zinc-100">{pesos(e.precio)}</td>
+                  <td key={e.id} className="p-3 font-bold text-zinc-100">
+                    <a href={e.url} data-seccion="comparador_tabla" target="_blank" rel="noopener noreferrer sponsored" className="hover:text-yellow-400">
+                      {pesos(e.precio)} ↗
+                    </a>
+                  </td>
                 ))}
               </tr>
               <tr className="border-b border-zinc-800">
@@ -203,7 +210,7 @@ export default function ComparadorEquipos({
                 <td className="p-3" />
                 {elegidos.map(e => (
                   <td key={e.id} className="p-3">
-                    <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="inline-block text-xs font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-lg px-3 py-2">
+                    <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" data-seccion="comparador_tabla" className="inline-block text-xs font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-lg px-3 py-2">
                       Ver en Mercado Libre
                     </a>
                   </td>

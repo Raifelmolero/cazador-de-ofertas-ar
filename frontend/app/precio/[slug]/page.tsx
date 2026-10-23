@@ -237,7 +237,11 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           )}
           <div className="min-w-0">
             <h1 className="font-display text-xl sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">
-              {s.titulo}: historial de precios
+              {/* Clarity 21-23/10: el título se tocaba sin respuesta (clic muerto) */}
+              <a href={s.url} data-seccion="precio_titulo" target="_blank" rel="sponsored nofollow noopener" className="hover:text-yellow-300">
+                {s.titulo}
+              </a>
+              : historial de precios
             </h1>
             <a
               href={s.url}

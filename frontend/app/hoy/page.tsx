@@ -239,10 +239,11 @@ export default function HoyPage() {
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/85 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-          <span className="font-display text-lg font-extrabold tracking-tight flex shrink-0 items-center gap-2 whitespace-nowrap">
+          {/* Clarity 21-23/10: el logo se tocaba sin respuesta; lleva a las ofertas */}
+          <a href="#ofertas" className="font-display text-lg font-extrabold tracking-tight flex shrink-0 items-center gap-2 whitespace-nowrap">
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" priority />
             <span className="text-yellow-400">Cazador de Ofertas</span>
-          </span>
+          </a>
           <nav aria-label="Rubros" className="hidden xl:flex items-center gap-3 whitespace-nowrap text-[13px] font-semibold text-zinc-400">
             {NICHOS.map(n => (
               <a key={n.slug} href={`/${n.slug}`} className="hover:text-yellow-300 transition-colors">

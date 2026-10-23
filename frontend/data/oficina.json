@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-23T14:24:15+00:00",
+  "generado": "2026-10-23T19:04:09+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-23T03:12:24+00:00",
+      "ultima_actividad": "2026-10-23T19:04:09+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,27 +18,27 @@
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Facebook",
-          "valor": 4
+          "valor": 7
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Threads",
-          "valor": 2
+          "valor": 3
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Colchón Sueño Dorado Dubái Queen Size 160 X 200 cm"
+      "ultimo_trabajo": "Colchón viggo magnum 160x200 cm 300 kg alta densidad negro"
     },
     {
       "id": "investigacion",
@@ -92,7 +92,7 @@
         },
         {
           "label": "Comparativas",
-          "valor": 57
+          "valor": 58
         }
       ],
       "entregas": [
@@ -194,7 +194,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-22T15:47:43+00:00",
+      "ultima_actividad": "2026-10-23T15:38:16+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -206,7 +206,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 12 h"
         },
         {
           "fecha": "",
@@ -218,7 +218,7 @@
         },
         {
           "fecha": "",
-          "titulo": "✖ npm audit encontró vulnerabilidades altas o críticas"
+          "titulo": "✔ Sin vulnerabilidades altas"
         }
       ]
     }

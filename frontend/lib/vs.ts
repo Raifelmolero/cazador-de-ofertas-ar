@@ -7,7 +7,7 @@
 // (en oferta o vista en la última semana): sin precio real no hay página.
 // Nada de specs inventadas: lo que se muestra sale del título de ML.
 import { normalizar } from '@/lib/categorias'
-import { equiposDe, getComparador, type Equipo } from '@/lib/comparador'
+import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
 
 export interface Modelo {
   nombre: string // "iPhone 17 Pro"
@@ -59,6 +59,7 @@ const EDGE_60_FUSION: Modelo = { nombre: 'Motorola Edge 60 Fusion', re: /\bedge 
 const POCO_X8_PRO: Modelo = { nombre: 'Xiaomi Poco X8 Pro', re: /\bpoco x8 pro\b/ }
 const HP_OMNIBOOK_3: Modelo = { nombre: 'HP OmniBook 3', re: /\bomnibook 3\b/ }
 const INFINIX_GT_30_PRO: Modelo = { nombre: 'Infinix GT 30 Pro', re: /\binfinix gt ?30 pro\b/ }
+const VIVOBOOK_GO_15: Modelo = { nombre: 'Asus Vivobook Go 15', re: /\bvivobook go 15\b/ }
 
 export const DUELOS: Duelo[] = [
   { slug: 'iphone-17-vs-iphone-17-pro', comparador: 'celulares', a: IPHONE_17, b: IPHONE_17_PRO, contexto: 'Es la duda más común de la línea nueva de Apple: cuánto más cuesta el Pro en Argentina y si conviene estirarse.' },
@@ -95,6 +96,11 @@ export const DUELOS: Duelo[] = [
   { slug: 'xiaomi-poco-x8-pro-vs-motorola-edge-70-fusion', comparador: 'celulares', a: POCO_X8_PRO, b: EDGE_70_FUSION, contexto: 'Xiaomi contra Motorola en la gama media alta: el Poco X8 Pro frente al Edge 70 Fusion con los precios de hoy.' },
   { slug: 'infinix-gt-30-pro-vs-xiaomi-poco-x8-pro', comparador: 'celulares', a: INFINIX_GT_30_PRO, b: POCO_X8_PRO, contexto: 'Dos celulares pensados para jugar: el GT 30 Pro de Infinix contra el Poco X8 Pro de Xiaomi.' },
   { slug: 'samsung-galaxy-s26-fe-vs-iphone-16', comparador: 'celulares', a: GALAXY_S26_FE, b: IPHONE_16, contexto: 'Dos formas de entrar a la gama alta sin pagar el tope: el S26 FE de Samsung contra el iPhone 16.' },
+  // Tanda 23/10: los cruces de gama de entrada que más se buscan y todavía no tenían página.
+  { slug: 'samsung-galaxy-a07-vs-xiaomi-redmi-15c', comparador: 'celulares', a: GALAXY_A07, b: REDMI_15C, contexto: 'Samsung contra Xiaomi en la gama de entrada: el Galaxy A07 y el Redmi 15C, dos de los más buscados para gastar poco.' },
+  { slug: 'moto-g17-vs-xiaomi-redmi-15c', comparador: 'celulares', a: MOTO_G17, b: REDMI_15C, contexto: 'Motorola contra Xiaomi en el rango de precio más vendido: el Moto G17 frente al Redmi 15C con los precios de hoy.' },
+  { slug: 'moto-g15-vs-samsung-galaxy-a07', comparador: 'celulares', a: MOTO_G15, b: GALAXY_A07, contexto: 'El Motorola más vendido contra el Samsung más barato: cuánto separa hoy al Moto G15 del Galaxy A07.' },
+  { slug: 'samsung-galaxy-a17-vs-moto-g47', comparador: 'celulares', a: GALAXY_A17, b: MOTO_G47, contexto: 'Samsung contra Motorola un escalón más arriba: el Galaxy A17 frente al Moto G47 con los precios de hoy.' },
   { slug: 'iphone-17-pro-max-vs-samsung-galaxy-s25-ultra', comparador: 'celulares', a: IPHONE_17_PRO_MAX, b: GALAXY_S25_ULTRA, contexto: 'El iPhone más grande contra el Ultra de Samsung de la generación anterior: cuánto separa hoy al 17 Pro Max del S25 Ultra.' },
   // Notebooks: cada modelo se vende en varias configuraciones, así que la tabla
   // muestra qué procesadores y discos hay de cada uno.
@@ -111,6 +117,8 @@ export const DUELOS: Duelo[] = [
   { slug: 'acer-aspire-lite-15-vs-asus-vivobook-15', comparador: 'notebooks', a: ASPIRE_LITE_15, b: VIVOBOOK_15, contexto: 'Acer contra Asus en la gama media de 15": cuánto cuesta cada una hoy según el procesador.' },
   { slug: 'lenovo-ideapad-slim-3-vs-acer-aspire-lite-15', comparador: 'notebooks', a: IDEAPAD_SLIM_3, b: ASPIRE_LITE_15, contexto: 'Lenovo contra Acer en notebooks de 15" para el día a día.' },
   { slug: 'samsung-galaxy-book4-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: GALAXY_BOOK4, b: IDEAPAD_SLIM_3, contexto: 'Samsung contra Lenovo en notebooks de 15" para estudiar y trabajar.' },
+  { slug: 'asus-vivobook-go-15-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: VIVOBOOK_GO_15, b: IDEAPAD_SLIM_3, contexto: 'Dos notebooks de 15" con Ryzen 5 para estudiar y trabajar: la Vivobook Go 15 de Asus contra la IdeaPad Slim 3 de Lenovo.' },
+  { slug: 'hp-omnibook-3-vs-lenovo-ideapad-slim-3', comparador: 'notebooks', a: HP_OMNIBOOK_3, b: IDEAPAD_SLIM_3, contexto: 'HP contra Lenovo en notebooks livianas para el día a día: la OmniBook 3 frente a la IdeaPad Slim 3.' },
   { slug: 'hp-omnibook-3-vs-asus-vivobook-14', comparador: 'notebooks', a: HP_OMNIBOOK_3, b: VIVOBOOK_14, contexto: 'Dos notebooks de 14" livianas para el día a día: HP contra Asus.' },
 ]
 
@@ -131,7 +139,8 @@ export interface DueloArmado {
 }
 
 function lado(modelo: Modelo, equipos: Equipo[]): Lado | null {
-  const xs = equipos.filter(e => modelo.re.test(normalizar(e.titulo)))
+  // Solo equipos nuevos: un reacondicionado bajaría el "desde" y el duelo compararía cosas distintas.
+  const xs = equipos.filter(e => modelo.re.test(normalizar(e.titulo)) && !USADOS.test(normalizar(e.titulo)))
   if (!xs.length) return null
   const mins = xs.map(e => e.minimo).filter((n): n is number => typeof n === 'number')
   const memorias = [...new Set(xs.map(e => e.orden.memoria ?? e.orden.disco).filter(n => n > 0))]

@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       s => `${s}: ¿cuál conviene? Precio hoy`,
       s => `${s}: precio hoy`,
       s => `${sinMarca(s)}: precio hoy`,
-    ]),
+    ], 60), // 60 y no 65: con nombres largos Google cortaba el "precio hoy" con "…"
     description: descripcionSeo(desc),
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },

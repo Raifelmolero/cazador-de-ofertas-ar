@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-22T23:11:56+00:00",
+  "generado": "2026-10-23T03:12:24+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-22T23:11:55+00:00",
+      "ultima_actividad": "2026-10-23T03:12:24+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -22,31 +22,23 @@
         },
         {
           "label": "Facebook",
-          "valor": 5
+          "valor": 4
         },
         {
           "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Threads",
-          "valor": 2
-        },
-        {
           "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
+          "label": "Threads",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Freezer Horizontal Briket FR5500 535Lts Doble Puerta Blanco"
+      "ultimo_trabajo": "Colchón Sueño Dorado Dubái Queen Size 160 X 200 cm"
     },
     {
       "id": "investigacion",

@@ -35,15 +35,17 @@ import { slugPorId } from '@/lib/seguimiento'
 import ComparacionTestigo from '@/components/ComparacionTestigo'
 import { BLACK_FRIDAY, CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
 import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
+import { landingsCyberConDatos, ofertasTecnoTicketAlto } from '@/lib/cybertecno'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/cyber-monday`
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 const MAX_OFERTAS = 16
+const MAX_TECNO = 8
 
 const FECHAS = CM.oficial ? `${CM.fechasTexto} de ${CM.año}` : `${CM.fechasTexto} de ${CM.año} (a confirmar)`
-const TITULO = `Cyber Monday ${CM.año} Argentina: fechas y ofertas de hoy`
+const TITULO = `Cyber Monday ${CM.año} Argentina: fechas y ofertas reales verificadas`
 const DESCRIPCION = CM.oficial
   ? `Cyber Monday ${CM.año} Argentina: ${CM.fechasTexto} (CACE). Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo evitar descuentos inflados.`
   : `Cuándo es el Cyber Monday ${CM.año} en Argentina (estimado: ${CM.fechasTexto}, a confirmar por la CACE), cómo detectar descuentos inflados y ofertas verificadas contra el historial de precios.`
@@ -74,14 +76,22 @@ export default function CyberMondayPage() {
   const historial = slugPorId()
   const { etapa, dias } = etapaCyber()
 
+  // Celulares y notebooks de ticket alto arriba de todo: una venta de iPhone o
+  // notebook gamer deja más comisión que diez de cualquier otro rubro.
+  const tecno = ofertasTecnoTicketAlto(MAX_TECNO)
+  const idsTecno = new Set(tecno.map(o => o.id_ml))
+  const landings = landingsCyberConDatos()
+
   // Ofertas de hoy en los rubros del evento (misma selección que la
   // comparativa /mejores/ofertas-cyber-monday); si hoy no hay suficientes, las
   // de /hoy. Ya vienen ordenadas por ganancia esperada, igual que /hoy.
   const cyber = getComparativa('ofertas-cyber-monday')
   const deRubros = cyber ? productosDe(cyber) : []
   // Ticket alto primero: es donde cada clic vale más (igual que /hoy y /categoria).
-  const ofertas = ticketAltoPrimero(deRubros.length >= 4 ? deRubros : getOfertas()).slice(0, MAX_OFERTAS)
-  const ofertasLight: OfertaLight[] = ofertas.map(o => ({
+  const ofertas = ticketAltoPrimero(deRubros.length >= 4 ? deRubros : getOfertas())
+    .filter(o => !idsTecno.has(o.id_ml))
+    .slice(0, MAX_OFERTAS)
+  const aLight = (o: (typeof ofertas)[number]): OfertaLight => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
     precio_actual: o.precio_actual,
@@ -92,10 +102,12 @@ export default function CyberMondayPage() {
     url_producto: o.url_producto,
     url_imagen: o.url_imagen,
     historial: historial[o.id_ml],
-  }))
+  })
+  const ofertasLight = ofertas.map(aLight)
+  const tecnoLight = tecno.map(aLight)
 
   // Producto principal para la barra fija de celular (78% de scroll y 0 clics a ML).
-  const destacado = elegirDestacado(ofertas)
+  const destacado = elegirDestacado(tecno.length > 0 ? tecno : ofertas)
 
   const comparativas = COMPARATIVAS.filter(c => c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-'))
   const blackFriday = getComparativa('ofertas-black-friday')
@@ -183,6 +195,14 @@ export default function CyberMondayPage() {
       a: `El ${BLACK_FRIDAY.fechasTexto} de ${CM.año}. A diferencia del Cyber Monday, en Argentina el Black Friday no tiene un organizador único: cada tienda arma sus promociones por su cuenta.`,
     },
     {
+      q: `¿Qué conviene comprar en el Cyber Monday ${CM.año}?`,
+      a: `Lo que ya pensabas comprar y cuesta mucho: en celulares, notebooks y smart TV una baja chica es mucha plata.${
+        landings.length > 0
+          ? ` Para esos rubros anotamos el precio de octubre de ${landings.map(x => `${x.filas.length} ${x.l.nombre}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}, así el día del evento sabés si bajaron de verdad.`
+          : ''
+      } También conviene mirar aires acondicionados, lavarropas y auriculares, que tienen su propia comparativa en esta página. Lo que no conviene es comprar por el cartel: si el producto ya estuvo igual o más barato antes, el descuento no te ahorra nada.`,
+    },
+    {
       q: '¿Conviene esperar al Cyber Monday para comprar?',
       a: 'Depende del producto. Si lo que buscás ya está en su precio más bajo registrado, esperar no suma. Si no, conviene anotar el precio de hoy y compararlo cuando arranque el evento: así sabés si la baja es real o si solo cambió el cartel. Sumá al cálculo envío, cuotas y reintegros con tope.',
     },
@@ -233,13 +253,13 @@ export default function CyberMondayPage() {
           },
         ]
       : []),
-    ...(ofertas.length > 0
+    ...(tecno.length + ofertas.length > 0
       ? [
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: `Ofertas de hoy en los rubros del Cyber Monday ${CM.año}`,
-            itemListElement: ofertas.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.url_producto })),
+            itemListElement: [...tecno, ...ofertas].map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.url_producto })),
           },
         ]
       : []),
@@ -336,9 +356,36 @@ export default function CyberMondayPage() {
         </div>
       </section>
 
+      {tecnoLight.length > 0 && (
+        <section data-seccion="cyber_tecno" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
+          <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
+            <h2 className="font-display text-xl sm:text-2xl font-black">📱 Celulares y notebooks en oferta hoy</h2>
+            <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+              {etapa === 'antes'
+                ? 'Los de mayor precio en oferta hoy. Todavía no son precios del Cyber: anotá el de hoy y comparalo cuando arranque.'
+                : 'Los de mayor precio en oferta hoy, con el descuento verificado contra el historial.'}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            {tecnoLight.map((o, i) => (
+              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+            ))}
+          </div>
+          {landings.length > 0 && (
+            <p className="mt-5 flex flex-wrap gap-2 text-sm">
+              {landings.map(x => (
+                <Link key={x.l.slug} href={`/cyber-monday/${x.l.slug}`} className="rounded-full border border-cyan-400/30 bg-cyan-500/[0.07] px-3 py-1 font-bold text-cyan-200 hover:border-cyan-300/60">
+                  {x.l.nombre.charAt(0).toUpperCase() + x.l.nombre.slice(1)}: precio de octubre por marca →
+                </Link>
+              ))}
+            </p>
+          )}
+        </section>
+      )}
+
       <section data-seccion="cyber_ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
         <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
-          <h2 className="font-display text-xl sm:text-2xl font-black">Ofertas reales de hoy en los rubros del Cyber Monday</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-black">{tecnoLight.length > 0 ? 'Más ofertas reales de hoy en los rubros del Cyber Monday' : 'Ofertas reales de hoy en los rubros del Cyber Monday'}</h2>
           <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
             {etapa === 'antes'
               ? 'Todavía no son precios del evento: son las ofertas de hoy con descuento verificado. Sirven de referencia para comparar cuando arranque.'
@@ -377,6 +424,17 @@ export default function CyberMondayPage() {
           <p className="font-display text-lg sm:text-xl font-black text-zinc-50">📱 Celulares, iPhone y notebooks: ¿bajan de verdad?</p>
           <p className="mt-1 text-sm text-zinc-400">El precio más bajo de octubre de cada uno, para comparar en el Cyber →</p>
         </Link>
+        {landings.length > 0 && (
+          <ul className="-mt-6 mb-10 grid gap-2 sm:grid-cols-3 text-sm">
+            {landings.map(x => (
+              <li key={x.l.slug}>
+                <Link href={`/cyber-monday/${x.l.slug}`} className="block rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 font-bold text-zinc-200 hover:border-cyan-300/60 hover:text-cyan-200 transition-colors">
+                  {x.l.nombre.charAt(0).toUpperCase() + x.l.nombre.slice(1)} por marca <span className="text-zinc-500 font-semibold">({x.filas.length})</span> →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué es el Cyber Monday</h2>

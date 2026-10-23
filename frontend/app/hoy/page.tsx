@@ -30,6 +30,7 @@ import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
+import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { DEALS_URL, MARCA, ORG_ID, SAME_AS, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL as WHATSAPP_DEFAULT } from '@/lib/marca'
 
 const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? WHATSAPP_DEFAULT
@@ -115,7 +116,7 @@ export default function HoyPage() {
           itemCondition: 'https://schema.org/NewCondition',
           priceValidUntil,
           validFrom: scrapedAt,
-          url: o.url_producto,
+          url: conEtiqueta(o.url_producto, ETIQUETA_JSONLD),
         },
       },
     })),

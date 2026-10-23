@@ -217,10 +217,16 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
               Qué mirar antes de comprar ↓
             </a>
           </p>
-          <p className="mt-4 inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
+          {/* Clarity 21-23/10: esta píldora parecía un botón (16 clics muertos en
+              notebooks). Ahora lleva a las ofertas. */}
+          <a
+            href="#ofertas-categoria"
+            className="mt-4 inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 hover:border-yellow-400/60 rounded-full px-4 py-1.5 transition-colors"
+          >
             <LastUpdated scrapedAt={scrapedAt} /> · {ofertas.length} {ofertas.length === 1 ? 'oferta' : 'ofertas'}
             {minimos > 0 && <> · {minimos} en mínimo histórico</>}
-          </p>
+            {ofertas.length > 0 && <span aria-hidden="true">· Ver ↓</span>}
+          </a>
           {COMPARATIVAS.some(x => x.categoria === c.slug && indexable(x)) && (
             <div className="mt-4 flex flex-wrap gap-2">
               {COMPARATIVAS.filter(x => x.categoria === c.slug && indexable(x)).slice(0, 4).map(x => (
@@ -251,7 +257,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
         id="respaldo-hoy"
       />
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <section id="ofertas-categoria" className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 scroll-mt-20">
         {ofertas.length === 0 ? (
           <SinOfertas que={`de ${enFrase(c)}`} enlaces={enlacesAfines({ categoria: c.slug })} />
         ) : (

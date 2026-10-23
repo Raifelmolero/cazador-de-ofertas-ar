@@ -162,10 +162,17 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
 
         {ofertas.length > 0 && (
           <div className="grid grid-cols-3 gap-3 mb-6">
-            <div className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 p-3">
+            {/* Clarity 21-23/10: este recuadro se tocaba como si fuera un botón */}
+            <a
+              href={ofertas[0].url_producto}
+              data-seccion="preciohoy_minimo"
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60 p-3 transition-colors"
+            >
               <p className="text-xl sm:text-2xl font-black text-yellow-300">{precio(min)}</p>
-              <p className="text-xs text-zinc-400 mt-1">el más barato hoy</p>
-            </div>
+              <p className="text-xs text-zinc-400 mt-1">el más barato hoy ↗</p>
+            </a>
             <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
               <p className="text-xl sm:text-2xl font-black">{precio(med)}</p>
               <p className="text-xs text-zinc-400 mt-1">mediana</p>
@@ -177,7 +184,34 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
           </div>
         )}
 
-        <p className="text-lg text-zinc-200 leading-relaxed mb-8">{respuesta}</p>
+        <p className="text-lg text-zinc-200 leading-relaxed mb-5">{respuesta}</p>
+
+        {/* Botón a ML arriba: en el celular el scroll medio es 25% (Clarity 21-23/10)
+            y el botón de abajo de las tablas casi nadie lo ve. */}
+        <div data-seccion="preciohoy_cta_arriba" className="mb-8 flex flex-col sm:flex-row gap-2">
+          {ofertas[0] && (
+            <a
+              href={ofertas[0].url_producto}
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="flex items-center justify-center text-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3.5 font-black text-black transition-colors"
+            >
+              Ver el más barato a {precio(ofertas[0].precio_actual)} en Mercado Libre 🛒
+            </a>
+          )}
+          <a
+            href={busquedaML(p.busqueda)}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className={
+              ofertas[0]
+                ? 'flex items-center justify-center text-center rounded-xl border border-yellow-400/40 hover:border-yellow-400 px-5 py-3 text-sm font-bold text-yellow-200 transition-colors'
+                : 'flex items-center justify-center text-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3.5 font-black text-black transition-colors'
+            }
+          >
+            Ver todos los modelos en Mercado Libre ↗
+          </a>
+        </div>
 
         {ofertas.length > 0 && (
           <section className="mb-8">

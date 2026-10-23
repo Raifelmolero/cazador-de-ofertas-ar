@@ -5,6 +5,8 @@
 
 import { FECHAS_GUIAS_TICKET_ALTO, GUIAS_TICKET_ALTO } from './guias-ticket-alto'
 import { FECHAS_GUIAS_LONG_TAIL, GUIAS_LONG_TAIL } from './guias-long-tail'
+import { FECHAS_GUIAS_TECNO, GUIAS_TECNO } from './guias-tecno'
+import type { SeleccionEquipos } from './guias-equipos'
 
 export interface Guia {
   slug: string
@@ -26,9 +28,13 @@ export interface Guia {
   fuentes?: { texto: string; url: string }[]
   /** Slug de /mejores/* de donde mostrar ofertas reales del catálogo del día. */
   comparativa?: string
+  /** Equipos del comparador que cumplen el criterio de la guía (lib/guias-equipos.ts).
+   *  Con menos de 3 hoy, la guía queda noindex y fuera del sitemap. */
+  equipos?: SeleccionEquipos
 }
 
 export const GUIAS: Guia[] = [
+  ...GUIAS_TECNO,
   ...GUIAS_TICKET_ALTO,
   ...GUIAS_LONG_TAIL,
   {
@@ -2721,6 +2727,7 @@ export const getGuia = (slug: string) => GUIAS.find(g => g.slug === slug)
 /** Fechas de publicación y última revisión (del historial de git) para el
  *  Article JSON-LD. Al revisar una guía a fondo, actualizá `modificada`. */
 export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: string }> = {
+  ...FECHAS_GUIAS_TECNO,
   ...FECHAS_GUIAS_TICKET_ALTO,
   ...FECHAS_GUIAS_LONG_TAIL,
   'climatizador-o-ventilador-o-aire': { publicada: '2026-10-03', modificada: '2026-10-03' },

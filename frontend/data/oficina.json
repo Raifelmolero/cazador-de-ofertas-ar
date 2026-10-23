@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-23T19:04:09+00:00",
+  "generado": "2026-10-23T23:02:56+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-23T19:04:09+00:00",
+      "ultima_actividad": "2026-10-23T23:02:55+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,28 +17,28 @@
       ],
       "metricas": [
         {
-          "label": "whatsapp_kit",
-          "valor": 9
+          "label": "Facebook",
+          "valor": 8
         },
         {
-          "label": "Facebook",
-          "valor": 7
+          "label": "whatsapp_kit",
+          "valor": 6
         },
         {
           "label": "Telegram",
           "valor": 4
         },
         {
-          "label": "Instagram",
-          "valor": 3
+          "label": "Threads",
+          "valor": 4
         },
         {
-          "label": "Threads",
+          "label": "Instagram",
           "valor": 3
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Colchón viggo magnum 160x200 cm 300 kg alta densidad negro"
+      "ultimo_trabajo": "70 Crystal Uhd U8000h 4k Samsung Vision Ai Smart Tv"
     },
     {
       "id": "investigacion",

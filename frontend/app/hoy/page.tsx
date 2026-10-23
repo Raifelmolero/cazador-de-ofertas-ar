@@ -20,6 +20,8 @@ import AtajosCelular from '@/components/AtajosCelular'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
+import VidrieraTecno from '@/components/VidrieraTecno'
+import { vidrieraTecno } from '@/lib/vidrieratecno'
 import { getTendencias } from '@/lib/tendencias'
 import ColchonesDestacados from '@/components/ColchonesDestacados'
 import DesdeAsistenteIA from '@/components/DesdeAsistenteIA'
@@ -77,7 +79,11 @@ export default function HoyPage() {
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
   const top3Ids = new Set(elegirTop(ofertasLight, 3).map(o => o.id_ml))
-  const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml))
+  // Celulares y notebooks caros arriba (40 % de la ganancia en sep-oct): sin
+  // repetir las 3 destacadas; las «compras grandes» no repiten estos.
+  const tecno = vidrieraTecno({ cantidad: 6, excluir: top3Ids })
+  const tecnoIds = new Set(tecno.map(o => o.id_ml))
+  const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml))
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
   // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
   const yaMostrados = new Set([...top3Ids, ...elegirTop(ticketAlto, 3).map(o => o.id_ml)])
@@ -364,6 +370,13 @@ export default function HoyPage() {
         </div>
         <div className="order-1 sm:order-none">
           <TopOfertasHoy ofertas={ofertasLight} />
+          <VidrieraTecno
+            items={tecno}
+            titulo="📱💻 Celulares y notebooks en su precio más bajo"
+            bajada="iPhone, Samsung Galaxy, Motorola Edge, Xiaomi, Lenovo, HP, Asus, Dell: en su mínimo o con descuento real."
+            seccion="portada-ticket-alto"
+            id="tecno-hoy"
+          />
         </div>
       </div>
       {/* Compras grandes (el tráfico de asistentes de IA llega con intención de

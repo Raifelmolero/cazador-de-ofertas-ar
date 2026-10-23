@@ -17,6 +17,8 @@ import { DEALS_URL, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import { getComparativa, indexable } from '@/lib/comparativas'
 import { getCategoria, enCategoria } from '@/lib/categorias'
 import { cuponesVigentes, textoCupon } from '@/lib/cupones'
+import VidrieraTecno from '@/components/VidrieraTecno'
+import { vidrieraTecno } from '@/lib/vidrieratecno'
 
 const URL = `${DEALS_URL}/cupones-mercado-libre`
 const TITULO = 'Cupones y códigos de descuento de Mercado Libre Argentina: cómo usarlos'
@@ -104,6 +106,11 @@ export default function CuponesPage() {
       historial: historial[o.id_ml],
     }))
 
+  // Celulares y notebooks donde rinde el cupón vigente (superan su compra mínima),
+  // sin repetir las 4 ofertas de arriba.
+  const cupon = cupones[0]
+  const tecno = vidrieraTecno({ cantidad: 4, minimo: cupon?.minimo ?? 0, excluir: ofertas.slice(0, 4).map(o => o.id_ml) })
+
   const comparativas = TICKET_ALTO.map(getComparativa).filter(
     (c): c is NonNullable<typeof c> => !!c && indexable(c),
   )
@@ -175,6 +182,17 @@ export default function CuponesPage() {
             )}
           </div>
         ))}
+
+        <VidrieraTecno
+          items={tecno}
+          titulo={cupon ? `🎟️ Usá el cupón ${cupon.codigo} en estos` : '📱💻 Celulares y notebooks en su precio más bajo'}
+          bajada={cupon ? `Celulares y notebooks que superan la compra mínima del cupón ($${cupon.minimo.toLocaleString('es-AR')}), en su mínimo o con descuento real.` : undefined}
+          seccion="cupones-ticket-alto"
+          id="cupones-tecno"
+          cupon={cupon}
+          columnas="sm:grid-cols-4"
+          className="mb-8"
+        />
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>

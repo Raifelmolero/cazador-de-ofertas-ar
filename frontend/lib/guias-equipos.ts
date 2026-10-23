@@ -8,7 +8,7 @@
 // MIN_EQUIPOS_GUIA equipos que cumplan, la guía queda noindex y fuera del
 // sitemap (regla del sitio: páginas flacas no se indexan).
 import { normalizar } from '@/lib/categorias'
-import { equiposDe, getComparador, type Equipo } from '@/lib/comparador'
+import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
 import type { Guia } from '@/lib/guias'
 
 type ComparadorSlug = 'celulares' | 'notebooks' | 'smart-tv'
@@ -37,8 +37,6 @@ export interface SeleccionEquipos {
 }
 
 export const MIN_EQUIPOS_GUIA = 3
-
-const USADOS = /\b(reacondicionad[oa]s?|usad[oa]s?|refurbished|open box|exhibicion|outlet)\b/
 
 const cache = new Map<string, Equipo[]>()
 function todos(slug: ComparadorSlug): Equipo[] {

@@ -299,6 +299,10 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     ],
     enlaces: [
       { href: '/guias/que-auriculares-comprar-cyber-monday', texto: 'Auriculares en el Cyber Monday' },
+      { href: '/mejores/mejores-auriculares', texto: 'Mejores auriculares en oferta hoy' },
+      { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: '¿Vale la pena la cancelación de ruido?' },
+      { href: '/guias/sony-wh-ch520-o-anker-soundcore-q20i', texto: 'Sony WH-CH520 o Anker Q20i' },
+      { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Auriculares open ear o in-ear' },
       { href: '/mejores/mejores-smartwatch', texto: 'Mejores smartwatch en oferta' },
       { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según presupuesto' },
       { href: '/precio', texto: 'Precio de hoy de cada producto' },

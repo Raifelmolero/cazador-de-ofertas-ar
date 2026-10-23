@@ -985,6 +985,7 @@ export const GUIAS: Guia[] = [
     ],
     enlaces: [
       { href: '/mejores/mejores-notebooks', texto: 'Notebooks en oferta: comparativa de precios' },
+      { href: '/guias/notebook-ryzen-5-o-ryzen-7', texto: 'Notebook con Ryzen 5 o Ryzen 7' },
       { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
     ],
     comparativa: 'mejores-notebooks',
@@ -1210,6 +1211,7 @@ export const GUIAS: Guia[] = [
     enlaces: [
       { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED: diferencias de pantalla' },
       { href: '/mejores/mejores-smart-tv', texto: 'Smart TV en oferta: comparativa de precios' },
+      { href: '/guias/smart-tv-50-pulgadas-cual-comprar', texto: 'Smart TV de 50 pulgadas: cuál comprar' },
       { href: '/hoy', texto: 'Todas las ofertas verificadas de hoy' },
     ],
     comparativa: 'mejores-smart-tv',

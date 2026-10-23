@@ -823,6 +823,31 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
   },
   {
+    slug: 'mejores-auriculares',
+    guia: 'que-auriculares-comprar',
+    nombre: 'auriculares',
+    titulo: `Mejores auriculares en oferta ${AÑO}: precios de hoy`,
+    descripcion:
+      'Auriculares en oferta hoy en Mercado Libre Argentina: in-ear, vincha, gamer y con cancelación de ruido, comparados contra el mínimo registrado.',
+    intro:
+      'Los auriculares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. Solo equipos nuevos: los reacondicionados quedan afuera de la tabla.',
+    keywords: ['auriculares', 'auricular', 'earbuds', 'headphones', 'airpods', 'galaxy buds', 'redmi buds', 'linkbuds'],
+    excluir: ['smartphone', 'celular', 'telefono', 'parlante', 'reacondicionado', 'tablet', 'reloj', 'walkie', 'radio', 'gafas', 'kit ', 'zte', 'combo', 'para iphone'],
+    criterios: [
+      'Formato según el uso: in-ear para salir y entrenar, vincha (over-ear) para viajar y trabajar muchas horas, open ear si necesitás escuchar lo que pasa alrededor.',
+      'Cancelación activa de ruido (ANC) si viajás en colectivo, subte o avión: es lo que más cambia la experiencia y lo que más sube el precio.',
+      'Autonomía: fijate las horas con y sin ANC, porque la cancelación gasta batería.',
+      'Multipunto (dos dispositivos a la vez) si los usás con el celular y la notebook.',
+      'Marcas conocidas muy por debajo de su precio habitual: preferí tienda oficial y mirá el mínimo registrado de la tabla.',
+    ],
+    enlaces: [
+      { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: '¿Vale la pena la cancelación de ruido?' },
+      { href: '/guias/sony-wh-ch520-o-anker-soundcore-q20i', texto: 'Sony WH-CH520 o Anker Q20i' },
+      { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Auriculares open ear o in-ear' },
+      { href: '/mejores/cyber-monday-auriculares', texto: 'Auriculares en el Cyber Monday' },
+    ],
+  },
+  {
     slug: 'mejores-planchitas-y-secadores-de-pelo',
     nombre: 'planchitas y secadores de pelo',
     titulo: `Mejores planchitas y secadores de pelo en oferta ${AÑO}`,

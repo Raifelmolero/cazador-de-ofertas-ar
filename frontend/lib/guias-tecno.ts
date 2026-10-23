@@ -541,6 +541,7 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/mejor/notebook-hasta-1-millon', texto: 'Mejor notebook hasta $1 millón' },
       { href: '/vs/asus-vivobook-15-vs-lenovo-ideapad-slim-3', texto: 'Vivobook 15 vs IdeaPad Slim 3' },
       { href: '/vs/hp-255-g10-vs-acer-aspire-go-15', texto: 'HP 255 G10 vs Acer Aspire Go 15' },
+      { href: '/guias/notebook-ryzen-5-o-ryzen-7', texto: 'Ryzen 5 o Ryzen 7: cuál conviene' },
       { href: '/guias/notebook-14-o-15-pulgadas', texto: '¿14 o 15 pulgadas?' },
       { href: '/guias/tablet-o-notebook-cual-conviene', texto: 'Tablet o notebook' },
       { href: '/comparador/notebooks', texto: 'Comparador de notebooks' },
@@ -603,6 +604,7 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/mejor/notebook-hasta-1-5-millones', texto: 'Mejor notebook hasta $1,5 millones' },
       { href: '/vs/hp-255-g10-vs-asus-vivobook-15', texto: 'HP 255 G10 vs Vivobook 15' },
       { href: '/vs/hp-255-g10-vs-acer-aspire-go-15', texto: 'HP 255 G10 vs Acer Aspire Go 15' },
+      { href: '/guias/notebook-ryzen-5-o-ryzen-7', texto: 'Ryzen 5 o Ryzen 7' },
       { href: '/guias/que-notebook-gamer-comprar', texto: 'Qué notebook gamer comprar' },
       { href: '/comparador/notebooks', texto: 'Comparador de notebooks' },
     ],
@@ -852,6 +854,7 @@ export const GUIAS_TECNO: Guia[] = [
     enlaces: [
       { href: '/precio-hoy/smart-tv-43-pulgadas', texto: 'Precio de un smart TV de 43" hoy' },
       { href: '/precio-hoy/smart-tv-50-pulgadas', texto: 'Precio de un smart TV de 50" hoy' },
+      { href: '/guias/smart-tv-50-pulgadas-cual-comprar', texto: 'Smart TV de 50 pulgadas: cuál comprar' },
       { href: '/precio-hoy/smart-tv-55-pulgadas', texto: 'Precio de un smart TV de 55" hoy' },
       { href: '/precio-hoy/smart-tv-65-pulgadas', texto: 'Precio de un smart TV de 65" hoy' },
       { href: '/mejor/smart-tv-hasta-800-mil', texto: 'Mejor smart TV hasta $800 mil' },
@@ -924,6 +927,312 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/mejor/smart-tv-hasta-600-mil', texto: 'Mejor smart TV hasta $600 mil' },
       { href: '/precio-hoy/smart-tv-43-pulgadas', texto: 'Precio de un smart TV de 43" hoy' },
       { href: '/comparador/smart-tv', texto: 'Comparador de smart TV' },
+    ],
+  },
+  // ── Tanda 23/10: auriculares, smart TV de 50" y Ryzen 5 o 7 ──────────────────
+  {
+    slug: 'smart-tv-50-pulgadas-cual-comprar',
+    titulo: 'Smart TV de 50 pulgadas: cuál comprar y qué mirar en 2026',
+    descripcion:
+      'Qué smart TV de 50 pulgadas comprar: 4K, sistema operativo, HDMI, distancia al sillón y medidas. Con los 50" de hoy en Mercado Libre y su precio más bajo.',
+    pregunta: '¿Qué smart TV de 50 pulgadas conviene comprar?',
+    respuestaCorta:
+      'Un TV de 50 pulgadas tiene que ser 4K: en esa medida el Full HD ya se nota. Después elegí el sistema operativo que te resulte cómodo (Google TV, Roku, Tizen de Samsung o webOS de LG), que tenga al menos 3 entradas HDMI si conectás consola o decodificador, y una marca con service en tu zona. Es el tamaño justo para una distancia de unos 2 metros entre el sillón y la pantalla.',
+    secciones: [
+      {
+        h: 'Por qué 50 pulgadas y para qué distancia',
+        p: [
+          'Es el tamaño más elegido para livings chicos y dormitorios grandes: queda bien a unos 2 metros del sillón (entre 1,9 y 2,5 m). Si te sentás a 3 metros o más, conviene saltar a 55 o 65 pulgadas.',
+          'Medidas aproximadas de la pantalla de 50": 111 cm de ancho y 62 cm de alto, más unos centímetros de marco. Con el pie, revisá en la ficha el ancho entre patas: muchos TV las llevan en los extremos y no entran en un mueble angosto.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          '4K UHD (3840 x 2160): obligatorio en 50". Casi todos los 50" que se venden hoy lo son, pero confirmalo en el título o la ficha.',
+          'Sistema operativo: Google TV y Roku tienen todas las apps argentinas (Netflix, Disney+, Prime, Flow, YouTube); Tizen (Samsung) y webOS (LG) también, con su propio menú. Elegí el que ya conocés.',
+          'HDR: casi todos los 4K lo anuncian, pero en los LED básicos se nota poco porque les falta brillo. Si querés que se note, mirá un QLED o un Mini LED.',
+          'Conexiones: 3 HDMI es lo cómodo (consola, decodificador y barra de sonido), wifi de 5 GHz y Bluetooth si vas a usar auriculares.',
+        ],
+      },
+      {
+        h: 'LED, QLED o Mini LED en 50"',
+        p: [
+          'En 50 pulgadas la mayoría de las ofertas son LED 4K: dan buena imagen para series, fútbol y streaming a un precio razonable.',
+          'QLED suma color y brillo, y Mini LED, contraste. Valen la diferencia si el living tiene mucha luz o si vas a jugar con consola; para ver la tele de noche, un buen LED alcanza.',
+        ],
+      },
+    ],
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
+    equipos: {
+      comparador: 'smart-tv',
+      titulo: 'Smart TV 4K de 50 pulgadas, con el precio de hoy',
+      incluye: /\b50\b/,
+      minimos: { pulgadas: 50, resolucion: 3 },
+    },
+    cta: { href: '/comparador/smart-tv', titulo: 'Filtrá smart TV por tamaño, 4K y panel', boton: 'Abrir el comparador de smart TV' },
+    faq: [
+      {
+        q: '¿A qué distancia se ve bien un TV de 50 pulgadas?',
+        a: 'A unos 2 metros (entre 1,9 y 2,5 m). Más lejos conviene 55 o 65 pulgadas; más cerca, 43.',
+      },
+      {
+        q: '¿Cuánto mide un TV de 50 pulgadas?',
+        a: 'La pantalla mide unos 111 cm de ancho por 62 cm de alto. Sumale el marco y, si va apoyado, el ancho entre las patas que figura en la ficha.',
+      },
+      {
+        q: '¿Conviene 4K en 50 pulgadas?',
+        a: 'Sí. En 50" el Full HD ya se ve menos nítido, y casi todos los 50" que se venden hoy son 4K.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejor/smart-tv-hasta-800-mil', texto: 'Mejor smart TV hasta $800 mil' },
+      { href: '/guias/de-cuantas-pulgadas-comprar-el-smart-tv', texto: 'De cuántas pulgadas comprar el TV' },
+      { href: '/guias/google-tv-roku-tizen-o-webos-cual-conviene', texto: 'Google TV, Roku, Tizen o webOS' },
+      { href: '/precio-hoy/smart-tv-50-pulgadas', texto: 'Precio de un smart TV de 50" hoy' },
+      { href: '/comparador/smart-tv', texto: 'Comparador de smart TV' },
+    ],
+  },
+  {
+    slug: 'notebook-ryzen-5-o-ryzen-7',
+    titulo: 'Notebook con Ryzen 5 o Ryzen 7: cuál conviene y cuándo',
+    descripcion:
+      'Ryzen 5 o Ryzen 7 en una notebook: núcleos, qué significa cada número del modelo y para qué uso conviene cada uno. Con las de hoy y su precio más bajo.',
+    pregunta: '¿Conviene una notebook con Ryzen 5 o con Ryzen 7?',
+    respuestaCorta:
+      'Para estudiar, trabajar con Office, navegar y videollamadas, un Ryzen 5 alcanza y sobra. El Ryzen 7 vale la diferencia si programás, editás video, usás programas de ingeniería o querés que la notebook dure muchos años. Pero el número solo no alcanza: un Ryzen 7 de una generación nueva le gana a uno viejo, y algunos Ryzen 5 (como el 7520U) tienen 4 núcleos y la RAM soldada. Mirá el modelo completo y que tenga 16 GB de RAM.',
+    secciones: [
+      {
+        h: 'Qué cambia entre Ryzen 5 y Ryzen 7',
+        p: [
+          'Dentro de una misma generación, el Ryzen 7 trae más núcleos o más frecuencia que el Ryzen 5. Por ejemplo, el Ryzen 7 7730U tiene 8 núcleos y 16 hilos; el Ryzen 5 7530U, 6 núcleos y 12 hilos.',
+          'Más núcleos se notan en tareas pesadas que reparten el trabajo: compilar código, exportar video, máquinas virtuales, render. En el uso de todos los días (navegador, Word, Meet) la diferencia casi no se siente.',
+        ],
+      },
+      {
+        h: 'Cómo leer el modelo (7520U, 7730U, 7735U)',
+        p: [
+          'En los Ryzen para notebook de la serie 7000, el tercer dígito indica la arquitectura: 2 es Zen 2 (la más vieja), 3 es Zen 3 y 4 es Zen 4. Por eso un Ryzen 5 7520U (Zen 2, 4 núcleos) rinde bastante menos que un Ryzen 5 7530U (Zen 3, 6 núcleos), aunque los dos digan "Ryzen 5 7000".',
+          'La letra final dice para qué está pensado: U es de bajo consumo (más batería, notebooks finas), H o HS es de alto rendimiento (notebooks gamer o para edición, con más calor y menos batería).',
+          'Los Ryzen 7 7735U y 7730U son de 8 núcleos; el 7735U es una versión más nueva (Zen 3+) con gráficos integrados más potentes. El Ryzen 7 5825U también tiene 8 núcleos, de la generación anterior.',
+          'Si la publicación dice solo "Ryzen 5" o "Ryzen 7" sin el modelo, pedilo en las preguntas antes de comprar.',
+        ],
+      },
+      {
+        h: 'Lo que pesa tanto como el procesador',
+        p: [
+          'RAM: 16 GB es lo recomendable en 2026; con 8 GB, un Ryzen 7 se ahoga igual con muchas pestañas abiertas. Fijate si la RAM es ampliable: en varias notebooks con Ryzen 5 7520U viene soldada y no se puede agregar.',
+          'Disco SSD de 512 GB y pantalla Full HD (1920 x 1080). Una pantalla de 1366 x 768 arruina cualquier procesador.',
+          'Si querés jugar en serio, ni el Ryzen 5 ni el Ryzen 7 de la serie U alcanzan solos: hace falta una placa de video dedicada (mirá la guía de notebook gamer).',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    equipos: {
+      comparador: 'notebooks',
+      titulo: 'Notebooks con Ryzen 5 y Ryzen 7, con el precio de hoy',
+      incluye: /\bryzen [57]\b/,
+      max: 8,
+    },
+    cta: { href: '/comparador/notebooks', titulo: 'Filtrá notebooks por procesador, RAM y disco', boton: 'Abrir el comparador de notebooks' },
+    faq: [
+      {
+        q: '¿Ryzen 5 alcanza para la facultad?',
+        a: 'Sí, para la mayoría de las carreras. Para ingeniería, sistemas o arquitectura conviene un Ryzen 5 de 6 núcleos (como el 7530U) o un Ryzen 7, con 16 GB de RAM.',
+      },
+      {
+        q: '¿Qué es mejor, Ryzen 7 7730U o Ryzen 5 7520U?',
+        a: 'El Ryzen 7 7730U, con mucha diferencia: tiene 8 núcleos y arquitectura Zen 3, contra 4 núcleos y Zen 2 del Ryzen 5 7520U.',
+      },
+      {
+        q: '¿Ryzen 7 sirve para jugar?',
+        a: 'Los Ryzen de la serie U tienen gráficos integrados que alcanzan para juegos livianos. Para juegos actuales hace falta una notebook con placa de video dedicada.',
+      },
+    ],
+    enlaces: [
+      { href: '/vs/hp-255-g10-vs-acer-aspire-go-15', texto: 'HP 255 G10 vs Acer Aspire Go 15' },
+      { href: '/vs/asus-vivobook-go-15-vs-lenovo-ideapad-slim-3', texto: 'Vivobook Go 15 vs IdeaPad Slim 3' },
+      { href: '/mejor/notebook-hasta-1-5-millones', texto: 'Mejor notebook hasta $1,5 millones' },
+      { href: '/guias/notebook-para-la-facultad', texto: 'Notebook para la facultad' },
+      { href: '/guias/que-notebook-comprar-para-programar', texto: 'Notebook para programar' },
+      { href: '/guias/que-notebook-gamer-comprar', texto: 'Qué notebook gamer comprar' },
+      { href: '/comparador/notebooks', texto: 'Comparador de notebooks' },
+    ],
+  },
+  {
+    slug: 'auriculares-con-cancelacion-de-ruido-vale-la-pena',
+    titulo: 'Auriculares con cancelación de ruido: ¿vale la pena el ANC?',
+    descripcion:
+      'Qué hace la cancelación activa de ruido (ANC), cuándo vale lo que cuesta, cuánta batería gasta y qué mirar: in-ear o vincha. Con auriculares en oferta hoy.',
+    pregunta: '¿Vale la pena comprar auriculares con cancelación de ruido?',
+    respuestaCorta:
+      'Vale la pena si viajás en colectivo, subte, tren o avión, o si trabajás o estudiás con ruido de fondo: la cancelación activa (ANC) borra muy bien los ruidos graves y constantes, como un motor o el aire acondicionado, y te deja escuchar a menos volumen. Si los vas a usar en casa en silencio o para correr por la calle, no hace falta pagarla. Tené en cuenta que el ANC gasta batería y que con voces y ruidos repentinos funciona peor.',
+    secciones: [
+      {
+        h: 'Qué hace (y qué no) la cancelación de ruido',
+        p: [
+          'Los auriculares con ANC tienen micrófonos que escuchan el ruido de afuera y generan una onda opuesta que lo resta. Los de ANC híbrido usan micrófonos afuera y adentro del auricular, y suelen cancelar mejor.',
+          'Funciona muy bien con ruidos graves y parejos: el motor del colectivo, la turbina del avión, un ventilador. Con voces, bocinas o golpes funciona bastante menos: no esperes silencio total.',
+          'La ventaja que menos se dice: como el ruido baja, escuchás la música a menos volumen. A la larga, eso cuida los oídos.',
+        ],
+      },
+      {
+        h: 'In-ear o vincha con ANC',
+        p: [
+          'Los de vincha over-ear (que envuelven la oreja) suman el aislamiento físico de las almohadillas al ANC: son los que mejor cancelan y los más cómodos para un viaje largo.',
+          'Los in-ear con ANC son más chicos y prácticos para el día a día. Cancelan bien si la goma del tamaño correcto sella el oído: probá los distintos tamaños que vienen en la caja.',
+        ],
+      },
+      {
+        h: 'Batería, modo ambiente y qué mirar',
+        p: [
+          'El ANC gasta batería: la autonomía con la cancelación prendida es menor que la que se anuncia con la cancelación apagada. Por ejemplo, Anker indica para el Soundcore Q20i 40 horas con ANC y 60 horas sin ANC.',
+          'El modo ambiente (o transparencia) hace lo contrario: deja pasar el sonido de afuera para escuchar un anuncio o hablar sin sacarte los auriculares. Es muy útil en la calle.',
+          'Desconfiá de los títulos que prometen "cancelación de ruido" en auriculares muy baratos sin marca: muchas veces es solo reducción de ruido en el micrófono para las llamadas (ENC), que no cancela lo que escuchás vos.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-auriculares',
+    cta: { href: '/mejores/mejores-auriculares', titulo: 'Auriculares en oferta hoy, comparados con su mínimo', boton: 'Ver la comparativa de auriculares 🎧' },
+    faq: [
+      {
+        q: '¿La cancelación de ruido hace mal a los oídos?',
+        a: 'No. Algunas personas sienten una leve sensación de presión al principio. Al bajar el ruido de afuera, en general se escucha a menos volumen, lo que es mejor para los oídos.',
+      },
+      {
+        q: '¿Qué diferencia hay entre ANC y ENC?',
+        a: 'ANC cancela el ruido que escuchás vos. ENC solo limpia el ruido del micrófono para que te escuchen mejor en una llamada. Muchos auriculares baratos anuncian ENC como si fuera cancelación.',
+      },
+      {
+        q: '¿Sirven para dormir o para estudiar?',
+        a: 'Para estudiar o trabajar con ruido de fondo, sí. Para dormir son incómodos los de vincha; hay in-ear chicos, pero mirá que no molesten de costado.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-auriculares', texto: 'Mejores auriculares en oferta' },
+      { href: '/guias/sony-wh-ch520-o-anker-soundcore-q20i', texto: 'Sony WH-CH520 o Anker Q20i' },
+      { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Auriculares open ear o in-ear' },
+      { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
+    ],
+  },
+  {
+    slug: 'sony-wh-ch520-o-anker-soundcore-q20i',
+    titulo: 'Sony WH-CH520 o Anker Soundcore Q20i: cuál conviene',
+    descripcion:
+      'Sony WH-CH520 vs Anker Soundcore Q20i: cancelación de ruido, batería, comodidad y sonido de dos auriculares de vincha muy buscados. Con precios de hoy.',
+    pregunta: '¿Qué conviene más, el Sony WH-CH520 o el Anker Soundcore Q20i?',
+    respuestaCorta:
+      'Si viajás en transporte o querés aislarte, el Anker Soundcore Q20i: es over-ear (envuelve la oreja) y tiene cancelación activa de ruido híbrida, con graves marcados. Si no necesitás cancelación y preferís algo más liviano, con un sonido más equilibrado y hasta 50 horas de batería, el Sony WH-CH520, que es on-ear (apoya sobre la oreja). Los dos se conectan a dos dispositivos a la vez y tienen app con ecualizador.',
+    secciones: [
+      {
+        h: 'La diferencia que más pesa: la cancelación de ruido',
+        p: [
+          'El Anker Soundcore Q20i tiene cancelación activa de ruido (ANC) híbrida. El Sony WH-CH520 no tiene ANC: solo el aislamiento de las almohadillas, que al ser on-ear es poco.',
+          'Si lo vas a usar en el colectivo, el subte o una oficina con ruido, esa sola diferencia define la compra a favor del Q20i.',
+        ],
+      },
+      {
+        h: 'Formato y comodidad',
+        p: [
+          'El Sony WH-CH520 es on-ear: las almohadillas apoyan sobre la oreja. Es liviano y sus copas giran para quedar planas y guardarlo, pero en sesiones muy largas puede cansar la oreja.',
+          'El Anker Q20i es over-ear: las almohadillas rodean la oreja. Suele ser más cómodo para usar muchas horas seguidas y aísla más, aunque abriga más en verano.',
+        ],
+      },
+      {
+        h: 'Batería, conexión y sonido',
+        p: [
+          'Sony WH-CH520: hasta 50 horas de batería según Sony, y con 3 minutos de carga rápida suma alrededor de 90 minutos de música. Bluetooth 5.2 con conexión a dos dispositivos a la vez (multipunto) y app Sony con ecualizador.',
+          'Anker Soundcore Q20i: hasta 40 horas con la cancelación prendida y 60 horas con la cancelación apagada, según Anker; 5 minutos de carga dan unas 4 horas. Se conecta a dos dispositivos, trae app Soundcore con ecualizador y modo BassUp para reforzar graves, y cable de 3,5 mm para usarlo con cable (ahí es compatible con audio Hi-Res).',
+          'Sonido: el Q20i tiene graves bien marcados; el WH-CH520, un sonido más parejo, donde las voces se escuchan más claras. Con el ecualizador de cada app se puede acercar uno al otro.',
+        ],
+      },
+      {
+        h: 'Cuál comprar',
+        p: [
+          'Para viajar, estudiar en un lugar con ruido o si te gustan los graves: Anker Soundcore Q20i.',
+          'Para usar en casa o en la oficina tranquila, si querés lo más liviano y la batería más larga: Sony WH-CH520.',
+          'Comprá en la tienda oficial o en un vendedor con reputación verde: de los dos circulan copias. La tabla de abajo muestra los auriculares en oferta hoy con el precio más bajo que registramos.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-auriculares',
+    cta: { href: '/mejores/mejores-auriculares', titulo: 'Auriculares en oferta hoy, comparados con su mínimo', boton: 'Ver la comparativa de auriculares 🎧' },
+    faq: [
+      {
+        q: '¿El Sony WH-CH520 tiene cancelación de ruido?',
+        a: 'No. Tiene buena batería, multipunto y app con ecualizador, pero no cancelación activa de ruido. Dentro de Sony, la cancelación aparece en modelos más caros.',
+      },
+      {
+        q: '¿Cuánto dura la batería del Anker Soundcore Q20i?',
+        a: 'Según Anker, hasta 40 horas con la cancelación de ruido prendida y hasta 60 horas con la cancelación apagada.',
+      },
+      {
+        q: '¿Cuál es más cómodo?',
+        a: 'Para muchas horas, en general el Q20i, porque es over-ear y no aprieta la oreja. El WH-CH520 es más liviano pero apoya sobre la oreja.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-auriculares', texto: 'Mejores auriculares en oferta' },
+      { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: '¿Vale la pena la cancelación de ruido?' },
+      { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Auriculares open ear o in-ear' },
+      { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
+    ],
+  },
+  {
+    slug: 'auriculares-open-ear-o-in-ear',
+    titulo: 'Auriculares open ear o in-ear: cuál conviene para cada uso',
+    descripcion:
+      'Auriculares open ear (de gancho o clip) o in-ear: seguridad en la calle, sonido, comodidad y para qué deporte sirve cada uno. Con ofertas de hoy.',
+    pregunta: '¿Conviene comprar auriculares open ear o in-ear?',
+    respuestaCorta:
+      'Si corrés, andás en bici o caminás por la calle y necesitás escuchar el tránsito, conviene un open ear: queda apoyado afuera del oído y no lo tapa. Si querés el mejor sonido, más graves y aislarte (en el colectivo, el gimnasio o la oficina), conviene un in-ear, que sella el oído y puede tener cancelación de ruido. El open ear se escucha peor con mucho ruido alrededor y el sonido se escapa a volumen alto.',
+    secciones: [
+      {
+        h: 'Cómo es cada uno',
+        p: [
+          'In-ear: la parte con goma entra en el canal del oído y lo sella. Es el formato de la mayoría de los auriculares con estuche (tipo AirPods Pro, Galaxy Buds o Redmi Buds).',
+          'Open ear: el parlantito queda apoyado afuera del oído, sujeto con un gancho detrás de la oreja o con un clip en el borde de la oreja. El oído queda libre. Algunos ejemplos que se ven en las ofertas: Sony LinkBuds Clip y Anker Soundcore V20i.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene el open ear',
+        p: [
+          'Para correr o andar en bici por la calle: seguís escuchando autos, bocinas y a la gente, que es lo más seguro.',
+          'Si te molestan las gomas dentro del oído o te duelen los oídos después de un rato.',
+          'Para la oficina o la casa, si querés escuchar música o una llamada sin dejar de oír lo que pasa alrededor.',
+          'La contra: con ruido fuerte (un colectivo, una avenida) se escuchan poco, tienen menos graves y a volumen alto el que está al lado escucha tu música.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene el in-ear',
+        p: [
+          'Para el gimnasio, el transporte y la oficina con ruido: sella el oído, da más graves y, si tiene cancelación de ruido, te aísla.',
+          'Para llamadas en lugares ruidosos, los in-ear con varios micrófonos suelen andar mejor.',
+          'Para deporte, buscá resistencia al sudor y al agua (IPX4 o más) y probá las gomas de distintos tamaños para que no se caigan.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-auriculares',
+    cta: { href: '/mejores/mejores-auriculares', titulo: 'Auriculares en oferta hoy, comparados con su mínimo', boton: 'Ver la comparativa de auriculares 🎧' },
+    faq: [
+      {
+        q: '¿Los auriculares open ear se escuchan bien?',
+        a: 'Bien en lugares tranquilos o con ruido moderado. Tienen menos graves que un in-ear y, con mucho ruido alrededor, cuesta escucharlos.',
+      },
+      {
+        q: '¿Son seguros los open ear para correr en la calle?',
+        a: 'Son la opción más segura porque dejan el oído libre y seguís escuchando el tránsito. Igual, mantené el volumen moderado.',
+      },
+      {
+        q: '¿Los open ear tienen cancelación de ruido?',
+        a: 'No: al dejar el oído libre no pueden cancelar el ruido de afuera. Si querés cancelación, necesitás un in-ear o una vincha con ANC.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-auriculares', texto: 'Mejores auriculares en oferta' },
+      { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: '¿Vale la pena la cancelación de ruido?' },
+      { href: '/guias/sony-wh-ch520-o-anker-soundcore-q20i', texto: 'Sony WH-CH520 o Anker Q20i' },
+      { href: '/guias/que-auriculares-comprar', texto: 'Qué auriculares comprar' },
     ],
   },
   {

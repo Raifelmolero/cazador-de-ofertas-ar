@@ -60,6 +60,9 @@ export interface Comparador {
   parse: (t: string) => Pick<Equipo, 'marca' | 'specs' | 'orden'>
 }
 
+/** Usados o reacondicionados: las páginas de compra (/vs, /mejor, guías) recomiendan solo equipos nuevos. */
+export const USADOS = /\b(reacondicionad[oa]s?|usad[oa]s?|refurbished|open box|exhibicion|outlet)\b/
+
 const gb = (n: number) => (n >= 1024 ? `${n / 1024} TB` : `${n} GB`)
 /** Par "RAM+memoria" del título ("4+64gb", "12+512 gb", "128/4gb"): [ram, memoria]. */
 function parGb(t: string): [number, number] | null {

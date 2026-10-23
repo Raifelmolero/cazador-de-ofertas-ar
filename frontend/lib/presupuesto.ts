@@ -5,7 +5,8 @@
 // precio, según lo que dice su título (memoria, RAM, 5G, procesador, disco,
 // pulgadas, resolución, panel).
 // Si el título no lo dice, no suma: nunca se adivina una spec.
-import { equiposDe, getComparador, type Equipo } from '@/lib/comparador'
+import { normalizar } from '@/lib/categorias'
+import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
 
 export interface Presupuesto {
   slug: string
@@ -14,9 +15,12 @@ export interface Presupuesto {
   texto: string // "300 mil"
 }
 
-const CELULARES = [200_000, 300_000, 400_000, 600_000, 1_000_000, 2_000_000, 2_500_000]
+// 350 mil (celulares) y 500 mil (TV): tanda 23/10. Se probaron también 250, 500 y 800 mil en
+// celulares y 700/900 mil en notebooks, pero repetían los 3 primeros del escalón vecino
+// (misma página con otro monto) o metían equipos dudosos: no se suman.
+const CELULARES = [200_000, 300_000, 350_000, 400_000, 600_000, 1_000_000, 2_000_000, 2_500_000]
 const NOTEBOOKS = [600_000, 800_000, 1_000_000, 1_200_000, 1_500_000, 2_000_000, 2_500_000, 3_000_000]
-const SMART_TV = [400_000, 600_000, 700_000, 800_000, 1_000_000, 1_200_000, 1_500_000]
+const SMART_TV = [400_000, 500_000, 600_000, 700_000, 800_000, 1_000_000, 1_200_000, 1_500_000]
 
 /** 300_000 → "300 mil", 1_000_000 → "1 millón", 1_500_000 → "1,5 millones". */
 function texto(n: number): string {
@@ -83,7 +87,8 @@ function equipos(slug: Presupuesto['comparador']): Equipo[] {
 
 export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
   // Solo lo que entra en el presupuesto y del que sabemos algo más que el precio.
-  const xs = equipos(p.comparador).filter(e => e.precio <= p.hasta && puntaje(p.comparador, e) > 0)
+  // Solo equipos nuevos: nada de usados ni reacondicionados.
+  const xs = equipos(p.comparador).filter(e => e.precio <= p.hasta && puntaje(p.comparador, e) > 0 && !USADOS.test(normalizar(e.titulo)))
   if (xs.length < MIN_EQUIPOS) return null
   const orden = [...xs].sort((a, b) => puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
   const marcas = orden.filter(conocida)

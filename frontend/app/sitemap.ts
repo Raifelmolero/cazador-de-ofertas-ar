@@ -12,6 +12,7 @@ import { PRECIOS_HOY } from '@/lib/preciohoy'
 import { getSeguidosPrincipales } from '@/lib/seguimiento'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
+import { guiaIndexable } from '@/lib/guias-equipos'
 
 // Sin www: Vercel redirige www → calculadoraml.com.ar (307), y un sitemap o
 // canónico que apunta a una redirección confunde a Google.
@@ -114,7 +115,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     { url: `${DEALS_URL}/guias`, lastModified, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/mejores`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
-    ...GUIAS.map(g => ({
+    // Las guías con equipos que hoy no llegan al mínimo quedan noindex: tampoco se anuncian.
+    ...GUIAS.filter(guiaIndexable).map(g => ({
       url: `${DEALS_URL}/guias/${g.slug}`,
       lastModified: textoModificado,
       changeFrequency: 'monthly' as const,

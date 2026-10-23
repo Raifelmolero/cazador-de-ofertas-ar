@@ -11,6 +11,9 @@ import { ctaDeGuia } from '@/lib/ctaguias'
 import CtaCalculadora from '@/components/CtaCalculadora'
 import CtaFijoML from '@/components/CtaFijoML'
 import { elegirDestacado } from '@/components/DestacadoML'
+import { equiposDeGuia, guiaIndexable } from '@/lib/guias-equipos'
+import { duelosConPrecio } from '@/lib/vs'
+import { presupuestosConEquipos } from '@/lib/presupuesto'
 
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
@@ -25,6 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: tituloSeo(g.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n]),
     description: descripcionSeo(g.descripcion),
     alternates: { canonical: url },
+    // Guía con equipos que hoy no llega al mínimo: noindex (página flaca), igual que las comparativas.
+    ...(guiaIndexable(g) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: g.titulo,
       description: descripcionSeo(g.descripcion),
@@ -41,16 +46,27 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   if (!g) notFound()
   const url = `${DEALS_URL}/guias/${g.slug}`
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
+  // Guías de tecnología: los equipos del comparador que cumplen su criterio (precio de hoy y mínimo registrado).
+  const equipos = equiposDeGuia(g)
   // Sin comparativa propia: las ofertas del día en su precio más bajo registrado
   // (58 de 84 guías no mostraban ningún producto). Guías de vendedores, no.
   const deVendedor = /vend|comisi|tiendanube|factur|monotrib/.test(g.slug)
-  const ofertas = comp
+  const ofertas = equipos.length > 0
+    ? []
+    : comp
     ? productosDe(comp).slice(0, 4)
     : deVendedor
     ? []
     : getOfertas().filter(p => p.minimo_historico).slice(0, 4)
   // Barra fija de compra en celular: solo si la guía muestra ofertas reales del día.
   const destacado = ofertas.length > 0 ? elegirDestacado(ofertas) : undefined
+  const equipoFijo = equipos[0]
+  // Los /vs y /mejor solo existen mientras tienen precio: un link a uno que hoy no está sería un 404.
+  const vivos = new Set([
+    ...duelosConPrecio().map(x => `/vs/${x.duelo.slug}`),
+    ...presupuestosConEquipos().map(x => `/mejor/${x.p.slug}`),
+  ])
+  const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
   const cta = ctaDeGuia(g)
   // La caja del medio va después de la mitad de las secciones (en guías cortas, tras la primera).
@@ -90,6 +106,16 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         ...(g.faq ?? []).map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
       ],
     },
+    ...(equipos.length > 0
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: g.equipos!.titulo,
+            itemListElement: equipos.map((e, i) => ({ '@type': 'ListItem', position: i + 1, name: e.titulo, url: e.url })),
+          },
+        ]
+      : []),
   ]
 
   return (
@@ -151,6 +177,50 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+
+        {equipos.length > 0 && (
+          <section className="mb-8" aria-label={g.equipos!.titulo}>
+            <p className="text-xs font-bold tracking-widest text-yellow-400 mb-1">🔥 PRECIOS DE HOY EN MERCADO LIBRE</p>
+            <h2 className="font-display text-lg sm:text-xl font-black mb-3">{g.equipos!.titulo}</h2>
+            <ul className="space-y-2">
+              {equipos.map(e => (
+                <li key={e.id} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+                  {e.img && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={e.img} alt="" loading="lazy" className="h-16 w-16 shrink-0 rounded-lg bg-white object-contain p-1" />
+                  )}
+                  <div className="min-w-0 flex-1 text-sm">
+                    <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="font-semibold text-zinc-100 hover:text-yellow-400 line-clamp-2">
+                      {e.titulo}
+                    </a>
+                    {Object.values(e.specs).length > 0 && <p className="text-xs text-zinc-400">{Object.values(e.specs).join(' · ')}</p>}
+                    <p>
+                      <strong className="text-yellow-400">${e.precio.toLocaleString('es-AR')}</strong>
+                      {e.descuento ? <span className="ml-1 text-emerald-400">{e.descuento}% OFF</span> : null}
+                    </p>
+                    {e.minimo ? (
+                      <p className="text-xs text-zinc-500">
+                        Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}
+                        {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
+                      </p>
+                    ) : null}
+                  </div>
+                  <a
+                    href={e.url}
+                    target="_blank"
+                    rel="sponsored nofollow noopener"
+                    className="self-center shrink-0 rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black hover:bg-yellow-300"
+                  >
+                    Ver en ML ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-zinc-500">
+              Links de afiliado de Mercado Libre: no cambian tu precio. Los precios cambian todos los días; confirmalo en ML antes de comprar.
+            </p>
           </section>
         )}
 
@@ -225,9 +295,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </section>
         )}
 
-        {g.enlaces && g.enlaces.length > 0 && (
+        {enlaces.length > 0 && (
           <nav className="mb-8 flex flex-wrap gap-2">
-            {g.enlaces.map(e => (
+            {enlaces.map(e => (
               <a key={e.href} href={e.href} className="text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
                 {e.texto}
               </a>
@@ -327,7 +397,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       {/* Celular: el botón de compra siempre a mano mientras lee */}
       {/* Barra fija en celular: producto principal directo a ML si la guía tiene
           ofertas del día; si no, botón a las ofertas de su categoría. Una sola barra. */}
-      {!destacado && (
+      {!destacado && !equipoFijo && (
         <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3">
           <a href={ctaHref} className="block rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black">
             {ctaBoton}
@@ -336,6 +406,14 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       )}
       <div className="sm:hidden h-20" aria-hidden="true" />
       <Footer brand="ofertas" />
+      {!destacado && equipoFijo && (
+        <CtaFijoML
+          titulo={equipoFijo.titulo}
+          precio={'$' + Math.round(equipoFijo.precio).toLocaleString('es-AR')}
+          url={equipoFijo.url}
+          seccion="sticky_guia"
+        />
+      )}
       {destacado && (
         <CtaFijoML
           titulo={destacado.titulo}

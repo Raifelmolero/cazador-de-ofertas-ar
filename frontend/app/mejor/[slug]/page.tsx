@@ -54,7 +54,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const corto = r.titulo.split(' ').slice(0, 5).join(' ')
   const desc = `¿Qué ${nombre(x)} comprar con hasta $${x.p.texto}? Comparamos ${x.equipos.length} ${plural(x)} de Mercado Libre. Hoy recomendamos: ${corto}, a ${pesos(r.precio)}.`
   return {
-    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s]),
+    // Con el año y «ranking»: así se busca («mejor celular hasta 300 mil 2026»). El sitio se arma todos los días.
+    title: tituloSeo(`Mejor ${nombre(x)} hasta $${x.p.texto} (${new Date().getFullYear()})`, [s => `${s}: ranking de hoy`, s => s]),
     description: descripcionSeo(desc),
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },

@@ -15,6 +15,8 @@ import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import SinOfertas from '@/components/SinOfertas'
 import { enlacesAfines } from '@/lib/afines'
+import { presupuestosConEquipos } from '@/lib/presupuesto'
+import { getComparador } from '@/lib/comparador'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -80,6 +82,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     .slice(0, productos.length < 3 ? 10 : 6) // tabla flaca: más modelos con historial para que no quede vacía
 
   const contenido = CONTENIDO[c.slug]
+  // Celulares, notebooks y smart TV tienen páginas «mejor … hasta $X»: las enlazamos para que Google las encuentre.
+  const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
+  const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined
   const destacado = elegirDestacado(productos)
 
   const jsonLd = [
@@ -429,6 +434,26 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                 </a>
               ))}
             </div>
+          </nav>
+        )}
+
+        {porPresupuesto.length > 0 && (
+          <nav className="text-sm mb-8" data-seccion="mejores-presupuesto">
+            <p className="font-bold text-zinc-300 mb-2">¿Tenés un presupuesto? Te decimos cuál conviene hoy</p>
+            <ul className="flex flex-wrap gap-2">
+              {porPresupuesto.map(x => (
+                <li key={x.p.slug}>
+                  <a href={`/mejor/${x.p.slug}`} className="inline-block border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                    Hasta ${x.p.texto}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href={`/comparador/${c.categoria}`} className="inline-block border border-yellow-400/60 hover:border-yellow-400 text-yellow-400 rounded-xl px-4 py-2">
+                  Comparar todos{comparador ? ` los ${comparador.plural}` : ''}
+                </a>
+              </li>
+            </ul>
           </nav>
         )}
 

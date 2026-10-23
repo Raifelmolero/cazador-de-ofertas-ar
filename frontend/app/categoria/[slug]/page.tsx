@@ -16,7 +16,7 @@ import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { enlacesAfines } from '@/lib/afines'
 import SinOfertas from '@/components/SinOfertas'
 import { seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
-import { busquedaML } from '@/lib/afiliado'
+import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
@@ -161,7 +161,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
                   itemCondition: 'https://schema.org/NewCondition',
                   priceValidUntil,
                   validFrom: scrapedAt,
-                  url: o.url_producto,
+                  url: conEtiqueta(o.url_producto, ETIQUETA_JSONLD),
                 },
               },
             })),

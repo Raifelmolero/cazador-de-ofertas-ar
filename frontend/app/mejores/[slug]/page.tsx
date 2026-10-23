@@ -1,4 +1,4 @@
-import { busquedaML } from '@/lib/afiliado'
+import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
@@ -159,7 +159,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   priceCurrency: 'ARS',
                   availability: 'https://schema.org/InStock',
                   itemCondition: 'https://schema.org/NewCondition',
-                  url: p.url_producto,
+                  url: conEtiqueta(p.url_producto, ETIQUETA_JSONLD),
                 },
               },
             })),

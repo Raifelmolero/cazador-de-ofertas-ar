@@ -9,7 +9,7 @@ import { categoriaIndexable } from '@/lib/categoria-indexable'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
-import { PRECIOS_HOY } from '@/lib/preciohoy'
+import { preciosHoyVisibles } from '@/lib/preciohoy'
 import { getSeguidosPrincipales } from '@/lib/seguimiento'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
@@ -106,7 +106,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${DEALS_URL}/dia-de-la-madre`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/regalos-navidad`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/precio-hoy`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
-    ...PRECIOS_HOY.map(p => ({ url: `${DEALS_URL}/precio-hoy/${p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
+    ...preciosHoyVisibles().map(p => ({ url: `${DEALS_URL}/precio-hoy/${p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
     { url: `${DEALS_URL}/privacidad`, changeFrequency: 'yearly' as const, priority: 0.1 },
     { url: `${DEALS_URL}/terminos`, changeFrequency: 'yearly' as const, priority: 0.1 },

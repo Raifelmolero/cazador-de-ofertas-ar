@@ -11,7 +11,7 @@ import { CALC_URL } from '@/lib/vender'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { ofertasDeCategoria } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
-import { PRECIOS_HOY, seguidosDe } from '@/lib/preciohoy'
+import { preciosHoyVisibles, seguidosDe } from '@/lib/preciohoy'
 import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import {
   categoriaDeSeguido,
@@ -107,7 +107,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const alternativas = !enOferta && cat ? ofertasDeCategoria(cat).filter(o => o.id_ml !== s.id).slice(0, 4) : []
   const comparativas = cat ? COMPARATIVAS.filter(c => c.categoria === cat.slug).slice(0, 3) : []
   const nicho = cat ? NICHOS.find(n => n.categorias.includes(cat.slug)) : undefined
-  const preciosHoy = PRECIOS_HOY.filter(
+  const preciosHoy = preciosHoyVisibles().filter(
     p => seguidosDe(p).some(x => x.id === s.id) || (cat && p.categoria === cat.slug),
   ).slice(0, 3)
   // Ficha de ganancia para vendedores en calculadoraml (otro dominio, mismo deploy)

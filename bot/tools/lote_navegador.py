@@ -45,7 +45,7 @@ EXTRACTOR_JS = r"""(function(){const out=[];document.querySelectorAll('.poly-car
 
 # Clima frío (feedback de Raifel): nada de aires/verano; tampoco industrial ni repuestos.
 FUERA = re.compile(r"aire acondicionado|aire acond|\bsplit\b|ventilador|pileta|piscina|industrial|"
-                   r"gastron|exhibidor|comercial|neum[aá]tico|repuesto|cartucho", re.I)
+                   r"gastron|exhibidor|comercial|repuesto|cartucho", re.I)
 AIRE = re.compile(r"aire acond|aire port[aá]til|\bsplit\b", re.I)
 NO_ES_AIRE = re.compile(r"compresor|bomba de vac|mecha|mini aire|humidificador|repuesto|soporte", re.I)
 # Celulares de gama alta (OK de Raifel 20/10): casi nunca llegan a 20 % OFF y una

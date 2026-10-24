@@ -20,10 +20,29 @@ export interface PrecioHoy {
   busqueda: string // búsqueda en ML
   categoria?: string // /categoria/* relacionada
   consejo: string // qué mirar antes de comprar (criterio general, sin datos inventados)
+  /** Ofertas vigentes mínimas para publicarla (lista, sitemap, links). Debajo
+   *  de esto la página existe pero va noindex: sin datos sería contenido flojo. */
+  minOfertas?: number
 }
 
 const TV_EXCLUIR = ['soporte', 'control', 'funda', 'cable', 'antena', 'rack', 'mesa']
 export const CELU_EXCLUIR = ['funda', 'vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'case', 'lente', 'repuesto', 'modulo', 'pantalla', 'bateria', 'power', 'auricular', 'reloj', 'smartwatch', 'tablet', 'tab ', 'buds', 'watch', 'monitor', 'notebook', 'tv', 'pendrive', 'memoria', 'disco']
+
+// Neumáticos de auto por rodado (R14…R18): ticket alto y casi sin competencia.
+// La medida va en el título como 205/55r16, 195/55zr16 o "175 65 R14".
+const NEUMATICO = /^(neumatico|cubierta)s?\b/
+const NEUMATICO_EXCLUIR = ['moto', 'bici', 'camara', 'parche', 'inflador', 'compresor', 'cuatriciclo', 'tractor', 'carretilla']
+const NEUMATICO_MIN = 6
+const rodado = (r: number): PrecioHoy => ({
+  slug: `neumatico-rodado-${r}`,
+  nombre: `neumático rodado ${r}`,
+  patron: new RegExp(NEUMATICO.source + String.raw`.*\b\d{3} ?[/ ] ?\d{2} ?z?r ?${r}\b`),
+  excluir: NEUMATICO_EXCLUIR,
+  busqueda: `neumatico r${r}`,
+  categoria: 'vehiculos',
+  consejo: `Comprá la medida exacta que dice el costado de tu cubierta actual (por ejemplo 185/65 R${r}), con el mismo índice de carga y velocidad o mayor. Sumá al presupuesto la colocación, el balanceo y la alineación, y cambiá de a pares en el mismo eje.`,
+  minOfertas: NEUMATICO_MIN,
+})
 
 export const PRECIOS_HOY: PrecioHoy[] = [
   { slug: 'smart-tv-32-pulgadas', nombre: 'smart TV de 32 pulgadas', patron: /(tv|televisor).*\b32\b/, excluir: TV_EXCLUIR, busqueda: 'smart tv 32', categoria: 'smart-tv', consejo: 'En 32" alcanza con resolución HD; fijate que sea Smart (Google TV, Android TV o webOS) y que tenga al menos 2 HDMI.' },
@@ -46,6 +65,8 @@ export const PRECIOS_HOY: PrecioHoy[] = [
   { slug: 'celular', nombre: 'celular', patron: /^(celular|smartphone)\b|^(apple )?iphone \d|^(samsung|motorola|xiaomi|zte|tcl|nokia|honor|realme|oppo|infinix|tecno)\b.*\b\d+ ?gb\b/, excluir: CELU_EXCLUIR, busqueda: 'celular', categoria: 'celulares', consejo: 'Definí primero el presupuesto y la memoria (128 GB como mínimo). Para durar, conviene una marca con actualizaciones y service en Argentina.' },
   { slug: 'smartwatch', nombre: 'smartwatch', patron: /smartwatch|reloj inteligente|smart watch/, excluir: ['malla', 'correa', 'cargador', 'protector', 'vidrio', 'funda'], busqueda: 'smartwatch', consejo: 'Fijate que sea compatible con tu celular (Apple Watch solo funciona con iPhone) y cuánto dura la batería: varía de 1 día a 2 semanas.' },
   { slug: 'auriculares-bluetooth', nombre: 'auricular bluetooth', patron: /auricular.*(bluetooth|inalambric|\btws\b)|(bluetooth|inalambric).*auricular|airpods|earbuds/, excluir: ['estuche', 'funda', 'almohadilla', 'repuesto', 'cable'], busqueda: 'auriculares bluetooth', consejo: 'Cancelación de ruido activa (ANC) es lo que más se nota en el colectivo o la oficina. Mirá la batería con y sin el estuche.' },
+  { slug: 'neumaticos', nombre: 'neumático', patron: NEUMATICO, excluir: NEUMATICO_EXCLUIR, busqueda: 'neumaticos', categoria: 'vehiculos', consejo: 'La medida está en el costado de la cubierta (ej. 205/55 R16 91V): el último número es el rodado. Una marca conocida con fecha de fabricación reciente (los 4 dígitos DOT: semana y año) vale más que unos pesos de diferencia.', minOfertas: NEUMATICO_MIN },
+  ...[14, 15, 16, 17, 18].map(rodado),
   { slug: 'termotanque', nombre: 'termotanque', patron: /termotanque/, excluir: ['resistencia', 'termostato', 'anodo', 'repuesto'], busqueda: 'termotanque', categoria: 'termotanques', consejo: 'Elegí gas o eléctrico según tu instalación, y los litros según cuántas personas se bañan seguido.' },
 ]
 
@@ -69,6 +90,12 @@ export function ofertasDe(p: PrecioHoy): ProductWithMargins[] {
 export function seguidosDe(p: PrecioHoy): Seguido[] {
   return getSeguidosPrincipales().filter(s => coincide(p, s.titulo))
 }
+
+/** ¿Tiene ofertas suficientes para mostrarla y pedir que Google la indexe? */
+export const precioHoyVisible = (p: PrecioHoy) => !p.minOfertas || ofertasDe(p).length >= p.minOfertas
+
+/** Las que se listan en /precio-hoy, el sitemap y los links internos. */
+export const preciosHoyVisibles = () => PRECIOS_HOY.filter(precioHoyVisible)
 
 /** Mediana (más representativa que el promedio con pocos datos). */
 export function mediana(xs: number[]) {

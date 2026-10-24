@@ -27,7 +27,10 @@ function leer() {
   if (cache) return cache
   let raw: { items: Record<string, Omit<Seguido, 'id'>>; actualizado?: string }
   try {
-    raw = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'seguimiento.json'), 'utf8'))
+    // El bot escribe `matt_word=repo` en el JSON público; el sitio usa `web`.
+    raw = JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), 'data', 'seguimiento.json'), 'utf8').replaceAll('matt_word=repo', 'matt_word=web'),
+    )
   } catch {
     raw = { items: {} }
   }

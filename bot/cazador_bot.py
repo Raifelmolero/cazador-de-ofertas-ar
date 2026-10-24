@@ -632,6 +632,17 @@ def costo_fijo(precio: float) -> float:
 
 SITE_DATA_PATH = BASE_DIR.parent / "frontend" / "data" / "productos_rentables.json"
 
+# Los JSON de frontend/data son públicos (repo de GitHub): sus links salen con
+# `matt_word=repo` para que el panel de ML separe los clics que vengan de ahí.
+# El sitio los vuelve a `web` al leerlos (frontend/lib/productos.ts y
+# seguimiento.ts), así que lo que ve el visitante no cambia.
+ETIQUETA_REPO = "repo"
+
+
+def etiquetar_repo(texto: str) -> str:
+    return texto.replace("matt_word=web&", f"matt_word={ETIQUETA_REPO}&").replace(
+        "matt_word=web\"", f"matt_word={ETIQUETA_REPO}\"")
+
 # El bot lee las 20 páginas de /ofertas (~700 productos) para encontrar los de
 # ticket alto (aires, colchones, herramientas), que en las 3 primeras casi no
 # aparecen. A la web van TODOS los de categoría con peso (alimentan las
@@ -744,7 +755,7 @@ def update_seguimiento(deals: list[dict], history: dict, affiliate_id: str,
     data["actualizado"] = today
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+        f.write(etiquetar_repo(json.dumps(data, ensure_ascii=False, separators=(",", ":"))))
     return data
 
 
@@ -851,7 +862,7 @@ def write_site_data(deals: list[dict], affiliate_id: str,
     }
     SITE_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(SITE_DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=1)
+        f.write(etiquetar_repo(json.dumps(payload, ensure_ascii=False, indent=1)))
     print(f"[info] sitio: {len(items)} productos escritos en {SITE_DATA_PATH.name}")
 
 

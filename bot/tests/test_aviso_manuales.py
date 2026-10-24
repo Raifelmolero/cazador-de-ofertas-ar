@@ -21,12 +21,17 @@ def _archivo(fechas):
 
 class AvisoManuales(unittest.TestCase):
     def test_sin_aviso_si_sobran(self):
-        p = _archivo(["2026-10-19"] * 120)
+        p = _archivo(["2026-10-19"] * (cb.MANUAL_PISO + 20))
         self.assertIsNone(cb.aviso_reponer_manuales(p, date(2026, 10, 19)))
+
+    def test_piso_por_defecto_es_1000(self):
+        self.assertGreaterEqual(cb.MANUAL_PISO, 1000)
+        p = _archivo(["2026-10-19"] * 500)
+        self.assertIn("Piso de seguridad", cb.aviso_reponer_manuales(p, date(2026, 10, 19)))
 
     def test_aviso_si_vencen_en_2_dias(self):
         p = _archivo(["2026-10-08"] * 100 + ["2026-10-19"] * 30)
-        txt = cb.aviso_reponer_manuales(p, date(2026, 10, 21))
+        txt = cb.aviso_reponer_manuales(p, date(2026, 10, 21), minimo=100)
         self.assertIn("130 vigentes", txt)
         self.assertIn("quedan 30", txt)
 

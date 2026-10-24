@@ -273,6 +273,7 @@ def load_scraped_snapshot(path: Path | None = None, ahora: datetime | None = Non
 
 
 MANUAL_PATH = BASE_DIR / "state" / "ofertas_manuales.json"
+MANUAL_PISO = int(os.getenv("MANUAL_PISO", "1000"))  # por debajo: alerta (el 8/10 el sitio cayó de 1.500 a 45 ofertas y bajaron clics y ventas)
 MANUAL_MAX_DIAS = 14  # una oferta cargada a mano deja de usarse a los 14 días (el precio envejece;
                       # la tarjeta muestra «precio visto el …» y la carga diaria refresca las que cambian)
 
@@ -312,10 +313,11 @@ def load_manual_deals(path: Path | None = None, hoy: date | None = None) -> list
 
 
 def aviso_reponer_manuales(path: Path | None = None, hoy: date | None = None,
-                           minimo: int = 100) -> str | None:
+                           minimo: int | None = None) -> str | None:
     """Texto de aviso al admin si las manuales vigentes se están por acabar:
     quedan menos de `minimo`, o en 2 días vencen tantas que se baja de ese
     piso. None si está todo bien."""
+    minimo = MANUAL_PISO if minimo is None else minimo
     hoy = hoy or datetime.now(timezone.utc).date()
     vigentes = load_manual_deals(path, hoy)
     en_2_dias = load_manual_deals(path, hoy + timedelta(days=2))
@@ -323,8 +325,8 @@ def aviso_reponer_manuales(path: Path | None = None, hoy: date | None = None,
         return None
     return (f"⏳ Ofertas manuales: hoy hay {len(vigentes)} vigentes y en 2 días "
             f"quedan {len(en_2_dias)} (cada una dura {MANUAL_MAX_DIAS} días). "
-            "Cargá una tanda nueva (Actions → «Agregar oferta manual», campo lote) "
-            "o pasáselas a Claude por el chat.")
+            f"Piso de seguridad: {minimo}. Cargá una tanda nueva (Actions → «Agregar oferta manual», "
+            "campo lote) o pasáselas a Claude por el chat.")
 
 
 def fetch_deals(pages: int = 3, relampago_pages: int = 0, categoria_pages: int = 0,
@@ -2488,7 +2490,7 @@ def main() -> int:
 
     # Una vez por día: aviso si las manuales se están por acabar, para que el
     # sitio no se vacíe de golpe (los crons llegan atrasados: se marca la fecha).
-    if not scrape and (aviso := aviso_reponer_manuales()):
+    if aviso := aviso_reponer_manuales():
         hoy_txt = datetime.now(timezone.utc).date().isoformat()
         marca = BASE_DIR / "state" / "aviso_manuales.txt"
         try:

@@ -343,9 +343,10 @@ class TestWriteSiteData(unittest.TestCase):
         ids = [i["id_ml"] for i in data["items"]]
         self.assertEqual(ids, ["MLA2"])
 
-    def test_los_links_de_la_web_llevan_la_etiqueta_web(self):
+    def test_los_links_del_json_publico_llevan_la_etiqueta_repo(self):
+        # El sitio los vuelve a `web` al leerlos (frontend/lib/productos.ts).
         data = self.escribir([self.deal("MLA1", 50000)])
-        self.assertIn("matt_word=web", data["items"][0]["url_producto"])
+        self.assertIn("matt_word=repo", data["items"][0]["url_producto"])
 
     def test_la_metadata_cuenta_los_items_escritos(self):
         data = self.escribir([self.deal("MLA1", 50000), self.deal("MLA2", 40000)])
@@ -1055,3 +1056,11 @@ def test_ig_caption_landing_con_direccion_corta(monkeypatch):
     monkeypatch.setattr(bot, "landing_temporada", lambda t, s: ("🎁 Más regalos", "https://cazadordeofertas.com.ar/dia-de-la-madre?utm_source=instagram"))
     cap = bot.ig_caption({"title": "Perfume", "discount": 30, "price_prev": 100000, "price_cur": 70000})
     assert "cazadordeofertas.com.ar/madre\n" in cap
+
+
+def test_etiquetar_repo_cambia_solo_la_etiqueta_web():
+    from cazador_bot import etiquetar_repo
+    txt = '{"u":"https://x.com/p?matt_word=web&matt_tool=1","v":"https://x.com/q?matt_word=web"}'
+    out = etiquetar_repo(txt)
+    assert out.count("matt_word=repo") == 2 and "matt_word=web" not in out
+    assert etiquetar_repo("matt_word=telegram&matt_tool=1") == "matt_word=telegram&matt_tool=1"

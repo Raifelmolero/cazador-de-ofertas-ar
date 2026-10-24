@@ -31,7 +31,8 @@ export interface ProductWithMargins {
 
 function readJson() {
   const filePath = path.join(process.cwd(), 'data', 'productos_rentables.json')
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+  // El bot escribe `matt_word=repo` en el JSON público; el sitio usa `web`.
+  return JSON.parse(fs.readFileSync(filePath, 'utf8').replaceAll('matt_word=repo', 'matt_word=web'))
 }
 
 // Los márgenes se recalculan acá con los costos oficiales de ML (lib/costosml)

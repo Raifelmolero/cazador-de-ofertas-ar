@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-24T13:23:59+00:00",
+  "generado": "2026-10-24T14:28:48+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 2368 productos en la última corrida"
+          "tarea": "Revisó 3351 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-23T15:38:16+00:00",
+      "ultima_actividad": "2026-10-24T14:15:13+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -214,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 12 h"
+          "titulo": "✔ Última publicación hace 11 h"
         },
         {
           "fecha": "",
@@ -226,7 +226,7 @@
         },
         {
           "fecha": "",
-          "titulo": "✔ Sin vulnerabilidades altas"
+          "titulo": "✖ npm audit encontró vulnerabilidades altas o críticas"
         }
       ]
     }

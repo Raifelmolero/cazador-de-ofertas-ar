@@ -7,7 +7,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
-import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art } from '@/lib/preciohoy'
+import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art, precioHoyVisible, preciosHoyVisibles } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import TambienTeServira from '@/components/TambienTeServira'
@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description,
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },
+    ...(precioHoyVisible(p) ? {} : { robots: { index: false, follow: true } }),
     openGraph: { title: t, description, url, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
   }
 }
@@ -321,7 +322,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         <nav className="text-sm">
           <p className="font-bold text-zinc-300 mb-2">Precio hoy de otros productos</p>
           <ul className="flex flex-wrap gap-2">
-            {PRECIOS_HOY.filter(x => x.slug !== p.slug).map(x => (
+            {preciosHoyVisibles().filter(x => x.slug !== p.slug).map(x => (
               <li key={x.slug}>
                 <a href={`/precio-hoy/${x.slug}`} className="block rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-bold text-zinc-300 hover:text-yellow-300">
                   {x.nombre}

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import OfertasMinimoHoy from '@/components/OfertasMinimoHoy'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { PRECIOS_HOY, ofertasDe } from '@/lib/preciohoy'
+import { preciosHoyVisibles, ofertasDe } from '@/lib/preciohoy'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -24,6 +24,7 @@ const precio = (n: number) => '$' + Math.round(n).toLocaleString('es-AR')
 
 export default function PrecioHoyIndex() {
   const scrapedAt = getScrapedAt().toISOString()
+  const visibles = preciosHoyVisibles()
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -37,8 +38,8 @@ export default function PrecioHoyIndex() {
       publisher: { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL },
       mainEntity: {
         '@type': 'ItemList',
-        numberOfItems: PRECIOS_HOY.length,
-        itemListElement: PRECIOS_HOY.map((p, i) => ({
+        numberOfItems: visibles.length,
+        itemListElement: visibles.map((p, i) => ({
           '@type': 'ListItem',
           position: i + 1,
           name: `Precio de ${p.nombre} hoy`,
@@ -77,7 +78,7 @@ export default function PrecioHoyIndex() {
           <LastUpdated scrapedAt={scrapedAt} />
         </p>
         <ul className="divide-y divide-zinc-800 rounded-xl border border-zinc-800">
-          {PRECIOS_HOY.map(p => {
+          {visibles.map(p => {
             const o = ofertasDe(p)
             return (
               <li key={p.slug}>

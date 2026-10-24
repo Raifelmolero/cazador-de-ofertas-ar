@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-24T14:28:48+00:00",
+  "generado": "2026-10-24T18:02:43+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-24T03:08:53+00:00",
+      "ultima_actividad": "2026-10-24T18:02:43+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 11
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook HP 255R G10 con AMD Ryzen 7 7735U, 32GB RAM y 1TB SSD"
+      "ultimo_trabajo": "Notebook Lenovo LOQ 15IAX9E, Intel Core i5, 32GB RAM, 1TB SSD y RTX 3050"
     },
     {
       "id": "investigacion",

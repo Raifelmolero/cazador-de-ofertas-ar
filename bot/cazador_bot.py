@@ -1461,12 +1461,32 @@ CATEGORY_COMMISSION_WEIGHT: list[tuple[float, list[str]]] = [
 ]
 
 
+# Celulares y notebooks pagan 7 % (panel de afiliados 28/09-22/10: 9 celulares
+# $820k y 7 notebooks $566k, los dos rubros que más dejaron). No estaban en la
+# tabla y el ranking los trataba como ~2,5 %. Los accesorios (fundas, cargadores,
+# mochilas) NO son de ese rubro y quedan afuera.
+TECNO_PALABRAS = ("celular", "smartphone", "iphone", "notebook", "laptop", "macbook")
+TECNO_ACCESORIOS = (
+    "funda", "case ", "carcasa", "soporte", "cargador", "cable", "vidrio", "templado",
+    "protector", "mochila", "bolso", "maletin", "maletín", "cooler", "base ", "teclado",
+    "mouse", "bateria", "batería", "auricular", "pie para", "trípode", "tripode",
+    "repuesto", "pantalla para", "modulo", "módulo", "lamina", "lámina", "sticker", "skin",
+)
+
+
+def es_equipo_tecno(title: str) -> bool:
+    t = title.lower()
+    return any(k in t for k in TECNO_PALABRAS) and not any(k in t for k in TECNO_ACCESORIOS)
+
+
 def comision_estimada(title: str) -> float:
     """Peso relativo (no la comisión real) para desempatar el ranking a favor
     de categorías que históricamente pagaron más. 1.0 = categoría sin señal
     (electrónica de ticket alto tipo cámaras/tablets/periféricos, ~2%, o
     cualquier producto que no matchea ninguna keyword)."""
     t = title.lower()
+    if es_equipo_tecno(title):
+        return 1.4
     for weight, keywords in CATEGORY_COMMISSION_WEIGHT:
         if any(k in t for k in keywords):
             return weight
@@ -1677,6 +1697,8 @@ CATEGORIA_PLUS: list[tuple[float, list[str]]] = [
 
 def categoria_plus(title: str) -> float:
     t = title.lower()
+    if es_equipo_tecno(title):
+        return 1.15  # ~$80-90k por venta (los 2 rubros que más dejaron)
     for plus, keywords in CATEGORIA_PLUS:
         if any(k in t for k in keywords):
             return plus

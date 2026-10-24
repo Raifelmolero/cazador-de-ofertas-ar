@@ -707,10 +707,12 @@ class TestTemporadas(unittest.TestCase):
 
 
 class TestGananciaPorComision(unittest.TestCase):
-    def test_aire_le_gana_a_celular_mas_caro(self):
+    def test_celular_caro_le_gana_al_aire(self):
+        # Panel 28/09-22/10: celulares pagan 7 % (igual que climatización), así
+        # que a mayor ticket gana el celular.
         aire = {"title": "Aire Acondicionado Split Inverter 3000 Frig", "price_cur": 880000}
         cel = {"title": "Apple iPhone 16e 512 Gb", "price_cur": 1700000, "relampago": True}
-        self.assertGreater(bot.ganancia_esperada(aire), bot.ganancia_esperada(cel))
+        self.assertGreater(bot.ganancia_esperada(cel), bot.ganancia_esperada(aire))
 
 
 class TestSeguimiento(unittest.TestCase):
@@ -1064,3 +1066,16 @@ def test_etiquetar_repo_cambia_solo_la_etiqueta_web():
     out = etiquetar_repo(txt)
     assert out.count("matt_word=repo") == 2 and "matt_word=web" not in out
     assert etiquetar_repo("matt_word=telegram&matt_tool=1") == "matt_word=telegram&matt_tool=1"
+
+
+def test_celulares_y_notebooks_pesan_como_7_por_ciento_y_los_accesorios_no():
+    from cazador_bot import comision_estimada, es_equipo_tecno, ganancia_esperada
+    assert comision_estimada("Celular Samsung Galaxy A15 128gb") == 1.4
+    assert comision_estimada("Notebook Lenovo Ideapad 15 8gb") == 1.4
+    assert es_equipo_tecno("iPhone 15 128 Gb")
+    assert not es_equipo_tecno("Funda para celular Samsung")
+    assert not es_equipo_tecno("Mochila para notebook 15.6")
+    assert comision_estimada("Funda para celular") == 1.0
+    cel = {"title": "Celular Motorola Moto G54", "price_cur": 400000}
+    otro = {"title": "Parlante portatil", "price_cur": 400000}
+    assert ganancia_esperada(cel) > 2 * ganancia_esperada(otro)

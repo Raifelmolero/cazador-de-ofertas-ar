@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-24T18:02:43+00:00",
+  "generado": "2026-10-24T22:24:50+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-24T18:02:43+00:00",
+      "ultima_actividad": "2026-10-24T22:24:49+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -22,7 +22,7 @@
         },
         {
           "label": "whatsapp_kit",
-          "valor": 9
+          "valor": 6
         },
         {
           "label": "Telegram",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo LOQ 15IAX9E, Intel Core i5, 32GB RAM, 1TB SSD y RTX 3050"
+      "ultimo_trabajo": "Sommier Viggo Magnum 200x200 Cm Alta Densidad 300 Kg Negro"
     },
     {
       "id": "investigacion",

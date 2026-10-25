@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-24T22:24:50+00:00",
+  "generado": "2026-10-25T03:03:29+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-24T22:24:49+00:00",
+      "ultima_actividad": "2026-10-25T03:03:29+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,11 +18,11 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 11
+          "valor": 10
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Telegram",
@@ -33,20 +33,20 @@
           "valor": 4
         },
         {
-          "label": "Instagram",
-          "valor": 3
-        },
-        {
           "label": "Reels IG",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Historias IG",
-          "valor": 1
+          "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Sommier Viggo Magnum 200x200 Cm Alta Densidad 300 Kg Negro"
+      "ultimo_trabajo": "Notebook HP 255R G10 con AMD Ryzen 7, 24 GB de RAM y 1 TB SSD"
     },
     {
       "id": "investigacion",

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-25T21:27:26+00:00",
+  "generado": "2026-10-25T22:27:28+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-25T18:20:52+00:00",
+      "ultima_actividad": "2026-10-25T22:27:27+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -33,20 +33,20 @@
           "valor": 3
         },
         {
-          "label": "Instagram",
-          "valor": 2
-        },
-        {
           "label": "Reels IG",
           "valor": 1
         },
         {
           "label": "Historias IG",
           "valor": 1
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Apple iPhone 17 (256 GB) - Blanco - Distribuidor Autorizado"
+      "ultimo_trabajo": "85'' Mini Led M80h Vision Ai Smart Tv (2026)"
     },
     {
       "id": "investigacion",

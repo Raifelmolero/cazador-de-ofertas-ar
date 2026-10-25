@@ -2,7 +2,7 @@
  "metadata": {
   "scraped_at": "2026-10-25T16:19:48+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 3947
+  "total_items": 3948
  },
  "items": [
   {
@@ -94060,6 +94060,30 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 44001.19,
    "margen_neto_premium_ars": 37089.74
+  },
+  {
+   "id_ml": "MLA67498424",
+   "titulo": "Notebook Hp 250 Core I5 120u 15-fd0032la 16gb Ssd 512gb 15.6",
+   "categoria_principal": "ofertas del día",
+   "precio_actual": 1436349.0,
+   "precio_anterior": 2543399,
+   "descuento_pct": 44,
+   "minimo_historico": false,
+   "relampago": false,
+   "prioridad": 115626,
+   "precio_minimo_registrado": 1436349,
+   "seguimiento_desde": "2026-10-25",
+   "moneda": "ARS",
+   "ventas_estimadas": null,
+   "url_producto": "https://www.mercadolibre.com.ar/notebook-hp-250-core-i5-120u-15-fd0032la-16gb-ssd-512gb-156/p/MLA67498424?matt_word=repo&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_855367-MLA109096340940_042026-F.webp",
+   "precio_visto": "2026-10-25",
+   "comision_clasica_pct": 0.1469,
+   "comision_premium_pct": 0.2809,
+   "retencion_iibb_pct": 0.0,
+   "costo_envio_base_ars": 0.0,
+   "margen_neto_clasico_ars": 1225349.33,
+   "margen_neto_premium_ars": 1032878.57
   },
   {
    "id_ml": "MLA41799285",

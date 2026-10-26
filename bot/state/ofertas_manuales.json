@@ -17012,17 +17012,6 @@
    "agregada": "2026-10-21"
   },
   {
-   "id": "MLA65671842",
-   "title": "Notebook Gadnic 14 Pulgadas Intel Celeron N4500 4GB RAM 128GB SSD Wind 11 HD 1366 x 768 Camara 2MP",
-   "url": "https://www.mercadolibre.com.ar/notebook-gadnic-14-pulgadas-intel-celeron-n4500-4gb-ram-128gb-ssd-wind-11-hd-1366-x-768-camara-2mp/p/MLA65671842",
-   "price_prev": 694249,
-   "price_cur": 420199,
-   "discount": 39,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_753000-MLA106640794680_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-21"
-  },
-  {
    "id": "MLA50616120",
    "title": "PC Armada Mexx AMD Ryzen 3 3200G SSD 240GB RAM 8GB Motherboard A520M-A PRO",
    "url": "https://www.mercadolibre.com.ar/pc-armada-mexx-amd-ryzen-3-3200g-ssd-240gb-ram-8gb-motherboard-a520m-a-pro/p/MLA50616120",
@@ -17932,17 +17921,6 @@
    "price_cur": 49999,
    "discount": 25,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_634394-MLA99377235044_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-21"
-  },
-  {
-   "id": "MLAU2892319428",
-   "title": "Reloj Smart Inteligente Llamada Mujer P/ Samsung Moto iPhone Dorado Silicona Rosa",
-   "url": "https://www.mercadolibre.com.ar/reloj-smart-inteligente-llamada-mujer-p-samsung-moto-iphone/up/MLAU2892319428",
-   "price_prev": 58999,
-   "price_cur": 46019,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_877991-MLA109520002664_042026-F.webp",
    "cuotas": null,
    "agregada": "2026-10-21"
   },
@@ -46532,6 +46510,28 @@
    "price_cur": 50773,
    "discount": 49,
    "img": null,
+   "cuotas": null,
+   "agregada": "2026-10-26"
+  },
+  {
+   "id": "MLA65671842",
+   "title": "Notebook Gadnic 14 Pulgadas Intel Celeron N4500 4GB RAM 128GB SSD Wind 11 HD 1366 x 768 Camara 2MP",
+   "url": "https://www.mercadolibre.com.ar/notebook-gadnic-14-pulgadas-intel-celeron-n4500-4gb-ram-128gb-ssd-wind-11-hd-1366-x-768-camara-2mp/p/MLA65671842",
+   "price_prev": 694249,
+   "price_cur": 430749,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_753000-MLA106640794680_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-10-26"
+  },
+  {
+   "id": "MLAU2892319428",
+   "title": "Reloj Smart Inteligente Llamada Mujer P/ Samsung Moto iPhone Dorado Silicona Rosa",
+   "url": "https://www.mercadolibre.com.ar/reloj-smart-inteligente-llamada-mujer-p-samsung-moto-iphone/up/MLAU2892319428",
+   "price_prev": 58999,
+   "price_cur": 47199,
+   "discount": 20,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_877991-MLA109520002664_042026-F.webp",
    "cuotas": null,
    "agregada": "2026-10-26"
   }

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-26T16:38:01+00:00",
+  "generado": "2026-10-26T20:48:24+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-26T03:02:34+00:00",
+      "ultima_actividad": "2026-10-26T20:48:23+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -21,20 +21,16 @@
           "valor": 8
         },
         {
-          "label": "whatsapp_kit",
-          "valor": 6
+          "label": "Telegram",
+          "valor": 3
         },
         {
-          "label": "Telegram",
+          "label": "whatsapp_kit",
           "valor": 3
         },
         {
           "label": "Threads",
           "valor": 2
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
         },
         {
           "label": "Reels IG",
@@ -43,10 +39,14 @@
         {
           "label": "Historias IG",
           "valor": 1
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo Ideapad 3 Slim Ryzen 5 7520U 16Gb Ssd 512Gb 15\" W11"
+      "ultimo_trabajo": "Notebook Lenovo IdeaPad 5 2 En 1 15.3\" Táctil Ryzen AI 5 430 16GB 512GB SSD IPS "
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-25T14:48:42+00:00",
+      "ultima_actividad": "2026-10-26T17:07:53+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -214,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✔ Última publicación hace 12 h"
+          "titulo": "✖ Última publicación hace 14 h"
         },
         {
           "fecha": "",

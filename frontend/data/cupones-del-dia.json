@@ -1,14 +1,4 @@
 {
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
-  "cupones": [
-    {
-      "codigo": "MELI10",
-      "descuento": 15000,
-      "minimo": 150000,
-      "hasta": "2026-10-26T23:59:00-03:00",
-      "condiciones": "Válido solo hoy, lunes 26/10, hasta las 23:59 hs. Compra mínima $150.000",
-      "campania": "Inicio de semana",
-      "link": "https://www.mercadolibre.com.ar/ofertas"
-    }
-  ]
+  "cupones": []
 }

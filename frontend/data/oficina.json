@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-26T21:32:13+00:00",
+  "generado": "2026-10-27T03:35:20+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-26T20:48:23+00:00",
+      "ultima_actividad": "2026-10-27T03:35:20+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,19 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
-        },
-        {
-          "label": "Telegram",
-          "valor": 3
+          "valor": 5
         },
         {
           "label": "whatsapp_kit",
           "valor": 3
         },
         {
+          "label": "Telegram",
+          "valor": 2
+        },
+        {
           "label": "Threads",
           "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         },
         {
           "label": "Reels IG",
@@ -39,14 +43,10 @@
         {
           "label": "Historias IG",
           "valor": 1
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo IdeaPad 5 2 En 1 15.3\" Táctil Ryzen AI 5 430 16GB 512GB SSD IPS "
+      "ultimo_trabajo": "Notebook Asus Vivobook 15 IA PC Intel Core 7 350 2026 16gb 512gb W11"
     },
     {
       "id": "investigacion",

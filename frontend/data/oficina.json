@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-27T23:45:06+00:00",
+  "generado": "2026-10-28T03:50:48+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-27T23:45:05+00:00",
+      "ultima_actividad": "2026-10-28T03:50:48+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 4519 productos en la última corrida"
+          "tarea": "Revisó 4558 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Asus Vivobook 15 IA PC Intel Core 5 320 2026 8gb 512gb W11"
+      "ultimo_trabajo": "85'' Mini Led M80h Vision Ai Smart Tv (2026)"
     },
     {
       "id": "investigacion",

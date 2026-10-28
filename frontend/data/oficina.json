@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-28T03:50:48+00:00",
+  "generado": "2026-10-28T14:22:03+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 4558 productos en la última corrida"
+          "tarea": "Revisó 5038 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -71,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-28T16:08:58+00:00",
+  "generado": "2026-10-28T20:12:47+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-28T03:50:48+00:00",
+      "ultima_actividad": "2026-10-28T20:12:46+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -21,15 +21,15 @@
           "valor": 8
         },
         {
-          "label": "whatsapp_kit",
-          "valor": 6
-        },
-        {
           "label": "Telegram",
           "valor": 3
         },
         {
           "label": "Threads",
+          "valor": 3
+        },
+        {
+          "label": "whatsapp_kit",
           "valor": 3
         },
         {
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "85'' Mini Led M80h Vision Ai Smart Tv (2026)"
+      "ultimo_trabajo": "Heladera Whirlpool Xpert Ai N.f Inverter 472 / 518 Lts Negro"
     },
     {
       "id": "investigacion",
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-10-27T16:12:08+00:00",
+      "ultima_actividad": "2026-10-28T17:00:03+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

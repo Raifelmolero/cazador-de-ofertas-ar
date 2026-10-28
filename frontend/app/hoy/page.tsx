@@ -82,7 +82,9 @@ export default function HoyPage() {
   const top3Ids = new Set(elegirTop(ofertasLight, 3).map(o => o.id_ml))
   // Celulares y notebooks caros arriba (40 % de la ganancia en sep-oct): sin
   // repetir las 3 destacadas; las «compras grandes» no repiten estos.
-  const tecno = vidrieraTecno({ cantidad: 6, excluir: top3Ids })
+  // Notebooks primero (panel 22-28/10: más de la mitad de la ganancia y las páginas más visitadas después de la portada)
+  const notebooks = vidrieraTecno({ cantidad: 6, excluir: top3Ids, solo: 'notebook', hasta: 2_000_000 })
+  const tecno = vidrieraTecno({ cantidad: 6, excluir: [...top3Ids, ...notebooks.map(o => o.id_ml)] })
   const tecnoIds = new Set(tecno.map(o => o.id_ml))
   const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml))
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
@@ -271,6 +273,21 @@ export default function HoyPage() {
         </div>
         <AtajosCelular />
       </header>
+
+      <VidrieraTecno
+        items={notebooks}
+        titulo="💻 Notebooks en oferta hoy"
+        bajada="Lenovo, HP, Asus, Acer, Dell, Apple: en su precio más bajo o con descuento real."
+        seccion="portada-notebooks"
+        id="notebooks-hoy"
+        atajos={[
+          { href: '/mejor/notebook-hasta-800-mil', texto: 'Hasta $800 mil' },
+          { href: '/mejor/notebook-hasta-1-millon', texto: 'Hasta $1 millón' },
+          { href: '/mejor/notebook-hasta-1-5-millones', texto: 'Hasta $1,5 millones' },
+          { href: '/comparador/notebooks', texto: 'Comparar notebooks' },
+        ]}
+        className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
+      />
 
       {/* Hero: el verificador es lo primero que se ve */}
       <section

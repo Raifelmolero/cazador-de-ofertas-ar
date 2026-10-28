@@ -17,6 +17,7 @@ export default function VidrieraTecno({
   id,
   cupon,
   comparadores = true,
+  atajos,
   columnas = 'sm:grid-cols-3 lg:grid-cols-6',
   className = 'max-w-7xl mx-auto px-4 sm:px-6 pt-4',
 }: {
@@ -28,6 +29,8 @@ export default function VidrieraTecno({
   /** cupón vigente: muestra el precio con el descuento aplicado */
   cupon?: { codigo: string; descuento: number }
   comparadores?: boolean
+  /** links propios debajo de la fila (reemplazan a los de los comparadores) */
+  atajos?: { href: string; texto: string }[]
   /** columnas de la grilla desde sm (en el celular siempre es fila con scroll) */
   columnas?: string
   className?: string
@@ -78,7 +81,13 @@ export default function VidrieraTecno({
           </li>
         ))}
       </ul>
-      {comparadores && (
+      {atajos ? (
+        <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-bold">
+          {atajos.map(a => (
+            <Link key={a.href} href={a.href} className="text-sky-300 hover:text-sky-200">{a.texto} →</Link>
+          ))}
+        </p>
+      ) : comparadores && (
         <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-bold">
           <Link href="/comparador/celulares" className="text-sky-300 hover:text-sky-200">📱 Comparar celulares →</Link>
           <Link href="/comparador/notebooks" className="text-sky-300 hover:text-sky-200">💻 Comparar notebooks →</Link>

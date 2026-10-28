@@ -1,0 +1,54 @@
+{
+  "name": "Guardián Cazador de Ofertas",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [ { "field": "cronExpression", "expression": "0 13,20 * * *" } ] }
+      },
+      "id": "a1",
+      "name": "13 h y 20 h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://cazadordeofertas.com.ar/ofertas-hoy.json",
+        "options": { "timeout": 30000, "response": { "response": { "fullResponse": true, "neverError": true } } }
+      },
+      "id": "a2",
+      "name": "Leer ofertas del sitio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Revisa salud del sitio y del inventario. Una oferta vence ~15 días después de cargada (precio_visto).\nconst r = $input.first().json;\nconst hoy = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));\nconst iso = d => d.toISOString().slice(0, 10);\nconst hoyIso = iso(hoy);\nconst problemas = [];\nif (r.statusCode !== 200 || !Array.isArray(r.body)) {\n  problemas.push(`🔴 El sitio no responde bien (código ${r.statusCode}).`);\n  return [{ json: { alerta: true, texto: problemas.join('\\n') } }];\n}\nconst ofertas = r.body;\nconst total = ofertas.length;\nconst cargadasHoy = ofertas.filter(o => o.precio_visto === hoyIso).length;\nconst limite = new Date(hoy); limite.setDate(limite.getDate() - 12);\nconst porVencer = ofertas.filter(o => o.precio_visto && o.precio_visto <= iso(limite)).length;\nconst tecno = ofertas.filter(o => /notebook|celular|iphone|samsung galaxy|smart tv|televisor/i.test(o.titulo || '')).length;\nif (total < 1500) problemas.push(`🟠 Quedan solo ${total} ofertas en el sitio (mínimo 1.500).`);\nif (cargadasHoy === 0) problemas.push('🟠 Hoy no se cargó ninguna oferta: la tarea de las 11:13 no corrió o falló. ¿Brave abierto y la extensión conectada?');\nif (porVencer > 300) problemas.push(`🟡 ${porVencer} ofertas vencen en los próximos 3 días: hay que recargarlas.`);\nconst resumen = `Sitio: ${total} ofertas · cargadas hoy: ${cargadasHoy} · tecno: ${tecno} · por vencer: ${porVencer}`;\nreturn [{ json: { alerta: problemas.length > 0, texto: (problemas.length ? problemas.join('\\n') + '\\n\\n' : '✅ Todo en orden.\\n') + resumen } }];"
+      },
+      "id": "a3",
+      "name": "Revisar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "chatId": "PONER_TU_CHAT_ID",
+        "text": "=🛡️ Guardián del Cazador\n{{ $json.texto }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "id": "a4",
+      "name": "Avisar por Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [660, 0]
+    }
+  ],
+  "connections": {
+    "13 h y 20 h": { "main": [[{ "node": "Leer ofertas del sitio", "type": "main", "index": 0 }]] },
+    "Leer ofertas del sitio": { "main": [[{ "node": "Revisar", "type": "main", "index": 0 }]] },
+    "Revisar": { "main": [[{ "node": "Avisar por Telegram", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "America/Argentina/Buenos_Aires", "executionOrder": "v1" }
+}

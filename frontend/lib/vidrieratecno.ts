@@ -33,7 +33,8 @@ const MAX_POR_MARCA = 2
 // Marcas y líneas que se venden (y se buscan) por nombre. Celulares: gama media
 // alta para arriba; sin gama de entrada aunque supere el umbral de precio.
 const CELU_OK = /\biphone\b|\bgalaxy (s|z ?(fold|flip))\s?\d|\bgalaxy a[5-9]\d\b|\b(moto(rola)?\s)?(edge|razr)\b|\b(xiaomi|redmi note|poco [fx]\d)/
-const NB_MARCAS = new Set(['Apple', 'Lenovo', 'HP', 'Asus', 'Dell'])
+// Acer, MSI y Samsung sumadas 28/10: el panel 22-28/10 mostró notebooks como más de la mitad de la ganancia.
+const NB_MARCAS = new Set(['Apple', 'Lenovo', 'HP', 'Asus', 'Dell', 'Acer', 'MSI', 'Samsung'])
 
 /** Mismo modelo en otro color o con el título escrito distinto: uno solo. */
 function modelo(titulo: string): string {
@@ -56,7 +57,7 @@ function califica(e: Equipo, tipo: ItemTecno['tipo']): boolean {
  * y no repite modelo. `minimo` sube el piso de precio (ej. compra mínima de un
  * cupón); `excluir` saca ids que la página ya muestra en otro bloque.
  */
-export function vidrieraTecno({ cantidad = 6, minimo = 0, excluir = [] }: { cantidad?: number; minimo?: number; excluir?: Iterable<string> } = {}): ItemTecno[] {
+export function vidrieraTecno({ cantidad = 6, minimo = 0, excluir = [], solo, hasta }: { cantidad?: number; minimo?: number; excluir?: Iterable<string>; solo?: ItemTecno['tipo']; hasta?: number } = {}): ItemTecno[] {
   const fuera = new Set(excluir)
   const ofertas = new Map(getOfertas().map(o => [o.id_ml, o]))
   const piso = Math.max(TICKET_ALTO_DESDE, minimo)
@@ -99,8 +100,14 @@ export function vidrieraTecno({ cantidad = 6, minimo = 0, excluir = [] }: { cant
       })
   })
 
-  const mitad = Math.floor(cantidad / 2)
   const [celus, nbs] = porTipo
+  if (solo) {
+    // Primero las de precio que más se vende (panel 22-28/10: notebooks de $780 mil a $1,4 M); las caras, al final
+    const lista = solo === 'celular' ? celus : nbs
+    const enRango = (i: ItemTecno) => (hasta && i.precio_actual > hasta ? 1 : 0)
+    return [...lista].sort((a, b) => enRango(a) - enRango(b)).slice(0, cantidad)
+  }
+  const mitad = Math.floor(cantidad / 2)
   const elegidos = [...celus.slice(0, mitad), ...nbs.slice(0, mitad)]
   const resto = [...celus.slice(mitad), ...nbs.slice(mitad)].sort((a, b) => b.prioridad - a.prioridad)
   return [...elegidos, ...resto.slice(0, cantidad - elegidos.length)].sort((a, b) => b.prioridad - a.prioridad)

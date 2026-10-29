@@ -303,7 +303,13 @@ export default function RegalosNavidadPage() {
         ))}
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-2">
+        <p className="text-sm text-zinc-400 mb-2">Regalos caros por presupuesto:</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {[['hasta-300000', 'Hasta $300 mil'], ['300000-a-700000', '$300 a $700 mil'], ['700000-a-1500000', '$700 mil a $1,5 M'], ['mas-de-1500000', 'Más de $1,5 M']].map(([s, n]) => (
+            <Link key={s} href={`/regalos-navidad/${s}`} className="text-sm font-semibold rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-zinc-200 hover:border-yellow-400/40 hover:text-yellow-300">{n}</Link>
+          ))}
+        </div>
         <Link href="/mejores/regalos-de-navidad" className="text-sm font-bold text-yellow-400 hover:text-yellow-300">
           Ver la comparativa completa de regalos de Navidad, con el mínimo registrado de cada uno →
         </Link>

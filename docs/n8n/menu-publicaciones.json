@@ -1,0 +1,116 @@
+{
+ "name": "Menú de publicaciones del día",
+ "nodes": [
+  {
+   "parameters": {
+    "rule": {
+     "interval": [
+      {
+       "field": "cronExpression",
+       "expression": "0 12 * * *"
+      }
+     ]
+    }
+   },
+   "id": "a1",
+   "name": "12 h",
+   "type": "n8n-nodes-base.scheduleTrigger",
+   "typeVersion": 1.2,
+   "position": [
+    0,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "url": "https://cazadordeofertas.com.ar/ofertas-hoy.json",
+    "options": {
+     "timeout": 30000,
+     "response": {
+      "response": {
+       "fullResponse": true,
+       "neverError": true
+      }
+     }
+    }
+   },
+   "id": "a2",
+   "name": "Leer ofertas del sitio",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    220,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "// Elige las mejores del día para que Raifel decida qué publicar (nada se publica solo).\nconst ofertas = $input.first().json.body;\nconst hoy = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));\nconst fmt = n => '$' + Number(n).toLocaleString('es-AR');\nconst limite = new Date(hoy); limite.setDate(limite.getDate() - 6);\nconst frescas = ofertas.filter(o => o.precio_visto >= limite.toISOString().slice(0, 10));\nconst esNb = o => /notebook|laptop/i.test(o.titulo);\nconst esCel = o => /celular|smartphone|iphone|galaxy|moto g|redmi/i.test(o.titulo);\nconst esTv = o => /smart tv|televisor/i.test(o.titulo);\nconst puntaje = o => (o.descuento_pct || 0) + (o.minimo_historico ? 15 : 0) + (o.relampago ? 5 : 0);\nconst top = (f, n, hasta) => frescas.filter(o => f(o) && (!hasta || o.precio_actual <= hasta)).sort((a, b) => puntaje(b) - puntaje(a)).slice(0, n);\nconst bloque = (t, arr) => arr.length ? t + '\\n' + arr.map(o => `• ${o.titulo.slice(0, 70)} — ${fmt(o.precio_actual)} (-${o.descuento_pct}%${o.minimo_historico ? ', mínimo histórico' : ''})`).join('\\n') : '';\nconst partes = [bloque('💻 Notebooks (hasta $2 M)', top(esNb, 4, 2000000)), bloque('📱 Celulares', top(esCel, 3)), bloque('📺 Smart TV', top(esTv, 3))].filter(Boolean);\nreturn [{ json: { texto: partes.length ? partes.join('\\n\\n') : 'Hoy no encontré candidatas frescas.' } }];"
+   },
+   "id": "a3",
+   "name": "Elegir mejores",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    440,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "chatId": "8701191351",
+    "text": "=🎯 Candidatas para publicar hoy (vos decidís)\n{{ $json.texto }}",
+    "additionalFields": {
+     "appendAttribution": false
+    }
+   },
+   "id": "a4",
+   "name": "Avisar por Telegram",
+   "type": "n8n-nodes-base.telegram",
+   "typeVersion": 1.2,
+   "position": [
+    660,
+    0
+   ]
+  }
+ ],
+ "connections": {
+  "12 h": {
+   "main": [
+    [
+     {
+      "node": "Leer ofertas del sitio",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Leer ofertas del sitio": {
+   "main": [
+    [
+     {
+      "node": "Elegir mejores",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Elegir mejores": {
+   "main": [
+    [
+     {
+      "node": "Avisar por Telegram",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "timezone": "America/Argentina/Buenos_Aires",
+  "executionOrder": "v1"
+ }
+}

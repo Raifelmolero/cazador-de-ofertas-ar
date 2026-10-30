@@ -1,4 +1,14 @@
 {
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
-  "cupones": []
+  "cupones": [
+    {
+      "codigo": "ADELANTO",
+      "descuento": 8000,
+      "minimo": 80000,
+      "hasta": "2026-10-29T23:59:00-03:00",
+      "condiciones": "Compra mínima $80.000. Cupón informado el jueves 29/10; se muestra hasta las 23:59 hs de hoy.",
+      "campania": "Adelanto Cyber",
+      "link": "https://www.mercadolibre.com.ar/ofertas"
+    }
+  ]
 }

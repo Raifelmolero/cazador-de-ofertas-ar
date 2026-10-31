@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-30T23:37:52+00:00",
+  "generado": "2026-10-31T03:55:57+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,45 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-30T23:37:52+00:00",
+      "ultima_actividad": "2026-10-31T03:55:57+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 6011 productos en la última corrida"
+          "tarea": "Revisó 6006 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 10
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
+        },
+        {
+          "label": "Historias IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
           "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Whirlpool Inox Xpert Ai Nf Inverter 535 / 510 Lts Inox"
+      "ultimo_trabajo": "Notebook HP 255R G10 con AMD Ryzen 7 7735U, 32GB RAM y 1TB SSD"
     },
     {
       "id": "investigacion",

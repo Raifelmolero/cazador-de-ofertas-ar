@@ -61,3 +61,23 @@ Links siempre con utm: `cazadordeofertas.com.ar/cyber?utm_source=<canal>&utm_cam
 - Reels: reusar la escena `escena-cyber-monday.webp` de Don Ofertín.
 - Publicación: el bot ya arma posts diarios con botón a /cyber desde el 19/10; estos son extras manuales vía `special_post.yml` o a mano.
 - Reemplazar `[corchetes]` mirando `/cyber` el día anterior (precio testigo cargado hasta el 1/11).
+
+## LISTOS PARA DISPARAR (preparados el 31/10, no publicados)
+Archivos en `bot/posts_texto/` (Facebook página + Threads). Se disparan desde Actions → «Post de Texto»
+(`post_texto.yml`) con `archivo` = el nombre y **primero `dry_run=true`**, después `false`. El script rechaza
+cualquier texto con `[corchetes]` sin completar.
+
+| Cuándo | Archivo | Qué dice |
+|---|---|---|
+| Dom 1/11 (tarde/noche) | `cyber-2026-11-01-testigo.json` | 3 productos con su precio testigo del 31/10 |
+| Lun 2/11 | `cyber-2026-11-02-dia1.json` | arranca el Cyber, ticket alto primero |
+| Mar 3/11 | `cyber-2026-11-03-dia2.json` | infladas vs. las que bajaron de verdad |
+| Mié 4/11 | `cyber-2026-11-04-ultimo.json` | último día, precio más bajo registrado |
+
+**Productos del post del 1/11 (precio al 31/10, de `frontend/data/productos_rentables.json`):**
+Heladera LG Side by Side Inverter 638 L `MLA27060246` $3.673.469 · Smart TV Samsung Mini LED 85" `MLA79587448`
+$3.394.411 · Notebook Lenovo LOQ i5 RTX 3050 `MLAU3348025201` $2.698.609.
+**Antes de publicar el 1/11: chequear que esos precios sigan iguales en `/cyber`; si cambiaron, editar el JSON.**
+Ojo: en el texto se dice «precio testigo» y NO «mínimo histórico», porque estos productos llevan solo 5-12 días en el
+registro (el precio no varió desde que entraron).
+Instagram y Telegram: usar los textos de arriba a mano (el publicador de texto es solo Facebook + Threads).

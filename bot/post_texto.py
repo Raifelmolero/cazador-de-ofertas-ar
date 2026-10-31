@@ -11,6 +11,7 @@ Uso: POST_TEXTO=estudio-2026-10-06.json [DRY_RUN=1] python bot/post_texto.py
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -50,7 +51,12 @@ def cargar(nombre: str) -> dict:
     ruta = (DIR / nombre).resolve()
     if ruta.parent != DIR.resolve() or ruta.suffix != ".json":
         raise ValueError(f"Archivo inválido: {nombre}")
-    return json.loads(ruta.read_text(encoding="utf-8"))
+    data = json.loads(ruta.read_text(encoding="utf-8"))
+    # Guarda: un texto con [corchetes] sin completar nunca se publica
+    for canal in ("threads", "facebook"):
+        if re.search(r"\[[^\]]*\]", data.get(canal) or ""):
+            raise ValueError(f"El texto de {canal} tiene [corchetes] sin completar")
+    return data
 
 
 def main() -> int:

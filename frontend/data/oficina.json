@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-31T23:18:17+00:00",
+  "generado": "2026-11-01T04:08:21+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,17 +8,17 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-10-31T23:18:16+00:00",
+      "ultima_actividad": "2026-11-01T04:08:21+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 6618 productos en la última corrida"
+          "tarea": "Revisó 6605 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 11
+          "valor": 8
         },
         {
           "label": "whatsapp_kit",
@@ -26,15 +26,15 @@
         },
         {
           "label": "Telegram",
-          "valor": 4
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Apple iPhone 16 (128 GB) - Blanco - Distribuidor Autorizado"
+      "ultimo_trabajo": "Notebook Lenovo V15 G5 Core I5 13420h 32gb Ssd 512gb 15.6 Windows 11"
     },
     {
       "id": "investigacion",

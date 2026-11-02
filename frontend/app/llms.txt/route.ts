@@ -200,7 +200,11 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [cafeteras](https://cazadordeofertas.com.ar/mejores/cyber-monday-cafeteras),
   [heladeras](https://cazadordeofertas.com.ar/mejores/cyber-monday-heladeras),
   [colchones y sommiers](https://cazadordeofertas.com.ar/mejores/cyber-monday-colchones),
-  [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday) y
+  [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday)
+  (por rubro: [celulares](https://cazadordeofertas.com.ar/mejores/black-friday-celulares),
+  [notebooks](https://cazadordeofertas.com.ar/mejores/black-friday-notebooks),
+  [smart TV](https://cazadordeofertas.com.ar/mejores/black-friday-smart-tv),
+  [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras)) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
   por producto de ticket alto con precio de hoy, precio más bajo registrado

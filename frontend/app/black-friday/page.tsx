@@ -15,7 +15,7 @@ import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
-import { getComparativa, productosDe } from '@/lib/comparativas'
+import { COMPARATIVAS, getComparativa, productosDe } from '@/lib/comparativas'
 import { GUIAS } from '@/lib/guias'
 
 /** Guías de compra de ticket alto (lo que más vende por afiliados). */
@@ -85,6 +85,7 @@ export default function BlackFridayPage() {
     historial: historial[o.id_ml],
   }))
 
+  const porRubro = COMPARATIVAS.filter(c => c.slug.startsWith('black-friday-'))
   const guias = GUIAS.filter(g => g.slug.includes('black-friday') || GUIAS_TICKET_ALTO.includes(g.slug))
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
 
@@ -313,6 +314,11 @@ export default function BlackFridayPage() {
                 <a href={`/mejores/${bf.slug}`} className="font-bold text-yellow-400 hover:underline">🖤 {bf.titulo} →</a>
               </li>
             )}
+            {porRubro.map(c => (
+              <li key={c.slug}>
+                <a href={`/mejores/${c.slug}`} className="font-bold text-yellow-400 hover:underline">🖤 {c.titulo} →</a>
+              </li>
+            ))}
             {guias.map(g => (
               <li key={g.slug}>
                 <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {g.titulo} →</a>

@@ -45,6 +45,8 @@ const PERENNES = new Set([
   'ofertas-cyber-monday', 'cyber-monday-smart-tv', 'cyber-monday-aires-acondicionados',
   'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares', 'cyber-monday-cafeteras',
   'cyber-monday-heladeras', 'cyber-monday-colchones',
+  // Black Friday (27/11): mismas razones, se publican 3+ semanas antes.
+  'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
 ])
 
 const AÑO = 2026
@@ -491,6 +493,75 @@ export const COMPARATIVAS: Comparativa[] = [
       'En productos caros, preferí tiendas oficiales o vendedores con reputación verde y garantía oficial.',
     ],
     guia: 'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre',
+  },
+  {
+    slug: 'black-friday-celulares',
+    nombre: 'celulares en el Black Friday',
+    titulo: `Celulares en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Celulares en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada celular se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
+    categoria: 'celulares',
+    keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
+    criterios: [
+      'Compará el precio del Black Friday contra el mínimo registrado de la tabla: si el "antes" subió en noviembre, el % OFF es de cartel.',
+      'Mirá la memoria: 128 GB de almacenamiento y 6 GB de RAM alcanzan para la mayoría.',
+      'Preferí equipos liberados con garantía oficial; evitá los "importados" sin garantía local.',
+    ],
+    guia: 'que-celular-comprar-segun-presupuesto',
+  },
+  {
+    slug: 'black-friday-notebooks',
+    nombre: 'notebooks en el Black Friday',
+    titulo: `Notebooks en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Notebooks en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: para estudiar, trabajar y gaming, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada notebook se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
+    categoria: 'notebooks',
+    keywords: ['notebook', 'laptop', 'macbook'],
+    excluir: ['monitor', 'mochila', 'cargador', 'funda', 'soporte', 'base para'],
+    criterios: [
+      'Compará el precio del Black Friday contra el mínimo registrado de la tabla: si el "antes" subió en noviembre, el % OFF es de cartel.',
+      'Para uso general: 8 GB de RAM como mínimo (mejor 16 GB) y disco SSD.',
+      'Mirá el procesador completo (Ryzen 5 / Core i5 o superior para trabajar cómodo) y si trae Windows.',
+    ],
+    guia: 'que-notebook-comprar',
+  },
+  {
+    slug: 'black-friday-smart-tv',
+    nombre: 'smart TV en el Black Friday',
+    titulo: `Smart TV en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Smart TV en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: 4K de 43 a 75 pulgadas, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada smart TV se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
+    categoria: 'smart-tv',
+    criterios: [
+      'Compará el precio del Black Friday contra el mínimo registrado de la tabla: si el "antes" subió en noviembre, el % OFF es de cartel.',
+      'Pulgadas según la distancia: 50" a unos 2 m, 55"-65" para livings grandes.',
+      '4K y sistema operativo (Google TV, webOS, Tizen) con las apps que usás.',
+    ],
+    guia: 'que-smart-tv-comprar',
+  },
+  {
+    slug: 'black-friday-heladeras',
+    nombre: 'heladeras en el Black Friday',
+    titulo: `Heladeras en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    descripcion:
+      'Heladeras en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: no frost y cíclicas, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada heladera se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
+    categoria: 'heladeras',
+    keywords: ['heladera'],
+    criterios: [
+      'Compará el precio del Black Friday contra el mínimo registrado de la tabla: si el "antes" subió en noviembre, el % OFF es de cartel.',
+      'No frost: no junta hielo; cíclica: más barata y gasta menos.',
+      'Medí el hueco y la apertura de la puerta, y confirmá si el envío llega hasta tu casa.',
+    ],
+    guia: 'que-heladera-comprar',
   },
   {
     slug: 'regalos-de-navidad',

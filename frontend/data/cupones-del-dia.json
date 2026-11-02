@@ -27,6 +27,24 @@
       "condiciones": "Compra mínima $1.000.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
       "campania": "Cyber Monday",
       "link": "https://www.mercadolibre.com.ar/cyber-monday"
+    },
+    {
+      "codigo": "CYBERCOLCHONES15",
+      "descuento": 15000,
+      "minimo": 250000,
+      "hasta": "2026-11-02T23:59:00-03:00",
+      "condiciones": "$15.000 de descuento adicional en colchones seleccionados de más de $250.000. Informado por el canal de Afiliados el lunes 2/11 a las 09:44; sin vencimiento publicado, se muestra hasta las 23:59 hs de hoy.",
+      "campania": "Cyber Monday · Colchones",
+      "link": "https://listado.mercadolibre.com.ar/_Container_cyber-afiliados-fh-asp-250k-10off"
+    },
+    {
+      "codigo": "HPCYBERAFIS",
+      "descuento": 100000,
+      "minimo": 1548499,
+      "hasta": "2026-11-08T23:59:00-03:00",
+      "condiciones": "Solo para la Notebook HP 15-fd1151la (Intel Core 5, 8 GB, 512 GB SSD, 15,6\" táctil), que el 2/11 estaba a $1.548.499. Vigente del 2 al 8 de noviembre, según el canal de Afiliados.",
+      "campania": "Cyber Monday · Notebook HP",
+      "link": "https://www.mercadolibre.com.ar/notebook-hp-15-fd1151la-intel-core-5-8-gb-ram-512-gb-ssd-156-tactil-fhd-windows-11-home/p/MLA80727734"
     }
   ]
 }

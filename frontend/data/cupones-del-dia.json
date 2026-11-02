@@ -2,13 +2,31 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "PREVIACYBER",
-      "descuento": 8000,
-      "minimo": 80000,
-      "hasta": "2026-11-01T23:59:00-03:00",
-      "condiciones": "Compra mínima $80.000. Cupón informado el sábado 31/10 por el canal de Afiliados; sin vencimiento publicado, se muestra hasta las 23:59 hs de hoy.",
-      "campania": "Previa Cyber",
-      "link": "https://www.mercadolibre.com.ar/ofertas"
+      "codigo": "MELICYBER26",
+      "descuento": 20000,
+      "minimo": 250000,
+      "hasta": "2026-11-02T23:59:00-03:00",
+      "condiciones": "Compra mínima $250.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "campania": "Cyber Monday",
+      "link": "https://www.mercadolibre.com.ar/cyber-monday"
+    },
+    {
+      "codigo": "CYBERARRANCA",
+      "descuento": 45000,
+      "minimo": 500000,
+      "hasta": "2026-11-02T23:59:00-03:00",
+      "condiciones": "Compra mínima $500.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "campania": "Cyber Monday",
+      "link": "https://www.mercadolibre.com.ar/cyber-monday"
+    },
+    {
+      "codigo": "NOVIEMBREON",
+      "descuento": 80000,
+      "minimo": 1000000,
+      "hasta": "2026-11-02T23:59:00-03:00",
+      "condiciones": "Compra mínima $1.000.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "campania": "Cyber Monday",
+      "link": "https://www.mercadolibre.com.ar/cyber-monday"
     }
   ]
 }

@@ -198,6 +198,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [celulares](https://cazadordeofertas.com.ar/mejores/cyber-monday-celulares),
   [lavarropas](https://cazadordeofertas.com.ar/mejores/cyber-monday-lavarropas),
   [cafeteras](https://cazadordeofertas.com.ar/mejores/cyber-monday-cafeteras),
+  [heladeras](https://cazadordeofertas.com.ar/mejores/cyber-monday-heladeras),
+  [colchones y sommiers](https://cazadordeofertas.com.ar/mejores/cyber-monday-colchones),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página

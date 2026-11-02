@@ -44,6 +44,7 @@ const PERENNES = new Set([
   // y "aire acondicionado cyber monday" ya rankea en la posición ~17 (GSC 04/10).
   'ofertas-cyber-monday', 'cyber-monday-smart-tv', 'cyber-monday-aires-acondicionados',
   'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares', 'cyber-monday-cafeteras',
+  'cyber-monday-heladeras', 'cyber-monday-colchones',
 ])
 
 const AÑO = 2026
@@ -432,6 +433,42 @@ export const COMPARATIVAS: Comparativa[] = [
       'Confirmá qué cápsulas usa antes de comprar: no todas son compatibles.',
     ],
     guia: 'que-cafetera-comprar',
+  },
+  {
+    slug: 'cyber-monday-heladeras',
+    nombre: 'heladeras en el Cyber Monday',
+    titulo: `Heladeras en el Cyber Monday ${AÑO}: precios comparados`,
+    descripcion:
+      'Heladeras en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: no frost y cíclicas, con el descuento verificado contra el historial de precios.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). La heladera es de las compras más caras de la casa y conviene hacerla con una baja real: acá cada modelo se compara contra el precio más bajo que registramos.',
+    categoria: 'heladeras',
+    keywords: ['heladera'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'No frost: no junta hielo; cíclica: más barata y gasta menos.',
+      'Litros: unos 100 a 150 L por persona como referencia.',
+      'Medí el hueco y la apertura de la puerta, y confirmá si el envío llega hasta tu casa.',
+    ],
+    guia: 'que-heladera-comprar',
+  },
+  {
+    slug: 'cyber-monday-colchones',
+    nombre: 'colchones y sommiers en el Cyber Monday',
+    titulo: `Colchones y sommiers en el Cyber Monday ${AÑO}: ofertas reales`,
+    descripcion:
+      'Colchones y sommiers en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: espuma, resortes pocket y viscoelástico, con el precio comparado contra el mínimo registrado.',
+    intro:
+      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). En colchones el precio de lista sube y baja mucho, así que el % OFF solo no alcanza: cada modelo se compara contra el precio más bajo que registramos.',
+    categoria: 'colchones',
+    keywords: ['colchon', 'colchón', 'sommier'],
+    criterios: [
+      'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
+      'Firmeza según tu peso y postura: de costado, algo menos firme.',
+      'Medida exacta: 1 plaza, 2 plazas, queen o king, y si el sommier incluye la base.',
+      'Garantía del fabricante y tienda oficial: un colchón no se devuelve fácil.',
+    ],
+    guia: 'que-colchon-comprar-firmeza-y-material',
   },
   {
     slug: 'ofertas-black-friday',

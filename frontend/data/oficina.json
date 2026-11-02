@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-02T04:12:46+00:00",
+  "generado": "2026-11-02T14:31:36+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 7049 productos en la última corrida"
+          "tarea": "Revisó 8247 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -164,7 +164,7 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
-      "ultima_actividad": "2026-10-26T07:20:29+00:00",
+      "ultima_actividad": "2026-11-02T08:46:18+00:00",
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -174,23 +174,23 @@
       "metricas": [
         {
           "label": "Seguidores IG",
-          "valor": 1483,
-          "delta": -5
+          "valor": 1484,
+          "delta": 1
         },
         {
           "label": "Seguidores Threads",
-          "valor": 107,
-          "delta": 3
+          "valor": 106,
+          "delta": -1
         },
         {
           "label": "Suscriptores TG",
-          "valor": 7,
-          "delta": 3
+          "valor": 11,
+          "delta": 4
         },
         {
           "label": "Seguidores FB",
-          "valor": 0,
-          "delta": 0
+          "valor": 1,
+          "delta": 1
         }
       ],
       "metricas_titulo": "Última medición (vs. la anterior)"

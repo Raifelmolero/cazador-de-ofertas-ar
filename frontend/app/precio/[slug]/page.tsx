@@ -16,7 +16,6 @@ import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import {
   categoriaDeSeguido,
   getSeguido,
-  getSeguidos,
   getSeguidosPrincipales,
   principalDe,
   precioActual,
@@ -37,8 +36,10 @@ function busquedaDesdeSlug(slug: string): string {
     .join(' ')
 }
 
+// Se prerenderizan solo las páginas principales (las demás redirigen a ellas)
+// y hasta 500; el resto se arma en la primera visita y queda cacheado.
 export function generateStaticParams() {
-  return getSeguidos().map(s => ({ slug: s.slug }))
+  return getSeguidosPrincipales().slice(0, 500).map(s => ({ slug: s.slug }))
 }
 
 function nombreCorto(s: Seguido) {

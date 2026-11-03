@@ -13,9 +13,11 @@ import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
 import Footer from '@/components/Footer'
 
+// Solo se prerenderizan las 200 de más margen; el resto (~8.000) se arma la
+// primera vez que alguien la visita y queda cacheada hasta el próximo deploy.
+// Prerenderizar todas hacía builds de más de 30 minutos.
 export async function generateStaticParams() {
-  const productos = getProductos()
-  return productos.map(p => ({ id: p.id_ml }))
+  return getProductos().slice(0, 200).map(p => ({ id: p.id_ml }))
 }
 
 const FORMATOS_TITULO = [

@@ -71,13 +71,23 @@ export const aLight = (p: ProductWithMargins): ProductoLight => ({
   url_producto: p.url_producto,
 })
 
+// Cache por proceso: el build arma miles de páginas y cada una leía, parseaba y
+// ordenaba de nuevo el JSON entero (~8.000 productos). Los datos no cambian
+// dentro de un deploy.
+let cache: ProductWithMargins[] | null = null
+let porId: Map<string, ProductWithMargins> | null = null
+
 export function getProductos(): ProductWithMargins[] {
-  const items = (readJson().items as ProductWithMargins[]).map(conCostosML)
-  return items.sort((a, b) => b.margen_neto_clasico_ars - a.margen_neto_clasico_ars)
+  if (!cache) {
+    const items = (readJson().items as ProductWithMargins[]).map(conCostosML)
+    cache = items.sort((a, b) => b.margen_neto_clasico_ars - a.margen_neto_clasico_ars)
+  }
+  return cache
 }
 
 export function getProductoById(id: string): ProductWithMargins | undefined {
-  return getProductos().find(p => p.id_ml === id)
+  porId ??= new Map(getProductos().map(p => [p.id_ml, p]))
+  return porId.get(id)
 }
 
 // Ofertas para compradores (/hoy): primero las de mayor ganancia esperada

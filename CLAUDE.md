@@ -29,8 +29,17 @@ tecnicismos innecesarios.**
   márgenes, parseo de ML, retención de media). Corren solos en Actions y a
   mano con `python -m unittest discover -s bot/tests -v`.
 - Estado en `bot/state/` (posted_ids, posts_log, scan_log, price_history,
-  metrics_log): lo commitean los workflows con `[skip ci]`. Cada push a main
-  redeploya Vercel, así el sitio siempre tiene datos frescos.
+  metrics_log): lo commitean los workflows con `[skip ci]`. Esos commits NO redeployan
+  (ver «Costos de Vercel» abajo): el sitio se actualiza 3×/día con `deploy_agrupado.yml`.
+
+## Costos de Vercel (regla, 2/11/2026)
+Factura de USD 60 con USD 51 de Build CPU. Objetivo: ~USD 20/mes (Pro fijo). No re-litigar:
+- Build Machine del proyecto = **Basic**; builds concurrentes desactivados; presupuesto USD 10.
+- Commits automáticos con prefijo `bot:`, `datos:` u `oferta manual:` no despliegan
+  (`frontend/scripts/vercel-ignore.sh`). `deploy_agrupado.yml` despliega a las 12:30, 17:30 y 21:30 ART.
+  Un workflow nuevo que commitee datos TIENE que usar uno de esos prefijos.
+- `generateStaticParams` sobre listas grandes siempre con `.slice()` (calculadora 200, precio 500);
+  el resto se arma en la primera visita. Cargadores de JSON memoizados.
 
 ## Decisiones clave (no re-litigar)
 

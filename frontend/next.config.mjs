@@ -43,7 +43,29 @@ const nextConfig = {
       '/cyber': '/cyber-monday',
       '/madre': '/dia-de-la-madre',
     }
-    return Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false }))
+    // Las páginas de ofertas vistas desde calculadoraml.com.ar no venden
+    // (etiqueta calcml: 407 clics, 0 ventas en octubre): se mandan al dominio
+    // de ofertas, que sí convierte. La calculadora y /vender quedan donde están.
+    const calcHosts = ['calculadoraml.com.ar', 'www.calculadoraml.com.ar']
+    const ofertas = [
+      'hoy', 'precio', 'precio-hoy', 'mejores', 'mejor', 'vs', 'ofertas', 'categoria',
+      'cyber-monday', 'black-friday', 'cupones-mercado-libre', 'regalos-navidad',
+      'dia-de-la-madre', 'descuentos-inflados', 'tecno', 'hogar', 'gamer', 'gastronomia',
+      'bebes-y-jugueteria', 'pequenos-electrodomesticos', 'vehiculos', 'aliexpress',
+      'guias', 'comparador', 'familia',
+    ]
+    const aOfertas = calcHosts.flatMap(host =>
+      ofertas.flatMap(p => [`/${p}`, `/${p}/:path*`]).map(source => ({
+        source,
+        has: [{ type: 'host', value: host }],
+        destination: `https://${DEALS_HOST}${source}`,
+        permanent: true,
+      })),
+    )
+    return [
+      ...aOfertas,
+      ...Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false })),
+    ]
   },
   async rewrites() {
     const dealsHosts = [DEALS_HOST, `www.${DEALS_HOST}`]

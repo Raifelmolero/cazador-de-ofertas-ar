@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-03T18:28:17+00:00",
+  "generado": "2026-11-03T20:54:32+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-03T05:10:05+00:00",
+      "ultima_actividad": "2026-11-03T20:53:31+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,24 +17,24 @@
       ],
       "metricas": [
         {
+          "label": "Telegram",
+          "valor": 3
+        },
+        {
           "label": "Facebook",
           "valor": 3
         },
         {
-          "label": "Telegram",
+          "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
           "label": "Threads",
-          "valor": 1
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook HP Victus Gaming de 15.6\" Full HD para Juegos con Ryzen 7, 32 GB de RAM"
+      "ultimo_trabajo": "Notebook Hp Victus Ryzen 7 7445hs 16gb 512gb Rtx 4050 Win 11"
     },
     {
       "id": "investigacion",

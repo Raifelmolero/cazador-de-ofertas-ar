@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-02T23:05:21+00:00",
+  "generado": "2026-11-03T05:10:07+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-02T23:05:20+00:00",
+      "ultima_actividad": "2026-11-03T05:10:05+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 8343 productos en la última corrida"
+          "tarea": "Revisó 8307 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 3
         },
         {
           "label": "Telegram",
-          "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 3
-        },
-        {
-          "label": "whatsapp_kit",
-          "valor": 3
-        },
-        {
-          "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Reels IG",
+          "label": "Instagram",
           "valor": 1
         },
         {
-          "label": "Historias IG",
+          "label": "Threads",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Asus Vivobook 15 Ryzen 5 40gb 2tb Ssd Win"
+      "ultimo_trabajo": "Notebook HP Victus Gaming de 15.6\" Full HD para Juegos con Ryzen 7, 32 GB de RAM"
     },
     {
       "id": "investigacion",

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-03T10:06:30+00:00",
+  "generado": "2026-11-03T14:25:56+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 8922 productos en la última corrida"
+          "tarea": "Revisó 9399 productos en la última corrida"
         }
       ],
       "metricas": [

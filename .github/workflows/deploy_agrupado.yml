@@ -1,0 +1,35 @@
+name: Deploy agrupado
+
+# Los commits del bot ("bot:", "datos:", "oferta manual:") no despliegan solos
+# (ver frontend/scripts/vercel-ignore.sh): cada uno era un build de 5-9 min y en
+# octubre-2026 sumaron USD 51 de Build CPU. Este workflow hace un commit vacío
+# media hora después de cada corrida del bot, y Vercel construye una sola vez
+# con todo lo acumulado. Si no hubo cambios del sitio, el ignoreCommand lo saltea.
+on:
+  schedule:
+    - cron: '30 15 * * *'   # 12:30 ART
+    - cron: '30 20 * * *'   # 17:30 ART
+    - cron: '30 0 * * *'    # 21:30 ART
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-agrupado
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: Disparar deploy
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "deploy: agrupado [skip ci]"
+          git pull --rebase -q
+          git push

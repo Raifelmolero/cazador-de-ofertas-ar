@@ -1919,6 +1919,406 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
+  {
+    "slug": "cuanta-ram-necesita-una-notebook",
+    "titulo": "¿Cuánta RAM necesita una notebook? 8, 16 o 32 GB",
+    "descripcion": "Cuánta memoria RAM conviene en una notebook según el uso: estudio y oficina, programación, diseño, edición de video y juegos. Qué es la RAM soldada y si se puede ampliar.",
+    "pregunta": "¿Cuánta RAM necesita una notebook?",
+    "respuestaCorta": "Para estudiar, navegar y usar programas de oficina, 8 GB de RAM es el mínimo y 16 GB es lo recomendable para que la notebook no se ponga lenta en unos años. Para programar, diseñar o editar video conviene 16 GB o más, y 32 GB solo si trabajás con proyectos pesados. Antes de comprar, fijate si la RAM está soldada: si lo está, no se puede ampliar después.",
+    "secciones": [
+      {
+        "h": "8 GB: el mínimo para uso básico",
+        "p": [
+          "Con 8 GB se puede navegar, usar Word, Excel y videollamadas. El límite aparece cuando abrís muchas pestañas a la vez o dejás varios programas abiertos.",
+          "Si el presupuesto obliga a 8 GB, buscá un modelo que permita ampliar la memoria más adelante."
+        ]
+      },
+      {
+        "h": "16 GB: lo que conviene hoy",
+        "p": [
+          "Es la medida más equilibrada: la notebook sigue rápida con muchas pestañas, programas de estudio o trabajo y actualizaciones durante varios años.",
+          "Para programar, diseño gráfico liviano o juegos casuales, 16 GB alcanza en la mayoría de los casos."
+        ]
+      },
+      {
+        "h": "32 GB o más: para trabajo pesado",
+        "p": [
+          "Sirve si editás video en alta resolución, usás máquinas virtuales o modelos 3D grandes. Para el uso común no se nota la diferencia contra 16 GB."
+        ]
+      },
+      {
+        "h": "Qué mirar en la ficha antes de pagar",
+        "p": [
+          "Cantidad de RAM y tipo (DDR4 o DDR5).",
+          "Si la memoria está soldada o tiene una ranura libre para ampliar.",
+          "Que el disco sea SSD: con poca RAM y disco mecánico la notebook se siente mucho más lenta.",
+          "Garantía oficial y si el envío es gratis."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "notebooks",
+      "nombre": "notebooks"
+    },
+    "comparativa": "mejores-notebooks",
+    "cta": {
+      "href": "/mejores/mejores-notebooks",
+      "titulo": "Notebooks en oferta hoy, comparadas",
+      "boton": "Ver la comparativa de notebooks"
+    },
+    "faq": [
+      {
+        "q": "¿Alcanzan 8 GB de RAM en una notebook?",
+        "a": "Para uso básico sí, pero con muchas pestañas o programas abiertos se pone lenta. Si podés, elegí 16 GB o un modelo que permita ampliar."
+      },
+      {
+        "q": "¿Se puede agregar más RAM a una notebook?",
+        "a": "Solo si tiene una ranura libre y la memoria no está soldada. Muchas notebooks delgadas traen la RAM soldada."
+      },
+      {
+        "q": "¿Qué es más importante, RAM o procesador?",
+        "a": "Para el uso diario, tener 16 GB de RAM y disco SSD se nota más que un procesador un poco más potente."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-notebooks",
+        "texto": "Mejores notebooks en oferta"
+      },
+      {
+        "href": "/guias/que-notebook-comprar",
+        "texto": "Qué notebook comprar"
+      },
+      {
+        "href": "/categoria/notebooks",
+        "texto": "Notebooks en oferta"
+      },
+      {
+        "href": "/guias/intel-core-i5-o-ryzen-5-cual-conviene",
+        "texto": "Intel Core i5 o Ryzen 5"
+      },
+      {
+        "href": "/guias/notebook-ssd-256-o-512-gb",
+        "texto": "SSD de 256 o 512 GB"
+      }
+    ]
+  },
+  {
+    "slug": "intel-core-i5-o-ryzen-5-cual-conviene",
+    "titulo": "Intel Core i5 o AMD Ryzen 5: cuál conviene en una notebook",
+    "descripcion": "Diferencias entre Intel Core i5 (y los nuevos Core 5) y AMD Ryzen 5 en notebooks: rendimiento, batería, gráficos integrados y cómo leer el nombre del procesador.",
+    "pregunta": "¿Conviene una notebook con Intel Core i5 o con Ryzen 5?",
+    "respuestaCorta": "Para estudiar, trabajar y uso diario, un Intel Core i5 (o Core 5) y un AMD Ryzen 5 de la misma generación rinden parecido, así que conviene decidir por precio, RAM y disco. Los Ryzen suelen tener mejores gráficos integrados; los Intel recientes son muy parejos. Lo importante es que el procesador sea de una generación reciente.",
+    "secciones": [
+      {
+        "h": "Cómo leer el nombre del procesador",
+        "p": [
+          "En Intel, el número después de i5 indica la generación: un i5-1235U es de 12.ª generación. Los modelos nuevos se llaman Core 5 o Core Ultra 5.",
+          "En AMD, la letra U indica bajo consumo (más batería) y H o HS más potencia. Un número de serie más alto suele indicar un modelo más nuevo, aunque conviene confirmar el año en la ficha."
+        ]
+      },
+      {
+        "h": "Rendimiento y batería",
+        "p": [
+          "En tareas comunes la diferencia entre ambas marcas de la misma época es chica. Las letras U priorizan batería y las H rendimiento para juegos o edición."
+        ]
+      },
+      {
+        "h": "Gráficos integrados",
+        "p": [
+          "Si vas a jugar algo liviano sin placa de video dedicada, los Ryzen con gráficos Radeon integrados suelen rendir mejor; los Intel recientes con Iris Xe o Arc acortan la diferencia."
+        ]
+      },
+      {
+        "h": "Qué mirar antes de comprar",
+        "p": [
+          "Generación del procesador (que no sea muy vieja).",
+          "Al menos 16 GB de RAM y disco SSD.",
+          "Pantalla Full HD (1920 x 1080) y garantía oficial."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "notebooks",
+      "nombre": "notebooks"
+    },
+    "comparativa": "mejores-notebooks",
+    "cta": {
+      "href": "/mejores/mejores-notebooks",
+      "titulo": "Notebooks en oferta hoy, comparadas",
+      "boton": "Ver la comparativa de notebooks"
+    },
+    "faq": [
+      {
+        "q": "¿Qué es mejor, i5 o Ryzen 5?",
+        "a": "De la misma generación rinden parecido. Elegí por precio, RAM, disco y pantalla; los Ryzen suelen traer mejores gráficos integrados."
+      },
+      {
+        "q": "¿Qué significa la letra U en el procesador?",
+        "a": "Que es de bajo consumo: rinde un poco menos pero la batería dura más. La H o HS indica más potencia."
+      },
+      {
+        "q": "¿Intel Core 5 es lo mismo que Core i5?",
+        "a": "Es la nueva forma de nombrar la gama media de Intel; equivale a un i5 de generación reciente."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-notebooks",
+        "texto": "Mejores notebooks en oferta"
+      },
+      {
+        "href": "/guias/que-notebook-comprar",
+        "texto": "Qué notebook comprar"
+      },
+      {
+        "href": "/categoria/notebooks",
+        "texto": "Notebooks en oferta"
+      },
+      {
+        "href": "/guias/cuanta-ram-necesita-una-notebook",
+        "texto": "Cuánta RAM necesita una notebook"
+      }
+    ]
+  },
+  {
+    "slug": "notebook-ssd-256-o-512-gb",
+    "titulo": "Notebook con SSD de 256 o 512 GB: cuánto disco necesitás",
+    "descripcion": "Cuánto almacenamiento conviene en una notebook: 256 GB, 512 GB o 1 TB de SSD según el uso, qué ocupa Windows y cómo sumar espacio después.",
+    "pregunta": "¿Alcanza una notebook con SSD de 256 GB o conviene 512 GB?",
+    "respuestaCorta": "Un SSD de 256 GB alcanza si usás la notebook para estudiar y navegar y guardás tus archivos en la nube, pero se llena rápido. Para la mayoría conviene 512 GB, y 1 TB si guardás videos, juegos o proyectos grandes. Siempre SSD y no disco mecánico, porque es lo que hace que la notebook arranque y abra programas rápido.",
+    "secciones": [
+      {
+        "h": "Cuánto ocupa lo básico",
+        "p": [
+          "Windows con sus actualizaciones ocupa decenas de GB, y a eso se suman los programas que uses.",
+          "Con 256 GB queda lugar para documentos, pero no para muchas fotos, videos o juegos."
+        ]
+      },
+      {
+        "h": "512 GB: el punto justo",
+        "p": [
+          "Deja margen para programas, fotos y algunos juegos sin tener que borrar a cada rato. Es la medida que más conviene para uso general."
+        ]
+      },
+      {
+        "h": "Cómo sumar espacio después",
+        "p": [
+          "Algunas notebooks tienen una segunda ranura M.2 para agregar otro SSD; fijate en la ficha técnica.",
+          "Un disco externo o la nube son una opción barata para lo que no usás todos los días."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "notebooks",
+      "nombre": "notebooks"
+    },
+    "comparativa": "mejores-notebooks",
+    "cta": {
+      "href": "/mejores/mejores-notebooks",
+      "titulo": "Notebooks en oferta hoy, comparadas",
+      "boton": "Ver la comparativa de notebooks"
+    },
+    "faq": [
+      {
+        "q": "¿256 GB es poco para una notebook?",
+        "a": "Para uso básico con archivos en la nube alcanza, pero se llena rápido. Para la mayoría conviene 512 GB."
+      },
+      {
+        "q": "¿SSD o disco HDD?",
+        "a": "Siempre SSD como disco principal: la notebook arranca y abre programas mucho más rápido."
+      },
+      {
+        "q": "¿Se puede cambiar el SSD de una notebook?",
+        "a": "En muchas sí, porque usan SSD M.2 reemplazable. Confirmalo en la ficha antes de comprar."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-notebooks",
+        "texto": "Mejores notebooks en oferta"
+      },
+      {
+        "href": "/guias/que-notebook-comprar",
+        "texto": "Qué notebook comprar"
+      },
+      {
+        "href": "/categoria/notebooks",
+        "texto": "Notebooks en oferta"
+      },
+      {
+        "href": "/guias/cuanta-ram-necesita-una-notebook",
+        "texto": "Cuánta RAM necesita una notebook"
+      }
+    ]
+  },
+  {
+    "slug": "que-zte-comprar",
+    "titulo": "¿Qué ZTE comprar? Blade A, Blade V y nubia",
+    "descripcion": "Cómo elegir un celular ZTE en Argentina: diferencias entre las líneas Blade A, Blade V y nubia, cuánta memoria conviene y qué mirar antes de comprar.",
+    "pregunta": "¿Qué celular ZTE conviene comprar?",
+    "respuestaCorta": "Los ZTE Blade A son los más baratos y sirven para WhatsApp, redes y llamadas; los Blade V suman mejor pantalla, cámara y batería por poco más; y la línea nubia apunta a gama media con más potencia. Para que el celular no se ponga lento en un año, conviene elegir uno con al menos 4 GB de RAM y 128 GB de almacenamiento.",
+    "secciones": [
+      {
+        "h": "Blade A: lo básico al mejor precio",
+        "p": [
+          "Es la línea de entrada. Alcanza para WhatsApp, redes sociales, llamadas y fotos de día.",
+          "Es una buena opción como primer celular o para alguien que lo usa poco; para juegos o muchas apps abiertas se queda corta."
+        ]
+      },
+      {
+        "h": "Blade V: el equilibrio",
+        "p": [
+          "Suma pantallas más grandes, mejores cámaras y baterías de más duración. Para la mayoría de la gente es la línea que más conviene de ZTE."
+        ]
+      },
+      {
+        "h": "nubia: gama media",
+        "p": [
+          "Los nubia apuntan a quien quiere más potencia, mejor cámara o carga rápida sin pagar un gama alta."
+        ]
+      },
+      {
+        "h": "Qué mirar en la ficha antes de pagar",
+        "p": [
+          "Al menos 4 GB de RAM y 128 GB de almacenamiento.",
+          "Capacidad de la batería en mAh y si incluye cargador.",
+          "Que sea versión para Argentina, con garantía oficial.",
+          "Comparar el precio de hoy contra otros días: muchos descuentos parten de un precio de lista inflado."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "celulares",
+      "nombre": "celulares"
+    },
+    "comparativa": "mejores-celulares",
+    "cta": {
+      "href": "/mejores/mejores-celulares",
+      "titulo": "Celulares en oferta hoy, comparados",
+      "boton": "Ver la comparativa de celulares"
+    },
+    "faq": [
+      {
+        "q": "¿Los celulares ZTE son buenos?",
+        "a": "En su rango de precio rinden bien: ofrecen pantallas grandes y buena batería por menos plata que otras marcas. No compiten con un gama alta."
+      },
+      {
+        "q": "¿Qué diferencia hay entre ZTE Blade A y Blade V?",
+        "a": "El Blade A es la línea más barata, para uso básico. El Blade V suma mejor pantalla, cámara y batería por un poco más."
+      },
+      {
+        "q": "¿Cuánta memoria debería tener un ZTE?",
+        "a": "Al menos 4 GB de RAM y 128 GB de almacenamiento para que no se llene ni se ponga lento rápido."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-celulares",
+        "texto": "Mejores celulares en oferta"
+      },
+      {
+        "href": "/guias/que-celular-comprar-segun-presupuesto",
+        "texto": "Qué celular comprar según presupuesto"
+      },
+      {
+        "href": "/guias/cuantos-gb-necesito-celular",
+        "texto": "Cuántos GB necesita un celular"
+      },
+      {
+        "href": "/categoria/celulares",
+        "texto": "Celulares en oferta"
+      },
+      {
+        "href": "/guias/que-xiaomi-redmi-comprar",
+        "texto": "Qué Xiaomi Redmi comprar"
+      }
+    ]
+  },
+  {
+    "slug": "que-xiaomi-redmi-comprar",
+    "titulo": "¿Qué Xiaomi comprar? Redmi, Redmi Note o Poco",
+    "descripcion": "Cómo elegir un celular Xiaomi en Argentina: diferencias entre Redmi, Redmi Note, Poco y la línea Xiaomi, cuánta memoria conviene y qué mirar antes de comprar.",
+    "pregunta": "¿Qué celular Xiaomi conviene comprar?",
+    "respuestaCorta": "Los Redmi (sin Note) son la línea más barata, para uso básico. Los Redmi Note son los que más convienen para la mayoría: mejor pantalla, cámara y batería a precio medio. Los Poco priorizan potencia para juegos, y la línea Xiaomi numerada es la gama alta. Elegí al menos 6 GB de RAM y 128 GB de almacenamiento si lo vas a usar varios años.",
+    "secciones": [
+      {
+        "h": "Redmi: la entrada",
+        "p": [
+          "Pensados para WhatsApp, redes, llamadas y fotos de día a un precio bajo."
+        ]
+      },
+      {
+        "h": "Redmi Note: el más elegido",
+        "p": [
+          "Es la línea con mejor relación precio-calidad de la marca: pantallas grandes, buenas cámaras y baterías que duran todo el día.",
+          "Las versiones Pro y Pro+ suman mejor cámara y carga más rápida."
+        ]
+      },
+      {
+        "h": "Poco y Xiaomi: más potencia",
+        "p": [
+          "Los Poco usan procesadores más potentes por el precio, ideales para juegos.",
+          "La línea Xiaomi numerada es la gama alta de la marca, con las mejores cámaras."
+        ]
+      },
+      {
+        "h": "Qué mirar en la ficha antes de pagar",
+        "p": [
+          "RAM y almacenamiento (6 GB y 128 GB como base recomendable).",
+          "Que sea versión global con garantía en Argentina.",
+          "Si incluye cargador en la caja.",
+          "Comparar el precio de hoy con otros días antes de comprar."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "celulares",
+      "nombre": "celulares"
+    },
+    "comparativa": "mejores-celulares",
+    "cta": {
+      "href": "/mejores/mejores-celulares",
+      "titulo": "Celulares en oferta hoy, comparados",
+      "boton": "Ver la comparativa de celulares"
+    },
+    "faq": [
+      {
+        "q": "¿Qué es mejor, Redmi o Redmi Note?",
+        "a": "El Redmi Note: mejor pantalla, cámara y batería por una diferencia de precio chica. El Redmi común conviene solo para uso muy básico."
+      },
+      {
+        "q": "¿Qué diferencia hay entre Poco y Redmi Note?",
+        "a": "Los Poco priorizan el procesador (rinden más en juegos); los Redmi Note suelen tener mejor cámara por el mismo precio."
+      },
+      {
+        "q": "¿Los Xiaomi tienen garantía en Argentina?",
+        "a": "Depende del vendedor: fijate que la publicación diga garantía oficial o del vendedor y cuánto dura."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-celulares",
+        "texto": "Mejores celulares en oferta"
+      },
+      {
+        "href": "/guias/que-celular-comprar-segun-presupuesto",
+        "texto": "Qué celular comprar según presupuesto"
+      },
+      {
+        "href": "/guias/cuantos-gb-necesito-celular",
+        "texto": "Cuántos GB necesita un celular"
+      },
+      {
+        "href": "/categoria/celulares",
+        "texto": "Celulares en oferta"
+      },
+      {
+        "href": "/guias/que-zte-comprar",
+        "texto": "Qué ZTE comprar"
+      }
+    ]
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -1942,6 +2342,11 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'lavarropas-inverter-que-es-y-conviene': '2026-10-18',
   'bicicleta-rodado-26-27-5-o-29': '2026-10-18',
   'pc-de-escritorio-o-notebook': '2026-10-18',
+  'cuanta-ram-necesita-una-notebook': '2026-11-03',
+  'intel-core-i5-o-ryzen-5-cual-conviene': '2026-11-03',
+  'notebook-ssd-256-o-512-gb': '2026-11-03',
+  'que-zte-comprar': '2026-11-03',
+  'que-xiaomi-redmi-comprar': '2026-11-03',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

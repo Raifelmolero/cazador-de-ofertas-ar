@@ -262,6 +262,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [cuánta RAM necesita una notebook](https://cazadordeofertas.com.ar/guias/cuanta-ram-necesita-una-notebook),
   [Intel Core i5 o Ryzen 5](https://cazadordeofertas.com.ar/guias/intel-core-i5-o-ryzen-5-cual-conviene),
   [SSD de 256 o 512 GB en una notebook](https://cazadordeofertas.com.ar/guias/notebook-ssd-256-o-512-gb),
+  [qué ZTE comprar](https://cazadordeofertas.com.ar/guias/que-zte-comprar),
+  [qué Xiaomi Redmi comprar](https://cazadordeofertas.com.ar/guias/que-xiaomi-redmi-comprar),
   [qué celular comprar según presupuesto](https://cazadordeofertas.com.ar/guias/que-celular-comprar-segun-presupuesto),
   [qué celular de gama alta comprar](https://cazadordeofertas.com.ar/guias/que-celular-gama-alta-comprar),
   [qué smart TV comprar](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar),

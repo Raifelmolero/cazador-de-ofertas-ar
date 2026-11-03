@@ -2152,6 +2152,173 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       }
     ]
   },
+  {
+    "slug": "que-zte-comprar",
+    "titulo": "¿Qué ZTE comprar? Blade A, Blade V y nubia",
+    "descripcion": "Cómo elegir un celular ZTE en Argentina: diferencias entre las líneas Blade A, Blade V y nubia, cuánta memoria conviene y qué mirar antes de comprar.",
+    "pregunta": "¿Qué celular ZTE conviene comprar?",
+    "respuestaCorta": "Los ZTE Blade A son los más baratos y sirven para WhatsApp, redes y llamadas; los Blade V suman mejor pantalla, cámara y batería por poco más; y la línea nubia apunta a gama media con más potencia. Para que el celular no se ponga lento en un año, conviene elegir uno con al menos 4 GB de RAM y 128 GB de almacenamiento.",
+    "secciones": [
+      {
+        "h": "Blade A: lo básico al mejor precio",
+        "p": [
+          "Es la línea de entrada. Alcanza para WhatsApp, redes sociales, llamadas y fotos de día.",
+          "Es una buena opción como primer celular o para alguien que lo usa poco; para juegos o muchas apps abiertas se queda corta."
+        ]
+      },
+      {
+        "h": "Blade V: el equilibrio",
+        "p": [
+          "Suma pantallas más grandes, mejores cámaras y baterías de más duración. Para la mayoría de la gente es la línea que más conviene de ZTE."
+        ]
+      },
+      {
+        "h": "nubia: gama media",
+        "p": [
+          "Los nubia apuntan a quien quiere más potencia, mejor cámara o carga rápida sin pagar un gama alta."
+        ]
+      },
+      {
+        "h": "Qué mirar en la ficha antes de pagar",
+        "p": [
+          "Al menos 4 GB de RAM y 128 GB de almacenamiento.",
+          "Capacidad de la batería en mAh y si incluye cargador.",
+          "Que sea versión para Argentina, con garantía oficial.",
+          "Comparar el precio de hoy contra otros días: muchos descuentos parten de un precio de lista inflado."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "celulares",
+      "nombre": "celulares"
+    },
+    "comparativa": "mejores-celulares",
+    "cta": {
+      "href": "/mejores/mejores-celulares",
+      "titulo": "Celulares en oferta hoy, comparados",
+      "boton": "Ver la comparativa de celulares"
+    },
+    "faq": [
+      {
+        "q": "¿Los celulares ZTE son buenos?",
+        "a": "En su rango de precio rinden bien: ofrecen pantallas grandes y buena batería por menos plata que otras marcas. No compiten con un gama alta."
+      },
+      {
+        "q": "¿Qué diferencia hay entre ZTE Blade A y Blade V?",
+        "a": "El Blade A es la línea más barata, para uso básico. El Blade V suma mejor pantalla, cámara y batería por un poco más."
+      },
+      {
+        "q": "¿Cuánta memoria debería tener un ZTE?",
+        "a": "Al menos 4 GB de RAM y 128 GB de almacenamiento para que no se llene ni se ponga lento rápido."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-celulares",
+        "texto": "Mejores celulares en oferta"
+      },
+      {
+        "href": "/guias/que-celular-comprar-segun-presupuesto",
+        "texto": "Qué celular comprar según presupuesto"
+      },
+      {
+        "href": "/guias/cuantos-gb-necesito-celular",
+        "texto": "Cuántos GB necesita un celular"
+      },
+      {
+        "href": "/categoria/celulares",
+        "texto": "Celulares en oferta"
+      },
+      {
+        "href": "/guias/que-xiaomi-redmi-comprar",
+        "texto": "Qué Xiaomi Redmi comprar"
+      }
+    ]
+  },
+  {
+    "slug": "que-xiaomi-redmi-comprar",
+    "titulo": "¿Qué Xiaomi comprar? Redmi, Redmi Note o Poco",
+    "descripcion": "Cómo elegir un celular Xiaomi en Argentina: diferencias entre Redmi, Redmi Note, Poco y la línea Xiaomi, cuánta memoria conviene y qué mirar antes de comprar.",
+    "pregunta": "¿Qué celular Xiaomi conviene comprar?",
+    "respuestaCorta": "Los Redmi (sin Note) son la línea más barata, para uso básico. Los Redmi Note son los que más convienen para la mayoría: mejor pantalla, cámara y batería a precio medio. Los Poco priorizan potencia para juegos, y la línea Xiaomi numerada es la gama alta. Elegí al menos 6 GB de RAM y 128 GB de almacenamiento si lo vas a usar varios años.",
+    "secciones": [
+      {
+        "h": "Redmi: la entrada",
+        "p": [
+          "Pensados para WhatsApp, redes, llamadas y fotos de día a un precio bajo."
+        ]
+      },
+      {
+        "h": "Redmi Note: el más elegido",
+        "p": [
+          "Es la línea con mejor relación precio-calidad de la marca: pantallas grandes, buenas cámaras y baterías que duran todo el día.",
+          "Las versiones Pro y Pro+ suman mejor cámara y carga más rápida."
+        ]
+      },
+      {
+        "h": "Poco y Xiaomi: más potencia",
+        "p": [
+          "Los Poco usan procesadores más potentes por el precio, ideales para juegos.",
+          "La línea Xiaomi numerada es la gama alta de la marca, con las mejores cámaras."
+        ]
+      },
+      {
+        "h": "Qué mirar en la ficha antes de pagar",
+        "p": [
+          "RAM y almacenamiento (6 GB y 128 GB como base recomendable).",
+          "Que sea versión global con garantía en Argentina.",
+          "Si incluye cargador en la caja.",
+          "Comparar el precio de hoy con otros días antes de comprar."
+        ]
+      }
+    ],
+    "categoria": {
+      "slug": "celulares",
+      "nombre": "celulares"
+    },
+    "comparativa": "mejores-celulares",
+    "cta": {
+      "href": "/mejores/mejores-celulares",
+      "titulo": "Celulares en oferta hoy, comparados",
+      "boton": "Ver la comparativa de celulares"
+    },
+    "faq": [
+      {
+        "q": "¿Qué es mejor, Redmi o Redmi Note?",
+        "a": "El Redmi Note: mejor pantalla, cámara y batería por una diferencia de precio chica. El Redmi común conviene solo para uso muy básico."
+      },
+      {
+        "q": "¿Qué diferencia hay entre Poco y Redmi Note?",
+        "a": "Los Poco priorizan el procesador (rinden más en juegos); los Redmi Note suelen tener mejor cámara por el mismo precio."
+      },
+      {
+        "q": "¿Los Xiaomi tienen garantía en Argentina?",
+        "a": "Depende del vendedor: fijate que la publicación diga garantía oficial o del vendedor y cuánto dura."
+      }
+    ],
+    "enlaces": [
+      {
+        "href": "/mejores/mejores-celulares",
+        "texto": "Mejores celulares en oferta"
+      },
+      {
+        "href": "/guias/que-celular-comprar-segun-presupuesto",
+        "texto": "Qué celular comprar según presupuesto"
+      },
+      {
+        "href": "/guias/cuantos-gb-necesito-celular",
+        "texto": "Cuántos GB necesita un celular"
+      },
+      {
+        "href": "/categoria/celulares",
+        "texto": "Celulares en oferta"
+      },
+      {
+        "href": "/guias/que-zte-comprar",
+        "texto": "Qué ZTE comprar"
+      }
+    ]
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2178,6 +2345,8 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'cuanta-ram-necesita-una-notebook': '2026-11-03',
   'intel-core-i5-o-ryzen-5-cual-conviene': '2026-11-03',
   'notebook-ssd-256-o-512-gb': '2026-11-03',
+  'que-zte-comprar': '2026-11-03',
+  'que-xiaomi-redmi-comprar': '2026-11-03',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

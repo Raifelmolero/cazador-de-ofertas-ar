@@ -2811,6 +2811,165 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
     ],
   },
+  {
+    slug: 'ventilador-de-pie-de-techo-o-turbo',
+    titulo: 'Ventilador de pie, de techo o turbo: cuál conviene',
+    descripcion:
+      'Diferencias entre ventilador de pie, de techo y turbo: cuánto aire mueven, ruido, instalación, consumo y cuál conviene para el dormitorio, el living o la oficina.',
+    pregunta: '¿Qué conviene más: ventilador de pie, de techo o turbo?',
+    respuestaCorta:
+      'El de techo reparte el aire en todo el ambiente sin ocupar lugar, pero hay que instalarlo. El de pie se mueve de un cuarto a otro y regula la altura. El turbo mueve mucho aire en una dirección y es ideal para ambientes grandes o calurosos, aunque suele ser más ruidoso. Para dormir conviene uno silencioso con varias velocidades.',
+    secciones: [
+      {
+        h: 'De techo',
+        p: [
+          'Distribuye el aire en toda la habitación y no ocupa espacio en el piso. Muchos traen luz y control remoto.',
+          'Necesita instalación eléctrica en el techo y una altura mínima para que las paletas no queden bajas.',
+        ],
+      },
+      {
+        h: 'De pie',
+        p: [
+          'Se lleva de un ambiente a otro, se regula en altura y suele tener oscilación para cubrir más espacio.',
+        ],
+      },
+      {
+        h: 'Turbo',
+        p: [
+          'Más potente y concentrado: ideal para livings grandes, cocinas o talleres. Suele hacer más ruido que un ventilador de pie común.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Potencia en watts y diámetro de las paletas.',
+          'Cantidad de velocidades y si tiene modo silencioso o nocturno.',
+          'Si tiene control remoto y temporizador para apagarse solo de noche.',
+        ],
+      },
+    ],
+    categoria: { slug: 'ventiladores', nombre: 'ventiladores' },
+    comparativa: 'mejores-ventiladores',
+    cta: { href: '/mejores/mejores-ventiladores', titulo: 'Ventiladores en oferta hoy, comparados', boton: 'Ver la comparativa de ventiladores' },
+    faq: [
+      {
+        q: '¿Qué ventilador es más silencioso para dormir?',
+        a: 'En general uno de techo o uno de pie con modo nocturno. Los turbo suelen ser más ruidosos.',
+      },
+      {
+        q: '¿Un ventilador reemplaza a un aire acondicionado?',
+        a: 'No enfría el ambiente, solo mueve el aire. Si hace mucho calor, mirá nuestra guía de climatizador, ventilador o aire.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-ventiladores', texto: 'Ventiladores en oferta' },
+      { href: '/guias/que-ventilador-comprar', texto: 'Qué ventilador comprar' },
+      { href: '/guias/climatizador-o-ventilador-o-aire', texto: 'Climatizador, ventilador o aire' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+    ],
+  },
+  {
+    slug: 'como-mantener-el-agua-de-la-pileta',
+    titulo: 'Cómo mantener limpia el agua de la pileta: filtro, cloro y cobertor',
+    descripcion:
+      'Qué hace falta para mantener el agua de una pileta de lona o estructural: filtro o bomba, cloro, medición de pH, barrefondo y cobertor. Qué comprar junto con la pileta.',
+    pregunta: '¿Cómo se mantiene limpia el agua de la pileta?',
+    respuestaCorta:
+      'Con tres cosas: un filtro que haga circular el agua, el cloro y el pH en su nivel (se miden con un kit o tiras) y un cobertor para que no caigan hojas ni bichos. En piletas grandes suma un barrefondo. Si comprás una pileta estructural, fijate si ya trae el filtro incluido.',
+    secciones: [
+      {
+        h: 'Filtro o bomba',
+        p: [
+          'El filtro hace circular el agua y retiene la suciedad. Muchas piletas estructurales lo traen incluido; las de lona chicas a veces no.',
+          'Elegí un filtro acorde a los litros de la pileta: el fabricante indica para qué capacidad sirve.',
+        ],
+      },
+      {
+        h: 'Cloro y pH',
+        p: [
+          'El cloro evita algas y bacterias, y funciona bien solo con el pH en su rango. Un kit de medición o tiras reactivas permiten controlarlo.',
+          'Seguí siempre las indicaciones del envase y guardá los productos lejos de los chicos.',
+        ],
+      },
+      {
+        h: 'Cobertor y limpieza',
+        p: [
+          'Un cobertor mantiene el agua limpia por más tiempo y ayuda a que no se enfríe tanto.',
+          'Un barrefondo y un saca-hojas facilitan la limpieza en piletas medianas y grandes.',
+        ],
+      },
+    ],
+    categoria: { slug: 'piletas', nombre: 'piletas' },
+    comparativa: 'mejores-piletas',
+    cta: { href: '/mejores/mejores-piletas', titulo: 'Piletas en oferta hoy, comparadas', boton: 'Ver la comparativa de piletas' },
+    faq: [
+      {
+        q: '¿Cada cuánto hay que cambiar el agua de la pileta?',
+        a: 'Con filtro, cloro y cobertor, el agua puede durar toda la temporada. Sin filtro, hay que cambiarla mucho más seguido.',
+      },
+      {
+        q: '¿La pileta estructural trae filtro?',
+        a: 'Muchas sí, pero no todas. Revisalo en la ficha antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-piletas', texto: 'Piletas en oferta' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/categoria/piletas', texto: 'Piletas y accesorios en oferta' },
+    ],
+  },
+  {
+    slug: 'gazebo-o-sombrilla-cual-conviene',
+    titulo: 'Gazebo o sombrilla: cuál conviene para el patio o la pileta',
+    descripcion:
+      'Diferencias entre gazebo y sombrilla para el verano: cuánta sombra dan, resistencia al viento, armado, espacio y qué mirar en la ficha antes de comprar.',
+    pregunta: '¿Conviene un gazebo o una sombrilla?',
+    respuestaCorta:
+      'La sombrilla es barata, se guarda fácil y alcanza para una mesa o dos reposeras. El gazebo cubre mucho más espacio, ideal para reuniones o al lado de la pileta, pero ocupa más y hay que anclarlo bien por el viento. Elegí según cuánta gente querés tener a la sombra.',
+    secciones: [
+      {
+        h: 'Sombrilla',
+        p: [
+          'Práctica para una mesa, el balcón o la playa. Se arma y se guarda en segundos.',
+          'Necesita una buena base o pie para que no se vuele.',
+        ],
+      },
+      {
+        h: 'Gazebo',
+        p: [
+          'Da sombra a una mesa grande o a un grupo. Los plegables se arman rápido; los fijos son más firmes.',
+          'Hay que anclarlo o ponerle peso en las patas: con viento fuerte conviene cerrarlo.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Medidas de la superficie cubierta y altura.',
+          'Material de la tela (que sea resistente al sol y al agua) y de la estructura.',
+          'Si incluye estacas, bolsa de transporte y paredes laterales.',
+        ],
+      },
+    ],
+    categoria: { slug: 'muebles-de-jardin', nombre: 'muebles de jardín' },
+    comparativa: 'mejores-muebles-de-jardin',
+    cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Muebles de jardín en oferta hoy', boton: 'Ver muebles de jardín' },
+    faq: [
+      {
+        q: '¿El gazebo aguanta el viento?',
+        a: 'Si está bien anclado aguanta viento moderado; con viento fuerte conviene cerrarlo o desarmarlo.',
+      },
+      {
+        q: '¿Qué tamaño de sombrilla conviene?',
+        a: 'Para una mesa de cuatro, una de unos 2 a 3 metros de diámetro suele alcanzar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Muebles de jardín en oferta' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/guias/que-parrilla-comprar', texto: 'Qué parrilla comprar' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2848,6 +3007,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'que-celular-comprar-black-friday': '2026-11-04',
   'que-notebook-comprar-black-friday': '2026-11-04',
   'que-smart-tv-comprar-black-friday': '2026-11-04',
+  'ventilador-de-pie-de-techo-o-turbo': '2026-11-04',
+  'como-mantener-el-agua-de-la-pileta': '2026-11-04',
+  'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

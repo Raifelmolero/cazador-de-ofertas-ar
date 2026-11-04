@@ -2652,6 +2652,165 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
     ],
   },
+  {
+    slug: 'que-celular-comprar-black-friday',
+    titulo: '¿Qué celular comprar en el Black Friday? Qué mirar para no pagar de más',
+    descripcion:
+      'Cómo elegir un celular en el Black Friday de Mercado Libre Argentina: gama según presupuesto, memoria, batería, cámara, actualizaciones y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué celular conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Primero definí el presupuesto y la gama: entrada para uso básico, media para la mayoría y alta si usás mucho la cámara o jugás. Buscá al menos 128 GB de almacenamiento, buena batería y años de actualizaciones del fabricante. En el Black Friday, compará el precio final con el de las semanas anteriores, no con el precio tachado.',
+    secciones: [
+      {
+        h: 'Gama según el uso',
+        p: [
+          'Gama de entrada: alcanza para WhatsApp, redes y llamadas.',
+          'Gama media: el punto justo para la mayoría, con mejor cámara, pantalla y rendimiento.',
+          'Gama alta: para fotos de noche, video, juegos exigentes y muchos años de uso.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Almacenamiento: 128 GB como mínimo razonable hoy; 256 GB si sacás muchas fotos y videos.',
+          'Batería en mAh y carga rápida.',
+          'Cuántos años de actualizaciones de sistema promete la marca.',
+          'Que sea versión para Argentina o liberado, con garantía oficial.',
+        ],
+      },
+      {
+        h: 'Cómo saber si el precio es bueno',
+        p: [
+          'Mirá el historial de precio y el mínimo registrado en nuestras páginas de producto. Si el precio del Black Friday está cerca del mínimo, es una buena compra.',
+          'Revisá si las cuotas son sin interés y el total financiado.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'black-friday-celulares',
+    cta: { href: '/mejores/black-friday-celulares', titulo: 'Celulares en oferta para el Black Friday', boton: 'Ver celulares del Black Friday' },
+    faq: [
+      {
+        q: '¿Conviene comprar el celular en el Black Friday?',
+        a: 'Si el precio está cerca del mínimo que registramos, sí. Si no, compará con el Cyber Monday o esperá una baja.',
+      },
+      {
+        q: '¿Cuántos GB conviene?',
+        a: '128 GB como mínimo; 256 GB si guardás muchas fotos y videos en el teléfono.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-celulares', texto: 'Celulares del Black Friday' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según presupuesto' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'que-notebook-comprar-black-friday',
+    titulo: '¿Qué notebook comprar en el Black Friday? Procesador, RAM y SSD',
+    descripcion:
+      'Guía para elegir una notebook en el Black Friday: procesador según el uso, cuánta RAM, disco SSD, pantalla y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué notebook conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Para estudio y oficina buscá un procesador de gama media (Intel Core i5 o Ryzen 5 o equivalentes), 16 GB de RAM si el presupuesto da (8 GB como mínimo) y un disco SSD de 512 GB. Para juegos o edición, sumá placa de video dedicada. En el Black Friday, compará el precio final con el de las semanas previas.',
+    secciones: [
+      {
+        h: 'Procesador y RAM',
+        p: [
+          'Un Core i5 o Ryzen 5 rinde de sobra para estudiar, trabajar y navegar con muchas pestañas.',
+          'Con 16 GB de RAM la notebook va a seguir andando bien en unos años. Fijate si la memoria está soldada o se puede ampliar.',
+        ],
+      },
+      {
+        h: 'Disco y pantalla',
+        p: [
+          'Un SSD hace que arranque y abra programas rápido. 512 GB dan margen; con 256 GB conviene usar la nube o un disco externo.',
+          'Pantalla de 14 pulgadas si la vas a llevar a todos lados; de 15,6 si la usás más en casa.',
+        ],
+      },
+      {
+        h: 'Precio y garantía',
+        p: [
+          'Compará con el historial de precio y el mínimo registrado.',
+          'Preferí tiendas oficiales o vendedores con factura y garantía en Argentina, y confirmá si trae Windows con licencia.',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    comparativa: 'black-friday-notebooks',
+    cta: { href: '/mejores/black-friday-notebooks', titulo: 'Notebooks en oferta para el Black Friday', boton: 'Ver notebooks del Black Friday' },
+    faq: [
+      {
+        q: '¿Alcanza con 8 GB de RAM?',
+        a: 'Para uso básico sí, pero 16 GB es lo recomendable para que no se ponga lenta con el tiempo.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para la notebook?',
+        a: 'Si no la necesitás ya, seguí el precio unas semanas y compará en el evento.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-notebooks', texto: 'Notebooks del Black Friday' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/guias/cuanta-ram-necesita-una-notebook', texto: 'Cuánta RAM necesita una notebook' },
+      { href: '/guias/notebook-ssd-256-o-512-gb', texto: 'SSD de 256 o 512 GB' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'que-smart-tv-comprar-black-friday',
+    titulo: '¿Qué smart TV comprar en el Black Friday? Pulgadas, panel y sistema',
+    descripcion:
+      'Cómo elegir un smart TV en el Black Friday: tamaño según la distancia, LED, QLED u OLED, 4K, sistema operativo y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué smart TV conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Elegí primero las pulgadas según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas van bien), después el tipo de panel: LED es lo más económico, QLED da más brillo y color, y OLED tiene los mejores negros. Que sea 4K y con un sistema que tenga tus apps. En el Black Friday, compará con el precio de las semanas previas.',
+    secciones: [
+      {
+        h: 'Tamaño',
+        p: [
+          'Para un dormitorio, 32 a 43 pulgadas. Para el living, a unos 2 metros, 50 a 55; a 3 metros o más, 65.',
+        ],
+      },
+      {
+        h: 'Panel y resolución',
+        p: [
+          'LED: lo más económico y suficiente para la mayoría.',
+          'QLED: más brillo y color, bueno para livings luminosos.',
+          'OLED: negros perfectos y gran contraste, ideal para ver películas a oscuras.',
+          'De 43 pulgadas para arriba, conviene que sea 4K.',
+        ],
+      },
+      {
+        h: 'Sistema y precio',
+        p: [
+          'Google TV, webOS o Tizen: confirmá que tenga las apps que usás.',
+          'Compará el precio final con el historial y el mínimo registrado, y revisá las cuotas sin interés.',
+        ],
+      },
+    ],
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
+    comparativa: 'black-friday-smart-tv',
+    cta: { href: '/mejores/black-friday-smart-tv', titulo: 'Smart TV en oferta para el Black Friday', boton: 'Ver smart TV del Black Friday' },
+    faq: [
+      {
+        q: '¿De cuántas pulgadas conviene el smart TV?',
+        a: 'Depende de la distancia: a unos 2 metros, 50 a 55 pulgadas; a 3 metros o más, 65.',
+      },
+      {
+        q: '¿QLED u OLED?',
+        a: 'QLED para livings con mucha luz; OLED si mirás películas a oscuras y buscás el mejor contraste.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV del Black Friday' },
+      { href: '/guias/que-smart-tv-comprar', texto: 'Qué smart TV comprar' },
+      { href: '/guias/de-cuantas-pulgadas-comprar-el-smart-tv', texto: 'De cuántas pulgadas comprar' },
+      { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2686,6 +2845,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'lavarropas-carga-frontal-o-superior': '2026-11-04',
   'heladera-cuantos-litros-necesito': '2026-11-04',
   'que-regalarle-a-un-chico-en-navidad': '2026-11-04',
+  'que-celular-comprar-black-friday': '2026-11-04',
+  'que-notebook-comprar-black-friday': '2026-11-04',
+  'que-smart-tv-comprar-black-friday': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

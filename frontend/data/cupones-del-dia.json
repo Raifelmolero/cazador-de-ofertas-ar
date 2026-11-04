@@ -2,40 +2,31 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "MELICYBER26",
+      "codigo": "CYBERALMAX",
       "descuento": 20000,
       "minimo": 250000,
-      "hasta": "2026-11-02T23:59:00-03:00",
-      "condiciones": "Compra mínima $250.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "hasta": "2026-11-04T23:59:00-03:00",
+      "condiciones": "Compra mínima $250.000. Informado por el canal de Afiliados el miércoles 4/11 a las 10:06; vigente hasta las 23:59 hs del miércoles 4/11.",
       "campania": "Cyber Monday",
       "link": "https://www.mercadolibre.com.ar/cyber-monday"
     },
     {
-      "codigo": "CYBERARRANCA",
+      "codigo": "MELIROMPETODO",
       "descuento": 45000,
       "minimo": 500000,
-      "hasta": "2026-11-02T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "hasta": "2026-11-04T23:59:00-03:00",
+      "condiciones": "Compra mínima $500.000. Informado por el canal de Afiliados el miércoles 4/11 a las 10:06; vigente hasta las 23:59 hs del miércoles 4/11.",
       "campania": "Cyber Monday",
       "link": "https://www.mercadolibre.com.ar/cyber-monday"
     },
     {
-      "codigo": "NOVIEMBREON",
+      "codigo": "CYBERENCENDIDO",
       "descuento": 80000,
       "minimo": 1000000,
-      "hasta": "2026-11-02T23:59:00-03:00",
-      "condiciones": "Compra mínima $1.000.000. Informado por el canal de Afiliados el domingo 1/11 a las 23:13; vigente de 00:00 a 23:59 hs del lunes 2/11.",
+      "hasta": "2026-11-04T23:59:00-03:00",
+      "condiciones": "Compra mínima $1.000.000. Informado por el canal de Afiliados el miércoles 4/11 a las 10:06; vigente hasta las 23:59 hs del miércoles 4/11.",
       "campania": "Cyber Monday",
       "link": "https://www.mercadolibre.com.ar/cyber-monday"
-    },
-    {
-      "codigo": "CYBERCOLCHONES15",
-      "descuento": 15000,
-      "minimo": 250000,
-      "hasta": "2026-11-02T23:59:00-03:00",
-      "condiciones": "$15.000 de descuento adicional en colchones seleccionados de más de $250.000. Informado por el canal de Afiliados el lunes 2/11 a las 09:44; sin vencimiento publicado, se muestra hasta las 23:59 hs de hoy.",
-      "campania": "Cyber Monday · Colchones",
-      "link": "https://listado.mercadolibre.com.ar/_Container_cyber-afiliados-fh-asp-250k-10off"
     },
     {
       "codigo": "HPCYBERAFIS",

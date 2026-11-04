@@ -2319,6 +2319,805 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       }
     ]
   },
+  {
+    slug: 'black-friday-argentina-que-conviene-comprar',
+    titulo: 'Black Friday en Argentina: qué conviene comprar y cómo no caer en falsos descuentos',
+    descripcion:
+      'Cómo aprovechar el Black Friday en Mercado Libre Argentina: qué productos suelen bajar, cómo comparar con el precio de las semanas anteriores, cuotas sin interés y qué revisar antes de pagar.',
+    pregunta: '¿Qué conviene comprar en el Black Friday de Argentina?',
+    respuestaCorta:
+      'En el Black Friday suelen convenir los productos de precio alto, donde un descuento real se nota en pesos: celulares, notebooks, smart TV, heladeras y aires acondicionados. La clave es comparar con el precio de las semanas anteriores, no con el precio tachado, y fijarse si las cuotas son realmente sin interés.',
+    secciones: [
+      {
+        h: 'Qué suele bajar en el Black Friday',
+        p: [
+          'Tecnología (celulares, notebooks, tablets, smart TV) y electrodomésticos grandes (heladeras, lavarropas, aires) son las categorías donde las marcas concentran más ofertas.',
+          'A fin de noviembre los aires y ventiladores entran en temporada alta: si lo necesitás para el verano, compará igual con el precio de octubre.',
+        ],
+      },
+      {
+        h: 'Cómo saber si el descuento es real',
+        p: [
+          'El porcentaje de descuento se calcula contra un precio de referencia que puede haber subido días antes. Lo que importa es el precio final comparado con lo que costaba el producto en las semanas previas.',
+          'En nuestras páginas de producto mostramos el historial y el mínimo histórico registrado, para que veas si el precio de hoy es bueno de verdad.',
+        ],
+      },
+      {
+        h: 'Cuotas, envío y vendedor',
+        p: [
+          'Revisá si las cuotas son sin interés con tu banco o tarjeta, y cuál es el precio total financiado.',
+          'Mirá si el envío es gratis y el plazo de entrega, sobre todo si es un regalo de fin de año.',
+          'Preferí tiendas oficiales o vendedores con buena reputación y factura, por la garantía.',
+        ],
+      },
+      {
+        h: 'Black Friday o Cyber Monday',
+        p: [
+          'Los dos eventos tienen ofertas parecidas. Si viste un buen precio en el Cyber Monday y no compraste, el Black Friday es una segunda oportunidad para comparar.',
+        ],
+      },
+    ],
+    cta: { href: '/black-friday', titulo: 'Ofertas de Black Friday de hoy', boton: 'Ver las ofertas de Black Friday' },
+    faq: [
+      {
+        q: '¿Conviene esperar al Black Friday para comprar?',
+        a: 'Si el producto no es urgente y es de precio alto, conviene seguir el precio unas semanas y comparar en el evento. Si hoy ya está en su mínimo histórico, no hace falta esperar.',
+      },
+      {
+        q: '¿Los descuentos del Black Friday son reales?',
+        a: 'Algunos sí y otros no. Compará el precio final con el de las semanas anteriores en lugar de mirar solo el porcentaje.',
+      },
+      {
+        q: '¿Qué conviene más, cuotas sin interés o descuento en un pago?',
+        a: 'Compará el total de las cuotas con el precio de contado: si son iguales, las cuotas sin interés suelen convenir.',
+      },
+    ],
+    enlaces: [
+      { href: '/black-friday', texto: 'Ofertas de Black Friday' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/guias/que-es-el-minimo-historico-en-mercado-libre', texto: 'Qué es el mínimo histórico' },
+      { href: '/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre', texto: 'Hot Sale, Cyber Monday o día común' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-regalar-en-navidad-segun-presupuesto',
+    titulo: '¿Qué regalar en Navidad? Ideas según presupuesto y para quién',
+    descripcion:
+      'Ideas de regalos de Navidad ordenadas por presupuesto y por tipo de persona: tecnología, cocina, cuidado personal, perfumes, juguetes y herramientas. Qué mirar para que llegue a tiempo.',
+    pregunta: '¿Qué regalar en Navidad?',
+    respuestaCorta:
+      'Lo más fácil es partir del presupuesto y de lo que la persona usa todos los días: auriculares, smartwatch o parlante bluetooth para los que viven con el celular; freidora de aire o cafetera para los que cocinan; perfumes o planchitas para cuidado personal; herramientas para los que arreglan cosas. Comprá con tiempo y fijate el plazo de envío para que llegue antes del 24.',
+    secciones: [
+      {
+        h: 'Regalos chicos',
+        p: [
+          'Auriculares inalámbricos de entrada, parlantes bluetooth chicos, accesorios de cocina, juegos de mesa y kits de cuidado personal son regalos útiles sin gastar mucho.',
+        ],
+      },
+      {
+        h: 'Regalos medianos',
+        p: [
+          'Freidoras de aire, cafeteras, smartwatch, perfumes importados, planchitas o secadores de pelo y taladros para la casa están en un rango intermedio y se usan seguido.',
+        ],
+      },
+      {
+        h: 'Regalos grandes (o entre varios)',
+        p: [
+          'Celulares, tablets, notebooks, smart TV o una bicicleta. Si se juntan varios para un regalo grande, conviene aprovechar el Black Friday para pagar menos.',
+        ],
+      },
+      {
+        h: 'Para que llegue a tiempo',
+        p: [
+          'En diciembre los envíos se demoran más. Revisá la fecha estimada de entrega antes de pagar y preferí envíos rápidos cuando falte poco.',
+          'Guardá la factura: si el regalo no le gusta o falla, la vas a necesitar para el cambio o la garantía.',
+        ],
+      },
+    ],
+    comparativa: 'regalos-de-navidad',
+    cta: { href: '/mejores/regalos-de-navidad', titulo: 'Regalos de Navidad en oferta hoy', boton: 'Ver regalos de Navidad' },
+    faq: [
+      {
+        q: '¿Cuándo conviene comprar los regalos de Navidad?',
+        a: 'Con tiempo: el Black Friday de fin de noviembre suele tener buenos precios y deja margen para el envío.',
+      },
+      {
+        q: '¿Qué regalar si no sé qué le gusta?',
+        a: 'Algo de uso diario y fácil de cambiar: auriculares, un parlante, un perfume o un accesorio de cocina. Guardá la factura por si hay que cambiarlo.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/regalos-de-navidad', texto: 'Regalos de Navidad' },
+      { href: '/guias/que-parlante-bluetooth-comprar', texto: 'Qué parlante bluetooth comprar' },
+      { href: '/guias/que-smartwatch-comprar', texto: 'Qué smartwatch comprar' },
+      { href: '/guias/que-freidora-de-aire-comprar', texto: 'Qué freidora de aire comprar' },
+      { href: '/guias/como-saber-si-un-perfume-es-original', texto: 'Cómo saber si un perfume es original' },
+    ],
+  },
+  {
+    slug: 'como-saber-si-un-perfume-es-original',
+    titulo: 'Cómo saber si un perfume es original al comprarlo online',
+    descripcion:
+      'Qué revisar para comprar un perfume original en Mercado Libre: tienda oficial o vendedor, precio sospechoso, caja y celofán, lote, factura y diferencia entre Eau de Parfum y Eau de Toilette.',
+    pregunta: '¿Cómo saber si un perfume es original?',
+    respuestaCorta:
+      'Lo más seguro es comprar en una tienda oficial de la marca o en un vendedor con muy buena reputación que entregue factura. Desconfiá de precios muy por debajo del resto, revisá que la caja tenga celofán prolijo y un código de lote que coincida con el del frasco, y guardá la factura por si hay que reclamar.',
+    secciones: [
+      {
+        h: 'Dónde comprarlo',
+        p: [
+          'Las tiendas oficiales de las marcas y las perfumerías grandes con tienda en Mercado Libre son la opción más segura.',
+          'Si es un vendedor particular, mirá su reputación, cuántas ventas tiene y qué dicen las opiniones sobre perfumes en particular.',
+        ],
+      },
+      {
+        h: 'Señales de alerta',
+        p: [
+          'Un precio mucho más bajo que el del resto de los vendedores para el mismo perfume y tamaño.',
+          'Fotos genéricas o descripciones que hablan de réplica, "inspirado en" o "alternativo".',
+          'Caja sin celofán, mal impresa o con un código de lote distinto al que figura en la base del frasco.',
+        ],
+      },
+      {
+        h: 'Eau de Parfum, Eau de Toilette y tamaño',
+        p: [
+          'El Eau de Parfum tiene más concentración y suele durar más que el Eau de Toilette, por eso cuesta más. Compará precios entre la misma concentración y la misma cantidad de mililitros.',
+        ],
+      },
+      {
+        h: 'Qué hacer al recibirlo',
+        p: [
+          'Revisá la caja y el frasco antes de abrir el celofán y guardá la factura. Si algo no coincide, reclamá dentro del plazo de devolución.',
+        ],
+      },
+    ],
+    categoria: { slug: 'perfumes', nombre: 'perfumes' },
+    comparativa: 'mejores-perfumes',
+    cta: { href: '/mejores/mejores-perfumes', titulo: 'Perfumes en oferta hoy, comparados', boton: 'Ver la comparativa de perfumes' },
+    faq: [
+      {
+        q: '¿Los perfumes de Mercado Libre son originales?',
+        a: 'Los de tiendas oficiales y vendedores serios con factura, sí. El riesgo está en vendedores sin reputación y precios demasiado bajos.',
+      },
+      {
+        q: '¿Qué dura más, Eau de Parfum o Eau de Toilette?',
+        a: 'En general el Eau de Parfum, porque tiene mayor concentración de fragancia.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-perfumes', texto: 'Perfumes en oferta' },
+      { href: '/categoria/perfumes', texto: 'Perfumes en oferta' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Qué regalar en Navidad' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+    ],
+  },
+  {
+    slug: 'lavarropas-carga-frontal-o-superior',
+    titulo: 'Lavarropas de carga frontal o superior: cuál conviene',
+    descripcion:
+      'Diferencias entre un lavarropas de carga frontal y uno de carga superior: cuidado de la ropa, consumo de agua, espacio, comodidad y qué mirar en la ficha antes de comprar.',
+    pregunta: '¿Conviene un lavarropas de carga frontal o de carga superior?',
+    respuestaCorta:
+      'El de carga frontal suele cuidar mejor la ropa, gastar menos agua y permite poner un secarropas encima. El de carga superior es más cómodo para cargar sin agacharse, suele lavar más rápido y deja agregar ropa a mitad del lavado. Elegí según el espacio que tenés, cuántos kilos lavás por vez y si te molesta agacharte.',
+    secciones: [
+      {
+        h: 'Carga frontal',
+        p: [
+          'Lava haciendo girar el tambor, por eso suele tratar mejor las prendas y usar menos agua por kilo.',
+          'Se puede apilar con un secarropas o empotrar bajo la mesada. La contra: hay que agacharse para cargar y, en general, no se puede abrir una vez que arrancó.',
+        ],
+      },
+      {
+        h: 'Carga superior',
+        p: [
+          'Se carga de pie, algo práctico si tenés problemas de espalda. Muchos modelos lavan más rápido y permiten sumar una prenda olvidada.',
+          'Ocupa espacio arriba (la tapa tiene que abrirse) y no se le puede poner nada encima.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Capacidad en kilos: para una o dos personas alcanza con unos 6 a 7 kg; para una familia, 8 kg o más.',
+          'Velocidad de centrifugado: más vueltas sacan más agua y la ropa se seca antes.',
+          'Si es inverter, la etiqueta de eficiencia energética y las medidas, para confirmar que entra en tu lavadero.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: { href: '/mejores/mejores-lavarropas', titulo: 'Lavarropas en oferta hoy, comparados', boton: 'Ver la comparativa de lavarropas' },
+    faq: [
+      {
+        q: '¿Qué lavarropas gasta menos agua?',
+        a: 'En general el de carga frontal, porque lava girando el tambor con menos agua.',
+      },
+      {
+        q: '¿De cuántos kilos conviene?',
+        a: 'Para una o dos personas, de unos 6 a 7 kg. Para una familia, de 8 kg o más.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-lavarropas', texto: 'Lavarropas en oferta' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/guias/lavarropas-inverter-que-es-y-conviene', texto: 'Lavarropas inverter: qué es' },
+      { href: '/guias/lavasecarropas-secarropas-o-bomba-de-calor', texto: 'Lavasecarropas o secarropas' },
+    ],
+  },
+  {
+    slug: 'heladera-cuantos-litros-necesito',
+    titulo: '¿De cuántos litros conviene la heladera? Según cuántos son en casa',
+    descripcion:
+      'Cuántos litros de heladera necesitás según la cantidad de personas, cómo se reparte la capacidad entre heladera y freezer, y qué medir antes de comprar para que entre.',
+    pregunta: '¿De cuántos litros tiene que ser la heladera?',
+    respuestaCorta:
+      'Como referencia, una o dos personas se arreglan con unos 200 a 300 litros; una familia de tres o cuatro, con 300 a 400 litros; y familias más grandes o que compran mucho por mes, con más de 400 litros. Antes de comprar, medí el hueco donde va (alto, ancho y profundidad) y dejá espacio atrás y a los costados para que ventile.',
+    secciones: [
+      {
+        h: 'Litros según cuántos son',
+        p: [
+          'Una o dos personas: unos 200 a 300 litros suelen alcanzar.',
+          'Tres o cuatro personas: entre 300 y 400 litros.',
+          'Cinco o más, o si hacés compras grandes una vez por mes: más de 400 litros.',
+        ],
+      },
+      {
+        h: 'Heladera y freezer',
+        p: [
+          'La capacidad total se reparte entre heladera y freezer. Si congelás mucho, fijate cuántos litros tiene el freezer en la ficha, no solo el total.',
+          'Si necesitás mucho espacio de congelado, a veces conviene sumar un freezer aparte.',
+        ],
+      },
+      {
+        h: 'Medidas y ventilación',
+        p: [
+          'Medí el lugar y la puerta por donde tiene que pasar. Dejá unos centímetros libres atrás y a los costados para que el motor ventile bien.',
+          'Fijate hacia qué lado abre la puerta y si se puede invertir.',
+        ],
+      },
+    ],
+    categoria: { slug: 'heladeras', nombre: 'heladeras' },
+    comparativa: 'mejores-heladeras',
+    cta: { href: '/mejores/mejores-heladeras', titulo: 'Heladeras en oferta hoy, comparadas', boton: 'Ver la comparativa de heladeras' },
+    faq: [
+      {
+        q: '¿Cuántos litros necesita una familia de cuatro?',
+        a: 'Como referencia, entre 300 y 400 litros en total.',
+      },
+      {
+        q: '¿Conviene no frost?',
+        a: 'Si no querés descongelar a mano, sí. Tenemos una guía específica sobre heladera no frost o con freezer.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-heladeras', texto: 'Heladeras en oferta' },
+      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/guias/heladera-no-frost-o-con-freezer', texto: 'No frost o con freezer' },
+      { href: '/guias/que-freezer-comprar', texto: 'Qué freezer comprar' },
+    ],
+  },
+  {
+    slug: 'que-regalarle-a-un-chico-en-navidad',
+    titulo: '¿Qué regalarle a un chico en Navidad? Ideas por edad',
+    descripcion:
+      'Ideas de regalos de Navidad para chicos según la edad: bebés, primera infancia, edad escolar y preadolescentes. Qué revisar de seguridad y para que llegue a tiempo.',
+    pregunta: '¿Qué le regalo a un chico en Navidad?',
+    respuestaCorta:
+      'Lo mejor es pensar en la edad: para bebés, juguetes de estimulación grandes y sin piezas chicas; de 3 a 6 años, bloques, juegos de encastre, disfraces y triciclos; en edad escolar, juegos de mesa, bicicletas, kits de ciencia o arte; y para preadolescentes, auriculares, parlantes o un smartwatch. Revisá siempre la edad recomendada en la caja.',
+    secciones: [
+      {
+        h: 'Bebés y primera infancia',
+        p: [
+          'Juguetes grandes, de materiales lavables y sin piezas chicas que se puedan tragar. Sonajeros, gimnasios, libros de tela y juguetes de encastre.',
+          'Para 3 a 6 años: bloques de construcción, disfraces, masas, triciclos o monopatines con protección.',
+        ],
+      },
+      {
+        h: 'Edad escolar',
+        p: [
+          'Juegos de mesa, kits de ciencia, de arte o de manualidades, pelotas y bicicletas con el rodado adecuado a la altura.',
+        ],
+      },
+      {
+        h: 'Preadolescentes',
+        p: [
+          'Tecnología simple y útil: auriculares, parlantes bluetooth o un smartwatch. Si es un celular o una tablet, conviene configurar el control parental.',
+        ],
+      },
+      {
+        h: 'Seguridad y envío',
+        p: [
+          'Revisá la edad recomendada y que el producto tenga la certificación de seguridad de juguetes.',
+          'En diciembre los envíos tardan más: mirá la fecha estimada antes de pagar.',
+        ],
+      },
+    ],
+    categoria: { slug: 'bebes-y-jugueteria', nombre: 'bebés y juguetería' },
+    comparativa: 'regalos-de-navidad',
+    cta: { href: '/mejores/regalos-de-navidad', titulo: 'Regalos de Navidad en oferta hoy', boton: 'Ver regalos de Navidad' },
+    faq: [
+      {
+        q: '¿Qué regalar a un bebé de un año?',
+        a: 'Juguetes grandes de estimulación, sin piezas chicas y fáciles de lavar.',
+      },
+      {
+        q: '¿Qué rodado de bicicleta corresponde según la edad?',
+        a: 'Depende de la altura del chico más que de la edad: fijate la tabla de talles del fabricante en la ficha.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/regalos-de-navidad', texto: 'Regalos de Navidad' },
+      { href: '/categoria/bebes-y-jugueteria', texto: 'Bebés y juguetería en oferta' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Qué regalar en Navidad' },
+      { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
+    ],
+  },
+  {
+    slug: 'que-celular-comprar-black-friday',
+    titulo: '¿Qué celular comprar en el Black Friday? Qué mirar para no pagar de más',
+    descripcion:
+      'Cómo elegir un celular en el Black Friday de Mercado Libre Argentina: gama según presupuesto, memoria, batería, cámara, actualizaciones y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué celular conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Primero definí el presupuesto y la gama: entrada para uso básico, media para la mayoría y alta si usás mucho la cámara o jugás. Buscá al menos 128 GB de almacenamiento, buena batería y años de actualizaciones del fabricante. En el Black Friday, compará el precio final con el de las semanas anteriores, no con el precio tachado.',
+    secciones: [
+      {
+        h: 'Gama según el uso',
+        p: [
+          'Gama de entrada: alcanza para WhatsApp, redes y llamadas.',
+          'Gama media: el punto justo para la mayoría, con mejor cámara, pantalla y rendimiento.',
+          'Gama alta: para fotos de noche, video, juegos exigentes y muchos años de uso.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Almacenamiento: 128 GB como mínimo razonable hoy; 256 GB si sacás muchas fotos y videos.',
+          'Batería en mAh y carga rápida.',
+          'Cuántos años de actualizaciones de sistema promete la marca.',
+          'Que sea versión para Argentina o liberado, con garantía oficial.',
+        ],
+      },
+      {
+        h: 'Cómo saber si el precio es bueno',
+        p: [
+          'Mirá el historial de precio y el mínimo registrado en nuestras páginas de producto. Si el precio del Black Friday está cerca del mínimo, es una buena compra.',
+          'Revisá si las cuotas son sin interés y el total financiado.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'black-friday-celulares',
+    cta: { href: '/mejores/black-friday-celulares', titulo: 'Celulares en oferta para el Black Friday', boton: 'Ver celulares del Black Friday' },
+    faq: [
+      {
+        q: '¿Conviene comprar el celular en el Black Friday?',
+        a: 'Si el precio está cerca del mínimo que registramos, sí. Si no, compará con el Cyber Monday o esperá una baja.',
+      },
+      {
+        q: '¿Cuántos GB conviene?',
+        a: '128 GB como mínimo; 256 GB si guardás muchas fotos y videos en el teléfono.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-celulares', texto: 'Celulares del Black Friday' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según presupuesto' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'que-notebook-comprar-black-friday',
+    titulo: '¿Qué notebook comprar en el Black Friday? Procesador, RAM y SSD',
+    descripcion:
+      'Guía para elegir una notebook en el Black Friday: procesador según el uso, cuánta RAM, disco SSD, pantalla y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué notebook conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Para estudio y oficina buscá un procesador de gama media (Intel Core i5 o Ryzen 5 o equivalentes), 16 GB de RAM si el presupuesto da (8 GB como mínimo) y un disco SSD de 512 GB. Para juegos o edición, sumá placa de video dedicada. En el Black Friday, compará el precio final con el de las semanas previas.',
+    secciones: [
+      {
+        h: 'Procesador y RAM',
+        p: [
+          'Un Core i5 o Ryzen 5 rinde de sobra para estudiar, trabajar y navegar con muchas pestañas.',
+          'Con 16 GB de RAM la notebook va a seguir andando bien en unos años. Fijate si la memoria está soldada o se puede ampliar.',
+        ],
+      },
+      {
+        h: 'Disco y pantalla',
+        p: [
+          'Un SSD hace que arranque y abra programas rápido. 512 GB dan margen; con 256 GB conviene usar la nube o un disco externo.',
+          'Pantalla de 14 pulgadas si la vas a llevar a todos lados; de 15,6 si la usás más en casa.',
+        ],
+      },
+      {
+        h: 'Precio y garantía',
+        p: [
+          'Compará con el historial de precio y el mínimo registrado.',
+          'Preferí tiendas oficiales o vendedores con factura y garantía en Argentina, y confirmá si trae Windows con licencia.',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    comparativa: 'black-friday-notebooks',
+    cta: { href: '/mejores/black-friday-notebooks', titulo: 'Notebooks en oferta para el Black Friday', boton: 'Ver notebooks del Black Friday' },
+    faq: [
+      {
+        q: '¿Alcanza con 8 GB de RAM?',
+        a: 'Para uso básico sí, pero 16 GB es lo recomendable para que no se ponga lenta con el tiempo.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para la notebook?',
+        a: 'Si no la necesitás ya, seguí el precio unas semanas y compará en el evento.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-notebooks', texto: 'Notebooks del Black Friday' },
+      { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
+      { href: '/guias/cuanta-ram-necesita-una-notebook', texto: 'Cuánta RAM necesita una notebook' },
+      { href: '/guias/notebook-ssd-256-o-512-gb', texto: 'SSD de 256 o 512 GB' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'que-smart-tv-comprar-black-friday',
+    titulo: '¿Qué smart TV comprar en el Black Friday? Pulgadas, panel y sistema',
+    descripcion:
+      'Cómo elegir un smart TV en el Black Friday: tamaño según la distancia, LED, QLED u OLED, 4K, sistema operativo y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué smart TV conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Elegí primero las pulgadas según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas van bien), después el tipo de panel: LED es lo más económico, QLED da más brillo y color, y OLED tiene los mejores negros. Que sea 4K y con un sistema que tenga tus apps. En el Black Friday, compará con el precio de las semanas previas.',
+    secciones: [
+      {
+        h: 'Tamaño',
+        p: [
+          'Para un dormitorio, 32 a 43 pulgadas. Para el living, a unos 2 metros, 50 a 55; a 3 metros o más, 65.',
+        ],
+      },
+      {
+        h: 'Panel y resolución',
+        p: [
+          'LED: lo más económico y suficiente para la mayoría.',
+          'QLED: más brillo y color, bueno para livings luminosos.',
+          'OLED: negros perfectos y gran contraste, ideal para ver películas a oscuras.',
+          'De 43 pulgadas para arriba, conviene que sea 4K.',
+        ],
+      },
+      {
+        h: 'Sistema y precio',
+        p: [
+          'Google TV, webOS o Tizen: confirmá que tenga las apps que usás.',
+          'Compará el precio final con el historial y el mínimo registrado, y revisá las cuotas sin interés.',
+        ],
+      },
+    ],
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
+    comparativa: 'black-friday-smart-tv',
+    cta: { href: '/mejores/black-friday-smart-tv', titulo: 'Smart TV en oferta para el Black Friday', boton: 'Ver smart TV del Black Friday' },
+    faq: [
+      {
+        q: '¿De cuántas pulgadas conviene el smart TV?',
+        a: 'Depende de la distancia: a unos 2 metros, 50 a 55 pulgadas; a 3 metros o más, 65.',
+      },
+      {
+        q: '¿QLED u OLED?',
+        a: 'QLED para livings con mucha luz; OLED si mirás películas a oscuras y buscás el mejor contraste.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV del Black Friday' },
+      { href: '/guias/que-smart-tv-comprar', texto: 'Qué smart TV comprar' },
+      { href: '/guias/de-cuantas-pulgadas-comprar-el-smart-tv', texto: 'De cuántas pulgadas comprar' },
+      { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'ventilador-de-pie-de-techo-o-turbo',
+    titulo: 'Ventilador de pie, de techo o turbo: cuál conviene',
+    descripcion:
+      'Diferencias entre ventilador de pie, de techo y turbo: cuánto aire mueven, ruido, instalación, consumo y cuál conviene para el dormitorio, el living o la oficina.',
+    pregunta: '¿Qué conviene más: ventilador de pie, de techo o turbo?',
+    respuestaCorta:
+      'El de techo reparte el aire en todo el ambiente sin ocupar lugar, pero hay que instalarlo. El de pie se mueve de un cuarto a otro y regula la altura. El turbo mueve mucho aire en una dirección y es ideal para ambientes grandes o calurosos, aunque suele ser más ruidoso. Para dormir conviene uno silencioso con varias velocidades.',
+    secciones: [
+      {
+        h: 'De techo',
+        p: [
+          'Distribuye el aire en toda la habitación y no ocupa espacio en el piso. Muchos traen luz y control remoto.',
+          'Necesita instalación eléctrica en el techo y una altura mínima para que las paletas no queden bajas.',
+        ],
+      },
+      {
+        h: 'De pie',
+        p: [
+          'Se lleva de un ambiente a otro, se regula en altura y suele tener oscilación para cubrir más espacio.',
+        ],
+      },
+      {
+        h: 'Turbo',
+        p: [
+          'Más potente y concentrado: ideal para livings grandes, cocinas o talleres. Suele hacer más ruido que un ventilador de pie común.',
+        ],
+      },
+      {
+        h: 'Qué mirar antes de comprar',
+        p: [
+          'Potencia en watts y diámetro de las paletas.',
+          'Cantidad de velocidades y si tiene modo silencioso o nocturno.',
+          'Si tiene control remoto y temporizador para apagarse solo de noche.',
+        ],
+      },
+    ],
+    categoria: { slug: 'ventiladores', nombre: 'ventiladores' },
+    comparativa: 'mejores-ventiladores',
+    cta: { href: '/mejores/mejores-ventiladores', titulo: 'Ventiladores en oferta hoy, comparados', boton: 'Ver la comparativa de ventiladores' },
+    faq: [
+      {
+        q: '¿Qué ventilador es más silencioso para dormir?',
+        a: 'En general uno de techo o uno de pie con modo nocturno. Los turbo suelen ser más ruidosos.',
+      },
+      {
+        q: '¿Un ventilador reemplaza a un aire acondicionado?',
+        a: 'No enfría el ambiente, solo mueve el aire. Si hace mucho calor, mirá nuestra guía de climatizador, ventilador o aire.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-ventiladores', texto: 'Ventiladores en oferta' },
+      { href: '/guias/que-ventilador-comprar', texto: 'Qué ventilador comprar' },
+      { href: '/guias/climatizador-o-ventilador-o-aire', texto: 'Climatizador, ventilador o aire' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+    ],
+  },
+  {
+    slug: 'como-mantener-el-agua-de-la-pileta',
+    titulo: 'Cómo mantener limpia el agua de la pileta: filtro, cloro y cobertor',
+    descripcion:
+      'Qué hace falta para mantener el agua de una pileta de lona o estructural: filtro o bomba, cloro, medición de pH, barrefondo y cobertor. Qué comprar junto con la pileta.',
+    pregunta: '¿Cómo se mantiene limpia el agua de la pileta?',
+    respuestaCorta:
+      'Con tres cosas: un filtro que haga circular el agua, el cloro y el pH en su nivel (se miden con un kit o tiras) y un cobertor para que no caigan hojas ni bichos. En piletas grandes suma un barrefondo. Si comprás una pileta estructural, fijate si ya trae el filtro incluido.',
+    secciones: [
+      {
+        h: 'Filtro o bomba',
+        p: [
+          'El filtro hace circular el agua y retiene la suciedad. Muchas piletas estructurales lo traen incluido; las de lona chicas a veces no.',
+          'Elegí un filtro acorde a los litros de la pileta: el fabricante indica para qué capacidad sirve.',
+        ],
+      },
+      {
+        h: 'Cloro y pH',
+        p: [
+          'El cloro evita algas y bacterias, y funciona bien solo con el pH en su rango. Un kit de medición o tiras reactivas permiten controlarlo.',
+          'Seguí siempre las indicaciones del envase y guardá los productos lejos de los chicos.',
+        ],
+      },
+      {
+        h: 'Cobertor y limpieza',
+        p: [
+          'Un cobertor mantiene el agua limpia por más tiempo y ayuda a que no se enfríe tanto.',
+          'Un barrefondo y un saca-hojas facilitan la limpieza en piletas medianas y grandes.',
+        ],
+      },
+    ],
+    categoria: { slug: 'piletas', nombre: 'piletas' },
+    comparativa: 'mejores-piletas',
+    cta: { href: '/mejores/mejores-piletas', titulo: 'Piletas en oferta hoy, comparadas', boton: 'Ver la comparativa de piletas' },
+    faq: [
+      {
+        q: '¿Cada cuánto hay que cambiar el agua de la pileta?',
+        a: 'Con filtro, cloro y cobertor, el agua puede durar toda la temporada. Sin filtro, hay que cambiarla mucho más seguido.',
+      },
+      {
+        q: '¿La pileta estructural trae filtro?',
+        a: 'Muchas sí, pero no todas. Revisalo en la ficha antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-piletas', texto: 'Piletas en oferta' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/categoria/piletas', texto: 'Piletas y accesorios en oferta' },
+    ],
+  },
+  {
+    slug: 'gazebo-o-sombrilla-cual-conviene',
+    titulo: 'Gazebo o sombrilla: cuál conviene para el patio o la pileta',
+    descripcion:
+      'Diferencias entre gazebo y sombrilla para el verano: cuánta sombra dan, resistencia al viento, armado, espacio y qué mirar en la ficha antes de comprar.',
+    pregunta: '¿Conviene un gazebo o una sombrilla?',
+    respuestaCorta:
+      'La sombrilla es barata, se guarda fácil y alcanza para una mesa o dos reposeras. El gazebo cubre mucho más espacio, ideal para reuniones o al lado de la pileta, pero ocupa más y hay que anclarlo bien por el viento. Elegí según cuánta gente querés tener a la sombra.',
+    secciones: [
+      {
+        h: 'Sombrilla',
+        p: [
+          'Práctica para una mesa, el balcón o la playa. Se arma y se guarda en segundos.',
+          'Necesita una buena base o pie para que no se vuele.',
+        ],
+      },
+      {
+        h: 'Gazebo',
+        p: [
+          'Da sombra a una mesa grande o a un grupo. Los plegables se arman rápido; los fijos son más firmes.',
+          'Hay que anclarlo o ponerle peso en las patas: con viento fuerte conviene cerrarlo.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Medidas de la superficie cubierta y altura.',
+          'Material de la tela (que sea resistente al sol y al agua) y de la estructura.',
+          'Si incluye estacas, bolsa de transporte y paredes laterales.',
+        ],
+      },
+    ],
+    categoria: { slug: 'muebles-de-jardin', nombre: 'muebles de jardín' },
+    comparativa: 'mejores-muebles-de-jardin',
+    cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Muebles de jardín en oferta hoy', boton: 'Ver muebles de jardín' },
+    faq: [
+      {
+        q: '¿El gazebo aguanta el viento?',
+        a: 'Si está bien anclado aguanta viento moderado; con viento fuerte conviene cerrarlo o desarmarlo.',
+      },
+      {
+        q: '¿Qué tamaño de sombrilla conviene?',
+        a: 'Para una mesa de cuatro, una de unos 2 a 3 metros de diámetro suele alcanzar.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Muebles de jardín en oferta' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
+      { href: '/guias/que-parrilla-comprar', texto: 'Qué parrilla comprar' },
+    ],
+  },
+  {
+    slug: 'aire-acondicionado-cuantas-frigorias-necesito',
+    titulo: 'Aire acondicionado: cuántas frigorías necesito según los metros',
+    descripcion:
+      'Cómo calcular las frigorías del aire acondicionado según el tamaño del ambiente, el sol, la altura del techo y la cantidad de personas, antes de comprar.',
+    pregunta: '¿Cuántas frigorías necesito para mi ambiente?',
+    respuestaCorta:
+      'Como regla rápida se calculan unas 50 frigorías por metro cuadrado con techo de altura normal. Sumá margen si el ambiente da al sol de la tarde, es último piso o tiene mucha gente o equipos. Quedarse corto es peor que pasarse un poco: el equipo trabaja al máximo y no enfría.',
+    secciones: [
+      {
+        h: 'La cuenta rápida',
+        p: [
+          'Multiplicá los metros cuadrados por 50: un ambiente de 20 m² pide unas 1.000 frigorías de base.',
+          'Los equipos vienen en tamaños fijos (2.250, 3.000, 4.500, 5.500…): elegí el que queda justo arriba de tu cuenta.',
+        ],
+      },
+      {
+        h: 'Qué suma frigorías',
+        p: [
+          'Sol directo por la tarde, ventanales grandes, techo alto o último piso sin aislación.',
+          'Cocina integrada, computadoras o varias personas en el ambiente.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Frigorías reales del equipo y si es inverter (gasta menos y regula mejor).',
+          'Etiqueta de eficiencia energética, si es solo frío o frío/calor y si la instalación está incluida.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-acondicionados',
+    cta: { href: '/mejores/mejores-aires-acondicionados', titulo: 'Aires acondicionados en oferta hoy', boton: 'Ver aires' },
+    faq: [
+      {
+        q: '¿Qué pasa si compro un aire con menos frigorías?',
+        a: 'No llega a enfriar en los días de calor fuerte, funciona siempre al máximo y gasta más.',
+      },
+      {
+        q: '¿Un aire más grande enfría mejor?',
+        a: 'Pasarse mucho tampoco conviene: enfría de golpe, corta seguido y deshumidifica peor. Lo ideal es el tamaño justo arriba de la cuenta.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Aires acondicionados en oferta' },
+      { href: '/guias/aire-acondicionado-solo-frio-o-frio-calor', texto: 'Aire solo frío o frío/calor' },
+      { href: '/guias/ventilador-de-pie-de-techo-o-turbo', texto: 'Ventilador de pie, de techo o turbo' },
+    ],
+  },
+  {
+    slug: 'freidora-de-aire-cuantos-litros-conviene',
+    titulo: 'Freidora de aire: cuántos litros conviene según la familia',
+    descripcion:
+      'Qué capacidad de freidora de aire elegir según cuántas personas comen en casa, diferencias entre canasto simple y doble, y qué mirar en la ficha.',
+    pregunta: '¿De cuántos litros conviene la freidora de aire?',
+    respuestaCorta:
+      'Para una o dos personas alcanza una de 3 a 4 litros. Para una familia de tres o cuatro, conviene de 5 a 6 litros. Si cocinan para más gente o quieren hacer dos cosas a la vez, una de doble canasto o de 7 litros o más.',
+    secciones: [
+      {
+        h: 'Capacidad según la casa',
+        p: [
+          '1 o 2 personas: 3 a 4 litros, ocupa poco lugar en la mesada.',
+          '3 o 4 personas: 5 a 6 litros, la más elegida.',
+          '5 o más, o para cocinar en cantidad: 7 litros o más, o doble canasto.',
+        ],
+      },
+      {
+        h: 'Canasto simple o doble',
+        p: [
+          'El doble canasto permite hacer, por ejemplo, la carne y las papas al mismo tiempo con distinta temperatura.',
+          'Ocupa más espacio y suele costar más.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Potencia en watts, si el canasto es antiadherente y apto lavavajillas.',
+          'Si es digital con programas o de perillas, y la garantía.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-freidoras-de-aire',
+    cta: { href: '/mejores/mejores-freidoras-de-aire', titulo: 'Freidoras de aire en oferta hoy', boton: 'Ver freidoras' },
+    faq: [
+      {
+        q: '¿Los litros son lo que entra de comida?',
+        a: 'No del todo: conviene no llenar el canasto para que el aire circule. Una de 5 litros rinde cómodo para tres o cuatro porciones.',
+      },
+      {
+        q: '¿Gasta mucha luz?',
+        a: 'Usa bastante potencia mientras funciona, pero cocina rápido, así que en general gasta menos que prender el horno eléctrico.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-freidoras-de-aire', texto: 'Freidoras de aire en oferta' },
+      { href: '/guias/microondas-u-horno-electrico-cual-conviene', texto: 'Microondas u horno eléctrico' },
+      { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
+    ],
+  },
+  {
+    slug: 'termotanque-a-gas-o-electrico',
+    titulo: 'Termotanque a gas o eléctrico: cuál conviene',
+    descripcion:
+      'Diferencias entre termotanque a gas y eléctrico: instalación, costo de uso, recuperación del agua caliente, litros según la familia y qué mirar antes de comprar.',
+    pregunta: '¿Conviene un termotanque a gas o eléctrico?',
+    respuestaCorta:
+      'Si tenés gas natural, el termotanque a gas suele ser más barato de usar y recupera el agua caliente más rápido. El eléctrico conviene donde no hay gas o no se puede hacer la salida de gases: se instala más fácil, pero calienta más lento y el consumo pesa en la boleta de luz.',
+    secciones: [
+      {
+        h: 'A gas',
+        p: [
+          'Necesita conexión de gas y salida de gases al exterior; la instalación la tiene que hacer un gasista matriculado.',
+          'Recupera rápido: ideal si se bañan varias personas seguidas.',
+        ],
+      },
+      {
+        h: 'Eléctrico',
+        p: [
+          'Solo necesita una conexión eléctrica adecuada y agua; se puede poner en lugares sin salida de gases.',
+          'Tarda más en volver a calentar: conviene uno de más litros.',
+        ],
+      },
+      {
+        h: 'Cuántos litros',
+        p: [
+          'Como referencia: 1 o 2 personas, unos 50 litros; 3 o 4, de 80 a 120 litros; más gente, 150 o más.',
+          'Mirá también la etiqueta de eficiencia y si es de colgar o de pie según el lugar que tengas.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-termotanques',
+    cta: { href: '/mejores/mejores-termotanques', titulo: 'Termotanques en oferta hoy', boton: 'Ver termotanques' },
+    faq: [
+      {
+        q: '¿Puedo cambiar un termotanque a gas por uno eléctrico?',
+        a: 'Sí, si la instalación eléctrica lo soporta. Conviene que la revise un electricista antes.',
+      },
+      {
+        q: '¿Termotanque o calefón?',
+        a: 'El calefón calienta al paso y no acumula; el termotanque guarda agua caliente y da más caudal para varias canillas a la vez.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-termotanques', texto: 'Termotanques en oferta' },
+      { href: '/ofertas/termotanques-y-calefones-en-oferta', texto: 'Termotanques y calefones en oferta' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2347,6 +3146,21 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'notebook-ssd-256-o-512-gb': '2026-11-03',
   'que-zte-comprar': '2026-11-03',
   'que-xiaomi-redmi-comprar': '2026-11-03',
+  'black-friday-argentina-que-conviene-comprar': '2026-11-04',
+  'que-regalar-en-navidad-segun-presupuesto': '2026-11-04',
+  'como-saber-si-un-perfume-es-original': '2026-11-04',
+  'lavarropas-carga-frontal-o-superior': '2026-11-04',
+  'heladera-cuantos-litros-necesito': '2026-11-04',
+  'que-regalarle-a-un-chico-en-navidad': '2026-11-04',
+  'que-celular-comprar-black-friday': '2026-11-04',
+  'que-notebook-comprar-black-friday': '2026-11-04',
+  'que-smart-tv-comprar-black-friday': '2026-11-04',
+  'ventilador-de-pie-de-techo-o-turbo': '2026-11-04',
+  'como-mantener-el-agua-de-la-pileta': '2026-11-04',
+  'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
+  'aire-acondicionado-cuantas-frigorias-necesito': '2026-11-04',
+  'freidora-de-aire-cuantos-litros-conviene': '2026-11-04',
+  'termotanque-a-gas-o-electrico': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

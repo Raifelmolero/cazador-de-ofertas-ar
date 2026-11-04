@@ -278,7 +278,6 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [gazebo o sombrilla](https://cazadordeofertas.com.ar/guias/gazebo-o-sombrilla-cual-conviene),
   [cuántas frigorías necesito](https://cazadordeofertas.com.ar/guias/aire-acondicionado-cuantas-frigorias-necesito),
   [freidora de aire: cuántos litros](https://cazadordeofertas.com.ar/guias/freidora-de-aire-cuantos-litros-conviene),
-  [termotanque a gas o eléctrico](https://cazadordeofertas.com.ar/guias/termotanque-a-gas-o-electrico),
   [qué celular comprar según presupuesto](https://cazadordeofertas.com.ar/guias/que-celular-comprar-segun-presupuesto),
   [qué celular de gama alta comprar](https://cazadordeofertas.com.ar/guias/que-celular-gama-alta-comprar),
   [qué smart TV comprar](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar),

@@ -62,8 +62,13 @@ const nextConfig = {
         permanent: true,
       })),
     )
+    // Guías duplicadas: la vieja ya cubría el tema, se unifica en una sola URL.
+    const guiasDuplicadas = {
+      '/guias/termotanque-a-gas-o-electrico': '/guias/termotanque-electrico-o-a-gas-o-calefon',
+    }
     return [
       ...aOfertas,
+      ...Object.entries(guiasDuplicadas).map(([source, destination]) => ({ source, destination, permanent: true })),
       ...Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false })),
     ]
   },

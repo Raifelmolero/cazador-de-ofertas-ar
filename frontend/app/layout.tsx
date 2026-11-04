@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import Clarity from './clarity'
 import ClicsML from './clics-ml'
+import MetaPixel from './meta-pixel'
 import AppInstalable from '@/components/AppInstalable'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Clarity />
         <ClicsML />
+        <MetaPixel />
         <AppInstalable />
         <Analytics />
         <SpeedInsights />

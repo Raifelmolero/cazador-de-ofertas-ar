@@ -2,7 +2,9 @@
 # Ignored Build Step de Vercel: exit 0 = saltar el build, exit 1 = buildear.
 # Corre con el Root Directory del proyecto (frontend/) como cwd.
 
-# Previews de Dependabot: ya las valida frontend_ci.yml, no gastan Build CPU.
+# Previews (cualquier rama que no sea main): ya las valida frontend_ci.yml en
+# GitHub, así que no gastan Build CPU de Vercel. Solo buildea producción.
+[ "$VERCEL_ENV" = "preview" ] && exit 0
 case "$VERCEL_GIT_COMMIT_REF" in dependabot/*) exit 0 ;; esac
 
 # Commits automáticos del bot (ofertas publicadas, tendencias, placas): no

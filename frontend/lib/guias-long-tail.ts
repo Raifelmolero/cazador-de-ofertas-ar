@@ -2970,6 +2970,154 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-parrilla-comprar', texto: 'Qué parrilla comprar' },
     ],
   },
+  {
+    slug: 'aire-acondicionado-cuantas-frigorias-necesito',
+    titulo: 'Aire acondicionado: cuántas frigorías necesito según los metros',
+    descripcion:
+      'Cómo calcular las frigorías del aire acondicionado según el tamaño del ambiente, el sol, la altura del techo y la cantidad de personas, antes de comprar.',
+    pregunta: '¿Cuántas frigorías necesito para mi ambiente?',
+    respuestaCorta:
+      'Como regla rápida se calculan unas 50 frigorías por metro cuadrado con techo de altura normal. Sumá margen si el ambiente da al sol de la tarde, es último piso o tiene mucha gente o equipos. Quedarse corto es peor que pasarse un poco: el equipo trabaja al máximo y no enfría.',
+    secciones: [
+      {
+        h: 'La cuenta rápida',
+        p: [
+          'Multiplicá los metros cuadrados por 50: un ambiente de 20 m² pide unas 1.000 frigorías de base.',
+          'Los equipos vienen en tamaños fijos (2.250, 3.000, 4.500, 5.500…): elegí el que queda justo arriba de tu cuenta.',
+        ],
+      },
+      {
+        h: 'Qué suma frigorías',
+        p: [
+          'Sol directo por la tarde, ventanales grandes, techo alto o último piso sin aislación.',
+          'Cocina integrada, computadoras o varias personas en el ambiente.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Frigorías reales del equipo y si es inverter (gasta menos y regula mejor).',
+          'Etiqueta de eficiencia energética, si es solo frío o frío/calor y si la instalación está incluida.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-acondicionados',
+    cta: { href: '/mejores/mejores-aires-acondicionados', titulo: 'Aires acondicionados en oferta hoy', boton: 'Ver aires' },
+    faq: [
+      {
+        q: '¿Qué pasa si compro un aire con menos frigorías?',
+        a: 'No llega a enfriar en los días de calor fuerte, funciona siempre al máximo y gasta más.',
+      },
+      {
+        q: '¿Un aire más grande enfría mejor?',
+        a: 'Pasarse mucho tampoco conviene: enfría de golpe, corta seguido y deshumidifica peor. Lo ideal es el tamaño justo arriba de la cuenta.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Aires acondicionados en oferta' },
+      { href: '/guias/aire-acondicionado-solo-frio-o-frio-calor', texto: 'Aire solo frío o frío/calor' },
+      { href: '/guias/ventilador-de-pie-de-techo-o-turbo', texto: 'Ventilador de pie, de techo o turbo' },
+    ],
+  },
+  {
+    slug: 'freidora-de-aire-cuantos-litros-conviene',
+    titulo: 'Freidora de aire: cuántos litros conviene según la familia',
+    descripcion:
+      'Qué capacidad de freidora de aire elegir según cuántas personas comen en casa, diferencias entre canasto simple y doble, y qué mirar en la ficha.',
+    pregunta: '¿De cuántos litros conviene la freidora de aire?',
+    respuestaCorta:
+      'Para una o dos personas alcanza una de 3 a 4 litros. Para una familia de tres o cuatro, conviene de 5 a 6 litros. Si cocinan para más gente o quieren hacer dos cosas a la vez, una de doble canasto o de 7 litros o más.',
+    secciones: [
+      {
+        h: 'Capacidad según la casa',
+        p: [
+          '1 o 2 personas: 3 a 4 litros, ocupa poco lugar en la mesada.',
+          '3 o 4 personas: 5 a 6 litros, la más elegida.',
+          '5 o más, o para cocinar en cantidad: 7 litros o más, o doble canasto.',
+        ],
+      },
+      {
+        h: 'Canasto simple o doble',
+        p: [
+          'El doble canasto permite hacer, por ejemplo, la carne y las papas al mismo tiempo con distinta temperatura.',
+          'Ocupa más espacio y suele costar más.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Potencia en watts, si el canasto es antiadherente y apto lavavajillas.',
+          'Si es digital con programas o de perillas, y la garantía.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-freidoras-de-aire',
+    cta: { href: '/mejores/mejores-freidoras-de-aire', titulo: 'Freidoras de aire en oferta hoy', boton: 'Ver freidoras' },
+    faq: [
+      {
+        q: '¿Los litros son lo que entra de comida?',
+        a: 'No del todo: conviene no llenar el canasto para que el aire circule. Una de 5 litros rinde cómodo para tres o cuatro porciones.',
+      },
+      {
+        q: '¿Gasta mucha luz?',
+        a: 'Usa bastante potencia mientras funciona, pero cocina rápido, así que en general gasta menos que prender el horno eléctrico.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-freidoras-de-aire', texto: 'Freidoras de aire en oferta' },
+      { href: '/guias/microondas-u-horno-electrico-cual-conviene', texto: 'Microondas u horno eléctrico' },
+      { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
+    ],
+  },
+  {
+    slug: 'termotanque-a-gas-o-electrico',
+    titulo: 'Termotanque a gas o eléctrico: cuál conviene',
+    descripcion:
+      'Diferencias entre termotanque a gas y eléctrico: instalación, costo de uso, recuperación del agua caliente, litros según la familia y qué mirar antes de comprar.',
+    pregunta: '¿Conviene un termotanque a gas o eléctrico?',
+    respuestaCorta:
+      'Si tenés gas natural, el termotanque a gas suele ser más barato de usar y recupera el agua caliente más rápido. El eléctrico conviene donde no hay gas o no se puede hacer la salida de gases: se instala más fácil, pero calienta más lento y el consumo pesa en la boleta de luz.',
+    secciones: [
+      {
+        h: 'A gas',
+        p: [
+          'Necesita conexión de gas y salida de gases al exterior; la instalación la tiene que hacer un gasista matriculado.',
+          'Recupera rápido: ideal si se bañan varias personas seguidas.',
+        ],
+      },
+      {
+        h: 'Eléctrico',
+        p: [
+          'Solo necesita una conexión eléctrica adecuada y agua; se puede poner en lugares sin salida de gases.',
+          'Tarda más en volver a calentar: conviene uno de más litros.',
+        ],
+      },
+      {
+        h: 'Cuántos litros',
+        p: [
+          'Como referencia: 1 o 2 personas, unos 50 litros; 3 o 4, de 80 a 120 litros; más gente, 150 o más.',
+          'Mirá también la etiqueta de eficiencia y si es de colgar o de pie según el lugar que tengas.',
+        ],
+      },
+    ],
+    comparativa: 'mejores-termotanques',
+    cta: { href: '/mejores/mejores-termotanques', titulo: 'Termotanques en oferta hoy', boton: 'Ver termotanques' },
+    faq: [
+      {
+        q: '¿Puedo cambiar un termotanque a gas por uno eléctrico?',
+        a: 'Sí, si la instalación eléctrica lo soporta. Conviene que la revise un electricista antes.',
+      },
+      {
+        q: '¿Termotanque o calefón?',
+        a: 'El calefón calienta al paso y no acumula; el termotanque guarda agua caliente y da más caudal para varias canillas a la vez.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-termotanques', texto: 'Termotanques en oferta' },
+      { href: '/ofertas/termotanques-y-calefones-en-oferta', texto: 'Termotanques y calefones en oferta' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3010,6 +3158,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'ventilador-de-pie-de-techo-o-turbo': '2026-11-04',
   'como-mantener-el-agua-de-la-pileta': '2026-11-04',
   'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
+  'aire-acondicionado-cuantas-frigorias-necesito': '2026-11-04',
+  'freidora-de-aire-cuantos-litros-conviene': '2026-11-04',
+  'termotanque-a-gas-o-electrico': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

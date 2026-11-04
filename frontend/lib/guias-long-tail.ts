@@ -2492,6 +2492,166 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
     ],
   },
+  {
+    slug: 'lavarropas-carga-frontal-o-superior',
+    titulo: 'Lavarropas de carga frontal o superior: cuál conviene',
+    descripcion:
+      'Diferencias entre un lavarropas de carga frontal y uno de carga superior: cuidado de la ropa, consumo de agua, espacio, comodidad y qué mirar en la ficha antes de comprar.',
+    pregunta: '¿Conviene un lavarropas de carga frontal o de carga superior?',
+    respuestaCorta:
+      'El de carga frontal suele cuidar mejor la ropa, gastar menos agua y permite poner un secarropas encima. El de carga superior es más cómodo para cargar sin agacharse, suele lavar más rápido y deja agregar ropa a mitad del lavado. Elegí según el espacio que tenés, cuántos kilos lavás por vez y si te molesta agacharte.',
+    secciones: [
+      {
+        h: 'Carga frontal',
+        p: [
+          'Lava haciendo girar el tambor, por eso suele tratar mejor las prendas y usar menos agua por kilo.',
+          'Se puede apilar con un secarropas o empotrar bajo la mesada. La contra: hay que agacharse para cargar y, en general, no se puede abrir una vez que arrancó.',
+        ],
+      },
+      {
+        h: 'Carga superior',
+        p: [
+          'Se carga de pie, algo práctico si tenés problemas de espalda. Muchos modelos lavan más rápido y permiten sumar una prenda olvidada.',
+          'Ocupa espacio arriba (la tapa tiene que abrirse) y no se le puede poner nada encima.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha',
+        p: [
+          'Capacidad en kilos: para una o dos personas alcanza con unos 6 a 7 kg; para una familia, 8 kg o más.',
+          'Velocidad de centrifugado: más vueltas sacan más agua y la ropa se seca antes.',
+          'Si es inverter, la etiqueta de eficiencia energética y las medidas, para confirmar que entra en tu lavadero.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: { href: '/mejores/mejores-lavarropas', titulo: 'Lavarropas en oferta hoy, comparados', boton: 'Ver la comparativa de lavarropas' },
+    faq: [
+      {
+        q: '¿Qué lavarropas gasta menos agua?',
+        a: 'En general el de carga frontal, porque lava girando el tambor con menos agua.',
+      },
+      {
+        q: '¿De cuántos kilos conviene?',
+        a: 'Para una o dos personas, de unos 6 a 7 kg. Para una familia, de 8 kg o más.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-lavarropas', texto: 'Lavarropas en oferta' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/guias/lavarropas-inverter-que-es-y-conviene', texto: 'Lavarropas inverter: qué es' },
+      { href: '/guias/lavasecarropas-secarropas-o-bomba-de-calor', texto: 'Lavasecarropas o secarropas' },
+    ],
+  },
+  {
+    slug: 'heladera-cuantos-litros-necesito',
+    titulo: '¿De cuántos litros conviene la heladera? Según cuántos son en casa',
+    descripcion:
+      'Cuántos litros de heladera necesitás según la cantidad de personas, cómo se reparte la capacidad entre heladera y freezer, y qué medir antes de comprar para que entre.',
+    pregunta: '¿De cuántos litros tiene que ser la heladera?',
+    respuestaCorta:
+      'Como referencia, una o dos personas se arreglan con unos 200 a 300 litros; una familia de tres o cuatro, con 300 a 400 litros; y familias más grandes o que compran mucho por mes, con más de 400 litros. Antes de comprar, medí el hueco donde va (alto, ancho y profundidad) y dejá espacio atrás y a los costados para que ventile.',
+    secciones: [
+      {
+        h: 'Litros según cuántos son',
+        p: [
+          'Una o dos personas: unos 200 a 300 litros suelen alcanzar.',
+          'Tres o cuatro personas: entre 300 y 400 litros.',
+          'Cinco o más, o si hacés compras grandes una vez por mes: más de 400 litros.',
+        ],
+      },
+      {
+        h: 'Heladera y freezer',
+        p: [
+          'La capacidad total se reparte entre heladera y freezer. Si congelás mucho, fijate cuántos litros tiene el freezer en la ficha, no solo el total.',
+          'Si necesitás mucho espacio de congelado, a veces conviene sumar un freezer aparte.',
+        ],
+      },
+      {
+        h: 'Medidas y ventilación',
+        p: [
+          'Medí el lugar y la puerta por donde tiene que pasar. Dejá unos centímetros libres atrás y a los costados para que el motor ventile bien.',
+          'Fijate hacia qué lado abre la puerta y si se puede invertir.',
+        ],
+      },
+    ],
+    categoria: { slug: 'heladeras', nombre: 'heladeras' },
+    comparativa: 'mejores-heladeras',
+    cta: { href: '/mejores/mejores-heladeras', titulo: 'Heladeras en oferta hoy, comparadas', boton: 'Ver la comparativa de heladeras' },
+    faq: [
+      {
+        q: '¿Cuántos litros necesita una familia de cuatro?',
+        a: 'Como referencia, entre 300 y 400 litros en total.',
+      },
+      {
+        q: '¿Conviene no frost?',
+        a: 'Si no querés descongelar a mano, sí. Tenemos una guía específica sobre heladera no frost o con freezer.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-heladeras', texto: 'Heladeras en oferta' },
+      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/guias/heladera-no-frost-o-con-freezer', texto: 'No frost o con freezer' },
+      { href: '/guias/que-freezer-comprar', texto: 'Qué freezer comprar' },
+    ],
+  },
+  {
+    slug: 'que-regalarle-a-un-chico-en-navidad',
+    titulo: '¿Qué regalarle a un chico en Navidad? Ideas por edad',
+    descripcion:
+      'Ideas de regalos de Navidad para chicos según la edad: bebés, primera infancia, edad escolar y preadolescentes. Qué revisar de seguridad y para que llegue a tiempo.',
+    pregunta: '¿Qué le regalo a un chico en Navidad?',
+    respuestaCorta:
+      'Lo mejor es pensar en la edad: para bebés, juguetes de estimulación grandes y sin piezas chicas; de 3 a 6 años, bloques, juegos de encastre, disfraces y triciclos; en edad escolar, juegos de mesa, bicicletas, kits de ciencia o arte; y para preadolescentes, auriculares, parlantes o un smartwatch. Revisá siempre la edad recomendada en la caja.',
+    secciones: [
+      {
+        h: 'Bebés y primera infancia',
+        p: [
+          'Juguetes grandes, de materiales lavables y sin piezas chicas que se puedan tragar. Sonajeros, gimnasios, libros de tela y juguetes de encastre.',
+          'Para 3 a 6 años: bloques de construcción, disfraces, masas, triciclos o monopatines con protección.',
+        ],
+      },
+      {
+        h: 'Edad escolar',
+        p: [
+          'Juegos de mesa, kits de ciencia, de arte o de manualidades, pelotas y bicicletas con el rodado adecuado a la altura.',
+        ],
+      },
+      {
+        h: 'Preadolescentes',
+        p: [
+          'Tecnología simple y útil: auriculares, parlantes bluetooth o un smartwatch. Si es un celular o una tablet, conviene configurar el control parental.',
+        ],
+      },
+      {
+        h: 'Seguridad y envío',
+        p: [
+          'Revisá la edad recomendada y que el producto tenga la certificación de seguridad de juguetes.',
+          'En diciembre los envíos tardan más: mirá la fecha estimada antes de pagar.',
+        ],
+      },
+    ],
+    categoria: { slug: 'bebes-y-jugueteria', nombre: 'bebés y juguetería' },
+    comparativa: 'regalos-de-navidad',
+    cta: { href: '/mejores/regalos-de-navidad', titulo: 'Regalos de Navidad en oferta hoy', boton: 'Ver regalos de Navidad' },
+    faq: [
+      {
+        q: '¿Qué regalar a un bebé de un año?',
+        a: 'Juguetes grandes de estimulación, sin piezas chicas y fáciles de lavar.',
+      },
+      {
+        q: '¿Qué rodado de bicicleta corresponde según la edad?',
+        a: 'Depende de la altura del chico más que de la edad: fijate la tabla de talles del fabricante en la ficha.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/regalos-de-navidad', texto: 'Regalos de Navidad' },
+      { href: '/categoria/bebes-y-jugueteria', texto: 'Bebés y juguetería en oferta' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Qué regalar en Navidad' },
+      { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2523,6 +2683,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'black-friday-argentina-que-conviene-comprar': '2026-11-04',
   'que-regalar-en-navidad-segun-presupuesto': '2026-11-04',
   'como-saber-si-un-perfume-es-original': '2026-11-04',
+  'lavarropas-carga-frontal-o-superior': '2026-11-04',
+  'heladera-cuantos-litros-necesito': '2026-11-04',
+  'que-regalarle-a-un-chico-en-navidad': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

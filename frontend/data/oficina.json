@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-04T18:31:16+00:00",
+  "generado": "2026-11-04T21:30:46+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-04T04:43:15+00:00",
+      "ultima_actividad": "2026-11-04T21:30:21+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -29,20 +29,20 @@
           "valor": 2
         },
         {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
           "label": "Reels IG",
           "valor": 1
         },
         {
           "label": "Historias IG",
           "valor": 1
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Hidrolavadora Monofasica Agua Fria 3.7kw 180bar 10lts Plateado"
+      "ultimo_trabajo": "Colchón Y Sommier Simmons Beautyrest Silver 2 Plazas Queen 200x160"
     },
     {
       "id": "investigacion",
@@ -198,7 +198,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-03T18:14:52+00:00",
+      "ultima_actividad": "2026-11-04T18:28:54+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -210,7 +210,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 14 h"
         },
         {
           "fecha": "",

@@ -2319,6 +2319,179 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       }
     ]
   },
+  {
+    slug: 'black-friday-argentina-que-conviene-comprar',
+    titulo: 'Black Friday en Argentina: qué conviene comprar y cómo no caer en falsos descuentos',
+    descripcion:
+      'Cómo aprovechar el Black Friday en Mercado Libre Argentina: qué productos suelen bajar, cómo comparar con el precio de las semanas anteriores, cuotas sin interés y qué revisar antes de pagar.',
+    pregunta: '¿Qué conviene comprar en el Black Friday de Argentina?',
+    respuestaCorta:
+      'En el Black Friday suelen convenir los productos de precio alto, donde un descuento real se nota en pesos: celulares, notebooks, smart TV, heladeras y aires acondicionados. La clave es comparar con el precio de las semanas anteriores, no con el precio tachado, y fijarse si las cuotas son realmente sin interés.',
+    secciones: [
+      {
+        h: 'Qué suele bajar en el Black Friday',
+        p: [
+          'Tecnología (celulares, notebooks, tablets, smart TV) y electrodomésticos grandes (heladeras, lavarropas, aires) son las categorías donde las marcas concentran más ofertas.',
+          'A fin de noviembre los aires y ventiladores entran en temporada alta: si lo necesitás para el verano, compará igual con el precio de octubre.',
+        ],
+      },
+      {
+        h: 'Cómo saber si el descuento es real',
+        p: [
+          'El porcentaje de descuento se calcula contra un precio de referencia que puede haber subido días antes. Lo que importa es el precio final comparado con lo que costaba el producto en las semanas previas.',
+          'En nuestras páginas de producto mostramos el historial y el mínimo histórico registrado, para que veas si el precio de hoy es bueno de verdad.',
+        ],
+      },
+      {
+        h: 'Cuotas, envío y vendedor',
+        p: [
+          'Revisá si las cuotas son sin interés con tu banco o tarjeta, y cuál es el precio total financiado.',
+          'Mirá si el envío es gratis y el plazo de entrega, sobre todo si es un regalo de fin de año.',
+          'Preferí tiendas oficiales o vendedores con buena reputación y factura, por la garantía.',
+        ],
+      },
+      {
+        h: 'Black Friday o Cyber Monday',
+        p: [
+          'Los dos eventos tienen ofertas parecidas. Si viste un buen precio en el Cyber Monday y no compraste, el Black Friday es una segunda oportunidad para comparar.',
+        ],
+      },
+    ],
+    cta: { href: '/black-friday', titulo: 'Ofertas de Black Friday de hoy', boton: 'Ver las ofertas de Black Friday' },
+    faq: [
+      {
+        q: '¿Conviene esperar al Black Friday para comprar?',
+        a: 'Si el producto no es urgente y es de precio alto, conviene seguir el precio unas semanas y comparar en el evento. Si hoy ya está en su mínimo histórico, no hace falta esperar.',
+      },
+      {
+        q: '¿Los descuentos del Black Friday son reales?',
+        a: 'Algunos sí y otros no. Compará el precio final con el de las semanas anteriores en lugar de mirar solo el porcentaje.',
+      },
+      {
+        q: '¿Qué conviene más, cuotas sin interés o descuento en un pago?',
+        a: 'Compará el total de las cuotas con el precio de contado: si son iguales, las cuotas sin interés suelen convenir.',
+      },
+    ],
+    enlaces: [
+      { href: '/black-friday', texto: 'Ofertas de Black Friday' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/guias/que-es-el-minimo-historico-en-mercado-libre', texto: 'Qué es el mínimo histórico' },
+      { href: '/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre', texto: 'Hot Sale, Cyber Monday o día común' },
+      { href: '/precio', texto: 'Precio de hoy de cada producto' },
+    ],
+  },
+  {
+    slug: 'que-regalar-en-navidad-segun-presupuesto',
+    titulo: '¿Qué regalar en Navidad? Ideas según presupuesto y para quién',
+    descripcion:
+      'Ideas de regalos de Navidad ordenadas por presupuesto y por tipo de persona: tecnología, cocina, cuidado personal, perfumes, juguetes y herramientas. Qué mirar para que llegue a tiempo.',
+    pregunta: '¿Qué regalar en Navidad?',
+    respuestaCorta:
+      'Lo más fácil es partir del presupuesto y de lo que la persona usa todos los días: auriculares, smartwatch o parlante bluetooth para los que viven con el celular; freidora de aire o cafetera para los que cocinan; perfumes o planchitas para cuidado personal; herramientas para los que arreglan cosas. Comprá con tiempo y fijate el plazo de envío para que llegue antes del 24.',
+    secciones: [
+      {
+        h: 'Regalos chicos',
+        p: [
+          'Auriculares inalámbricos de entrada, parlantes bluetooth chicos, accesorios de cocina, juegos de mesa y kits de cuidado personal son regalos útiles sin gastar mucho.',
+        ],
+      },
+      {
+        h: 'Regalos medianos',
+        p: [
+          'Freidoras de aire, cafeteras, smartwatch, perfumes importados, planchitas o secadores de pelo y taladros para la casa están en un rango intermedio y se usan seguido.',
+        ],
+      },
+      {
+        h: 'Regalos grandes (o entre varios)',
+        p: [
+          'Celulares, tablets, notebooks, smart TV o una bicicleta. Si se juntan varios para un regalo grande, conviene aprovechar el Black Friday para pagar menos.',
+        ],
+      },
+      {
+        h: 'Para que llegue a tiempo',
+        p: [
+          'En diciembre los envíos se demoran más. Revisá la fecha estimada de entrega antes de pagar y preferí envíos rápidos cuando falte poco.',
+          'Guardá la factura: si el regalo no le gusta o falla, la vas a necesitar para el cambio o la garantía.',
+        ],
+      },
+    ],
+    comparativa: 'regalos-de-navidad',
+    cta: { href: '/mejores/regalos-de-navidad', titulo: 'Regalos de Navidad en oferta hoy', boton: 'Ver regalos de Navidad' },
+    faq: [
+      {
+        q: '¿Cuándo conviene comprar los regalos de Navidad?',
+        a: 'Con tiempo: el Black Friday de fin de noviembre suele tener buenos precios y deja margen para el envío.',
+      },
+      {
+        q: '¿Qué regalar si no sé qué le gusta?',
+        a: 'Algo de uso diario y fácil de cambiar: auriculares, un parlante, un perfume o un accesorio de cocina. Guardá la factura por si hay que cambiarlo.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/regalos-de-navidad', texto: 'Regalos de Navidad' },
+      { href: '/guias/que-parlante-bluetooth-comprar', texto: 'Qué parlante bluetooth comprar' },
+      { href: '/guias/que-smartwatch-comprar', texto: 'Qué smartwatch comprar' },
+      { href: '/guias/que-freidora-de-aire-comprar', texto: 'Qué freidora de aire comprar' },
+      { href: '/guias/como-saber-si-un-perfume-es-original', texto: 'Cómo saber si un perfume es original' },
+    ],
+  },
+  {
+    slug: 'como-saber-si-un-perfume-es-original',
+    titulo: 'Cómo saber si un perfume es original al comprarlo online',
+    descripcion:
+      'Qué revisar para comprar un perfume original en Mercado Libre: tienda oficial o vendedor, precio sospechoso, caja y celofán, lote, factura y diferencia entre Eau de Parfum y Eau de Toilette.',
+    pregunta: '¿Cómo saber si un perfume es original?',
+    respuestaCorta:
+      'Lo más seguro es comprar en una tienda oficial de la marca o en un vendedor con muy buena reputación que entregue factura. Desconfiá de precios muy por debajo del resto, revisá que la caja tenga celofán prolijo y un código de lote que coincida con el del frasco, y guardá la factura por si hay que reclamar.',
+    secciones: [
+      {
+        h: 'Dónde comprarlo',
+        p: [
+          'Las tiendas oficiales de las marcas y las perfumerías grandes con tienda en Mercado Libre son la opción más segura.',
+          'Si es un vendedor particular, mirá su reputación, cuántas ventas tiene y qué dicen las opiniones sobre perfumes en particular.',
+        ],
+      },
+      {
+        h: 'Señales de alerta',
+        p: [
+          'Un precio mucho más bajo que el del resto de los vendedores para el mismo perfume y tamaño.',
+          'Fotos genéricas o descripciones que hablan de réplica, "inspirado en" o "alternativo".',
+          'Caja sin celofán, mal impresa o con un código de lote distinto al que figura en la base del frasco.',
+        ],
+      },
+      {
+        h: 'Eau de Parfum, Eau de Toilette y tamaño',
+        p: [
+          'El Eau de Parfum tiene más concentración y suele durar más que el Eau de Toilette, por eso cuesta más. Compará precios entre la misma concentración y la misma cantidad de mililitros.',
+        ],
+      },
+      {
+        h: 'Qué hacer al recibirlo',
+        p: [
+          'Revisá la caja y el frasco antes de abrir el celofán y guardá la factura. Si algo no coincide, reclamá dentro del plazo de devolución.',
+        ],
+      },
+    ],
+    categoria: { slug: 'perfumes', nombre: 'perfumes' },
+    comparativa: 'mejores-perfumes',
+    cta: { href: '/mejores/mejores-perfumes', titulo: 'Perfumes en oferta hoy, comparados', boton: 'Ver la comparativa de perfumes' },
+    faq: [
+      {
+        q: '¿Los perfumes de Mercado Libre son originales?',
+        a: 'Los de tiendas oficiales y vendedores serios con factura, sí. El riesgo está en vendedores sin reputación y precios demasiado bajos.',
+      },
+      {
+        q: '¿Qué dura más, Eau de Parfum o Eau de Toilette?',
+        a: 'En general el Eau de Parfum, porque tiene mayor concentración de fragancia.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-perfumes', texto: 'Perfumes en oferta' },
+      { href: '/categoria/perfumes', texto: 'Perfumes en oferta' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Qué regalar en Navidad' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -2347,6 +2520,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'notebook-ssd-256-o-512-gb': '2026-11-03',
   'que-zte-comprar': '2026-11-03',
   'que-xiaomi-redmi-comprar': '2026-11-03',
+  'black-friday-argentina-que-conviene-comprar': '2026-11-04',
+  'que-regalar-en-navidad-segun-presupuesto': '2026-11-04',
+  'como-saber-si-un-perfume-es-original': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

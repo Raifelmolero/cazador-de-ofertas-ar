@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-03T20:54:32+00:00",
+  "generado": "2026-11-04T04:43:16+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-03T20:53:31+00:00",
+      "ultima_actividad": "2026-11-04T04:43:15+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 9479 productos en la última corrida"
+          "tarea": "Revisó 9118 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -21,20 +21,28 @@
           "valor": 3
         },
         {
-          "label": "Facebook",
+          "label": "whatsapp_kit",
           "valor": 3
-        },
-        {
-          "label": "Instagram",
-          "valor": 2
         },
         {
           "label": "Threads",
           "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Hp Victus Ryzen 7 7445hs 16gb 512gb Rtx 4050 Win 11"
+      "ultimo_trabajo": "Hidrolavadora Monofasica Agua Fria 3.7kw 180bar 10lts Plateado"
     },
     {
       "id": "investigacion",

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-04T21:30:46+00:00",
+  "generado": "2026-11-05T04:59:00+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,11 +8,11 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-04T21:30:21+00:00",
+      "ultima_actividad": "2026-11-05T04:59:00+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 10522 productos en la última corrida"
+          "tarea": "Revisó 10637 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -29,20 +29,20 @@
           "valor": 2
         },
         {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
           "label": "Reels IG",
           "valor": 1
         },
         {
           "label": "Historias IG",
           "valor": 1
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Colchón Y Sommier Simmons Beautyrest Silver 2 Plazas Queen 200x160"
+      "ultimo_trabajo": "Heladera Side By Side Inverter LG Gs66spp 638L Dispenser Color Gris"
     },
     {
       "id": "investigacion",

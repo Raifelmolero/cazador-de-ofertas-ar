@@ -3070,6 +3070,396 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
     ],
   },
+  {
+    slug: 'samsung-galaxy-a-o-s-cual-conviene',
+    titulo: 'Samsung Galaxy A o Galaxy S: cuál conviene comprar',
+    descripcion:
+      'Diferencias entre la línea Galaxy A y la Galaxy S de Samsung: cámara, pantalla, procesador, años de actualizaciones y cuándo vale la pena pagar más por un S.',
+    pregunta: '¿Conviene un Samsung Galaxy A o un Galaxy S?',
+    respuestaCorta:
+      'Si usás el celular para WhatsApp, redes, fotos de día y algún juego liviano, un Galaxy A de gama media alcanza y cuesta mucho menos. El Galaxy S conviene si te importan las fotos de noche y el zoom, querés el procesador más rápido o pensás usarlo muchos años. Un S del año anterior en oferta muchas veces rinde más que un A nuevo por un precio parecido.',
+    secciones: [
+      {
+        h: 'Qué es cada línea',
+        p: [
+          'La línea Galaxy A es la gama baja y media de Samsung: los números más altos (A5x) son los más completos de la familia.',
+          'La línea Galaxy S es la gama alta: S, S+ y Ultra, con los mejores procesadores, cámaras y materiales de la marca. Las versiones FE son una variante más barata del S.',
+        ],
+      },
+      {
+        h: 'Dónde se nota la diferencia',
+        p: [
+          'Cámara: de día los dos sacan buenas fotos; la diferencia aparece de noche, en el zoom y en video. Los Ultra tienen teleobjetivo con mucho más alcance.',
+          'Rendimiento: el S abre apps y juegos pesados más rápido y se calienta menos. Para uso normal, un A5x se siente fluido.',
+          'Actualizaciones: revisá en la ficha o en la web de Samsung cuántos años de actualizaciones promete cada modelo; es clave si lo vas a usar mucho tiempo.',
+          'Materiales: los S suelen tener mejor vidrio y marco, y carga inalámbrica, que muchos A no traen.',
+        ],
+      },
+      {
+        h: 'El truco del S del año anterior',
+        p: [
+          'Cuando sale un modelo nuevo, el S del año anterior suele bajar de precio. En oferta puede quedar cerca de un A5x nuevo y tener mejor cámara y procesador.',
+          'Antes de comprar, mirá el historial de precio: un descuento grande sobre un precio inflado no es una oferta real.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha antes de pagar',
+        p: [
+          'Memoria: con 128 GB alcanza para uso normal; si sacás muchos videos, 256 GB.',
+          'Que sea versión oficial para Argentina, con garantía de Samsung.',
+          'Si incluye cargador: muchos modelos vienen solo con el cable.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-samsung-galaxy',
+    cta: { href: '/mejores/mejores-samsung-galaxy', titulo: 'Samsung Galaxy en oferta hoy, comparados', boton: 'Ver los Samsung en oferta' },
+    faq: [
+      {
+        q: '¿Qué Galaxy A es el mejor?',
+        a: 'Dentro de la línea A, los modelos de numeración más alta (A5x) son los más completos en cámara, pantalla y procesador.',
+      },
+      {
+        q: '¿Vale la pena un Galaxy S FE?',
+        a: 'Es un punto medio: tiene buena parte de lo del S a un precio más bajo. Conviene si lo encontrás en oferta cerca de un A5x.',
+      },
+      {
+        q: '¿Cuántos años dura un Samsung?',
+        a: 'Depende de los años de actualizaciones que prometa el modelo y del uso. Fijate ese dato en la ficha antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-samsung-galaxy-comprar', texto: 'Qué Samsung Galaxy comprar' },
+      { href: '/guias/iphone-o-samsung-cual-conviene-argentina', texto: 'iPhone o Samsung' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en el celular' },
+      { href: '/mejores/mejores-samsung-galaxy', texto: 'Mejores Samsung Galaxy en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+    ],
+  },
+  {
+    slug: 'colchon-para-dolor-de-espalda',
+    titulo: 'Qué colchón conviene si te duele la espalda',
+    descripcion:
+      'Cómo elegir un colchón cuando tenés dolor de espalda: firmeza según tu peso y cómo dormís, resortes o espuma, cuándo cambiarlo y qué mirar antes de comprar.',
+    pregunta: '¿Qué colchón conviene para el dolor de espalda?',
+    respuestaCorta:
+      'No hay un colchón que cure el dolor de espalda: lo importante es que mantenga la columna derecha. En general conviene una firmeza media a firme, que no se hunda en la cadera. Si pesás más o dormís boca arriba, más firme; si dormís de costado, un poco más blando para que entren hombro y cadera. Si el dolor es fuerte o no se va, consultá a un médico o kinesiólogo.',
+    secciones: [
+      {
+        h: 'La regla: columna derecha',
+        p: [
+          'Un buen colchón sostiene la cadera y deja que el hombro se acomode, para que la columna quede alineada como cuando estás parado.',
+          'Uno demasiado blando deja que la cadera se hunda; uno demasiado duro no apoya bien la cintura y carga hombros y cadera.',
+        ],
+      },
+      {
+        h: 'Firmeza según cómo dormís y tu peso',
+        p: [
+          'Boca arriba: firmeza media a firme.',
+          'De costado: media, para que hombro y cadera se hundan lo justo.',
+          'Boca abajo: firme, para que la cadera no se arquee.',
+          'A más peso, más firmeza y más densidad de espuma o mejor soporte de resortes.',
+        ],
+      },
+      {
+        h: 'Resortes o espuma',
+        p: [
+          'Los resortes pocket (ensacados) se adaptan por zonas y transmiten menos el movimiento de la otra persona. La espuma de alta densidad da un apoyo parejo y suele ser más económica.',
+          'Fijate la densidad de la espuma en la ficha: más densidad suele significar que se deforma menos con los años.',
+        ],
+      },
+      {
+        h: 'Cuándo cambiar el colchón',
+        p: [
+          'Si tiene pozos marcados, si te levantás con dolor que se va durante el día o si dormís mejor en otra cama, es señal de cambio.',
+          'Revisá también la base: un sommier o una base hundida arruina un colchón nuevo.',
+        ],
+      },
+    ],
+    categoria: { slug: 'colchones', nombre: 'colchones' },
+    comparativa: 'mejores-colchones',
+    cta: { href: '/mejores/mejores-colchones', titulo: 'Colchones en oferta hoy, comparados', boton: 'Ver los colchones en oferta' },
+    faq: [
+      {
+        q: '¿Un colchón duro es mejor para la espalda?',
+        a: 'No necesariamente. Demasiado duro también molesta. En general conviene firmeza media a firme, según tu peso y cómo dormís.',
+      },
+      {
+        q: '¿Resortes o espuma para el dolor de espalda?',
+        a: 'Los dos pueden servir si la firmeza es la correcta. Los resortes pocket se adaptan por zonas; la espuma de alta densidad da un apoyo parejo.',
+      },
+      {
+        q: '¿Cada cuánto se cambia un colchón?',
+        a: 'Cuando se marcan pozos o te levantás dolorido. Muchos fabricantes hablan de entre 8 y 10 años, según el uso y la calidad.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-colchon-comprar-firmeza-y-material', texto: 'Qué colchón comprar' },
+      { href: '/guias/colchon-de-resortes-o-de-espuma', texto: 'Colchón de resortes o de espuma' },
+      { href: '/guias/sommier-o-colchon-cual-conviene', texto: 'Sommier o colchón' },
+      { href: '/mejores/mejores-colchones', texto: 'Mejores colchones en oferta' },
+      { href: '/categoria/colchones', texto: 'Colchones en oferta' },
+    ],
+  },
+  {
+    slug: 'cuanto-consume-un-aire-acondicionado',
+    titulo: 'Cuánto consume un aire acondicionado y cómo calcularlo',
+    descripcion:
+      'Cómo calcular cuánta luz gasta un aire acondicionado: potencia en watts, horas de uso, diferencia entre inverter y convencional, etiqueta de eficiencia y trucos para gastar menos.',
+    pregunta: '¿Cuánto consume un aire acondicionado?',
+    respuestaCorta:
+      'El consumo se calcula con la potencia eléctrica (en watts, figura en la ficha o la etiqueta) por las horas de uso: watts × horas × días ÷ 1000 = kWh por mes. Como referencia, un split de unas 3000 frigorías suele consumir alrededor de 1 kW por hora mientras el compresor trabaja a pleno. Un inverter gasta menos porque baja la velocidad en vez de prender y apagar. Multiplicá los kWh por el precio del kWh de tu factura.',
+    secciones: [
+      {
+        h: 'La cuenta paso a paso',
+        p: [
+          'Buscá la potencia eléctrica (consumo) en watts en la ficha o en la etiqueta de eficiencia. No es lo mismo que las frigorías, que miden cuánto enfría.',
+          'Multiplicá watts × horas por día × días de uso y dividí por 1000: eso son los kWh del mes.',
+          'Multiplicá los kWh por el precio del kWh que figura en tu factura. Con la calculadora de consumo eléctrico del sitio lo hacés en un paso.',
+        ],
+      },
+      {
+        h: 'Inverter o convencional',
+        p: [
+          'El convencional prende y apaga el compresor a máxima potencia. El inverter, una vez que llega a la temperatura, baja la velocidad y la mantiene: por eso consume menos en uso prolongado.',
+          'Si lo vas a usar muchas horas por día, el inverter suele recuperar la diferencia de precio en pocas temporadas.',
+        ],
+      },
+      {
+        h: 'La etiqueta de eficiencia',
+        p: [
+          'En Argentina los aires llevan etiqueta de eficiencia energética: la letra A (o A+, A++) indica los que menos consumen para la misma capacidad.',
+          'Compará dos equipos de las mismas frigorías por su consumo en watts, no solo por la letra.',
+        ],
+      },
+      {
+        h: 'Cómo gastar menos',
+        p: [
+          'Usalo a 24 °C: cada grado menos aumenta el consumo.',
+          'Elegí las frigorías justas para el ambiente: uno chico trabaja siempre al máximo y uno muy grande gasta de más.',
+          'Limpiá los filtros cada pocas semanas en temporada y cerrá puertas y cortinas al sol.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-inverter',
+    cta: { href: '/mejores/mejores-aires-inverter', titulo: 'Aires inverter en oferta hoy, comparados', boton: 'Ver los aires inverter en oferta' },
+    faq: [
+      {
+        q: '¿Cuántos kWh gasta un aire de 3000 frigorías?',
+        a: 'Alrededor de 1 kWh por cada hora con el compresor a pleno. Un inverter, después de enfriar el ambiente, suele gastar bastante menos. El dato exacto está en la ficha del equipo.',
+      },
+      {
+        q: '¿Gasta más un aire o un ventilador?',
+        a: 'El aire, por mucho: un ventilador consume decenas de watts, mientras que un aire consume cientos o más de mil watts.',
+      },
+      {
+        q: '¿Conviene apagar el aire cuando salgo un rato?',
+        a: 'Para salidas cortas, con un inverter suele convenir dejarlo a una temperatura moderada; para varias horas, apagalo.',
+      },
+    ],
+    enlaces: [
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo eléctrico' },
+      { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías' },
+      { href: '/guias/aire-acondicionado-inverter-o-convencional', texto: 'Aire inverter o convencional' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/mejores/mejores-aires-inverter', texto: 'Mejores aires inverter en oferta' },
+    ],
+  },
+  {
+    slug: 'celular-reacondicionado-conviene',
+    titulo: 'Celular reacondicionado: qué es y si conviene comprarlo',
+    descripcion:
+      'Qué es un celular reacondicionado, en qué se diferencia de uno usado, qué garantía tiene, cómo ver el estado de la batería y cuándo conviene frente a uno nuevo.',
+    pregunta: '¿Conviene comprar un celular reacondicionado?',
+    respuestaCorta:
+      'Puede convenir si querés un gama alta (por ejemplo un iPhone o un Galaxy S) por bastante menos que nuevo. Un reacondicionado fue revisado y reparado antes de venderse, a diferencia de un usado común. La clave es que tenga garantía escrita, que indique el estado estético (grado) y la salud de la batería, y que el vendedor tenga buena reputación. Si la diferencia con uno nuevo en oferta es chica, conviene el nuevo.',
+    secciones: [
+      {
+        h: 'Reacondicionado no es lo mismo que usado',
+        p: [
+          'Un usado se vende tal como está. Un reacondicionado pasa por una revisión: se prueban sus funciones, se cambian piezas falladas y se limpia, y suele venderse con garantía.',
+          'La calidad de esa revisión depende de quién lo hace, por eso la reputación del vendedor importa mucho.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          'Garantía: cuántos meses y quién la da. Sin garantía escrita, tratalo como un usado.',
+          'Estado estético: muchos vendedores usan grados (A, B, C o "excelente", "muy bueno", "bueno") según las marcas de uso.',
+          'Salud de la batería: en iPhone se ve en porcentaje. Por debajo de 80 % conviene cambiarla pronto.',
+          'Que esté liberado y que el IMEI no esté denunciado.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene y cuándo no',
+        p: [
+          'Conviene cuando buscás un gama alta reciente y la diferencia con el nuevo es grande.',
+          'No conviene si el ahorro es poco: un nuevo en oferta trae garantía oficial completa y batería nueva.',
+          'Revisá cuántos años de actualizaciones le quedan al modelo: un celular muy viejo deja de recibirlas antes.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-celulares',
+    cta: { href: '/mejores/mejores-celulares', titulo: 'Celulares nuevos en oferta hoy, comparados', boton: 'Comparar con celulares nuevos en oferta' },
+    faq: [
+      {
+        q: '¿Qué garantía tiene un celular reacondicionado?',
+        a: 'Depende del vendedor: puede ser de algunos meses o más. Pedí que esté escrita en la publicación o la factura.',
+      },
+      {
+        q: '¿Qué significa grado A, B o C?',
+        a: 'Indica el estado estético: A casi sin marcas, B con marcas leves y C con marcas visibles. El funcionamiento debería ser el mismo.',
+      },
+      {
+        q: '¿Es lo mismo reacondicionado que usado?',
+        a: 'No. El reacondicionado se revisa y repara antes de venderse y suele tener garantía; el usado se vende como está.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-iphone-comprar', texto: 'Qué iPhone comprar' },
+      { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según presupuesto' },
+      { href: '/mejores/mejores-celulares', texto: 'Mejores celulares en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+    ],
+  },
+  {
+    slug: "pileta-estructural-o-inflable",
+    titulo: "Pileta estructural o inflable: cuál conviene",
+    descripcion: "Comparamos piletas estructurales (de caño) e inflables: duración, armado, capacidad, cuidado del agua y cuál conviene según el patio y el presupuesto.",
+    pregunta: "¿Conviene una pileta estructural o una inflable?",
+    respuestaCorta: "Si la vas a usar varios veranos y tenés un patio parejo, la estructural dura más y aguanta mejor el uso. La inflable conviene para un verano, espacios chicos o si la querés guardar fácil.",
+    secciones: [
+      { h: "Estructural: más firme y duradera", p: ["Tiene marco de caños metálicos y lona de PVC reforzado. Aguanta chicos jugando, no se desinfla y suele venir en tamaños más grandes (desde 3.000 hasta más de 10.000 litros).", "Lleva más tiempo armarla y necesita un terreno bien nivelado. Muchas incluyen bomba filtrante, lo que ayuda a mantener el agua."] },
+      { h: "Inflable: rápida y barata", p: ["El aro superior inflable sube solo a medida que la llenás. Se arma en minutos y ocupa poco guardada.", "Es más delicada: un pinchazo o una mascota pueden dañarla, y las paredes son menos firmes para apoyarse."] },
+      { h: "Qué mirar antes de comprar", p: ["Capacidad en litros según cuántos la usan, si trae bomba filtrante, cobertor, escalera para las de más de 1 m de alto y el espesor de la lona.", "Medí el patio y dejá al menos 50 cm libres alrededor. El suelo debe estar parejo: un desnivel deforma la pileta."] },
+    ],
+    categoria: { slug: "piletas", nombre: "piletas" },
+    comparativa: "mejores-piletas",
+    cta: { href: "/mejores/mejores-piletas", titulo: "Piletas en oferta hoy", boton: "Ver piletas" },
+    faq: [
+      { q: "¿Cuánto dura una pileta estructural?", a: "Bien cuidada y guardada seca en invierno, varias temporadas." },
+      { q: "¿Hace falta bomba filtrante?", a: "Para más de 3.000 litros es muy recomendable: mantiene el agua limpia por más tiempo y gastás menos cloro." },
+    ],
+    enlaces: [
+      { href: "/guias/que-pileta-comprar", texto: "Qué pileta comprar" },
+      { href: "/guias/como-mantener-el-agua-de-la-pileta", texto: "Cómo mantener el agua de la pileta" },
+    ],
+  },
+  {
+    slug: "monitor-144hz-vale-la-pena",
+    titulo: "Monitor de 144 Hz: vale la pena o alcanza con 60 Hz",
+    descripcion: "Qué cambia un monitor de 144 Hz frente a uno de 60 o 75 Hz, para quién conviene, qué placa de video hace falta y qué más mirar al comprar.",
+    pregunta: "¿Vale la pena un monitor de 144 Hz?",
+    respuestaCorta: "Si jugás juegos rápidos (shooters, deportes, carreras) y tu PC llega a más de 60 FPS, sí: la imagen se ve mucho más fluida. Para trabajar, estudiar o ver series, un buen monitor de 60-75 Hz alcanza.",
+    secciones: [
+      { h: "Qué son los Hz", p: ["Son las veces por segundo que el monitor actualiza la imagen. A 144 Hz el movimiento se ve más suave y el mouse responde más rápido que a 60 Hz."] },
+      { h: "Necesitás una PC que acompañe", p: ["Para aprovecharlo, la placa de video tiene que sacar más de 60 FPS en tus juegos. Con gráficos integrados básicos el cambio se nota en el escritorio, pero poco en juegos exigentes.", "Conectalo por DisplayPort o HDMI 2.0 o superior: algunos cables HDMI viejos limitan a 60 Hz."] },
+      { h: "Qué más mirar", p: ["Panel IPS para mejores colores, VA para buen contraste, TN solo si priorizás precio.", "Tamaño: 24\" en Full HD es el punto dulce; en 27\" conviene 2K (1440p). Que tenga FreeSync o G-Sync compatible evita cortes en la imagen."] },
+    ],
+    categoria: { slug: "monitores", nombre: "monitores" },
+    comparativa: "mejores-monitores-gamer",
+    cta: { href: "/mejores/mejores-monitores-gamer", titulo: "Monitores gamer en oferta", boton: "Ver monitores" },
+    faq: [
+      { q: "¿Sirve un monitor de 144 Hz para la PlayStation 5?", a: "La PS5 llega a 120 Hz en algunos juegos con HDMI 2.1; con HDMI 2.0 queda en 60 Hz a resolución alta." },
+      { q: "¿144 o 165 Hz?", a: "La diferencia es mínima; si el de 165 Hz cuesta lo mismo, elegilo." },
+    ],
+    enlaces: [
+      { href: "/guias/que-monitor-gamer-comprar", texto: "Qué monitor gamer comprar" },
+      { href: "/guias/que-monitor-comprar", texto: "Qué monitor comprar" },
+    ],
+  },
+  {
+    slug: "secador-de-pelo-ionico-vale-la-pena",
+    titulo: "Secador de pelo iónico: vale la pena",
+    descripcion: "Qué hace un secador iónico, si de verdad reduce el frizz, cuánta potencia conviene y qué accesorios mirar antes de comprar.",
+    pregunta: "¿Vale la pena un secador de pelo iónico?",
+    respuestaCorta: "Sí, si tenés pelo con frizz, grueso o largo: la función iónica ayuda a secar más rápido y deja el pelo más liso y brillante. Para pelo corto y fino, un secador común de buena potencia alcanza.",
+    secciones: [
+      { h: "Qué hace la función iónica", p: ["Emite iones negativos que ayudan a romper las gotas de agua: el pelo se seca más rápido y con menos estática, lo que se traduce en menos frizz."] },
+      { h: "Potencia y temperaturas", p: ["Entre 1.800 y 2.200 W es lo ideal para uso diario. Más importante que los watts: que tenga al menos 2 velocidades, 3 temperaturas y botón de aire frío para fijar el peinado."] },
+      { h: "Accesorios y detalles", p: ["Boquilla concentradora para alisar con cepillo y difusor si tenés rulos. Filtro trasero desmontable para limpiarlo y cable de 1,8 m o más.", "Los motores AC (profesionales) duran más pero pesan más; los DC son más livianos para uso hogareño."] },
+    ],
+    categoria: { slug: "cuidado-personal", nombre: "Cuidado personal" },
+    comparativa: "mejores-planchitas-y-secadores-de-pelo",
+    cta: { href: "/mejores/mejores-planchitas-y-secadores-de-pelo", titulo: "Secadores y planchitas en oferta", boton: "Ver secadores" },
+    faq: [
+      { q: "¿El secador iónico daña menos el pelo?", a: "Al secar más rápido expone el pelo menos tiempo al calor; igual conviene usar protector térmico." },
+      { q: "¿Qué es la función cerámica o turmalina?", a: "Recubrimientos que reparten el calor de forma más pareja; suelen venir junto con la función iónica." },
+    ],
+    enlaces: [
+      { href: "/guias/que-planchita-de-pelo-comprar", texto: "Qué planchita de pelo comprar" },
+    ],
+  },
+  {
+    slug: "eau-de-parfum-o-eau-de-toilette-diferencia",
+    titulo: "Eau de parfum o eau de toilette: diferencia y cuál conviene",
+    descripcion: "Qué cambia entre eau de parfum, eau de toilette, eau de cologne y parfum: concentración, duración en la piel y cuál conviene según el uso y el presupuesto.",
+    pregunta: "¿Qué diferencia hay entre eau de parfum y eau de toilette?",
+    respuestaCorta: "La concentración de esencia: el eau de parfum (EDP) tiene más y dura más en la piel (6 a 8 horas); el eau de toilette (EDT) es más liviano y fresco (3 a 5 horas). Para la noche o el invierno conviene EDP; para el día y el verano, EDT.",
+    secciones: [
+      { h: "Las concentraciones, de mayor a menor", p: ["Parfum o extrait: 20-30 % de esencia, el más intenso y caro.", "Eau de parfum (EDP): 15-20 %. Eau de toilette (EDT): 5-15 %. Eau de cologne: 2-5 %, muy liviana."] },
+      { h: "Duración y estela", p: ["A más concentración, más horas en la piel y más estela. Igual depende del tipo de piel: en piel seca los perfumes duran menos, por eso ayuda aplicar crema sin aroma antes."] },
+      { h: "Cuál conviene comprar", p: ["Si es tu perfume de todos los días y querés que rinda, el EDP suele convenir aunque cueste más: usás menos cantidad.", "Un mismo perfume en EDT y EDP puede oler distinto: el EDT suele ser más cítrico y fresco. Si podés, probalos antes."] },
+    ],
+    categoria: { slug: "perfumes", nombre: "perfumes" },
+    comparativa: "mejores-perfumes",
+    cta: { href: "/mejores/mejores-perfumes", titulo: "Perfumes en oferta hoy", boton: "Ver perfumes" },
+    faq: [
+      { q: "¿Dónde conviene aplicar el perfume?", a: "En puntos de pulso: muñecas, cuello y detrás de las orejas. No frotes las muñecas: rompe las notas de salida." },
+      { q: "¿Cómo sé si es original?", a: "Comprá en tiendas oficiales y revisá lote, celofán y atomizador." },
+    ],
+    enlaces: [
+      { href: "/guias/como-saber-si-un-perfume-es-original", texto: "Cómo saber si un perfume es original" },
+    ],
+  },
+  {
+    slug: "silla-gamer-o-silla-ergonomica-cual-conviene",
+    titulo: "Silla gamer o silla ergonómica: cuál conviene",
+    descripcion: "Comparamos sillas gamer y sillas ergonómicas de oficina: postura, regulaciones, materiales, calor y cuál conviene para jugar, estudiar o trabajar muchas horas.",
+    pregunta: "¿Conviene una silla gamer o una ergonómica?",
+    respuestaCorta: "Para trabajar o estudiar muchas horas, una ergonómica con soporte lumbar regulable y respaldo de malla suele ser más cómoda y fresca. La gamer conviene si te gusta reclinarte, querés almohadones y priorizás el estilo.",
+    secciones: [
+      { h: "Silla ergonómica", p: ["Prioriza la postura: soporte lumbar regulable, apoyabrazos ajustables y asiento con profundidad regulable en los modelos buenos.", "El respaldo de malla ventila mejor, algo clave en verano."] },
+      { h: "Silla gamer", p: ["Respaldo alto tipo butaca, almohadón cervical y lumbar, y reclinación de hasta 150-180°. Suelen ser de cuero sintético, que da más calor y se puede pelar con los años."] },
+      { h: "Qué mirar en cualquiera", p: ["Pistón clase 3 o 4, base metálica, peso máximo soportado y garantía. Que la altura te deje los pies apoyados y las rodillas a 90°."] },
+    ],
+    categoria: { slug: "gamer", nombre: "productos gamer" },
+    comparativa: "mejores-sillas-gamer",
+    cta: { href: "/mejores/mejores-sillas-gamer", titulo: "Sillas en oferta hoy", boton: "Ver sillas" },
+    faq: [
+      { q: "¿Cuánto peso aguanta una silla gamer?", a: "La mayoría entre 120 y 150 kg; revisalo en la ficha." },
+      { q: "¿Sirve el almohadón lumbar de las gamer?", a: "Ayuda, pero un soporte lumbar regulable integrado es más preciso." },
+    ],
+    enlaces: [
+      { href: "/guias/que-silla-gamer-comprar", texto: "Qué silla gamer comprar" },
+      { href: "/guias/que-silla-de-oficina-comprar", texto: "Qué silla de oficina comprar" },
+    ],
+  },
+  {
+    slug: "tablet-para-chicos-cual-comprar",
+    titulo: "Tablet para chicos: cuál comprar",
+    descripcion: "Qué mirar en una tablet para chicos: tamaño, memoria, control parental, funda resistente y qué presupuesto conviene según la edad.",
+    pregunta: "¿Qué tablet conviene comprarle a un chico?",
+    respuestaCorta: "Una tablet Android de 8 a 10 pulgadas con 3-4 GB de RAM y 64 GB alcanza para videos, juegos simples y la escuela. Sumale una funda antigolpes y activá el control parental de Google (Family Link).",
+    secciones: [
+      { h: "Según la edad", p: ["Hasta 6 años: 7-8 pulgadas, funda gruesa con manija y apps infantiles; no hace falta mucha potencia.", "De 7 a 12: 10 pulgadas, 4 GB de RAM y 64 GB para tarea, videos y juegos. Adolescentes: conviene 6 GB o más si juegan títulos exigentes."] },
+      { h: "Control parental", p: ["Google Family Link (Android) o Tiempo de uso (iPad) permiten limitar horas, aprobar apps y ver la ubicación. Configuralo antes de regalarla."] },
+      { h: "Detalles que importan", p: ["Batería de 5.000 mAh o más, ranura microSD para sumar espacio y carga USB-C. Un protector de pantalla de vidrio templado ahorra disgustos."] },
+    ],
+        comparativa: "mejores-tablets",
+    cta: { href: "/mejores/mejores-tablets", titulo: "Tablets en oferta hoy", boton: "Ver tablets" },
+    faq: [
+      { q: "¿Tablet o celular para un chico?", a: "Para los más chicos, la tablet: pantalla más grande, se queda en casa y no necesita línea." },
+      { q: "¿Sirven las tablets \"infantiles\" con funda incluida?", a: "Para menores de 6 sí, pero suelen ser lentas; para más grandes conviene una tablet común con funda aparte." },
+    ],
+    enlaces: [
+      { href: "/guias/que-tablet-comprar", texto: "Qué tablet comprar" },
+      { href: "/guias/primer-celular-para-chicos", texto: "Primer celular para chicos" },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3112,6 +3502,16 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
   'aire-acondicionado-cuantas-frigorias-necesito': '2026-11-04',
   'freidora-de-aire-cuantos-litros-conviene': '2026-11-04',
+  'samsung-galaxy-a-o-s-cual-conviene': '2026-11-04',
+  'colchon-para-dolor-de-espalda': '2026-11-04',
+  'cuanto-consume-un-aire-acondicionado': '2026-11-04',
+  'celular-reacondicionado-conviene': '2026-11-04',
+  'pileta-estructural-o-inflable': '2026-11-04',
+  'monitor-144hz-vale-la-pena': '2026-11-04',
+  'secador-de-pelo-ionico-vale-la-pena': '2026-11-04',
+  'eau-de-parfum-o-eau-de-toilette-diferencia': '2026-11-05',
+  'silla-gamer-o-silla-ergonomica-cual-conviene': '2026-11-05',
+  'tablet-para-chicos-cual-comprar': '2026-11-05',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

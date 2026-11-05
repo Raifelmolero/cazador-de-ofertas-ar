@@ -36,7 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
   // Sin los que cuestan menos de un tercio de la mediana: son accesorios ("lavarropas
   // desde $5.300" eran pastillas limpiadoras).
-  const todos = productosDe(c).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
+  // Solo los que muestra la tabla: con todo el catálogo salía «desde» un modelo que no aparece.
+  const todos = productosDe(c).slice(0, MAX_FILAS).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
   const mediana = todos[Math.floor(todos.length / 2)] ?? 0
   const precios = todos.filter(n => n >= mediana / 3)
   const base = (CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { LANDINGS_CYBER } from '@/lib/cybertecno'
 import { etapaCyber } from '@/lib/cybermonday'
 import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
-import { descripcionSeo, tituloSeo } from '@/lib/seo'
+import { descripcionSeo, tituloSeo, MAX_TITULO } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -34,11 +34,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
-  const precios = productosDe(c).map(p => p.precio_actual).filter(n => n > 0)
+  // Sin los que cuestan menos de un tercio de la mediana: son accesorios ("lavarropas
+  // desde $5.300" eran pastillas limpiadoras).
+  const todos = productosDe(c).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
+  const mediana = todos[Math.floor(todos.length / 2)] ?? 0
+  const precios = todos.filter(n => n >= mediana / 3)
   const base = (CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
   // Con menos de 3 modelos el "desde" engaña (el único que hay puede ser el más caro).
-  const conPrecio = precios.length >= MIN_PRODUCTOS_INDEXABLE ?`${base}: desde ${precio(Math.min(...precios))}` : base
-  const titulo = tituloSeo(conPrecio, [n => `${n} — Cazador de Ofertas AR`, n => n])
+  // Si no entra, se acorta el título antes del ":" en vez de cortar el precio
+  // (en Google salían títulos terminados en "…: desde").
+  const desde = precios.length >= MIN_PRODUCTOS_INDEXABLE ? `: desde ${precio(Math.min(...precios))}` : ''
+  const corto = base.split(':')[0].trim()
+  const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
+  const titulo = opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
   const descripcion = descripcionSeo(c.descripcion)
   return {
     title: titulo,

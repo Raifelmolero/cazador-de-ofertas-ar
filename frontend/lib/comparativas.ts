@@ -77,6 +77,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-smart-tv',
     nombre: 'smart TV',
+    excluir: ['proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
     titulo: `Televisores smart TV en oferta ${AÑO}: comparativa de precios`,
     descripcion:
       'Comparativa de televisores smart TV en oferta hoy en Mercado Libre Argentina: 32 a 75 pulgadas, precio, descuento y precio mínimo registrado.',
@@ -101,7 +102,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los lavarropas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'lavarropas',
-    excluir: ['lavavajillas', 'lava vajillas'],
+    excluir: ['lavavajillas', 'lava vajillas', 'pastillas', 'protector', 'mueble', 'organizador', 'bolsa', 'canilla'],
     guia: 'que-lavarropas-comprar',
     criterios: [
       'Capacidad: 6-7 kg para 1-2 personas, 8 kg o más para familias.',
@@ -121,7 +122,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Los lavavajillas en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'lavarropas',
     keywords: ['lavavajillas', 'lava vajillas', 'lavaplatos'],
-    excluir: ['detergente', 'pastillas', 'abrillantador', 'sal para', 'canasto', 'manguera', 'repuesto'],
+    excluir: ['detergente', 'pastillas', 'abrillantador', 'sal para', 'canasto', 'manguera', 'repuesto', 'taper', 'vasos'],
     guia: 'que-lavavajillas-comprar',
     criterios: [
       'Cubiertos: 45 cm de ancho (unos 9 a 10 cubiertos) para 1 a 3 personas; 60 cm (12 a 14) para familias.',
@@ -134,6 +135,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-heladeras',
     nombre: 'heladeras',
+    excluir: ['estabilizador', 'protector', 'taper', 'frasco', 'organizador', 'zapatilla', 'carro de traslado'],
     titulo: `Mejores heladeras en Argentina ${AÑO}`,
     descripcion:
       'Las mejores heladeras en Argentina 2026 en oferta hoy en Mercado Libre: no frost o cíclica, litros, marcas, precio y el mínimo que registramos.',
@@ -324,7 +326,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas, antes y durante el evento.',
     categoria: 'smart-tv',
-    excluir: ['monitor'],
+    excluir: ['monitor', 'proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
     criterios: [
       'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
       'Tamaño según la distancia: a 2 metros va bien uno de 50 a 55 pulgadas; 4K desde 43.',
@@ -389,6 +391,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-lavarropas',
     nombre: 'lavarropas en el Cyber Monday',
+    excluir: ['pastillas', 'protector', 'mueble', 'organizador', 'bolsa', 'canilla'],
     titulo: `Lavarropas en el Cyber Monday ${AÑO}: precios comparados`,
     descripcion:
       'Lavarropas en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: carga frontal y superior, con el descuento verificado contra el historial de precios.',
@@ -443,6 +446,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-heladeras',
     nombre: 'heladeras en el Cyber Monday',
+    excluir: ['estabilizador', 'protector', 'taper', 'frasco', 'organizador', 'zapatilla', 'carro de traslado'],
     titulo: `Heladeras en el Cyber Monday ${AÑO}: precios comparados`,
     descripcion:
       'Heladeras en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: no frost y cíclicas, con el descuento verificado contra el historial de precios.',
@@ -537,6 +541,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'black-friday-smart-tv',
     nombre: 'smart TV en el Black Friday',
+    excluir: ['proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
     titulo: `Smart TV en el Black Friday ${AÑO}: ofertas con descuento verificado`,
     descripcion:
       'Smart TV en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: 4K de 43 a 75 pulgadas, con el precio comparado contra el mínimo registrado.',
@@ -553,6 +558,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'black-friday-heladeras',
     nombre: 'heladeras en el Black Friday',
+    excluir: ['estabilizador', 'protector', 'taper', 'frasco', 'organizador', 'zapatilla', 'carro de traslado'],
     titulo: `Heladeras en el Black Friday ${AÑO}: ofertas con descuento verificado`,
     descripcion:
       'Heladeras en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: no frost y cíclicas, con el precio comparado contra el mínimo registrado.',
@@ -728,6 +734,7 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'mejores-microondas',
     nombre: 'microondas',
+    excluir: ['taper', 'vasos'],
     titulo: `Mejores microondas en oferta ${AÑO}: comparativa de precios`,
     descripcion:
       'Comparativa de microondas en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
@@ -1115,7 +1122,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los iPhone en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada modelo y capacidad. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['iphone'],
-    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para iphone', 'case', 'carcasa', 'reacondicionado'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para iphone', 'case', 'carcasa', 'reacondicionado', ...NO_CELULAR],
     permitir: ['funda'],
     criterios: [
       'Generación: el modelo anterior suele bajar bastante cuando sale el nuevo y cubre casi todo el uso diario.',
@@ -1157,7 +1164,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los Motorola en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['motorola', 'moto g', 'moto e', 'moto edge', 'razr'],
-    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para moto', 'case', 'carcasa', 'tablet', 'auricular'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para moto', 'case', 'carcasa', 'tablet', 'auricular', ...NO_CELULAR],
     permitir: ['funda'],
     criterios: [
       'Línea: Moto E es la de entrada, Moto G la gama media más elegida y Edge la gama alta; Razr son los plegables.',

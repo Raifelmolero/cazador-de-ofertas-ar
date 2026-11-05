@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-05T18:50:26+00:00",
+  "generado": "2026-11-05T21:26:46+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-05T04:59:00+00:00",
+      "ultima_actividad": "2026-11-05T21:26:07+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,20 +17,20 @@
       ],
       "metricas": [
         {
+          "label": "Telegram",
+          "valor": 3
+        },
+        {
           "label": "whatsapp_kit",
           "valor": 3
         },
         {
-          "label": "Telegram",
+          "label": "Instagram",
           "valor": 2
         },
         {
           "label": "Threads",
           "valor": 2
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
         },
         {
           "label": "Reels IG",
@@ -42,7 +42,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Side By Side Inverter LG Gs66spp 638L Dispenser Color Gris"
+      "ultimo_trabajo": "Notebook Asus Tuf Fa506ncg-hn185 Ryzen 7 32gb 2tb Ssd Win"
     },
     {
       "id": "investigacion",

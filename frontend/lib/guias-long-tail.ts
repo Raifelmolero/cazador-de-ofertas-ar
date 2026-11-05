@@ -3266,6 +3266,130 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/mejores/mejores-aires-inverter', texto: 'Mejores aires inverter en oferta' },
     ],
   },
+  {
+    slug: 'notebook-intel-o-amd-ryzen',
+    titulo: 'Notebook con Intel o AMD Ryzen: cuál conviene',
+    descripcion:
+      'Diferencias entre procesadores Intel (Core i3, i5, i7, Core 5/7) y AMD Ryzen (3, 5, 7) en notebooks: rendimiento, batería, gráficos integrados y cómo comparar modelos sin perderse en los nombres.',
+    pregunta: '¿Conviene una notebook con Intel o con AMD Ryzen?',
+    respuestaCorta:
+      'Hoy las dos marcas rinden parecido en el mismo nivel: un Ryzen 5 compite con un Core i5 (o Core 5), y un Ryzen 7 con un Core i7 (o Core 7). Más que la marca importa la generación (que sea reciente), la memoria RAM y que tenga disco SSD. Los Ryzen suelen traer mejores gráficos integrados por el mismo precio, útil para juegos livianos; los Intel recientes andan muy bien en batería y en compatibilidad. Elegí por precio y el resto de la ficha.',
+    secciones: [
+      {
+        h: 'Cómo se equivalen los nombres',
+        p: [
+          'Gama de entrada: Intel Core i3 / Core 3 y AMD Ryzen 3. Alcanzan para oficina, clases y navegar.',
+          'Gama media: Core i5 / Core 5 y Ryzen 5. Es el punto justo para la mayoría: facultad, trabajo, multitarea y algo de edición.',
+          'Gama alta: Core i7 / Core 7 y Ryzen 7 (y superiores). Para edición de video, programación pesada o juegos con placa de video.',
+        ],
+      },
+      {
+        h: 'La generación importa más que la marca',
+        p: [
+          'Un procesador de gama media reciente puede rendir más que uno de gama alta de hace varios años. Fijate el número de modelo completo en la ficha (por ejemplo, Ryzen 5 7520U o Core i5-1335U) y buscá que sea de los últimos años.',
+          'Las letras al final dan pistas: U suele indicar bajo consumo (más batería); H o HS, más potencia (gamer o trabajo pesado).',
+        ],
+      },
+      {
+        h: 'Gráficos integrados y batería',
+        p: [
+          'Si no vas a comprar una notebook con placa de video aparte, los gráficos integrados de los Ryzen suelen rendir mejor en juegos livianos.',
+          'En batería las dos marcas tienen modelos muy eficientes; depende más del modelo de notebook que de la marca del procesador.',
+        ],
+      },
+      {
+        h: 'Lo que más se nota en el uso diario',
+        p: [
+          'Disco SSD: imprescindible. Con disco rígido común cualquier notebook se siente lenta.',
+          'Memoria RAM: 8 GB es el mínimo razonable hoy; 16 GB da margen para varios años.',
+          'Pantalla Full HD (1920×1080): se nota mucho frente a las de menor resolución.',
+        ],
+      },
+    ],
+    categoria: { slug: 'notebooks', nombre: 'notebooks' },
+    comparativa: 'mejores-notebooks',
+    cta: { href: '/mejores/mejores-notebooks', titulo: 'Notebooks en oferta hoy, comparadas', boton: 'Ver las notebooks en oferta' },
+    faq: [
+      {
+        q: '¿Ryzen 5 o Core i5?',
+        a: 'Rinden parecido si son de generaciones recientes. El Ryzen suele traer mejores gráficos integrados; elegí por precio, RAM y disco SSD.',
+      },
+      {
+        q: '¿Qué significa la U o la H en el procesador?',
+        a: 'La U suele indicar bajo consumo, pensado para batería. La H o HS indica más potencia, típica de notebooks gamer o para trabajo pesado.',
+      },
+      {
+        q: '¿Un i7 viejo es mejor que un i5 nuevo?',
+        a: 'No siempre. Un procesador de gama media reciente puede rendir igual o más que uno de gama alta de varias generaciones atrás.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/notebook-ryzen-5-o-ryzen-7', texto: 'Notebook Ryzen 5 o Ryzen 7' },
+      { href: '/guias/cuanta-ram-necesita-una-notebook', texto: 'Cuánta RAM necesita una notebook' },
+      { href: '/guias/notebook-para-la-facultad', texto: 'Notebook para la facultad' },
+      { href: '/mejores/mejores-notebooks', texto: 'Mejores notebooks en oferta' },
+      { href: '/categoria/notebooks', texto: 'Notebooks en oferta' },
+    ],
+  },
+  {
+    slug: 'celular-reacondicionado-conviene',
+    titulo: 'Celular reacondicionado: qué es y si conviene comprarlo',
+    descripcion:
+      'Qué es un celular reacondicionado, en qué se diferencia de uno usado, qué garantía tiene, cómo ver el estado de la batería y cuándo conviene frente a uno nuevo.',
+    pregunta: '¿Conviene comprar un celular reacondicionado?',
+    respuestaCorta:
+      'Puede convenir si querés un gama alta (por ejemplo un iPhone o un Galaxy S) por bastante menos que nuevo. Un reacondicionado fue revisado y reparado antes de venderse, a diferencia de un usado común. La clave es que tenga garantía escrita, que indique el estado estético (grado) y la salud de la batería, y que el vendedor tenga buena reputación. Si la diferencia con uno nuevo en oferta es chica, conviene el nuevo.',
+    secciones: [
+      {
+        h: 'Reacondicionado no es lo mismo que usado',
+        p: [
+          'Un usado se vende tal como está. Un reacondicionado pasa por una revisión: se prueban sus funciones, se cambian piezas falladas y se limpia, y suele venderse con garantía.',
+          'La calidad de esa revisión depende de quién lo hace, por eso la reputación del vendedor importa mucho.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          'Garantía: cuántos meses y quién la da. Sin garantía escrita, tratalo como un usado.',
+          'Estado estético: muchos vendedores usan grados (A, B, C o "excelente", "muy bueno", "bueno") según las marcas de uso.',
+          'Salud de la batería: en iPhone se ve en porcentaje. Por debajo de 80 % conviene cambiarla pronto.',
+          'Que esté liberado y que el IMEI no esté denunciado.',
+        ],
+      },
+      {
+        h: 'Cuándo conviene y cuándo no',
+        p: [
+          'Conviene cuando buscás un gama alta reciente y la diferencia con el nuevo es grande.',
+          'No conviene si el ahorro es poco: un nuevo en oferta trae garantía oficial completa y batería nueva.',
+          'Revisá cuántos años de actualizaciones le quedan al modelo: un celular muy viejo deja de recibirlas antes.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-celulares',
+    cta: { href: '/mejores/mejores-celulares', titulo: 'Celulares nuevos en oferta hoy, comparados', boton: 'Comparar con celulares nuevos en oferta' },
+    faq: [
+      {
+        q: '¿Qué garantía tiene un celular reacondicionado?',
+        a: 'Depende del vendedor: puede ser de algunos meses o más. Pedí que esté escrita en la publicación o la factura.',
+      },
+      {
+        q: '¿Qué significa grado A, B o C?',
+        a: 'Indica el estado estético: A casi sin marcas, B con marcas leves y C con marcas visibles. El funcionamiento debería ser el mismo.',
+      },
+      {
+        q: '¿Es lo mismo reacondicionado que usado?',
+        a: 'No. El reacondicionado se revisa y repara antes de venderse y suele tener garantía; el usado se vende como está.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-iphone-comprar', texto: 'Qué iPhone comprar' },
+      { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar' },
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Qué celular comprar según presupuesto' },
+      { href: '/mejores/mejores-celulares', texto: 'Mejores celulares en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3311,6 +3435,8 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'samsung-galaxy-a-o-s-cual-conviene': '2026-11-04',
   'colchon-para-dolor-de-espalda': '2026-11-04',
   'cuanto-consume-un-aire-acondicionado': '2026-11-04',
+  'notebook-intel-o-amd-ryzen': '2026-11-04',
+  'celular-reacondicionado-conviene': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

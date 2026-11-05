@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { LANDINGS_CYBER } from '@/lib/cybertecno'
+import { etapaCyber } from '@/lib/cybermonday'
 import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
@@ -61,6 +62,10 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   if (!c) notFound()
 
   const url = `${DEALS_URL}/mejores/${c.slug}`
+  // Pasado el Cyber, sus comparativas (las que más clics traen de Google) mandan al Black Friday.
+  const trasCyber = c.slug.startsWith('cyber-monday-') && etapaCyber(getScrapedAt()).etapa === 'despues'
+    ? (getComparativa(c.slug.replace('cyber-monday-', 'black-friday-')) ? c.slug.replace('cyber-monday-', 'black-friday-') : 'ofertas-black-friday')
+    : ''
   // Ya vienen ordenados por ganancia esperada (ticket × comisión), igual que /hoy.
   const todos = productosDe(c)
   const productos = todos.slice(0, MAX_FILAS)
@@ -200,6 +205,13 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
           {c.titulo}
         </h1>
+        {trasCyber && (
+          <p className="text-sm text-zinc-200 bg-zinc-900 border border-yellow-400/30 rounded-xl px-4 py-3 mb-4">
+            El Cyber Monday ya terminó. El próximo evento grande es el <strong>Black Friday (27/11)</strong>:{' '}
+            <Link href={`/mejores/${trasCyber}`} className="text-yellow-400 underline">mirá qué conviene esperar</Link>.
+            Los precios de abajo son los de hoy.
+          </p>
+        )}
         <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">{c.intro}</p>
         <p className="inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5 mb-8">
           <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} en la comparativa

@@ -3393,6 +3393,74 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: "/guias/que-planchita-de-pelo-comprar", texto: "Qué planchita de pelo comprar" },
     ],
   },
+  {
+    slug: "eau-de-parfum-o-eau-de-toilette-diferencia",
+    titulo: "Eau de parfum o eau de toilette: diferencia y cuál conviene",
+    descripcion: "Qué cambia entre eau de parfum, eau de toilette, eau de cologne y parfum: concentración, duración en la piel y cuál conviene según el uso y el presupuesto.",
+    pregunta: "¿Qué diferencia hay entre eau de parfum y eau de toilette?",
+    respuestaCorta: "La concentración de esencia: el eau de parfum (EDP) tiene más y dura más en la piel (6 a 8 horas); el eau de toilette (EDT) es más liviano y fresco (3 a 5 horas). Para la noche o el invierno conviene EDP; para el día y el verano, EDT.",
+    secciones: [
+      { h: "Las concentraciones, de mayor a menor", p: ["Parfum o extrait: 20-30 % de esencia, el más intenso y caro.", "Eau de parfum (EDP): 15-20 %. Eau de toilette (EDT): 5-15 %. Eau de cologne: 2-5 %, muy liviana."] },
+      { h: "Duración y estela", p: ["A más concentración, más horas en la piel y más estela. Igual depende del tipo de piel: en piel seca los perfumes duran menos, por eso ayuda aplicar crema sin aroma antes."] },
+      { h: "Cuál conviene comprar", p: ["Si es tu perfume de todos los días y querés que rinda, el EDP suele convenir aunque cueste más: usás menos cantidad.", "Un mismo perfume en EDT y EDP puede oler distinto: el EDT suele ser más cítrico y fresco. Si podés, probalos antes."] },
+    ],
+    categoria: { slug: "perfumes", nombre: "perfumes" },
+    comparativa: "mejores-perfumes",
+    cta: { href: "/mejores/mejores-perfumes", titulo: "Perfumes en oferta hoy", boton: "Ver perfumes" },
+    faq: [
+      { q: "¿Dónde conviene aplicar el perfume?", a: "En puntos de pulso: muñecas, cuello y detrás de las orejas. No frotes las muñecas: rompe las notas de salida." },
+      { q: "¿Cómo sé si es original?", a: "Comprá en tiendas oficiales y revisá lote, celofán y atomizador." },
+    ],
+    enlaces: [
+      { href: "/guias/como-saber-si-un-perfume-es-original", texto: "Cómo saber si un perfume es original" },
+    ],
+  },
+  {
+    slug: "silla-gamer-o-silla-ergonomica-cual-conviene",
+    titulo: "Silla gamer o silla ergonómica: cuál conviene",
+    descripcion: "Comparamos sillas gamer y sillas ergonómicas de oficina: postura, regulaciones, materiales, calor y cuál conviene para jugar, estudiar o trabajar muchas horas.",
+    pregunta: "¿Conviene una silla gamer o una ergonómica?",
+    respuestaCorta: "Para trabajar o estudiar muchas horas, una ergonómica con soporte lumbar regulable y respaldo de malla suele ser más cómoda y fresca. La gamer conviene si te gusta reclinarte, querés almohadones y priorizás el estilo.",
+    secciones: [
+      { h: "Silla ergonómica", p: ["Prioriza la postura: soporte lumbar regulable, apoyabrazos ajustables y asiento con profundidad regulable en los modelos buenos.", "El respaldo de malla ventila mejor, algo clave en verano."] },
+      { h: "Silla gamer", p: ["Respaldo alto tipo butaca, almohadón cervical y lumbar, y reclinación de hasta 150-180°. Suelen ser de cuero sintético, que da más calor y se puede pelar con los años."] },
+      { h: "Qué mirar en cualquiera", p: ["Pistón clase 3 o 4, base metálica, peso máximo soportado y garantía. Que la altura te deje los pies apoyados y las rodillas a 90°."] },
+    ],
+    categoria: { slug: "gamer", nombre: "productos gamer" },
+    comparativa: "mejores-sillas-gamer",
+    cta: { href: "/mejores/mejores-sillas-gamer", titulo: "Sillas en oferta hoy", boton: "Ver sillas" },
+    faq: [
+      { q: "¿Cuánto peso aguanta una silla gamer?", a: "La mayoría entre 120 y 150 kg; revisalo en la ficha." },
+      { q: "¿Sirve el almohadón lumbar de las gamer?", a: "Ayuda, pero un soporte lumbar regulable integrado es más preciso." },
+    ],
+    enlaces: [
+      { href: "/guias/que-silla-gamer-comprar", texto: "Qué silla gamer comprar" },
+      { href: "/guias/que-silla-de-oficina-comprar", texto: "Qué silla de oficina comprar" },
+    ],
+  },
+  {
+    slug: "tablet-para-chicos-cual-comprar",
+    titulo: "Tablet para chicos: cuál comprar",
+    descripcion: "Qué mirar en una tablet para chicos: tamaño, memoria, control parental, funda resistente y qué presupuesto conviene según la edad.",
+    pregunta: "¿Qué tablet conviene comprarle a un chico?",
+    respuestaCorta: "Una tablet Android de 8 a 10 pulgadas con 3-4 GB de RAM y 64 GB alcanza para videos, juegos simples y la escuela. Sumale una funda antigolpes y activá el control parental de Google (Family Link).",
+    secciones: [
+      { h: "Según la edad", p: ["Hasta 6 años: 7-8 pulgadas, funda gruesa con manija y apps infantiles; no hace falta mucha potencia.", "De 7 a 12: 10 pulgadas, 4 GB de RAM y 64 GB para tarea, videos y juegos. Adolescentes: conviene 6 GB o más si juegan títulos exigentes."] },
+      { h: "Control parental", p: ["Google Family Link (Android) o Tiempo de uso (iPad) permiten limitar horas, aprobar apps y ver la ubicación. Configuralo antes de regalarla."] },
+      { h: "Detalles que importan", p: ["Batería de 5.000 mAh o más, ranura microSD para sumar espacio y carga USB-C. Un protector de pantalla de vidrio templado ahorra disgustos."] },
+    ],
+    categoria: { slug: "gamer", nombre: "productos gamer" },
+    comparativa: "mejores-tablets",
+    cta: { href: "/mejores/mejores-tablets", titulo: "Tablets en oferta hoy", boton: "Ver tablets" },
+    faq: [
+      { q: "¿Tablet o celular para un chico?", a: "Para los más chicos, la tablet: pantalla más grande, se queda en casa y no necesita línea." },
+      { q: "¿Sirven las tablets \"infantiles\" con funda incluida?", a: "Para menores de 6 sí, pero suelen ser lentas; para más grandes conviene una tablet común con funda aparte." },
+    ],
+    enlaces: [
+      { href: "/guias/que-tablet-comprar", texto: "Qué tablet comprar" },
+      { href: "/guias/primer-celular-para-chicos", texto: "Primer celular para chicos" },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3442,6 +3510,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'pileta-estructural-o-inflable': '2026-11-04',
   'monitor-144hz-vale-la-pena': '2026-11-04',
   'secador-de-pelo-ionico-vale-la-pena': '2026-11-04',
+  'eau-de-parfum-o-eau-de-toilette-diferencia': '2026-11-05',
+  'silla-gamer-o-silla-ergonomica-cual-conviene': '2026-11-05',
+  'tablet-para-chicos-cual-comprar': '2026-11-05',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

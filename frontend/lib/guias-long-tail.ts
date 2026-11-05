@@ -3070,54 +3070,6 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
     ],
   },
-  {
-    slug: 'termotanque-a-gas-o-electrico',
-    titulo: 'Termotanque a gas o eléctrico: cuál conviene',
-    descripcion:
-      'Diferencias entre termotanque a gas y eléctrico: instalación, costo de uso, recuperación del agua caliente, litros según la familia y qué mirar antes de comprar.',
-    pregunta: '¿Conviene un termotanque a gas o eléctrico?',
-    respuestaCorta:
-      'Si tenés gas natural, el termotanque a gas suele ser más barato de usar y recupera el agua caliente más rápido. El eléctrico conviene donde no hay gas o no se puede hacer la salida de gases: se instala más fácil, pero calienta más lento y el consumo pesa en la boleta de luz.',
-    secciones: [
-      {
-        h: 'A gas',
-        p: [
-          'Necesita conexión de gas y salida de gases al exterior; la instalación la tiene que hacer un gasista matriculado.',
-          'Recupera rápido: ideal si se bañan varias personas seguidas.',
-        ],
-      },
-      {
-        h: 'Eléctrico',
-        p: [
-          'Solo necesita una conexión eléctrica adecuada y agua; se puede poner en lugares sin salida de gases.',
-          'Tarda más en volver a calentar: conviene uno de más litros.',
-        ],
-      },
-      {
-        h: 'Cuántos litros',
-        p: [
-          'Como referencia: 1 o 2 personas, unos 50 litros; 3 o 4, de 80 a 120 litros; más gente, 150 o más.',
-          'Mirá también la etiqueta de eficiencia y si es de colgar o de pie según el lugar que tengas.',
-        ],
-      },
-    ],
-    comparativa: 'mejores-termotanques',
-    cta: { href: '/mejores/mejores-termotanques', titulo: 'Termotanques en oferta hoy', boton: 'Ver termotanques' },
-    faq: [
-      {
-        q: '¿Puedo cambiar un termotanque a gas por uno eléctrico?',
-        a: 'Sí, si la instalación eléctrica lo soporta. Conviene que la revise un electricista antes.',
-      },
-      {
-        q: '¿Termotanque o calefón?',
-        a: 'El calefón calienta al paso y no acumula; el termotanque guarda agua caliente y da más caudal para varias canillas a la vez.',
-      },
-    ],
-    enlaces: [
-      { href: '/mejores/mejores-termotanques', texto: 'Termotanques en oferta' },
-      { href: '/ofertas/termotanques-y-calefones-en-oferta', texto: 'Termotanques y calefones en oferta' },
-    ],
-  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3160,7 +3112,6 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
   'aire-acondicionado-cuantas-frigorias-necesito': '2026-11-04',
   'freidora-de-aire-cuantos-litros-conviene': '2026-11-04',
-  'termotanque-a-gas-o-electrico': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

@@ -3267,71 +3267,6 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     ],
   },
   {
-    slug: 'notebook-intel-o-amd-ryzen',
-    titulo: 'Notebook con Intel o AMD Ryzen: cuál conviene',
-    descripcion:
-      'Diferencias entre procesadores Intel (Core i3, i5, i7, Core 5/7) y AMD Ryzen (3, 5, 7) en notebooks: rendimiento, batería, gráficos integrados y cómo comparar modelos sin perderse en los nombres.',
-    pregunta: '¿Conviene una notebook con Intel o con AMD Ryzen?',
-    respuestaCorta:
-      'Hoy las dos marcas rinden parecido en el mismo nivel: un Ryzen 5 compite con un Core i5 (o Core 5), y un Ryzen 7 con un Core i7 (o Core 7). Más que la marca importa la generación (que sea reciente), la memoria RAM y que tenga disco SSD. Los Ryzen suelen traer mejores gráficos integrados por el mismo precio, útil para juegos livianos; los Intel recientes andan muy bien en batería y en compatibilidad. Elegí por precio y el resto de la ficha.',
-    secciones: [
-      {
-        h: 'Cómo se equivalen los nombres',
-        p: [
-          'Gama de entrada: Intel Core i3 / Core 3 y AMD Ryzen 3. Alcanzan para oficina, clases y navegar.',
-          'Gama media: Core i5 / Core 5 y Ryzen 5. Es el punto justo para la mayoría: facultad, trabajo, multitarea y algo de edición.',
-          'Gama alta: Core i7 / Core 7 y Ryzen 7 (y superiores). Para edición de video, programación pesada o juegos con placa de video.',
-        ],
-      },
-      {
-        h: 'La generación importa más que la marca',
-        p: [
-          'Un procesador de gama media reciente puede rendir más que uno de gama alta de hace varios años. Fijate el número de modelo completo en la ficha (por ejemplo, Ryzen 5 7520U o Core i5-1335U) y buscá que sea de los últimos años.',
-          'Las letras al final dan pistas: U suele indicar bajo consumo (más batería); H o HS, más potencia (gamer o trabajo pesado).',
-        ],
-      },
-      {
-        h: 'Gráficos integrados y batería',
-        p: [
-          'Si no vas a comprar una notebook con placa de video aparte, los gráficos integrados de los Ryzen suelen rendir mejor en juegos livianos.',
-          'En batería las dos marcas tienen modelos muy eficientes; depende más del modelo de notebook que de la marca del procesador.',
-        ],
-      },
-      {
-        h: 'Lo que más se nota en el uso diario',
-        p: [
-          'Disco SSD: imprescindible. Con disco rígido común cualquier notebook se siente lenta.',
-          'Memoria RAM: 8 GB es el mínimo razonable hoy; 16 GB da margen para varios años.',
-          'Pantalla Full HD (1920×1080): se nota mucho frente a las de menor resolución.',
-        ],
-      },
-    ],
-    categoria: { slug: 'notebooks', nombre: 'notebooks' },
-    comparativa: 'mejores-notebooks',
-    cta: { href: '/mejores/mejores-notebooks', titulo: 'Notebooks en oferta hoy, comparadas', boton: 'Ver las notebooks en oferta' },
-    faq: [
-      {
-        q: '¿Ryzen 5 o Core i5?',
-        a: 'Rinden parecido si son de generaciones recientes. El Ryzen suele traer mejores gráficos integrados; elegí por precio, RAM y disco SSD.',
-      },
-      {
-        q: '¿Qué significa la U o la H en el procesador?',
-        a: 'La U suele indicar bajo consumo, pensado para batería. La H o HS indica más potencia, típica de notebooks gamer o para trabajo pesado.',
-      },
-      {
-        q: '¿Un i7 viejo es mejor que un i5 nuevo?',
-        a: 'No siempre. Un procesador de gama media reciente puede rendir igual o más que uno de gama alta de varias generaciones atrás.',
-      },
-    ],
-    enlaces: [
-      { href: '/guias/notebook-ryzen-5-o-ryzen-7', texto: 'Notebook Ryzen 5 o Ryzen 7' },
-      { href: '/guias/cuanta-ram-necesita-una-notebook', texto: 'Cuánta RAM necesita una notebook' },
-      { href: '/guias/notebook-para-la-facultad', texto: 'Notebook para la facultad' },
-      { href: '/mejores/mejores-notebooks', texto: 'Mejores notebooks en oferta' },
-      { href: '/categoria/notebooks', texto: 'Notebooks en oferta' },
-    ],
-  },
-  {
     slug: 'celular-reacondicionado-conviene',
     titulo: 'Celular reacondicionado: qué es y si conviene comprarlo',
     descripcion:
@@ -3390,6 +3325,74 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/categoria/celulares', texto: 'Celulares en oferta' },
     ],
   },
+  {
+    slug: "pileta-estructural-o-inflable",
+    titulo: "Pileta estructural o inflable: cuál conviene",
+    descripcion: "Comparamos piletas estructurales (de caño) e inflables: duración, armado, capacidad, cuidado del agua y cuál conviene según el patio y el presupuesto.",
+    pregunta: "¿Conviene una pileta estructural o una inflable?",
+    respuestaCorta: "Si la vas a usar varios veranos y tenés un patio parejo, la estructural dura más y aguanta mejor el uso. La inflable conviene para un verano, espacios chicos o si la querés guardar fácil.",
+    secciones: [
+      { h: "Estructural: más firme y duradera", p: ["Tiene marco de caños metálicos y lona de PVC reforzado. Aguanta chicos jugando, no se desinfla y suele venir en tamaños más grandes (desde 3.000 hasta más de 10.000 litros).", "Lleva más tiempo armarla y necesita un terreno bien nivelado. Muchas incluyen bomba filtrante, lo que ayuda a mantener el agua."] },
+      { h: "Inflable: rápida y barata", p: ["El aro superior inflable sube solo a medida que la llenás. Se arma en minutos y ocupa poco guardada.", "Es más delicada: un pinchazo o una mascota pueden dañarla, y las paredes son menos firmes para apoyarse."] },
+      { h: "Qué mirar antes de comprar", p: ["Capacidad en litros según cuántos la usan, si trae bomba filtrante, cobertor, escalera para las de más de 1 m de alto y el espesor de la lona.", "Medí el patio y dejá al menos 50 cm libres alrededor. El suelo debe estar parejo: un desnivel deforma la pileta."] },
+    ],
+    categoria: { slug: "piletas", nombre: "piletas" },
+    comparativa: "mejores-piletas",
+    cta: { href: "/mejores/mejores-piletas", titulo: "Piletas en oferta hoy", boton: "Ver piletas" },
+    faq: [
+      { q: "¿Cuánto dura una pileta estructural?", a: "Bien cuidada y guardada seca en invierno, varias temporadas." },
+      { q: "¿Hace falta bomba filtrante?", a: "Para más de 3.000 litros es muy recomendable: mantiene el agua limpia por más tiempo y gastás menos cloro." },
+    ],
+    enlaces: [
+      { href: "/guias/que-pileta-comprar", texto: "Qué pileta comprar" },
+      { href: "/guias/como-mantener-el-agua-de-la-pileta", texto: "Cómo mantener el agua de la pileta" },
+    ],
+  },
+  {
+    slug: "monitor-144hz-vale-la-pena",
+    titulo: "Monitor de 144 Hz: vale la pena o alcanza con 60 Hz",
+    descripcion: "Qué cambia un monitor de 144 Hz frente a uno de 60 o 75 Hz, para quién conviene, qué placa de video hace falta y qué más mirar al comprar.",
+    pregunta: "¿Vale la pena un monitor de 144 Hz?",
+    respuestaCorta: "Si jugás juegos rápidos (shooters, deportes, carreras) y tu PC llega a más de 60 FPS, sí: la imagen se ve mucho más fluida. Para trabajar, estudiar o ver series, un buen monitor de 60-75 Hz alcanza.",
+    secciones: [
+      { h: "Qué son los Hz", p: ["Son las veces por segundo que el monitor actualiza la imagen. A 144 Hz el movimiento se ve más suave y el mouse responde más rápido que a 60 Hz."] },
+      { h: "Necesitás una PC que acompañe", p: ["Para aprovecharlo, la placa de video tiene que sacar más de 60 FPS en tus juegos. Con gráficos integrados básicos el cambio se nota en el escritorio, pero poco en juegos exigentes.", "Conectalo por DisplayPort o HDMI 2.0 o superior: algunos cables HDMI viejos limitan a 60 Hz."] },
+      { h: "Qué más mirar", p: ["Panel IPS para mejores colores, VA para buen contraste, TN solo si priorizás precio.", "Tamaño: 24\" en Full HD es el punto dulce; en 27\" conviene 2K (1440p). Que tenga FreeSync o G-Sync compatible evita cortes en la imagen."] },
+    ],
+    categoria: { slug: "monitores", nombre: "monitores" },
+    comparativa: "mejores-monitores-gamer",
+    cta: { href: "/mejores/mejores-monitores-gamer", titulo: "Monitores gamer en oferta", boton: "Ver monitores" },
+    faq: [
+      { q: "¿Sirve un monitor de 144 Hz para la PlayStation 5?", a: "La PS5 llega a 120 Hz en algunos juegos con HDMI 2.1; con HDMI 2.0 queda en 60 Hz a resolución alta." },
+      { q: "¿144 o 165 Hz?", a: "La diferencia es mínima; si el de 165 Hz cuesta lo mismo, elegilo." },
+    ],
+    enlaces: [
+      { href: "/guias/que-monitor-gamer-comprar", texto: "Qué monitor gamer comprar" },
+      { href: "/guias/que-monitor-comprar", texto: "Qué monitor comprar" },
+    ],
+  },
+  {
+    slug: "secador-de-pelo-ionico-vale-la-pena",
+    titulo: "Secador de pelo iónico: vale la pena",
+    descripcion: "Qué hace un secador iónico, si de verdad reduce el frizz, cuánta potencia conviene y qué accesorios mirar antes de comprar.",
+    pregunta: "¿Vale la pena un secador de pelo iónico?",
+    respuestaCorta: "Sí, si tenés pelo con frizz, grueso o largo: la función iónica ayuda a secar más rápido y deja el pelo más liso y brillante. Para pelo corto y fino, un secador común de buena potencia alcanza.",
+    secciones: [
+      { h: "Qué hace la función iónica", p: ["Emite iones negativos que ayudan a romper las gotas de agua: el pelo se seca más rápido y con menos estática, lo que se traduce en menos frizz."] },
+      { h: "Potencia y temperaturas", p: ["Entre 1.800 y 2.200 W es lo ideal para uso diario. Más importante que los watts: que tenga al menos 2 velocidades, 3 temperaturas y botón de aire frío para fijar el peinado."] },
+      { h: "Accesorios y detalles", p: ["Boquilla concentradora para alisar con cepillo y difusor si tenés rulos. Filtro trasero desmontable para limpiarlo y cable de 1,8 m o más.", "Los motores AC (profesionales) duran más pero pesan más; los DC son más livianos para uso hogareño."] },
+    ],
+    categoria: { slug: "cuidado-personal", nombre: "Cuidado personal" },
+    comparativa: "mejores-planchitas-y-secadores-de-pelo",
+    cta: { href: "/mejores/mejores-planchitas-y-secadores-de-pelo", titulo: "Secadores y planchitas en oferta", boton: "Ver secadores" },
+    faq: [
+      { q: "¿El secador iónico daña menos el pelo?", a: "Al secar más rápido expone el pelo menos tiempo al calor; igual conviene usar protector térmico." },
+      { q: "¿Qué es la función cerámica o turmalina?", a: "Recubrimientos que reparten el calor de forma más pareja; suelen venir junto con la función iónica." },
+    ],
+    enlaces: [
+      { href: "/guias/que-planchita-de-pelo-comprar", texto: "Qué planchita de pelo comprar" },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3435,8 +3438,10 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'samsung-galaxy-a-o-s-cual-conviene': '2026-11-04',
   'colchon-para-dolor-de-espalda': '2026-11-04',
   'cuanto-consume-un-aire-acondicionado': '2026-11-04',
-  'notebook-intel-o-amd-ryzen': '2026-11-04',
   'celular-reacondicionado-conviene': '2026-11-04',
+  'pileta-estructural-o-inflable': '2026-11-04',
+  'monitor-144hz-vale-la-pena': '2026-11-04',
+  'secador-de-pelo-ionico-vale-la-pena': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

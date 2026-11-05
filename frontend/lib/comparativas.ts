@@ -49,6 +49,10 @@ const PERENNES = new Set([
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
 ])
 
+// Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
+// "Bicicleta ... Moto", "micrófono para iPhone").
+const NO_CELULAR = ['notebook', 'galaxy book', 'bicicleta', 'monopatin', 'scooter', 'microfono', 'estacion de carga', 'magsafe', 'aro de luz', 'luz led', 'tripode', 'boton de ayuda', 'cable usb', 'bacha', 'inversor', 'porta celular', 'portacelular', 'micro sd', 'juguete', 'buds', 'power bank', 'audifono', 'auriculares pro segunda', 'auriculares de 4', 'mini proyector', 'joystick', 'cera ', 'adaptador', 'magnet case', 'for samsung', 'rastreador', 'moto tag', 'capsulas', 'lcd', 'modulo para', 'impresora', 'parlante', 'bateria para', 'bateria ampsentrix', 'carplay']
+
 const AÑO = 2026
 
 export const COMPARATIVAS: Comparativa[] = [
@@ -373,7 +377,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Cada celular de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un precio de lista inflado.',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto'],
-    excluir: ['funda', 'cargador para', 'soporte', 'smartwatch', 'reloj', 'tablet'],
+    excluir: ['funda', 'cargador para', 'soporte', 'smartwatch', 'reloj', 'tablet', ...NO_CELULAR],
     criterios: [
       'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
       'Mirá la memoria: 128 GB de almacenamiento y 6 GB de RAM alcanzan para la mayoría.',
@@ -504,7 +508,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada celular se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'celulares',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
-    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico', ...NO_CELULAR],
     criterios: [
       'Compará el precio del Black Friday contra el mínimo registrado de la tabla: si el "antes" subió en noviembre, el % OFF es de cartel.',
       'Mirá la memoria: 128 GB de almacenamiento y 6 GB de RAM alcanzan para la mayoría.',
@@ -861,7 +865,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los celulares en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto', 'moto g'],
-    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'auricular inalambrico', ...NO_CELULAR],
     permitir: ['funda', 'cargador'],
     criterios: [
       'Almacenamiento: 128 GB como mínimo; las fotos, videos y WhatsApp llenan 64 GB rápido.',
@@ -881,7 +885,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los celulares de gama alta en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['iphone', 'galaxy s2', 'galaxy z fold', 'galaxy z flip', 'motorola edge', 'moto edge', 'motorola razr', 'pixel 9', 'pixel 10', 'xiaomi 15', 'xiaomi 16'],
-    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'cable', 'auricular', 'reacondicionado'],
+    excluir: ['vidrio templado', 'protector', 'cargador', 'soporte', 'reloj', 'smartwatch', 'cable', 'auricular', 'reacondicionado', ...NO_CELULAR],
     permitir: ['funda'],
     criterios: [
       'Ecosistema: iPhone si ya usás Mac, iPad o Apple Watch; Galaxy S, Edge o Xiaomi si preferís Android.',
@@ -1132,7 +1136,7 @@ export const COMPARATIVAS: Comparativa[] = [
     intro:
       'Los Samsung Galaxy en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     keywords: ['samsung galaxy', 'galaxy a', 'galaxy s', 'galaxy z', 'galaxy m'],
-    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para samsung', 'tablet', 'watch', 'buds', 'reloj', 'auricular', 'case', 'carcasa'],
+    excluir: ['vidrio', 'templado', 'protector', 'cargador', 'cable', 'soporte', 'para samsung', 'tablet', 'watch', 'buds', 'reloj', 'auricular', 'case', 'carcasa', ...NO_CELULAR],
     permitir: ['funda'],
     criterios: [
       'Serie: la A es la gama media (la que más se vende); la S es gama alta con mejores cámaras y más años de actualizaciones; la Z son plegables.',

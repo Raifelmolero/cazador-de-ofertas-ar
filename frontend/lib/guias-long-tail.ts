@@ -3449,8 +3449,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { h: "Control parental", p: ["Google Family Link (Android) o Tiempo de uso (iPad) permiten limitar horas, aprobar apps y ver la ubicación. Configuralo antes de regalarla."] },
       { h: "Detalles que importan", p: ["Batería de 5.000 mAh o más, ranura microSD para sumar espacio y carga USB-C. Un protector de pantalla de vidrio templado ahorra disgustos."] },
     ],
-    categoria: { slug: "gamer", nombre: "productos gamer" },
-    comparativa: "mejores-tablets",
+        comparativa: "mejores-tablets",
     cta: { href: "/mejores/mejores-tablets", titulo: "Tablets en oferta hoy", boton: "Ver tablets" },
     faq: [
       { q: "¿Tablet o celular para un chico?", a: "Para los más chicos, la tablet: pantalla más grande, se queda en casa y no necesita línea." },

@@ -34,12 +34,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `${DEALS_URL}/precio-hoy/${p.slug}`
   const d = getScrapedAt()
   const cuando = `${MESES[d.getMonth()]} ${d.getFullYear()}`
+  // El precio real en el título: en Google compite contra títulos genéricos (1.549
+  // impresiones y 0 clics en iPhone la semana del 27/10 con el título sin precio).
+  const precios = ofertasDe(p).map(o => o.precio_actual)
+  const desde = precios.length ? ` desde ${precio(precios[0])}` : ''
   const t = tituloSeo(p.nombre, [
-    n => `Precio de ${n} hoy en Argentina (${cuando}) — Cazador de Ofertas AR`,
-    n => `Precio de ${n} hoy en Argentina (${cuando})`,
+    n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
+    n => `${n}${desde}: precio hoy (${cuando})`,
     n => `Precio de ${n} hoy (${cuando})`,
   ])
-  const description = descripcionSeo(`Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
+  const description = descripcionSeo(precios.length
+    ? `${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre cuesta ${precio(precios[0])} (${precios.length} ofertas con descuento real). Rango, mediana e historial para no pagar de más.`
+    : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {
     title: t,
     description,

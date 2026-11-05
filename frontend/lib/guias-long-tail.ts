@@ -3070,6 +3070,202 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-microondas-comprar', texto: 'Qué microondas comprar' },
     ],
   },
+  {
+    slug: 'samsung-galaxy-a-o-s-cual-conviene',
+    titulo: 'Samsung Galaxy A o Galaxy S: cuál conviene comprar',
+    descripcion:
+      'Diferencias entre la línea Galaxy A y la Galaxy S de Samsung: cámara, pantalla, procesador, años de actualizaciones y cuándo vale la pena pagar más por un S.',
+    pregunta: '¿Conviene un Samsung Galaxy A o un Galaxy S?',
+    respuestaCorta:
+      'Si usás el celular para WhatsApp, redes, fotos de día y algún juego liviano, un Galaxy A de gama media alcanza y cuesta mucho menos. El Galaxy S conviene si te importan las fotos de noche y el zoom, querés el procesador más rápido o pensás usarlo muchos años. Un S del año anterior en oferta muchas veces rinde más que un A nuevo por un precio parecido.',
+    secciones: [
+      {
+        h: 'Qué es cada línea',
+        p: [
+          'La línea Galaxy A es la gama baja y media de Samsung: los números más altos (A5x) son los más completos de la familia.',
+          'La línea Galaxy S es la gama alta: S, S+ y Ultra, con los mejores procesadores, cámaras y materiales de la marca. Las versiones FE son una variante más barata del S.',
+        ],
+      },
+      {
+        h: 'Dónde se nota la diferencia',
+        p: [
+          'Cámara: de día los dos sacan buenas fotos; la diferencia aparece de noche, en el zoom y en video. Los Ultra tienen teleobjetivo con mucho más alcance.',
+          'Rendimiento: el S abre apps y juegos pesados más rápido y se calienta menos. Para uso normal, un A5x se siente fluido.',
+          'Actualizaciones: revisá en la ficha o en la web de Samsung cuántos años de actualizaciones promete cada modelo; es clave si lo vas a usar mucho tiempo.',
+          'Materiales: los S suelen tener mejor vidrio y marco, y carga inalámbrica, que muchos A no traen.',
+        ],
+      },
+      {
+        h: 'El truco del S del año anterior',
+        p: [
+          'Cuando sale un modelo nuevo, el S del año anterior suele bajar de precio. En oferta puede quedar cerca de un A5x nuevo y tener mejor cámara y procesador.',
+          'Antes de comprar, mirá el historial de precio: un descuento grande sobre un precio inflado no es una oferta real.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la ficha antes de pagar',
+        p: [
+          'Memoria: con 128 GB alcanza para uso normal; si sacás muchos videos, 256 GB.',
+          'Que sea versión oficial para Argentina, con garantía de Samsung.',
+          'Si incluye cargador: muchos modelos vienen solo con el cable.',
+        ],
+      },
+    ],
+    categoria: { slug: 'celulares', nombre: 'celulares' },
+    comparativa: 'mejores-samsung-galaxy',
+    cta: { href: '/mejores/mejores-samsung-galaxy', titulo: 'Samsung Galaxy en oferta hoy, comparados', boton: 'Ver los Samsung en oferta' },
+    faq: [
+      {
+        q: '¿Qué Galaxy A es el mejor?',
+        a: 'Dentro de la línea A, los modelos de numeración más alta (A5x) son los más completos en cámara, pantalla y procesador.',
+      },
+      {
+        q: '¿Vale la pena un Galaxy S FE?',
+        a: 'Es un punto medio: tiene buena parte de lo del S a un precio más bajo. Conviene si lo encontrás en oferta cerca de un A5x.',
+      },
+      {
+        q: '¿Cuántos años dura un Samsung?',
+        a: 'Depende de los años de actualizaciones que prometa el modelo y del uso. Fijate ese dato en la ficha antes de comprar.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-samsung-galaxy-comprar', texto: 'Qué Samsung Galaxy comprar' },
+      { href: '/guias/iphone-o-samsung-cual-conviene-argentina', texto: 'iPhone o Samsung' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Cuántos GB necesito en el celular' },
+      { href: '/mejores/mejores-samsung-galaxy', texto: 'Mejores Samsung Galaxy en oferta' },
+      { href: '/categoria/celulares', texto: 'Celulares en oferta' },
+    ],
+  },
+  {
+    slug: 'colchon-para-dolor-de-espalda',
+    titulo: 'Qué colchón conviene si te duele la espalda',
+    descripcion:
+      'Cómo elegir un colchón cuando tenés dolor de espalda: firmeza según tu peso y cómo dormís, resortes o espuma, cuándo cambiarlo y qué mirar antes de comprar.',
+    pregunta: '¿Qué colchón conviene para el dolor de espalda?',
+    respuestaCorta:
+      'No hay un colchón que cure el dolor de espalda: lo importante es que mantenga la columna derecha. En general conviene una firmeza media a firme, que no se hunda en la cadera. Si pesás más o dormís boca arriba, más firme; si dormís de costado, un poco más blando para que entren hombro y cadera. Si el dolor es fuerte o no se va, consultá a un médico o kinesiólogo.',
+    secciones: [
+      {
+        h: 'La regla: columna derecha',
+        p: [
+          'Un buen colchón sostiene la cadera y deja que el hombro se acomode, para que la columna quede alineada como cuando estás parado.',
+          'Uno demasiado blando deja que la cadera se hunda; uno demasiado duro no apoya bien la cintura y carga hombros y cadera.',
+        ],
+      },
+      {
+        h: 'Firmeza según cómo dormís y tu peso',
+        p: [
+          'Boca arriba: firmeza media a firme.',
+          'De costado: media, para que hombro y cadera se hundan lo justo.',
+          'Boca abajo: firme, para que la cadera no se arquee.',
+          'A más peso, más firmeza y más densidad de espuma o mejor soporte de resortes.',
+        ],
+      },
+      {
+        h: 'Resortes o espuma',
+        p: [
+          'Los resortes pocket (ensacados) se adaptan por zonas y transmiten menos el movimiento de la otra persona. La espuma de alta densidad da un apoyo parejo y suele ser más económica.',
+          'Fijate la densidad de la espuma en la ficha: más densidad suele significar que se deforma menos con los años.',
+        ],
+      },
+      {
+        h: 'Cuándo cambiar el colchón',
+        p: [
+          'Si tiene pozos marcados, si te levantás con dolor que se va durante el día o si dormís mejor en otra cama, es señal de cambio.',
+          'Revisá también la base: un sommier o una base hundida arruina un colchón nuevo.',
+        ],
+      },
+    ],
+    categoria: { slug: 'colchones', nombre: 'colchones' },
+    comparativa: 'mejores-colchones',
+    cta: { href: '/mejores/mejores-colchones', titulo: 'Colchones en oferta hoy, comparados', boton: 'Ver los colchones en oferta' },
+    faq: [
+      {
+        q: '¿Un colchón duro es mejor para la espalda?',
+        a: 'No necesariamente. Demasiado duro también molesta. En general conviene firmeza media a firme, según tu peso y cómo dormís.',
+      },
+      {
+        q: '¿Resortes o espuma para el dolor de espalda?',
+        a: 'Los dos pueden servir si la firmeza es la correcta. Los resortes pocket se adaptan por zonas; la espuma de alta densidad da un apoyo parejo.',
+      },
+      {
+        q: '¿Cada cuánto se cambia un colchón?',
+        a: 'Cuando se marcan pozos o te levantás dolorido. Muchos fabricantes hablan de entre 8 y 10 años, según el uso y la calidad.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-colchon-comprar-firmeza-y-material', texto: 'Qué colchón comprar' },
+      { href: '/guias/colchon-de-resortes-o-de-espuma', texto: 'Colchón de resortes o de espuma' },
+      { href: '/guias/sommier-o-colchon-cual-conviene', texto: 'Sommier o colchón' },
+      { href: '/mejores/mejores-colchones', texto: 'Mejores colchones en oferta' },
+      { href: '/categoria/colchones', texto: 'Colchones en oferta' },
+    ],
+  },
+  {
+    slug: 'cuanto-consume-un-aire-acondicionado',
+    titulo: 'Cuánto consume un aire acondicionado y cómo calcularlo',
+    descripcion:
+      'Cómo calcular cuánta luz gasta un aire acondicionado: potencia en watts, horas de uso, diferencia entre inverter y convencional, etiqueta de eficiencia y trucos para gastar menos.',
+    pregunta: '¿Cuánto consume un aire acondicionado?',
+    respuestaCorta:
+      'El consumo se calcula con la potencia eléctrica (en watts, figura en la ficha o la etiqueta) por las horas de uso: watts × horas × días ÷ 1000 = kWh por mes. Como referencia, un split de unas 3000 frigorías suele consumir alrededor de 1 kW por hora mientras el compresor trabaja a pleno. Un inverter gasta menos porque baja la velocidad en vez de prender y apagar. Multiplicá los kWh por el precio del kWh de tu factura.',
+    secciones: [
+      {
+        h: 'La cuenta paso a paso',
+        p: [
+          'Buscá la potencia eléctrica (consumo) en watts en la ficha o en la etiqueta de eficiencia. No es lo mismo que las frigorías, que miden cuánto enfría.',
+          'Multiplicá watts × horas por día × días de uso y dividí por 1000: eso son los kWh del mes.',
+          'Multiplicá los kWh por el precio del kWh que figura en tu factura. Con la calculadora de consumo eléctrico del sitio lo hacés en un paso.',
+        ],
+      },
+      {
+        h: 'Inverter o convencional',
+        p: [
+          'El convencional prende y apaga el compresor a máxima potencia. El inverter, una vez que llega a la temperatura, baja la velocidad y la mantiene: por eso consume menos en uso prolongado.',
+          'Si lo vas a usar muchas horas por día, el inverter suele recuperar la diferencia de precio en pocas temporadas.',
+        ],
+      },
+      {
+        h: 'La etiqueta de eficiencia',
+        p: [
+          'En Argentina los aires llevan etiqueta de eficiencia energética: la letra A (o A+, A++) indica los que menos consumen para la misma capacidad.',
+          'Compará dos equipos de las mismas frigorías por su consumo en watts, no solo por la letra.',
+        ],
+      },
+      {
+        h: 'Cómo gastar menos',
+        p: [
+          'Usalo a 24 °C: cada grado menos aumenta el consumo.',
+          'Elegí las frigorías justas para el ambiente: uno chico trabaja siempre al máximo y uno muy grande gasta de más.',
+          'Limpiá los filtros cada pocas semanas en temporada y cerrá puertas y cortinas al sol.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-inverter',
+    cta: { href: '/mejores/mejores-aires-inverter', titulo: 'Aires inverter en oferta hoy, comparados', boton: 'Ver los aires inverter en oferta' },
+    faq: [
+      {
+        q: '¿Cuántos kWh gasta un aire de 3000 frigorías?',
+        a: 'Alrededor de 1 kWh por cada hora con el compresor a pleno. Un inverter, después de enfriar el ambiente, suele gastar bastante menos. El dato exacto está en la ficha del equipo.',
+      },
+      {
+        q: '¿Gasta más un aire o un ventilador?',
+        a: 'El aire, por mucho: un ventilador consume decenas de watts, mientras que un aire consume cientos o más de mil watts.',
+      },
+      {
+        q: '¿Conviene apagar el aire cuando salgo un rato?',
+        a: 'Para salidas cortas, con un inverter suele convenir dejarlo a una temperatura moderada; para varias horas, apagalo.',
+      },
+    ],
+    enlaces: [
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo eléctrico' },
+      { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías' },
+      { href: '/guias/aire-acondicionado-inverter-o-convencional', texto: 'Aire inverter o convencional' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/mejores/mejores-aires-inverter', texto: 'Mejores aires inverter en oferta' },
+    ],
+  },
 ]
 
 // Guías sumadas después de la tanda del 15/10 (fecha de publicación real).
@@ -3112,6 +3308,9 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'gazebo-o-sombrilla-cual-conviene': '2026-11-04',
   'aire-acondicionado-cuantas-frigorias-necesito': '2026-11-04',
   'freidora-de-aire-cuantos-litros-conviene': '2026-11-04',
+  'samsung-galaxy-a-o-s-cual-conviene': '2026-11-04',
+  'colchon-para-dolor-de-espalda': '2026-11-04',
+  'cuanto-consume-un-aire-acondicionado': '2026-11-04',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

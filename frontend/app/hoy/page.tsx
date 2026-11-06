@@ -79,7 +79,7 @@ export default function HoyPage() {
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
-  const top3Ids = new Set(elegirTop(ofertasLight, 3).map(o => o.id_ml))
+  const top3Ids = new Set(elegirTop(ofertasLight, 5).map(o => o.id_ml))
   // Celulares y notebooks caros arriba (40 % de la ganancia en sep-oct): sin
   // repetir las 3 destacadas; las «compras grandes» no repiten estos.
   // Notebooks primero (panel 22-28/10: más de la mitad de la ganancia y las páginas más visitadas después de la portada)
@@ -274,6 +274,10 @@ export default function HoyPage() {
         <AtajosCelular />
       </header>
 
+      {/* Clarity 4-6/11: la home manda solo el 12 % a ML. Las 5 mejores de hoy,
+          con botón directo, antes que cualquier otra cosa. */}
+      <TopOfertasHoy ofertas={ofertasLight} n={5} titulo="🔥 Las 5 de hoy" seccion="top5_home" id="top5-hoy" />
+
       <VidrieraTecno
         items={notebooks}
         titulo="💻 Notebooks en oferta hoy"
@@ -387,7 +391,6 @@ export default function HoyPage() {
           <BannerTemporada />
         </div>
         <div className="order-1 sm:order-none">
-          <TopOfertasHoy ofertas={ofertasLight} />
           <VidrieraTecno
             items={tecno}
             titulo="📱💻 Celulares y notebooks en su precio más bajo"

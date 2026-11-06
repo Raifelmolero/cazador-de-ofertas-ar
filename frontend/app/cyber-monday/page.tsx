@@ -88,8 +88,9 @@ export default function CyberMondayPage() {
   const cyber = getComparativa('ofertas-cyber-monday')
   const deRubros = cyber ? productosDe(cyber) : []
   // Ticket alto primero: es donde cada clic vale más (igual que /hoy y /categoria).
-  const ofertas = ticketAltoPrimero(deRubros.length >= 4 ? deRubros : getOfertas())
-    .filter(o => !idsTecno.has(o.id_ml))
+  // Terminado el evento, primero el mayor descuento (Clarity 4-6/11: 16 % de salida a ML).
+  const base = ticketAltoPrimero(deRubros.length >= 4 ? deRubros : getOfertas()).filter(o => !idsTecno.has(o.id_ml))
+  const ofertas = (etapa === 'despues' ? [...base].sort((x, y) => (y.descuento_pct ?? 0) - (x.descuento_pct ?? 0)) : base)
     .slice(0, MAX_OFERTAS)
   const aLight = (o: (typeof ofertas)[number]): OfertaLight => ({
     id_ml: o.id_ml,
@@ -277,6 +278,15 @@ export default function CyberMondayPage() {
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
+      {etapa === 'despues' && (
+        <Link
+          href="/black-friday"
+          data-seccion="cyber_terminado_bf"
+          className="block bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-center font-bold px-4 py-3 text-sm sm:text-base hover:brightness-105"
+        >
+          El Cyber Monday terminó el 4/11 → se viene el Black Friday, {BLACK_FRIDAY.fechasTexto}. Ver ofertas y cómo prepararte →
+        </Link>
+      )}
 
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">

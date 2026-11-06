@@ -3,7 +3,8 @@
 Cada 2 h revisa, solo leyendo:
   1. Que las páginas clave del sitio respondan 200.
   2. Que los workflows del bot hayan corrido bien hace poco.
-  3. El latido de la PC (docs/latido-pc.txt, lo escribe el Director local):
+  3. El latido de la PC (variable LATIDO_PC del repo; la escribe el Director local
+     con `gh variable set`, sin commits ni builds):
      si tiene más de 14 h, la PC o las tareas de Claude están trabadas.
 Si algo falla avisa por Telegram privado. Si está todo bien, silencio.
 No publica, no mergea, no despliega.
@@ -22,7 +23,6 @@ SITIO = "https://cazadordeofertas.com.ar"
 PAGINAS = ["/", "/mejores", "/precio-hoy", "/llms.txt", "/sitemap.xml"]
 # workflow -> horas máximas sin una corrida exitosa
 WORKFLOWS = {"deals_bot.yml": 6, "alertas.yml": 2, "salud_tokens.yml": 30}
-LATIDO = "docs/latido-pc.txt"
 LATIDO_MAX_H = 14
 
 
@@ -65,9 +65,7 @@ def chequear_workflows() -> list[str]:
 
 def chequear_latido() -> list[str]:
     try:
-        with open(LATIDO, encoding="utf-8") as f:
-            iso = f.read().strip()
-        h = horas_desde(iso)
+        h = horas_desde(os.environ["LATIDO_PC"].strip())
     except Exception:  # noqa: BLE001
         return ["latido de la PC: no existe todavía"]
     return [f"PC/Director sin latido hace {h:.0f} h (¿PC apagada o tareas trabadas?)"] if h > LATIDO_MAX_H else []

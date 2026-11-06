@@ -28,5 +28,6 @@ jobs:
       - name: Vigilar
         env:
           GH_TOKEN: ${{ github.token }}
+          LATIDO_PC: ${{ vars.LATIDO_PC }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: python bot/vigilante.py

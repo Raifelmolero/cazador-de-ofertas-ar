@@ -245,6 +245,7 @@ def main() -> int:
             "offset": data["offset"], "timeout": 0, "allowed_updates": ["message"],
         }).get("result", [])
     except Exception as e:  # noqa: BLE001 — p. ej. 409 si hay un webhook configurado
+        print(f"[alertas] getUpdates falló: {e!r}")  # que quede en el log de Actions
         alert_admin(token, cfg["admin_chat"], f"⚠️ Alertas: getUpdates falló: {str(e)[:200]}", False)
         return 1
 

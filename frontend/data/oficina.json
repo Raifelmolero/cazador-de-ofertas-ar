@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-06T16:49:34+00:00",
+  "generado": "2026-11-06T18:17:01+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11524 productos en la última corrida"
+          "tarea": "Revisó 11647 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -198,7 +198,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-05T18:32:28+00:00",
+      "ultima_actividad": "2026-11-06T17:49:07+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -210,7 +210,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 14 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

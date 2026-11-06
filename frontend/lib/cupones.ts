@@ -27,3 +27,9 @@ export function textoCupon(c: CuponDelDia): string {
   const dia = d.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' })
   return `${pesos(c.descuento)} OFF en compras desde ${pesos(c.minimo)}. Vale hasta las ${hora} del ${dia}${c.condiciones ? ` · ${c.condiciones}` : ''}.`
 }
+
+// ML extendió el Cyber Monday (canal de Afiliados, 6/11): mientras haya un cupón
+// vigente de esa campaña, los avisos dicen «sigue extendido» en vez de «terminó».
+export function cyberExtendido(ahora = new Date(), cupones: CuponDelDia[] = data.cupones): boolean {
+  return cuponesVigentes(ahora, cupones).some(c => /cyber monday sigue|extendid/i.test(c.campania ?? ''))
+}

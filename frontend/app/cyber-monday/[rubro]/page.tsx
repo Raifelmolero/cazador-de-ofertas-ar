@@ -5,6 +5,7 @@
 //
 // Nada inventado: modelos, precios y fechas salen del registro del bot
 // (lib/cybertecno.ts). Con menos de MIN_CYBER_INDEXABLE productos, noindex.
+import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -241,7 +242,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
           {etapa === 'antes' && <CuentaRegresivaEvento fecha={CM.inicio} nombre="Cyber Monday" />}
           {etapa === 'despues' && (
             <Link href="/black-friday" className="mt-4 block rounded-xl bg-yellow-400 px-4 py-2.5 text-sm font-bold text-black hover:bg-yellow-300">
-              El Cyber terminó el 4/11 → se viene el Black Friday (viernes 27/11). Ver ofertas →
+              {cyberExtendido() ? 'ML extendió el Cyber: hoy siguen las ofertas. Después viene el Black Friday (viernes 27/11) →' : 'El Cyber terminó el 4/11 → se viene el Black Friday (viernes 27/11). Ver ofertas →'}
             </Link>
           )}
           <p className="mt-4 text-sm text-zinc-500">

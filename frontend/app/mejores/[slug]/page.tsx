@@ -1,3 +1,4 @@
+import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import { LANDINGS_CYBER } from '@/lib/cybertecno'
 import { etapaCyber } from '@/lib/cybermonday'
@@ -216,7 +217,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         </h1>
         {trasCyber && (
           <p className="text-sm text-zinc-200 bg-zinc-900 border border-yellow-400/30 rounded-xl px-4 py-3 mb-4">
-            El Cyber Monday ya terminó. El próximo evento grande es el <strong>Black Friday (27/11)</strong>:{' '}
+            {cyberExtendido() ? 'Mercado Libre extendió el Cyber Monday (hoy hay cupones de hasta $80.000 en /cupones-mercado-libre).' : 'El Cyber Monday ya terminó.'} El próximo evento grande es el <strong>Black Friday (27/11)</strong>:{' '}
             <Link href={`/mejores/${trasCyber}`} className="text-yellow-400 underline">mirá qué conviene esperar</Link>.
             Los precios de abajo son los de hoy.
           </p>

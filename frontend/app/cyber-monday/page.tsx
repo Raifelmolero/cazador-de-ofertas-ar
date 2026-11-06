@@ -5,6 +5,7 @@
 // Las fechas salen de lib/cybermonday.ts. Si ahí `oficial` es false, la página
 // dice "a confirmar" y NO publica el JSON-LD de Event. Nada de datos inventados:
 // productos, % de infladas y conteos salen del catálogo y del registro del bot.
+import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
@@ -284,7 +285,7 @@ export default function CyberMondayPage() {
           data-seccion="cyber_terminado_bf"
           className="block bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-center font-bold px-4 py-3 text-sm sm:text-base hover:brightness-105"
         >
-          El Cyber Monday terminó el 4/11 → se viene el Black Friday, {BLACK_FRIDAY.fechasTexto}. Ver ofertas y cómo prepararte →
+          {cyberExtendido() ? <>🔥 Mercado Libre extendió el Cyber Monday: hoy siguen las ofertas y hay cupones de hasta $80.000 (ver abajo y en /cupones). Después: Black Friday, {BLACK_FRIDAY.fechasTexto} →</> : <>El Cyber Monday terminó el 4/11 → se viene el Black Friday, {BLACK_FRIDAY.fechasTexto}. Ver ofertas y cómo prepararte →</>}
         </Link>
       )}
 

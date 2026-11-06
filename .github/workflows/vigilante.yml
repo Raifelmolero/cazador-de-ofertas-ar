@@ -1,0 +1,33 @@
+name: Vigilante de la Oficina
+
+# Cada 2 h, en la nube: sitio 200, workflows del bot al día y latido de la PC.
+# Solo lee y avisa por Telegram privado si algo falla. Ver bot/vigilante.py.
+
+on:
+  schedule:
+    - cron: '23 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: vigilante
+  cancel-in-progress: true
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Vigilar
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LATIDO_PC: ${{ vars.LATIDO_PC }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python bot/vigilante.py

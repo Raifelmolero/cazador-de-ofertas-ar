@@ -107,7 +107,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [de smart TV](https://cazadordeofertas.com.ar/comparador/smart-tv): todos los equipos
   a la venta hoy en Mercado Libre Argentina con su precio y el más bajo registrado, por
   presupuesto, memoria, RAM, procesador, pulgadas, 4K y tipo de panel. Duelos con precios de hoy en
-  https://cazadordeofertas.com.ar/vs/<modelo-vs-modelo> (por ejemplo
+  /vs/<modelo-vs-modelo> (por ejemplo
   [iPhone 17 vs iPhone 17 Pro](https://cazadordeofertas.com.ar/vs/iphone-17-vs-iphone-17-pro) y
   [Galaxy S26 vs iPhone 17](https://cazadordeofertas.com.ar/vs/samsung-galaxy-s26-vs-iphone-17)).
   Mejor equipo por presupuesto, con lo que trae cada uno según su publicación:
@@ -115,7 +115,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [hasta $1 millón](https://cazadordeofertas.com.ar/mejor/celular-hasta-1-millon),
   [mejor notebook hasta $1 millón](https://cazadordeofertas.com.ar/mejor/notebook-hasta-1-millon),
   [mejor smart TV hasta $800 mil](https://cazadordeofertas.com.ar/mejor/smart-tv-hasta-800-mil)
-  (más montos en https://cazadordeofertas.com.ar/mejor/<celular|notebook|smart-tv>-hasta-<monto>).
+  (más montos en /mejor/<celular|notebook|smart-tv>-hasta-<monto>).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),
@@ -125,7 +125,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [pequeños electrodomésticos](https://cazadordeofertas.com.ar/pequenos-electrodomesticos),
   [autos y motos](https://cazadordeofertas.com.ar/vehiculos),
   [gastronomía](https://cazadordeofertas.com.ar/gastronomia).
-- Ofertas de hoy por tipo (más de 30% OFF, ticket alto, mínimos históricos, aires inverter, colchones, Smart TV, heladeras, herramientas, termotanques): páginas en https://cazadordeofertas.com.ar/ofertas/<slug>, listadas en https://cazadordeofertas.com.ar/llms-full.txt
+- Ofertas de hoy por tipo (más de 30% OFF, ticket alto, mínimos históricos, aires inverter, colchones, Smart TV, heladeras, herramientas, termotanques): páginas con la forma /ofertas/<slug>, listadas en https://cazadordeofertas.com.ar/llms-full.txt
 - Ofertas por categoría, con guía de compra y preguntas frecuentes:
   [monitores](https://cazadordeofertas.com.ar/categoria/monitores),
   [freidoras de aire](https://cazadordeofertas.com.ar/categoria/freidoras-de-aire),

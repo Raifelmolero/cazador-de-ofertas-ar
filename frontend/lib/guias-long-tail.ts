@@ -618,7 +618,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
   },
   {
     slug: 'que-iphone-comprar',
-    titulo: '¿Qué iPhone comprar? Modelo, almacenamiento y qué pagar de más',
+    titulo: '¿Qué iPhone comprar? Modelo, memoria y qué pagar de más',
     descripcion:
       'Cómo elegir un iPhone: diferencias entre modelo base, Plus, Pro y Pro Max, cuánto almacenamiento conviene, si vale la pena un modelo anterior y qué revisar al comprar.',
     pregunta: '¿Qué iPhone conviene comprar?',

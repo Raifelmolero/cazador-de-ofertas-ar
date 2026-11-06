@@ -16,20 +16,22 @@ export default function TopOfertasHoy({
   titulo = '🎯 3 ofertas destacadas de hoy',
   seccion = 'top3_home',
   id = 'top3-hoy',
+  n = 3,
 }: {
   ofertas: OfertaLight[]
+  n?: number
   titulo?: string
   seccion?: string
   id?: string
 }) {
-  const top = elegirTop(ofertas, 3)
+  const top = elegirTop(ofertas, n)
   if (top.length === 0) return null
   return (
     <section aria-labelledby={id} data-seccion={seccion} className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
       <h2 id={id} className="font-display text-base sm:text-xl font-black mb-2">
         {titulo}
       </h2>
-      <ul className="grid gap-2.5 md:grid-cols-3">
+      <ul className={`grid gap-2.5 md:grid-cols-3${n === 5 ? ' lg:grid-cols-5' : ''}`}>
         {top.map((o, i) => {
           const ahorro = o.precio_anterior != null ? o.precio_anterior - o.precio_actual : 0
           return (

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-06T18:17:01+00:00",
+  "generado": "2026-11-06T20:49:11+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,25 +8,29 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-06T04:57:34+00:00",
+      "ultima_actividad": "2026-11-06T20:48:48+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11647 productos en la última corrida"
+          "tarea": "Revisó 11660 productos en la última corrida"
         }
       ],
       "metricas": [
+        {
+          "label": "Telegram",
+          "valor": 3
+        },
         {
           "label": "whatsapp_kit",
           "valor": 3
         },
         {
-          "label": "Telegram",
+          "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Instagram",
-          "valor": 1
+          "label": "Threads",
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -35,14 +39,10 @@
         {
           "label": "Historias IG",
           "valor": 1
-        },
-        {
-          "label": "Threads",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Hidrolavadora Monofasica Agua Fria 3.7kw 180bar 10lts Plateado"
+      "ultimo_trabajo": "Notebook Asus Gamer Tuf Gaming F16 Rtx 5060 16gb 1tb 16"
     },
     {
       "id": "investigacion",

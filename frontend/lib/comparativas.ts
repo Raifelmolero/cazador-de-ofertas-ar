@@ -320,11 +320,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-smart-tv',
     nombre: 'smart TV en el Cyber Monday',
-    titulo: `Smart TV en el Cyber Monday ${AÑO}: cuáles bajan de verdad`,
+    titulo: `Smart TV en Black Friday y Cyber Monday: cuáles bajan de verdad`,
     descripcion:
-      'Smart TV en oferta para el Cyber Monday 2026 en Mercado Libre Argentina (2 al 4 de noviembre): precio de hoy, descuento y mínimo registrado de cada modelo.',
+      'Smart TV en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: precio de hoy, descuento y mínimo registrado de cada modelo.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas, antes y durante el evento.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Los smart TV son de lo más buscado del evento y también de lo más inflado: esta tabla compara cada modelo contra el precio más bajo que registramos. Se actualiza a medida que cargamos ofertas nuevas, antes y durante el evento.',
     categoria: 'smart-tv',
     excluir: ['monitor', 'proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
     criterios: [
@@ -338,11 +338,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-aires-acondicionados',
     nombre: 'aires acondicionados en el Cyber Monday',
-    titulo: `Aires acondicionados en el Cyber Monday ${AÑO}: ofertas con precio verificado`,
+    titulo: `Aires acondicionados en Black Friday y Cyber Monday: ofertas con precio verificado`,
     descripcion:
-      'Aires acondicionados split en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: precio, descuento y mínimo registrado, justo antes del verano.',
+      'Aires acondicionados split en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: precio, descuento y mínimo registrado, justo antes del verano.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Cae justo antes del verano, cuando los aires suben: comprarlo en noviembre suele salir más barato que en diciembre. Cada equipo se compara contra el precio más bajo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Cae justo antes del verano, cuando los aires suben: comprarlo en noviembre suele salir más barato que en diciembre. Cada equipo se compara contra el precio más bajo que registramos.',
     categoria: 'aire-acondicionado',
     criterios: [
       'Compará el precio del evento contra el mínimo registrado de la tabla: si el "antes" subió las semanas previas, el % OFF es de cartel.',
@@ -355,11 +355,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-notebooks',
     nombre: 'notebooks en el Cyber Monday',
-    titulo: `Notebooks en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    titulo: `Notebooks en Black Friday y Cyber Monday: ofertas con descuento verificado`,
     descripcion:
-      'Notebooks en oferta para el Cyber Monday 2026 en Mercado Libre Argentina (2 al 4 de noviembre), comparadas contra el precio mínimo registrado de cada modelo.',
+      'Notebooks en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina, comparadas contra el precio mínimo registrado de cada modelo.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Las notebooks son la categoría estrella del evento. Esta tabla compara cada modelo contra el precio más bajo que registramos para que sepas si la baja es real.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Las notebooks son la categoría estrella del evento. Esta tabla compara cada modelo contra el precio más bajo que registramos para que sepas si la baja es real.',
     keywords: ['notebook', 'laptop', 'macbook'],
     excluir: ['monitor', 'mochila', 'cargador'],
     criterios: [
@@ -373,11 +373,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-celulares',
     nombre: 'celulares en el Cyber Monday',
-    titulo: `Celulares en el Cyber Monday ${AÑO}: ofertas reales en Mercado Libre`,
+    titulo: `Celulares en Black Friday y Cyber Monday: ofertas reales en Mercado Libre`,
     descripcion:
-      'Celulares en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
+      'Celulares en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Cada celular de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un precio de lista inflado.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Cada celular de esta tabla se compara contra el precio más bajo que registramos, así distinguís una baja de verdad de un precio de lista inflado.',
     keywords: ['celular', 'smartphone', 'iphone', 'samsung galaxy', 'motorola moto'],
     excluir: ['funda', 'cargador para', 'soporte', 'smartwatch', 'reloj', 'tablet', ...NO_CELULAR],
     criterios: [
@@ -392,11 +392,11 @@ export const COMPARATIVAS: Comparativa[] = [
     slug: 'cyber-monday-lavarropas',
     nombre: 'lavarropas en el Cyber Monday',
     excluir: ['pastillas', 'protector', 'mueble', 'organizador', 'bolsa', 'canilla'],
-    titulo: `Lavarropas en el Cyber Monday ${AÑO}: precios comparados`,
+    titulo: `Lavarropas en Black Friday y Cyber Monday: precios comparados`,
     descripcion:
-      'Lavarropas en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: carga frontal y superior, con el descuento verificado contra el historial de precios.',
+      'Lavarropas en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: carga frontal y superior, con el descuento verificado contra el historial de precios.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los lavarropas son una de las compras grandes que más conviene hacer en el evento, siempre que la baja sea real: acá cada uno se compara contra el mínimo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Los lavarropas son una de las compras grandes que más conviene hacer en el evento, siempre que la baja sea real: acá cada uno se compara contra el mínimo que registramos.',
     categoria: 'lavarropas',
     keywords: ['lavarropas'],
     criterios: [
@@ -410,11 +410,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-auriculares',
     nombre: 'auriculares en el Cyber Monday',
-    titulo: `Auriculares en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    titulo: `Auriculares en Black Friday y Cyber Monday: ofertas con descuento verificado`,
     descripcion:
-      'Auriculares en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: inalámbricos, in-ear y over-ear, con el precio comparado contra el mínimo registrado.',
+      'Auriculares en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: inalámbricos, in-ear y over-ear, con el precio comparado contra el mínimo registrado.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Los auriculares son un regalo fácil y un clásico del evento. Cada modelo se compara contra el precio más bajo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Los auriculares son un regalo fácil y un clásico del evento. Cada modelo se compara contra el precio más bajo que registramos.',
     keywords: ['auriculares', 'auricular'],
     excluir: ['smartphone', 'celular', 'telefono', 'parlante'],
     criterios: [
@@ -428,11 +428,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-cafeteras',
     nombre: 'cafeteras en el Cyber Monday',
-    titulo: `Cafeteras en el Cyber Monday ${AÑO}: ofertas con descuento verificado`,
+    titulo: `Cafeteras en Black Friday y Cyber Monday: ofertas con descuento verificado`,
     descripcion:
-      'Cafeteras en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: espresso, de cápsulas y de filtro, con el precio comparado contra el mínimo registrado.',
+      'Cafeteras en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: espresso, de cápsulas y de filtro, con el precio comparado contra el mínimo registrado.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Las cafeteras suelen estar entre los electrodomésticos con más descuentos. Cada modelo se compara contra el precio más bajo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Las cafeteras suelen estar entre los electrodomésticos con más descuentos. Cada modelo se compara contra el precio más bajo que registramos.',
     keywords: ['cafetera', 'espresso', 'nespresso', 'dolce gusto'],
     excluir: ['capsulas de cafe', 'cápsulas de café', 'filtro de papel', 'molinillo'],
     criterios: [
@@ -447,11 +447,11 @@ export const COMPARATIVAS: Comparativa[] = [
     slug: 'cyber-monday-heladeras',
     nombre: 'heladeras en el Cyber Monday',
     excluir: ['estabilizador', 'protector', 'taper', 'frasco', 'organizador', 'zapatilla', 'carro de traslado'],
-    titulo: `Heladeras en el Cyber Monday ${AÑO}: precios comparados`,
+    titulo: `Heladeras en Black Friday y Cyber Monday: precios comparados`,
     descripcion:
-      'Heladeras en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: no frost y cíclicas, con el descuento verificado contra el historial de precios.',
+      'Heladeras en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: no frost y cíclicas, con el descuento verificado contra el historial de precios.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). La heladera es de las compras más caras de la casa y conviene hacerla con una baja real: acá cada modelo se compara contra el precio más bajo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. La heladera es de las compras más caras de la casa y conviene hacerla con una baja real: acá cada modelo se compara contra el precio más bajo que registramos.',
     categoria: 'heladeras',
     keywords: ['heladera'],
     criterios: [
@@ -465,11 +465,11 @@ export const COMPARATIVAS: Comparativa[] = [
   {
     slug: 'cyber-monday-colchones',
     nombre: 'colchones y sommiers en el Cyber Monday',
-    titulo: `Colchones y sommiers en el Cyber Monday ${AÑO}: ofertas reales`,
+    titulo: `Colchones y sommiers en Black Friday y Cyber Monday: ofertas reales`,
     descripcion:
-      'Colchones y sommiers en oferta para el Cyber Monday 2026 en Mercado Libre Argentina: espuma, resortes pocket y viscoelástico, con el precio comparado contra el mínimo registrado.',
+      'Colchones y sommiers en oferta para el Black Friday (27/11) y el Cyber Monday 2026 en Mercado Libre Argentina: espuma, resortes pocket y viscoelástico, con el precio comparado contra el mínimo registrado.',
     intro:
-      'El Cyber Monday 2026 va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). En colchones el precio de lista sube y baja mucho, así que el % OFF solo no alcanza: cada modelo se compara contra el precio más bajo que registramos.',
+      'El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; ahora se vienen el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. En colchones el precio de lista sube y baja mucho, así que el % OFF solo no alcanza: cada modelo se compara contra el precio más bajo que registramos.',
     categoria: 'colchones',
     keywords: ['colchon', 'colchón', 'sommier'],
     criterios: [

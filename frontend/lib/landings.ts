@@ -639,10 +639,10 @@ export const LANDINGS: Landing[] = [
     nombre: 'productos en mínimo histórico de más de $100.000',
     titulo: 'Productos en mínimo histórico de más de $100.000 para el Cyber Monday',
     descripcion:
-      'Productos de más de $100.000 que hoy están en su precio más bajo registrado en Mercado Libre Argentina: referencia para saber qué es un descuento real en el Cyber Monday (2 al 4 de noviembre).',
+      'Productos de más de $100.000 que hoy están en su precio más bajo registrado en Mercado Libre Argentina: referencia para saber qué es un descuento real en el Black Friday (27/11) y Cyber Monday (30/11).',
     h1: 'Mínimos históricos de más de $100.000: la vara para el Cyber Monday',
     intro:
-      'Antes del Cyber Monday (2 al 4 de noviembre) conviene saber cuánto cuestan hoy las cosas. Estos productos de más de $100.000 están en su precio más bajo registrado desde que los seguimos: si en el Cyber cuestan más que esto, no es una oferta.',
+      'Antes del Black Friday (27/11) y Cyber Monday (30/11) conviene saber cuánto cuestan hoy las cosas. Estos productos de más de $100.000 están en su precio más bajo registrado desde que los seguimos: si en el Cyber cuestan más que esto, no es una oferta.',
     tipo: 'ofertas',
     filtrar: p => !!p.minimo_historico && p.precio_actual >= 100000,
     ordenar: porDescuento,
@@ -655,7 +655,7 @@ export const LANDINGS: Landing[] = [
     ],
     faq: [
       { q: '¿Conviene esperar al Cyber Monday?', a: 'Solo si el precio del Cyber baja del mínimo registrado. Si hoy ya está en su mínimo, esperar no garantiza mejorar.' },
-      { q: '¿Cuándo es el Cyber Monday de Mercado Libre?', a: 'Del 2 al 4 de noviembre de 2026.' },
+      { q: '¿Cuándo es el próximo evento de ofertas en Mercado Libre?', a: 'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. El Cyber de la CACE fue del 2 al 4 de noviembre.' },
       { q: '¿Qué es un mínimo histórico?', a: 'El precio más bajo que registramos para ese producto desde que lo seguimos (3 revisiones por día).' },
       { q: '¿Se infla el precio antes del Cyber?', a: 'A veces sube el precio "anterior" para que el porcentaje de descuento se vea mayor. Por eso comparamos con nuestro propio historial.' },
     ],
@@ -706,7 +706,7 @@ export const LANDINGS: Landing[] = [
       'Tablets, consolas, auriculares, monitores y smartwatches en oferta hoy en Mercado Libre Argentina, con mínimo registrado para comparar antes del Cyber Monday (2 al 4/11).',
     h1: 'Tecnología para el Cyber Monday: tablets, consolas, auriculares y monitores',
     intro:
-      'Tablets, consolas, auriculares, monitores, parlantes y smartwatches en oferta hoy en Mercado Libre Argentina. Son de los rubros que más se compran en el Cyber Monday (2 al 4 de noviembre): conocé hoy el precio base para saber si la oferta es real.',
+      'Tablets, consolas, auriculares, monitores, parlantes y smartwatches en oferta hoy en Mercado Libre Argentina. Son de los rubros que más se compran en el Black Friday (27/11) y Cyber Monday (30/11): conocé hoy el precio base para saber si la oferta es real.',
     tipo: 'ofertas',
     filtrar: p =>
       /(tablet|auricular|smartwatch|reloj inteligente|consola|playstation|xbox|nintendo|monitor|parlante|barra de sonido|joystick|camara)/.test(normalizar(p.titulo)),
@@ -722,7 +722,7 @@ export const LANDINGS: Landing[] = [
       { q: '¿Conviene comprar tecnología en el Cyber?', a: 'Si el precio baja del mínimo registrado, sí. Si no, puede que hoy ya esté igual o mejor.' },
       { q: '¿Qué mirar en una tablet?', a: 'Memoria (4 GB de RAM mínimo), almacenamiento (64 GB o más) y la versión del sistema operativo.' },
       { q: '¿Cómo comparar monitores?', a: 'Tamaño, resolución, frecuencia (Hz) y tipo de panel. Para oficina, 24 pulgadas Full HD alcanza.' },
-      { q: '¿Cuándo es el Cyber Monday?', a: 'Del 2 al 4 de noviembre de 2026.' },
+      { q: '¿Cuándo es el próximo evento de ofertas?', a: 'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. El Cyber de la CACE fue del 2 al 4 de noviembre.' },
     ],
     enlaces: [
       { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
@@ -738,7 +738,7 @@ export const LANDINGS: Landing[] = [
       'Lavarropas, secarropas, lavavajillas, cocinas, microondas y freezers en oferta hoy en Mercado Libre Argentina para tener la referencia antes del Cyber Monday (2 al 4/11).',
     h1: 'Electrodomésticos grandes para el Cyber Monday',
     intro:
-      'Lavarropas, secarropas, lavavajillas, cocinas, microondas y freezers en oferta hoy en Mercado Libre Argentina. En compras de este tamaño las cuotas y el envío pesan tanto como el descuento: tomá estos precios como base antes del Cyber Monday (2 al 4 de noviembre).',
+      'Lavarropas, secarropas, lavavajillas, cocinas, microondas y freezers en oferta hoy en Mercado Libre Argentina. En compras de este tamaño las cuotas y el envío pesan tanto como el descuento: tomá estos precios como base antes del Black Friday (27/11) y Cyber Monday (30/11).',
     tipo: 'ofertas',
     filtrar: p =>
       /(lavarropas|lavasecarropas|lavavajillas|secarropas|freezer|microondas|cocina a gas|cocina electrica|cocina multigas|cocina industrial|anafe|horno empotrable)/.test(

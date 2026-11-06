@@ -1223,13 +1223,13 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-notebook-comprar-cyber-monday',
-    titulo: 'Qué notebook comprar en el Cyber Monday 2026: guía rápida',
+    titulo: 'Qué notebook comprar en Black Friday y Cyber Monday: guía rápida',
     descripcion:
       'Cómo elegir una notebook en el Cyber Monday 2026 de Argentina: procesador, RAM, SSD y pantalla según el uso, y cómo saber si el descuento es real.',
     pregunta: '¿Qué notebook conviene comprar en el Cyber Monday?',
     categoria: { slug: 'notebooks', nombre: 'notebooks' },
     respuestaCorta:
-      'Para estudiar o trabajar, una notebook con procesador Ryzen 5 o Core i5 (o superior), 8 GB de RAM como mínimo (mejor 16 GB) y disco SSD de 256 GB o más. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, compará el precio contra el historial del modelo.',
+      'Para estudiar o trabajar, una notebook con procesador Ryzen 5 o Core i5 (o superior), 8 GB de RAM como mínimo (mejor 16 GB) y disco SSD de 256 GB o más. Los modelos con Celeron, Intel N100 o 4 GB de RAM sirven solo para navegar y ofimática liviana. El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Antes de comprar, compará el precio contra el historial del modelo.',
     secciones: [
       {
         h: 'Según para qué la vas a usar',
@@ -1263,13 +1263,13 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-smart-tv-comprar-cyber-monday',
-    titulo: 'Qué smart TV comprar en el Cyber Monday 2026: tamaño, resolución y precio',
+    titulo: 'Qué smart TV comprar en Black Friday y Cyber Monday: tamaño, resolución y precio',
     descripcion:
       'Cómo elegir un smart TV en el Cyber Monday 2026 de Argentina: tamaño según la distancia, 4K o Full HD, tipo de panel y sistema operativo.',
     pregunta: '¿Qué smart TV conviene comprar en el Cyber Monday?',
     categoria: { slug: 'smart-tv', nombre: 'smart TV' },
     respuestaCorta:
-      'Elegí el tamaño según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas), 4K a partir de 43 pulgadas y un sistema operativo que tenga las apps que usás (Google TV, Tizen o webOS). QLED y OLED dan mejor imagen que un LED común, pero cuestan más. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+      'Elegí el tamaño según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas), 4K a partir de 43 pulgadas y un sistema operativo que tenga las apps que usás (Google TV, Tizen o webOS). QLED y OLED dan mejor imagen que un LED común, pero cuestan más. El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Compará el precio contra el historial del modelo.',
     secciones: [
       {
         h: 'Tamaño y resolución',
@@ -1302,13 +1302,13 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-celular-comprar-cyber-monday',
-    titulo: 'Qué celular comprar en el Cyber Monday 2026: guía por presupuesto',
+    titulo: 'Qué celular comprar en Black Friday y Cyber Monday: guía por presupuesto',
     descripcion:
       'Cómo elegir un celular en el Cyber Monday 2026 de Argentina: memoria, batería, cámara y garantía, y cómo detectar descuentos inflados.',
     pregunta: '¿Qué celular conviene comprar en el Cyber Monday?',
     categoria: { slug: 'celulares', nombre: 'celulares' },
     respuestaCorta:
-      'Para la mayoría alcanza con 128 GB de almacenamiento, 6 a 8 GB de RAM y una batería de 5.000 mAh. Preferí equipos liberados con garantía oficial en Argentina y compará el mismo modelo en tiendas oficiales. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Antes de comprar, mirá el precio contra el historial del modelo.',
+      'Para la mayoría alcanza con 128 GB de almacenamiento, 6 a 8 GB de RAM y una batería de 5.000 mAh. Preferí equipos liberados con garantía oficial en Argentina y compará el mismo modelo en tiendas oficiales. El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Antes de comprar, mirá el precio contra el historial del modelo.',
     secciones: [
       {
         h: 'Qué mirar según el presupuesto',
@@ -1344,7 +1344,7 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'conviene-comprar-aire-acondicionado-cyber-monday',
-    titulo: '¿Conviene comprar el aire acondicionado en el Cyber Monday 2026?',
+    titulo: '¿Conviene comprar el aire acondicionado en Black Friday y Cyber Monday?',
     descripcion:
       'Si conviene comprar el aire acondicionado en el Cyber Monday 2026 de Argentina o esperar a diciembre, cuántas frigorías necesitás y qué sumar al presupuesto.',
     pregunta: '¿Conviene comprar el aire acondicionado en el Cyber Monday?',
@@ -1381,12 +1381,12 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-lavarropas-comprar-cyber-monday',
-    titulo: 'Qué lavarropas comprar en el Cyber Monday 2026: capacidad, carga y consumo',
+    titulo: 'Qué lavarropas comprar en Black Friday y Cyber Monday: capacidad, carga y consumo',
     descripcion:
       'Cómo elegir un lavarropas en el Cyber Monday 2026 de Argentina: capacidad según la familia, carga frontal o superior, inverter y medidas, y cómo saber si el descuento es real.',
     pregunta: '¿Qué lavarropas conviene comprar en el Cyber Monday?',
     respuestaCorta:
-      'Elegí la capacidad según cuántos son en casa (6 a 7 kg para 2 o 3 personas, 8 kg o más para familias), carga frontal si querés gastar menos agua y lavar mejor, o carga superior si buscás precio y rapidez. El motor inverter suele ser más silencioso y eficiente. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+      'Elegí la capacidad según cuántos son en casa (6 a 7 kg para 2 o 3 personas, 8 kg o más para familias), carga frontal si querés gastar menos agua y lavar mejor, o carga superior si buscás precio y rapidez. El motor inverter suele ser más silencioso y eficiente. El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Compará el precio contra el historial del modelo.',
     secciones: [
       {
         h: 'Capacidad y tipo de carga',
@@ -1420,12 +1420,12 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-auriculares-comprar-cyber-monday',
-    titulo: 'Qué auriculares comprar en el Cyber Monday 2026: inalámbricos, in-ear u over-ear',
+    titulo: 'Qué auriculares comprar en Black Friday y Cyber Monday: inalámbricos, in-ear u over-ear',
     descripcion:
       'Cómo elegir auriculares en el Cyber Monday 2026 de Argentina: in-ear u over-ear, cancelación de ruido, batería y micrófono, y cómo evitar descuentos inflados.',
     pregunta: '¿Qué auriculares conviene comprar en el Cyber Monday?',
     respuestaCorta:
-      'Para el día a día, unos inalámbricos in-ear (tipo TWS) son lo más práctico; para viajar o trabajar en lugares ruidosos, unos over-ear con cancelación de ruido activa (ANC). Mirá la autonomía de batería, que carguen por USB-C y la calidad del micrófono si hacés llamadas. El Cyber Monday 2026 en Argentina va del lunes 2 al miércoles 4 de noviembre (fechas de la CACE). Compará el precio contra el historial del modelo.',
+      'Para el día a día, unos inalámbricos in-ear (tipo TWS) son lo más práctico; para viajar o trabajar en lugares ruidosos, unos over-ear con cancelación de ruido activa (ANC). Mirá la autonomía de batería, que carguen por USB-C y la calidad del micrófono si hacés llamadas. El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday (viernes 27/11) y el Cyber Monday del lunes 30/11. Compará el precio contra el historial del modelo.',
     secciones: [
       {
         h: 'In-ear u over-ear',

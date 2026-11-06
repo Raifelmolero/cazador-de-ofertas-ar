@@ -39,8 +39,8 @@ const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
 const MAX_OFERTAS = 16
 
-const TITULO = `Black Friday ${BF.año} Argentina: cuándo es y ofertas de hoy`
-const DESCRIPCION = `Black Friday ${BF.año} en Argentina: ${BF.fechasTexto}. Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo detectar descuentos inflados.`
+const TITULO = `Black Friday ${BF.año} Argentina (27/11): ofertas y cupones hoy`
+const DESCRIPCION = `Black Friday ${BF.año} en Argentina: ${BF.fechasTexto}. Ofertas de Mercado Libre de hoy verificadas contra el historial, cupones y cómo detectar descuentos inflados.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -85,6 +85,24 @@ export default function BlackFridayPage() {
     historial: historial[o.id_ml],
   }))
 
+  // Ticket medio: las de arriba suelen ser todas de más de $2,9 M (F5 6/11).
+  const ticketMedio: OfertaLight[] = getOfertas()
+    .filter(o => o.precio_actual >= 100_000 && o.precio_actual <= 800_000 && !ofertas.some(x => x.id_ml === o.id_ml))
+    .sort((x, y) => (y.descuento_pct ?? 0) - (x.descuento_pct ?? 0))
+    .slice(0, 3)
+    .map(o => ({
+      id_ml: o.id_ml,
+      titulo: o.titulo,
+      precio_actual: o.precio_actual,
+      precio_anterior: o.precio_anterior,
+      descuento_pct: o.descuento_pct,
+      minimo_historico: o.minimo_historico,
+      relampago: o.relampago,
+      url_producto: o.url_producto,
+      url_imagen: o.url_imagen,
+      historial: historial[o.id_ml],
+    }))
+
   const porRubro = COMPARATIVAS.filter(c => c.slug.startsWith('black-friday-'))
   const guias = GUIAS.filter(g => g.slug.includes('black-friday') || GUIAS_TICKET_ALTO.includes(g.slug))
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
@@ -105,6 +123,26 @@ export default function BlackFridayPage() {
     {
       q: '¿Qué conviene más: el Cyber Monday o el Black Friday?',
       a: `Depende del producto, no del evento. El Cyber Monday ${CM.año} es ${CM.fechasTexto} y reúne a las tiendas que se suman a la convocatoria de la CACE; el Black Friday llega unas semanas después y depende de cada tienda. Si lo que buscás ya está en su precio más bajo registrado, esperar no suma; si no, compará el precio de hoy con el de cada evento.`,
+    },
+    {
+      q: '¿Hay cupones de Mercado Libre para el Black Friday?',
+      a: 'Mercado Libre muestra los cupones de cada usuario en mercadolibre.com.ar/cupones, con la sesión iniciada. Cada uno tiene su vigencia, productos alcanzados y tope, y en general se usa uno por compra. Un cupón descuenta sobre el precio publicado: primero fijate que el precio sea bueno. En nuestra página de cupones juntamos los que vemos cada día.',
+    },
+    {
+      q: '¿Cuánto dura el Black Friday en Argentina?',
+      a: `La fecha de referencia es el ${BF.fechasTexto}, pero muchas tiendas arrancan antes y lo estiran hasta el Cyber Monday del lunes 30 de noviembre. Como no hay organizador, cada tienda define sus días: revisá las condiciones de cada promoción.`,
+    },
+    {
+      q: '¿Conviene esperar al Black Friday o comprar ahora?',
+      a: 'Si lo que querés ya está hoy en su precio más bajo registrado, esperar no te suma nada y corrés el riesgo de que se agote. Si no está en su mínimo y no lo necesitás ya, esperar puede convenir. Mirá el historial de precios del producto antes de decidir.',
+    },
+    {
+      q: '¿Las cuotas sin interés del Black Friday convienen?',
+      a: 'Convienen si el precio en cuotas es el mismo que en un pago. Multiplicá la cuota por la cantidad de cuotas: si el total da más que el precio publicado, hay interés escondido. Con la inflación, pagar en cuotas fijas sin interés suele ser mejor que pagar todo junto.',
+    },
+    {
+      q: '¿Qué es lo que más baja en el Black Friday?',
+      a: 'En nuestro registro, las bajas en pesos más grandes aparecen en ticket alto: celulares, notebooks, smart TV, heladeras y aires acondicionados. En productos chicos un 20 % OFF es poca plata; en una heladera puede ser más de $300.000.',
     },
   ]
 
@@ -200,6 +238,15 @@ export default function BlackFridayPage() {
         seccion="top3_black_friday"
         id="top3-black-friday"
       />
+      <TopOfertasHoy
+        ofertas={ticketMedio}
+        titulo="🛒 Ofertas de hoy de hasta $800.000"
+        seccion="ticket_medio_black_friday"
+        id="ticket-medio-bf"
+      />
+      <p className="max-w-7xl mx-auto px-4 sm:px-6 pt-3 text-sm">
+        <a href="/cupones-mercado-libre" className="font-bold text-yellow-400 hover:underline">🎟️ Cupones de Mercado Libre de hoy →</a>
+      </p>
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
         <ComparacionTestigo evento="Black Friday" etapa={etapa} />

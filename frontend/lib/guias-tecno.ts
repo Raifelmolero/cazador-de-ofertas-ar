@@ -1239,7 +1239,7 @@ export const GUIAS_TECNO: Guia[] = [
     slug: 'conviene-esperar-al-cyber-monday-para-comprar-tecnologia',
     titulo: 'Cyber Monday 2026: ¿esperar o comprar tecnología ahora?',
     descripcion:
-      '¿Esperar al Cyber Monday 2026 (2 al 4 de noviembre) o comprar ya celular, notebook o TV? Cuotas, descuentos inflados y qué está hoy en su mínimo.',
+      '¿Esperar al Black Friday (27/11) y Cyber Monday (30/11) o comprar ya celular, notebook o TV? Cuotas, descuentos inflados y qué está hoy en su mínimo.',
     pregunta: '¿Conviene esperar al Cyber Monday para comprar tecnología?',
     respuestaCorta:
       'Conviene esperar si lo que querés no está hoy en su precio más bajo registrado y no lo necesitás ya: en el Cyber Monday 2026 (del 2 al 4 de noviembre) suelen sumarse cuotas sin interés y cupones que bajan el costo final de celulares, notebooks y TV. Si el equipo ya está en su mínimo, comprarlo ahora no te hace perder nada y evitás el riesgo de que se agote o de un "descuento" inflado. Antes de pagar, compará el precio contra el historial, no contra el "antes".',

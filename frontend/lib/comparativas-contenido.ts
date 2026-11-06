@@ -1566,7 +1566,7 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
     faq: [
       {
         q: '¿Cuál es el mejor momento para comprar un smart TV?',
-        a: 'Cuando el precio actual iguala o se acerca al mínimo registrado del modelo. Los eventos como el Cyber Monday (2 al 4 de noviembre) son una buena ocasión, pero no garantizan el mínimo.',
+        a: 'Cuando el precio actual iguala o se acerca al mínimo registrado del modelo. Los eventos como el Black Friday (27/11) y Cyber Monday (30/11) son una buena ocasión, pero no garantizan el mínimo.',
       },
       {
         q: '¿Qué tamaño de pantalla me conviene?',

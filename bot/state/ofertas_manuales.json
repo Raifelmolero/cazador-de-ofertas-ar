@@ -1,1315 +1,6 @@
 {
  "items": [
   {
-   "id": "MLAU5430822872",
-   "title": "Notebook Asus Vivobook I7-8565u 8gb 512gb Ssd 15.6 Fhd Plateado",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-i7-8565u-8gb-512gb-ssd-156-fhd/up/MLAU5430822872",
-   "price_prev": 2284047,
-   "price_cur": 1396255,
-   "discount": 39,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_620139-MLA119368954163_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA43497270",
-   "title": "Depiladora Laser Ipl Braun Mujer Silk Expert Pro 5 PL5137",
-   "url": "https://www.mercadolibre.com.ar/depiladora-laser-ipl-braun-mujer-silk-expert-pro-5-pl5137/p/MLA43497270",
-   "price_prev": 1732607,
-   "price_cur": 1382175,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_825360-MLA80847695057_112024-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3841791175",
-   "title": "Notebook Dell G3 Core I7 8gb 256gb Ssd Gtx1650 Ti 15.6 Fhd",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-g3-core-i7-8gb-256gb-ssd-gtx1650-ti-156--fhd/up/MLAU3841791175",
-   "price_prev": 2564378,
-   "price_cur": 1339887,
-   "discount": 48,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_982845-MLA108863488765_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA27526023",
-   "title": "Barra De Sonido 3.1 Con Bluetooth Philips Tab8507b-10",
-   "url": "https://www.mercadolibre.com.ar/barra-de-sonido-31-con-bluetooth-philips-tab8507b-10/p/MLA27526023",
-   "price_prev": 1524599,
-   "price_cur": 1199999,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_786634-MLA100018771771_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA39424704",
-   "title": "Freezer Horizontal Briket 390L Blanco 2 Puertas Eficiencia A",
-   "url": "https://www.mercadolibre.com.ar/freezer-horizontal-briket-390l-blanco-2-puertas-eficiencia-a/p/MLA39424704",
-   "price_prev": 1467798,
-   "price_cur": 1157299,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_856475-MLA99470566714_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA23619616",
-   "title": "Sommier Y Colchón Sueño Dorado Dubái Queen Size 160x200cm",
-   "url": "https://www.mercadolibre.com.ar/sommier-y-colchon-sueno-dorado-dubai-queen-size-160x200cm/p/MLA23619616",
-   "price_prev": 3355997,
-   "price_cur": 1064781,
-   "discount": 68,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_769108-MLA118216876940_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5240532804",
-   "title": "Simulador Remo Aire Plegable Profesional Gym 10 Niveles Negro",
-   "url": "https://www.mercadolibre.com.ar/simulador-remo-aire-plegable-profesional-gym-10-niveles/up/MLAU5240532804",
-   "price_prev": 1300000,
-   "price_cur": 988000,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_674071-MLA119442022265_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA47234972",
-   "title": "Lavavajillas 15 Cubiertos Inoxidable Drean Lvdr1506ci0 Gris",
-   "url": "https://www.mercadolibre.com.ar/lavavajillas-15-cubiertos-inoxidable-drean-lvdr1506ci0-gris/p/MLA47234972",
-   "price_prev": 1559998,
-   "price_cur": 879999,
-   "discount": 44,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_880310-MLA105823317329_012026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA65740068",
-   "title": "Robot De Cocina Chef Broksonic CV-1039FP Negro",
-   "url": "https://www.mercadolibre.com.ar/robot-de-cocina-chef-broksonic-cv-1039fp-negro/p/MLA65740068",
-   "price_prev": 1986662,
-   "price_cur": 871678,
-   "discount": 56,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_965300-MLA106724888646_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA72192515",
-   "title": "Soldadora Mig Mag Inverter 160a Esab Handyarc Flux 3 En 1 Amarillo",
-   "url": "https://www.mercadolibre.com.ar/soldadora-mig-mag-inverter-160a-esab-handyarc-flux-3-en-1-amarillo/p/MLA72192515",
-   "price_prev": 1190379,
-   "price_cur": 804573,
-   "discount": 32,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_682862-MLA111661197972_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA27760517",
-   "title": "Parlante Philips Torre De Sonido TAX5708/77 Luces 400w Fiesta",
-   "url": "https://www.mercadolibre.com.ar/parlante-philips-torre-de-sonido-tax570877-luces-400w-fiesta/p/MLA27760517",
-   "price_prev": 1699999,
-   "price_cur": 730137,
-   "discount": 57,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_870788-MLU72462166604_102023-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA64134988",
-   "title": "Freezer Horizontal Briket 1 Puerta 250 Litros Hc250w Blanco",
-   "url": "https://www.mercadolibre.com.ar/freezer-horizontal-briket-1-puerta-250-litros-hc250w-blanco/p/MLA64134988",
-   "price_prev": 883072,
-   "price_cur": 703599,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_716213-MLA104371883365_012026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5430419618",
-   "title": "Reposera Camastro Modelo Marsella Padded Aluminio Importada Gris",
-   "url": "https://www.mercadolibre.com.ar/reposera-camastro-modelo-marsella-padded-aluminio-importada/up/MLAU5430419618",
-   "price_prev": 898955,
-   "price_cur": 665226,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_889419-MLA117325030166_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA77835431",
-   "title": "Smartwatch Samsung Galaxy Watch9 44mm Silver.",
-   "url": "https://www.mercadolibre.com.ar/smartwatch-samsung-galaxy-watch9-44mm-silver/p/MLA77835431",
-   "price_prev": 1018001,
-   "price_cur": 650870,
-   "discount": 36,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_719548-MLA116492469729_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA78913714",
-   "title": "Depósito De Jardín Galpón Exterior Mueble Guardado Armario Bicicletas Trent 165x138x212 Caseta Acero Galvanizado Guarda Bicis Moto Gris Oscu",
-   "url": "https://www.mercadolibre.com.ar/deposito-de-jardin-galpon-exterior-mueble-guardado-armario-bicicletas-trent-165x138x212-caseta-acero-galvanizado-guarda-bicis-moto-gris-oscuro/p/MLA78913714",
-   "price_prev": 800000,
-   "price_cur": 606999,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_863739-MLA115742899240_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA68356703",
-   "title": "Notebook Hp 14-em0002 Amd Athlon 7120u 4gb Ram Ddr4 128gb Ssd Pantalla 14 Hd Graficos Integrados Color Moonlight Blue",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-14-em0002-amd-athlon-7120u-4gb-ram-ddr4-128gb-ssd-pantalla-14-hd-graficos-integrados-color-moonlight-blue/p/MLA68356703",
-   "price_prev": 849999,
-   "price_cur": 569999,
-   "discount": 33,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_619327-MLA113944500142_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA40337438",
-   "title": "Disco Sólido Ssd M.2 2tb Kingston Nvme Pcie 4.0 Nv3 Color Azul",
-   "url": "https://www.mercadolibre.com.ar/disco-solido-ssd-m2-2tb-kingston-nvme-pcie-40-nv3-color-azul/p/MLA40337438",
-   "price_prev": 730951,
-   "price_cur": 556065,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_776045-MLA99936871805_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA36491815",
-   "title": "Auriculares Logitech Zone Wireless 2 - Inalámbricos Grafito Color Negro",
-   "url": "https://www.mercadolibre.com.ar/auriculares-logitech-zone-wireless-2-inalambricos-grafito-color-negro/p/MLA36491815",
-   "price_prev": 784022,
-   "price_cur": 538850,
-   "discount": 31,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_743662-MLA96644912117_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4365389726",
-   "title": "Guinche Delfabro Oferton 2 Ton Plegable Oficial Azul Acero",
-   "url": "https://www.mercadolibre.com.ar/guinche-delfabro-oferton-2-ton-plegable-oficial/up/MLAU4365389726",
-   "price_prev": 1096483,
-   "price_cur": 486967,
-   "discount": 56,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_885436-MLA114778323731_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5241048442",
-   "title": "Xiaomi Redmi 15c 128gb 8gb Ram Dual Sim Original Verde Menta",
-   "url": "https://www.mercadolibre.com.ar/xiaomi-redmi-15c-128gb-8gb-ram-dual-sim-original/up/MLAU5241048442",
-   "price_prev": 639000,
-   "price_cur": 472860,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_850498-MLA117868832541_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU232829540",
-   "title": "Guinche Pluma Hidráulico Plegable 2 Tn - Delfabro S.r.l",
-   "url": "https://www.mercadolibre.com.ar/guinche-pluma-hidraulico-plegable-2-tn--delfabro-srl/up/MLAU232829540",
-   "price_prev": 1097585,
-   "price_cur": 450009,
-   "discount": 59,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_700748-MLA96519993193_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA23861004",
-   "title": "Sommier Y Colchon Piero Foam 100 X 190 Espuma Alta Densidad Color Blanco",
-   "url": "https://www.mercadolibre.com.ar/sommier-y-colchon-piero-foam-100-x-190-espuma-alta-densidad-color-blanco/p/MLA23861004",
-   "price_prev": 644893,
-   "price_cur": 446325,
-   "discount": 31,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_909906-MLA95958723170_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA20023562",
-   "title": "Samson Dk 703 Kit De Micrófonos Para Batería Set Percusión Color Negro",
-   "url": "https://www.mercadolibre.com.ar/samson-dk-703-kit-de-microfonos-para-bateria-set-percusion-color-negro/p/MLA20023562",
-   "price_prev": 603354,
-   "price_cur": 426138,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_816226-MLA118870393767_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU2909175782",
-   "title": "Combo Máquina De Corte Onyx + Trimmer Profesional Onyx Jrl",
-   "url": "https://www.mercadolibre.com.ar/combo-maquina-de-corte-onyx--trimmer-profesional-onyx-jrl/up/MLAU2909175782",
-   "price_prev": 669980,
-   "price_cur": 387990,
-   "discount": 42,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_623405-MLA98251827859_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3607903245",
-   "title": "Sillon Sofa 2 Cuerpos Escandinavo Premium Dadaa Muebles Gris Chenille",
-   "url": "https://www.mercadolibre.com.ar/sillon-sofa-2-cuerpos-escandinavo-premium-dadaa-muebles/up/MLAU3607903245",
-   "price_prev": 1797479,
-   "price_cur": 383582,
-   "discount": 79,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_653168-MLA98736365724_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA1422483629",
-   "title": "Vanitory Colgante 80 Bacha Baño Cajon Calidad",
-   "url": "https://articulo.mercadolibre.com.ar/MLA-1422483629-vanitory-colgante-80-bacha-bano-cajon-calidad-_JM",
-   "price_prev": 479412,
-   "price_cur": 373611,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_666749-MLA113106112151_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4502214146",
-   "title": "Taladro Multiherramienta Inalambrica Brushless 10 En 1 Omaha",
-   "url": "https://www.mercadolibre.com.ar/taladro-multiherramienta-inalambrica-brushless-10-en-1-omaha/up/MLAU4502214146",
-   "price_prev": 542922,
-   "price_cur": 359019,
-   "discount": 34,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_858175-MLA113943998322_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA69905043",
-   "title": "Armario Kappesberg con bisagras en las 4 puertas y espejo 160 cm Canela y Negro Mate",
-   "url": "https://www.mercadolibre.com.ar/armario-kappesberg-con-bisagras-en-las-4-puertas-y-espejo-160-cm-canela-y-negro-mate/p/MLA69905043",
-   "price_prev": 1313512,
-   "price_cur": 354693,
-   "discount": 73,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_798259-MLA111824411821_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA43936838",
-   "title": "Proyector X-View Pjx500 Pro Blanco Full HD 12000lm Wi-Fi Bluetooth",
-   "url": "https://www.mercadolibre.com.ar/proyector-x-view-pjx500-pro-blanco-full-hd-12000lm-wi-fi-bluetooth/p/MLA43936838",
-   "price_prev": 547700,
-   "price_cur": 354581,
-   "discount": 35,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_692790-MLA99492868080_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA34220050",
-   "title": "Bomba Autocebante Vulcano Bap 100 1hp",
-   "url": "https://www.mercadolibre.com.ar/bomba-autocebante-vulcano-bap-100-1hp/p/MLA34220050",
-   "price_prev": 596572,
-   "price_cur": 344331,
-   "discount": 42,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_786991-MLA96419513374_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA19046403",
-   "title": "Impresora multifunción monocromática HP LaserJet M141w con wifi",
-   "url": "https://www.mercadolibre.com.ar/impresora-multifuncion-monocromatica-hp-laserjet-m141w-con-wifi/p/MLA19046403",
-   "price_prev": 579999,
-   "price_cur": 339999,
-   "discount": 41,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_629290-MLA99966892343_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA60238313",
-   "title": "Dispenser Agua Frio Calor Premium Con Compresor Mas Frio Gris",
-   "url": "https://www.mercadolibre.com.ar/dispenser-agua-frio-calor-premium-con-compresor-mas-frio-gris/p/MLA60238313",
-   "price_prev": 559871,
-   "price_cur": 319126,
-   "discount": 43,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_974135-MLA94950976858_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA43537879",
-   "title": "Fumigador Mochila Motor Nafta 41cc 26L Para Líquidos y Polvos Konan",
-   "url": "https://www.mercadolibre.com.ar/fumigador-mochila-motor-nafta-41cc-26l-para-liquidos-y-polvos-konan/p/MLA43537879",
-   "price_prev": 631752,
-   "price_cur": 314419,
-   "discount": 50,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_744794-MLA99953124481_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA61495794",
-   "title": "Flor De Ducha Columna Exterior Peirano Adra 84-203 Con Duchador De Mano Color Cromo Acabado Cromado Flexible Duchon Gris",
-   "url": "https://www.mercadolibre.com.ar/flor-de-ducha-columna-exterior-peirano-adra-84-203-con-duchador-de-mano-color-cromo-acabado-cromado-flexible-duchon-gris/p/MLA61495794",
-   "price_prev": 420000,
-   "price_cur": 312005,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_800700-MLA96384627884_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA10207205",
-   "title": "Anafe Florencia de Acero Inoxidable con 4 Hornallas a Gas Empotrable",
-   "url": "https://www.mercadolibre.com.ar/anafe-florencia-de-acero-inoxidable-con-4-hornallas-a-gas-empotrable/p/MLA10207205",
-   "price_prev": 399999,
-   "price_cur": 300854,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_967048-MLA99581430240_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4189858676",
-   "title": "Combo Inodoro Largo Mochila Y Bidet Triple Agujero Mübi Neo",
-   "url": "https://www.mercadolibre.com.ar/combo-inodoro-largo-mochila-y-bidet-triple-agujero-mubi-neo/up/MLAU4189858676",
-   "price_prev": 441407,
-   "price_cur": 299999,
-   "discount": 32,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_940347-MLA113917616437_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA23335743",
-   "title": "Monitor Samsung Oddysey G3 27 Gamer",
-   "url": "https://www.mercadolibre.com.ar/monitor-samsung-oddysey-g3-27-gamer/p/MLA23335743",
-   "price_prev": 452999,
-   "price_cur": 289822,
-   "discount": 36,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_666105-MLU69451088285_052023-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5221062994",
-   "title": "Lampara Led Medialuna Estetica Belleza 70cm Giro 360 Grados Blanco",
-   "url": "https://www.mercadolibre.com.ar/lampara-led-medialuna-estetica-belleza-70cm-giro-360-grados/up/MLAU5221062994",
-   "price_prev": 884000,
-   "price_cur": 273600,
-   "discount": 69,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_984925-MLA116267719466_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA65757418",
-   "title": "Dispenser De Agua Frío/calor Para Bidones Blanco",
-   "url": "https://www.mercadolibre.com.ar/dispenser-de-agua-friocalor-para-bidones-blanco/p/MLA65757418",
-   "price_prev": 349900,
-   "price_cur": 269423,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_685677-MLA107401465879_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA15257173",
-   "title": "Cortadora de pasto Black+Decker GR3050 1000 W",
-   "url": "https://www.mercadolibre.com.ar/cortadora-de-pasto-blackdecker-gr3050-1000-w/p/MLA15257173",
-   "price_prev": 478079,
-   "price_cur": 268000,
-   "discount": 44,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_811855-MLA99484900806_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3395177499",
-   "title": "Placard Luke 2 Puertas Corredizas Blanco Xa Blanco",
-   "url": "https://www.mercadolibre.com.ar/placard-luke-2-puertas-corredizas-blanco-xa/up/MLAU3395177499",
-   "price_prev": 398998,
-   "price_cur": 261821,
-   "discount": 34,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_857684-MLA110945979841_042026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA66039311",
-   "title": "Freidora De Aire Horno Dual Multifuncion 28lts Zego 1900w",
-   "url": "https://www.mercadolibre.com.ar/freidora-de-aire-horno-dual-multifuncion-28lts-zego-1900w/p/MLA66039311",
-   "price_prev": 400000,
-   "price_cur": 259999,
-   "discount": 35,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_680103-MLA112640359754_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA20722800",
-   "title": "Bacha De Cocina Simple Johnson Acero Luxor SI85 AD",
-   "url": "https://www.mercadolibre.com.ar/bacha-de-cocina-simple-johnson-acero-luxor-si85-ad/p/MLA20722800",
-   "price_prev": 363100,
-   "price_cur": 257801,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_782132-MLA95671060606_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5382851681",
-   "title": "Cinta Caminadora Ajustable Correr Dyvan Caminar Fitness M88 Negro",
-   "url": "https://www.mercadolibre.com.ar/cinta-caminadora-ajustable-correr-dyvan-caminar-fitness-m88/up/MLAU5382851681",
-   "price_prev": 795708,
-   "price_cur": 252199,
-   "discount": 68,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_822522-MLA117304968650_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA57696170",
-   "title": "Kit Cámara De Seguridad Ezviz Hb8c 4mp Wifi + Panel Solar Blanco",
-   "url": "https://www.mercadolibre.com.ar/kit-camara-de-seguridad-ezviz-hb8c-4mp-wifi-panel-solar-blanco/p/MLA57696170",
-   "price_prev": 676939,
-   "price_cur": 249933,
-   "discount": 63,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_767770-MLA115660686409_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5115358212",
-   "title": "Sillas Comedor Tapizadas Pack X2 Premium Base Hierro Aura Rombo Marrón Claro Gris",
-   "url": "https://www.mercadolibre.com.ar/sillas-comedor-tapizadas-pack-x2-premium-base-hierro-aura/up/MLAU5115358212",
-   "price_prev": 329999,
-   "price_cur": 247499,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_600232-MLA119107167643_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA32044208",
-   "title": "Lijadora Roto Orbital Gex 125 280w Professional Cor Azul",
-   "url": "https://www.mercadolibre.com.ar/lijadora-roto-orbital-gex-125-280w-professional-cor-azul/p/MLA32044208",
-   "price_prev": 374573,
-   "price_cur": 246782,
-   "discount": 34,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_680171-MLU74389256195_022024-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA23918550",
-   "title": "Sistema Wi-fi Mesh Inteligente Tp-Link Deco S7 3-pack Doble Banda Ac1900",
-   "url": "https://www.mercadolibre.com.ar/sistema-wi-fi-mesh-inteligente-tp-link-deco-s7-3-pack-doble-banda-ac1900/p/MLA23918550",
-   "price_prev": 350803,
-   "price_cur": 235000,
-   "discount": 33,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_832483-MLA99972927931_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3527732232",
-   "title": "Combo Pistola Disuasiva Co2 Apolo G-17 Postas Garrafas G17 50 Mm",
-   "url": "https://www.mercadolibre.com.ar/combo-pistola-disuasiva-co2-apolo-g17-postas-garrafas/up/MLAU3527732232",
-   "price_prev": 287499,
-   "price_cur": 229999,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_724127-MLA96638768383_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3250982701",
-   "title": "Floragut B420 Ayuda Al Control Del Peso 30 Caps ( Pack X4) Sin Sabor",
-   "url": "https://www.mercadolibre.com.ar/floragut-b420-ayuda-al-control-del-peso-30-caps--pack-x4/up/MLAU3250982701",
-   "price_prev": 375600,
-   "price_cur": 225885,
-   "discount": 40,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_774413-MLA86297472650_062025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5056173295",
-   "title": "Infinix Smart 10 8gb 128gb Dual Sim + Garantia 12 Meses Negro",
-   "url": "https://www.mercadolibre.com.ar/infinix-smart-10-8gb-128gb-dual-sim--garantia-12-meses/up/MLAU5056173295",
-   "price_prev": 309079,
-   "price_cur": 225116,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_704485-MLA117034756189_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU364861871",
-   "title": "Horno De Mesa Eléctrico Anafe Yelmo Yl-45an 45l 1600w 220v Azul Oscuro",
-   "url": "https://www.mercadolibre.com.ar/horno-de-mesa-electrico-anafe-yelmo-yl45an-45l-1600w-220v/up/MLAU364861871",
-   "price_prev": 290248,
-   "price_cur": 224199,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_667670-MLA117773946759_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA66848314",
-   "title": "Silla De Escritorio Blanca Ergonómica Fresa Respaldo Mesh Beige Tela",
-   "url": "https://www.mercadolibre.com.ar/silla-de-escritorio-blanca-ergonomica-fresa-respaldo-mesh-beige-tela/p/MLA66848314",
-   "price_prev": 297945,
-   "price_cur": 223917,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838317-MLA108248989884_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA80072617",
-   "title": "Teclado APPLE Magic Keyboard Español Latino Touch Id Numérico A2520",
-   "url": "https://www.mercadolibre.com.ar/teclado-apple-magic-keyboard-espanol-latino-touch-id-numerico-a2520/p/MLA80072617",
-   "price_prev": 301002,
-   "price_cur": 222130,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_674111-MLA118464176493_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU381389865",
-   "title": "10 Bateria Alarma 12v 7ah 7a Recargable Ups Led Garantia 1 A",
-   "url": "https://www.mercadolibre.com.ar/10-bateria-alarma-12v-7ah-7a-recargable-ups-led-garantia-1-a/up/MLAU381389865",
-   "price_prev": 310000,
-   "price_cur": 215355,
-   "discount": 31,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_729237-MLA114380338717_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA57779345",
-   "title": "Jbl Tune Flex - Auriculares Inalámbricos Verdaderos Color Blanco",
-   "url": "https://www.mercadolibre.com.ar/jbl-tune-flex-auriculares-inalambricos-verdaderos-color-blanco/p/MLA57779345",
-   "price_prev": 287205,
-   "price_cur": 211630,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_783775-MLA92920140200_092025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU384088902",
-   "title": "Regulador Carga Solar Mppt Amec 100v 30a Proenergysolar",
-   "url": "https://www.mercadolibre.com.ar/regulador-carga-solar-mppt-amec-100v-30a-proenergysolar/up/MLAU384088902",
-   "price_prev": 284874,
-   "price_cur": 208593,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_644468-MLA69323075073_052023-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA41178466",
-   "title": "Perfume Olympea de Rabanne, 80 ml, para mujer",
-   "url": "https://www.mercadolibre.com.ar/perfume-olympea-de-rabanne-80-ml-para-mujer/p/MLA41178466",
-   "price_prev": 365150,
-   "price_cur": 204919,
-   "discount": 44,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_856293-MLA91121972188_092025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA45531009",
-   "title": "Bordeadora Inalámbrica Ge-ct 18 + 1 Bat 2,5 Ah Y Cargador",
-   "url": "https://www.mercadolibre.com.ar/bordeadora-inalambrica-ge-ct-18-1-bat-25-ah-y-cargador/p/MLA45531009",
-   "price_prev": 304500,
-   "price_cur": 199000,
-   "discount": 35,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_763241-MLA116209063946_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA27945653",
-   "title": "Máscara Nasal Dreamwear - Philips (cpap/bpap)",
-   "url": "https://www.mercadolibre.com.ar/mascara-nasal-dreamwear-philips-cpapbpap/p/MLA27945653",
-   "price_prev": 258653,
-   "price_cur": 193989,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_788339-MLA118782421501_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA2047498328",
-   "title": "Controlador De Carga Solar Mppt Amec 100v 50a 12v 24v Displa",
-   "url": "https://www.mercadolibre.com.ar/regulador-de-carga-solar-mppt-amec-100v-50a-12v-24v-display/p/MLA2047498328",
-   "price_prev": 289500,
-   "price_cur": 187404,
-   "discount": 35,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_661162-MLA90022385737_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA54071056",
-   "title": "Freidora De Aire Digital Aiwa 10l 2100w Con 12 Programas - Gris",
-   "url": "https://www.mercadolibre.com.ar/freidora-de-aire-digital-aiwa-10l-2100w-con-12-programas-gris/p/MLA54071056",
-   "price_prev": 248999,
-   "price_cur": 180818,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_799256-MLA111640512177_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA15740168",
-   "title": "Amoladora inalambrica 18v Dowen Pagio 9993180 bateria cargador",
-   "url": "https://www.mercadolibre.com.ar/amoladora-inalambrica-18v-dowen-pagio-9993180-bateria-cargador/p/MLA15740168",
-   "price_prev": 227191,
-   "price_cur": 180079,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_899202-MLA99962138547_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA52113628",
-   "title": "Silla Oficina Deluxe Ergonomica Reclinable Escritorio S6 Color Blanco Material del tapizado Cuero sintético",
-   "url": "https://www.mercadolibre.com.ar/silla-oficina-deluxe-ergonomica-reclinable-escritorio-s6-color-blanco-material-del-tapizado-cuero-sintetico/p/MLA52113628",
-   "price_prev": 280000,
-   "price_cur": 179162,
-   "discount": 36,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_850771-MLA95395047368_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA80555275",
-   "title": "Set Kemei Profesional de Cortadora, Patillera y Afeitadora Inalámbrica USB para Cabello y Barba",
-   "url": "https://www.mercadolibre.com.ar/set-kemei-profesional-de-cortadora-patillera-y-afeitadora-inalambrica-usb-para-cabello-y-barba/p/MLA80555275",
-   "price_prev": 254058,
-   "price_cur": 178999,
-   "discount": 30,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_639081-MLA117771879738_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA67450491",
-   "title": "Organizador De Baño Slimflow Estrecho Con Cajones Y Ruedas Blanco",
-   "url": "https://www.mercadolibre.com.ar/organizador-de-bano-slimflow-estrecho-con-cajones-y-ruedas-blanco/p/MLA67450491",
-   "price_prev": 253490,
-   "price_cur": 177605,
-   "discount": 30,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_998598-MLA109873280077_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA62112974",
-   "title": "Pantallas Projector With Plegable 120 Pulgadas",
-   "url": "https://www.mercadolibre.com.ar/pantallas-projector-with-plegable-120-pulgadas/p/MLA62112974",
-   "price_prev": 573392,
-   "price_cur": 176808,
-   "discount": 69,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_685715-MLA97768405960_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA67360476",
-   "title": "Set 2 Banquetas Dyvan Ajustable Silla Alta Bar Desayunador Blanco",
-   "url": "https://www.mercadolibre.com.ar/set-2-banquetas-dyvan-ajustable-silla-alta-bar-desayunador-blanco/p/MLA67360476",
-   "price_prev": 554292,
-   "price_cur": 172870,
-   "discount": 69,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_681570-MLA109686434043_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA2113737002",
-   "title": "Desmalezadora Bordeadora Motoguadaña 52 Cc + Soplador Silex",
-   "url": "https://www.mercadolibre.com.ar/desmalezadora-bordeadora-motoguadana-52-cc-soplador-silex/p/MLA2113737002",
-   "price_prev": 219498,
-   "price_cur": 170290,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_797181-MLA113784991932_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA44745618",
-   "title": "Afeitadora Philips S5898/17 Cabezales 360D, Potencia Adaptable, Cortapatilla, 60 Min de autonomía, Uso Seco y Humedo Serie 5000",
-   "url": "https://www.mercadolibre.com.ar/afeitadora-philips-s589817-cabezales-360d-potencia-adaptable-cortapatilla-60-min-de-autonomia-uso-seco-y-humedo-serie-5000/p/MLA44745618",
-   "price_prev": 237799,
-   "price_cur": 169999,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_881257-MLA99498154230_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA39398460",
-   "title": "Silla Gamer Ergonómica The Game House D395 con Respaldo Reclinable y Altura Ajustable, Gris",
-   "url": "https://www.mercadolibre.com.ar/silla-gamer-ergonomica-the-game-house-d395-con-respaldo-reclinable-y-altura-ajustable-gris/p/MLA39398460",
-   "price_prev": 322097,
-   "price_cur": 167490,
-   "discount": 48,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_894451-MLA112990611403_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA39398643",
-   "title": "Silla Gamer Ergonómica The Game House Reclinable de Cuero Sintético Negro",
-   "url": "https://www.mercadolibre.com.ar/silla-gamer-ergonomica-the-game-house-reclinable-de-cuero-sintetico-negro/p/MLA39398643",
-   "price_prev": 322097,
-   "price_cur": 166912,
-   "discount": 48,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_877230-MLA111876349708_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA24174039",
-   "title": "Router Sistema Mesh Wi-fi 5 TP-Link Deco S7 Giga AC1900 (2-pack)",
-   "url": "https://www.mercadolibre.com.ar/router-sistema-mesh-wi-fi-5-tp-link-deco-s7-giga-ac1900-2-pack/p/MLA24174039",
-   "price_prev": 244646,
-   "price_cur": 165990,
-   "discount": 32,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_742067-MLA114607469178_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA68281361",
-   "title": "Nivel Laser 360° 16 Lineas Autonivelante Dyvan Tripode 4d Azul",
-   "url": "https://www.mercadolibre.com.ar/nivel-laser-360-16-lineas-autonivelante-dyvan-tripode-4d-azul/p/MLA68281361",
-   "price_prev": 446112,
-   "price_cur": 161831,
-   "discount": 64,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_673156-MLA109704318250_042026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU250675484",
-   "title": "Secador De Pelo Profesional Gama Barber Shop Barberia Salon Negro",
-   "url": "https://www.mercadolibre.com.ar/secador-de-pelo-profesional-gama-barber-shop-barberia-salon/up/MLAU250675484",
-   "price_prev": 200000,
-   "price_cur": 159999,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_825962-MLA118930709801_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA580029877",
-   "title": "Sillón Poltrona Silla Diseño Interior Poliéster Madera París",
-   "url": "https://articulo.mercadolibre.com.ar/MLA-580029877-sillon-poltrona-silla-diseno-interior-poliester-madera-paris-_JM",
-   "price_prev": 191226,
-   "price_cur": 152980,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_866948-MLA93954341459_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA47388361",
-   "title": "Maquina De Cortar Pasto Cesped Cortadora Electrica 1000 W. Con Bolsa Recolectora Diámetro De Corte 320 Mm Con Regulador De Altura 3500 rpm",
-   "url": "https://www.mercadolibre.com.ar/maquina-de-cortar-pasto-cesped-cortadora-electrica-1000-w-con-bolsa-recolectora-diametro-de-corte-320-mm-con-regulador-de-altura-3500-rpm/p/MLA47388361",
-   "price_prev": 211915,
-   "price_cur": 152578,
-   "discount": 28,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_773544-MLA118905361969_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA19709385",
-   "title": "Torre De Sonido Philips Tax2206/77 Bluetooth 40w Karaoke Bateria 7 Horas Parlante Led Negro",
-   "url": "https://www.mercadolibre.com.ar/torre-de-sonido-philips-tax220677-bluetooth-40w-karaoke-bateria-7-horas-parlante-led-negro/p/MLA19709385",
-   "price_prev": 299999,
-   "price_cur": 141910,
-   "discount": 53,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_854664-MLA91525868910_092025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4401847805",
-   "title": "Tablet 10 Android 16 8gb Ram 32gb Wifi 6 Pink Gum",
-   "url": "https://www.mercadolibre.com.ar/tablet-10-android-16-8gb-ram-32gb-wifi-6/up/MLAU4401847805",
-   "price_prev": 274824,
-   "price_cur": 139378,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA60432252",
-   "title": "Parlante Portatil Jbl Grip Color Violeta Violeta",
-   "url": "https://www.mercadolibre.com.ar/parlante-portatil-jbl-grip-color-violeta-violeta/p/MLA60432252",
-   "price_prev": 229999,
-   "price_cur": 134999,
-   "discount": 41,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_631148-MLA99505890954_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA65463308",
-   "title": "Reloj Inteligente Mujer Sumergible Smartbit G2 Pro Plateado Gps Satelital Integrado Sumergible 100 Metros Natacion Redondo Pantalla Amoled L",
-   "url": "https://www.mercadolibre.com.ar/reloj-inteligente-mujer-sumergible-smartbit-g2-pro-plateado-gps-satelital-integrado-sumergible-100-metros-natacion-redondo-pantalla-amoled-llamada-deportivo-mensajes-bateria-larga-duracion-malla-extra/p/MLA65463308",
-   "price_prev": 169990,
-   "price_cur": 132290,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_726300-MLA106303871864_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA2116510828",
-   "title": "Tableta Android 16 Pritom Con Teclado Y Ratón Negro",
-   "url": "https://www.mercadolibre.com.ar/tableta-android-16-pritom-con-teclado-y-raton-negro/p/MLA2116510828",
-   "price_prev": 340656,
-   "price_cur": 130788,
-   "discount": 62,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA54570874",
-   "title": "Cafetera Expresso Espumador Automática Fika Vaporizador 1,5 Litros 1100w 20 Bares Acero Inoxidable Y Negro",
-   "url": "https://www.mercadolibre.com.ar/cafetera-expresso-espumador-automatica-fika-vaporizador-15-litros-1100w-20-bares-acero-inoxidable-y-negro/p/MLA54570874",
-   "price_prev": 199999,
-   "price_cur": 120321,
-   "discount": 40,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_698041-MLA110339286884_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4801036176",
-   "title": "Tablet 10 Ips 4gb 32gb Android 14 Cámara Dual Blue Steel",
-   "url": "https://www.mercadolibre.com.ar/tablet-10-ips-4gb-32gb-android-14-camara-dual/up/MLAU4801036176",
-   "price_prev": 208738,
-   "price_cur": 105862,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4036313835",
-   "title": "Tablet Infantil Android Con Funda Resistente Blue",
-   "url": "https://www.mercadolibre.com.ar/tablet-infantil-android-con-funda-resistente/up/MLAU4036313835",
-   "price_prev": 210695,
-   "price_cur": 93948,
-   "discount": 55,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4675107781",
-   "title": "Memoria Ram Ddr4 8 Gb 3200 Mhz Para Pc De Escritorio Con Disipador 1.5 V",
-   "url": "https://www.mercadolibre.com.ar/memoria-ram-ddr4-8-gb-3200-mhz-para-pc-de-escritorio-con-disipador-15-v/up/MLAU4675107781",
-   "price_prev": 183846,
-   "price_cur": 93239,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5278876666",
-   "title": "Smartwatch Mujer Variic Imperial Gold Rose 3 Correas + Pines Plateado Mesh",
-   "url": "https://www.mercadolibre.com.ar/smartwatch-mujer-variic-imperial-gold-rose-3-correas-pines/up/MLAU5278876666",
-   "price_prev": 147047,
-   "price_cur": 85983,
-   "discount": 42,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_912509-MLA116562452698_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4401959391",
-   "title": "Tablet 7 Pulgadas Android 13 4gb 32gb Quad Core Gris Oscuro",
-   "url": "https://www.mercadolibre.com.ar/tablet-7-pulgadas-android-13-4gb-32gb-quad-core/up/MLAU4401959391",
-   "price_prev": 158430,
-   "price_cur": 80346,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4401752487",
-   "title": "Tablet Infantil 7 Pulgadas 4gb 32gb Antigolpes Blue Steel",
-   "url": "https://www.mercadolibre.com.ar/tablet-infantil-7-pulgadas-4gb-32gb-antigolpes/up/MLAU4401752487",
-   "price_prev": 209278,
-   "price_cur": 80346,
-   "discount": 62,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4413220346",
-   "title": "Auriculares Gamer Mchose V9 Pro Inalámbricos Black/red",
-   "url": "https://www.mercadolibre.com.ar/auriculares-gamer-mchose-v9-pro-inalambricos/up/MLAU4413220346",
-   "price_prev": 209008,
-   "price_cur": 80244,
-   "discount": 62,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4869895401",
-   "title": "Reloj Inteligente Smartwatch + Auriculares Deportivo Chicos",
-   "url": "https://www.mercadolibre.com.ar/reloj-inteligente-smartwatch-auriculares-deportivo-chicos/up/MLAU4869895401",
-   "price_prev": 99895,
-   "price_cur": 79916,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_930294-MLA116555771445_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4057343948",
-   "title": "Tablet Infantil Pritom K7, Android 13, 4 Gb, 32 Gb Pink",
-   "url": "https://www.mercadolibre.com.ar/tablet-infantil-pritom-k7-android-13-4-gb-32-gb/up/MLAU4057343948",
-   "price_prev": 157064,
-   "price_cur": 79654,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5475671374",
-   "title": "Reloj Inteligente -smart Watch Deportivo Con Linterna Cr032 Plateado Metálica Verde",
-   "url": "https://www.mercadolibre.com.ar/reloj-inteligente-smart-watch-deportivo-con-linterna-cr032/up/MLAU5475671374",
-   "price_prev": 110000,
-   "price_cur": 78375,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_600390-MLA119117222391_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5113423422",
-   "title": "Auriculares Oido Abierto Deportivos Con Gancho 40hs Bateria Negro",
-   "url": "https://www.mercadolibre.com.ar/auriculares-oido-abierto-deportivos-con-gancho-40hs-bateria/up/MLAU5113423422",
-   "price_prev": 99999,
-   "price_cur": 77599,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_927841-MLA118127482410_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5081137925",
-   "title": "Auriculares Open Ear Deportivos Con Gancho 40hs Bateria Negro",
-   "url": "https://www.mercadolibre.com.ar/auriculares-open-ear-deportivos-con-gancho-40hs-bateria/up/MLAU5081137925",
-   "price_prev": 99999,
-   "price_cur": 77599,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_999287-MLA117379575972_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA37717904",
-   "title": "Auriculares para juegos Redragon Aurora White Usb 7.1 H376wg Rgb Light",
-   "url": "https://www.mercadolibre.com.ar/auriculares-para-juegos-redragon-aurora-white-usb-71-h376wg-rgb-light/p/MLA37717904",
-   "price_prev": 99999,
-   "price_cur": 74999,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_790276-MLA91048527900_092025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5077444552",
-   "title": "Parlante Lidimi Ld S897 Portatil 32w 2 En 1 Bt Led Tws Azul",
-   "url": "https://www.mercadolibre.com.ar/parlante-lidimi-ld-s897-portatil-32w-2-en-1-bt-led-tws/up/MLAU5077444552",
-   "price_prev": 100000,
-   "price_cur": 70810,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_647613-MLA116991419699_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU251568725",
-   "title": "Router Wifi Tp Link Archer C6 1200mbps Full Gigabit Mu-mimo",
-   "url": "https://www.mercadolibre.com.ar/router-wifi-tp-link-archer-c6-1200mbps-full-gigabit-mumimo/up/MLAU251568725",
-   "price_prev": 88913,
-   "price_cur": 70603,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_821885-MLA89351299119_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA3032666546",
-   "title": "Auriculares Inalámbricos Para Gaming Atk Neptune N9 Pro Espo",
-   "url": "https://articulo.mercadolibre.com.ar/MLA-3032666546-auriculares-inalambricos-para-gaming-atk-neptune-n9-pro-espo-_JM",
-   "price_prev": 200856,
-   "price_cur": 70288,
-   "discount": 65,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3368322947",
-   "title": "Soporte Celular Para Honda Cb 190r / Con Cargador Usb",
-   "url": "https://www.mercadolibre.com.ar/soporte-celular-para-honda-cb-190r--con-cargador-usb/up/MLAU3368322947",
-   "price_prev": 94999,
-   "price_cur": 69532,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_697601-MLA90434514631_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3374451044",
-   "title": "Soporte Celular Con Carga Usb Para Motomel Skua 150 - 250",
-   "url": "https://www.mercadolibre.com.ar/soporte-celular-con-carga-usb-para-motomel-skua-150-250/up/MLAU3374451044",
-   "price_prev": 94999,
-   "price_cur": 69111,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_635102-MLA90435680525_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5251728836",
-   "title": "Parlante Portatil Greatnice Gts 1309 Bluetooth 15w Luces Led Negro",
-   "url": "https://www.mercadolibre.com.ar/parlante-portatil-greatnice-gts-1309-bluetooth-15w-luces-led/up/MLAU5251728836",
-   "price_prev": 88999,
-   "price_cur": 69063,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_654908-MLA116423440862_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3368323439",
-   "title": "Soporte Celular Honda Cb 250 Twister / Con Carga Usb",
-   "url": "https://www.mercadolibre.com.ar/soporte-celular-honda-cb-250-twister-con-carga-usb/up/MLAU3368323439",
-   "price_prev": 94999,
-   "price_cur": 69049,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_714905-MLA90435728081_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA64025589",
-   "title": "Auriculares Inalámbricos Gamer Anker Soundcore P30i, Bluetooth 5.4 TWS, ANC Adaptativo 42dB, Graves Potentes, 45h Batería, Estuche 2 en 1 So",
-   "url": "https://www.mercadolibre.com.ar/auriculares-inalambricos-gamer-anker-soundcore-p30i-bluetooth-54-tws-anc-adaptativo-42db-graves-potentes-45h-bateria-estuche-2-en-1-soporte-para-celular-ip54/p/MLA64025589",
-   "price_prev": 146990,
-   "price_cur": 67653,
-   "discount": 54,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_815432-MLA119077277955_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA2085682237",
-   "title": "Barra Sonido Tv 55 Cm 4 Parlantes Inalámbrica Negro",
-   "url": "https://www.mercadolibre.com.ar/barra-sonido-tv-55-cm-4-parlantes-inalambrica-negro/p/MLA2085682237",
-   "price_prev": 129117,
-   "price_cur": 65478,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA912969420",
-   "title": "Funda Spigen Liquid Air Para iPhone 16 Pro Plus Max",
-   "url": "https://articulo.mercadolibre.com.ar/MLA-912969420-funda-spigen-liquid-air-para-iphone-16-pro-plus-max-_JM",
-   "price_prev": 79990,
-   "price_cur": 63868,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_936470-MLA89197548064_082025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4682716663",
-   "title": "Funda Teclado Español Para iPad 10ma 11va A16 Generacion Negro",
-   "url": "https://www.mercadolibre.com.ar/funda-teclado-espanol-para-ipad-10ma-11va-a16-generacion/up/MLAU4682716663",
-   "price_prev": 79990,
-   "price_cur": 63734,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_816540-MLA116044033061_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA76325367",
-   "title": "Smartwatch Reloj Inteligente Noak M30 Classic Metal 1.27\" TFT-LCD IP68 Rosa",
-   "url": "https://www.mercadolibre.com.ar/smartwatch-reloj-inteligente-noak-m30-classic-metal-127-tft-lcd-ip68-rosa/p/MLA76325367",
-   "price_prev": 122999,
-   "price_cur": 63039,
-   "discount": 49,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_944212-MLA114244371266_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA69913757",
-   "title": "Auricular Bluetooth 20hs De Autonomía Y Opción De Cableado Color Marrón",
-   "url": "https://www.mercadolibre.com.ar/auricular-bluetooth-20hs-de-autonomia-y-opcion-de-cableado-color-marron/p/MLA69913757",
-   "price_prev": 73288,
-   "price_cur": 58630,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_747801-MLA111824693521_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA65816256",
-   "title": "Auricular Bluetooth 20hs De Autonomía Y Opción De Cableado Color Negro",
-   "url": "https://www.mercadolibre.com.ar/auricular-bluetooth-20hs-de-autonomia-y-opcion-de-cableado-color-negro/p/MLA65816256",
-   "price_prev": 73288,
-   "price_cur": 58630,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_986698-MLA107451310493_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3451749141",
-   "title": "Reloj Pro Smartwatch Amoled 1,43 Ip68 Android Ios Gadnic Blanco Negro",
-   "url": "https://www.mercadolibre.com.ar/reloj-pro-smartwatch-amoled-143-ip68-android-ios-gadnic/up/MLAU3451749141",
-   "price_prev": 95499,
-   "price_cur": 57299,
-   "discount": 40,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_958568-MLA93836762383_092025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA46119572",
-   "title": "Soporte Doble Monitor Ditron 13-27 pulgadas Brazo Mesa Giratorio Inclinable VESA",
-   "url": "https://www.mercadolibre.com.ar/soporte-doble-monitor-ditron-13-27-pulgadas-brazo-mesa-giratorio-inclinable-vesa/p/MLA46119572",
-   "price_prev": 120942,
-   "price_cur": 55660,
-   "discount": 54,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838298-MLA96125225941_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU3994958247",
-   "title": "Auriculares Inalámbricos Para Juegos Attack Shark L80 Pro, B Black",
-   "url": "https://www.mercadolibre.com.ar/auriculares-inalambricos-para-juegos-attack-shark-l80-pro-b/up/MLAU3994958247",
-   "price_prev": 106740,
-   "price_cur": 54137,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA3387146750",
-   "title": "Smartwatch Hombre Llamadas Bluetooth Negro",
-   "url": "https://articulo.mercadolibre.com.ar/MLA-3387146750-smartwatch-hombre-llamadas-bluetooth-negro-_JM",
-   "price_prev": 126653,
-   "price_cur": 54121,
-   "discount": 57,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU5137280562",
-   "title": "Funda Niños Resistente Golpes Para iPad Air 6 M2 11 A2902 Rosa Chicle",
-   "url": "https://www.mercadolibre.com.ar/funda-ninos-resistente-golpes-para-ipad-air-6-m2-11--a2902/up/MLAU5137280562",
-   "price_prev": 79900,
-   "price_cur": 52978,
-   "discount": 34,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_706820-MLA115862101716_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4297375539",
-   "title": "Smartwatch Con Auriculares Bluetooth Plateado Gel De Sílice",
-   "url": "https://www.mercadolibre.com.ar/smartwatch-con-auriculares-bluetooth/up/MLAU4297375539",
-   "price_prev": 100782,
-   "price_cur": 51117,
-   "discount": 49,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA44226597",
-   "title": "Mochila Viaje Carry On Avion Porta Notebook Waggs Color Gris Diseño De La Tela Liso",
-   "url": "https://www.mercadolibre.com.ar/mochila-viaje-carry-on-avion-porta-notebook-waggs-color-gris-diseno-de-la-tela-liso/p/MLA44226597",
-   "price_prev": 96758,
-   "price_cur": 45990,
-   "discount": 52,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_922299-MLA99924158665_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLAU4284758025",
-   "title": "Adaptador Inalambrico Carplay Android Auto 2 En 1 Usb Tipo C, Convertidor Wireless Para Auto, Dongle Bluetooth Wifi Compatible Con iPhone Y",
-   "url": "https://www.mercadolibre.com.ar/adaptador-inalambrico-carplay-android-auto-2-en-1-usb-tipo-c-convertidor-wireless-para-auto-dongle-bluetooth-wifi-compatible-con-iphone-y-android-conexion-rapida-para-pantalla-del-vehiculo/up/MLAU4284758025",
-   "price_prev": 46125,
-   "price_cur": 32900,
-   "discount": 29,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_979091-MLA113226588786_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
-   "id": "MLA54953357",
-   "title": "Micrófono Corbatero Inalámbrico K9PRO USB C iPhone Android x2 Negro",
-   "url": "https://www.mercadolibre.com.ar/microfono-corbatero-inalambrico-k9pro-usb-c-iphone-android-x2-negro/p/MLA54953357",
-   "price_prev": 62000,
-   "price_cur": 26040,
-   "discount": 58,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_639942-MLA116063986480_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-23"
-  },
-  {
    "id": "MLAU4010963621",
    "title": "Podadora De Altura A Combustion Stihl Ht 105 Profesional",
    "url": "https://www.mercadolibre.com.ar/podadora-de-altura-a-combustion-stihl-ht-105-profesional/up/MLAU4010963621",
@@ -8687,17 +7378,6 @@
    "price_cur": 1988599,
    "discount": 33,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_778359-MLA108114356305_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-25"
-  },
-  {
-   "id": "MLA50851393",
-   "title": "Notebook Hp 15-fc0047wm 15,6' Fhd Touch 512gb / 16gb Ram R7-7730u W11",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fc0047wm-156-fhd-touch-512gb-16gb-ram-r7-7730u-w11/p/MLA50851393",
-   "price_prev": 2549000,
-   "price_cur": 1942011,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_797396-MLA99554474430_122025-F.webp",
    "cuotas": null,
    "agregada": "2026-10-25"
   },
@@ -17245,17 +15925,6 @@
    "price_cur": 737038,
    "discount": 22,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_837135-MLA99555165878_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-27"
-  },
-  {
-   "id": "MLAU5566091821",
-   "title": "Inodoro Inteligente Yuka Nautilus Bidet Secado Autolimpiante Blanco",
-   "url": "https://www.mercadolibre.com.ar/inodoro-inteligente-yuka-nautilus-bidet-secado-autolimpiante/up/MLAU5566091821",
-   "price_prev": 1000000,
-   "price_cur": 720000,
-   "discount": 28,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_705454-MLA119930672817_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-10-27"
   },
@@ -31164,17 +29833,6 @@
    "agregada": "2026-10-30"
   },
   {
-   "id": "MLA78387901",
-   "title": "Heladera No Frost Philco Side by Side Inverter NPHSB450XI 428L Inox",
-   "url": "https://www.mercadolibre.com.ar/heladera-no-frost-philco-side-by-side-inverter-nphsb450xi-428l-inox/p/MLA78387901",
-   "price_prev": 1891322,
-   "price_cur": 1449999,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_831321-MLA116712017300_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-30"
-  },
-  {
    "id": "MLA66415522",
    "title": "Lavarropas Ecoinverter 10,5 Kg 1200 Rpm Gris Lcfdr1012tg0 Gris",
    "url": "https://www.mercadolibre.com.ar/lavarropas-ecoinverter-105-kg-1200-rpm-gris-lcfdr1012tg0-gris/p/MLA66415522",
@@ -34640,17 +33298,6 @@
    "agregada": "2026-10-31"
   },
   {
-   "id": "MLA75832725",
-   "title": "Teléfono celular Samsung Galaxy Z Flip8, cámara de 512 GB, 12 GB Ram, 50 MP, negro",
-   "url": "https://www.mercadolibre.com.ar/telefono-celular-samsung-galaxy-z-flip8-camara-de-512-gb-12-gb-ram-50-mp-negro/p/MLA75832725",
-   "price_prev": 3099999,
-   "price_cur": 2339999,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_962662-MLA115247217499_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-31"
-  },
-  {
    "id": "MLAU5516672996",
    "title": "Tablet Lenovo Yoga Tab Plus Gen2 Snapdragon 8 16gb 256gb 13",
    "url": "https://www.mercadolibre.com.ar/tablet-lenovo-yoga-tab-plus-gen2-snapdragon-8-16gb-256gb-13/up/MLAU5516672996",
@@ -34735,17 +33382,6 @@
    "price_cur": 1599999,
    "discount": 20,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_770375-MLA99938282647_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-31"
-  },
-  {
-   "id": "MLA79692488",
-   "title": "Notebook Dell Inspiron 15 con Procesador AMD Ryzen 7, 16 GB de RAM y 512 GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-15-con-procesador-amd-ryzen-7-16-gb-de-ram-y-512-gb-ssd/p/MLA79692488",
-   "price_prev": 1999999,
-   "price_cur": 1597169,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_785783-MLA118015737985_092026-F.webp",
    "cuotas": null,
    "agregada": "2026-10-31"
   },
@@ -35131,17 +33767,6 @@
    "price_cur": 770183,
    "discount": 23,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_933625-MLA100044019437_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-10-31"
-  },
-  {
-   "id": "MLA54802110",
-   "title": "Viggo Esmeralda Negro Queen 200 x 160 cm",
-   "url": "https://www.mercadolibre.com.ar/viggo-esmeralda-negro-queen-200-x-160-cm/p/MLA54802110",
-   "price_prev": 1719851,
-   "price_cur": 764441,
-   "discount": 56,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_841113-MLA111867103534_062026-F.webp",
    "cuotas": null,
    "agregada": "2026-10-31"
   },
@@ -43132,28 +41757,6 @@
    "agregada": "2026-11-01"
   },
   {
-   "id": "MLA52138302",
-   "title": "Notebook Dell Inspiron 3530 Intel Core i5 de 15.6\" Full HD Táctil con 8 GB RAM y 512 GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-3530-intel-core-i5-de-156-full-hd-tactil-con-8-gb-ram-y-512-gb-ssd/p/MLA52138302",
-   "price_prev": 1989999,
-   "price_cur": 1588999,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_726404-MLA99457244054_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-01"
-  },
-  {
-   "id": "MLA80727734",
-   "title": "Notebook HP 15-fd1151la Intel Core 5 8 GB RAM 512 GB SSD 15.6\" Táctil FHD Windows 11 Home",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd1151la-intel-core-5-8-gb-ram-512-gb-ssd-156-tactil-fhd-windows-11-home/p/MLA80727734",
-   "price_prev": 2229999,
-   "price_cur": 1519999,
-   "discount": 32,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_935245-MLA119855660419_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-01"
-  },
-  {
    "id": "MLA80187732",
    "title": "Smart Tv Samsung 70 Crystal Uhd U8000h 4k Vision Ai 2026",
    "url": "https://www.mercadolibre.com.ar/smart-tv-samsung-70-crystal-uhd-u8000h-4k-vision-ai-2026/p/MLA80187732",
@@ -43282,17 +41885,6 @@
    "price_cur": 854499,
    "discount": 39,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_712468-MLA118056231048_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-01"
-  },
-  {
-   "id": "MLA27428327",
-   "title": "Sommier Y Colchón Springwall Mcb 115 Queen 160x200cm Color Beige Con Base Dividida",
-   "url": "https://www.mercadolibre.com.ar/sommier-y-colchon-springwall-mcb-115-queen-160x200cm-color-beige-con-base-dividida/p/MLA27428327",
-   "price_prev": 2733573,
-   "price_cur": 821985,
-   "discount": 70,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_665203-MLA96666084724_112025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-01"
   },
@@ -48137,17 +46729,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA1055308781",
-   "title": "Apple iPhone 17 Pro (256 GB) - Azul profundo - Distribuidor Autorizado",
-   "url": "https://www.mercadolibre.com.ar/apple-iphone-17-pro-256-gb-azul-profundo-distribuidor-autorizado/p/MLA1055308781",
-   "price_prev": 4999998,
-   "price_cur": 3121832,
-   "discount": 38,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_919058-MLA104669489859_012026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA62330955",
    "title": "Notebook Gamer MSI Cyborg 15 con Intel Core Ultra 7, RTX 5070, 16GB de RAM y 1TB SSD",
    "url": "https://www.mercadolibre.com.ar/notebook-gamer-msi-cyborg-15-con-intel-core-ultra-7-rtx-5070-16gb-de-ram-y-1tb-ssd/p/MLA62330955",
@@ -48188,17 +46769,6 @@
    "price_cur": 2940311,
    "discount": 20,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_709960-MLA98290595000_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA64652412",
-   "title": "Notebook Lenovo Thinkpad E16 Gen3 Ryzen 7 250 16gb 512gb 21su0008ac",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-thinkpad-e16-gen3-ryzen-7-250-16gb-512gb-21su0008ac/p/MLA64652412",
-   "price_prev": 3633999,
-   "price_cur": 2907199,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_847795-MLA104900152090_012026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48320,17 +46890,6 @@
    "price_cur": 2690739,
    "discount": 39,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_711221-MLA119006453719_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA55308917",
-   "title": "Apple iPhone 17 (256 GB) - Negro",
-   "url": "https://www.mercadolibre.com.ar/apple-iphone-17-256-gb-negro/p/MLA55308917",
-   "price_prev": 3399999,
-   "price_cur": 2651999,
-   "discount": 22,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_908347-MLA104127137314_012026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48467,17 +47026,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA40287808",
-   "title": "Apple iPhone 16 (128 GB) - Negro",
-   "url": "https://www.mercadolibre.com.ar/apple-iphone-16-128-gb-negro/p/MLA40287808",
-   "price_prev": 2957999,
-   "price_cur": 2248079,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838311-MLA99501450112_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA65559881",
    "title": "Samsung Galaxy S26+, 512 gb, 12 gb, Galaxy Ai, cámara triple violeta",
    "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s26-512-gb-12-gb-galaxy-ai-camara-triple-violeta/p/MLA65559881",
@@ -48485,17 +47033,6 @@
    "price_cur": 2239999,
    "discount": 32,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_898817-MLA107389569094_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA80561005",
-   "title": "Celular Samsung Galaxy Z Flip 8 512gb 12gb Ram 50 Mp Crema",
-   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-z-flip-8-512gb-12gb-ram-50-mp-crema/p/MLA80561005",
-   "price_prev": 2999999,
-   "price_cur": 2196999,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_889585-MLA117825832278_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48555,17 +47092,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA68728717",
-   "title": "Notebook Asus Gamer Tuf Gaming A15 Rtx 3050 16gb 512gb Fhd W11",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-gamer-tuf-gaming-a15-rtx-3050-16gb-512gb-fhd-w11/p/MLA68728717",
-   "price_prev": 4004548,
-   "price_cur": 2027999,
-   "discount": 49,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_749137-MLA110076990586_042026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA65503990",
    "title": "Samsung Galaxy S26 Ultra, 256 gb, 12 gb, cámara cuádruple violeta",
    "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s26-ultra-256-gb-12-gb-camara-cuadruple-violeta/p/MLA65503990",
@@ -48573,17 +47099,6 @@
    "price_cur": 2015853,
    "discount": 53,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_969781-MLA108104479389_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA69322610",
-   "title": "Motorola Razr 70 Ultra Orient Blue",
-   "url": "https://www.mercadolibre.com.ar/motorola-razr-70-ultra-orient-blue/p/MLA69322610",
-   "price_prev": 2899999,
-   "price_cur": 1999999,
-   "discount": 31,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_766233-MLA114427559780_082026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48665,17 +47180,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA62106195",
-   "title": "Lenovo 2-en-1 Ideapad 5 Ips 16 Ryzen 7 8845hs 16gb 1tb Ssd",
-   "url": "https://www.mercadolibre.com.ar/lenovo-2-en-1-ideapad-5-ips-16-ryzen-7-8845hs-16gb-1tb-ssd/p/MLA62106195",
-   "price_prev": 3171298,
-   "price_cur": 1942999,
-   "discount": 39,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_653759-MLA98172571787_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA75502821",
    "title": "Notebook Lenovo Thinkbook 16 G8 Core 5-210h 8gb Ssd 512gb Arctic Grey",
    "url": "https://www.mercadolibre.com.ar/notebook-lenovo-thinkbook-16-g8-core-5-210h-8gb-ssd-512gb-arctic-grey/p/MLA75502821",
@@ -48753,17 +47257,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA62252283",
-   "title": "Smart Tv Samsung 75 4K Ultra Hd 75u8000F Crystal HDR",
-   "url": "https://www.mercadolibre.com.ar/smart-tv-samsung-75-4k-ultra-hd-75u8000f-crystal-hdr/p/MLA62252283",
-   "price_prev": 2389999,
-   "price_cur": 1849999,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_875494-MLA99029638996_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA45513966",
    "title": "Samsung Galaxy S25 Plus 256/12gb Silver Shadow",
    "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s25-plus-25612gb-silver-shadow/p/MLA45513966",
@@ -48771,17 +47264,6 @@
    "price_cur": 1849999,
    "discount": 30,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_908114-MLA101582699557_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA65915143",
-   "title": "Notebook Lenovo IdeaPad Slim 3 15ARP10 AMD Ryzen 7 7735HS 16GB RAM DDR5 1TB SSD NVMe 15.3 WUXGA IPS 1920x1200 AMD Radeon Graphics 680M WiFi",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15arp10-amd-ryzen-7-7735hs-16gb-ram-ddr5-1tb-ssd-nvme-153-wuxga-ips-1920x1200-amd-radeon-graphics-680m-wifi-6-teclado-espanol-windows-11-home-luna-grey/p/MLA65915143",
-   "price_prev": 2341195,
-   "price_cur": 1849544,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_911348-MLA106856417560_022026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48819,28 +47301,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA2097250032",
-   "title": "Celular Samsung Galaxy S23 Ultra 6.8 Pulgadas Phantom Black",
-   "url": "https://www.mercadolibre.com.ar/smartphone-reacondicionado-samsung-galaxy-s23-ultra-5g-512gb/p/MLA2097250032",
-   "price_prev": 2373146,
-   "price_cur": 1756134,
-   "discount": 26,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA2072842200",
-   "title": "Teléfono Celular Samsung Galaxy S24+ Plus 512gb Ai 50mp Andr",
-   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s24-512gb-black-refurbished/p/MLA2072842200",
-   "price_prev": 2289302,
-   "price_cur": 1754286,
-   "discount": 23,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA61075220",
    "title": "Notebook Asus TUF Gaming A15 FA506NCG-HN204 AMD Ryzen 7 7445HS 8GB DDR5 512GB SSD PCIe NVMe Gráficos NVIDIA GeForce RTX 3050 4GB (15,6) FHD",
    "url": "https://www.mercadolibre.com.ar/notebook-asus-tuf-gaming-a15-fa506ncg-hn204-amd-ryzen-7-7445hs-8gb-ddr5-512gb-ssd-pcie-nvme-graficos-nvidia-geforce-rtx-3050-4gb-156-fhd-1920x1080-ips-wi-fi-6-windows-11-home-color-graphite-black/p/MLA61075220",
@@ -48848,28 +47308,6 @@
    "price_cur": 1746999,
    "discount": 39,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_901552-MLA96176303437_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA65915102",
-   "title": "Notebook Lenovo Ideapad Slim 3 15ARP10 AMD Ryzen 7 7735HS 16GB RAM DDR5 512GB SSD NVMe 15.3 WUXGA IPS 1920x1200 AMD Radeon Graphics 680M WiF",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15arp10-amd-ryzen-7-7735hs-16gb-ram-ddr5-512gb-ssd-nvme-153-wuxga-ips-1920x1200-amd-radeon-graphics-680m-wifi-6-teclado-espanol-windows-11-home-luna-grey/p/MLA65915102",
-   "price_prev": 2188295,
-   "price_cur": 1725999,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_928909-MLA106926827338_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA40823596",
-   "title": "Notebook Lenovo Yoga Slim 7, Intel Core Ultra 5 125H, 16gb de Ram, 512gb Ssd M.2 Nvme, Gráficos integrados Intel (14´), 1920 x 1200 px Oled",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-yoga-slim-7-intel-core-ultra-5-125h-16gb-de-ram-512gb-ssd-m2-nvme-graficos-integrados-intel-14-1920-x-1200-px-oled-wuxga-wi-fi-windows-11-home-color-luna-grey/p/MLA40823596",
-   "price_prev": 3217498,
-   "price_cur": 1709613,
-   "discount": 47,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_749869-MLA120437220549_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48892,28 +47330,6 @@
    "price_cur": 1702256,
    "discount": 21,
    "img": null,
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA2004978116",
-   "title": "Samsung Galaxy S25 Ultra 5G Dual SIM 256 GB Titanium Whitesilver 12 GB RAM - Excelente (Reacondicionado)",
-   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s25-ultra-5g-dual-sim-256-gb-titanium-whitesilver-12-gb-ram-excelente-reacondicionado/p/MLA2004978116",
-   "price_prev": 2299999,
-   "price_cur": 1701999,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_894379-MLA96416604008_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA1027172667",
-   "title": "Apple iPhone 15 (128 GB) - Azul - Distribuidor Autorizado",
-   "url": "https://www.mercadolibre.com.ar/apple-iphone-15-128-gb-azul-distribuidor-autorizado/p/MLA1027172667",
-   "price_prev": 2159999,
-   "price_cur": 1699999,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_901991-MLA96144091409_102025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -48984,17 +47400,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA69580503",
-   "title": "Notebook Dell 15.6 Táctil i7 13va Gen 16GB 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-156-tactil-i7-13va-gen-16gb-512gb-ssd/p/MLA69580503",
-   "price_prev": 2178599,
-   "price_cur": 1673163,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_877786-MLA111591770203_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA70034121",
    "title": "Notebook Asus Vivobook 15 M1502NAQ de 15.6\" con AMD Ryzen 5, 24GB RAM y 512GB SSD",
    "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502naq-de-156-con-amd-ryzen-5-24gb-ram-y-512gb-ssd/p/MLA70034121",
@@ -49006,17 +47411,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA2097246592",
-   "title": "Smartphone Samsung Galaxy S23 Ultra 256 Gb 12 Gb Ram 200 Mp",
-   "url": "https://www.mercadolibre.com.ar/refurbished-smartphone-samsung-galaxy-s23-ultra-5g-256gb-pha/p/MLA2097246592",
-   "price_prev": 2154751,
-   "price_cur": 1651193,
-   "discount": 23,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA60732130",
    "title": "Notebook Lenovo LOQ 15IAX9E Intel Core i5-12450HX 8GB DDR5 512GB SSD M.2 PCIe NVMe Gráficos NVIDIA GeForce RTX 3050 6GB (15,6) FullHD 1920x1",
    "url": "https://www.mercadolibre.com.ar/notebook-lenovo-loq-15iax9e-intel-core-i5-12450hx-8gb-ddr5-512gb-ssd-m2-pcie-nvme-graficos-nvidia-geforce-rtx-3050-6gb-156-fullhd-1920x1080-ips-wi-fi-6-windows-11-home-color-luna-grey/p/MLA60732130",
@@ -49024,17 +47418,6 @@
    "price_cur": 1641999,
    "discount": 55,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_942932-MLA99986878079_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA62420420",
-   "title": "Notebook Dell Inspiron Táctil de 15.6\" con Ryzen 7, 16GB RAM y 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-tactil-de-156-con-ryzen-7-16gb-ram-y-512gb-ssd/p/MLA62420420",
-   "price_prev": 2722999,
-   "price_cur": 1639049,
-   "discount": 40,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_751478-MLA98664682842_112025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49061,17 +47444,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA72201391",
-   "title": "Notebook Lenovo V15 Gen 5 de 15.6\" Full HD con Intel Core i5, 16GB RAM y 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-gen-5-de-156-full-hd-con-intel-core-i5-16gb-ram-y-512gb-ssd/p/MLA72201391",
-   "price_prev": 2029495,
-   "price_cur": 1599799,
-   "discount": 21,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_824347-MLA112749252391_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA2075981198",
    "title": "Teléfono celular Samsung Galaxy S25 Ultra 5G, 512 GB, 12 GB de RAM, cámara cuádruple 200+50+10+50, pantalla grande de titanio negro azabache",
    "url": "https://www.mercadolibre.com.ar/telefono-celular-samsung-galaxy-s25-ultra-5g-512-gb-12-gb-de-ram-camara-cuadruple-200501050-pantalla-grande-de-titanio-negro-azabache-de-69-pulgadas-bueno-reacondicionado/p/MLA2075981198",
@@ -49079,17 +47451,6 @@
    "price_cur": 1573564,
    "discount": 51,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_856101-MLA106843601508_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA2066560683",
-   "title": "Smartphone Samsung Galaxy S23 Ultra 256 Gb 8 Gb Ram 5g",
-   "url": "https://www.mercadolibre.com.ar/smartphone-samsung-galaxy-s23-ultra-256gb-green-5g/p/MLA2066560683",
-   "price_prev": 2053083,
-   "price_cur": 1573284,
-   "discount": 23,
-   "img": null,
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49149,17 +47510,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA66635931",
-   "title": "Notebook Táctil Laptop Lenovo IdeaPad Slim 3 15.6'' Ryzen 7 5825U 16GB RAM 512GB SSD W11",
-   "url": "https://www.mercadolibre.com.ar/notebook-tactil-laptop-lenovo-ideapad-slim-3-156-ryzen-7-5825u-16gb-ram-512gb-ssd-w11/p/MLA66635931",
-   "price_prev": 1986899,
-   "price_cur": 1525938,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_828826-MLA108701480319_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA2070443351",
    "title": "Ordenador Portátil Nimo 15.6 Ryzen 7 32 Gb Ddr5 1 Tb Ssd",
    "url": "https://www.mercadolibre.com.ar/laptop-nimo-gaming-ips-156-fhd-ryzen-7-7735hs-16gb-ram/p/MLA2070443351",
@@ -49182,17 +47532,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA53716233",
-   "title": "Smart TV LG UHD AI 75\" UHD 4K Procesador Alpha 7 8va Gen con Inteligencia Artificial 75UA8550PSA",
-   "url": "https://www.mercadolibre.com.ar/smart-tv-lg-uhd-ai-75-uhd-4k-procesador-alpha-7-8va-gen-con-inteligencia-artificial-75ua8550psa/p/MLA53716233",
-   "price_prev": 1979999,
-   "price_cur": 1499999,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_622993-MLA120083507659_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA46215784",
    "title": "iPhone 16e (128 Gb) - Negro",
    "url": "https://www.mercadolibre.com.ar/iphone-16e-128gb-negro/p/MLA46215784",
@@ -49211,28 +47550,6 @@
    "price_cur": 1499990,
    "discount": 24,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_762122-MLA116427303022_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA80552716",
-   "title": "Notebook HP 15.6\" Ryzen 7 7730U 16GB 512GB TOUCH HP FHD W11 Home Natural Silver",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-156-ryzen-7-7730u-16gb-512gb-touch-hp-fhd-w11-home-natural-silver/p/MLA80552716",
-   "price_prev": 2069999,
-   "price_cur": 1498999,
-   "discount": 28,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_871535-MLA119360436585_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA54227636",
-   "title": "Notebook Dell Inspiron 14 Plus 5441 Pantalla 14\" FHD+ Gris 16GB Ram 1TB SSD Windows 11",
-   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-14-plus-5441-pantalla-14-fhd-gris-16gb-ram-1tb-ssd-windows-11/p/MLA54227636",
-   "price_prev": 1999999,
-   "price_cur": 1498999,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_862554-MLA91312510777_082025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49266,28 +47583,6 @@
    "price_cur": 1474399,
    "discount": 55,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_682334-MLA99512885318_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA2029570473",
-   "title": "Smartphone Samsung Galaxy S24 5g 256gb 8gb Pantalla Amoled D",
-   "url": "https://www.mercadolibre.com.ar/smartphone-samsung-galaxy-s24-sm-s921bds-8gb256gb-black/p/MLA2029570473",
-   "price_prev": 1921279,
-   "price_cur": 1472278,
-   "discount": 23,
-   "img": null,
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA68726971",
-   "title": "Notebook Asus Vivobook 15 M1502XA-BQ012 AMD Ryzen 7 7840HS 16GB DDR5 512GB SSD PCIe NVMe Gráficos AMD Radeon 780M (15,6) Full HD 1920x1080 I",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502xa-bq012-amd-ryzen-7-7840hs-16gb-ddr5-512gb-ssd-pcie-nvme-graficos-amd-radeon-780m-156-full-hd-1920x1080-ips-wi-fi-6-windows-11-home-color-quiet-blue/p/MLA68726971",
-   "price_prev": 2867698,
-   "price_cur": 1453999,
-   "discount": 49,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_758656-MLA110989567651_042026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49347,28 +47642,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA74715247",
-   "title": "Lavasecarropas Samsung Wd11t504 Control Ia White 11kg/7kg Blanco",
-   "url": "https://www.mercadolibre.com.ar/lavasecarropas-samsung-wd11t504-control-ia-white-11kg7kg-blanco/p/MLA74715247",
-   "price_prev": 1999999,
-   "price_cur": 1399999,
-   "discount": 30,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_942859-MLA113972849979_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA67641732",
-   "title": "Notebook Lenovo V15 G4 con Ryzen 7, 16GB de RAM y 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-g4-con-ryzen-7-16gb-de-ram-y-512gb-ssd/p/MLA67641732",
-   "price_prev": 1889999,
-   "price_cur": 1399999,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_778060-MLA110085538343_042026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA68310838",
    "title": "Notebook HP 255 G10 con AMD Ryzen 5 7535U, 24GB de RAM y 512GB SSD",
    "url": "https://www.mercadolibre.com.ar/notebook-hp-255-g10-con-amd-ryzen-5-7535u-24gb-de-ram-y-512gb-ssd/p/MLA68310838",
@@ -49376,17 +47649,6 @@
    "price_cur": 1399899,
    "discount": 26,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_781270-MLA115309338090_082026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA68310856",
-   "title": "Notebook Hp 255r G10 Amd Ryzen 5 7535u 24gb Ram 512gb Ssd Windows 11 Home Color Plata",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-255r-g10-amd-ryzen-5-7535u-24gb-ram-512gb-ssd-windows-11-home-color-plata/p/MLA68310856",
-   "price_prev": 1889999,
-   "price_cur": 1399899,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_610241-MLA116718262577_082026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49468,17 +47730,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA63652584",
-   "title": "Notebook Asus Vivobook X1504VA-BQ592 Intel Core 5 120U 16GB de Ram DDR4 512GB SSD M.2 PCIe NVME Intel Graphics (15,6) 1920 x 1080 Full HD IP",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-x1504va-bq592-intel-core-5-120u-16gb-de-ram-ddr4-512gb-ssd-m2-pcie-nvme-intel-graphics-156-1920-x-1080-full-hd-ips-wifi-6-80211ax-windows-11-home-color-plateado/p/MLA63652584",
-   "price_prev": 2050948,
-   "price_cur": 1369999,
-   "discount": 33,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_944412-MLA102487181288_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA2016165140",
    "title": "Samsung Galaxy S25 Plus 512GB 12GB RAM Mint - Aceptable (Reacondicionado)",
    "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s25-plus-512gb-12gb-ram-mint-aceptable-reacondicionado/p/MLA2016165140",
@@ -49486,17 +47737,6 @@
    "price_cur": 1362431,
    "discount": 45,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_903452-MLA99987676435_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA70106410",
-   "title": "Notebook Asus VivoBook de 15.6\" Full HD con Intel Core 5, 16GB RAM y 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-de-156-full-hd-con-intel-core-5-16gb-ram-y-512gb-ssd/p/MLA70106410",
-   "price_prev": 2283598,
-   "price_cur": 1357999,
-   "discount": 41,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_684346-MLA111071812646_052026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49519,28 +47759,6 @@
    "price_cur": 1350180,
    "discount": 52,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838032-MLA96419958564_102025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA74965147",
-   "title": "Notebook Lenovo IdeaPad Slim 3 15IRU8 Intel Core i5-1335U 16GB RAM 256GB SSD Windows 11 15.6\" FHD Gráficos integrados",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15iru8-intel-core-i5-1335u-16gb-ram-256gb-ssd-windows-11-156-fhd-graficos-integrados/p/MLA74965147",
-   "price_prev": 1819999,
-   "price_cur": 1348899,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_949232-MLA114134973889_072026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA70033367",
-   "title": "Notebook Asus Vivobook 15 M1502NAQ-BQ104 AMD Ryzen 5 150 16GB De Ram DDR5 512GB SSD PCIe Gráficos AMD Radeon (15,6) Full HD 1920 x 1080 px I",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502naq-bq104-amd-ryzen-5-150-16gb-de-ram-ddr5-512gb-ssd-pcie-graficos-amd-radeon-156-full-hd-1920-x-1080-px-ips-wi-fi-6-80211ax-windows-11-home-color-quiet-blue/p/MLA70033367",
-   "price_prev": 2242347,
-   "price_cur": 1345999,
-   "discount": 40,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_979784-MLA112165566127_052026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49585,17 +47803,6 @@
    "price_cur": 1299999,
    "discount": 35,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_766149-MLA118630372719_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA22919080",
-   "title": "Colchón y Sommier Simmons Hotel Bilt King Size 200x200",
-   "url": "https://www.mercadolibre.com.ar/colchon-y-sommier-simmons-hotel-bilt-king-size-200x200/p/MLA22919080",
-   "price_prev": 4726314,
-   "price_cur": 1299960,
-   "discount": 72,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_715863-MLA95706972296_102025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49732,28 +47939,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA77328371",
-   "title": "Notebook Asus Vivobook 15 Ryzen 7 8gb 512gb W11",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-ryzen-7-8gb-512gb-w11/p/MLA77328371",
-   "price_prev": 2489848,
-   "price_cur": 1192999,
-   "discount": 52,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_767574-MLA119446558949_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA66701379",
-   "title": "Notebook HP 15-fd0267la Intel Core i5 8GB RAM 512GB SSD 15.6\" Táctil FHD Windows 11 Incluye Mochila y Mouse HP",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd0267la-intel-core-i5-8gb-ram-512gb-ssd-156-tactil-fhd-windows-11-incluye-mochila-y-mouse-hp/p/MLA66701379",
-   "price_prev": 1999999,
-   "price_cur": 1189999,
-   "discount": 41,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_638456-MLA108805561183_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA41505819",
    "title": "Secarropas Carga Frontal Por Calor 9kg Drean Sed090vgcl0 C Color Gris",
    "url": "https://www.mercadolibre.com.ar/secarropas-carga-frontal-por-calor-9kg-drean-sed090vgcl0-c-color-gris/p/MLA41505819",
@@ -49765,17 +47950,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA66471548",
-   "title": "Notebook HP 15-fd0331la Intel Core 3 8GB RAM 512GB SSD 15,6\" FHD Windows 11 Home",
-   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd0331la-intel-core-3-8gb-ram-512gb-ssd-156-fhd-windows-11-home/p/MLA66471548",
-   "price_prev": 1518499,
-   "price_cur": 1169244,
-   "discount": 23,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_899224-MLA108576942549_032026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA46288514",
    "title": "Heladera Inverter Midea Inox Top Mount 470 L",
    "url": "https://www.mercadolibre.com.ar/heladera-inverter-midea-inox-top-mount-470-l/p/MLA46288514",
@@ -49783,17 +47957,6 @@
    "price_cur": 1163452,
    "discount": 36,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_628026-MLA107816182411_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA14922880",
-   "title": "Freezer Vertical Midea Ff-ec8sar1 No Frost 7 Cajones 230 Lts Color Inox",
-   "url": "https://www.mercadolibre.com.ar/freezer-vertical-midea-ff-ec8sar1-no-frost-7-cajones-230-lts-color-inox/p/MLA14922880",
-   "price_prev": 1731999,
-   "price_cur": 1151999,
-   "discount": 33,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_843177-MLA111277054331_052026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -49849,17 +48012,6 @@
    "price_cur": 1125399,
    "discount": 21,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_884753-MLA99963835877_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA53189831",
-   "title": "Notebook Asus VivoBook 14 X1404VA Intel Core i3-1315U con 16GB RAM y 512GB SSD",
-   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-14-x1404va-intel-core-i3-1315u-con-16gb-ram-y-512gb-ssd/p/MLA53189831",
-   "price_prev": 1475098,
-   "price_cur": 1123999,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_941987-MLA99475406568_112025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -50003,17 +48155,6 @@
    "price_cur": 1039499,
    "discount": 21,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_759788-MLA118926590993_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLAU5242119322",
-   "title": "Xiaomi Redmi Note 15 Pro 256gb 16gb Ram Dual Sim Nfc Negro",
-   "url": "https://www.mercadolibre.com.ar/xiaomi-redmi-note-15-pro-256gb-16gb-ram-dual-sim-nfc-negro/up/MLAU5242119322",
-   "price_prev": 1357990,
-   "price_cur": 1031990,
-   "discount": 24,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_805989-MLA117928152245_092026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -50172,17 +48313,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA65839325",
-   "title": "Smart TV LG 60 Pulgadas UHD 4K - 60UA8050PSA",
-   "url": "https://www.mercadolibre.com.ar/smart-tv-lg-60-pulgadas-uhd-4k-60ua8050psa/p/MLA65839325",
-   "price_prev": 1699999,
-   "price_cur": 979999,
-   "discount": 42,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_837355-MLA106787755326_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLAU5242121440",
    "title": "Xiaomi Redmi Note 15 Pro 256gb 16gb Ram Dual Sim Nfc Titanio",
    "url": "https://www.mercadolibre.com.ar/xiaomi-redmi-note-15-pro-256gb-16gb-ram-dual-sim-nfc-titanio/up/MLAU5242121440",
@@ -50234,28 +48364,6 @@
    "price_cur": 959999,
    "discount": 49,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_987358-MLA97994421225_112025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA69994229",
-   "title": "Celular Samsung Galaxy A57 256gb Gris",
-   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-a57-256gb-gris/p/MLA69994229",
-   "price_prev": 1349999,
-   "price_cur": 945099,
-   "discount": 30,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_606900-MLA111905100945_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA70394812",
-   "title": "Notebook Lenovo Ideapad Slim 3 15,6 Fhd 256gb / 8gb Ram Ryzen 5 40 W11 - Blue",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-156-fhd-256gb-8gb-ram-ryzen-5-40-w11-blue/p/MLA70394812",
-   "price_prev": 1749999,
-   "price_cur": 944999,
-   "discount": 46,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_882540-MLA115291523015_072026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -50337,17 +48445,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA63182642",
-   "title": "Sommier Viggo Esmeralda 200x200 Cm 130 Kg Alta Densidad Negro",
-   "url": "https://www.mercadolibre.com.ar/sommier-viggo-esmeralda-200x200-cm-130-kg-alta-densidad-negro/p/MLA63182642",
-   "price_prev": 2076801,
-   "price_cur": 918595,
-   "discount": 56,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_631080-MLA109231481044_042026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA23918584",
    "title": "Colchón Simmons Backcare Hotel Bilt King Size 200x200",
    "url": "https://www.mercadolibre.com.ar/colchon-simmons-backcare-hotel-bilt-king-size-200x200/p/MLA23918584",
@@ -50377,17 +48474,6 @@
    "price_cur": 899999,
    "discount": 36,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_709130-MLA100047275463_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA48893706",
-   "title": "Lavasecarropas Midea Inverter Smart 8 Kg Mf200d80wb/t-a1 Color Gris oscuro",
-   "url": "https://www.mercadolibre.com.ar/lavasecarropas-midea-inverter-smart-8-kg-mf200d80wbt-a1-color-gris-oscuro/p/MLA48893706",
-   "price_prev": 1239999,
-   "price_cur": 899999,
-   "discount": 27,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_636246-MLA96843347943_102025-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -50432,17 +48518,6 @@
    "price_cur": 872999,
    "discount": 33,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_866354-MLA118329295985_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLAU5766418972",
-   "title": "Televisor Tcl 40 Pulgadas 1080p Q3 Series Qled Smart Roku",
-   "url": "https://www.mercadolibre.com.ar/televisor-tcl-40-pulgadas-1080p-q3-series-qled-smart-roku/up/MLAU5766418972",
-   "price_prev": 1090659,
-   "price_cur": 872527,
-   "discount": 20,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_745944-MLA118874086358_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -50568,17 +48643,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA79094143",
-   "title": "NOTEBOOK VIVOBOOK GO 15.6\" RYZEN 3-30 8GB 256GB ASUS E1504FA-BQ2974",
-   "url": "https://www.mercadolibre.com.ar/notebook-vivobook-go-156-ryzen-3-30-8gb-256gb-asus-e1504fa-bq2974/p/MLA79094143",
-   "price_prev": 3000000,
-   "price_cur": 815120,
-   "discount": 73,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_616898-MLA115911400168_092026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLAU5468695207",
    "title": "Combo Tcl 60 Nxt Paper 8+512gb Negro + Parlante Dekkin 16w",
    "url": "https://www.mercadolibre.com.ar/combo-tcl-60-nxt-paper-8512gb-negro-parlante-dekkin-16w/up/MLAU5468695207",
@@ -50696,17 +48760,6 @@
    "price_cur": 771601,
    "discount": 27,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_897654-MLA110698836126_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA77976947",
-   "title": "Smartwatch Huawei Watch D3 con Monitor de Presión Arterial, ECG y GPS para Android y iOS",
-   "url": "https://www.mercadolibre.com.ar/smartwatch-huawei-watch-d3-con-monitor-de-presion-arterial-ecg-y-gps-para-android-y-ios/p/MLA77976947",
-   "price_prev": 1019999,
-   "price_cur": 769999,
-   "discount": 25,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_717383-MLA117455984963_092026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -51052,17 +49105,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA40370773",
-   "title": "Colchón Sueño Dorado Manhattan 2 Plazas Híbrido 140x190 Cm",
-   "url": "https://www.mercadolibre.com.ar/colchon-sueno-dorado-manhattan-2-plazas-hibrido-140x190-cm/p/MLA40370773",
-   "price_prev": 2281000,
-   "price_cur": 702887,
-   "discount": 69,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_961634-MLA111387938395_052026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA69327444",
    "title": "Licuadora Procesadora De Alimentos Ninja Tb401eu",
    "url": "https://www.mercadolibre.com.ar/licuadora-procesadora-de-alimentos-ninja-tb401eu/p/MLA69327444",
@@ -51147,17 +49189,6 @@
    "price_cur": 696499,
    "discount": 30,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_795187-MLA113404276275_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA76011923",
-   "title": "Heladera No Frost Philco Inverter NPHNT267NI 244L Negro",
-   "url": "https://www.mercadolibre.com.ar/heladera-no-frost-philco-inverter-nphnt267ni-244l-negro/p/MLA76011923",
-   "price_prev": 1264999,
-   "price_cur": 694899,
-   "discount": 45,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_769145-MLA115950132716_092026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -51411,17 +49442,6 @@
    "price_cur": 636499,
    "discount": 34,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_922393-MLA100028044275_122025-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA78770399",
-   "title": "Notebook Auusda Ryzen 3 16GB 512GB SSD 15.6 FHD IPS Teclado Retroiluminado Lector Huella WiFi 6 Windows 11 Oficina Estudio",
-   "url": "https://www.mercadolibre.com.ar/notebook-auusda-ryzen-3-16gb-512gb-ssd-156-fhd-ips-teclado-retroiluminado-lector-huella-wifi-6-windows-11-oficina-estudio/p/MLA78770399",
-   "price_prev": 1361995,
-   "price_cur": 633699,
-   "discount": 53,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_813102-MLA118464673808_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -64659,17 +62679,6 @@
    "agregada": "2026-11-02"
   },
   {
-   "id": "MLA66052957",
-   "title": "Notebook Lenovo V15 G4 Abp Procesador Ryzen 7 7730u 16gb Ram 512gb Ssd Pantalla 15.6 Full Hd Sistema Operativo Windows 11",
-   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-g4-abp-procesador-ryzen-7-7730u-16gb-ram-512gb-ssd-pantalla-156-full-hd-sistema-operativo-windows-11/p/MLA66052957",
-   "price_prev": 1889999,
-   "price_cur": 1399899,
-   "discount": 26,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_903509-MLA107104380268_022026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
    "id": "MLA64290395",
    "title": "Notebook Lenovo IdeaPad Slim 3 15ABR8 82XM0151IN AMD Ryzen 7 5825U 16GB RAM 512GB SSD Sin sistema operativo 15.6\" FHD Gráficos integrados",
    "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15abr8-82xm0151in-amd-ryzen-7-5825u-16gb-ram-512gb-ssd-sin-sistema-operativo-156-fhd-graficos-integrados/p/MLA64290395",
@@ -64677,17 +62686,6 @@
    "price_cur": 1383965,
    "discount": 20,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_624163-MLA112537024972_062026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA80548809",
-   "title": "SMART TV NOBLEX DL65X9500 65 PULGADAS QLED GOOGLE TV",
-   "url": "https://www.mercadolibre.com.ar/smart-tv-noblex-dl65x9500-65-pulgadas-qled-google-tv/p/MLA80548809",
-   "price_prev": 3999999,
-   "price_cur": 1259999,
-   "discount": 69,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_846719-MLA117723950986_102026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -64930,17 +62928,6 @@
    "price_cur": 722702,
    "discount": 64,
    "img": "https://http2.mlstatic.com/D_NQ_NP_2X_967707-MLA120001462733_102026-F.webp",
-   "cuotas": null,
-   "agregada": "2026-11-02"
-  },
-  {
-   "id": "MLA45170632",
-   "title": "Sommier Viggo Zafiro 140x190 Cm Espuma De Alta Densidad Color Negro",
-   "url": "https://www.mercadolibre.com.ar/sommier-viggo-zafiro-140x190-cm-espuma-de-alta-densidad-color-negro/p/MLA45170632",
-   "price_prev": 1236345,
-   "price_cur": 679999,
-   "discount": 45,
-   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_780713-MLA110698155541_042026-F.webp",
    "cuotas": null,
    "agregada": "2026-11-02"
   },
@@ -128259,6 +126246,1326 @@
    "img": "https://http2.mlstatic.com/D_NQ_NP_827687-MLA92781925016_092025-O.webp",
    "cuotas": null,
    "agregada": "2026-11-06"
+  },
+  {
+   "id": "MLA1055308781",
+   "title": "Apple iPhone 17 Pro (256 GB) - Azul profundo - Distribuidor Autorizado",
+   "url": "https://www.mercadolibre.com.ar/apple-iphone-17-pro-256-gb-azul-profundo-distribuidor-autorizado/p/MLA1055308781",
+   "price_prev": 4999998,
+   "price_cur": 3121832,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_919058-MLA104669489859_012026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA38925598",
+   "title": "Disco Duro Nas Seagate Ironwolf Pro 3.5 20tb Sata Iii 6gbit Color Gris",
+   "url": "https://www.mercadolibre.com.ar/disco-duro-nas-seagate-ironwolf-pro-35-20tb-sata-iii-6gbit-color-gris/p/MLA38925598",
+   "price_prev": 3362935,
+   "price_cur": 2601484,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_862052-MLU78391377739_082024-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA79851313",
+   "title": "Notebook Lenovo LOQ con Procesador AMD Ryzen 7, 16 GB de RAM y RTX 4050 de 6 GB",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-loq-con-procesador-amd-ryzen-7-16-gb-de-ram-y-rtx-4050-de-6-gb/p/MLA79851313",
+   "price_prev": 4542448,
+   "price_cur": 2564999,
+   "discount": 44,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_935168-MLA118506678999_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3889029057",
+   "title": "Notebook Acer Aspire Go 15 Ryzen 7 7730u 32gb 1tb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ryzen-7-7730u-32gb-1tb-win/up/MLAU3889029057",
+   "price_prev": 4115098,
+   "price_cur": 2510999,
+   "discount": 39,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_987010-MLA109415553242_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA68393434",
+   "title": "Motorola Razr Fold Pantone Blackened Blue",
+   "url": "https://www.mercadolibre.com.ar/motorola-razr-fold-pantone-blackened-blue/p/MLA68393434",
+   "price_prev": 3999999,
+   "price_cur": 2499999,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_867827-MLA114426245926_082026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA64652412",
+   "title": "Notebook Lenovo Thinkpad E16 Gen3 Ryzen 7 250 16gb 512gb 21su0008ac",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-thinkpad-e16-gen3-ryzen-7-250-16gb-512gb-21su0008ac/p/MLA64652412",
+   "price_prev": 4119499,
+   "price_cur": 2496099,
+   "discount": 39,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_847795-MLA104900152090_012026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA67837676",
+   "title": "Notebook Acer Aspire Go 15 AG15-42P-R917 con Ryzen 7 7730U, 64 GB de RAM y 1 TB SSD en Plata",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ag15-42p-r917-con-ryzen-7-7730u-64-gb-de-ram-y-1-tb-ssd-en-plata/p/MLA67837676",
+   "price_prev": 3903897,
+   "price_cur": 2420999,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_754338-MLA110320365127_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA75832725",
+   "title": "Teléfono celular Samsung Galaxy Z Flip8, cámara de 512 GB, 12 GB Ram, 50 MP, negro",
+   "url": "https://www.mercadolibre.com.ar/telefono-celular-samsung-galaxy-z-flip8-camara-de-512-gb-12-gb-ram-50-mp-negro/p/MLA75832725",
+   "price_prev": 3187199,
+   "price_cur": 2358527,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_962662-MLA115247217499_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3926470100",
+   "title": "Notebook Samsung Galaxy Book4 Core7 150u 16gb 512gb 15.6 Fhd",
+   "url": "https://www.mercadolibre.com.ar/notebook-samsung-galaxy-book4-core7-150u-16gb-512gb-156-fhd/up/MLAU3926470100",
+   "price_prev": 3019999,
+   "price_cur": 2355715,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_674107-MLA99966489085_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA54435834",
+   "title": "Notebook Lenovo LOQ 15IAX9E Intel Core i5-12450HX 32GB DDR5 1TB SSD M.2 PCIe NVMe Gráficos NVIDIA GeForce RTX 3050 6GB (15,6) Full HD 1920x1",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-loq-15iax9e-intel-core-i5-12450hx-32gb-ddr5-1tb-ssd-m2-pcie-nvme-graficos-nvidia-geforce-rtx-3050-6gb-156-full-hd-1920x1080-ips-wi-fi-6-color-luna-grey/p/MLA54435834",
+   "price_prev": 4789947,
+   "price_cur": 2345662,
+   "discount": 51,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_864447-MLA99924982791_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA68732584",
+   "title": "Notebook Asus Vivobook 15 M1502XA-BQ012 AMD Ryzen 7 7840HS 40GB DDR5 1TB SSD PCIe NVMe Gráficos AMD Radeon 780M (15,6) Full HD 1920x1080 IPS",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502xa-bq012-amd-ryzen-7-7840hs-40gb-ddr5-1tb-ssd-pcie-nvme-graficos-amd-radeon-780m-156-full-hd-1920x1080-ips-wi-fi-6-windows-11-home-color-quiet-blue/p/MLA68732584",
+   "price_prev": 3963298,
+   "price_cur": 2236999,
+   "discount": 44,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_820241-MLA110991585331_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA80561005",
+   "title": "Celular Samsung Galaxy Z Flip 8 512gb 12gb Ram 50 Mp Crema",
+   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-z-flip-8-512gb-12gb-ram-50-mp-crema/p/MLA80561005",
+   "price_prev": 2999999,
+   "price_cur": 2196999,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_889585-MLA117825832278_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3889030833",
+   "title": "Notebook Acer Aspire Go 15 Ryzen 7 7730u 16gb 1tb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ryzen-7-7730u-16gb-1tb-win/up/MLAU3889030833",
+   "price_prev": 3522747,
+   "price_cur": 2189289,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_987010-MLA109415553242_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2086334136",
+   "title": "Celular Samsung Galaxy S23 Plus 256 Gb 8 Gb Ram Crema",
+   "url": "https://www.mercadolibre.com.ar/refurbished-samsung-galaxy-s23-plus-5g-256gb-cream/p/MLA2086334136",
+   "price_prev": 2844532,
+   "price_cur": 2104947,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_908306-CBT116385731894_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA64840104",
+   "title": "Notebook HP 255R G10 AMD Ryzen 7 7735U 16GB DDR5 512 GB SSD M.2 PCIe NVMe Gráficos AMD Radeon 680M (15,6) FullHD 1920x1080 Wi-Fi 6 (802.11ax",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-255r-g10-amd-ryzen-7-7735u-16gb-ddr5-512-gb-ssd-m2-pcie-nvme-graficos-amd-radeon-680m-156-fullhd-1920x1080-wi-fi-6-80211ax-windows-11-home-color-dark-ash-silver/p/MLA64840104",
+   "price_prev": 3971548,
+   "price_cur": 2096169,
+   "discount": 47,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_915320-MLA105001362158_012026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA67968317",
+   "title": "Notebook Acer Aspire Go 15 AG15-42P-R917 AMD Ryzen 7 7730u 32GB De Ram 2TB Ssd PCIe NVMe Gráficos AMD Radeon (15,6) Full HD 1920 px x 1080 p",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ag15-42p-r917-amd-ryzen-7-7730u-32gb-de-ram-2tb-ssd-pcie-nvme-graficos-amd-radeon-156-full-hd-1920-px-x-1080-px-wifi-windows-11-home-color-plateado/p/MLA67968317",
+   "price_prev": 3359397,
+   "price_cur": 2095999,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_640225-MLA110508952491_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA68728717",
+   "title": "Notebook Asus Gamer Tuf Gaming A15 Rtx 3050 16gb 512gb Fhd W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-gamer-tuf-gaming-a15-rtx-3050-16gb-512gb-fhd-w11/p/MLA68728717",
+   "price_prev": 4004548,
+   "price_cur": 2028999,
+   "discount": 49,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_749137-MLA110076990586_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA69322610",
+   "title": "Motorola Razr 70 Ultra Orient Blue",
+   "url": "https://www.mercadolibre.com.ar/motorola-razr-70-ultra-orient-blue/p/MLA69322610",
+   "price_prev": 2899999,
+   "price_cur": 1999999,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_766233-MLA114427559780_082026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA62106195",
+   "title": "Lenovo 2-en-1 Ideapad 5 Ips 16 Ryzen 7 8845hs 16gb 1tb Ssd",
+   "url": "https://www.mercadolibre.com.ar/lenovo-2-en-1-ideapad-5-ips-16-ryzen-7-8845hs-16gb-1tb-ssd/p/MLA62106195",
+   "price_prev": 2500750,
+   "price_cur": 1945670,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_653759-MLA98172571787_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA55308917",
+   "title": "Apple iPhone 17 (256 GB) - Negro",
+   "url": "https://www.mercadolibre.com.ar/apple-iphone-17-256-gb-negro/p/MLA55308917",
+   "price_prev": 4999569,
+   "price_cur": 1899836,
+   "discount": 62,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_908347-MLA104127137314_012026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA69122155",
+   "title": "Notebook Acer Aspire Go / Amd Ryzen 7 7730u / 32gb Ram / Ssd Nvme 1tb / 15.6 Pulgadas / Windows 11",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-amd-ryzen-7-7730u-32gb-ram-ssd-nvme-1tb-156-pulgadas-windows-11/p/MLA69122155",
+   "price_prev": 2399731,
+   "price_cur": 1888499,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_628634-MLA110268292504_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA62252283",
+   "title": "Smart Tv Samsung 75 4K Ultra Hd 75u8000F Crystal HDR",
+   "url": "https://www.mercadolibre.com.ar/smart-tv-samsung-75-4k-ultra-hd-75u8000f-crystal-hdr/p/MLA62252283",
+   "price_prev": 2389999,
+   "price_cur": 1849999,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_875494-MLA99029638996_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA65915143",
+   "title": "Notebook Lenovo IdeaPad Slim 3 15ARP10 AMD Ryzen 7 7735HS 16GB RAM DDR5 1TB SSD NVMe 15.3 WUXGA IPS 1920x1200 AMD Radeon Graphics 680M WiFi",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15arp10-amd-ryzen-7-7735hs-16gb-ram-ddr5-1tb-ssd-nvme-153-wuxga-ips-1920x1200-amd-radeon-graphics-680m-wifi-6-teclado-espanol-windows-11-home-luna-grey/p/MLA65915143",
+   "price_prev": 2341195,
+   "price_cur": 1849544,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_911348-MLA106856417560_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2072842200",
+   "title": "Teléfono Celular Samsung Galaxy S24+ Plus 512gb Ai 50mp Andr",
+   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s24-512gb-black-refurbished/p/MLA2072842200",
+   "price_prev": 2332337,
+   "price_cur": 1787264,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_742349-CBT90668422687_082025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3927864633",
+   "title": "Notebook Acer Aspire 3 A325 Ryzen 7 7730u 16gb 512gb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-a325-ryzen-7-7730u-16gb-512gb-win/up/MLAU3927864633",
+   "price_prev": 2570698,
+   "price_cur": 1779949,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_691746-MLA109618305883_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU4683738857",
+   "title": "Notebook Acer Aspire 3 A325 Ryzen 7 7730u 16gb 512gb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-a325-ryzen-7-7730u-16gb-512gb-win/up/MLAU4683738857",
+   "price_prev": 2570698,
+   "price_cur": 1762999,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_874186-MLA111197529817_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3961450411",
+   "title": "Notebook Acer Aspire 3 A325 Ryzen 7 7730u 16gb 512gb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-a325-ryzen-7-7730u-16gb-512gb-win/up/MLAU3961450411",
+   "price_prev": 2824796,
+   "price_cur": 1762999,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_691746-MLA109618305883_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3670303113",
+   "title": "Notebook Acer Aspire 3 Ryzen 7 7730u 16gb 512gb Sdd 15,6 W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-ryzen-7-7730u-16gb-512gb-sdd-156-w11/up/MLAU3670303113",
+   "price_prev": 2570698,
+   "price_cur": 1762999,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_937068-MLA100575400938_122025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU4683830741",
+   "title": "Notebook Acer Aspire 3 A325 Ryzen 7 7730u 16gb 512gb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-a325-ryzen-7-7730u-16gb-512gb-win/up/MLAU4683830741",
+   "price_prev": 2570698,
+   "price_cur": 1762999,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_874186-MLA111197529817_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU4837152095",
+   "title": "Notebook Asus Vivobook 15 Core I5 8gb 512gb W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-core-i5-8gb-512gb-w11/up/MLAU4837152095",
+   "price_prev": 2799999,
+   "price_cur": 1734649,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_768685-MLA120948483343_112026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA40287808",
+   "title": "Apple iPhone 16 (128 GB) - Negro",
+   "url": "https://www.mercadolibre.com.ar/apple-iphone-16-128-gb-negro/p/MLA40287808",
+   "price_prev": 2957999,
+   "price_cur": 1734284,
+   "discount": 41,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838311-MLA99501450112_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA65915102",
+   "title": "Notebook Lenovo Ideapad Slim 3 15ARP10 AMD Ryzen 7 7735HS 16GB RAM DDR5 512GB SSD NVMe 15.3 WUXGA IPS 1920x1200 AMD Radeon Graphics 680M WiF",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15arp10-amd-ryzen-7-7735hs-16gb-ram-ddr5-512gb-ssd-nvme-153-wuxga-ips-1920x1200-amd-radeon-graphics-680m-wifi-6-teclado-espanol-windows-11-home-luna-grey/p/MLA65915102",
+   "price_prev": 2188295,
+   "price_cur": 1729999,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_928909-MLA106926827338_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3901887578",
+   "title": "Notebook Acer Aspire Go 15 Ryzen 7 7730u 16gb 512gb Win",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ryzen-7-7730u-16gb-512gb-win/up/MLAU3901887578",
+   "price_prev": 2824796,
+   "price_cur": 1718599,
+   "discount": 39,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_940822-MLA114535272076_082026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA40823596",
+   "title": "Notebook Lenovo Yoga Slim 7 con Intel Core Ultra 5, 16 GB de RAM y 512 GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-yoga-slim-7-con-intel-core-ultra-5-16-gb-de-ram-y-512-gb-ssd/p/MLA40823596",
+   "price_prev": 3217498,
+   "price_cur": 1709613,
+   "discount": 47,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_749869-MLA120437220549_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2004978116",
+   "title": "Samsung Galaxy S25 Ultra 5G Dual SIM 256 GB Titanium Whitesilver 12 GB RAM - Excelente (Reacondicionado)",
+   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s25-ultra-5g-dual-sim-256-gb-titanium-whitesilver-12-gb-ram-excelente-reacondicionado/p/MLA2004978116",
+   "price_prev": 2299999,
+   "price_cur": 1701999,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_894379-MLA96416604008_102025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA1027172667",
+   "title": "Apple iPhone 15 (128 GB) - Azul - Distribuidor Autorizado",
+   "url": "https://www.mercadolibre.com.ar/apple-iphone-15-128-gb-azul-distribuidor-autorizado/p/MLA1027172667",
+   "price_prev": 2169999,
+   "price_cur": 1699999,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_901991-MLA96144091409_102025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU4004536875",
+   "title": "Pc Gamer Amd Ryzen 7 5700g 16gb Ssd 500gb Monitor 24 + Wifi5 500 Gb 16 Gb Amd Radeon Rx Vega 8",
+   "url": "https://www.mercadolibre.com.ar/pc-gamer-amd-ryzen-7-5700g-16gb-ssd-500gb-monitor-24-wifi5/up/MLAU4004536875",
+   "price_prev": 2800000,
+   "price_cur": 1689999,
+   "discount": 40,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_991277-MLA119467162615_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2097246592",
+   "title": "Smartphone Samsung Galaxy S23 Ultra 256 Gb 12 Gb Ram 200 Mp",
+   "url": "https://www.mercadolibre.com.ar/refurbished-smartphone-samsung-galaxy-s23-ultra-5g-256gb-pha/p/MLA2097246592",
+   "price_prev": 2195257,
+   "price_cur": 1682233,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_619484-CBT112644098174_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA47768977",
+   "title": "Placa de Video ASRock Radeon RX 9070 Challenger 16GB GDDR6 8K PCIe 4.0",
+   "url": "https://www.mercadolibre.com.ar/placa-de-video-asrock-radeon-rx-9070-challenger-16gb-gddr6-8k-pcie-40/p/MLA47768977",
+   "price_prev": 2445017,
+   "price_cur": 1681829,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_734237-MLA99500070756_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA62420420",
+   "title": "Notebook Dell Inspiron Táctil de 15.6\" con Ryzen 7, 16GB RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-tactil-de-156-con-ryzen-7-16gb-ram-y-512gb-ssd/p/MLA62420420",
+   "price_prev": 2895748,
+   "price_cur": 1679999,
+   "discount": 42,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_751478-MLA98664682842_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA69124472",
+   "title": "Notebook Acer Aspire Go 15 Ryzen 7 7730u 32gb Ram 512gb Ssd Nvme 15.6 Fhd Wifi 6 W11 Radeon Plateado",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ryzen-7-7730u-32gb-ram-512gb-ssd-nvme-156-fhd-wifi-6-w11-radeon-plateado/p/MLA69124472",
+   "price_prev": 2359498,
+   "price_cur": 1635999,
+   "discount": 31,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_652403-MLA111197521077_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA67836555",
+   "title": "Notebook Acer Aspire Go 15 AMD Ryzen 7 7730u 16GB De Ram 1TB Ssd PCIe NVMe Gráficos AMD Radeon (15,6) Full HD 1920 px x 1080 px Wifi Windows",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-amd-ryzen-7-7730u-16gb-de-ram-1tb-ssd-pcie-nvme-graficos-amd-radeon-156-full-hd-1920-px-x-1080-px-wifi-windows-11-home-color-plateado/p/MLA67836555",
+   "price_prev": 2544296,
+   "price_cur": 1606999,
+   "discount": 37,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_650908-MLA109417812582_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2066560683",
+   "title": "Smartphone Samsung Galaxy S23 Ultra 256gb 8gb Ram 5g",
+   "url": "https://www.mercadolibre.com.ar/smartphone-samsung-galaxy-s23-ultra-256gb-green-5g/p/MLA2066560683",
+   "price_prev": 2091678,
+   "price_cur": 1602860,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_886676-CBT110015694057_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA79692488",
+   "title": "Notebook Dell Inspiron 15 con Procesador AMD Ryzen 7, 16 GB de RAM y 512 GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-15-con-procesador-amd-ryzen-7-16-gb-de-ram-y-512-gb-ssd/p/MLA79692488",
+   "price_prev": 2279999,
+   "price_cur": 1599999,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_785783-MLA118015737985_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA69580503",
+   "title": "Notebook Dell 15.6 Táctil i7 13va Gen 16GB 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-dell-156-tactil-i7-13va-gen-16gb-512gb-ssd/p/MLA69580503",
+   "price_prev": 2289999,
+   "price_cur": 1598999,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_877786-MLA111591770203_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA53189752",
+   "title": "Notebook HP 15-fc00477 Táctil de 15.6\" con Ryzen 7, 16GB de RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fc00477-tactil-de-156-con-ryzen-7-16gb-de-ram-y-512gb-ssd/p/MLA53189752",
+   "price_prev": 2069999,
+   "price_cur": 1589999,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_815450-MLA120745744423_112026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA72201391",
+   "title": "Notebook Lenovo V15 Gen 5 de 15.6\" Full HD con Intel Core i5, 16GB RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-gen-5-de-156-full-hd-con-intel-core-i5-16gb-ram-y-512gb-ssd/p/MLA72201391",
+   "price_prev": 2428686,
+   "price_cur": 1581090,
+   "discount": 35,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_824347-MLA112749252391_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA74752864",
+   "title": "Notebook Acer Aspire Go 15 AG15-42P-R917 AMD Ryzen 7 7730u 32GB De Ram 512GB Ssd PCIe NVMe Gráficos AMD Radeon (15,6) Full HD 1920 px x 1080",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-go-15-ag15-42p-r917-amd-ryzen-7-7730u-32gb-de-ram-512gb-ssd-pcie-nvme-graficos-amd-radeon-156-full-hd-1920-px-x-1080-px-wifi-windows-11-home-color-plateado/p/MLA74752864",
+   "price_prev": 2359498,
+   "price_cur": 1568489,
+   "discount": 34,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_916051-MLA112783849000_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA66635931",
+   "title": "Notebook Táctil Laptop Lenovo IdeaPad Slim 3 15.6'' Ryzen 7 5825U 16GB RAM 512GB SSD W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-tactil-laptop-lenovo-ideapad-slim-3-156-ryzen-7-5825u-16gb-ram-512gb-ssd-w11/p/MLA66635931",
+   "price_prev": 1986899,
+   "price_cur": 1525938,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_828826-MLA108701480319_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA6377324",
+   "title": "Cocina Longvie Standard13601 Color Acero Inoxidable Con Puerta con Visor",
+   "url": "https://www.mercadolibre.com.ar/cocina-longvie-standard13601-color-acero-inoxidable-con-puerta-con-visor/p/MLA6377324",
+   "price_prev": 2642408,
+   "price_cur": 1508410,
+   "discount": 43,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_668416-MLA99958752569_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA53716233",
+   "title": "Smart TV LG UHD AI 75\" UHD 4K Procesador Alpha 7 8va Gen con Inteligencia Artificial 75UA8550PSA",
+   "url": "https://www.mercadolibre.com.ar/smart-tv-lg-uhd-ai-75-uhd-4k-procesador-alpha-7-8va-gen-con-inteligencia-artificial-75ua8550psa/p/MLA53716233",
+   "price_prev": 1979999,
+   "price_cur": 1499999,
+   "discount": 24,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_622993-MLA120083507659_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2029570473",
+   "title": "Smartphone Samsung Galaxy S24 5g 256gb 8gb Pantalla Amoled D",
+   "url": "https://www.mercadolibre.com.ar/smartphone-samsung-galaxy-s24-sm-s921bds-8gb256gb-black/p/MLA2029570473",
+   "price_prev": 1957396,
+   "price_cur": 1499954,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_889639-CBT113744741503_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA50851393",
+   "title": "Notebook Hp 15-fc0047wm 15,6' Fhd Touch 512gb / 16gb Ram R7-7730u W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fc0047wm-156-fhd-touch-512gb-16gb-ram-r7-7730u-w11/p/MLA50851393",
+   "price_prev": 2069999,
+   "price_cur": 1469999,
+   "discount": 29,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_797396-MLA99554474430_122025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA68726971",
+   "title": "Notebook Asus Vivobook 15 M1502XA-BQ012 AMD Ryzen 7 7840HS 16GB DDR5 512GB SSD PCIe NVMe Gráficos AMD Radeon 780M (15,6) Full HD 1920x1080 I",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502xa-bq012-amd-ryzen-7-7840hs-16gb-ddr5-512gb-ssd-pcie-nvme-graficos-amd-radeon-780m-156-full-hd-1920x1080-ips-wi-fi-6-windows-11-home-color-quiet-blue/p/MLA68726971",
+   "price_prev": 2867698,
+   "price_cur": 1453999,
+   "discount": 49,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_758656-MLA110989567651_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA80552716",
+   "title": "Notebook HP 15.6\" Ryzen 7 7730U 16GB 512GB TOUCH HP FHD W11 Home Natural Silver",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-156-ryzen-7-7730u-16gb-512gb-touch-hp-fhd-w11-home-natural-silver/p/MLA80552716",
+   "price_prev": 2069999,
+   "price_cur": 1448999,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_871535-MLA119360436585_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA80107891",
+   "title": "Proyector Acer X1328 de 5000 Lúmenes WXGA con 3D y Parlante",
+   "url": "https://www.mercadolibre.com.ar/proyector-acer-x1328-de-5000-lumenes-wxga-con-3d-y-parlante/p/MLA80107891",
+   "price_prev": 2589097,
+   "price_cur": 1405394,
+   "discount": 46,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_779351-MLA116949540224_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA68310856",
+   "title": "Notebook Hp 255r G10 Amd Ryzen 5 7535u 24gb Ram 512gb Ssd Windows 11 Home Color Plata",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-255r-g10-amd-ryzen-5-7535u-24gb-ram-512gb-ssd-windows-11-home-color-plata/p/MLA68310856",
+   "price_prev": 1889999,
+   "price_cur": 1399999,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_610241-MLA116718262577_082026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA59092429",
+   "title": "Robot De Cocina Cecotec Mambo Victory 1700 W Pantalla Táctil - Negro",
+   "url": "https://www.mercadolibre.com.ar/robot-de-cocina-cecotec-mambo-victory-1700-w-pantalla-tactil-negro/p/MLA59092429",
+   "price_prev": 1878105,
+   "price_cur": 1399999,
+   "discount": 25,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_996841-MLA99950610455_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA54227636",
+   "title": "Notebook Dell Inspiron 14 Plus 5441 Pantalla 14\" FHD+ Gris 16GB Ram 1TB SSD Windows 11",
+   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-14-plus-5441-pantalla-14-fhd-gris-16gb-ram-1tb-ssd-windows-11/p/MLA54227636",
+   "price_prev": 1999999,
+   "price_cur": 1398999,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_862554-MLA91312510777_082025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA59360053",
+   "title": "Notebook Acer Aspire 3 A325 con AMD Ryzen 7, 16 GB RAM y 512 GB SSD de 15.6\" Full HD",
+   "url": "https://www.mercadolibre.com.ar/notebook-acer-aspire-3-a325-con-amd-ryzen-7-16-gb-ram-y-512-gb-ssd-de-156-full-hd/p/MLA59360053",
+   "price_prev": 1890898,
+   "price_cur": 1388999,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_640370-MLA99496771806_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2094693286",
+   "title": "Smartphone Samsung Galaxy S24 5g Sm-s921b/ds 128 Gb 8 Gb Ram",
+   "url": "https://www.mercadolibre.com.ar/smartphone-samsung-galaxy-s24-5g-sm-s921bds-128-gb-8-gb-ram/p/MLA2094693286",
+   "price_prev": 1868347,
+   "price_cur": 1386199,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_847696-CBT118711789023_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA67641732",
+   "title": "Notebook Lenovo V15 G4 con Ryzen 7, 16GB de RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-g4-con-ryzen-7-16gb-de-ram-y-512gb-ssd/p/MLA67641732",
+   "price_prev": 1889999,
+   "price_cur": 1379999,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_778060-MLA110085538343_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA66052957",
+   "title": "Notebook Lenovo V15 G4 Abp Procesador Ryzen 7 7730u 16gb Ram 512gb Ssd Pantalla 15.6 Full Hd Sistema Operativo Windows 11",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-v15-g4-abp-procesador-ryzen-7-7730u-16gb-ram-512gb-ssd-pantalla-156-full-hd-sistema-operativo-windows-11/p/MLA66052957",
+   "price_prev": 1889999,
+   "price_cur": 1379999,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_903509-MLA107104380268_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA63652584",
+   "title": "Notebook Asus Vivobook X1504VA-BQ592 Intel Core 5 120U 16GB de Ram DDR4 512GB SSD M.2 PCIe NVME Intel Graphics (15,6) 1920 x 1080 Full HD IP",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-x1504va-bq592-intel-core-5-120u-16gb-de-ram-ddr4-512gb-ssd-m2-pcie-nvme-intel-graphics-156-1920-x-1080-full-hd-ips-wifi-6-80211ax-windows-11-home-color-plateado/p/MLA63652584",
+   "price_prev": 2050948,
+   "price_cur": 1369999,
+   "discount": 33,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_944412-MLA102487181288_122025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA70106410",
+   "title": "Notebook Asus VivoBook de 15.6\" Full HD con Intel Core 5, 16GB RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-de-156-full-hd-con-intel-core-5-16gb-ram-y-512gb-ssd/p/MLA70106410",
+   "price_prev": 2283598,
+   "price_cur": 1357999,
+   "discount": 41,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_684346-MLA111071812646_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA74965147",
+   "title": "Notebook Lenovo IdeaPad Slim 3 15IRU8 Intel Core i5-1335U 16GB RAM 256GB SSD Windows 11 15.6\" FHD Gráficos integrados",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-15iru8-intel-core-i5-1335u-16gb-ram-256gb-ssd-windows-11-156-fhd-graficos-integrados/p/MLA74965147",
+   "price_prev": 1819999,
+   "price_cur": 1349899,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_949232-MLA114134973889_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA70033367",
+   "title": "Notebook Asus Vivobook 15 M1502NAQ-BQ104 AMD Ryzen 5 150 16GB De Ram DDR5 512GB SSD PCIe Gráficos AMD Radeon (15,6) Full HD 1920 x 1080 px I",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-m1502naq-bq104-amd-ryzen-5-150-16gb-de-ram-ddr5-512gb-ssd-pcie-graficos-amd-radeon-156-full-hd-1920-x-1080-px-ips-wi-fi-6-80211ax-windows-11-home-color-quiet-blue/p/MLA70033367",
+   "price_prev": 2242347,
+   "price_cur": 1345999,
+   "discount": 40,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_979784-MLA112165566127_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA63711470",
+   "title": "Heladera Side By Side Tcl Inverter No Frost 488l Inoxidable P520sbn",
+   "url": "https://www.mercadolibre.com.ar/heladera-side-by-side-tcl-inverter-no-frost-488l-inoxidable-p520sbn/p/MLA63711470",
+   "price_prev": 1790464,
+   "price_cur": 1314970,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_619521-MLA102744568040_122025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA22919080",
+   "title": "Colchón y Sommier Simmons Hotel Bilt King Size 200x200",
+   "url": "https://www.mercadolibre.com.ar/colchon-y-sommier-simmons-hotel-bilt-king-size-200x200/p/MLA22919080",
+   "price_prev": 4726314,
+   "price_cur": 1299960,
+   "discount": 72,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_715863-MLA95706972296_102025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA52138302",
+   "title": "Notebook Dell Inspiron 3530 Intel Core i5 de 15.6\" Full HD Táctil con 8 GB RAM y 512 GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-dell-inspiron-3530-intel-core-i5-de-156-full-hd-tactil-con-8-gb-ram-y-512-gb-ssd/p/MLA52138302",
+   "price_prev": 1679999,
+   "price_cur": 1238999,
+   "discount": 26,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_726404-MLA99457244054_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA48939595",
+   "title": "PC Gamer Gaming-City AMD Ryzen 7 5700G 32GB RAM 512GB SSD Vega 8 RGB WiFi 80+",
+   "url": "https://www.mercadolibre.com.ar/pc-gamer-gaming-city-amd-ryzen-7-5700g-32gb-ram-512gb-ssd-vega-8-rgb-wifi-80/p/MLA48939595",
+   "price_prev": 1640696,
+   "price_cur": 1228599,
+   "discount": 25,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_970843-MLA112983932657_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA74715247",
+   "title": "Lavasecarropas Samsung Wd11t504 Control Ia White 11kg/7kg Blanco",
+   "url": "https://www.mercadolibre.com.ar/lavasecarropas-samsung-wd11t504-control-ia-white-11kg7kg-blanco/p/MLA74715247",
+   "price_prev": 1999999,
+   "price_cur": 1199999,
+   "discount": 40,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_942859-MLA113972849979_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA75703291",
+   "title": "Reloj inteligente Samsung Galaxy Ultra2 47 mm Lte Titanio plateado",
+   "url": "https://www.mercadolibre.com.ar/reloj-inteligente-samsung-galaxy-ultra2-47-mm-lte-titanio-plateado/p/MLA75703291",
+   "price_prev": 1799999,
+   "price_cur": 1198999,
+   "discount": 33,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_935086-MLA113741329828_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA77328371",
+   "title": "Notebook Asus Vivobook 15 Ryzen 7 8gb 512gb W11",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-15-ryzen-7-8gb-512gb-w11/p/MLA77328371",
+   "price_prev": 2489848,
+   "price_cur": 1192999,
+   "discount": 52,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_767574-MLA119446558949_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA66706811",
+   "title": "Samsung Galaxy S25 FE 128 GB de Almacenamiento con 8 GB RAM Negro",
+   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s25-fe-128-gb-de-almacenamiento-con-8-gb-ram-negro/p/MLA66706811",
+   "price_prev": 1699980,
+   "price_cur": 1164000,
+   "discount": 32,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_895786-MLA108039773934_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU123510596",
+   "title": "Elevador Estabilizador Tensión Automático 20kva Eleva Y Baja Blanco",
+   "url": "https://www.mercadolibre.com.ar/elevador-estabilizador-tension-automatico-20kva-eleva-y-baja/up/MLAU123510596",
+   "price_prev": 2075509,
+   "price_cur": 1159423,
+   "discount": 44,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_786459-MLA94092508245_102025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA66701379",
+   "title": "Notebook HP 15-fd0267la Intel Core i5 8GB RAM 512GB SSD 15.6\" Táctil FHD Windows 11 Incluye Mochila y Mouse HP",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd0267la-intel-core-i5-8gb-ram-512gb-ssd-156-tactil-fhd-windows-11-incluye-mochila-y-mouse-hp/p/MLA66701379",
+   "price_prev": 1999999,
+   "price_cur": 1149999,
+   "discount": 43,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_638456-MLA108805561183_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA80727734",
+   "title": "Notebook HP 15-fd1151la Intel Core 5 8 GB RAM 512 GB SSD 15.6\" Táctil FHD Windows 11 Home",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd1151la-intel-core-5-8-gb-ram-512-gb-ssd-156-tactil-fhd-windows-11-home/p/MLA80727734",
+   "price_prev": 2219999,
+   "price_cur": 1149999,
+   "discount": 48,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_935245-MLA119855660419_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA78387901",
+   "title": "Heladera No Frost Philco Side by Side Inverter NPHSB450XI 428L Inox",
+   "url": "https://www.mercadolibre.com.ar/heladera-no-frost-philco-side-by-side-inverter-nphsb450xi-428l-inox/p/MLA78387901",
+   "price_prev": 1869999,
+   "price_cur": 1129999,
+   "discount": 40,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_831321-MLA116712017300_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA80548809",
+   "title": "SMART TV NOBLEX DL65X9500 65 PULGADAS QLED GOOGLE TV",
+   "url": "https://www.mercadolibre.com.ar/smart-tv-noblex-dl65x9500-65-pulgadas-qled-google-tv/p/MLA80548809",
+   "price_prev": 1704999,
+   "price_cur": 1124999,
+   "discount": 34,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_846719-MLA117723950986_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA53189831",
+   "title": "Notebook Asus VivoBook 14 X1404VA Intel Core i3-1315U con 16GB RAM y 512GB SSD",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-14-x1404va-intel-core-i3-1315u-con-16gb-ram-y-512gb-ssd/p/MLA53189831",
+   "price_prev": 1475098,
+   "price_cur": 1123999,
+   "discount": 24,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_941987-MLA99475406568_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA75901457",
+   "title": "Notebook Lenovo Ideapad Slim 3 Ryzen 5 40 8gb 512gb Ssd Pantalla 15,6 Full Hd Windows 11",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-ryzen-5-40-8gb-512gb-ssd-pantalla-156-full-hd-windows-11/p/MLA75901457",
+   "price_prev": 1749999,
+   "price_cur": 1098899,
+   "discount": 37,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_642177-MLA115292741679_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA54975199",
+   "title": "Notebook Asus Vivobook X1404va-i38128 Intel Core I3 1315u 16gb Ram 512gb Ssd M.2 14 Fhd Ips Teclado Ingles W11 Liviana Color Quiet Blue Hf",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-x1404va-i38128-intel-core-i3-1315u-16gb-ram-512gb-ssd-m2-14-fhd-ips-teclado-ingles-w11-liviana-color-quiet-blue-hf/p/MLA54975199",
+   "price_prev": 1475098,
+   "price_cur": 1080578,
+   "discount": 27,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_806729-MLA99992561251_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2087706944",
+   "title": "Ordenador Portátil Lenovo 40 Cm I7-13620h 16 Gb 512 Gb Ssd O",
+   "url": "https://www.mercadolibre.com.ar/laptop-lenovo-16-fhd-ideapad-slim-i7-16gb-ddr5/p/MLA2087706944",
+   "price_prev": 1337441,
+   "price_cur": 1069949,
+   "discount": 20,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_732191-CBT116249776386_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2097250032",
+   "title": "Smartphone Reacondicionado Samsung Galaxy S23 Ultra 5g 512gb",
+   "url": "https://www.mercadolibre.com.ar/smartphone-reacondicionado-samsung-galaxy-s23-ultra-5g-512gb/p/MLA2097250032",
+   "price_prev": 1394889,
+   "price_cur": 1068913,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_667535-CBT109115648921_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2049767579",
+   "title": "Smartphone Samsung Galaxy S23 5g Sm-s911b/ds 128 Gb 8 Gb Ram",
+   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s23-5g-128gb-8gb-ram-camara-50mp-phantom/p/MLA2049767579",
+   "price_prev": 1333640,
+   "price_cur": 1053570,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_600871-CBT110184678643_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA40166209",
+   "title": "Cocina Orbis 958BC4 Blanca 4 Hornallas con Encendido Electrónico Multigas",
+   "url": "https://www.mercadolibre.com.ar/cocina-orbis-958bc4-blanca-4-hornallas-con-encendido-electronico-multigas/p/MLA40166209",
+   "price_prev": 1319399,
+   "price_cur": 1039478,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_781069-MLA99505519374_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU5242119322",
+   "title": "Xiaomi Redmi Note 15 Pro 256gb 16gb Ram Dual Sim Nfc Negro",
+   "url": "https://www.mercadolibre.com.ar/xiaomi-redmi-note-15-pro-256gb-16gb-ram-dual-sim-nfc-negro/up/MLAU5242119322",
+   "price_prev": 1357990,
+   "price_cur": 1031990,
+   "discount": 24,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_805989-MLA117928152245_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA14922880",
+   "title": "Freezer Vertical Midea Ff-ec8sar1 No Frost 7 Cajones 230 Lts Color Inox",
+   "url": "https://www.mercadolibre.com.ar/freezer-vertical-midea-ff-ec8sar1-no-frost-7-cajones-230-lts-color-inox/p/MLA14922880",
+   "price_prev": 1731999,
+   "price_cur": 1030999,
+   "discount": 40,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_843177-MLA111277054331_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU221415442",
+   "title": "Combo Ferrum Temple Inodoro, Deposito Dual, Bidet Y Tapa",
+   "url": "https://www.mercadolibre.com.ar/combo-ferrum-temple-inodoro-deposito-dual-bidet-y-tapa/up/MLAU221415442",
+   "price_prev": 1510595,
+   "price_cur": 1025676,
+   "discount": 32,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_863942-MLA82142768746_022025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA66471548",
+   "title": "Notebook HP 15-fd0331la Intel Core 3 8GB RAM 512GB SSD 15,6\" FHD Windows 11 Home",
+   "url": "https://www.mercadolibre.com.ar/notebook-hp-15-fd0331la-intel-core-3-8gb-ram-512gb-ssd-156-fhd-windows-11-home/p/MLA66471548",
+   "price_prev": 1282395,
+   "price_cur": 999999,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_899224-MLA108576942549_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2058937957",
+   "title": "Ordenador Portátil Asus Vivobook Go 15.6 Pulgadas Intel I3-n",
+   "url": "https://www.mercadolibre.com.ar/notebook-asus-vivobook-go-intel-core-i3-8gb-ram/p/MLA2058937957",
+   "price_prev": 1271804,
+   "price_cur": 986913,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_610363-CBT106520052493_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA69994229",
+   "title": "Celular Samsung Galaxy A57 256gb Gris",
+   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-a57-256gb-gris/p/MLA69994229",
+   "price_prev": 1349999,
+   "price_cur": 945099,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_606900-MLA111905100945_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU5670779347",
+   "title": "Celular Samsung Galaxy A57 256gb Gris Sm-a576bzanaro",
+   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-a57-256gb-gris-sm-a576bzanaro/up/MLAU5670779347",
+   "price_prev": 1349999,
+   "price_cur": 945099,
+   "discount": 30,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_768867-MLA120315670505_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA70394812",
+   "title": "Notebook Lenovo Ideapad Slim 3 15,6 Fhd 256gb / 8gb Ram Ryzen 5 40 W11 - Blue",
+   "url": "https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-slim-3-156-fhd-256gb-8gb-ram-ryzen-5-40-w11-blue/p/MLA70394812",
+   "price_prev": 1749999,
+   "price_cur": 944999,
+   "discount": 46,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_882540-MLA115291523015_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3880605434",
+   "title": "Smart Tv Tcl 50 Qled S5k Fhd Hdr10 Google Cast",
+   "url": "https://www.mercadolibre.com.ar/smart-tv-tcl-50-qled-s5k-fhd-hdr10-google-cast/up/MLAU3880605434",
+   "price_prev": 1214887,
+   "price_cur": 940899,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_804523-MLA114531869851_072026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA65839325",
+   "title": "Smart TV LG 60 Pulgadas UHD 4K - 60UA8050PSA",
+   "url": "https://www.mercadolibre.com.ar/smart-tv-lg-60-pulgadas-uhd-4k-60ua8050psa/p/MLA65839325",
+   "price_prev": 1699999,
+   "price_cur": 939999,
+   "discount": 45,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_837355-MLA106787755326_022026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU3831264726",
+   "title": "Tablet Lenovo Idea Tab 8gb - 256gb 11'' 5g Lte Teclado + Pen Azul",
+   "url": "https://www.mercadolibre.com.ar/tablet-lenovo-idea-tab-8gb-256gb-11-5g-lte-teclado-pen/up/MLAU3831264726",
+   "price_prev": 2099999,
+   "price_cur": 931199,
+   "discount": 56,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_881832-MLA120967918071_112026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA16268023",
+   "title": "Soldadora inverter Esab LHN 242i color negro/amarillo",
+   "url": "https://www.mercadolibre.com.ar/soldadora-inverter-esab-lhn-242i-color-negroamarillo/p/MLA16268023",
+   "price_prev": 1375612,
+   "price_cur": 918799,
+   "discount": 33,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_769550-MLA99998050035_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA63182642",
+   "title": "Sommier Viggo Esmeralda 200x200 Cm 130 Kg Alta Densidad Negro",
+   "url": "https://www.mercadolibre.com.ar/sommier-viggo-esmeralda-200x200-cm-130-kg-alta-densidad-negro/p/MLA63182642",
+   "price_prev": 2076801,
+   "price_cur": 918595,
+   "discount": 56,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_631080-MLA109231481044_042026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA60059711",
+   "title": "Cortadora De Cesped A Explosión Lusqtoff LQ520B Autopropulsada 6,5HP 170cc",
+   "url": "https://www.mercadolibre.com.ar/cortadora-de-cesped-a-explosion-lusqtoff-lq520b-autopropulsada-65hp-170cc/p/MLA60059711",
+   "price_prev": 1605712,
+   "price_cur": 893140,
+   "discount": 44,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_825336-MLA107830497074_032026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU5766418972",
+   "title": "Televisor Tcl 40 Pulgadas 1080p Q3 Series Qled Smart Roku",
+   "url": "https://www.mercadolibre.com.ar/televisor-tcl-40-pulgadas-1080p-q3-series-qled-smart-roku/up/MLAU5766418972",
+   "price_prev": 1090659,
+   "price_cur": 872527,
+   "discount": 20,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_745944-MLA118874086358_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU5315810680",
+   "title": "Carro Caja De Herramientas Modular Packout Millawauke",
+   "url": "https://www.mercadolibre.com.ar/carro-caja-de-herramientas-modular-packout-millawauke/up/MLAU5315810680",
+   "price_prev": 1128570,
+   "price_cur": 868999,
+   "discount": 23,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_642200-MLA116825798110_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA27428327",
+   "title": "Sommier Y Colchón Springwall Mcb 115 Queen 160x200cm Color Beige Con Base Dividida",
+   "url": "https://www.mercadolibre.com.ar/sommier-y-colchon-springwall-mcb-115-queen-160x200cm-color-beige-con-base-dividida/p/MLA27428327",
+   "price_prev": 3091342,
+   "price_cur": 848338,
+   "discount": 73,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_665203-MLA96666084724_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2106152833",
+   "title": "Celular Samsung Galaxy S23 Plus 256 Gb 8 Gb Ram Verde",
+   "url": "https://www.mercadolibre.com.ar/celular-samsung-galaxy-s23-plus-256-gb-8-gb-ram-verde/p/MLA2106152833",
+   "price_prev": 1082959,
+   "price_cur": 845168,
+   "discount": 22,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_737037-CBT117884311381_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA48893706",
+   "title": "Lavasecarropas Midea Inverter Smart 8 Kg Mf200d80wb/t-a1 Color Gris oscuro",
+   "url": "https://www.mercadolibre.com.ar/lavasecarropas-midea-inverter-smart-8-kg-mf200d80wbt-a1-color-gris-oscuro/p/MLA48893706",
+   "price_prev": 1239999,
+   "price_cur": 824999,
+   "discount": 33,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_636246-MLA96843347943_102025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA79094143",
+   "title": "NOTEBOOK VIVOBOOK GO 15.6\" RYZEN 3-30 8GB 256GB ASUS E1504FA-BQ2974",
+   "url": "https://www.mercadolibre.com.ar/notebook-vivobook-go-156-ryzen-3-30-8gb-256gb-asus-e1504fa-bq2974/p/MLA79094143",
+   "price_prev": 3000000,
+   "price_cur": 815120,
+   "discount": 73,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_616898-MLA115911400168_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA77976947",
+   "title": "Smartwatch Huawei Watch D3 con Monitor de Presión Arterial, ECG y GPS para Android y iOS",
+   "url": "https://www.mercadolibre.com.ar/smartwatch-huawei-watch-d3-con-monitor-de-presion-arterial-ecg-y-gps-para-android-y-ios/p/MLA77976947",
+   "price_prev": 1019999,
+   "price_cur": 775999,
+   "discount": 24,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_717383-MLA117455984963_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA54802110",
+   "title": "Viggo Esmeralda Negro Queen 200 x 160 cm",
+   "url": "https://www.mercadolibre.com.ar/viggo-esmeralda-negro-queen-200-x-160-cm/p/MLA54802110",
+   "price_prev": 1719851,
+   "price_cur": 764441,
+   "discount": 56,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_841113-MLA111867103534_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA72192515",
+   "title": "Soldadora Mig Mag Inverter 160a Esab Handyarc Flux 3 En 1 Amarillo",
+   "url": "https://www.mercadolibre.com.ar/soldadora-mig-mag-inverter-160a-esab-handyarc-flux-3-en-1-amarillo/p/MLA72192515",
+   "price_prev": 1185617,
+   "price_cur": 754562,
+   "discount": 36,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_682862-MLA111661197972_062026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU5566091821",
+   "title": "Inodoro Inteligente Yuka Nautilus Bidet Secado Autolimpiante Blanco",
+   "url": "https://www.mercadolibre.com.ar/inodoro-inteligente-yuka-nautilus-bidet-secado-autolimpiante/up/MLAU5566091821",
+   "price_prev": 1000000,
+   "price_cur": 712800,
+   "discount": 29,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_705454-MLA119930672817_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA53660948",
+   "title": "Placa Madre ASRock Z890I Nova WiFi Intel Socket 1851 Mini ITX Memoria DDR5 PCIe 5.0 Thunderbolt 4 Luces RGB Phantom Gaming Z890I NOVA WIFI",
+   "url": "https://www.mercadolibre.com.ar/placa-madre-asrock-z890i-nova-wifi-intel-socket-1851-mini-itx-memoria-ddr5-pcie-50-thunderbolt-4-luces-rgb-phantom-gaming-z890i-nova-wifi/p/MLA53660948",
+   "price_prev": 1498950,
+   "price_cur": 710173,
+   "discount": 53,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_750357-MLA99945703283_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA45170632",
+   "title": "Sommier Viggo Zafiro 140x190 Cm Espuma De Alta Densidad Color Negro",
+   "url": "https://www.mercadolibre.com.ar/sommier-viggo-zafiro-140x190-cm-espuma-de-alta-densidad-color-negro/p/MLA45170632",
+   "price_prev": 1236345,
+   "price_cur": 679999,
+   "discount": 45,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_635558-MLA120726974125_112026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA40370773",
+   "title": "Colchón Sueño Dorado Manhattan 2 Plazas Híbrido 140x190 Cm",
+   "url": "https://www.mercadolibre.com.ar/colchon-sueno-dorado-manhattan-2-plazas-hibrido-140x190-cm/p/MLA40370773",
+   "price_prev": 2281000,
+   "price_cur": 679304,
+   "discount": 70,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_961634-MLA111387938395_052026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLAU4170917620",
+   "title": "Colchon 2 Plazas Espuma Elegante Señorial Euro 140x190 120kg",
+   "url": "https://www.mercadolibre.com.ar/colchon-2-plazas-espuma-elegante-senorial-euro-140x190-120kg/up/MLAU4170917620",
+   "price_prev": 996045,
+   "price_cur": 677310,
+   "discount": 32,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_904400-MLA115348054372_082026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA76011923",
+   "title": "Heladera No Frost Philco Inverter NPHNT267NI 244L Negro",
+   "url": "https://www.mercadolibre.com.ar/heladera-no-frost-philco-inverter-nphnt267ni-244l-negro/p/MLA76011923",
+   "price_prev": 1264999,
+   "price_cur": 675999,
+   "discount": 47,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_769145-MLA115950132716_092026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA2000045991",
+   "title": "Samsung Galaxy S24 Fe 256gb 8gb 5g Grey - Bueno (Reacondicionado)",
+   "url": "https://www.mercadolibre.com.ar/samsung-galaxy-s24-fe-256gb-8gb-5g-grey-bueno-reacondicionado/p/MLA2000045991",
+   "price_prev": 856530,
+   "price_cur": 672975,
+   "discount": 21,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_732787-MLA99424528828_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA1927916231",
+   "title": "Soldadora Inverter 8en1 Tig Acdc Aluminio 200a Spot Tig",
+   "url": "https://articulo.mercadolibre.com.ar/MLA-1927916231-soldadora-inverter-8en1-tig-acdc-aluminio-200a-spot-tig-_JM",
+   "price_prev": 1229266,
+   "price_cur": 655805,
+   "discount": 47,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_634413-CBT119009159822_112026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA22362068",
+   "title": "Calefactor Tiro Balanceado Eskabe Tttb5te 4800 Kcal Color Crema",
+   "url": "https://www.mercadolibre.com.ar/calefactor-tiro-balanceado-eskabe-tttb5te-4800-kcal-color-crema/p/MLA22362068",
+   "price_prev": 1051308,
+   "price_cur": 655205,
+   "discount": 38,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_838357-MLA99419861822_112025-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
+  },
+  {
+   "id": "MLA78770399",
+   "title": "Notebook Auusda Ryzen 3 16GB 512GB SSD 15.6 FHD IPS Teclado Retroiluminado Lector Huella WiFi 6 Windows 11 Oficina Estudio",
+   "url": "https://www.mercadolibre.com.ar/notebook-auusda-ryzen-3-16gb-512gb-ssd-156-fhd-ips-teclado-retroiluminado-lector-huella-wifi-6-windows-11-oficina-estudio/p/MLA78770399",
+   "price_prev": 1387598,
+   "price_cur": 638286,
+   "discount": 54,
+   "img": "https://http2.mlstatic.com/D_NQ_NP_2X_813102-MLA118464673808_102026-F.webp",
+   "cuotas": null,
+   "agregada": "2026-11-07"
   }
  ]
 }

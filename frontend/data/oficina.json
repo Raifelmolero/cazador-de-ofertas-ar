@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-07T04:31:33+00:00",
+  "generado": "2026-11-07T14:25:04+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,32 +12,32 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11541 productos en la última corrida"
+          "tarea": "Revisó 11940 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 3
         },
         {
           "label": "Telegram",
-          "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 3
-        },
-        {
-          "label": "Reels IG",
           "valor": 2
         },
         {
-          "label": "Historias IG",
+          "label": "Threads",
           "valor": 2
         },
         {
           "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
           "valor": 1
         }
       ],

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-07T19:21:00+00:00",
+  "generado": "2026-11-07T23:35:08+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-07T19:21:00+00:00",
+      "ultima_actividad": "2026-11-07T23:34:44+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -42,7 +42,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Side By Side Inverter LG Gs66spp 638L Dispenser Color Gris"
+      "ultimo_trabajo": "Heladera Hisense Side by side No Frost Inverter Rc-70ws 531 L Inox fabrica hielo"
     },
     {
       "id": "investigacion",

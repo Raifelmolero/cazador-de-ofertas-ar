@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-07T18:16:46+00:00",
+  "generado": "2026-11-07T19:21:00+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-07T04:31:33+00:00",
+      "ultima_actividad": "2026-11-07T19:21:00+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,19 +18,19 @@
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Threads",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -42,7 +42,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo Loq Core I5-12450hx 16gb 512gb Rtx 3050 W11"
+      "ultimo_trabajo": "Heladera Side By Side Inverter LG Gs66spp 638L Dispenser Color Gris"
     },
     {
       "id": "investigacion",

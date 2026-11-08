@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-08T02:20:40+00:00",
+  "generado": "2026-11-08T02:44:06+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-08T02:20:40+00:00",
+      "ultima_actividad": "2026-11-08T02:44:05+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,31 +18,35 @@
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 9
+          "valor": 12
         },
         {
           "label": "Telegram",
-          "valor": 4
+          "valor": 5
         },
         {
           "label": "Threads",
-          "valor": 4
+          "valor": 5
         },
         {
           "label": "Reels IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Historias IG",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
           "valor": 2
+        },
+        {
+          "label": "Facebook",
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook HP 255R G10 AMD Ryzen 7 7735U 32GB DDR5 1TB SSD M.2 PCIe NVMe Gráficos "
+      "ultimo_trabajo": "Notebook Lenovo V15 G5 Core I5 13420h 32gb Ssd 512gb 15.6 Windows 11"
     },
     {
       "id": "investigacion",

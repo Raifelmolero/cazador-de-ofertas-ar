@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-08T19:29:26+00:00",
+  "generado": "2026-11-08T23:36:56+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-08T19:29:25+00:00",
+      "ultima_actividad": "2026-11-08T23:36:55+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -22,7 +22,7 @@
         },
         {
           "label": "Facebook",
-          "valor": 7
+          "valor": 10
         },
         {
           "label": "Telegram",
@@ -46,7 +46,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo LOQ 15IAX9E Intel Core i5-12450HX 32GB DDR5 512GB SSD M.2 PCIe N"
+      "ultimo_trabajo": "Soldadora Inverter Mig Mag Mma 210a 220v Esab Rogue Em 210 Amarillo/negro"
     },
     {
       "id": "investigacion",

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-07T23:35:08+00:00",
+  "generado": "2026-11-08T02:20:40+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,41 +8,41 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-07T23:34:44+00:00",
+      "ultima_actividad": "2026-11-08T02:20:40+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 12072 productos en la última corrida"
+          "tarea": "Revisó 11417 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
+        },
+        {
+          "label": "Historias IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
           "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Heladera Hisense Side by side No Frost Inverter Rc-70ws 531 L Inox fabrica hielo"
+      "ultimo_trabajo": "Notebook HP 255R G10 AMD Ryzen 7 7735U 32GB DDR5 1TB SSD M.2 PCIe NVMe Gráficos "
     },
     {
       "id": "investigacion",

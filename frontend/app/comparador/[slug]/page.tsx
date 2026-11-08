@@ -183,7 +183,14 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
                     'Hoy no encontramos ninguno.'
                   ) : (
                     <>
-                      {xs.length} {xs.length === 1 ? c.nombre : c.plural}. Desde {pesos(xs[0].precio)}: {xs[0].titulo}
+                      {xs.length} {xs.length === 1 ? c.nombre : c.plural}. Desde{' '}
+                      <strong className="text-yellow-400 whitespace-nowrap">{pesos(xs[0].precio)}</strong>:{' '}
+                      <a href={xs[0].url} target="_blank" rel="noopener noreferrer sponsored" data-seccion="comparador_presupuesto" className="font-semibold text-zinc-100 underline decoration-zinc-600 underline-offset-2 hover:text-yellow-400">
+                        {xs[0].titulo}
+                      </a>{' '}
+                      <a href={xs[0].url} target="_blank" rel="noopener noreferrer sponsored" data-seccion="comparador_presupuesto" className="whitespace-nowrap font-bold text-yellow-400 hover:underline">
+                        Ver en Mercado Libre →
+                      </a>
                     </>
                   )}
                 </p>

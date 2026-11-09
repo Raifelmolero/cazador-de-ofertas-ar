@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-09T18:38:48+00:00",
+  "generado": "2026-11-09T19:54:47+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 5
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 3
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 2
         },
         {
           "label": "Instagram",
-          "valor": 2
+          "valor": 1
         },
         {
           "label": "Reels IG",

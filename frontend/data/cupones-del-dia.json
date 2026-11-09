@@ -2,39 +2,21 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "HPCYBERAFIS",
-      "descuento": 100000,
-      "minimo": 1548499,
-      "hasta": "2026-11-08T23:59:00-03:00",
-      "condiciones": "Solo para la Notebook HP 15-fd1151la (Intel Core 5, 8 GB, 512 GB SSD, 15,6\" táctil), que el 2/11 estaba a $1.548.499. Vigente del 2 al 8 de noviembre, según el canal de Afiliados.",
-      "campania": "Cyber Monday · Notebook HP",
-      "link": "https://www.mercadolibre.com.ar/notebook-hp-15-fd1151la-intel-core-5-8-gb-ram-512-gb-ssd-156-tactil-fhd-windows-11-home/p/MLA80727734"
-    },
-    {
-      "codigo": "MELIEXTREMO",
-      "descuento": 20000,
-      "minimo": 250000,
-      "hasta": "2026-11-07T23:59:00-03:00",
-      "condiciones": "Compra mínima $250.000. Informado por el canal de Afiliados el viernes 6/11 a las 23:44 («nuevos cupones exclusivos para hoy sábado»); válido solo el sábado 7/11 de 00:00 a 23:59.",
-      "campania": "Sábado de cupones",
-      "link": "https://www.mercadolibre.com.ar/ofertas"
-    },
-    {
-      "codigo": "SIGUELAFIESTA",
-      "descuento": 45000,
-      "minimo": 500000,
-      "hasta": "2026-11-07T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. Informado por el canal de Afiliados el viernes 6/11 a las 23:44 («nuevos cupones exclusivos para hoy sábado»); válido solo el sábado 7/11 de 00:00 a 23:59.",
-      "campania": "Sábado de cupones",
-      "link": "https://www.mercadolibre.com.ar/ofertas"
-    },
-    {
-      "codigo": "MELIUNAMAS",
+      "codigo": "ULTIMACHANCE11",
       "descuento": 80000,
       "minimo": 1000000,
-      "hasta": "2026-11-07T23:59:00-03:00",
-      "condiciones": "Compra mínima $1.000.000. Informado por el canal de Afiliados el viernes 6/11 a las 23:44 («nuevos cupones exclusivos para hoy sábado»); válido solo el sábado 7/11 de 00:00 a 23:59.",
-      "campania": "Sábado de cupones",
+      "hasta": "2026-11-09T23:59:00-03:00",
+      "condiciones": "Compra mínima $1.000.000. El canal de Afiliados confirmó el lunes 9/11 a las 09:44 que es uno de los cupones que funcionan hoy (cierre del Cyber); válido solo el lunes 9/11 hasta las 23:59 o hasta agotar stock.",
+      "campania": "Último día del Cyber",
+      "link": "https://www.mercadolibre.com.ar/ofertas"
+    },
+    {
+      "codigo": "CHAUCYBER11",
+      "descuento": 45000,
+      "minimo": 500000,
+      "hasta": "2026-11-09T23:59:00-03:00",
+      "condiciones": "Compra mínima $500.000. El canal de Afiliados confirmó el lunes 9/11 a las 09:44 que es uno de los cupones que funcionan hoy (cierre del Cyber); válido solo el lunes 9/11 hasta las 23:59 o hasta agotar stock.",
+      "campania": "Último día del Cyber",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     }
   ]

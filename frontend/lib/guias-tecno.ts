@@ -1380,9 +1380,88 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/comparador/smart-tv', texto: 'Comparador de smart TV' },
     ],
   },
+  // ── 9/11: aire acondicionado (Analista de Tendencias: Climatización +194 % en ML) ──
+  {
+    slug: 'que-aire-acondicionado-comprar',
+    titulo: 'Qué aire acondicionado comprar en 2026: frigorías, inverter y cuándo baja el precio',
+    descripcion:
+      'Qué aire acondicionado comprar en 2026: cuántas frigorías por m², inverter u on-off, frío o frío-calor, instalación y si conviene esperar al Black Friday. Con los precios de hoy en Mercado Libre.',
+    pregunta: '¿Qué aire acondicionado conviene comprar en 2026?',
+    respuestaCorta:
+      'Para la mayoría de los hogares conviene un split inverter frío-calor con las frigorías justas para el ambiente: unas 2.250 frigorías hasta 15 m², 3.000 hasta 25 m² y 4.500 hasta 40 m², sumando un 10 a 20 % si da al sol. El inverter cuesta algo más pero gasta bastante menos luz y hace menos ruido. En noviembre los aires son lo que más se vende y los precios suben antes del calor: si el modelo que querés ya está en su precio más bajo registrado, no conviene esperar al Black Friday (27 de noviembre de 2026).',
+    tabla: {
+      titulo: 'Frigorías según el ambiente',
+      columnas: ['Ambiente', 'Superficie aprox.', 'Frigorías', 'Equipo típico'],
+      filas: [
+        ['Dormitorio chico', 'hasta 15 m²', '2.250', 'Split 2.250 / 2.300 F'],
+        ['Dormitorio grande o living chico', '15 a 25 m²', '3.000 a 3.500', 'Split 3.000 / 3.200 F'],
+        ['Living comedor', '25 a 40 m²', '4.500 a 5.500', 'Split 4.500 / 4.600 F'],
+        ['Ambiente integrado grande', 'más de 40 m²', '6.000 o más', 'Split 6.000 F o dos equipos'],
+      ],
+      nota: 'Valores orientativos para ambientes de 2,5 m de alto. Sumá 10 a 20 % si da al norte u oeste con ventanales, si es último piso o si hay muchas personas o cocina integrada.',
+    },
+    secciones: [
+      {
+        h: 'Inverter u on-off: cuál conviene',
+        p: [
+          'Un aire inverter regula la velocidad del compresor en vez de prenderse y apagarse: mantiene la temperatura más pareja, hace menos ruido y consume bastante menos energía cuando se usa muchas horas.',
+          'El on-off es más barato de comprar. Puede alcanzar si lo usás pocas horas por día o en un ambiente de uso ocasional. Si lo vas a prender todas las noches del verano, el inverter suele compensar la diferencia en la factura de luz.',
+        ],
+      },
+      {
+        h: 'Frío solo o frío-calor',
+        p: [
+          'La diferencia de precio entre un equipo solo frío y uno frío-calor suele ser chica, y el frío-calor calefacciona con bomba de calor, más eficiente que una estufa eléctrica común. Para un ambiente que usás todo el año, conviene frío-calor.',
+        ],
+      },
+      {
+        h: 'Split, portátil o de ventana',
+        p: [
+          'El split es el más silencioso y eficiente, pero necesita instalación con un técnico matriculado (casi nunca está incluida en el precio: sumala al presupuesto).',
+          'El portátil no necesita instalación fija y se mueve de un ambiente a otro, pero enfría menos por frigoría, hace más ruido y necesita sacar la manguera por una ventana. Sirve para alquileres o para salir del paso.',
+        ],
+      },
+      {
+        h: 'Cuándo baja el precio',
+        p: [
+          'En noviembre las ventas de aires crecen fuerte y varios modelos ya subieron de precio en los días previos al Black Friday. El tachado de "antes" muchas veces está inflado: compará siempre el precio de hoy con el más bajo que registramos, no con el porcentaje.',
+          'Si el modelo que querés está en su mínimo registrado, comprá. Si está lejos y no te urge, el Black Friday suele sumar cuotas sin interés; el pico de calor de diciembre, en cambio, suele empujar los precios para arriba.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-inverter',
+    cta: { href: '/mejores/mejores-aires-inverter', titulo: 'Aires inverter en oferta hoy, comparados con el historial', boton: 'Ver aires inverter de hoy ❄️' },
+    faq: [
+      {
+        q: '¿Cuántas frigorías necesito para 20 m²?',
+        a: 'Alrededor de 3.000 frigorías. Si el ambiente da al sol de la tarde o es último piso, conviene un equipo de 3.200 a 3.500 frigorías.',
+      },
+      {
+        q: '¿Conviene un aire inverter?',
+        a: 'Sí, si lo vas a usar muchas horas: gasta bastante menos luz, hace menos ruido y mantiene la temperatura más pareja. Para uso ocasional, un on-off puede alcanzar.',
+      },
+      {
+        q: '¿La instalación está incluida?',
+        a: 'Casi nunca. Revisá la publicación y sumá el costo de un instalador matriculado, que además suele ser condición para la garantía.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para comprar el aire?',
+        a: 'Solo si el modelo está lejos de su precio más bajo registrado y no te urge. En noviembre los aires son lo que más se vende y varios precios ya están subiendo antes del calor.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-aires-inverter', texto: 'Mejores aires inverter de hoy' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Mejores aires acondicionados' },
+      { href: '/guias/aire-acondicionado-cuantas-frigorias-necesito', texto: 'Cuántas frigorías necesito' },
+      { href: '/guias/aire-acondicionado-solo-frio-o-frio-calor', texto: 'Aire solo frío o frío-calor' },
+      { href: '/mejores/mejores-ventiladores', texto: 'Mejores ventiladores' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09' }
 
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_TECNO.map(g => {

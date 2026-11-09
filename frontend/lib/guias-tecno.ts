@@ -1299,8 +1299,246 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
+  // ── Redactor SEO 8/11: TV de 55" para Black Friday (ticket alto) ─────────────
+  {
+    slug: 'smart-tv-55-pulgadas-cual-comprar',
+    titulo: 'Smart TV de 55 pulgadas: cuál comprar en el Black Friday 2026',
+    descripcion:
+      'Qué smart TV de 55 pulgadas comprar: LED, QLED, Mini LED u OLED, distancia, medidas y HDMI. Con los 55" 4K de hoy en Mercado Libre y su precio más bajo registrado.',
+    pregunta: '¿Qué smart TV de 55 pulgadas conviene comprar?',
+    respuestaCorta:
+      'Un smart TV de 55 pulgadas tiene que ser 4K con HDR, y es el tamaño justo para ver a entre 2,2 y 3 metros del sillón. Si el ambiente tiene mucha luz o vas a jugar con consola, conviene un QLED o Mini LED; para series y fútbol de noche alcanza un buen LED 4K. Antes del Black Friday (viernes 27 de noviembre de 2026), compará el precio de hoy con el más bajo registrado: si ya está en su mínimo, no hace falta esperar.',
+    tabla: {
+      titulo: 'LED, QLED, Mini LED u OLED en 55 pulgadas',
+      columnas: ['Panel', 'Qué mejora', 'Conviene si…', 'Precio'],
+      filas: [
+        ['LED 4K', 'Imagen 4K correcta para streaming y TV', 'mirás series y fútbol, sobre todo de noche', 'El más barato'],
+        ['QLED', 'Más color y más brillo que un LED', 'el living tiene ventanas o mucha luz', 'Intermedio'],
+        ['Mini LED', 'Mucho más contraste y brillo (negros más profundos)', 'jugás con consola o querés HDR que se note', 'Alto'],
+        ['OLED', 'Negro perfecto y el mejor contraste', 'mirás películas con poca luz y buscás lo mejor', 'El más caro'],
+      ],
+      nota: 'Orden de precio orientativo entre modelos de 55" de marcas conocidas; el precio real de cada uno está en la lista de arriba y cambia todos los días.',
+    },
+    secciones: [
+      {
+        h: 'Por qué 55 pulgadas y para qué distancia',
+        p: [
+          'Es el tamaño más elegido para el living: se ve cómodo a unos 2,2 a 3 metros del sillón. Si te sentás a 2 metros o menos, un 50" alcanza; a 3,5 metros o más, conviene mirar 65 pulgadas.',
+          'Medidas aproximadas de la pantalla de 55": 122 cm de ancho y 69 cm de alto, más el marco. Si va apoyado, revisá en la ficha el ancho entre las patas: en muchos modelos van en los extremos y no entran en un mueble angosto.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          '4K UHD (3840 x 2160) y HDR: en 55" son obligatorios. Confirmalo en el título o en la ficha, no en la foto.',
+          'Sistema operativo: Google TV, Tizen (Samsung), webOS (LG) y Roku tienen las apps de siempre (Netflix, Disney+, Prime Video, YouTube). Elegí el que ya conocés.',
+          'Conexiones: 3 o 4 HDMI si conectás consola, decodificador y barra de sonido. Para PS5 o Xbox Series, buscá HDMI 2.1 y 120 Hz en la ficha.',
+          'Garantía y service: en un TV de este precio, una marca con service oficial en tu zona vale más que una diferencia chica de precio.',
+        ],
+      },
+      {
+        h: 'Cómo comprarlo bien en el Black Friday',
+        p: [
+          'Mirá el precio más bajo que registramos de cada modelo (está en la lista de arriba): si el de hoy está igual o por debajo, el descuento es real.',
+          'Desconfiá de los porcentajes enormes sobre un precio "de antes" que nunca existió: compará siempre contra el historial, no contra el tachado.',
+          'Calculá el costo final con cuotas y envío. En un televisor de ticket alto, unas cuotas sin interés pueden valer tanto como un descuento.',
+        ],
+      },
+    ],
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
+    equipos: {
+      comparador: 'smart-tv',
+      titulo: 'Smart TV 4K de 55 pulgadas, con el precio de hoy',
+      incluye: /\b55\b/,
+      minimos: { pulgadas: 55, resolucion: 3 },
+    },
+    cta: { href: '/mejores/black-friday-smart-tv', titulo: 'Smart TV en el Black Friday 2026, comparados con el historial', boton: 'Ver smart TV del Black Friday 📺' },
+    faq: [
+      {
+        q: '¿A qué distancia se ve bien un TV de 55 pulgadas?',
+        a: 'A unos 2,2 a 3 metros del sillón. Más cerca alcanza con 50 pulgadas; a 3,5 metros o más conviene 65.',
+      },
+      {
+        q: '¿Cuánto mide un TV de 55 pulgadas?',
+        a: 'La pantalla mide unos 122 cm de ancho por 69 cm de alto. Sumale el marco y, si va apoyado, el ancho entre las patas que figura en la ficha.',
+      },
+      {
+        q: '¿Conviene QLED u OLED en 55 pulgadas?',
+        a: 'QLED si el ambiente tiene mucha luz o buscás buen precio con más color que un LED; OLED si mirás películas con poca luz y querés el mejor contraste. Mini LED queda en el medio: mucho brillo y buen contraste.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para comprar un TV de 55"?',
+        a: 'Si el modelo que querés ya está en su precio más bajo registrado, no hace falta esperar. Si está lejos de su mínimo y no te urge, el Black Friday (27 de noviembre de 2026) suele sumar cuotas y promociones.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
+      { href: '/precio-hoy/smart-tv-55-pulgadas', texto: 'Precio de un smart TV de 55" hoy' },
+      { href: '/guias/smart-tv-50-pulgadas-cual-comprar', texto: 'Smart TV de 50 pulgadas: cuál comprar' },
+      { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED: diferencias' },
+      { href: '/mejor/smart-tv-hasta-1-millon', texto: 'Mejor smart TV hasta $1 millón' },
+      { href: '/comparador/smart-tv', texto: 'Comparador de smart TV' },
+    ],
+  },
+  // ── 9/11: aire acondicionado (Analista de Tendencias: Climatización +194 % en ML) ──
+  {
+    slug: 'que-aire-acondicionado-comprar',
+    titulo: 'Qué aire acondicionado comprar en 2026: frigorías, inverter y cuándo baja el precio',
+    descripcion:
+      'Qué aire acondicionado comprar en 2026: cuántas frigorías por m², inverter u on-off, frío o frío-calor, instalación y si conviene esperar al Black Friday. Con los precios de hoy en Mercado Libre.',
+    pregunta: '¿Qué aire acondicionado conviene comprar en 2026?',
+    respuestaCorta:
+      'Para la mayoría de los hogares conviene un split inverter frío-calor con las frigorías justas para el ambiente: unas 2.250 frigorías hasta 15 m², 3.000 hasta 25 m² y 4.500 hasta 40 m², sumando un 10 a 20 % si da al sol. El inverter cuesta algo más pero gasta bastante menos luz y hace menos ruido. En noviembre los aires son lo que más se vende y los precios suben antes del calor: si el modelo que querés ya está en su precio más bajo registrado, no conviene esperar al Black Friday (27 de noviembre de 2026).',
+    tabla: {
+      titulo: 'Frigorías según el ambiente',
+      columnas: ['Ambiente', 'Superficie aprox.', 'Frigorías', 'Equipo típico'],
+      filas: [
+        ['Dormitorio chico', 'hasta 15 m²', '2.250', 'Split 2.250 / 2.300 F'],
+        ['Dormitorio grande o living chico', '15 a 25 m²', '3.000 a 3.500', 'Split 3.000 / 3.200 F'],
+        ['Living comedor', '25 a 40 m²', '4.500 a 5.500', 'Split 4.500 / 4.600 F'],
+        ['Ambiente integrado grande', 'más de 40 m²', '6.000 o más', 'Split 6.000 F o dos equipos'],
+      ],
+      nota: 'Valores orientativos para ambientes de 2,5 m de alto. Sumá 10 a 20 % si da al norte u oeste con ventanales, si es último piso o si hay muchas personas o cocina integrada.',
+    },
+    secciones: [
+      {
+        h: 'Inverter u on-off: cuál conviene',
+        p: [
+          'Un aire inverter regula la velocidad del compresor en vez de prenderse y apagarse: mantiene la temperatura más pareja, hace menos ruido y consume bastante menos energía cuando se usa muchas horas.',
+          'El on-off es más barato de comprar. Puede alcanzar si lo usás pocas horas por día o en un ambiente de uso ocasional. Si lo vas a prender todas las noches del verano, el inverter suele compensar la diferencia en la factura de luz.',
+        ],
+      },
+      {
+        h: 'Frío solo o frío-calor',
+        p: [
+          'La diferencia de precio entre un equipo solo frío y uno frío-calor suele ser chica, y el frío-calor calefacciona con bomba de calor, más eficiente que una estufa eléctrica común. Para un ambiente que usás todo el año, conviene frío-calor.',
+        ],
+      },
+      {
+        h: 'Split, portátil o de ventana',
+        p: [
+          'El split es el más silencioso y eficiente, pero necesita instalación con un técnico matriculado (casi nunca está incluida en el precio: sumala al presupuesto).',
+          'El portátil no necesita instalación fija y se mueve de un ambiente a otro, pero enfría menos por frigoría, hace más ruido y necesita sacar la manguera por una ventana. Sirve para alquileres o para salir del paso.',
+        ],
+      },
+      {
+        h: 'Cuándo baja el precio',
+        p: [
+          'En noviembre las ventas de aires crecen fuerte y varios modelos ya subieron de precio en los días previos al Black Friday. El tachado de "antes" muchas veces está inflado: compará siempre el precio de hoy con el más bajo que registramos, no con el porcentaje.',
+          'Si el modelo que querés está en su mínimo registrado, comprá. Si está lejos y no te urge, el Black Friday suele sumar cuotas sin interés; el pico de calor de diciembre, en cambio, suele empujar los precios para arriba.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-inverter',
+    cta: { href: '/mejores/mejores-aires-inverter', titulo: 'Aires inverter en oferta hoy, comparados con el historial', boton: 'Ver aires inverter de hoy ❄️' },
+    faq: [
+      {
+        q: '¿Cuántas frigorías necesito para 20 m²?',
+        a: 'Alrededor de 3.000 frigorías. Si el ambiente da al sol de la tarde o es último piso, conviene un equipo de 3.200 a 3.500 frigorías.',
+      },
+      {
+        q: '¿Conviene un aire inverter?',
+        a: 'Sí, si lo vas a usar muchas horas: gasta bastante menos luz, hace menos ruido y mantiene la temperatura más pareja. Para uso ocasional, un on-off puede alcanzar.',
+      },
+      {
+        q: '¿La instalación está incluida?',
+        a: 'Casi nunca. Revisá la publicación y sumá el costo de un instalador matriculado, que además suele ser condición para la garantía.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para comprar el aire?',
+        a: 'Solo si el modelo está lejos de su precio más bajo registrado y no te urge. En noviembre los aires son lo que más se vende y varios precios ya están subiendo antes del calor.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-aires-inverter', texto: 'Mejores aires inverter de hoy' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Mejores aires acondicionados' },
+      { href: '/guias/aire-acondicionado-cuantas-frigorias-necesito', texto: 'Cuántas frigorías necesito' },
+      { href: '/guias/aire-acondicionado-solo-frio-o-frio-calor', texto: 'Aire solo frío o frío-calor' },
+      { href: '/mejores/mejores-ventiladores', texto: 'Mejores ventiladores' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
+  // ── 9/11: consolas (Analista de Tendencias: Consolas y Videojuegos +98 % en ML) ──
+  {
+    slug: 'que-consola-comprar-black-friday',
+    titulo: 'Qué consola comprar en el Black Friday 2026: PlayStation 5, Nintendo Switch 2 o Xbox',
+    descripcion:
+      'Qué consola comprar en 2026: PS5 con lectora o digital, PS5 Pro, Nintendo Switch 2 o Xbox Series. Para quién conviene cada una, qué revisar en la publicación y cómo saber si el descuento del Black Friday es real.',
+    pregunta: '¿Qué consola conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Depende de para quién es y de qué juegos quiere: la PlayStation 5 es la más elegida para fútbol, acción y juego online con amigos; la Nintendo Switch 2 se usa también portátil y es la mejor para jugar en familia con chicos; la Xbox Series conviene si vas a usar Game Pass. En noviembre las consolas son de lo que más crece en Mercado Libre: compará el precio de hoy con el más bajo registrado antes de comprar, y fijate que sea la versión que creés (con lectora o digital, y con o sin juego incluido).',
+    tabla: {
+      titulo: 'PS5, Switch 2 o Xbox: para quién es cada una',
+      columnas: ['Consola', 'Conviene si…', 'Ojo con'],
+      filas: [
+        ['PlayStation 5 (con lectora)', 'querés juegos físicos, usados o prestados, y fútbol y acción', 'que diga "con lectora" o "edición estándar"'],
+        ['PlayStation 5 Digital', 'comprás todo online y querés ahorrar en la consola', 'no lee discos: los juegos físicos no sirven'],
+        ['PlayStation 5 Pro', 'tenés un TV 4K grande y querés la mejor imagen', 'es la más cara y no trae lectora de serie'],
+        ['Nintendo Switch 2', 'es para chicos o para jugar en familia, y también portátil', 'que sea Switch 2 y no la Switch original'],
+        ['Xbox Series X / S', 'vas a usar Game Pass (catálogo por suscripción)', 'la Series S es más chica y no tiene lectora'],
+      ],
+      nota: 'Comparación orientativa. El precio real de cada consola cambia todos los días: miralo en las ofertas gamer de abajo.',
+    },
+    secciones: [
+      {
+        h: 'Qué revisar en la publicación',
+        p: [
+          'Modelo exacto: con lectora o digital, Slim o Pro, Switch 2 o Switch original. Muchos títulos mezclan versiones: confirmalo en la ficha técnica, no en la foto.',
+          'Qué incluye: algunas publicaciones traen un juego o un segundo joystick, y otras no. Compará el precio contra la misma versión con el mismo contenido.',
+          'Vendedor y garantía: preferí tiendas oficiales o vendedores con buena reputación y garantía escrita. En consolas importadas, revisá que la garantía sea válida en Argentina.',
+        ],
+      },
+      {
+        h: 'Juegos y suscripciones: el gasto que sigue',
+        p: [
+          'La consola es la mitad del gasto. Para jugar online en PS5 hace falta PlayStation Plus y en Xbox Game Pass Core o Ultimate; en Switch 2, Nintendo Switch Online. Sumalo al presupuesto del año.',
+          'Los juegos físicos se pueden revender o prestar; los digitales suelen tener más ofertas pero quedan atados a la cuenta.',
+        ],
+      },
+      {
+        h: 'Cómo comprarla bien en el Black Friday',
+        p: [
+          'Compará el precio de hoy con el más bajo que registramos de esa misma versión: si está igual o por debajo, el descuento es real.',
+          'Desconfiá de los porcentajes enormes sobre un precio "de antes" que nunca existió, y de las publicaciones que piden pagar por fuera de Mercado Libre.',
+          'Si es un regalo de fin de año, comprar en el Black Friday (27 de noviembre de 2026) te da margen para el envío antes de las fiestas.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'gamer' },
+    cta: { href: '/categoria/gamer', titulo: 'Consolas y productos gamer en oferta hoy, con el descuento verificado', boton: 'Ver ofertas gamer 🎮' },
+    faq: [
+      {
+        q: '¿Conviene la PS5 con lectora o la digital?',
+        a: 'Con lectora si vas a comprar juegos físicos, usados o prestados; la digital es más barata pero solo usa juegos descargados de la tienda online.',
+      },
+      {
+        q: '¿Qué consola conviene para chicos?',
+        a: 'La Nintendo Switch 2: se juega en el TV y también portátil, tiene muchos juegos para toda la familia y control parental desde el celular.',
+      },
+      {
+        q: '¿Hace falta pagar una suscripción para jugar online?',
+        a: 'En general sí: PlayStation Plus en PS5, Game Pass en Xbox y Nintendo Switch Online en Switch 2. Muchos juegos gratuitos para jugar online son la excepción.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para comprar la consola?',
+        a: 'Si la versión que querés ya está en su precio más bajo registrado, no hace falta esperar. Si está lejos de su mínimo, el Black Friday suele sumar cuotas sin interés y combos con juegos.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
+      { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
+      { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
 ]
 
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09' }
+
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
-  GUIAS_TECNO.map(g => [g.slug, { publicada: '2026-10-23', modificada: '2026-10-23' }]),
+  GUIAS_TECNO.map(g => {
+    const f = FECHA_GUIA_TECNO[g.slug] ?? '2026-10-23'
+    return [g.slug, { publicada: f, modificada: f }]
+  }),
 )

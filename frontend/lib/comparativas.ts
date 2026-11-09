@@ -73,6 +73,7 @@ export const COMPARATIVAS: Comparativa[] = [
       'Etiqueta de eficiencia energética: A o superior.',
     ],
     guia: 'cuantas-frigorias-necesito-aire-acondicionado',
+    enlaces: [{ href: '/guias/que-aire-acondicionado-comprar', texto: 'Qué aire acondicionado comprar en 2026' }],
   },
   {
     slug: 'mejores-smart-tv',
@@ -1194,7 +1195,9 @@ export const COMPARATIVAS: Comparativa[] = [
       'Instalación: casi nunca viene incluida; sumala al presupuesto (caños, soporte y mano de obra).',
     ],
     guia: 'cuantas-frigorias-necesito-aire-acondicionado',
-    enlaces: [{ href: '/mejores/mejores-aires-acondicionados', texto: 'Todos los aires acondicionados' }],
+    enlaces: [
+      { href: '/guias/que-aire-acondicionado-comprar', texto: 'Qué aire acondicionado comprar en 2026' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Todos los aires acondicionados' }],
   },
   {
     slug: 'mejores-tv-55-65-pulgadas',

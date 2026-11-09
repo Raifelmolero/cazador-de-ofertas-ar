@@ -15,6 +15,8 @@ export interface Guia {
   pregunta: string
   respuestaCorta: string // el párrafo que una IA puede citar textual
   secciones: { h: string; p: string[] }[]
+  /** Tabla comparativa en HTML plano (la leen Google y las IAs). Va antes de las secciones. */
+  tabla?: { titulo: string; columnas: string[]; filas: string[][]; nota?: string }
   // Si la guía responde una pregunta previa a comprar un rubro, el botón
   // final lleva a esa categoría (donde están las ofertas) en vez de la home.
   categoria?: { slug: string; nombre: string }

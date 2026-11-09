@@ -224,6 +224,43 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </section>
         )}
 
+        {g.tabla && (
+          <section className="mb-8" aria-label={g.tabla.titulo}>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{g.tabla.titulo}</h2>
+            <div className="overflow-x-auto rounded-xl border border-zinc-800">
+              <table className="w-full min-w-[520px] text-left text-sm">
+                <thead className="bg-zinc-900 text-zinc-200">
+                  <tr>
+                    {g.tabla.columnas.map(c => (
+                      <th key={c} scope="col" className="px-3 py-2 font-bold">
+                        {c}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-zinc-400">
+                  {g.tabla.filas.map(f => (
+                    <tr key={f[0]} className="border-t border-zinc-800">
+                      {f.map((v, j) =>
+                        j === 0 ? (
+                          <th key={j} scope="row" className="px-3 py-2 font-semibold text-zinc-200">
+                            {v}
+                          </th>
+                        ) : (
+                          <td key={j} className="px-3 py-2">
+                            {v}
+                          </td>
+                        ),
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {g.tabla.nota && <p className="mt-2 text-xs text-zinc-500">{g.tabla.nota}</p>}
+          </section>
+        )}
+
         {g.secciones.map((s, i) => (
           <div key={s.h}>
             <section className="mb-8">

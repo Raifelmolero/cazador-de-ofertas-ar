@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-08T23:36:56+00:00",
+  "generado": "2026-11-09T04:29:54+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,45 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-08T23:36:55+00:00",
+      "ultima_actividad": "2026-11-09T04:29:54+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11729 productos en la última corrida"
+          "tarea": "Revisó 11143 productos en la última corrida"
         }
       ],
       "metricas": [
         {
-          "label": "whatsapp_kit",
-          "valor": 12
+          "label": "Facebook",
+          "valor": 8
         },
         {
-          "label": "Facebook",
-          "valor": 10
+          "label": "whatsapp_kit",
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 5
-        },
-        {
-          "label": "Threads",
-          "valor": 5
-        },
-        {
-          "label": "Reels IG",
           "valor": 3
         },
         {
-          "label": "Historias IG",
+          "label": "Threads",
           "valor": 3
         },
         {
           "label": "Instagram",
           "valor": 2
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora Inverter Mig Mag Mma 210a 220v Esab Rogue Em 210 Amarillo/negro"
+      "ultimo_trabajo": "Smart TV AI LG QNED 4K 75 Pulgadas 75QNED82"
     },
     {
       "id": "investigacion",

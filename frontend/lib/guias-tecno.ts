@@ -1299,8 +1299,94 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
+  // ── Redactor SEO 8/11: TV de 55" para Black Friday (ticket alto) ─────────────
+  {
+    slug: 'smart-tv-55-pulgadas-cual-comprar',
+    titulo: 'Smart TV de 55 pulgadas: cuál comprar en el Black Friday 2026',
+    descripcion:
+      'Qué smart TV de 55 pulgadas comprar: LED, QLED, Mini LED u OLED, distancia, medidas y HDMI. Con los 55" 4K de hoy en Mercado Libre y su precio más bajo registrado.',
+    pregunta: '¿Qué smart TV de 55 pulgadas conviene comprar?',
+    respuestaCorta:
+      'Un smart TV de 55 pulgadas tiene que ser 4K con HDR, y es el tamaño justo para ver a entre 2,2 y 3 metros del sillón. Si el ambiente tiene mucha luz o vas a jugar con consola, conviene un QLED o Mini LED; para series y fútbol de noche alcanza un buen LED 4K. Antes del Black Friday (viernes 27 de noviembre de 2026), compará el precio de hoy con el más bajo registrado: si ya está en su mínimo, no hace falta esperar.',
+    tabla: {
+      titulo: 'LED, QLED, Mini LED u OLED en 55 pulgadas',
+      columnas: ['Panel', 'Qué mejora', 'Conviene si…', 'Precio'],
+      filas: [
+        ['LED 4K', 'Imagen 4K correcta para streaming y TV', 'mirás series y fútbol, sobre todo de noche', 'El más barato'],
+        ['QLED', 'Más color y más brillo que un LED', 'el living tiene ventanas o mucha luz', 'Intermedio'],
+        ['Mini LED', 'Mucho más contraste y brillo (negros más profundos)', 'jugás con consola o querés HDR que se note', 'Alto'],
+        ['OLED', 'Negro perfecto y el mejor contraste', 'mirás películas con poca luz y buscás lo mejor', 'El más caro'],
+      ],
+      nota: 'Orden de precio orientativo entre modelos de 55" de marcas conocidas; el precio real de cada uno está en la lista de arriba y cambia todos los días.',
+    },
+    secciones: [
+      {
+        h: 'Por qué 55 pulgadas y para qué distancia',
+        p: [
+          'Es el tamaño más elegido para el living: se ve cómodo a unos 2,2 a 3 metros del sillón. Si te sentás a 2 metros o menos, un 50" alcanza; a 3,5 metros o más, conviene mirar 65 pulgadas.',
+          'Medidas aproximadas de la pantalla de 55": 122 cm de ancho y 69 cm de alto, más el marco. Si va apoyado, revisá en la ficha el ancho entre las patas: en muchos modelos van en los extremos y no entran en un mueble angosto.',
+        ],
+      },
+      {
+        h: 'Qué mirar en la publicación',
+        p: [
+          '4K UHD (3840 x 2160) y HDR: en 55" son obligatorios. Confirmalo en el título o en la ficha, no en la foto.',
+          'Sistema operativo: Google TV, Tizen (Samsung), webOS (LG) y Roku tienen las apps de siempre (Netflix, Disney+, Prime Video, YouTube). Elegí el que ya conocés.',
+          'Conexiones: 3 o 4 HDMI si conectás consola, decodificador y barra de sonido. Para PS5 o Xbox Series, buscá HDMI 2.1 y 120 Hz en la ficha.',
+          'Garantía y service: en un TV de este precio, una marca con service oficial en tu zona vale más que una diferencia chica de precio.',
+        ],
+      },
+      {
+        h: 'Cómo comprarlo bien en el Black Friday',
+        p: [
+          'Mirá el precio más bajo que registramos de cada modelo (está en la lista de arriba): si el de hoy está igual o por debajo, el descuento es real.',
+          'Desconfiá de los porcentajes enormes sobre un precio "de antes" que nunca existió: compará siempre contra el historial, no contra el tachado.',
+          'Calculá el costo final con cuotas y envío. En un televisor de ticket alto, unas cuotas sin interés pueden valer tanto como un descuento.',
+        ],
+      },
+    ],
+    categoria: { slug: 'smart-tv', nombre: 'smart TV' },
+    equipos: {
+      comparador: 'smart-tv',
+      titulo: 'Smart TV 4K de 55 pulgadas, con el precio de hoy',
+      incluye: /\b55\b/,
+      minimos: { pulgadas: 55, resolucion: 3 },
+    },
+    cta: { href: '/mejores/black-friday-smart-tv', titulo: 'Smart TV en el Black Friday 2026, comparados con el historial', boton: 'Ver smart TV del Black Friday 📺' },
+    faq: [
+      {
+        q: '¿A qué distancia se ve bien un TV de 55 pulgadas?',
+        a: 'A unos 2,2 a 3 metros del sillón. Más cerca alcanza con 50 pulgadas; a 3,5 metros o más conviene 65.',
+      },
+      {
+        q: '¿Cuánto mide un TV de 55 pulgadas?',
+        a: 'La pantalla mide unos 122 cm de ancho por 69 cm de alto. Sumale el marco y, si va apoyado, el ancho entre las patas que figura en la ficha.',
+      },
+      {
+        q: '¿Conviene QLED u OLED en 55 pulgadas?',
+        a: 'QLED si el ambiente tiene mucha luz o buscás buen precio con más color que un LED; OLED si mirás películas con poca luz y querés el mejor contraste. Mini LED queda en el medio: mucho brillo y buen contraste.',
+      },
+      {
+        q: '¿Conviene esperar al Black Friday para comprar un TV de 55"?',
+        a: 'Si el modelo que querés ya está en su precio más bajo registrado, no hace falta esperar. Si está lejos de su mínimo y no te urge, el Black Friday (27 de noviembre de 2026) suele sumar cuotas y promociones.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
+      { href: '/precio-hoy/smart-tv-55-pulgadas', texto: 'Precio de un smart TV de 55" hoy' },
+      { href: '/guias/smart-tv-50-pulgadas-cual-comprar', texto: 'Smart TV de 50 pulgadas: cuál comprar' },
+      { href: '/guias/led-qled-u-oled-diferencias-smart-tv', texto: 'LED, QLED u OLED: diferencias' },
+      { href: '/mejor/smart-tv-hasta-1-millon', texto: 'Mejor smart TV hasta $1 millón' },
+      { href: '/comparador/smart-tv', texto: 'Comparador de smart TV' },
+    ],
+  },
 ]
 
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08' }
+
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
-  GUIAS_TECNO.map(g => [g.slug, { publicada: '2026-10-23', modificada: '2026-10-23' }]),
+  GUIAS_TECNO.map(g => {
+    const f = FECHA_GUIA_TECNO[g.slug] ?? '2026-10-23'
+    return [g.slug, { publicada: f, modificada: f }]
+  }),
 )

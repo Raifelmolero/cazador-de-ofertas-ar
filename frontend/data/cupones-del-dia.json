@@ -2,21 +2,30 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "ULTIMACHANCE11",
-      "descuento": 80000,
-      "minimo": 1000000,
-      "hasta": "2026-11-09T23:59:00-03:00",
-      "condiciones": "Compra mínima $1.000.000. El canal de Afiliados confirmó el lunes 9/11 a las 09:44 que es uno de los cupones que funcionan hoy (cierre del Cyber); válido solo el lunes 9/11 hasta las 23:59 o hasta agotar stock.",
-      "campania": "Último día del Cyber",
+      "codigo": "1111ACTIVO",
+      "descuento": 10000,
+      "minimo": 150000,
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $150.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
-      "codigo": "CHAUCYBER11",
+      "codigo": "DOBLECHANCE11",
+      "descuento": 20000,
+      "minimo": 250000,
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $250.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
+      "link": "https://www.mercadolibre.com.ar/ofertas"
+    },
+    {
+      "codigo": "MELIONCE",
       "descuento": 45000,
       "minimo": 500000,
-      "hasta": "2026-11-09T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. El canal de Afiliados confirmó el lunes 9/11 a las 09:44 que es uno de los cupones que funcionan hoy (cierre del Cyber); válido solo el lunes 9/11 hasta las 23:59 o hasta agotar stock.",
-      "campania": "Último día del Cyber",
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $500.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     }
   ]

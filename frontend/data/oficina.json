@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-09T18:38:48+00:00",
+  "generado": "2026-11-10T14:27:07+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-09T04:29:54+00:00",
+      "ultima_actividad": "2026-11-10T05:54:30+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11891 productos en la última corrida"
+          "tarea": "Revisó 11911 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
-        },
-        {
-          "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 3
         },
         {
           "label": "Telegram",
-          "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 3
-        },
-        {
-          "label": "Instagram",
           "valor": 2
         },
         {
-          "label": "Reels IG",
+          "label": "Instagram",
           "valor": 1
         },
         {
-          "label": "Historias IG",
+          "label": "Threads",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Smart TV AI LG QNED 4K 75 Pulgadas 75QNED82"
+      "ultimo_trabajo": "Notebook Gamer Gigabyte Aero Ryzen 9 32gb Ddr5 1tb Rtx 5070"
     },
     {
       "id": "investigacion",
@@ -202,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-08T16:55:32+00:00",
+      "ultima_actividad": "2026-11-09T21:17:46+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -214,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 17 h"
         },
         {
           "fecha": "",

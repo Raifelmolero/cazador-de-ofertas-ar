@@ -26,6 +26,9 @@ const GUIAS_TICKET_ALTO = [
   'que-smart-tv-comprar',
   'que-freidora-de-aire-comprar',
   'que-colchon-comprar-firmeza-y-material',
+  'que-aire-acondicionado-comprar',
+  'smart-tv-55-pulgadas-cual-comprar',
+  'que-lavarropas-comprar',
 ]
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'

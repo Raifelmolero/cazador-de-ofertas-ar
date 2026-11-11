@@ -5,27 +5,27 @@
       "codigo": "1111ACTIVO",
       "descuento": 10000,
       "minimo": 150000,
-      "hasta": "2026-11-10T23:59:00-03:00",
-      "condiciones": "Compra mínima $150.000. Cupón de la previa del 11.11 que el canal de Afiliados publicó el martes 10/11 a las 09:37; no informó vencimiento, se muestra hasta hoy 23:59.",
-      "campania": "Previa 11.11",
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $150.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
       "codigo": "DOBLECHANCE11",
       "descuento": 20000,
       "minimo": 250000,
-      "hasta": "2026-11-10T23:59:00-03:00",
-      "condiciones": "Compra mínima $250.000. Cupón de la previa del 11.11 que el canal de Afiliados publicó el martes 10/11 a las 09:37; no informó vencimiento, se muestra hasta hoy 23:59.",
-      "campania": "Previa 11.11",
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $250.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
       "codigo": "MELIONCE",
       "descuento": 45000,
       "minimo": 500000,
-      "hasta": "2026-11-10T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. Cupón de la previa del 11.11 que el canal de Afiliados publicó el martes 10/11 a las 09:37; no informó vencimiento, se muestra hasta hoy 23:59.",
-      "campania": "Previa 11.11",
+      "hasta": "2026-11-11T23:59:00-03:00",
+      "condiciones": "Compra mínima $500.000. Cupón de la previa del 11.11 publicado en el canal oficial de Afiliados el martes 10/11 a las 09:37; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
+      "campania": "Previa del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     }
   ]

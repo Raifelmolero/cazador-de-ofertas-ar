@@ -2,39 +2,30 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "ESPECTACULO",
-      "descuento": 15000,
-      "minimo": 150000,
-      "hasta": "2026-11-11T12:30:00-03:00",
-      "condiciones": "Compra mínima $150.000. Cupón relámpago del 11.11 publicado en el canal oficial de Afiliados: disponible de 10:00 a 12:30 hs del 11/11.",
-      "campania": "Fecha doble 11.11",
+      "codigo": "MELIAFF8",
+      "descuento": 8000,
+      "minimo": 100000,
+      "hasta": "2026-11-12T23:59:00-03:00",
+      "condiciones": "Compra mínima $100.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 12/11 a las 08:59; vigencia 12/11 de 9:00 a 23:59 hs o hasta agotar stock.",
+      "campania": "Después del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
-      "codigo": "11X11MELI",
-      "descuento": 10000,
-      "minimo": 150000,
-      "hasta": "2026-11-11T23:59:00-03:00",
-      "condiciones": "Compra mínima $150.000. Cupón oficial de la fecha doble 11.11 publicado en el canal de Afiliados (Agus) el martes 10/11 a las 23:38, válido desde las 00:00 del 11/11; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
-      "campania": "Fecha doble 11.11",
+      "codigo": "AFILIMELI18",
+      "descuento": 18000,
+      "minimo": 200000,
+      "hasta": "2026-11-12T23:59:00-03:00",
+      "condiciones": "Compra mínima $200.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 12/11 a las 08:59; vigencia 12/11 de 9:00 a 23:59 hs o hasta agotar stock.",
+      "campania": "Después del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
-      "codigo": "11FECHADOBLE26",
-      "descuento": 20000,
-      "minimo": 250000,
-      "hasta": "2026-11-11T23:59:00-03:00",
-      "condiciones": "Compra mínima $250.000. Cupón oficial de la fecha doble 11.11 publicado en el canal de Afiliados (Agus) el martes 10/11 a las 23:38, válido desde las 00:00 del 11/11; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
-      "campania": "Fecha doble 11.11",
-      "link": "https://www.mercadolibre.com.ar/ofertas"
-    },
-    {
-      "codigo": "MELIDOBLEON",
-      "descuento": 45000,
-      "minimo": 500000,
-      "hasta": "2026-11-11T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. Cupón oficial de la fecha doble 11.11 publicado en el canal de Afiliados (Agus) el martes 10/11 a las 23:38, válido desde las 00:00 del 11/11; vigencia estimada hasta el 11/11 a las 23:59 o hasta agotar stock.",
-      "campania": "Fecha doble 11.11",
+      "codigo": "MELIOFF25",
+      "descuento": 25000,
+      "minimo": 300000,
+      "hasta": "2026-11-12T23:59:00-03:00",
+      "condiciones": "Compra mínima $300.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 12/11 a las 08:59; vigencia 12/11 de 9:00 a 23:59 hs o hasta agotar stock.",
+      "campania": "Después del 11.11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     }
   ]

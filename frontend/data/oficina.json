@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-12T18:16:08+00:00",
+  "generado": "2026-11-12T21:49:23+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-12T05:36:34+00:00",
+      "ultima_actividad": "2026-11-12T21:49:23+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 1
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Alienware 15.3 Gaming Ryzen R7 Rtx 5050 165hz 16gb"
+      "ultimo_trabajo": "Notebook Gamer MSI Cyborg 15 con Intel Core Ultra 7, RTX 5070, 16GB de RAM y 1TB"
     },
     {
       "id": "investigacion",
@@ -190,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-11T18:24:12+00:00",
+      "ultima_actividad": "2026-11-12T18:42:02+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -202,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 14 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

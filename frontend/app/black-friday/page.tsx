@@ -1,151 +1,138 @@
-// Landing del Black Friday: fecha (con fuente), aclaración de que en Argentina
-// no tiene organizador oficial, cómo detectar descuentos inflados y las ofertas
-// reales de hoy. Hub de la comparativa /mejores/ofertas-black-friday.
+// Lander del Black Friday 2026 (previa → Día D → después), según el brief
+// EQUIPO-GROK/BRIEF-WEB-PREVIA-BF.md. Orden fijo: hero con cuenta regresiva,
+// cómo detectar un descuento inflado, categorías foco, top de 10 (solo
+// marcadores de data/black-friday-previa.json), CTA de mitad, FAQ, aviso de
+// afiliado y cierre. Sticky de WhatsApp en el celular.
 //
-// La fecha sale de lib/cybermonday.ts (BLACK_FRIDAY). No hay fecha "oficial" de
-// Mercado Libre ni organizador: por eso NO se publica JSON-LD de Event. Nada de
-// datos inventados: productos y % de infladas salen del catálogo y del bot.
+// Reglas: nada de precios sin reconfirmar el mismo día, nada de preventa ni
+// extensión inventadas, y sin JSON-LD de Event (no hay organizador oficial).
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { tituloSeo, descripcionSeo } from '@/lib/seo'
-import CuentaRegresivaEvento from '@/components/CuentaRegresivaEvento'
 import Footer from '@/components/Footer'
-import TopOfertasHoy from '@/components/TopOfertasHoy'
-import LastUpdated from '@/components/LastUpdated'
-import ExtensionCTA from '@/components/ExtensionCTA'
-import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
-import { getOfertas, getScrapedAt } from '@/lib/productos'
-import { COMPARATIVAS, getComparativa, productosDe } from '@/lib/comparativas'
-import { GUIAS } from '@/lib/guias'
-
-/** Guías de compra de ticket alto (lo que más vende por afiliados). */
-const GUIAS_TICKET_ALTO = [
-  'que-notebook-comprar',
-  'que-celular-comprar-segun-presupuesto',
-  'que-celular-gama-alta-comprar',
-  'que-smart-tv-comprar',
-  'que-freidora-de-aire-comprar',
-  'que-colchon-comprar-firmeza-y-material',
-  'que-aire-acondicionado-comprar',
-  'smart-tv-55-pulgadas-cual-comprar',
-  'que-lavarropas-comprar',
-]
+import { EXTENSION_PUBLICADA, EXTENSION_URL } from '@/components/ExtensionCTA'
 import { getEstudio } from '@/lib/estudio'
-import { getInfladas } from '@/lib/infladas'
-import { slugPorId } from '@/lib/seguimiento'
-import ComparacionTestigo from '@/components/ComparacionTestigo'
-import { BLACK_FRIDAY as BF, CYBER_MONDAY as CM, etapaBlackFriday } from '@/lib/cybermonday'
+import { BLACK_FRIDAY as BF } from '@/lib/cybermonday'
+import { faseBF, getDatosBF, slotPublicable, type FaseBF } from '@/lib/black-friday-previa'
+import CuentaRegresivaBF from '@/components/black-friday/CuentaRegresivaBF'
+import EventosBF from '@/components/black-friday/EventosBF'
+import StickyWhatsAppBF from '@/components/black-friday/StickyWhatsAppBF'
+import TarjetaBF from '@/components/black-friday/TarjetaBF'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/black-friday`
-const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
-const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
-const MAX_OFERTAS = 16
+const VERIFICADOR_URL = `${DEALS_URL}/#verificador`
+const AFILIADOS_ML_URL = 'https://www.mercadolibre.com.ar/l/afiliados'
 
-const TITULO = `Black Friday ${BF.año} Argentina (27/11): ofertas y cupones hoy`
-const DESCRIPCION = `Black Friday ${BF.año} en Argentina: ${BF.fechasTexto}. Ofertas de Mercado Libre de hoy verificadas contra el historial, cupones y cómo detectar descuentos inflados.`
-
-export const metadata: Metadata = {
-  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
-  description: descripcionSeo(DESCRIPCION),
-  keywords: [
-    `black friday ${BF.año}`,
-    `black friday ${BF.año} argentina`,
-    'cuándo es el black friday',
-    'black friday mercado libre',
-    'ofertas black friday',
-    'descuentos inflados black friday',
-  ],
-  metadataBase: new globalThis.URL(DEALS_URL),
-  alternates: { canonical: URL },
-  openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+/** Title y description según la fase (el sitio se rebuildea 3×/día). El de
+ *  Día D solo después del OK de las 19:00 (`ok_dia_d` en el JSON). */
+function textosSeo(fase: FaseBF, okDiaD: boolean) {
+  if (fase !== 'previa' && okDiaD) {
+    return {
+      titulo: 'Black Friday 2026 (27/11): ofertas de Mercado Libre verificadas hoy',
+      descripcion:
+        'Black Friday 2026: viernes 27 de noviembre. Ofertas de Mercado Libre de hoy, verificadas contra el historial de precios. El precio se reconfirma el mismo día. Pagás lo mismo que entrando directo a ML.',
+    }
+  }
+  return {
+    titulo: 'Black Friday 2026 Argentina: viernes 27/11, ofertas verificadas',
+    descripcion:
+      'Black Friday 2026 en Argentina: viernes 27 de noviembre. Armá tu lista, sumate al canal y mirá ofertas de Mercado Libre verificadas contra el historial. El precio se reconfirma el mismo día.',
+  }
 }
 
-/** "2026-09-27" → "27/09/2026" */
-const fechaAR = (iso: string) => iso.split('-').reverse().join('/')
+export function generateMetadata(): Metadata {
+  const { titulo, descripcion } = textosSeo(faseBF(), getDatosBF().ok_dia_d)
+  return {
+    // Textos finales del brief, sin recortar (el de Día D tiene 67 caracteres).
+    title: { absolute: titulo },
+    description: descripcion,
+    keywords: [
+      `black friday ${BF.año}`,
+      `black friday ${BF.año} argentina`,
+      'cuándo es el black friday',
+      'black friday mercado libre',
+      'ofertas black friday',
+      'descuentos inflados black friday',
+    ],
+    metadataBase: new globalThis.URL(DEALS_URL),
+    alternates: { canonical: URL },
+    openGraph: { title: titulo, description: descripcion, url: URL, type: 'website', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+  }
+}
+
+/** "2026-07-19" → "19 de julio de 2026" */
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const fechaLarga = (iso: string) => {
+  const [a, m, d] = iso.split('-').map(Number)
+  return `${d} de ${MESES[m - 1]} de ${a}`
+}
+
+const CATEGORIAS_A = [
+  { nombre: 'Notebooks', detalle: 'prioridad: 16 GB de RAM o más', href: '/mejores/black-friday-notebooks', id: 'notebooks' },
+  { nombre: 'Celulares', detalle: 'gama media y alta vigente', href: '/mejores/black-friday-celulares', id: 'celulares' },
+  { nombre: 'Smart TV', detalle: '50 o 55 pulgadas, como referencia', href: '/mejores/black-friday-smart-tv', id: 'smart_tv' },
+  { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/guias/que-aire-acondicionado-comprar', id: 'aires' },
+]
+const CATEGORIAS_B = [
+  { nombre: 'Belleza y cuidado personal', detalle: 'kits de skincare, protector solar' },
+  { nombre: 'Hogar, muebles y jardín', detalle: 'colchón 2 plazas, por ejemplo' },
+  { nombre: 'Ropa y accesorios', detalle: 'zapatillas, mallas, verano' },
+  { nombre: 'Juegos y juguetes', detalle: 'para adelantar regalos de Navidad' },
+]
+
+const btnWA = 'inline-flex items-center justify-center rounded-xl bg-green-500 hover:bg-green-400 px-6 py-3 text-sm font-bold text-black transition-colors'
+const btnSec = 'inline-flex items-center justify-center rounded-xl border border-zinc-700 hover:border-yellow-400 px-6 py-3 text-sm font-bold text-zinc-100 transition-colors'
+const h2 = 'font-display text-2xl sm:text-3xl font-black mb-3 [text-wrap:balance]'
+const linkTxt = 'font-semibold text-yellow-400 hover:underline'
 
 export default function BlackFridayPage() {
-  const scrapedAt = getScrapedAt().toISOString()
+  const datos = getDatosBF()
+  const wa = datos.link_canal_whatsapp.trim()
+  const tg = datos.link_canal_telegram.trim()
   const estudio = getEstudio()
-  const infladas = getInfladas()
-  const historial = slugPorId()
-  const { etapa, dias } = etapaBlackFriday()
-
-  // Misma selección que /mejores/ofertas-black-friday; si hoy no alcanza, /hoy.
-  const bf = getComparativa('ofertas-black-friday')
-  const deRubros = bf ? productosDe(bf) : []
-  const ofertas = (deRubros.length >= 4 ? deRubros : getOfertas()).slice(0, MAX_OFERTAS)
-  const ofertasLight: OfertaLight[] = ofertas.map(o => ({
-    id_ml: o.id_ml,
-    titulo: o.titulo,
-    precio_actual: o.precio_actual,
-    precio_anterior: o.precio_anterior,
-    descuento_pct: o.descuento_pct,
-    minimo_historico: o.minimo_historico,
-    relampago: o.relampago,
-    url_producto: o.url_producto,
-    url_imagen: o.url_imagen,
-    historial: historial[o.id_ml],
-  }))
-
-  // Ticket medio: las de arriba suelen ser todas de más de $2,9 M (F5 6/11).
-  const ticketMedio: OfertaLight[] = getOfertas()
-    .filter(o => o.precio_actual >= 100_000 && o.precio_actual <= 800_000 && !ofertas.some(x => x.id_ml === o.id_ml))
-    .sort((x, y) => (y.descuento_pct ?? 0) - (x.descuento_pct ?? 0))
-    .slice(0, 3)
-    .map(o => ({
-      id_ml: o.id_ml,
-      titulo: o.titulo,
-      precio_actual: o.precio_actual,
-      precio_anterior: o.precio_anterior,
-      descuento_pct: o.descuento_pct,
-      minimo_historico: o.minimo_historico,
-      relampago: o.relampago,
-      url_producto: o.url_producto,
-      url_imagen: o.url_imagen,
-      historial: historial[o.id_ml],
-    }))
-
-  const porRubro = COMPARATIVAS.filter(c => c.slug.startsWith('black-friday-'))
-  const guias = GUIAS.filter(g => g.slug.includes('black-friday') || GUIAS_TICKET_ALTO.includes(g.slug))
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
+
+  // Slots vacíos (sin nombre) no se renderizan; los cargados pero no reconfirmados
+  // hoy se muestran sin precio. El navegador lo vuelve a chequear (TarjetaBF).
+  const slots = datos.slots.filter(s => s.nombre)
+  const publicables = slots.filter(s => slotPublicable(s))
 
   const faqs = [
     {
-      q: `¿Cuándo es el Black Friday ${BF.año} en Argentina?`,
-      a: `El ${BF.fechasTexto} de ${BF.año}. El Black Friday es el viernes siguiente al Día de Acción de Gracias de Estados Unidos, que en ${BF.año} cae el jueves 26 de noviembre. En Argentina no hay una fecha oficial: algunas tiendas estiran sus promociones a varios días, así que conviene revisar las condiciones de cada una.`,
+      q: '¿Cuándo es el Black Friday 2026 en Argentina?',
+      a: 'El viernes 27 de noviembre de 2026. Es el viernes siguiente al Día de Acción de Gracias de Estados Unidos (jueves 26 de noviembre). En Argentina no hay un organizador ni una fecha oficial de preventa: cada tienda decide si se suma y por cuántos días. La fecha de referencia que usamos acá es el viernes 27.',
     },
     {
       q: '¿Quién organiza el Black Friday en Argentina?',
-      a: 'Nadie en particular. A diferencia del Cyber Monday, que organiza la Cámara Argentina de Comercio Electrónico (CACE), el Black Friday en Argentina no tiene un organizador ni un sitio oficial: cada tienda decide si participa, qué días y con qué descuentos. Cazador de Ofertas AR no forma parte de ninguna organización: revisamos las ofertas de Mercado Libre Argentina por nuestra cuenta, todo el año.',
+      a: 'Nadie en particular. A diferencia del Cyber Monday, que organiza la Cámara Argentina de Comercio Electrónico (CACE), el Black Friday no tiene sitio oficial ni lista de participantes. Cazador de Ofertas AR no forma parte de ninguna organización: revisamos las ofertas de Mercado Libre Argentina por nuestra cuenta, todo el año.',
+    },
+    {
+      q: '¿El Cyber Monday es el lunes 30 de noviembre?',
+      a: 'No. El Cyber Monday que organiza la CACE en 2026 fue del lunes 2 al miércoles 4 de noviembre, y ya pasó. El lunes 30 es el Cyber Monday del calendario internacional. Si ese día Mercado Libre o alguna tienda publica una vigencia, la vamos a contrastar; no la damos por hecha de antemano.',
+    },
+    {
+      q: '¿Va a haber preventa o se va a extender el fin de semana?',
+      a: 'Puede haber promociones antes o después del 27, porque cada tienda arma la suya, y Mercado Libre dijo que puede haber ofertas antes y después. No tenemos una fecha oficial de preventa ni de extensión, así que no vamos a anunciar una. Si aparece algo, lo publicamos ese mismo día, con el precio reconfirmado.',
     },
     {
       q: '¿Cómo sé si un descuento del Black Friday es real?',
-      a: `Comparando el precio de ese día contra lo que el producto costó antes, no contra el precio tachado. En nuestro registro, el ${pct}% de las ofertas que revisamos en mercadolibre.com.ar/ofertas tenía el descuento inflado: el producto ya se había vendido al menos 5% más barato. Anotá los precios antes, mirá el historial y, si tenés el link de una publicación, pegalo en nuestro verificador.`,
+      a: `Comparando el precio de ese día contra lo que el producto costó antes, no contra el precio tachado. En nuestro registro, el ${pct} % de las ofertas que revisamos tenía el descuento inflado: el producto ya se había vendido al menos 5 % más barato. Anotá los precios antes, mirá el historial y, si tenés el link, pegalo en el verificador.`,
     },
     {
-      q: '¿Qué conviene más: el Cyber Monday o el Black Friday?',
-      a: `Depende del producto, no del evento. El Cyber Monday ${CM.año} es ${CM.fechasTexto} y reúne a las tiendas que se suman a la convocatoria de la CACE; el Black Friday llega unas semanas después y depende de cada tienda. Si lo que buscás ya está en su precio más bajo registrado, esperar no suma; si no, compará el precio de hoy con el de cada evento.`,
+      q: '¿Conviene esperar al 27 o comprar ahora?',
+      a: 'Si lo que querés ya está hoy en su precio más bajo registrado, esperar no te suma nada y corrés el riesgo de que se agote. Si no está en su mínimo y no lo necesitás ya, esperar puede convenir. Mirá el historial del producto antes de decidir.',
     },
     {
-      q: '¿Hay cupones de Mercado Libre para el Black Friday?',
-      a: 'Mercado Libre muestra los cupones de cada usuario en mercadolibre.com.ar/cupones, con la sesión iniciada. Cada uno tiene su vigencia, productos alcanzados y tope, y en general se usa uno por compra. Un cupón descuenta sobre el precio publicado: primero fijate que el precio sea bueno. En nuestra página de cupones juntamos los que vemos cada día.',
+      q: '¿Las cuotas sin interés convienen?',
+      a: 'Convienen si el precio en cuotas es el mismo que en un pago. Multiplicá la cuota por la cantidad de cuotas: si el total da más que el precio publicado, hay interés escondido.',
     },
     {
-      q: '¿Cuánto dura el Black Friday en Argentina?',
-      a: `La fecha de referencia es el ${BF.fechasTexto}, pero muchas tiendas arrancan antes y lo estiran hasta el Cyber Monday del lunes 30 de noviembre. Como no hay organizador, cada tienda define sus días: revisá las condiciones de cada promoción.`,
+      q: '¿Cazador de Ofertas AR cobra algo o hay que registrarse?',
+      a: 'No: el sitio es gratis y no requiere registro. Se sostiene con links de afiliado de Mercado Libre. El precio para quien compra es el mismo que comprando directo en Mercado Libre.',
     },
     {
-      q: '¿Conviene esperar al Black Friday o comprar ahora?',
-      a: 'Si lo que querés ya está hoy en su precio más bajo registrado, esperar no te suma nada y corrés el riesgo de que se agote. Si no está en su mínimo y no lo necesitás ya, esperar puede convenir. Mirá el historial de precios del producto antes de decidir.',
-    },
-    {
-      q: '¿Las cuotas sin interés del Black Friday convienen?',
-      a: 'Convienen si el precio en cuotas es el mismo que en un pago. Multiplicá la cuota por la cantidad de cuotas: si el total da más que el precio publicado, hay interés escondido. Con la inflación, pagar en cuotas fijas sin interés suele ser mejor que pagar todo junto.',
-    },
-    {
-      q: '¿Qué es lo que más baja en el Black Friday?',
-      a: 'En nuestro registro, las bajas en pesos más grandes aparecen en ticket alto: celulares, notebooks, smart TV, heladeras y aires acondicionados. En productos chicos un 20 % OFF es poca plata; en una heladera puede ser más de $300.000.',
+      q: '¿A qué hora publican?',
+      a: 'Raifel publica a las 19:00, hora Argentina. El canal de WhatsApp es el lugar más rápido para ver la tanda del día. Esta página se actualiza cuando hay un hallazgo reconfirmado; siempre mirá la hora de reconfirmación.',
     },
   ]
 
@@ -163,44 +150,38 @@ export default function BlackFridayPage() {
       '@type': 'FAQPage',
       mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
-    // Sin Event: el Black Friday no tiene fecha oficial de Mercado Libre ni organizador en Argentina.
-    ...(ofertas.length > 0
+    // Sin Event: el Black Friday no tiene organizador ni fecha oficial en Argentina.
+    ...(publicables.length > 0
       ? [
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `Ofertas de hoy con descuento verificado (referencia para el Black Friday ${BF.año})`,
-            itemListElement: ofertas.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.url_producto })),
+            name: `Hallazgos reconfirmados hoy para el Black Friday ${BF.año}`,
+            itemListElement: publicables.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.nombre })),
           },
         ]
       : []),
   ]
 
-  const estado =
-    etapa === 'antes' ? `Faltan ${dias} ${dias === 1 ? 'día' : 'días'}` : etapa === 'durante' ? 'Es hoy' : 'Ya pasó'
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 sm:pb-0">
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
+      <EventosBF />
 
-      <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
+      <header className="sticky top-0 z-20 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
           <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
             🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
-          <a
-            href={TELEGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-          >
-            Alertas gratis
+          <a href="#top" className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap">
+            Ver el top
           </a>
         </div>
       </header>
 
+      {/* 4.1 Hero */}
       <section
         className="border-b border-zinc-900 px-4 py-8 sm:py-12"
         style={{ background: 'radial-gradient(ellipse 70% 60% at 50% -20%, rgba(250,204,21,0.07) 0%, transparent 70%)' }}
@@ -210,220 +191,257 @@ export default function BlackFridayPage() {
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">Black Friday {BF.año}</span>
           </nav>
-          <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
-            {TITULO}
+          <p className="text-xs font-bold uppercase tracking-wider text-yellow-300">Black Friday 2026 en Argentina</p>
+          <h1 className="mt-2 font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">
+            Viernes 27 de noviembre: el descuento, verificado
           </h1>
-          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Cuándo es, por qué en Argentina no tiene organizador y cómo no caer en un descuento inflado. Abajo, las ofertas
-            de hoy, cada una comparada contra el precio más bajo que registramos.
+          <CuentaRegresivaBF horaActualizacion={datos.hora_actualizacion_pagina} estadoEvento={datos.estado_evento} />
+          <p className="mt-6 text-zinc-300 leading-relaxed [text-wrap:pretty]">
+            El Black Friday en Argentina es el viernes 27 de noviembre de 2026. No tiene organizador ni fecha oficial de
+            preventa: cada tienda decide si se suma y por cuántos días. Acá anotamos precios de antes, comparamos contra el
+            historial y te mostramos solo lo que cierra de verdad. El precio que ves se reconfirma el mismo día.
           </p>
-          <CuentaRegresivaEvento fecha={BF.fecha} nombre="Black Friday" />
-
-          <div className="mt-6 rounded-2xl border border-zinc-700 bg-zinc-900/80 p-5 sm:p-6">
-            <p className="text-xs font-bold uppercase tracking-wider text-yellow-300">Fecha de referencia · {estado}</p>
-            <p className="mt-2 font-display text-2xl sm:text-3xl font-black text-zinc-50 [text-wrap:balance]">
-              {BF.fechasTexto.charAt(0).toUpperCase() + BF.fechasTexto.slice(1)} de {BF.año}
-            </p>
-            <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-              Es el viernes siguiente al Día de Acción de Gracias de EE.UU. Fuente:{' '}
-              <a href={BF.fuente.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-yellow-300 hover:underline">
-                {BF.fuente.nombre}
-              </a>{' '}
-              (verificado el {fechaAR(BF.verificado)}). En Argentina no hay fecha oficial: cada tienda define sus días.
-            </p>
+          <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+            {wa && (
+              <a href={wa} target="_blank" rel="noopener noreferrer" data-bf-evento="cta_whatsapp" data-bf-placement="hero" className={btnWA}>
+                Sumate al canal de WhatsApp
+              </a>
+            )}
+            <a href="#como-detectar" className={btnSec}>
+              Ver cómo detectamos un descuento trucho
+            </a>
+            {tg && (
+              <a href={tg} target="_blank" rel="noopener noreferrer" data-bf-evento="cta_telegram" data-bf-placement="hero" className={btnSec}>
+                Avisame por Telegram
+              </a>
+            )}
           </div>
+          <p className="mt-3 text-sm text-zinc-400 [text-wrap:pretty]">
+            Gratis. Te avisamos a las 19:00, hora Argentina, cuando hay una oferta verificada. El precio para vos es el
+            mismo que entrando directo a Mercado Libre.
+          </p>
         </div>
       </section>
 
-      <TopOfertasHoy
-        ofertas={ofertasLight}
-        titulo="🎯 Ofertas de hoy con descuento verificado"
-        seccion="top3_black_friday"
-        id="top3-black-friday"
-      />
-      <TopOfertasHoy
-        ofertas={ticketMedio}
-        titulo="🛒 Ofertas de hoy de hasta $800.000"
-        seccion="ticket_medio_black_friday"
-        id="ticket-medio-bf"
-      />
-      <p className="max-w-7xl mx-auto px-4 sm:px-6 pt-3 text-sm">
-        <a href="/cupones-mercado-libre" className="font-bold text-yellow-400 hover:underline">🎟️ Cupones de Mercado Libre de hoy →</a>
-      </p>
-
-      <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
-        <ComparacionTestigo evento="Black Friday" etapa={etapa} />
-        <section className="mb-10">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué es el Black Friday en Argentina</h2>
-          <div className="space-y-3 text-zinc-400 leading-relaxed">
-            <p>
-              Nació en Estados Unidos como el día de descuentos que sigue a Acción de Gracias. En Argentina se replica, pero
-              sin organizador: no lo convoca la CACE ni ninguna cámara, no tiene sitio oficial ni lista de participantes.
-              Cada tienda decide si se suma, qué días y con qué promociones.
-            </p>
-            <p>
-              Por eso no publicamos una lista de &quot;tiendas que participan&quot;: no hay una fuente oficial que la
-              confirme. Lo que sí podemos mostrarte es el precio real de cada producto en Mercado Libre y si el descuento
-              es verdadero.
-            </p>
-            <p>
-              El evento con fechas oficiales en Argentina es el{' '}
-              <Link href="/cyber-monday" className="text-yellow-400 hover:underline">
-                Cyber Monday {CM.año}
-              </Link>{' '}
-              ({CM.fechasTexto}), organizado por la CACE, unas semanas antes.
-            </p>
-          </div>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cómo detectar un descuento inflado</h2>
-          <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
-            En las {estudio.revisadas.toLocaleString('es-AR')} ofertas de mercadolibre.com.ar/ofertas que revisamos desde el{' '}
-            {fechaAR(estudio.desde)}, el <strong className="text-zinc-100">{pct}%</strong> tenía el precio tachado inflado:
-            el producto ya se había vendido al menos 5% más barato antes. En el Black Friday, con carteles de &quot;% OFF&quot;
-            por todos lados, conviene mirarlo con lupa.
+      <div className="max-w-3xl mx-auto px-4">
+        {/* 4.2 Cómo detectar */}
+        <section id="como-detectar" className="scroll-mt-20 py-10 border-b border-zinc-900">
+          <h2 className={h2}>Cómo detectar un descuento inflado</h2>
+          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            En las ofertas de Mercado Libre Argentina que venimos revisando desde el {fechaLarga(estudio.desde)}, el{' '}
+            <strong className="text-zinc-100">{pct} %</strong> tenía el precio tachado inflado: ese mismo producto ya se
+            había vendido al menos 5 % más barato. En el Black Friday, con carteles de &quot;% OFF&quot; por todos lados,
+            conviene mirarlo con lupa. El criterio completo está en nuestra{' '}
+            <Link href="/metodologia" data-bf-evento="click_metodologia" className={linkTxt}>
+              metodología
+            </Link>
+            .
           </p>
-          <ol className="list-decimal pl-5 space-y-2 text-zinc-400 leading-relaxed mb-5">
+          <ol className="mt-5 list-decimal pl-5 space-y-3 text-zinc-400 leading-relaxed">
             <li>
-              <strong className="text-zinc-200">Anotá los precios antes.</strong> Guardá cuánto sale cada cosa unos días
-              antes: el viernes sabés en dos segundos si bajó.
+              <strong className="text-zinc-100">Anotá los precios antes.</strong> Guardá cuánto sale cada cosa unos días
+              antes: el viernes sabés en dos segundos si bajó de verdad.
             </li>
             <li>
-              <strong className="text-zinc-200">Ignorá el precio tachado.</strong> El &quot;antes&quot; lo pone quien vende;
-              lo que cuenta es lo que el producto costó de verdad las semanas previas.
+              <strong className="text-zinc-100">Ignorá el precio tachado.</strong> El &quot;antes&quot; lo pone quien
+              vende. Lo que cuenta es lo que el producto costó las semanas previas.
             </li>
             <li>
-              <strong className="text-zinc-200">Mirá el historial.</strong> Si ya estuvo igual o más barato en un día
-              común (o en el Cyber Monday), el Black Friday no te ahorra nada.
+              <strong className="text-zinc-100">Mirá el historial y el mínimo histórico.</strong> Si ya estuvo igual o más
+              barato en un día común, o en el Cyber Monday, el Black Friday no te ahorra nada. El sello de mínimo
+              histórico lo usamos cuando el precio de hoy es el más bajo que registramos y lo venimos siguiendo desde hace
+              al menos 3 días.
             </li>
             <li>
-              <strong className="text-zinc-200">Hacé la cuenta del precio final.</strong> Envío, cuotas sin interés de
-              verdad y reintegros del banco, que suelen tener tope y fecha de acreditación.
+              <strong className="text-zinc-100">Hacé la cuenta del precio final.</strong> Envío, cuotas que sean sin
+              interés de verdad (cuota × cantidad = precio publicado) y reintegros del banco, que suelen tener tope.
             </li>
           </ol>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`${DEALS_URL}/#verificador`}
-              className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-5 py-2.5 transition-colors"
-            >
-              Verificar un descuento
-            </a>
-            <Link
-              href="/descuentos-inflados"
-              className="inline-block text-sm font-bold border border-red-500/40 hover:border-red-400 text-red-300 rounded-xl px-5 py-2.5 transition-colors"
-            >
-              {infladas.casos.length > 0 ? `Los descuentos inflados de hoy (${infladas.casos.length})` : 'Los descuentos inflados de hoy'}
-            </Link>
-            <Link
-              href="/metodologia"
-              className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors"
-            >
-              Cómo lo medimos
-            </Link>
-          </div>
-          <ExtensionCTA className="mt-5" />
+          <p className="mt-5 text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            ¿Tenés el link de una publicación? Pegalo en el{' '}
+            <a href={VERIFICADOR_URL} data-bf-evento="click_verificar" className={linkTxt}>
+              verificador
+            </a>{' '}
+            y te decimos si el descuento es real.
+            {EXTENSION_PUBLICADA && (
+              <>
+                {' '}Si preferís verlo en la ficha de Mercado Libre, instalá la{' '}
+                <a href={EXTENSION_URL} target="_blank" rel="noopener noreferrer" data-bf-evento="click_extension" className={linkTxt}>
+                  extensión gratis para Chrome, Brave y Edge
+                </a>
+                .
+              </>
+            )}
+          </p>
         </section>
-      </article>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
-        <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
-          <h2 className="font-display text-xl sm:text-2xl font-black">Ofertas reales de hoy</h2>
-          <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-            {etapa === 'durante'
-              ? 'Las ofertas de hoy con descuento verificado contra el historial de precios.'
-              : 'No son precios del Black Friday: son las ofertas de hoy con descuento verificado contra el historial. Sirven de referencia para comparar.'}{' '}
-            <span className="text-zinc-500">
-              <LastUpdated scrapedAt={scrapedAt} />.
-            </span>
+        {/* 4.3 Categorías foco */}
+        <section id="categorias" className="scroll-mt-20 py-10 border-b border-zinc-900">
+          <h2 className={h2}>Qué vamos a cazar</h2>
+          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            No perseguimos cualquier góndola. Estas son las categorías que vamos a mirar de acá al 27, mezclando ticket
+            alto con rubros que suelen tener buena rotación. Lo que entra a la lista pasa por el historial; lo que no
+            cierra, no se publica.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+              <h3 className="font-display text-lg font-black text-zinc-100">Ticket alto: tecnología y electro</h3>
+              <ul className="mt-3 space-y-2 text-sm">
+                {CATEGORIAS_A.map(c => (
+                  <li key={c.id}>
+                    <a href={c.href} data-bf-evento="click_categoria" data-bf-categoria={c.id} className={linkTxt}>
+                      {c.nombre} →
+                    </a>{' '}
+                    <span className="text-zinc-500">({c.detalle})</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+              <h3 className="font-display text-lg font-black text-zinc-100">Rubros de buena rotación</h3>
+              <ul className="mt-3 space-y-2 text-sm">
+                {CATEGORIAS_B.map(c => (
+                  <li key={c.nombre}>
+                    <span className="font-semibold text-zinc-200">{c.nombre}</span>{' '}
+                    <span className="text-zinc-500">({c.detalle})</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-5 text-sm text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            Estas categorías son la guía de búsqueda, no una promesa de descuento. Si el 27 no hay una baja real, no la
+            vamos a vestir de oferta.
+          </p>
+        </section>
+      </div>
+
+      {/* 4.4 Top de productos */}
+      <section id="top" data-seccion="top_black_friday" className="scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 py-10 border-b border-zinc-900">
+        <div className="max-w-3xl">
+          <h2 className={h2}>El top de ahora (precios reconfirmados el mismo día)</h2>
+          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            Esta no es una lista eterna ni un catálogo de preventa. Son hallazgos de ahora, verificados contra el
+            historial. Si un precio, el stock o las cuotas cambian, la ficha se baja o se actualiza. Abajo de cada uno ves
+            cuándo se reconfirmó.
+          </p>
+          <p className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-sm text-zinc-300">
+            {datos.grilla_fecha && datos.grilla_hora
+              ? `Actualizado el ${datos.grilla_fecha} a las ${datos.grilla_hora} (hora Argentina). `
+              : ''}
+            Precios reconfirmados el mismo día. Los links son de afiliado: pagás lo mismo que entrando directo a Mercado
+            Libre.
           </p>
         </div>
-        {ofertas.length === 0 ? (
-          <p className="text-sm text-zinc-500">
-            Estamos cazando las ofertas de hoy. Volvé en un rato o{' '}
-            <a href={DEALS_URL} className="text-yellow-400 hover:underline">mirá todas las ofertas</a>.
-          </p>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertasLight.map((o, i) => (
-              <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+        {slots.length > 0 ? (
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {slots.map((s, i) => (
+              <TarjetaBF key={s.slot} s={s} publicableEnBuild={slotPublicable(s)} prioridad={i === 0} />
             ))}
           </div>
+        ) : (
+          <p className="mt-6 text-sm text-zinc-400">
+            Todavía no hay hallazgos reconfirmados hoy para esta lista. Mientras tanto, mirá las ofertas verificadas del día.
+          </p>
         )}
-        <a href={DEALS_URL} className="mt-5 inline-block text-sm font-bold text-yellow-400 hover:text-yellow-300">
-          Ver todas las ofertas de hoy, con buscador y filtros →
-        </a>
+        <p className="mt-6 max-w-3xl text-sm text-zinc-400 leading-relaxed [text-wrap:pretty]">
+          Ver todas las{' '}
+          <a href={DEALS_URL} data-bf-evento="click_ofertas_hoy" className={linkTxt}>
+            ofertas de hoy, con buscador y filtros
+          </a>
+          . También podés mirar{' '}
+          <a href="/cupones-mercado-libre" data-bf-evento="click_cupones" className={linkTxt}>
+            cupones de Mercado Libre
+          </a>
+          : un cupón descuenta sobre el precio publicado, así que primero fijate que el precio sea bueno.
+        </p>
       </section>
 
-      <article className="max-w-3xl mx-auto px-4 pb-10">
-        <section className="mb-10">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Más para comparar</h2>
-          <ul className="space-y-2">
-            {bf && (
-              <li>
-                <a href={`/mejores/${bf.slug}`} className="font-bold text-yellow-400 hover:underline">🖤 {bf.titulo} →</a>
-              </li>
-            )}
-            {porRubro.map(c => (
-              <li key={c.slug}>
-                <a href={`/mejores/${c.slug}`} className="font-bold text-yellow-400 hover:underline">🖤 {c.titulo} →</a>
-              </li>
-            ))}
-            {guias.map(g => (
-              <li key={g.slug}>
-                <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {g.titulo} →</a>
-              </li>
-            ))}
-            <li>
-              <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">
-                💻 Cyber Monday {CM.año}: fechas oficiales y ofertas →
-              </Link>
-            </li>
-          </ul>
-        </section>
-
-        <section className="rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-8 text-center mb-10">
-          <h2 className="font-display text-xl font-black mb-2">¿Querés las bajas reales apenas salen?</h2>
-          <p className="text-sm text-zinc-400 mb-5">
-            Publicamos las ofertas verificadas a diario, con alerta de mínimos históricos.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm font-bold bg-green-500 hover:bg-green-400 text-black rounded-xl px-6 py-2.5 transition-colors"
-            >
-              Seguir en WhatsApp 💬
+      <div className="max-w-3xl mx-auto px-4">
+        {/* 4.5 CTA de mitad */}
+        {wa && (
+          <section className="my-10 rounded-2xl border border-green-500/30 bg-green-500/10 px-6 py-8 text-center">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-2">¿Querés la tanda del día, apenas sale?</h2>
+            <p className="text-sm text-zinc-300 mb-5 [text-wrap:pretty]">
+              Raifel publica a las 19:00, hora Argentina, solo hallazgos reconfirmados. Sumate al canal y dejá las
+              notificaciones prendidas.
+            </p>
+            <a href={wa} target="_blank" rel="noopener noreferrer" data-bf-evento="cta_whatsapp" data-bf-placement="mid" className={btnWA}>
+              Sumate al canal de WhatsApp
             </a>
-            <a
-              href={TELEGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-2.5 transition-colors"
-            >
-              Unirme al canal ✈️
-            </a>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <section>
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Preguntas frecuentes</h2>
+        {/* 4.6 FAQ */}
+        <section className="py-10 border-b border-zinc-900">
+          <h2 className={h2}>Preguntas frecuentes</h2>
           <div className="space-y-3">
             {faqs.map(f => (
               <details key={f.q} className="group bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3">
-                <summary className="cursor-pointer text-sm font-bold text-zinc-100 list-none flex items-center justify-between gap-3">
+                <summary className="cursor-pointer text-sm font-bold text-zinc-100 list-none flex items-center justify-between gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400 rounded">
                   {f.q}
-                  <span className="text-yellow-400 shrink-0 transition-transform group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="text-yellow-400 shrink-0 transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{f.a}</p>
               </details>
             ))}
           </div>
         </section>
-      </article>
+
+        {/* 4.7 Aviso de afiliado */}
+        <section className="py-10 border-b border-zinc-900">
+          <h2 className={h2}>Transparencia</h2>
+          <div className="space-y-3 text-sm text-zinc-400 leading-relaxed [text-wrap:pretty]">
+            <p>
+              Participamos del{' '}
+              <a href={AFILIADOS_ML_URL} target="_blank" rel="noopener noreferrer" className={linkTxt}>
+                Programa de Afiliados de Mercado Libre
+              </a>
+              . Si comprás a través de nuestros links, podemos recibir una comisión. Para vos el precio es el mismo que
+              entrando directo a Mercado Libre: no pagás de más por usar este sitio.
+            </p>
+            <p>
+              Solo recomendamos productos nuevos de vendedores con reputación verde, cuando la ficha entra en el programa.
+              No modificamos los links de afiliado. Los precios, el stock y las cuotas pueden cambiar sin aviso: verificá el
+              precio final en Mercado Libre antes de comprar. En cada hallazgo de esta página indicamos cuándo se
+              reconfirmó.
+            </p>
+            <p>
+              Cazador de Ofertas AR no vende los productos ni procesa pagos. La compra se hace siempre en Mercado Libre,
+              bajo sus términos.
+            </p>
+          </div>
+        </section>
+
+        {/* 4.8 Cierre */}
+        <section className="my-10 rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-8 text-center">
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-2">¿Querés las bajas reales apenas salen?</h2>
+          <p className="text-sm text-zinc-400 mb-5 [text-wrap:pretty]">
+            Publicamos las ofertas verificadas a diario. El viernes 27, a las 19:00 hora Argentina, la tanda sale primero en
+            el canal.
+          </p>
+          {wa && (
+            <>
+              <a href={wa} target="_blank" rel="noopener noreferrer" data-bf-evento="cta_whatsapp" data-bf-placement="footer" className={btnWA}>
+                Sumate al canal de WhatsApp
+              </a>
+              <p className="mt-3 text-xs text-zinc-500">
+                El viernes 27 la tanda sale primero acá. El precio para vos es el mismo que en Mercado Libre.
+              </p>
+            </>
+          )}
+          {tg && (
+            <p className="mt-4 text-sm">
+              <a href={tg} target="_blank" rel="noopener noreferrer" data-bf-evento="cta_telegram" data-bf-placement="footer" className={linkTxt}>
+                También estamos en Telegram
+              </a>
+            </p>
+          )}
+        </section>
+      </div>
 
       <Footer brand="ofertas" />
+      {wa && <StickyWhatsAppBF href={wa} />}
     </main>
   )
 }

@@ -1,0 +1,22 @@
+{
+  "_leeme": "Marcadores de /black-friday (brief EQUIPO-GROK/BRIEF-WEB-PREVIA-BF.md). Los slots los carga el Analista el mismo día y salen con el OK de Raifel. Un slot cuyo 'reconfirmado' no es de HOY (hora Argentina) no muestra precio. 'reconfirmado' va como '2026-11-27T15:40' (hora Argentina). 'link_afiliado' se pega tal cual sale del programa, sin editar. Si un canal queda vacío, ese botón no se muestra.",
+  "link_canal_whatsapp": "https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z",
+  "link_canal_telegram": "https://t.me/cazadordeofertasar",
+  "ok_dia_d": false,
+  "hora_actualizacion_pagina": "",
+  "estado_evento": "",
+  "grilla_fecha": "",
+  "grilla_hora": "",
+  "slots": [
+    { "slot": 1, "categoria": "Notebook 16 GB de RAM o más", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 2, "categoria": "Segunda notebook (otra gama o marca)", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 3, "categoria": "Celular gama media o alta", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 4, "categoria": "Smart TV 50 o 55 pulgadas", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 5, "categoria": "Aire split inverter ~3.000 frigorías", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 6, "categoria": "Belleza: skincare o protector FPS 50+", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 7, "categoria": "Colchón 2 plazas", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 8, "categoria": "Zapatillas o mallas de verano", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 9, "categoria": "Juegos y juguetes", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" },
+    { "slot": 10, "categoria": "Ticket alto de respaldo", "nombre": "", "precio": "", "precio_antes": "", "cuotas": "", "link_afiliado": "", "img": "", "reconfirmado": "", "descuento": "", "ahorro": "", "sello_minimo": false, "mla": "" }
+  ]
+}

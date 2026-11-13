@@ -95,7 +95,7 @@ const nextConfig = {
         // dinámico y lento (7-10 s): parseaba todos los JSON en cada pedido.
         {
           source: '/sitemap.xml',
-          missing: [{ type: 'host', value: `(www\\.)?${DEALS_HOST.replace(/\./g, '\\.')}(:\\d+)?` }],
+          missing: [{ type: 'host', value: `(www\\.)?${DEALS_HOST.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(:\\d+)?` }],
           destination: '/sitemap-calc/sitemap.xml',
         },
         // llms.txt propio para calculadoraml (public/llms.txt es el del Cazador)

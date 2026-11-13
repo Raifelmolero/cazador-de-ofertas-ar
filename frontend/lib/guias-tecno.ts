@@ -1648,9 +1648,141 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
   },
+  // ── 13/11: lavarropas Black Friday (guía 2 BF) ──
+  {
+    slug: 'mejores-lavarropas-black-friday-2026',
+    titulo: 'Mejores lavarropas Black Friday 2026 Argentina',
+    descripcion:
+      'Qué lavarropas o lavasecarropas conviene en el Black Friday 2026 en Argentina: kilos, carga, inverter y cómo verificar el descuento contra el historial.',
+    pregunta: '¿Qué lavarropas conviene comprar en el Black Friday 2026 en Argentina?',
+    respuestaCorta:
+      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un lavarropas automático con la capacidad justa (6 a 7 kg para 1 a 3 personas, 8 kg o más si son más o si lavás acolchados), inverter si lo usás seguido, y el precio comparado contra el historial, no contra el tachado de la publicación. La carga frontal suele gastar menos agua; la superior es más cómoda y, en general, más barata. Un lavasecarropas tiene sentido si no hay lugar para dos equipos: lava y seca en la misma máquina, aunque el secado suele admitir menos ropa que el lavado. Si el que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos, tiene sentido seguirlo hasta ese día.',
+    tabla: {
+      titulo: 'Capacidad orientativa según el tamaño del hogar',
+      columnas: ['Hogar', 'Capacidad de lavado', 'Qué suele alcanzar'],
+      filas: [
+        ['1 a 3 personas', '6 a 7 kg', 'Uso cotidiano, prendas y toallas'],
+        ['3 o 4 personas, o acolchados', '8 kg o más', 'Familia tipo y algunos textiles grandes'],
+        ['Familia grande o mucho volumen', '10 a 11 kg', 'Varias cargas por semana o prendas voluminosas'],
+        ['Poco espacio y también querés secar', 'Lavasecarropas (mirá ambos kilos)', 'Lava y seca en un solo equipo; el kilo de secado suele ser menor'],
+      ],
+      nota: 'Valores de referencia de ropa seca, alineados con la guía de qué lavarropas comprar. No son un ranking de modelos ni un precio. En un lavasecarropas siempre hay que mirar la capacidad de lavado y la de secado: no son la misma. Medí el lugar (ancho, profundidad, alto y, en carga superior, el espacio para la tapa) y dejá centímetros atrás para las mangueras.',
+    },
+    secciones: [
+      {
+        h: 'Vale la pena comprar el lavarropas en el Black Friday',
+        p: [
+          'El Black Friday 2026 cae el viernes 27 de noviembre. Es una fecha en la que suelen aparecer más publicaciones en oferta, a veces con cuotas o cupones. Eso no significa que todo baje. En electrodomésticos grandes también se ve un precio tachado alto y un porcentaje llamativo, cuando el valor de hoy es el mismo —o incluso más caro— que el de las semanas anteriores.',
+          'La forma útil de decidir no es el calendario solo. Elegí primero el tipo de equipo (kilos, carga frontal o superior, inverter, lavarropas o lavasecarropas), anotá el precio actual y comparalo con el historial. Si ya está en el mínimo que registramos y el resto te cierra (medidas, envío, garantía, instalación de las mangueras), conviene comprarlo ahora, aunque falten días para el 27/11. Esperar solo tiene sentido cuando el precio de hoy está claramente por encima de ese mínimo y no te urge tenerlo esta semana.',
+          'Un lavarropas no se elige el mismo día en cinco minutos si no mediste el lugar. Antes del evento, confirmá ancho, profundidad y alto, el paso por la puerta y si el envío incluye subirlo al piso y retirar el usado. En la página de Black Friday están las ofertas del evento; las de este rubro, en la categoría de lavarropas y en el precio de lavarropas automático de hoy. Abajo va una tira con lavarropas y lavasecarropas en oferta, actualizada con el catálogo del día.',
+        ],
+      },
+      {
+        h: 'Cuántos kilos según la casa',
+        p: [
+          'La capacidad se indica en kilos de ropa seca. Un equipo corto para la casa se llena antes, lava peor si lo sobrecargás y te obliga a más ciclos por semana. Uno muy grande no es grave, pero pagás de más y, si siempre lo usás con poca carga, no lo aprovechás. Lo razonable es ir a la capacidad justita o un escalón arriba.',
+          'Como referencia, la misma que usamos en la guía de qué lavarropas comprar: para 1 a 3 personas suelen alcanzar 6 a 7 kg; para una familia, o si lavás acolchados y frazadas, 8 kg o más. Si el volumen de ropa es alto, 10 a 11 kg da más aire. La tabla de arriba resume esos cortes. Un 11 kg tiene sentido si lo vas a llenar; si no, un 7 u 8 kg bien elegido rinde mejor.',
+          'En un lavasecarropas hay que mirar dos cifras, no una. El kilo de lavado y el de secado no coinciden: el tambor suele secar menos ropa de la que lava, y si cargás el máximo de lavado, a veces hay que sacar prendas antes de secar. Si tu idea es lavar y secar la misma carga de una vez, guiate por la capacidad de secado, no solo por la de lavado.',
+          'Para ver qué hay hoy en cada rango, mirá abajo la tira de ofertas: ahí están los equipos del catálogo del día, con el descuento contrastado contra el historial. Esta guía no arma un ranking fijo, porque precios y stock cambian seguido.',
+        ],
+      },
+      {
+        h: 'Carga frontal vs superior, e inverter',
+        p: [
+          'La carga frontal lava por volteo: suele usar menos agua, ser más suave con la ropa y centrifugar más fuerte, así que la ropa sale más seca. Los ciclos son más largos y hay que agacharse para cargar. También es el formato habitual de los lavasecarropas. Medí bien el frente y el espacio para abrir la puerta.',
+          'La carga superior, en general, sale más económica, tiene ciclos más cortos y en muchos modelos se puede agregar una prenda en el medio del lavado. Es más cómoda si no querés agacharte. A cambio, suele gastar más agua y el centrifugado puede ser menos intenso. Los semiautomáticos son la opción más barata, pero hay que pasar la ropa a mano al centrifugado: sirven si buscás precio y no te molesta ese paso; no son el mismo producto que un automático.',
+          'El motor inverter regula la velocidad según la carga, sin escobillas. Suele hacer menos ruido, vibrar menos y ser más eficiente que un motor convencional. Cuesta algo más y conviene sobre todo si lavás seguido. Revisá los años de garantía del motor, no solo la del equipo.',
+          'Dos datos más, que no vienen en el cartel de oferta. El centrifugado: con 1.000 rpm o más la ropa sale más seca. Y la etiqueta de eficiencia energética, obligatoria en Argentina, indica la clase y el consumo por ciclo. Calentar agua es lo que más gasta; lavar en frío baja mucho ese consumo. Con ese dato se puede estimar el uso en la calculadora de consumo eléctrico del sitio.',
+        ],
+      },
+      {
+        h: 'Lavarropas vs lavasecarropas',
+        p: [
+          'Un lavarropas solo lava. Para secar, después va al tendal, a un secarropas aparte o a un lavasecarropas, que hace las dos cosas en el mismo tambor. La pregunta no es cuál es “mejor” en abstracto: es qué entra en tu casa y cómo lavás.',
+          'El lavasecarropas conviene cuando no hay lugar para dos equipos, no hay tendal o querés sacar la ropa lista en un ciclo. A cambio, el secado suele ser más lento, admite menos kilos que el lavado y el equipo sale más caro que un lavarropas equivalente. Si lavás mucho y tenés espacio, dos aparatos separados suelen ser más rápidos: podés lavar una carga mientras se seca otra. Un secarropas con bomba de calor gasta menos que uno por resistencia, a costa de un precio mayor; eso se detalla en la guía que compara lavasecarropas, secarropas y bomba de calor.',
+          'Si el problema es el espacio o el clima húmedo y las cargas no son enormes, mirá lavasecarropas y fijate los dos kilos (lavado y secado). Si el problema es el volumen de ropa y hay lugar, un lavarropas de 8 kg o más, con buen centrifugado, suele alcanzar, y el secado lo resolvés aparte. En la tira de ofertas de abajo vas a ver de los dos tipos, cuando haya stock del día: confirmá si es lavarropas o lavasecarropas antes de comparar precios.',
+        ],
+      },
+      {
+        h: 'Qué modelos calidad-precio mirar este 27/11',
+        p: [
+          '“Calidad-precio” en un lavarropas no es el más barato del listado. Es el que tiene los kilos correctos para la casa, el tipo de carga que te sirve, inverter si lavás seguido, garantía y servicio técnico en el país, y un precio de hoy que se sostiene contra el historial. Una publicación que no aclara kilos, rpm o si es automático puede ser barata en la tarjeta y cara después, cuando no entra en el lugar o no hace lo que esperabas.',
+          'No tiene sentido copiar acá un ranking fijo: los precios y el stock cambian seguido, y esa foto ya está en la comparativa y en la categoría. Lo que sí conviene llevar al Black Friday es una lista corta según el hogar, y chequear ese día —o antes, si ya están en su mínimo— estos perfiles, en la tira de ofertas de abajo:',
+          'Si son 1 a 3 personas, empezá por automáticos de 6 a 7 kg. Con poco espacio o si preferís no agacharte, carga superior; si priorizás menos agua y un centrifugado más fuerte, carga frontal.',
+          'Si son 3 o 4 personas, o si lavás acolchados, subí a 8 kg o más. Confirmá medidas y rpm (1.000 o más ayudan a que la ropa salga más seca).',
+          'Si el volumen de ropa es alto, o querés menos cargas por semana, mirá 10 a 11 kg. Tiene sentido solo si vas a usar esa capacidad; si no, un 8 kg bien elegido puede ser mejor compra.',
+          'Si no hay lugar para un secarropas aparte y necesitás secar en casa, mirá lavasecarropas y compará los dos kilos, no solo el de lavado. En la tira de abajo van a aparecer los que estén en oferta hoy. Usá esa lista para elegir el equipo concreto; esta sección es solo para acotar el tipo.',
+        ],
+      },
+      {
+        h: 'Cómo verificar el descuento contra el historial',
+        p: [
+          'En electrodomésticos grandes es habitual el descuento de cartelería: un precio “anterior” alto, un porcentaje llamativo y un precio actual que ya se venía cobrando, o que incluso estaba más barato la semana pasada. No hace falta discutir si todos los descuentos son falsos. Alcanza con no creerle al tachado y contrastar cada equipo con su historial.',
+          'El criterio que usamos en Cazador de Ofertas AR es ese: si el precio anterior que muestra la oferta nunca se sostuvo (o el producto ya se había vendido al menos un 5 % más barato antes), el descuento está inflado y no entra en el listado de ofertas reales. Cuando hay historial suficiente y el precio de hoy es el más bajo que registramos, lo marcamos como mínimo histórico. El detalle está en la página de metodología, y los casos del día aparecen en descuentos inflados.',
+          'Antes de pagar, confirmá kilos, tipo de carga, si es automático y, en un lavasecarropas, la capacidad de secado. Medí el lugar y preguntá si el envío incluye subirlo al piso. Compará el precio de hoy con el historial, no con el “antes” de la ficha. Si hace falta, pegá el link en el verificador de la home. Si el 27/11 el número no es mejor que el de esta semana, no es un mal negocio perderte el Black Friday: es evitar pagar un cartel. Las ofertas del evento están en la página de Black Friday; las de este rubro, en la categoría de lavarropas.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: {
+      href: '/mejores/mejores-lavarropas',
+      titulo: 'Lavarropas y lavasecarropas en oferta hoy, con el descuento verificado',
+      boton: 'Ver lavarropas en oferta 🧺',
+    },
+    faq: [
+      {
+        q: '¿El Black Friday tiene buenos precios de lavarropas en Argentina?',
+        a: 'A veces sí, a veces no. El 27 de noviembre de 2026 puede haber mejor precio, cuotas o cupones, pero en electrodomésticos grandes también es habitual un tachado inflado. Lo que decide es el historial: si ya está en el mínimo registrado, no hace falta esperar; si está más caro que en días previos, conviene seguirlo y compararlo ese día.',
+      },
+      {
+        q: '¿Carga frontal o superior en 2026?',
+        a: 'Carga frontal si buscás gastar menos agua, cuidar la ropa y un centrifugado más fuerte; es además el formato habitual de los lavasecarropas. Carga superior si priorizás precio, ciclos más cortos y cargar sin agacharte. Los semiautomáticos son más baratos, pero hay que pasar la ropa a mano al centrifugado.',
+      },
+      {
+        q: '¿Cuántos kilos convienen para 3 o 4 personas?',
+        a: 'En general, 8 kg o más. Para 1 a 3 personas suelen alcanzar 6 a 7 kg; si lavás acolchados o el volumen de ropa es alto, conviene subir. La capacidad se indica en kilos de ropa seca. En un lavasecarropas, mirá también el kilo de secado, que suele ser menor que el de lavado.',
+      },
+      {
+        q: '¿Cómo sé si el precio de hoy es el mínimo que registraron?',
+        a: 'En Cazador de Ofertas AR comparamos cada oferta contra el historial del producto. Si el precio de hoy es el más bajo que registramos, lo marcamos como mínimo histórico. Si el tachado anuncia un descuento pero el producto ya estuvo más barato, lo consideramos inflado. También podés pegar el link en el verificador de la home.',
+      },
+      {
+        q: '¿Conviene un lavasecarropas o un lavarropas solo?',
+        a: 'Un lavasecarropas conviene si no hay lugar para dos equipos o si necesitás secar en casa sin tendal: lava y seca en la misma máquina, aunque el secado es más lento y admite menos ropa. Si hay espacio y lavás mucho, un lavarropas (y, si hace falta, un secarropas aparte) suele ser más rápido. Mirá abajo las ofertas del día.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/lavarropas', texto: 'Ofertas de lavarropas' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/precio-hoy/lavarropas-automatico', texto: 'Precio de lavarropas automático hoy' },
+      { href: '/mejores/mejores-lavarropas', texto: 'Comparativa de lavarropas' },
+      { href: '/guias/lavasecarropas-secarropas-o-bomba-de-calor', texto: 'Lavasecarropas o secarropas' },
+      { href: '/guias/lavarropas-carga-frontal-o-superior', texto: 'Carga frontal o superior' },
+      { href: '/guias/lavarropas-inverter-que-es-y-conviene', texto: 'Lavarropas inverter: qué es' },
+      {
+        href: '/precio/lavasecarropas-samsung-wd11t504-control-ia-white-11kg-7kg-blanco-mla74715247',
+        texto: 'Historial de un lavasecarropas 11 kg',
+      },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+    ],
+    fuentes: [
+      {
+        texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado',
+        url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica',
+      },
+      {
+        texto: 'IRAM: normas de etiquetado de eficiencia energética por producto',
+        url: 'https://www.iram.org.ar/',
+      },
+    ],
+  },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
 
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_TECNO.map(g => {

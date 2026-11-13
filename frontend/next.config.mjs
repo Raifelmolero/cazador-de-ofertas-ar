@@ -89,6 +89,15 @@ const nextConfig = {
           has: [{ type: 'host', value: host }],
           destination: '/favicon-ofertas.png',
         })),
+        // Cada host lista solo sus URLs. app/sitemap.ts es el de ofertas y es
+        // estático; cualquier otro host (calculadoraml, previews) recibe el de la
+        // calculadora. Antes se elegía con headers() y eso volvía el sitemap
+        // dinámico y lento (7-10 s): parseaba todos los JSON en cada pedido.
+        {
+          source: '/sitemap.xml',
+          missing: [{ type: 'host', value: `(www\\.)?${DEALS_HOST.replace(/\./g, '\\.')}(:\\d+)?` }],
+          destination: '/sitemap-calc/sitemap.xml',
+        },
         // llms.txt propio para calculadoraml (public/llms.txt es el del Cazador)
         ...['calculadoraml.com.ar', 'www.calculadoraml.com.ar'].map(host => ({
           source: '/llms.txt',

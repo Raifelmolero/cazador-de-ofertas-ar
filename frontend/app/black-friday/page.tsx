@@ -17,6 +17,35 @@ import CuentaRegresivaBF from '@/components/black-friday/CuentaRegresivaBF'
 import EventosBF from '@/components/black-friday/EventosBF'
 import StickyWhatsAppBF from '@/components/black-friday/StickyWhatsAppBF'
 import TarjetaBF from '@/components/black-friday/TarjetaBF'
+import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
+import { getOfertas } from '@/lib/productos'
+import { ticketAltoPrimero } from '@/lib/ofertashoy'
+import { getComparativa, productosDe } from '@/lib/comparativas'
+import { slugPorId } from '@/lib/seguimiento'
+
+const MAX_RESPALDO = 12
+
+/** Respaldo cuando black-friday-previa.json no tiene slots: la grilla automática
+ *  de ofertas de hoy del bot (rubros Black Friday si hay, si no el catálogo). */
+function ofertasRespaldo(): OfertaLight[] {
+  const bf = getComparativa('ofertas-black-friday')
+  const deBF = bf ? productosDe(bf) : []
+  const historial = slugPorId()
+  return ticketAltoPrimero(deBF.length >= 4 ? deBF : getOfertas())
+    .slice(0, MAX_RESPALDO)
+    .map(o => ({
+      id_ml: o.id_ml,
+      titulo: o.titulo,
+      precio_actual: o.precio_actual,
+      precio_anterior: o.precio_anterior,
+      descuento_pct: o.descuento_pct,
+      minimo_historico: o.minimo_historico,
+      relampago: o.relampago,
+      url_producto: o.url_producto,
+      url_imagen: o.url_imagen,
+      historial: historial[o.id_ml],
+    }))
+}
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/black-friday`
@@ -96,6 +125,8 @@ export default function BlackFridayPage() {
   // hoy se muestran sin precio. El navegador lo vuelve a chequear (TarjetaBF).
   const slots = datos.slots.filter(s => s.nombre)
   const publicables = slots.filter(s => slotPublicable(s))
+  // JSON vacío → la página no queda sin productos: grilla automática del bot.
+  const respaldo = slots.length === 0 ? ofertasRespaldo() : []
 
   const faqs = [
     {
@@ -340,9 +371,18 @@ export default function BlackFridayPage() {
             ))}
           </div>
         ) : (
-          <p className="mt-6 text-sm text-zinc-400">
-            Todavía no hay hallazgos reconfirmados hoy para esta lista. Mientras tanto, mirá las ofertas verificadas del día.
-          </p>
+          <>
+            <p className="mt-6 text-sm text-zinc-400">
+              Todavía no hay hallazgos reconfirmados hoy para esta lista. Mientras tanto, mirá las ofertas verificadas del día.
+            </p>
+            {respaldo.length > 0 && (
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                {respaldo.map((o, i) => (
+                  <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+                ))}
+              </div>
+            )}
+          </>
         )}
         <p className="mt-6 max-w-3xl text-sm text-zinc-400 leading-relaxed [text-wrap:pretty]">
           Ver todas las{' '}

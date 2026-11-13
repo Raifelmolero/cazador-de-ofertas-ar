@@ -7,9 +7,7 @@ name: Deploy agrupado
 # con todo lo acumulado. Si no hubo cambios del sitio, el ignoreCommand lo saltea.
 on:
   schedule:
-    - cron: '30 15 * * *'   # 12:30 ART
-    - cron: '30 20 * * *'   # 17:30 ART
-    - cron: '30 0 * * *'    # 21:30 ART
+    - cron: '30 0 * * *'    # 21:30 ART (GitHub suele atrasarlo a ~03:30-04:30 ART). 1 solo deploy por dia para cuidar el gasto de Vercel
   workflow_dispatch:
 
 permissions:

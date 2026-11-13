@@ -33,6 +33,10 @@ import {
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z'
+// Tarjetas completas (componente cliente: cada una viaja dos veces, en el HTML y
+// en el payload de React). /categoria/celulares pesaba 3,5 MB y notebooks 2,4 MB
+// (auditoría SEO 13/11): el resto va como lista de links liviana, sin perder ofertas.
+const GRILLA_MAX = 48
 
 export function generateStaticParams() {
   return CATEGORIAS.map(c => ({ slug: c.slug }))
@@ -113,9 +117,9 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
   // El destacado solo va aparte si no está ya entre las 3 de arriba (no duplicar)
   const destacadoAparte = destacado && !top3.some(o => o.id_ml === destacado.id_ml)
 
-  // Igual que /hoy: las ofertas se refrescan 3 veces por día, así que valen hasta hoy
+  // Igual que /hoy: página estática, build + 30 días para que no quede vencido entre deploys
   const validUntil = new Date()
-  validUntil.setHours(23, 59, 59, 0)
+  validUntil.setDate(validUntil.getDate() + 30)
   const priceValidUntil = validUntil.toISOString().slice(0, 10)
 
   const jsonLd = [
@@ -268,10 +272,35 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             </div>
           )}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {ofertasLight.map((o, i) => (
+            {ofertasLight.slice(0, GRILLA_MAX).map((o, i) => (
               <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
             ))}
           </div>
+          {ofertasLight.length > GRILLA_MAX && (
+            <details className="mt-6 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+              <summary className="cursor-pointer text-sm font-bold text-zinc-100">
+                Ver {ofertasLight.length - GRILLA_MAX} ofertas más de {c.nombre.toLowerCase()}
+              </summary>
+              <ul className="mt-3 divide-y divide-zinc-800 text-sm">
+                {ofertasLight.slice(GRILLA_MAX).map(o => (
+                  <li key={o.id_ml} className="py-2 flex items-baseline justify-between gap-3">
+                    <a
+                      href={o.url_producto}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="text-zinc-300 hover:text-yellow-400"
+                    >
+                      {o.titulo}
+                    </a>
+                    <span className="shrink-0 font-semibold text-zinc-100">
+                      {precio(o.precio_actual)}
+                      {o.descuento_pct ? <span className="ml-1 text-emerald-400 text-xs">{o.descuento_pct}% OFF</span> : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
           </>
         )}
 

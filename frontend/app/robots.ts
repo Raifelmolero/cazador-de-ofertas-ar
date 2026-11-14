@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 // El mismo deploy sirve los dos dominios, así que este robots.txt responde en
-// ambos. Se listan los dos sitemaps (cada host sirve el mismo archivo).
+// ambos. Se anuncia solo el sitemap de cazadordeofertas.com.ar.
 //
 // Los user-agents de IA (GPTBot, ClaudeBot, PerplexityBot, etc.) ya quedan
 // permitidos por la regla '*' de abajo — no hace falta una regla aparte para
@@ -31,9 +31,8 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'cohere-ai', allow: '/' },
       { userAgent: 'CCBot', allow: '/' },
     ],
-    sitemap: [
-      'https://calculadoraml.com.ar/sitemap.xml',
-      'https://cazadordeofertas.com.ar/sitemap.xml',
-    ],
+    // Solo el sitemap del dominio de ofertas (auditoría SEO 13/11: anunciar el
+    // de calculadoraml.com.ar le mandaba a Google un sitemap de otro host).
+    sitemap: 'https://cazadordeofertas.com.ar/sitemap.xml',
   }
 }

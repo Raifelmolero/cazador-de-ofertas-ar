@@ -1,9 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { landingsCyberConDatos, landingCyberIndexable } from '@/lib/cybertecno'
-import { headers } from 'next/headers'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
-import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import { CATEGORIAS } from '@/lib/categorias'
 import { categoriaIndexable } from '@/lib/categoria-indexable'
 import { COMPARATIVAS, indexable } from '@/lib/comparativas'
@@ -14,36 +12,20 @@ import { getSeguidosPrincipales } from '@/lib/seguimiento'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import { guiaIndexable } from '@/lib/guias-equipos'
+import { TEXTO_MODIFICADO } from '@/lib/sitemap-fechas'
 
-// Sin www: Vercel redirige www → calculadoraml.com.ar (307), y un sitemap o
-// canónico que apunta a una redirección confunde a Google.
-const BASE = CALC_URL
+// Estático: se genera en el build (ver comentario dentro de sitemap()).
+export const dynamic = 'force-static'
+
 // La página de ofertas canonicaliza a la raíz de su propio dominio (ver
-// app/hoy/page.tsx); acá va esa URL y no BASE/hoy para no listar un duplicado.
+// app/hoy/page.tsx); acá va esa URL y no /hoy para no listar un duplicado.
 const DEALS_HOST = process.env.DEALS_HOST ?? 'cazadordeofertas.com.ar'
 const DEALS_URL = `https://${DEALS_HOST}`
 
-/**
- * Solo las páginas estables, a propósito (en la calculadora: la home, la
- * calculadora de comisiones, la de ML vs Tiendanube y las guías de /vender).
- *
- * Las de `/calculadora/[id]` salen del JSON que el bot reescribe 3×/día y rotan
- * ~50% por corrida: de 118 URLs vivas el 20/07, a los 6 días quedaban 29. Como
- * Google tarda días o semanas en indexar una URL nueva, anunciarlas solo le
- * servía 404s y le gastaba presupuesto de rastreo. Encima apuntan a consultas
- * sin volumen ("calculadora de ganancia <producto puntual>"): lo que se busca
- * de verdad es genérico y lo tiene que ganar la home.
- *
- * Las páginas siguen existiendo y navegables desde el sitio; lo que se saca es
- * el anuncio. Si algún día se persisten (que no se borren al salir del JSON),
- * ahí sí tiene sentido volver a listarlas.
- */
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+/** Sitemap de cazadordeofertas.com.ar (el de calculadoraml: app/sitemap-calc). */
+export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = getScrapedAt()
-  // Páginas de texto que no cambian con el scraper: con la fecha del scraper, Google
-  // ve "modificado hoy" en todo y termina ignorando el dato. Subir esta fecha solo
-  // cuando se edite de verdad el contenido (guías, metodología, calculadoras).
-  const textoModificado = new Date('2026-10-07T00:00:00Z')
+  const textoModificado = TEXTO_MODIFICADO
   // Texto permanente de las comparativas (lib/comparativas-contenido.ts): su fecha
   // real de cambio, no la del scraper. Subirla solo cuando se edite ese archivo.
   const comparativasModificado = new Date('2026-10-15T00:00:00Z')
@@ -51,22 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // El mismo deploy sirve los dos dominios. Google marca error si un sitemap
   // lista URLs de otro dominio (le pasaba al de cazadordeofertas: 1 error y
   // solo 23 páginas descubiertas), así que cada host lista solo lo suyo.
-  const host = ((await headers()).get('host') ?? '').replace(/^www\./, '')
-  if (!host.startsWith(DEALS_HOST)) {
-    return [
-      { url: BASE, lastModified, changeFrequency: 'daily', priority: 1 },
-      { url: `${BASE}/calculadora-de-comisiones`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-precio-de-venta`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-envio-gratis`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/calculadora-cuotas-sin-interes`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
-      { url: `${BASE}/mercado-libre-vs-tiendanube`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.9 },
-      // Índice estable de las fichas /calculadora/[id] (las fichas no se listan: rotan)
-      { url: `${BASE}/calculadora`, lastModified, changeFrequency: 'daily', priority: 0.6 },
-      { url: `${BASE}/vender`, lastModified: textoModificado, changeFrequency: 'monthly', priority: 0.7 },
-      ...GUIAS_VENDER.map(g => ({ url: `${BASE}/vender/${g.slug}`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.8 })),
-    ]
-  }
-
+  // Este archivo es el del dominio de ofertas; los demás hosts reciben
+  // app/sitemap-calc/sitemap.ts vía rewrite por host (next.config.mjs).
+  //
+  // Antes se elegía con headers(), lo que volvía el sitemap dinámico: cada
+  // pedido parseaba ~14 MB de JSON y recalculaba todo (7-10 s en frío). Ahora
+  // se arma una sola vez en el build: los datos solo cambian con cada deploy.
   return [
     { url: DEALS_URL, lastModified, changeFrequency: 'hourly', priority: 1 },
     // URLs estables (el listado de adentro rota, la página no): a diferencia de

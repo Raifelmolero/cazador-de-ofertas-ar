@@ -1532,9 +1532,257 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
+  {
+    slug: 'mejores-aires-acondicionados-black-friday-2026',
+    titulo: 'Mejores aires acondicionados Black Friday 2026 Argentina',
+    descripcion:
+      'Qué aire acondicionado conviene en el Black Friday 2026 en Argentina: frigorías, inverter y cómo detectar un descuento inflado antes del verano.',
+    pregunta: '¿Qué aire acondicionado conviene comprar en el Black Friday 2026 en Argentina?',
+    respuestaCorta:
+      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un split inverter frío-calor, con las frigorías justas para el ambiente —como referencia, el volumen (metros cuadrados × altura del techo) multiplicado por 50 frigorías— y el precio comparado contra el historial del producto, no contra el tachado de la publicación. La instalación casi nunca viene incluida: hay que sumarla al presupuesto y, si se puede, dejarla agendada antes del pico de calor de diciembre y enero. Si el modelo que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos de ese mínimo, tiene sentido seguirlo hasta ese día.',
+    tabla: {
+      titulo: 'Frigorías orientativas según los m² del ambiente',
+      columnas: ['Ambiente', 'Superficie aprox.', 'Frigorías de referencia', 'Tipo de equipo habitual'],
+      filas: [
+        ['Dormitorio chico', 'hasta 15 m²', '2.250', 'Split ~2.250 / 2.300 F'],
+        ['Dormitorio grande o living chico', '15 a 25 m²', '3.000 a 3.500', 'Split ~3.000 / 3.200 F'],
+        ['Living comedor', '25 a 40 m²', '4.500 a 5.500', 'Split ~4.500 / 4.600 F'],
+        ['Ambiente integrado grande', 'más de 40 m²', '6.000 o más', 'Split ~6.000 F o dos equipos'],
+      ],
+      nota: 'Valores orientativos para un techo de unos 2,50 m, con la regla volumen (m² × altura) × 50 frigorías, la misma de la calculadora de frigorías del sitio. Sumá 10 a 20 % si da al norte o al oeste con ventanales, si es último piso, si el techo es de chapa o si hay varias personas o cocina integrada. Ante la duda, un técnico matriculado puede dimensionar el equipo en el lugar. No es un presupuesto ni un ranking de modelos.',
+    },
+    secciones: [
+      {
+        h: 'Conviene comprar el aire en el Black Friday o esperar',
+        p: [
+          'El Black Friday 2026 cae el viernes 27 de noviembre, justo cuando en Argentina ya se siente el calor y mucha gente se acuerda del aire. Eso tiene dos caras. De un lado, hay más publicaciones en oferta, más cuotas y más atención sobre el rubro. Del otro, sube la demanda: los instaladores se empiezan a llenar y, si dejás todo para diciembre o enero, podés terminar con el equipo comprado y sin fecha de instalación para los días de más calor.',
+          'La fecha sola no alcanza para decidir. En climatización es bastante común ver un precio tachado alto y un “30 % OFF” que no se sostiene cuando lo comparás con lo que ese mismo producto venía saliendo en las semanas anteriores. El dato útil no es el porcentaje de la ficha: es si el precio de hoy está cerca del mínimo registrado para ese modelo, o si está más caro que hace diez días con un cartel de descuento.',
+          'Una forma simple de resolverlo: elegí el equipo (frigorías, inverter, frío-calor), anotá el precio actual y mirá el historial. Si ya está en el mínimo registrado y el resto te cierra (envío, garantía, instalación), conviene comprarlo ahora, aunque falten días para el 27/11. Esperar solo tiene sentido cuando el precio de hoy está claramente por encima de ese mínimo y no te urge instalarlo esta semana. En la página de Black Friday están las ofertas del evento; el precio de los inverter, en la página de precio de aire inverter.',
+          'A veces el evento suma cuotas sin interés o un cupón que baja el costo final sin que el precio de lista se mueva. Eso puede mejorar la compra, pero no convierte en ofertón a un equipo que ya se vendía a ese valor. El Black Friday es un buen momento para mirar aires, no una fecha en la que todo baja. La decisión correcta es modelo, frigorías, historial e instalación, no el calendario solo.',
+        ],
+      },
+      {
+        h: 'Cuántas frigorías según el ambiente',
+        p: [
+          'Antes de enamorarte de un descuento, fijate si el equipo da para el ambiente. Un split corto de frigorías trabaja forzado en los días de más calor y suele gastar más luz. Uno muy grande para un cuarto chico no es grave en la misma medida, pero pagás de más. Lo razonable es ir a la capacidad justita o un escalón arriba.',
+          'Una regla práctica muy usada en Argentina es esta: medí el largo y el ancho para tener los metros cuadrados, multiplicá por la altura del techo (en muchos departamentos, entre 2,50 y 2,70 m) y al volumen en m³ multiplicálo por 50. El resultado son las frigorías aproximadas. Después elegí el equipo de capacidad igual o inmediatamente superior. Un ejemplo: un living de 20 m² con techo de 2,50 m da 20 × 2,50 × 50 = 2.500 frigorías; conviene mirar un equipo de 2.750 a 3.000, o un poco más si da al sol.',
+          'La tabla de arriba traduce esa cuenta a tamaños de ambiente habituales, con techo de unos 2,50 m. No reemplaza una visita técnica, pero te evita comprar a ciegas. Si el ambiente da al norte o al oeste con ventanales, si es último piso, si el techo es de chapa o si suelen estar varias personas o hay cocina integrada, sumá un 10 a 20 % a esa referencia. Un living-comedor de más de 40 m² a veces se resuelve mejor con un equipo de 6.000 frigorías o con dos splits más chicos, uno por zona.',
+          'Si no querés hacer la cuenta a mano, en el sitio está la calculadora de frigorías, que usa el mismo criterio. También hay una guía específica sobre cuántas frigorías necesitás. El punto es no elegir el aire del Black Friday solo por el precio: un 3.000 frigorías barato no va a rendir en un living de 35 m².',
+        ],
+      },
+      {
+        h: 'Inverter y frío/calor: lo que cambia el total del año',
+        p: [
+          'Un aire on-off (convencional) prende el compresor a fondo y lo apaga cuando llega a la temperatura: se siente el arranque y el consumo pega saltos. Un inverter regula la velocidad del compresor y se queda en un régimen más parejo. Por eso suele hacer menos ruido, mantener mejor la temperatura y gastar menos luz cuando lo usás muchas horas, que es el caso típico de un dormitorio a la noche o un living a la tarde en enero.',
+          'El inverter sale más caro de entrada. Si lo vas a prender de vez en cuando, un on-off puede alcanzar. Si va a estar varias horas por día en el verano —o también en invierno, si es frío-calor—, esa diferencia se discute en la factura de luz y en el confort, no solo en el precio de la caja. El dato comparable está en la etiqueta de eficiencia energética, obligatoria en Argentina: ahí figuran la clase y el consumo de referencia. Con esa potencia se puede estimar el uso en la calculadora de consumo eléctrico del sitio.',
+          'Entre solo frío y frío-calor, la diferencia de precio suele ser menor de lo que la gente imagina, y el frío-calor calefacciona con bomba de calor, en general más eficiente que una estufa eléctrica común. Para un ambiente que usás todo el año, casi siempre conviene frío-calor. Si ya tenés calefacción a gas en ese cuarto, un solo frío puede servir; aun así, mirá la diferencia real de precio antes de descartarlo.',
+          'La instalación de un split (caños, gas refrigerante, obra y puesta en marcha) casi nunca está incluida. Pedí presupuesto a un instalador matriculado antes de comprar y preguntá si la garantía lo pide. En diciembre esos turnos se llenan: si comprás el 27/11 o antes, tenés más margen para agendar. Las ofertas de inverter de hoy están en la landing de aires inverter en oferta.',
+        ],
+      },
+      {
+        h: 'Qué modelos calidad-precio mirar este 27/11',
+        p: [
+          '“Calidad-precio” en un aire no es el más barato del listado. Es el que tiene las frigorías correctas, inverter si lo vas a usar seguido, frío-calor si el ambiente se usa todo el año, garantía y servicio técnico en el país, y un precio de hoy que se sostiene contra el historial. Un equipo sin garantía clara o con una publicación que no detalla frigorías ni si es inverter puede ser barato en la tarjeta y caro después, cuando hay que instalarlo o reclamar.',
+          'No tiene sentido copiar acá un ranking fijo de modelos: los precios y el stock cambian varias veces por semana, y esa foto ya está en la comparativa de aires y en la categoría, que se actualizan con el catálogo del día. Lo que sí conviene llevar al Black Friday es una lista corta según el ambiente, y chequear ese día (o antes, si ya están en mínimo) estos perfiles:',
+          'Dormitorio chico (hasta unos 15 m²): split inverter frío-calor de alrededor de 2.250 frigorías, de una marca con garantía oficial en Argentina. Mirá abajo los aires con mejor precio hoy y priorizá el que esté en oferta o en su mínimo histórico.',
+          'Dormitorio grande o living chico: split inverter frío-calor de 3.000 a 3.200 frigorías, que es el corte más buscado para departamentos. En la tira de ofertas de aires de abajo vas a ver cuáles están más baratos hoy.',
+          'Living comedor: split inverter frío-calor de alrededor de 4.500 frigorías. Antes de comprar fijate que la publicación aclare las frigorías, si es inverter y si incluye la instalación o no.',
+          'Ambiente integrado de más de 40 m²: split inverter de unas 6.000 frigorías, o dos equipos más chicos. Revisá abajo los aires con mejor precio del día y compará contra el historial antes de decidir.',
+          'Al comparar, mirá que la ficha de Mercado Libre coincida con lo que buscás (frigorías, inverter, frío-calor) y no te quedes solo con el título. Si dos publicaciones parecen el mismo equipo y una está bastante más barata, revisá vendedor, garantía y si es un modelo equivalente. La comparativa y la categoría muestran qué hay hoy, sin armar una tabla paralela acá.',
+        ],
+      },
+      {
+        h: 'El truco del precio “de lista” en climatización',
+        p: [
+          'En los meses previos al verano, los aires son de los rubros donde más se ve el descuento de cartelería: un precio “anterior” alto, un porcentaje llamativo y un precio actual que, en realidad, ya se venía cobrando o incluso estaba más barato la semana pasada. No hace falta discutir si todos los descuentos son falsos. Alcanza con no creerle al tachado y contrastar cada modelo con su historial.',
+          'El criterio que usamos en Cazador de Ofertas AR es ese: si el precio anterior que muestra la oferta nunca se sostuvo (o el producto ya se había vendido al menos un 5 % más barato antes), el descuento está inflado y no entra en el listado de ofertas reales. Cuando hay historial suficiente y el precio de hoy es el más bajo que registramos, lo marcamos como mínimo histórico. El detalle está en la página de metodología, y los casos del día aparecen en descuentos inflados.',
+          'Antes de pagar, hacé este recorrido corto. Confirmá frigorías, inverter y frío-calor. Sumá instalación, envío y si hay que subir el equipo al piso. Compará el precio de hoy con el historial, no con el “antes” de la ficha. Si hace falta, pegá el link de la publicación en el verificador de la home. Si el 27/11 el número no es mejor que el de esta semana, no es un mal negocio perderte el Black Friday: es evitar pagar un cartel. Las ofertas del evento están en la página de Black Friday; las de este rubro, en la categoría de aires.',
+        ],
+      },
+    ],
+    categoria: { slug: 'aire-acondicionado', nombre: 'aires acondicionados' },
+    comparativa: 'mejores-aires-inverter',
+    cta: {
+      href: '/ofertas/aires-acondicionados-inverter-en-oferta',
+      titulo: 'Aires inverter en oferta hoy, con el descuento verificado',
+      boton: 'Ver aires inverter en oferta ❄️',
+    },
+    faq: [
+      {
+        q: '¿El Black Friday baja de verdad los aires acondicionados en Argentina?',
+        a: 'A veces sí, a veces no. El 27 de noviembre de 2026 puede haber mejor precio, cuotas o cupones, pero en climatización también es habitual un tachado inflado. Lo que decide es el historial: si ya está en el mínimo registrado, no hace falta esperar; si está más caro que en días previos, conviene seguirlo y compararlo ese día.',
+      },
+      {
+        q: '¿Cuántas frigorías necesito para un depto de 40 m²?',
+        a: 'Depende de si esos 40 m² son un solo ambiente y de la altura del techo. Con 2,50 m de alto, la regla del volumen × 50 da unas 5.000 frigorías (40 × 2,50 × 50). En la tabla, un living de 25 a 40 m² entra en 4.500 a 5.500, y uno de más de 40 m² en 6.000 o más, o en dos equipos. Si da al sol, es último piso o hay cocina integrada, sumá 10 a 20 %.',
+      },
+      {
+        q: '¿Inverter vale la diferencia de precio?',
+        a: 'Si lo vas a usar muchas horas, en general sí: regula el compresor, hace menos ruido, mantiene mejor la temperatura y suele gastar menos luz que un on-off. Para uso ocasional, un convencional puede alcanzar. La comparación de consumo hay que hacerla con la etiqueta de eficiencia energética del modelo (obligatoria en Argentina), no con un número genérico.',
+      },
+      {
+        q: '¿El precio del split incluye la instalación?',
+        a: 'Casi nunca. Revisá la publicación, pedí presupuesto a un instalador matriculado antes de comprar y preguntá si la garantía lo pide. En diciembre y enero esos turnos se llenan: si comprás en el Black Friday o antes, conviene agendar la instalación lo antes posible.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/aire-acondicionado', texto: 'Ofertas de aire acondicionado' },
+      { href: '/ofertas/aires-acondicionados-inverter-en-oferta', texto: 'Aires inverter en oferta hoy' },
+      { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires acondicionados' },
+      { href: '/precio-hoy/aire-acondicionado-inverter', texto: 'Precio de aire inverter hoy' },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
+      { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías ❄️' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Cuántas frigorías necesito' },
+      { href: '/guias/aire-acondicionado-inverter-o-convencional', texto: 'Inverter o convencional' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+    fuentes: [
+      {
+        texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado',
+        url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica',
+      },
+      {
+        texto: 'IRAM: normas de etiquetado de eficiencia energética por producto',
+        url: 'https://www.iram.org.ar/',
+      },
+    ],
+  },
+  // ── 13/11: lavarropas Black Friday (guía 2 BF) ──
+  {
+    slug: 'mejores-lavarropas-black-friday-2026',
+    titulo: 'Mejores lavarropas Black Friday 2026 Argentina',
+    descripcion:
+      'Qué lavarropas o lavasecarropas conviene en el Black Friday 2026 en Argentina: kilos, carga, inverter y cómo verificar el descuento contra el historial.',
+    pregunta: '¿Qué lavarropas conviene comprar en el Black Friday 2026 en Argentina?',
+    respuestaCorta:
+      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un lavarropas automático con la capacidad justa (6 a 7 kg para 1 a 3 personas, 8 kg o más si son más o si lavás acolchados), inverter si lo usás seguido, y el precio comparado contra el historial, no contra el tachado de la publicación. La carga frontal suele gastar menos agua; la superior es más cómoda y, en general, más barata. Un lavasecarropas tiene sentido si no hay lugar para dos equipos: lava y seca en la misma máquina, aunque el secado suele admitir menos ropa que el lavado. Si el que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos, tiene sentido seguirlo hasta ese día.',
+    tabla: {
+      titulo: 'Capacidad orientativa según el tamaño del hogar',
+      columnas: ['Hogar', 'Capacidad de lavado', 'Qué suele alcanzar'],
+      filas: [
+        ['1 a 3 personas', '6 a 7 kg', 'Uso cotidiano, prendas y toallas'],
+        ['3 o 4 personas, o acolchados', '8 kg o más', 'Familia tipo y algunos textiles grandes'],
+        ['Familia grande o mucho volumen', '10 a 11 kg', 'Varias cargas por semana o prendas voluminosas'],
+        ['Poco espacio y también querés secar', 'Lavasecarropas (mirá ambos kilos)', 'Lava y seca en un solo equipo; el kilo de secado suele ser menor'],
+      ],
+      nota: 'Valores de referencia de ropa seca, alineados con la guía de qué lavarropas comprar. No son un ranking de modelos ni un precio. En un lavasecarropas siempre hay que mirar la capacidad de lavado y la de secado: no son la misma. Medí el lugar (ancho, profundidad, alto y, en carga superior, el espacio para la tapa) y dejá centímetros atrás para las mangueras.',
+    },
+    secciones: [
+      {
+        h: 'Vale la pena comprar el lavarropas en el Black Friday',
+        p: [
+          'El Black Friday 2026 cae el viernes 27 de noviembre. Es una fecha en la que suelen aparecer más publicaciones en oferta, a veces con cuotas o cupones. Eso no significa que todo baje. En electrodomésticos grandes también se ve un precio tachado alto y un porcentaje llamativo, cuando el valor de hoy es el mismo —o incluso más caro— que el de las semanas anteriores.',
+          'La forma útil de decidir no es el calendario solo. Elegí primero el tipo de equipo (kilos, carga frontal o superior, inverter, lavarropas o lavasecarropas), anotá el precio actual y comparalo con el historial. Si ya está en el mínimo que registramos y el resto te cierra (medidas, envío, garantía, instalación de las mangueras), conviene comprarlo ahora, aunque falten días para el 27/11. Esperar solo tiene sentido cuando el precio de hoy está claramente por encima de ese mínimo y no te urge tenerlo esta semana.',
+          'Un lavarropas no se elige el mismo día en cinco minutos si no mediste el lugar. Antes del evento, confirmá ancho, profundidad y alto, el paso por la puerta y si el envío incluye subirlo al piso y retirar el usado. En la página de Black Friday están las ofertas del evento; las de este rubro, en la categoría de lavarropas y en el precio de lavarropas automático de hoy. Abajo va una tira con lavarropas y lavasecarropas en oferta, actualizada con el catálogo del día.',
+        ],
+      },
+      {
+        h: 'Cuántos kilos según la casa',
+        p: [
+          'La capacidad se indica en kilos de ropa seca. Un equipo corto para la casa se llena antes, lava peor si lo sobrecargás y te obliga a más ciclos por semana. Uno muy grande no es grave, pero pagás de más y, si siempre lo usás con poca carga, no lo aprovechás. Lo razonable es ir a la capacidad justita o un escalón arriba.',
+          'Como referencia, la misma que usamos en la guía de qué lavarropas comprar: para 1 a 3 personas suelen alcanzar 6 a 7 kg; para una familia, o si lavás acolchados y frazadas, 8 kg o más. Si el volumen de ropa es alto, 10 a 11 kg da más aire. La tabla de arriba resume esos cortes. Un 11 kg tiene sentido si lo vas a llenar; si no, un 7 u 8 kg bien elegido rinde mejor.',
+          'En un lavasecarropas hay que mirar dos cifras, no una. El kilo de lavado y el de secado no coinciden: el tambor suele secar menos ropa de la que lava, y si cargás el máximo de lavado, a veces hay que sacar prendas antes de secar. Si tu idea es lavar y secar la misma carga de una vez, guiate por la capacidad de secado, no solo por la de lavado.',
+          'Para ver qué hay hoy en cada rango, mirá abajo la tira de ofertas: ahí están los equipos del catálogo del día, con el descuento contrastado contra el historial. Esta guía no arma un ranking fijo, porque precios y stock cambian seguido.',
+        ],
+      },
+      {
+        h: 'Carga frontal vs superior, e inverter',
+        p: [
+          'La carga frontal lava por volteo: suele usar menos agua, ser más suave con la ropa y centrifugar más fuerte, así que la ropa sale más seca. Los ciclos son más largos y hay que agacharse para cargar. También es el formato habitual de los lavasecarropas. Medí bien el frente y el espacio para abrir la puerta.',
+          'La carga superior, en general, sale más económica, tiene ciclos más cortos y en muchos modelos se puede agregar una prenda en el medio del lavado. Es más cómoda si no querés agacharte. A cambio, suele gastar más agua y el centrifugado puede ser menos intenso. Los semiautomáticos son la opción más barata, pero hay que pasar la ropa a mano al centrifugado: sirven si buscás precio y no te molesta ese paso; no son el mismo producto que un automático.',
+          'El motor inverter regula la velocidad según la carga, sin escobillas. Suele hacer menos ruido, vibrar menos y ser más eficiente que un motor convencional. Cuesta algo más y conviene sobre todo si lavás seguido. Revisá los años de garantía del motor, no solo la del equipo.',
+          'Dos datos más, que no vienen en el cartel de oferta. El centrifugado: con 1.000 rpm o más la ropa sale más seca. Y la etiqueta de eficiencia energética, obligatoria en Argentina, indica la clase y el consumo por ciclo. Calentar agua es lo que más gasta; lavar en frío baja mucho ese consumo. Con ese dato se puede estimar el uso en la calculadora de consumo eléctrico del sitio.',
+        ],
+      },
+      {
+        h: 'Lavarropas vs lavasecarropas',
+        p: [
+          'Un lavarropas solo lava. Para secar, después va al tendal, a un secarropas aparte o a un lavasecarropas, que hace las dos cosas en el mismo tambor. La pregunta no es cuál es “mejor” en abstracto: es qué entra en tu casa y cómo lavás.',
+          'El lavasecarropas conviene cuando no hay lugar para dos equipos, no hay tendal o querés sacar la ropa lista en un ciclo. A cambio, el secado suele ser más lento, admite menos kilos que el lavado y el equipo sale más caro que un lavarropas equivalente. Si lavás mucho y tenés espacio, dos aparatos separados suelen ser más rápidos: podés lavar una carga mientras se seca otra. Un secarropas con bomba de calor gasta menos que uno por resistencia, a costa de un precio mayor; eso se detalla en la guía que compara lavasecarropas, secarropas y bomba de calor.',
+          'Si el problema es el espacio o el clima húmedo y las cargas no son enormes, mirá lavasecarropas y fijate los dos kilos (lavado y secado). Si el problema es el volumen de ropa y hay lugar, un lavarropas de 8 kg o más, con buen centrifugado, suele alcanzar, y el secado lo resolvés aparte. En la tira de ofertas de abajo vas a ver de los dos tipos, cuando haya stock del día: confirmá si es lavarropas o lavasecarropas antes de comparar precios.',
+        ],
+      },
+      {
+        h: 'Qué modelos calidad-precio mirar este 27/11',
+        p: [
+          '“Calidad-precio” en un lavarropas no es el más barato del listado. Es el que tiene los kilos correctos para la casa, el tipo de carga que te sirve, inverter si lavás seguido, garantía y servicio técnico en el país, y un precio de hoy que se sostiene contra el historial. Una publicación que no aclara kilos, rpm o si es automático puede ser barata en la tarjeta y cara después, cuando no entra en el lugar o no hace lo que esperabas.',
+          'No tiene sentido copiar acá un ranking fijo: los precios y el stock cambian seguido, y esa foto ya está en la comparativa y en la categoría. Lo que sí conviene llevar al Black Friday es una lista corta según el hogar, y chequear ese día —o antes, si ya están en su mínimo— estos perfiles, en la tira de ofertas de abajo:',
+          'Si son 1 a 3 personas, empezá por automáticos de 6 a 7 kg. Con poco espacio o si preferís no agacharte, carga superior; si priorizás menos agua y un centrifugado más fuerte, carga frontal.',
+          'Si son 3 o 4 personas, o si lavás acolchados, subí a 8 kg o más. Confirmá medidas y rpm (1.000 o más ayudan a que la ropa salga más seca).',
+          'Si el volumen de ropa es alto, o querés menos cargas por semana, mirá 10 a 11 kg. Tiene sentido solo si vas a usar esa capacidad; si no, un 8 kg bien elegido puede ser mejor compra.',
+          'Si no hay lugar para un secarropas aparte y necesitás secar en casa, mirá lavasecarropas y compará los dos kilos, no solo el de lavado. En la tira de abajo van a aparecer los que estén en oferta hoy. Usá esa lista para elegir el equipo concreto; esta sección es solo para acotar el tipo.',
+        ],
+      },
+      {
+        h: 'Cómo verificar el descuento contra el historial',
+        p: [
+          'En electrodomésticos grandes es habitual el descuento de cartelería: un precio “anterior” alto, un porcentaje llamativo y un precio actual que ya se venía cobrando, o que incluso estaba más barato la semana pasada. No hace falta discutir si todos los descuentos son falsos. Alcanza con no creerle al tachado y contrastar cada equipo con su historial.',
+          'El criterio que usamos en Cazador de Ofertas AR es ese: si el precio anterior que muestra la oferta nunca se sostuvo (o el producto ya se había vendido al menos un 5 % más barato antes), el descuento está inflado y no entra en el listado de ofertas reales. Cuando hay historial suficiente y el precio de hoy es el más bajo que registramos, lo marcamos como mínimo histórico. El detalle está en la página de metodología, y los casos del día aparecen en descuentos inflados.',
+          'Antes de pagar, confirmá kilos, tipo de carga, si es automático y, en un lavasecarropas, la capacidad de secado. Medí el lugar y preguntá si el envío incluye subirlo al piso. Compará el precio de hoy con el historial, no con el “antes” de la ficha. Si hace falta, pegá el link en el verificador de la home. Si el 27/11 el número no es mejor que el de esta semana, no es un mal negocio perderte el Black Friday: es evitar pagar un cartel. Las ofertas del evento están en la página de Black Friday; las de este rubro, en la categoría de lavarropas.',
+        ],
+      },
+    ],
+    categoria: { slug: 'lavarropas', nombre: 'lavarropas' },
+    comparativa: 'mejores-lavarropas',
+    cta: {
+      href: '/mejores/mejores-lavarropas',
+      titulo: 'Lavarropas y lavasecarropas en oferta hoy, con el descuento verificado',
+      boton: 'Ver lavarropas en oferta 🧺',
+    },
+    faq: [
+      {
+        q: '¿El Black Friday tiene buenos precios de lavarropas en Argentina?',
+        a: 'A veces sí, a veces no. El 27 de noviembre de 2026 puede haber mejor precio, cuotas o cupones, pero en electrodomésticos grandes también es habitual un tachado inflado. Lo que decide es el historial: si ya está en el mínimo registrado, no hace falta esperar; si está más caro que en días previos, conviene seguirlo y compararlo ese día.',
+      },
+      {
+        q: '¿Carga frontal o superior en 2026?',
+        a: 'Carga frontal si buscás gastar menos agua, cuidar la ropa y un centrifugado más fuerte; es además el formato habitual de los lavasecarropas. Carga superior si priorizás precio, ciclos más cortos y cargar sin agacharte. Los semiautomáticos son más baratos, pero hay que pasar la ropa a mano al centrifugado.',
+      },
+      {
+        q: '¿Cuántos kilos convienen para 3 o 4 personas?',
+        a: 'En general, 8 kg o más. Para 1 a 3 personas suelen alcanzar 6 a 7 kg; si lavás acolchados o el volumen de ropa es alto, conviene subir. La capacidad se indica en kilos de ropa seca. En un lavasecarropas, mirá también el kilo de secado, que suele ser menor que el de lavado.',
+      },
+      {
+        q: '¿Cómo sé si el precio de hoy es el mínimo que registraron?',
+        a: 'En Cazador de Ofertas AR comparamos cada oferta contra el historial del producto. Si el precio de hoy es el más bajo que registramos, lo marcamos como mínimo histórico. Si el tachado anuncia un descuento pero el producto ya estuvo más barato, lo consideramos inflado. También podés pegar el link en el verificador de la home.',
+      },
+      {
+        q: '¿Conviene un lavasecarropas o un lavarropas solo?',
+        a: 'Un lavasecarropas conviene si no hay lugar para dos equipos o si necesitás secar en casa sin tendal: lava y seca en la misma máquina, aunque el secado es más lento y admite menos ropa. Si hay espacio y lavás mucho, un lavarropas (y, si hace falta, un secarropas aparte) suele ser más rápido. Mirá abajo las ofertas del día.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/lavarropas', texto: 'Ofertas de lavarropas' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
+      { href: '/precio-hoy/lavarropas-automatico', texto: 'Precio de lavarropas automático hoy' },
+      { href: '/mejores/mejores-lavarropas', texto: 'Comparativa de lavarropas' },
+      { href: '/guias/lavasecarropas-secarropas-o-bomba-de-calor', texto: 'Lavasecarropas o secarropas' },
+      { href: '/guias/lavarropas-carga-frontal-o-superior', texto: 'Carga frontal o superior' },
+      { href: '/guias/lavarropas-inverter-que-es-y-conviene', texto: 'Lavarropas inverter: qué es' },
+      {
+        href: '/precio/lavasecarropas-samsung-wd11t504-control-ia-white-11kg-7kg-blanco-mla74715247',
+        texto: 'Historial de un lavasecarropas 11 kg',
+      },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
+      { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+      { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
+    ],
+    fuentes: [
+      {
+        texto: 'Secretaría de Energía de la Nación: eficiencia energética y etiquetado',
+        url: 'https://www.argentina.gob.ar/economia/energia/eficiencia-energetica',
+      },
+      {
+        texto: 'IRAM: normas de etiquetado de eficiencia energética por producto',
+        url: 'https://www.iram.org.ar/',
+      },
+    ],
+  },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
 
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_TECNO.map(g => {

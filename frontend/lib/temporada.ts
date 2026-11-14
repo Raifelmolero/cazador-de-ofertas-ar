@@ -57,14 +57,13 @@ export const TEMPORADAS: Temporada[] = [
   {
     id: 'blackfriday',
     href: '/black-friday',
-    titulo: `🖤 Black Friday: ${BLACK_FRIDAY.fechasTexto}`,
-    bajada: 'Ofertas comparadas contra el historial de precios → ver cuáles son reales',
+    titulo: `🖤 Previa del Black Friday: ${BLACK_FRIDAY.fechasTexto} — preventa desde el lunes 16/11`,
+    bajada: 'Ofertas comparadas contra el historial de precios → mirá la previa',
     caja: 'border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60',
     texto: 'text-yellow-200',
     desde: diaSiguiente(CYBER_MONDAY.fin),
     hasta: BLACK_FRIDAY.fecha,
     cuenta: true,
-    escena: '/personaje/escena-cyber-monday.webp',
     agenda: { href: '/black-friday/agenda.ics', inicio: BLACK_FRIDAY.fecha },
   },
   {

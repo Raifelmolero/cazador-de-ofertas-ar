@@ -5,7 +5,6 @@
 // Las fechas salen de lib/cybermonday.ts. Si ahí `oficial` es false, la página
 // dice "a confirmar" y NO publica el JSON-LD de Event. Nada de datos inventados:
 // productos, % de infladas y conteos salen del catálogo y del registro del bot.
-import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
@@ -285,7 +284,7 @@ export default function CyberMondayPage() {
           data-seccion="cyber_terminado_bf"
           className="block bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-center font-bold px-4 py-3 text-sm sm:text-base hover:brightness-105"
         >
-          {cyberExtendido() ? <>🔥 Mercado Libre extendió el Cyber Monday: hoy siguen las ofertas y hay cupones de hasta $80.000 (ver abajo y en /cupones). Después: Black Friday, {BLACK_FRIDAY.fechasTexto} →</> : <>El Cyber Monday terminó el 4/11 → se viene el Black Friday, {BLACK_FRIDAY.fechasTexto}. Ver ofertas y cómo prepararte →</>}
+          El Cyber Monday terminó — mirá la previa de Black Friday →
         </Link>
       )}
 
@@ -315,12 +314,24 @@ export default function CyberMondayPage() {
             <span className="text-zinc-300">Cyber Monday {CM.año}</span>
           </nav>
           <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
-            {TITULO}
+            {etapa === 'despues' ? 'El Cyber Monday terminó — mirá la previa de Black Friday' : TITULO}
           </h1>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Cuándo es, quién lo organiza y cómo no caer en un descuento inflado. Abajo, las ofertas de hoy en los rubros
-            del evento, cada una comparada contra el precio más bajo que registramos.
+            {etapa === 'despues' ? (
+              <>El evento de la CACE fue {FECHAS}. Ahora se viene el Black Friday, el {BLACK_FRIDAY.fechasTexto}. Abajo quedan las ofertas de hoy en los rubros del evento, cada una comparada contra el precio más bajo que registramos.</>
+            ) : (
+              <>Cuándo es, quién lo organiza y cómo no caer en un descuento inflado. Abajo, las ofertas de hoy en los rubros del evento, cada una comparada contra el precio más bajo que registramos.</>
+            )}
           </p>
+          {etapa === 'despues' && (
+            <Link
+              href="/black-friday"
+              data-seccion="cyber_header_bf"
+              className="mt-5 inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-3 transition-colors"
+            >
+              Ver la previa de Black Friday →
+            </Link>
+          )}
           <CuentaRegresivaEvento fecha={CM.inicio} nombre="Cyber Monday" />
 
           <div className="mt-6 rounded-2xl border border-cyan-400/30 bg-cyan-500/[0.07] p-5 sm:p-6">

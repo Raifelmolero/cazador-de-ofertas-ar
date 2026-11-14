@@ -209,8 +209,9 @@ export default function HoyPage() {
       a: 'Las de hoy están arriba en esta página, ordenadas por relevancia: primero las que están en su mínimo histórico y después las de mayor descuento real. Se actualizan a medida que cargamos ofertas nuevas, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
     },
     {
-      q: '¿Cuándo conviene comprar en Mercado Libre: Hot Sale, Cyber Monday o un día común?',
-      a: 'Depende del producto. En eventos como Hot Sale o Cyber Monday muchos descuentos se calculan sobre un precio de lista inflado. Lo más seguro es comparar contra el historial de precios: si el producto ya estuvo más barato en días comunes, esperar no aporta. Acá marcamos con el sello de mínimo histórico los que están en su precio más bajo registrado.',
+      q: '¿Cuándo es el Black Friday y conviene esperar?',
+      a: 'El Black Friday es el viernes 27 de noviembre. La previa arranca el lunes 16/11. Como en cualquier evento, muchos descuentos se calculan sobre un precio de lista inflado: lo más seguro es comparar contra el historial de precios. Si el producto ya está en su mínimo histórico, esperar no aporta.',
+      link: { href: '/black-friday', texto: 'Mirá la previa del Black Friday →' },
     },
     {
       q: '¿Cómo encuentro cupones y descuentos extra en Mercado Libre?',
@@ -594,7 +595,15 @@ export default function HoyPage() {
         <section className="max-w-2xl mx-auto px-4 pb-10">
           <h2 className="font-display text-lg font-black mb-4 text-center">Ofertas más buscadas hoy</h2>
           <ul className="flex flex-wrap justify-center gap-2">
-            {LANDINGS.filter(indexableLanding).map(l => (
+            <li>
+              <a
+                href="/black-friday"
+                className="block rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-2 text-sm font-bold text-yellow-300 hover:bg-yellow-400/20 transition-colors"
+              >
+                Previa del Black Friday (27/11)
+              </a>
+            </li>
+            {LANDINGS.filter(indexableLanding).filter(l => !l.slug.includes('cyber-monday')).map(l => (
               <li key={l.slug}>
                 <a
                   href={`/ofertas/${l.slug}`}
@@ -612,7 +621,10 @@ export default function HoyPage() {
       <section className="max-w-2xl mx-auto px-4 pb-10">
         <h2 className="font-display text-lg font-black mb-4 text-center">Comparativas antes de comprar</h2>
         <ul className="space-y-2 text-center">
-          {COMPARATIVAS.map(c => (
+          {[
+            ...COMPARATIVAS.filter(c => c.slug === 'ofertas-black-friday' || c.slug.startsWith('black-friday-')),
+            ...COMPARATIVAS.filter(c => c.slug !== 'ofertas-cyber-monday' && c.slug !== 'ofertas-black-friday' && !c.slug.startsWith('black-friday-')),
+          ].map(c => (
             <li key={c.slug}>
               <a href={`/mejores/${c.slug}`} className="text-sm font-bold text-yellow-400/90 hover:text-yellow-300">
                 📊 {c.titulo}

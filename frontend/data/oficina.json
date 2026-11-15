@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-14T23:50:07+00:00",
+  "generado": "2026-11-15T04:40:53+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,45 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-14T23:50:07+00:00",
+      "ultima_actividad": "2026-11-15T04:40:53+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 12422 productos en la última corrida"
+          "tarea": "Revisó 11875 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 10
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 9
         },
         {
           "label": "Telegram",
-          "valor": 3
+          "valor": 4
         },
         {
           "label": "Threads",
-          "valor": 3
+          "valor": 4
+        },
+        {
+          "label": "Reels IG",
+          "valor": 2
+        },
+        {
+          "label": "Historias IG",
+          "valor": 2
         },
         {
           "label": "Instagram",
           "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Msi Cyborg 15 B2rwfkg-259us Notebook Gamer 15 Pulgadas"
+      "ultimo_trabajo": "Heladera Hisense Side by side No Frost Inverter Rc-70ws 531 L Inox fabrica hielo"
     },
     {
       "id": "investigacion",

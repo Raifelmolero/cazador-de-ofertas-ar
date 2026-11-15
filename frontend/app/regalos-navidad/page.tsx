@@ -17,7 +17,7 @@ import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt, type ProductWithMargins } from '@/lib/productos'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { getCategoria, ofertasDeCategoria } from '@/lib/categorias'
-import { CYBER_MONDAY, BLACK_FRIDAY } from '@/lib/cybermonday'
+import { BLACK_FRIDAY } from '@/lib/cybermonday'
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
@@ -145,8 +145,8 @@ export default function RegalosNavidadPage() {
       a: `Navidad es el viernes 25 de diciembre de ${AÑO} (los regalos se abren a la medianoche del 24) y Reyes el miércoles 6 de enero de ${AÑO + 1}. En Mercado Libre conviene tener el pedido hecho al menos una semana antes: la última semana los envíos se cargan. Mirá la fecha de entrega estimada antes de pagar.`,
     },
     {
-      q: '¿Conviene comprar en Black Friday o Cyber Monday para Navidad?',
-      a: `Puede convenir, pero no siempre. El Cyber Monday ${CYBER_MONDAY.año} es ${CYBER_MONDAY.fechasTexto} y el Black Friday el ${BLACK_FRIDAY.fechasTexto}: comprar ahí te da margen para que llegue. Pero que haya evento no garantiza que el precio sea el más bajo: algunas publicaciones suben el precio antes para mostrar un descuento mayor. Lo prudente es anotar hoy el precio del regalo que te interesa, compararlo con el del evento y con el de diciembre, y revisar la política de cambios, porque comprás con más de un mes de anticipación.`,
+      q: '¿Conviene comprar en Black Friday para Navidad?',
+      a: `Puede convenir, pero no siempre. El Black Friday ${BLACK_FRIDAY.año} es el ${BLACK_FRIDAY.fechasTexto}: comprar ahí te da margen para que llegue. Pero que haya evento no garantiza que el precio sea el más bajo: algunas publicaciones suben el precio antes para mostrar un descuento mayor. Lo prudente es anotar hoy el precio del regalo que te interesa, compararlo con el del evento y con el de diciembre, y revisar la política de cambios, porque comprás con más de un mes de anticipación.`,
     },
     {
       q: '¿Cómo sé si el descuento de un regalo es real?',
@@ -317,16 +317,15 @@ export default function RegalosNavidadPage() {
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
         <section className="mb-10">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">¿Black Friday, Cyber Monday o diciembre?</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">¿Black Friday o diciembre?</h2>
           <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
-            Antes de Navidad hay dos eventos grandes: el <strong className="text-zinc-200">Cyber Monday</strong> (
-            {CYBER_MONDAY.fechasTexto}) y el <strong className="text-zinc-200">Black Friday</strong> ({BLACK_FRIDAY.fechasTexto}).
+            El evento grande que queda antes de Navidad es el <strong className="text-zinc-200">Black Friday</strong> ({BLACK_FRIDAY.fechasTexto}).
             Comprar ahí te da margen de envío, pero un evento no garantiza el mejor precio: anotá hoy lo que cuesta el
             regalo que te interesa y comparalo después.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/cyber-monday" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors">
-              Cyber Monday {CYBER_MONDAY.año} →
+              Previa del Black Friday: precios de hoy →
             </Link>
             <Link href="/black-friday" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors">
               Black Friday {BLACK_FRIDAY.año} →

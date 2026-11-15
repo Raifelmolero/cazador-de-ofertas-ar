@@ -2,7 +2,16 @@ import type { Metadata } from 'next'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { GUIAS, fechasGuia, getGuia } from '@/lib/guias'
+import { GUIAS, fechasGuia, getGuia as getGuiaBase } from '@/lib/guias'
+import { aBlackFridayTrasCyber } from '@/lib/cybermonday'
+
+/** Las guías «…-cyber-monday» ya están en Google: misma dirección, pero pasado el evento
+ *  el título y la descripción hablan del Black Friday. */
+function getGuia(slug: string) {
+  const g = getGuiaBase(slug)
+  if (!g || !g.slug.includes('cyber-monday')) return g
+  return { ...g, titulo: aBlackFridayTrasCyber(g.titulo), descripcion: aBlackFridayTrasCyber(g.descripcion) }
+}
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { getOfertas } from '@/lib/productos'

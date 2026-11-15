@@ -62,3 +62,17 @@ export function etapaCyber(ahora = new Date(), e = CYBER_MONDAY): { etapa: 'ante
   if (t <= ms(e.fin, '23:59:59')) return { etapa: 'durante', dias: 0 }
   return { etapa: 'despues', dias: 0 }
 }
+
+/** Pasado el Cyber Monday (4/11), los textos visibles de sus páginas hablan del Black Friday.
+ *  Las direcciones (/cyber-monday/…) no cambian: ya están en Google. */
+export function aBlackFridayTrasCyber(texto: string, ahora = new Date()): string {
+  if (etapaCyber(ahora).etapa !== 'despues') return texto
+  return texto
+    .replace(CYBER_MONDAY.fechasTexto, BLACK_FRIDAY.fechasTexto)
+    .replace(/Cyber Monday/g, 'Black Friday')
+    .replace(/cyber monday/g, 'black friday')
+    .replace(/CyberMonday/g, 'Black Friday')
+    .replace(/(en|del|al|para el) Cyber\b/g, '$1 Black Friday')
+    .replace(/Black Friday (y|o|e) (el |la )?Black Friday/g, 'Black Friday')
+    .replace(/Black Friday\/Black Friday/g, 'Black Friday')
+}

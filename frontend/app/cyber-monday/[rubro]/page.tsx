@@ -18,7 +18,7 @@ import LastUpdated from '@/components/LastUpdated'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt } from '@/lib/productos'
 import { busquedaML } from '@/lib/afiliado'
-import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { CYBER_MONDAY as CM, etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import {
   armarLandingCyber,
   getLandingCyber,
@@ -59,7 +59,7 @@ function todosDe(slug: string, marca: string): string {
   return `todos los ${m}`
 }
 
-const titulo = (x: LandingCyberArmada) => `${mayus(x.l.nombre)} en el Cyber Monday ${CM.año}: precio de octubre vs. hoy`
+const titulo = (x: LandingCyberArmada) => bf(`${mayus(x.l.nombre)} en el Cyber Monday ${CM.año}: precio de octubre vs. hoy`)
 
 function armar(slug: string) {
   const l = getLandingCyber(slug)
@@ -72,9 +72,9 @@ export async function generateMetadata({ params }: { params: Promise<{ rubro: st
   const url = `${DEALS_URL}/cyber-monday/${x.l.slug}`
   const t = titulo(x)
   const marcas = x.porMarca.filter(g => g.marca.nombre !== 'Otras marcas').slice(0, 3).map(g => g.marca.nombre).join(', ')
-  const desc = `El precio más bajo que registramos en octubre de ${x.filas.length} ${x.l.nombre} de Mercado Libre${marcas ? ` (${marcas})` : ''}, para saber si el descuento del Cyber Monday ${CM.año} (${CM.fechasTexto}) es real.`
+  const desc = bf(`El precio más bajo que registramos en octubre de ${x.filas.length} ${x.l.nombre} de Mercado Libre${marcas ? ` (${marcas})` : ''}, para saber si el descuento del Cyber Monday ${CM.año} (${CM.fechasTexto}) es real.`)
   return {
-    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s, () => `${mayus(x.l.nombre)} Cyber Monday ${CM.año}: ¿bajan de verdad?`]),
+    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s, () => bf(`${mayus(x.l.nombre)} Cyber Monday ${CM.año}: ¿bajan de verdad?`)]),
     description: descripcionSeo(desc),
     keywords: x.l.keywords,
     metadataBase: new globalThis.URL(DEALS_URL),

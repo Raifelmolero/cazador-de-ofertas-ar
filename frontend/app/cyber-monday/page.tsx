@@ -33,7 +33,7 @@ import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
 import ComparacionTestigo from '@/components/ComparacionTestigo'
-import { BLACK_FRIDAY, CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { BLACK_FRIDAY, CYBER_MONDAY as CM, etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
 import { landingsCyberConDatos, ofertasTecnoTicketAlto } from '@/lib/cybertecno'
 
@@ -45,8 +45,12 @@ const MAX_OFERTAS = 16
 const MAX_TECNO = 8
 
 const FECHAS = CM.oficial ? `${CM.fechasTexto} de ${CM.año}` : `${CM.fechasTexto} de ${CM.año} (a confirmar)`
-const TITULO = `Cyber Monday ${CM.año} Argentina: fechas y ofertas reales verificadas`
-const DESCRIPCION = CM.oficial
+const TITULO = etapaCyber().etapa === 'despues'
+  ? `Black Friday ${BLACK_FRIDAY.año} Argentina: ${BLACK_FRIDAY.fechasTexto}, ofertas reales verificadas`
+  : `Cyber Monday ${CM.año} Argentina: fechas y ofertas reales verificadas`
+const DESCRIPCION = etapaCyber().etapa === 'despues'
+  ? `Black Friday ${BLACK_FRIDAY.año} Argentina: ${BLACK_FRIDAY.fechasTexto}. Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo evitar descuentos inflados antes del evento.`
+  : CM.oficial
   ? `Cyber Monday ${CM.año} Argentina: ${CM.fechasTexto} (CACE). Ofertas de Mercado Libre de hoy verificadas contra el historial y cómo evitar descuentos inflados.`
   : `Cuándo es el Cyber Monday ${CM.año} en Argentina (estimado: ${CM.fechasTexto}, a confirmar por la CACE), cómo detectar descuentos inflados y ofertas verificadas contra el historial de precios.`
 
@@ -54,12 +58,7 @@ export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
   description: descripcionSeo(DESCRIPCION),
   keywords: [
-    `cyber monday ${CM.año}`,
-    `cyber monday ${CM.año} argentina`,
-    'cuándo es el cyber monday',
-    'cyber monday mercado libre',
-    'ofertas cyber monday',
-    'descuentos inflados cyber monday',
+    ...[`cyber monday ${CM.año}`, `cyber monday ${CM.año} argentina`, 'cuándo es el cyber monday', 'cyber monday mercado libre', 'ofertas cyber monday', 'descuentos inflados cyber monday'].map(k => bf(k)),
   ],
   metadataBase: new globalThis.URL(DEALS_URL),
   alternates: { canonical: URL },

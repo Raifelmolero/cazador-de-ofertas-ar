@@ -12,7 +12,7 @@ import Footer from '@/components/Footer'
 import LinksTecno from '@/components/LinksTecno'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { CYBER_MONDAY as CM, etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import { filasPorRubro, landingsCyberConDatos } from '@/lib/cybertecno'
 import EstadoTestigo from '@/components/EstadoTestigo'
 import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
@@ -24,11 +24,11 @@ const URL = `${DEALS_URL}/cyber-monday/tecnologia`
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const MAX_FILAS = 12
 
-const TITULO = `Cyber Monday ${CM.año}: celulares, iPhone y notebooks, ¿bajan de verdad?`
-const DESCRIPCION = `El precio más bajo que registramos en octubre de cada iPhone, Samsung Galaxy, celular, notebook, smart TV y monitor de Mercado Libre, para comparar en el Cyber Monday ${CM.año} (${CM.fechasTexto}).`
+const TITULO = bf(`Cyber Monday ${CM.año}: celulares, iPhone y notebooks, ¿bajan de verdad?`)
+const DESCRIPCION = bf(`El precio más bajo que registramos en octubre de cada iPhone, Samsung Galaxy, celular, notebook, smart TV y monitor de Mercado Libre, para comparar en el Cyber Monday ${CM.año} (${CM.fechasTexto}).`)
 
 export const metadata: Metadata = {
-  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t, () => `Cyber Monday ${CM.año}: celulares y notebooks, ¿bajan de verdad?`]),
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t, () => bf(`Cyber Monday ${CM.año}: celulares y notebooks, ¿bajan de verdad?`)]),
   description: descripcionSeo(DESCRIPCION),
   keywords: [
     `cyber monday ${CM.año} celulares`,

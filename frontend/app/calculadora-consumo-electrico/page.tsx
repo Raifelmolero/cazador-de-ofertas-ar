@@ -15,7 +15,7 @@ const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/calculadora-consumo-electrico`
 const TITULO = 'Calculadora de consumo eléctrico 2026: kWh y costo'
 const DESCRIPCION =
-  'Calculá cuántos kWh consume tu casa en Argentina y cuánto pagás por aparato: aire, heladera, caldera eléctrica, estufa. Gratis y actualizada a 2026.'
+  'Calculá cuántos kWh consume tu casa en Argentina y cuánto gastás por aparato (aire, heladera, estufa) y mirá los equipos eficientes en oferta hoy, antes del Black Friday 2026. Gratis.'
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} | Cazador de Ofertas`, t => t]),

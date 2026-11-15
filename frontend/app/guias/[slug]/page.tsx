@@ -31,6 +31,8 @@ import { equiposDeGuia, guiaIndexable } from '@/lib/guias-equipos'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 
+const GUIAS_TITULO_PRECIO = new Set(['mejor-celular-para-jugar', 'que-motorola-comprar-moto-g-o-edge'])
+
 export function generateStaticParams() {
   return GUIAS.map(g => ({ slug: g.slug }))
 }
@@ -39,16 +41,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const g = getGuia((await params).slug)
   if (!g) return {}
   const url = `${DEALS_URL}/guias/${g.slug}`
+  // T-002 (15/11): guías con muchas vistas y pocos clics en Search Console. Año 2026 y, si hoy hay
+  // equipos, «desde $X» (el más barato de los que muestra la guía). Solo las de esta lista.
+  let titulo = tituloSeo(g.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
+  let descripcion = descripcionSeo(g.descripcion)
+  if (GUIAS_TITULO_PRECIO.has(g.slug)) {
+    const precios = equiposDeGuia(g).map(e => e.precio).filter(n => n > 0)
+    const desde = precios.length ? `$${Math.round(Math.min(...precios)).toLocaleString('es-AR')}` : ''
+    const conAnio = /20\d\d/.test(g.titulo) ? g.titulo : `${g.titulo} (2026)`
+    const sufijo = desde ? `: desde ${desde}` : ''
+    titulo = tituloSeo(conAnio, [n => `${n}${sufijo} — Cazador de Ofertas AR`, n => `${n}${sufijo}`, n => n])
+    descripcion = descripcionSeo(
+      desde ? `Hoy desde ${desde} en Mercado Libre, con vista al Black Friday 2026. ${g.descripcion}` : `${g.descripcion} Actualizada a 2026, con vista al Black Friday.`,
+    )
+  }
   return {
     metadataBase: new URL(DEALS_URL),
-    title: tituloSeo(g.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n]),
-    description: descripcionSeo(g.descripcion),
+    title: titulo,
+    description: descripcion,
     alternates: { canonical: url },
     // Guía con equipos que hoy no llega al mínimo: noindex (página flaca), igual que las comparativas.
     ...(guiaIndexable(g) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
-      title: g.titulo,
-      description: descripcionSeo(g.descripcion),
+      title: titulo,
+      description: descripcion,
       url,
       type: 'article',
       locale: 'es_AR',

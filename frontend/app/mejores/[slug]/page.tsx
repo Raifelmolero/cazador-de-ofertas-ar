@@ -42,7 +42,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const mediana = todos[Math.floor(todos.length / 2)] ?? 0
   const precios = todos.filter(n => n >= mediana / 3)
   const esCyber = c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')
-  const base = (esCyber ? bf : (t: string) => t)(CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
+  // T-002 (15/11): las de Cyber (muchas vistas, pocos clics) llevan además el año 2026 antes del «:».
+  const anio = (t: string) => (esCyber && !/20\d\d/.test(t) ? t.replace(/^([^:]+)/, '$1 2026') : t)
+  const base = anio((esCyber ? bf : (t: string) => t)(CONTENIDO[c.slug]?.titulo ?? c.titulo)).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
   // Con menos de 3 modelos el "desde" engaña (el único que hay puede ser el más caro).
   // Si no entra, se acorta el título antes del ":" en vez de cortar el precio
   // (en Google salían títulos terminados en "…: desde").
@@ -50,7 +52,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const corto = base.split(':')[0].trim()
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
   const titulo = opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
-  const descripcion = descripcionSeo(esCyber ? bf(c.descripcion) : c.descripcion)
+  const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
+  const descripcion = descripcionSeo(
+    esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)
+      ? `Desde ${precio(Math.min(...precios))} hoy en Mercado Libre. ${descripcionBase}`
+      : descripcionBase,
+  )
   return {
     title: titulo,
     description: descripcion,

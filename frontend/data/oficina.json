@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-15T16:26:59+00:00",
+  "generado": "2026-11-15T18:17:25+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 12064 productos en la última corrida"
+          "tarea": "Revisó 12191 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -71,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },
@@ -202,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-14T16:51:23+00:00",
+      "ultima_actividad": "2026-11-15T17:33:51+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -214,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 12 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

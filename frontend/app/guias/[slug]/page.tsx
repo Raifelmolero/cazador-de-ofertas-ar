@@ -10,7 +10,14 @@ import { aBlackFridayTrasCyber } from '@/lib/cybermonday'
 function getGuia(slug: string) {
   const g = getGuiaBase(slug)
   if (!g || !g.slug.includes('cyber-monday')) return g
-  return { ...g, titulo: aBlackFridayTrasCyber(g.titulo), descripcion: aBlackFridayTrasCyber(g.descripcion) }
+  const bf = aBlackFridayTrasCyber
+  return {
+    ...g,
+    titulo: bf(g.titulo),
+    descripcion: bf(g.descripcion),
+    secciones: g.secciones.map(s => ({ h: bf(s.h), p: s.p.map(t => bf(t)) })),
+    faq: g.faq?.map(f => ({ q: bf(f.q), a: bf(f.a) })),
+  }
 }
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
 import { getComparativa, productosDe } from '@/lib/comparativas'

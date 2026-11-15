@@ -101,7 +101,15 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     .sort((a, b) => a.min - b.min || a.slug.localeCompare(b.slug))
     .slice(0, productos.length < 3 ? 10 : 6) // tabla flaca: más modelos con historial para que no quede vacía
 
-  const contenido = CONTENIDO[c.slug]
+  const contenidoBase = CONTENIDO[c.slug]
+  // Pasado el Cyber, el cuerpo de sus comparativas también habla del Black Friday (misma dirección).
+  const contenido = contenidoBase && esCyberPag
+    ? {
+        ...contenidoBase,
+        secciones: contenidoBase.secciones.map(s => ({ ...s, titulo: bf(s.titulo), parrafos: s.parrafos.map(t => bf(t)) })),
+        faq: contenidoBase.faq.map(f => ({ q: bf(f.q), a: bf(f.a) })),
+      }
+    : contenidoBase
   // Celulares, notebooks y smart TV tienen páginas «mejor … hasta $X»: las enlazamos para que Google las encuentre.
   const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
   const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined

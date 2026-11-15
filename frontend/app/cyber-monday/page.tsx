@@ -218,7 +218,7 @@ export default function CyberMondayPage() {
       q: '¿Sirven los cupones en el Cyber Monday?',
       a: 'No sabemos qué cupones habrá en el evento: Mercado Libre los muestra por usuario en mercadolibre.com.ar/cupones, con la sesión iniciada. Revisá los de tu cuenta antes de pagar y leé sus condiciones; en las campañas publicadas se usa, en general, un cupón por compra. Un cupón descuenta sobre el precio publicado, así que igual conviene comprobar que ese precio sea bueno.',
     },
-  ]
+  ].map((f, i) => ([2, 4, 5, 6, 8].includes(i) ? { q: bf(f.q), a: bf(f.a) } : f)) // las de «qué es / quién organiza / cuándo fue» describen el evento pasado: quedan tal cual
 
   const jsonLd: Record<string, unknown>[] = [
     {
@@ -310,7 +310,7 @@ export default function CyberMondayPage() {
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
-            <span className="text-zinc-300">Cyber Monday {CM.año}</span>
+            <span className="text-zinc-300">{bf(`Cyber Monday ${CM.año}`)}</span>
           </nav>
           <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
             {etapa === 'despues' ? 'El Cyber Monday terminó — mirá la previa de Black Friday' : TITULO}
@@ -406,7 +406,7 @@ export default function CyberMondayPage() {
 
       <section data-seccion="cyber_ofertas" className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
         <div className="max-w-3xl mx-auto sm:mx-0 mb-4">
-          <h2 className="font-display text-xl sm:text-2xl font-black">{tecnoLight.length > 0 ? 'Más ofertas reales de hoy en los rubros del Cyber Monday' : 'Ofertas reales de hoy en los rubros del Cyber Monday'}</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-black">{bf(tecnoLight.length > 0 ? 'Más ofertas reales de hoy en los rubros del Cyber Monday' : 'Ofertas reales de hoy en los rubros del Cyber Monday')}</h2>
           <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
             {etapa === 'antes'
               ? 'Todavía no son precios del evento: son las ofertas de hoy con descuento verificado. Sirven de referencia para comparar cuando arranque.'
@@ -436,14 +436,14 @@ export default function CyberMondayPage() {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
-        <ComparacionTestigo evento="Cyber Monday" etapa={etapa} />
+        <ComparacionTestigo evento={bf('Cyber Monday')} etapa={etapa} />
 
         <Link
           href="/cyber-monday/tecnologia"
           className="mb-10 block rounded-2xl border border-cyan-400/30 bg-cyan-500/[0.07] p-5 hover:border-cyan-300/60 transition-colors"
         >
           <p className="font-display text-lg sm:text-xl font-black text-zinc-50">📱 Celulares, iPhone y notebooks: ¿bajan de verdad?</p>
-          <p className="mt-1 text-sm text-zinc-400">El precio más bajo de octubre de cada uno, para comparar en el Cyber →</p>
+          <p className="mt-1 text-sm text-zinc-400">{etapa === 'despues' ? 'El precio más bajo de octubre de cada uno, para comparar en el Black Friday →' : 'El precio más bajo de octubre de cada uno, para comparar en el Cyber →'}</p>
         </Link>
         {landings.length > 0 && (
           <ul className="-mt-6 mb-10 grid gap-2 sm:grid-cols-3 text-sm">
@@ -478,7 +478,7 @@ export default function CyberMondayPage() {
         </section>
 
         <section id="como-preparar" className="mb-10 scroll-mt-20">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cómo preparar el Cyber</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{etapa === 'despues' ? 'Cómo preparar el Black Friday' : 'Cómo preparar el Cyber'}</h2>
           <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
             {etapa === 'antes'
               ? 'Hasta que arranque el evento hay tiempo de sobra: con estos seis pasos llegás al lunes con tus números anotados y sabiendo qué mirar.'
@@ -598,7 +598,7 @@ export default function CyberMondayPage() {
 
         {guias.length > 0 && (
           <section id="guias" className="mb-10 scroll-mt-20">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Guías para elegir antes del evento</h2>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{etapa === 'despues' ? 'Guías para elegir antes del Black Friday' : 'Guías para elegir antes del evento'}</h2>
             <ul className="space-y-2">
               {guias.map(g => (
                 <li key={g.slug}>
@@ -617,7 +617,7 @@ export default function CyberMondayPage() {
         <section className="rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-8 text-center mb-10">
           <h2 className="font-display text-xl font-black mb-2">¿Querés las bajas reales apenas salen?</h2>
           <p className="text-sm text-zinc-400 mb-5">
-            Durante el Cyber Monday publicamos las ofertas verificadas a diario, con alerta de mínimos históricos.
+            {bf('Durante el Cyber Monday publicamos las ofertas verificadas a diario, con alerta de mínimos históricos.')}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a

@@ -11,6 +11,7 @@ import { DEALS_URL } from '@/lib/marca'
 import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import { LANDINGS, bajasDeLaSemana, getLanding, historialLanding, indexableLanding, minLanding, productosLanding } from '@/lib/landings'
+import { aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import { enlacesAfines } from '@/lib/afines'
 import SinOfertas from '@/components/SinOfertas'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
@@ -18,6 +19,7 @@ import { ofertasHoyLight } from '@/lib/ofertashoy'
 
 const MAX = 24
 const MAX_HISTORIAL = 12
+const vis = (slug: string, t: string) => (slug.includes('cyber-monday') ? bf(t) : t)
 
 const fecha = (iso: string) => iso.slice(0, 10).split('-').reverse().join('/')
 
@@ -29,8 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const l = getLanding((await params).slug)
   if (!l) return {}
   const url = `${DEALS_URL}/ofertas/${l.slug}`
-  const titulo = tituloSeo(l.titulo, [n => `${n} — Cazador de Ofertas AR`, n => n])
-  const descripcion = descripcionSeo(l.descripcion)
+  const titulo = tituloSeo(vis(l.slug, l.titulo), [n => `${n} — Cazador de Ofertas AR`, n => n])
+  const descripcion = descripcionSeo(vis(l.slug, l.descripcion))
   return {
     title: titulo,
     description: descripcion,
@@ -46,6 +48,12 @@ const precio = (n: number) => '$' + Math.round(n).toLocaleString('es-AR')
 export default async function LandingPage({ params }: { params: Promise<{ slug: string }> }) {
   const l = getLanding((await params).slug)
   if (!l) notFound()
+  const nombre = vis(l.slug, l.nombre)
+  const h1 = vis(l.slug, l.h1)
+  const intro = vis(l.slug, l.intro)
+  const criterios = l.criterios.map(c => vis(l.slug, c))
+  const faq = l.faq.map(f => ({ q: vis(l.slug, f.q), a: vis(l.slug, f.a) }))
+  const enlaces = l.enlaces?.map(e => ({ ...e, label: vis(l.slug, e.label) }))
   const url = `${DEALS_URL}/ofertas/${l.slug}`
   const scrapedAt = getScrapedAt().toISOString()
   const productos = productosLanding(l)
@@ -83,20 +91,20 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: l.nombre, item: url },
+        { '@type': 'ListItem', position: 2, name: nombre, item: url },
       ],
     },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: l.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
     ...(items.length
       ? [
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: l.h1,
+            name: h1,
             url,
             numberOfItems: total,
             itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, url: it.url })),
@@ -122,10 +130,10 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
-            <span className="text-zinc-300">{l.nombre}</span>
+            <span className="text-zinc-300">{nombre}</span>
           </nav>
-          <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">{l.h1}</h1>
-          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">{l.intro}</p>
+          <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">{h1}</h1>
+          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">{intro}</p>
           <p className="mt-4 inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
             <LastUpdated scrapedAt={scrapedAt} /> · {total} {total === 1 ? 'producto' : 'productos'}
           </p>
@@ -224,7 +232,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Qué tener en cuenta</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">
-            {l.criterios.map(t => <li key={t}>{t}</li>)}
+            {criterios.map(t => <li key={t}>{t}</li>)}
           </ul>
           <p className="text-xs text-zinc-500 mt-3">
             Datos de nuestro seguimiento propio de Mercado Libre (3 revisiones por día). Los links son de afiliado: el precio para vos es el mismo.{' '}
@@ -232,9 +240,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </p>
         </section>
 
-        {l.enlaces && l.enlaces.length > 0 && (
+        {enlaces && enlaces.length > 0 && (
           <ul className="mb-8 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            {l.enlaces.map(e => (
+            {enlaces.map(e => (
               <li key={e.href}><Link href={e.href} className="font-bold text-yellow-400 hover:underline">{e.label} →</Link></li>
             ))}
           </ul>
@@ -255,7 +263,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <section className="mb-8">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Preguntas frecuentes</h2>
           <div className="space-y-3">
-            {l.faq.map(f => (
+            {faq.map(f => (
               <details key={f.q} className="group bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3">
                 <summary className="cursor-pointer text-sm font-bold text-zinc-100 list-none flex items-center justify-between gap-3">
                   {f.q}
@@ -271,7 +279,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <p className="font-bold text-zinc-300 mb-2">Más listas</p>
           <ul className="space-y-1.5">
             {LANDINGS.filter(x => x.slug !== l.slug && indexableLanding(x)).map(x => (
-              <li key={x.slug}><a href={`/ofertas/${x.slug}`} className="text-yellow-400/80 hover:text-yellow-400">{x.titulo}</a></li>
+              <li key={x.slug}><a href={`/ofertas/${x.slug}`} className="text-yellow-400/80 hover:text-yellow-400">{vis(x.slug, x.titulo)}</a></li>
             ))}
             <li><Link href="/mejores" className="text-yellow-400/80 hover:text-yellow-400">Comparativas de los mejores productos</Link></li>
           </ul>

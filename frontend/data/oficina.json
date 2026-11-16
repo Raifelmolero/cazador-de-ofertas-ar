@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-15T20:17:45+00:00",
+  "generado": "2026-11-16T04:37:11+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,17 +8,21 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-15T20:17:45+00:00",
+      "ultima_actividad": "2026-11-16T04:37:11+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 12191 productos en la última corrida"
+          "tarea": "Revisó 11755 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 8
+          "valor": 7
+        },
+        {
+          "label": "whatsapp_kit",
+          "valor": 6
         },
         {
           "label": "Telegram",
@@ -29,24 +33,20 @@
           "valor": 3
         },
         {
-          "label": "whatsapp_kit",
-          "valor": 3
-        },
-        {
-          "label": "Instagram",
+          "label": "Reels IG",
           "valor": 2
         },
         {
-          "label": "Reels IG",
-          "valor": 1
+          "label": "Historias IG",
+          "valor": 2
         },
         {
-          "label": "Historias IG",
+          "label": "Instagram",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo ThinkPad E14 Gen 7 con Ryzen 7, 16GB de RAM y 512GB SSD"
+      "ultimo_trabajo": "Notebook Thinkpad T16 Gen 5 Amd Ryzen Ai7 32gb 1tb 16 Black"
     },
     {
       "id": "investigacion",

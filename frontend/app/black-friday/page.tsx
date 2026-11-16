@@ -231,6 +231,7 @@ export default function BlackFridayPage() {
             El Black Friday en Argentina es el viernes 27 de noviembre de 2026. No tiene organizador ni fecha oficial de
             preventa: cada tienda decide si se suma y por cuántos días. Acá anotamos precios de antes, comparamos contra el
             historial y te mostramos solo lo que cierra de verdad. El precio que ves se reconfirma el mismo día.
+            Desde el lunes 16 de noviembre publicamos hallazgos de la previa, siempre con el precio reconfirmado el mismo día.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3">
             {wa && (

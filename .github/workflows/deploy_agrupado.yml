@@ -3,11 +3,11 @@ name: Deploy agrupado
 # Los commits del bot ("bot:", "datos:", "oferta manual:") no despliegan solos
 # (ver frontend/scripts/vercel-ignore.sh): cada uno era un build de 5-9 min y en
 # octubre-2026 sumaron USD 51 de Build CPU. Este workflow hace un commit vacío
-# media hora después de cada corrida del bot, y Vercel construye una sola vez
-# con todo lo acumulado. Si no hubo cambios del sitio, el ignoreCommand lo saltea.
+# cada 3 días, y Vercel construye una sola vez con todo lo acumulado.
+# Si no hubo cambios del sitio, el ignoreCommand lo saltea.
 on:
   schedule:
-    - cron: '30 0 * * *'    # 21:30 ART (GitHub suele atrasarlo a ~03:30-04:30 ART). 1 solo deploy por dia para cuidar el gasto de Vercel
+    - cron: '30 0 */3 * *'  # cada 3 días, 21:30 ART (GitHub suele atrasarlo). Regla 14/11: no diario; crédito USD 20/mes, tope total USD 30
   workflow_dispatch:
 
 permissions:

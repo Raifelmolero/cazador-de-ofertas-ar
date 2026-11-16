@@ -30,13 +30,13 @@ tecnicismos innecesarios.**
   mano con `python -m unittest discover -s bot/tests -v`.
 - Estado en `bot/state/` (posted_ids, posts_log, scan_log, price_history,
   metrics_log): lo commitean los workflows con `[skip ci]`. Esos commits NO redeployan
-  (ver «Costos de Vercel» abajo): el sitio se actualiza 3×/día con `deploy_agrupado.yml`.
+  (ver «Costos de Vercel» abajo): el sitio se actualiza cada 3 días con `deploy_agrupado.yml`.
 
-## Costos de Vercel (regla, 2/11/2026)
-Factura de USD 60 con USD 51 de Build CPU. Objetivo: ~USD 20/mes (Pro fijo). No re-litigar:
+## Costos de Vercel (regla, 2/11/2026; actualizada 14/11/2026)
+Factura de USD 60 con USD 51 de Build CPU. Objetivo: ~USD 20/mes (Pro fijo; tope total USD 30). No re-litigar:
 - Build Machine del proyecto = **Basic**; builds concurrentes desactivados; presupuesto USD 10.
 - Commits automáticos con prefijo `bot:`, `datos:` u `oferta manual:` no despliegan
-  (`frontend/scripts/vercel-ignore.sh`). `deploy_agrupado.yml` despliega a las 12:30, 17:30 y 21:30 ART.
+  (`frontend/scripts/vercel-ignore.sh`). **Regla 14/11:** Deploy agrupado cada 3 días (no diario) por costo de Vercel: crédito USD 20/mes, tope total USD 30. Commits intermedios siempre `datos:`. Ninguna tarea programada dispara deploys por su cuenta. Cron: `30 0 */3 * *` (queda `workflow_dispatch` para corridas manuales).
   Un workflow nuevo que commitee datos TIENE que usar uno de esos prefijos.
 - `generateStaticParams` sobre listas grandes siempre con `.slice()` (calculadora 200, precio 500);
   el resto se arma en la primera visita. Cargadores de JSON memoizados.

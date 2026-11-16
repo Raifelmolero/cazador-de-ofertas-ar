@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     n => `Precio de ${n} hoy (${cuando})`,
   ])
   const description = descripcionSeo(precios.length
-    ? `${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre cuesta ${precio(precios[0])} (${precios.length} ofertas con descuento real). Rango, mediana e historial para no pagar de más.`
+    ? `Desde ${precio(precios[0])}: ${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre (${precios.length} ofertas con descuento real, ${cuando}). Rango, mediana e historial para llegar al Black Friday sin pagar de más.`
     : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {
     title: t,

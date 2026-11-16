@@ -1275,7 +1275,7 @@ export const GUIAS_TECNO: Guia[] = [
       orden: 'precio-desc',
       max: 8,
     },
-    cta: { href: '/cyber-monday/tecnologia', titulo: 'Tecnología en Cyber Monday 2026, comparada con el historial', boton: 'Ver tecnología del Cyber Monday 🎯' },
+    cta: { href: '/black-friday', titulo: 'Tecnología en Cyber Monday 2026, comparada con el historial', boton: 'Ver tecnología del Cyber Monday 🎯' },
     faq: [
       {
         q: '¿Cuándo es el Cyber Monday 2026 en Argentina?',
@@ -1291,7 +1291,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
-      { href: '/cyber-monday/tecnologia', texto: 'Tecnología en Cyber Monday' },
+      { href: '/black-friday', texto: 'Tecnología en Cyber Monday' },
       { href: '/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre', texto: 'Hot Sale, Cyber Monday o un día común' },
       { href: '/guias/que-celular-comprar-cyber-monday', texto: 'Qué celular comprar en Cyber Monday' },
       { href: '/guias/que-notebook-comprar-cyber-monday', texto: 'Qué notebook comprar en Cyber Monday' },

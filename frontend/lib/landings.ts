@@ -660,7 +660,7 @@ export const LANDINGS: Landing[] = [
       { q: '¿Se infla el precio antes del Cyber?', a: 'A veces sube el precio "anterior" para que el porcentaje de descuento se vea mayor. Por eso comparamos con nuestro propio historial.' },
     ],
     enlaces: [
-      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/black-friday', label: 'Black Friday 2026' },
       { href: '/descuentos-inflados', label: 'Cómo detectar descuentos inflados' },
       { href: '/mejores', label: 'Comparativas de los mejores productos' },
       { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
@@ -693,7 +693,7 @@ export const LANDINGS: Landing[] = [
     ],
     enlaces: [
       { href: '/descuentos-inflados', label: 'Cómo detectar descuentos inflados' },
-      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/black-friday', label: 'Black Friday 2026' },
       { href: '/mejores', label: 'Comparativas de los mejores productos' },
       { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
     ],
@@ -725,7 +725,7 @@ export const LANDINGS: Landing[] = [
       { q: '¿Cuándo es el próximo evento de ofertas?', a: 'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. El Cyber de la CACE fue del 2 al 4 de noviembre.' },
     ],
     enlaces: [
-      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/black-friday', label: 'Black Friday 2026' },
       { href: '/mejores', label: 'Comparativas de los mejores productos' },
       { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
     ],
@@ -759,7 +759,7 @@ export const LANDINGS: Landing[] = [
       { q: '¿Cuánto tarda el envío de electro grande?', a: 'Entre 2 y 7 días hábiles según la zona; fijate la fecha estimada en la publicación.' },
     ],
     enlaces: [
-      { href: '/cyber-monday', label: 'Guía del Cyber Monday' },
+      { href: '/black-friday', label: 'Black Friday 2026' },
       { href: '/mejores', label: 'Comparativas de los mejores productos' },
       { href: '/precio-hoy', label: 'Precio hoy: mínimos y bajas' },
     ],

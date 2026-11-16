@@ -13,6 +13,7 @@ import { ofertasDeCategoria } from '@/lib/categorias'
 import { NICHOS } from '@/lib/nichos'
 import { preciosHoyVisibles, seguidosDe } from '@/lib/preciohoy'
 import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
+import { marcaDeTitulo } from '@/lib/marca-producto'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -82,7 +83,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: titulo,
       description: descripcion,
       url,
-      type: 'website',
+      // og:type "product": el tipo de Next no lo admite y `other` lo emite con
+      // name= en vez de property=, así que la etiqueta va en el JSX de la página
+      // (React la sube al <head>). Acá no se declara type para no duplicarla.
       locale: 'es_AR',
       siteName: 'Cazador de Ofertas AR',
       ...(s.img ? { images: [{ url: s.img }] } : {}),
@@ -117,6 +120,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const nombre = nombreCorto(s)
   const tambien = relacionadosDePrecio(s, 4)
   const tambienExtras = extrasDeCategoria(cat?.slug)
+  // Sin campo de marca en los datos: se deduce del título solo si es inequívoca
+  const marca = marcaDeTitulo(s.titulo)
 
   const veredicto = !enOferta
     ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(s.min)} el ${fecha(s.min_ts)}.`
@@ -161,6 +166,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             url,
             description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
             ...(s.img ? { image: s.img } : {}),
+            ...(marca ? { brand: { '@type': 'Brand', name: marca } } : {}),
             offers: {
               '@type': 'Offer',
               price: hoy,
@@ -179,6 +185,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
 
   return (
     <main className="min-h-screen pb-24 sm:pb-0">
+      <meta property="og:type" content="product" />
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}

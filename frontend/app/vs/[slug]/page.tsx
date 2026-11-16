@@ -320,7 +320,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
               </li>
             ))}
             <li>
-              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad los {x.duelo.comparador}? →</Link>
+              <Link href="/black-friday" className="font-bold text-cyan-300 hover:underline">🛒 Black Friday: ¿bajan de verdad los {x.duelo.comparador}? →</Link>
             </li>
           </ul>
         </section>

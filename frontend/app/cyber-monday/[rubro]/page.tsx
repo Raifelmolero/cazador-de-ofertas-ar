@@ -18,7 +18,7 @@ import LastUpdated from '@/components/LastUpdated'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt } from '@/lib/productos'
 import { busquedaML } from '@/lib/afiliado'
-import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { CYBER_MONDAY as CM, etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import {
   armarLandingCyber,
   getLandingCyber,
@@ -59,7 +59,7 @@ function todosDe(slug: string, marca: string): string {
   return `todos los ${m}`
 }
 
-const titulo = (x: LandingCyberArmada) => `${mayus(x.l.nombre)} en el Cyber Monday ${CM.año}: precio de octubre vs. hoy`
+const titulo = (x: LandingCyberArmada) => bf(`${mayus(x.l.nombre)} en el Cyber Monday ${CM.año}: precio de octubre vs. hoy`)
 
 function armar(slug: string) {
   const l = getLandingCyber(slug)
@@ -72,9 +72,9 @@ export async function generateMetadata({ params }: { params: Promise<{ rubro: st
   const url = `${DEALS_URL}/cyber-monday/${x.l.slug}`
   const t = titulo(x)
   const marcas = x.porMarca.filter(g => g.marca.nombre !== 'Otras marcas').slice(0, 3).map(g => g.marca.nombre).join(', ')
-  const desc = `El precio más bajo que registramos en octubre de ${x.filas.length} ${x.l.nombre} de Mercado Libre${marcas ? ` (${marcas})` : ''}, para saber si el descuento del Cyber Monday ${CM.año} (${CM.fechasTexto}) es real.`
+  const desc = bf(`El precio más bajo que registramos en octubre de ${x.filas.length} ${x.l.nombre} de Mercado Libre${marcas ? ` (${marcas})` : ''}, para saber si el descuento del Cyber Monday ${CM.año} (${CM.fechasTexto}) es real.`)
   return {
-    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s, () => `${mayus(x.l.nombre)} Cyber Monday ${CM.año}: ¿bajan de verdad?`]),
+    title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s, () => bf(`${mayus(x.l.nombre)} Cyber Monday ${CM.año}: ¿bajan de verdad?`)]),
     description: descripcionSeo(desc),
     keywords: x.l.keywords,
     metadataBase: new globalThis.URL(DEALS_URL),
@@ -176,7 +176,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
       q: `¿Cuándo es el Cyber Monday ${CM.año} en Argentina?`,
       a: `${mayus(CM.fechasTexto)} de ${CM.año}${CM.oficial ? ', según la Cámara Argentina de Comercio Electrónico (CACE)' : ' (a confirmar por la CACE)'}.`,
     },
-  ]
+  ].map((f, i, arr) => (i === arr.length - 1 ? f : { q: bf(f.q), a: bf(f.a) }))
 
   const jsonLd: Record<string, unknown>[] = [
     {
@@ -184,7 +184,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: `Cyber Monday ${CM.año}`, item: `${DEALS_URL}/cyber-monday` },
+        { '@type': 'ListItem', position: 2, name: bf(`Cyber Monday ${CM.año}`), item: `${DEALS_URL}/cyber-monday` },
         { '@type': 'ListItem', position: 3, name: 'Tecnología', item: `${DEALS_URL}/cyber-monday/tecnologia` },
         { '@type': 'ListItem', position: 4, name: nombreMayus, item: url },
       ],
@@ -199,7 +199,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${nombreMayus} en oferta hoy, con precio testigo para el Cyber Monday ${CM.año}`,
+            name: bf(`${nombreMayus} en oferta hoy, con precio testigo para el Cyber Monday ${CM.año}`),
             itemListElement: cards.map((o, i) => ({ '@type': 'ListItem', position: i + 1, name: o.titulo, url: o.url_producto })),
           },
         ]
@@ -227,7 +227,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
-            <Link href="/cyber-monday" className="hover:text-yellow-400">Cyber Monday {CM.año}</Link> <span aria-hidden="true">/</span>{' '}
+            <Link href="/cyber-monday" className="hover:text-yellow-400">{bf(`Cyber Monday ${CM.año}`)}</Link> <span aria-hidden="true">/</span>{' '}
             <Link href="/cyber-monday/tecnologia" className="hover:text-yellow-400">Tecnología</Link> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">{nombreMayus}</span>
           </nav>
@@ -236,8 +236,8 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
             Desde el {fechaAR(testigo.desde)} anotamos el precio de cada {l.slug === 'notebooks' ? 'notebook' : l.slug === 'smart-tv' ? 'smart TV' : 'celular'} en oferta en Mercado Libre.
             Acá está el más bajo que registramos de <strong className="text-zinc-100">{filas.length} {l.nombre}</strong>, por marca:
             {etapa === 'antes'
-              ? ` cuando arranque el Cyber (${CM.fechasTexto}) vas a ver al lado de cada uno si el precio bajó de verdad.`
-              : ' al lado de cada uno, si el precio del Cyber bajó de verdad.'}
+              ? bf(` cuando arranque el Cyber Monday (${CM.fechasTexto}) vas a ver al lado de cada uno si el precio bajó de verdad.`)
+              : bf(' al lado de cada uno, si el precio del Cyber Monday bajó de verdad.')}
           </p>
           {etapa === 'antes' && <CuentaRegresivaEvento fecha={CM.inicio} nombre="Cyber Monday" />}
           {etapa === 'despues' && (
@@ -289,7 +289,7 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
             <h2 className="font-display text-xl sm:text-2xl font-black mb-2">
               {l.destacado.nombre} <span className="text-zinc-500 text-base font-bold">({destacadas.length})</span>
             </h2>
-            <p className="text-sm text-zinc-400 mb-3 [text-wrap:pretty]">{l.destacado.texto}</p>
+            <p className="text-sm text-zinc-400 mb-3 [text-wrap:pretty]">{bf(l.destacado.texto)}</p>
             <ul className="divide-y divide-zinc-800 rounded-2xl border border-zinc-800 bg-zinc-900/60">
               {destacadas.slice(0, MAX_POR_MARCA).map(f => (
                 <Fila key={f.id} f={f} etapa={etapa} desde={testigo.desde} />
@@ -327,31 +327,31 @@ export default async function CyberRubroPage({ params }: { params: Promise<{ rub
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Cómo leemos estos precios</h2>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
             El «más bajo» es el menor precio que vimos de ese modelo entre el {fechaAR(testigo.desde)} y hoy, solo con
-            productos que registramos al menos {TESTIGO_MIN_DIAS} días. Durante el Cyber, si el precio está al menos 3 % por
+            productos que registramos al menos {TESTIGO_MIN_DIAS} días. {bf('Durante el Cyber Monday, si el precio está al menos 3 % por')}
             debajo, lo marcamos como una baja real; si no, estuvo igual o más barato antes. Los precios son de contado y
             pueden cambiar en cualquier momento: confirmalos en Mercado Libre antes de comprar.{' '}
             <Link href="/metodologia" className="text-yellow-400 hover:underline">Metodología completa</Link>.
           </p>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">Todo sobre el Cyber Monday {CM.año} →</Link>
-            <Link href="/cyber-monday/tecnologia" className="font-bold text-yellow-400 hover:underline">Toda la tecnología del Cyber →</Link>
+            <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">{bf(`Todo sobre el Cyber Monday ${CM.año}`)} →</Link>
+            <Link href="/cyber-monday/tecnologia" className="font-bold text-yellow-400 hover:underline">{bf('Toda la tecnología del Cyber Monday')} →</Link>
             {comparativa && (
-              <Link href={`/mejores/${comparativa.slug}`} className="font-bold text-yellow-400 hover:underline">📊 {comparativa.titulo} →</Link>
+              <Link href={`/mejores/${comparativa.slug}`} className="font-bold text-yellow-400 hover:underline">📊 {bf(comparativa.titulo)} →</Link>
             )}
             <Link href={`/comparador/${l.comparador}`} className="font-bold text-yellow-400 hover:underline">Comparador de {l.nombre} →</Link>
             {otras.map(o => (
-              <Link key={o.slug} href={`/cyber-monday/${o.slug}`} className="font-bold text-yellow-400 hover:underline">{mayus(o.nombre)} en el Cyber →</Link>
+              <Link key={o.slug} href={`/cyber-monday/${o.slug}`} className="font-bold text-yellow-400 hover:underline">{bf(`${mayus(o.nombre)} en el Cyber Monday`)} →</Link>
             ))}
           </p>
         </section>
 
         {guias.length > 0 && (
           <section className="mb-10">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Guías para elegir antes del Cyber</h2>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{bf('Guías para elegir antes del Cyber Monday')}</h2>
             <ul className="space-y-1.5">
               {guias.map(g => (
                 <li key={g.slug}>
-                  <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {g.titulo} →</a>
+                  <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {bf(g.titulo)} →</a>
                 </li>
               ))}
             </ul>

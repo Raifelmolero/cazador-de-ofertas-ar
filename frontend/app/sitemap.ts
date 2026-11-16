@@ -1,5 +1,4 @@
 import type { MetadataRoute } from 'next'
-import { landingsCyberConDatos, landingCyberIndexable } from '@/lib/cybertecno'
 import { getScrapedAt } from '@/lib/productos'
 import { GUIAS } from '@/lib/guias'
 import { CATEGORIAS } from '@/lib/categorias'
@@ -65,10 +64,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${DEALS_URL}/datos`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/calculadora-consumo-electrico`, lastModified: textoModificado, changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${DEALS_URL}/metodologia`, lastModified: textoModificado, changeFrequency: 'monthly' as const, priority: 0.6 },
-    { url: `${DEALS_URL}/cyber-monday`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
-    { url: `${DEALS_URL}/cyber-monday/tecnologia`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
-    // Las que no llegan al mínimo de productos quedan noindex: tampoco se anuncian.
-    ...landingsCyberConDatos().filter(landingCyberIndexable).map(x => ({ url: `${DEALS_URL}/cyber-monday/${x.l.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 })),
+    // /cyber-monday, /cyber-monday/* y /mejores/*cyber-monday* redirigen (301) al
+    // Black Friday (next.config.mjs): no se anuncian. COMPARATIVAS ya viene sin ellas.
     { url: `${DEALS_URL}/comparador/celulares`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/comparador/notebooks`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },
     { url: `${DEALS_URL}/comparador/smart-tv`, lastModified, changeFrequency: 'daily' as const, priority: 0.9 },

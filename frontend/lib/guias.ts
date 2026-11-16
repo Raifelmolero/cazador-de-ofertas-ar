@@ -7,6 +7,7 @@ import { FECHAS_GUIAS_TICKET_ALTO, GUIAS_TICKET_ALTO } from './guias-ticket-alto
 import { FECHAS_GUIAS_LONG_TAIL, GUIAS_LONG_TAIL } from './guias-long-tail'
 import { FECHAS_GUIAS_TECNO, GUIAS_TECNO } from './guias-tecno'
 import type { SeleccionEquipos } from './guias-equipos'
+import { TEXTO_MODIFICADO_ISO } from './sitemap-fechas'
 
 export interface Guia {
   slug: string
@@ -103,7 +104,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/ofertas-cyber-monday',
+      href: '/mejores/ofertas-black-friday',
       titulo: 'Cyber Monday 2026: qué ofertas bajaron de verdad',
       boton: 'Ver las ofertas de Cyber Monday 🎯',
     },
@@ -1258,7 +1259,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-notebooks',
+      href: '/mejores/black-friday-notebooks',
       titulo: 'Notebooks en el Cyber Monday 2026: precios verificados',
       boton: 'Ver notebooks en oferta 💻',
     },
@@ -1297,7 +1298,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-smart-tv',
+      href: '/mejores/black-friday-smart-tv',
       titulo: 'Smart TV en el Cyber Monday 2026: cuáles bajan de verdad',
       boton: 'Ver smart TV en oferta 📺',
     },
@@ -1339,7 +1340,7 @@ export const GUIAS: Guia[] = [
       { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },
     ],
     cta: {
-      href: '/mejores/cyber-monday-celulares',
+      href: '/mejores/black-friday-celulares',
       titulo: 'Celulares en el Cyber Monday 2026: ofertas reales',
       boton: 'Ver celulares en oferta 📱',
     },
@@ -1376,7 +1377,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-aires-acondicionados',
+      href: '/mejores/mejores-aires-acondicionados',
       titulo: 'Aires acondicionados en el Cyber Monday 2026',
       boton: 'Ver aires en oferta ❄️',
     },
@@ -1415,7 +1416,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-lavarropas',
+      href: '/mejores/mejores-lavarropas',
       titulo: 'Lavarropas en el Cyber Monday 2026: precios comparados',
       boton: 'Ver lavarropas en oferta 🧺',
     },
@@ -1454,7 +1455,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-auriculares',
+      href: '/mejores/mejores-auriculares',
       titulo: 'Auriculares en el Cyber Monday 2026: ofertas verificadas',
       boton: 'Ver auriculares en oferta 🎧',
     },
@@ -2782,4 +2783,9 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
 }
 
 const FECHA_DEFAULT = '2026-09-30'
-export const fechasGuia = (slug: string) => FECHAS_GUIAS[slug] ?? { publicada: FECHA_DEFAULT, modificada: FECHA_DEFAULT }
+// La modificación es central: todas las guías llevan la fecha del último ajuste de texto
+// (bloque Black Friday 2026, 16/11), sin tocar el mapa de arriba. JSON-LD de la guía y sitemap la comparten.
+export const fechasGuia = (slug: string) => {
+  const f = FECHAS_GUIAS[slug] ?? { publicada: FECHA_DEFAULT, modificada: FECHA_DEFAULT }
+  return { ...f, modificada: TEXTO_MODIFICADO_ISO > f.modificada ? TEXTO_MODIFICADO_ISO : f.modificada }
+}

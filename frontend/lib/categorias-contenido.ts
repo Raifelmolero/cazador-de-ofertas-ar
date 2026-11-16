@@ -72,7 +72,7 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
 
   'smart-tv': {
     intro:
-      'Comprar un televisor se volvió más complejo que mirar pulgadas y precio. Hoy el mismo tamaño convive con paneles, procesadores y sistemas operativos muy distintos, y dos modelos que parecen idénticos en la góndola pueden diferir en brillo, fluidez o en cuántos años van a recibir actualizaciones. Sumá que el Smart TV es una compra de ticket alto con descuentos muy publicitados en Cyber Monday y Black Friday, justo cuando más conviene verificar que el precio de lista no estuviera inflado. Lo práctico es decidir en este orden: tamaño según la distancia a la que te sentás, uso principal (series, deportes, juegos) y recién después marca y modelo.',
+      'Comprar un televisor se volvió más complejo que mirar pulgadas y precio. Hoy el mismo tamaño convive con paneles, procesadores y sistemas operativos muy distintos, y dos modelos que parecen idénticos en la góndola pueden diferir en brillo, fluidez o en cuántos años van a recibir actualizaciones. Sumá que el Smart TV es una compra de ticket alto con descuentos muy publicitados en Black Friday, justo cuando más conviene verificar que el precio de lista no estuviera inflado. Lo práctico es decidir en este orden: tamaño según la distancia a la que te sentás, uso principal (series, deportes, juegos) y recién después marca y modelo.',
     criterios: [
       { t: 'Distancia de visión', d: 'Un televisor demasiado grande para tu living cansa la vista y uno chico se queda corto. Medí cuánto hay entre el sillón y la pared antes de elegir pulgadas.' },
       { t: 'Para qué lo vas a usar', d: 'Para series y streaming importan el sistema operativo y las apps; para deportes y juegos, la fluidez de imagen y las entradas HDMI disponibles.' },
@@ -388,7 +388,7 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
     faqs: [
       { q: '¿Conviene comprar una consola o armar una PC gamer?', a: 'La consola sale menos al principio y no requiere configurar nada; la PC cuesta más pero sirve para otras tareas y se puede mejorar por partes. Depende de qué juegos te interesan y de si ya tenés una computadora.' },
       { q: '¿Qué conviene mejorar primero?', a: 'Lo que más limita hoy tu experiencia: en PC suele ser la placa de video; en consola, la pantalla o los auriculares. Una buena silla es la mejor inversión si jugás muchas horas.' },
-      { q: '¿Cuándo bajan los productos gamer?', a: 'Suele haber descuentos en el Cyber Monday (principios de noviembre) y el Black Friday. Igual mirá el historial: algunos productos suben antes del evento.' },
+      { q: '¿Cuándo bajan los productos gamer?', a: 'Suele haber descuentos en el Black Friday (fines de noviembre). Igual mirá el historial: algunos productos suben antes del evento.' },
     ],
   },
 
@@ -405,7 +405,7 @@ export const CONTENIDO_CATEGORIAS: Record<string, CategoriaContenido> = {
     faqs: [
       { q: '¿Conviene comprar butacas o cochecitos usados?', a: 'Un cochecito usado en buen estado puede servir. Una butaca para auto usada no conviene si no sabés su historia: después de un choque puede tener daños que no se ven.' },
       { q: '¿Qué juguete regalar según la edad?', a: 'Respetá la edad recomendada del envase: para menores de 3 años, nada con piezas chicas. Para más grandes, los juegos de construcción y de mesa suelen durar más que los juguetes de moda.' },
-      { q: '¿Cuándo conviene comprar para Navidad y Reyes?', a: 'Antes de diciembre: en el Cyber Monday y el Black Friday suele haber descuentos reales, mientras que en diciembre muchos juguetes suben.' },
+      { q: '¿Cuándo conviene comprar para Navidad y Reyes?', a: 'Antes de diciembre: en el Black Friday suele haber descuentos reales, mientras que en diciembre muchos juguetes suben.' },
     ],
   },
 

@@ -12,7 +12,7 @@ import Footer from '@/components/Footer'
 import LinksTecno from '@/components/LinksTecno'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
-import { CYBER_MONDAY as CM, etapaCyber } from '@/lib/cybermonday'
+import { CYBER_MONDAY as CM, etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import { filasPorRubro, landingsCyberConDatos } from '@/lib/cybertecno'
 import EstadoTestigo from '@/components/EstadoTestigo'
 import { getTestigo, TESTIGO_MIN_DIAS } from '@/lib/testigo'
@@ -24,11 +24,11 @@ const URL = `${DEALS_URL}/cyber-monday/tecnologia`
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const MAX_FILAS = 12
 
-const TITULO = `Cyber Monday ${CM.año}: celulares, iPhone y notebooks, ¿bajan de verdad?`
-const DESCRIPCION = `El precio más bajo que registramos en octubre de cada iPhone, Samsung Galaxy, celular, notebook, smart TV y monitor de Mercado Libre, para comparar en el Cyber Monday ${CM.año} (${CM.fechasTexto}).`
+const TITULO = bf(`Cyber Monday ${CM.año}: celulares, iPhone y notebooks, ¿bajan de verdad?`)
+const DESCRIPCION = bf(`El precio más bajo que registramos en octubre de cada iPhone, Samsung Galaxy, celular, notebook, smart TV y monitor de Mercado Libre, para comparar en el Cyber Monday ${CM.año} (${CM.fechasTexto}).`)
 
 export const metadata: Metadata = {
-  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t, () => `Cyber Monday ${CM.año}: celulares y notebooks, ¿bajan de verdad?`]),
+  title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t, () => bf(`Cyber Monday ${CM.año}: celulares y notebooks, ¿bajan de verdad?`)]),
   description: descripcionSeo(DESCRIPCION),
   keywords: [
     `cyber monday ${CM.año} celulares`,
@@ -80,7 +80,7 @@ export default function CyberTecnologiaPage() {
       q: `¿Cuándo es el Cyber Monday ${CM.año} en Argentina?`,
       a: `${CM.fechasTexto.charAt(0).toUpperCase() + CM.fechasTexto.slice(1)} de ${CM.año}${CM.oficial ? ', según la CACE' : ' (a confirmar)'}.`,
     },
-  ]
+  ].map((f, i, arr) => (i === arr.length - 1 ? f : { q: bf(f.q), a: bf(f.a) }))
 
   const jsonLd = [
     {
@@ -88,7 +88,7 @@ export default function CyberTecnologiaPage() {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: `Cyber Monday ${CM.año}`, item: `${DEALS_URL}/cyber-monday` },
+        { '@type': 'ListItem', position: 2, name: bf(`Cyber Monday ${CM.año}`), item: `${DEALS_URL}/cyber-monday` },
         { '@type': 'ListItem', position: 3, name: 'Tecnología', item: URL },
       ],
     },
@@ -120,7 +120,7 @@ export default function CyberTecnologiaPage() {
         <div className="max-w-3xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
-            <Link href="/cyber-monday" className="hover:text-yellow-400">Cyber Monday {CM.año}</Link> <span aria-hidden="true">/</span>{' '}
+            <Link href="/cyber-monday" className="hover:text-yellow-400">{bf(`Cyber Monday ${CM.año}`)}</Link> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">Tecnología</span>
           </nav>
           <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">{TITULO}</h1>
@@ -128,8 +128,8 @@ export default function CyberTecnologiaPage() {
             Desde el {fechaAR(testigo.desde)} anotamos el precio de cada producto de tecnología en oferta en Mercado Libre.
             Acá está el más bajo que registramos de <strong className="text-zinc-100">{total} celulares, notebooks, smart TV y monitores</strong>:
             {etapa === 'antes'
-              ? ` cuando arranque el Cyber (${CM.fechasTexto}) vas a ver al lado de cada uno si bajó de verdad.`
-              : ' al lado de cada uno, si el precio del Cyber bajó de verdad.'}
+              ? bf(` cuando arranque el Cyber Monday (${CM.fechasTexto}) vas a ver al lado de cada uno si bajó de verdad.`)
+              : bf(' al lado de cada uno, si el precio del Cyber Monday bajó de verdad.')}
           </p>
           {etapa === 'antes' && <CuentaRegresivaEvento fecha={CM.inicio} nombre="Cyber Monday" />}
           <p className="mt-4 text-sm text-zinc-500">
@@ -199,13 +199,13 @@ export default function CyberTecnologiaPage() {
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Cómo leemos estos precios</h2>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
             El «más bajo» es el menor precio que vimos de ese producto entre el {fechaAR(testigo.desde)} y hoy, solo con
-            productos que registramos al menos {TESTIGO_MIN_DIAS} días. Durante el Cyber, si el precio está al menos 3 % por
+            productos que registramos al menos {TESTIGO_MIN_DIAS} días. {bf('Durante el Cyber Monday, si el precio está al menos 3 % por')}
             debajo, lo marcamos como una baja real; si no, estuvo igual o más barato antes. Los precios son de contado y
             pueden cambiar en cualquier momento: confirmalos en Mercado Libre antes de comprar.{' '}
             <Link href="/metodologia" className="text-yellow-400 hover:underline">Metodología completa</Link>.
           </p>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">Todo sobre el Cyber Monday {CM.año} →</Link>
+            <Link href="/cyber-monday" className="font-bold text-yellow-400 hover:underline">{bf(`Todo sobre el Cyber Monday ${CM.año}`)} →</Link>
             <Link href="/tecno" className="font-bold text-yellow-400 hover:underline">Ofertas de tecnología de hoy →</Link>
             <Link href="/comparador/celulares" className="font-bold text-yellow-400 hover:underline">Comparador de celulares →</Link>
             <Link href="/comparador/notebooks" className="font-bold text-yellow-400 hover:underline">Comparador de notebooks →</Link>
@@ -216,11 +216,11 @@ export default function CyberTecnologiaPage() {
 
         {guias.length > 0 && (
           <section className="mb-10">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Guías para elegir antes del Cyber</h2>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{bf('Guías para elegir antes del Cyber Monday')}</h2>
             <ul className="space-y-1.5">
               {guias.map(g => (
                 <li key={g.slug}>
-                  <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {g.titulo} →</a>
+                  <a href={`/guias/${g.slug}`} className="font-bold text-yellow-400 hover:underline">📘 {bf(g.titulo)} →</a>
                 </li>
               ))}
             </ul>

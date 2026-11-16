@@ -1,7 +1,7 @@
 import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import { LANDINGS_CYBER } from '@/lib/cybertecno'
-import { etapaCyber } from '@/lib/cybermonday'
+import { etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
 import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { descripcionSeo, tituloSeo, MAX_TITULO } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
@@ -41,7 +41,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const todos = productosDe(c).slice(0, MAX_FILAS).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
   const mediana = todos[Math.floor(todos.length / 2)] ?? 0
   const precios = todos.filter(n => n >= mediana / 3)
-  const base = (CONTENIDO[c.slug]?.titulo ?? c.titulo).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
+  const esCyber = c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')
+  // T-002 (15/11): las de Cyber (muchas vistas, pocos clics) llevan además el año 2026 antes del «:».
+  const anio = (t: string) => (esCyber && !/20\d\d/.test(t) ? t.replace(/^([^:]+)/, '$1 2026') : t)
+  const base = anio((esCyber ? bf : (t: string) => t)(CONTENIDO[c.slug]?.titulo ?? c.titulo)).replace(/:\s*(comparativa de precios|precios y accesorios)$/i, '')
   // Con menos de 3 modelos el "desde" engaña (el único que hay puede ser el más caro).
   // Si no entra, se acorta el título antes del ":" en vez de cortar el precio
   // (en Google salían títulos terminados en "…: desde").
@@ -49,7 +52,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const corto = base.split(':')[0].trim()
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
   const titulo = opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
-  const descripcion = descripcionSeo(c.descripcion)
+  const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
+  const descripcion = descripcionSeo(
+    esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)
+      ? `Desde ${precio(Math.min(...precios))} hoy en Mercado Libre. ${descripcionBase}`
+      : descripcionBase,
+  )
   return {
     title: titulo,
     description: descripcion,
@@ -72,6 +80,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   if (!c) notFound()
 
   const url = `${DEALS_URL}/mejores/${c.slug}`
+  const esCyberPag = c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')
+  const tituloVis = esCyberPag ? bf(c.titulo) : c.titulo
   // Pasado el Cyber, sus comparativas (las que más clics traen de Google) mandan al Black Friday.
   const trasCyber = c.slug.startsWith('cyber-monday-') && etapaCyber(getScrapedAt()).etapa === 'despues'
     ? (getComparativa(c.slug.replace('cyber-monday-', 'black-friday-')) ? c.slug.replace('cyber-monday-', 'black-friday-') : 'ofertas-black-friday')
@@ -98,7 +108,15 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     .sort((a, b) => a.min - b.min || a.slug.localeCompare(b.slug))
     .slice(0, productos.length < 3 ? 10 : 6) // tabla flaca: más modelos con historial para que no quede vacía
 
-  const contenido = CONTENIDO[c.slug]
+  const contenidoBase = CONTENIDO[c.slug]
+  // Pasado el Cyber, el cuerpo de sus comparativas también habla del Black Friday (misma dirección).
+  const contenido = contenidoBase && esCyberPag
+    ? {
+        ...contenidoBase,
+        secciones: contenidoBase.secciones.map(s => ({ ...s, titulo: bf(s.titulo), parrafos: s.parrafos.map(t => bf(t)) })),
+        faq: contenidoBase.faq.map(f => ({ q: bf(f.q), a: bf(f.a) })),
+      }
+    : contenidoBase
   // Celulares, notebooks y smart TV tienen páginas «mejor … hasta $X»: las enlazamos para que Google las encuentre.
   const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
   const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined
@@ -110,7 +128,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: c.titulo, item: url },
+        { '@type': 'ListItem', position: 2, name: tituloVis, item: url },
       ],
     },
     {
@@ -148,7 +166,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: c.titulo,
+      name: tituloVis,
       url,
       description: c.descripcion,
       inLanguage: 'es-AR',
@@ -160,7 +178,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: c.titulo,
+            name: tituloVis,
             numberOfItems: productos.length,
             itemListElement: productos.map((p, i) => ({
               '@type': 'ListItem',
@@ -213,7 +231,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           <span className="text-zinc-300">Comparativas</span>
         </nav>
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
-          {c.titulo}
+          {tituloVis}
         </h1>
         {trasCyber && (
           <p className="text-sm text-zinc-200 bg-zinc-900 border border-yellow-400/30 rounded-xl px-4 py-3 mb-4">
@@ -440,7 +458,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
 
         {(c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')) && (
           <nav className="mb-10">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Cyber Monday {new Date().getFullYear()} por rubro</h2>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{bf('Cyber Monday')} {new Date().getFullYear()} por rubro</h2>
             <div className="flex flex-wrap gap-2">
               <Link
                 href="/cyber-monday"
@@ -463,7 +481,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   href={`/mejores/${x.slug}`}
                   className="text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2"
                 >
-                  {x.slug === 'ofertas-cyber-monday' ? 'Todas las ofertas' : x.nombre.replace(' en el Cyber Monday', '')}
+                  {x.slug === 'ofertas-cyber-monday' ? 'Todas las ofertas' : x.nombre.replace(' en el Cyber Monday', '').replace(' en el Black Friday', '')}
                 </a>
               ))}
             </div>

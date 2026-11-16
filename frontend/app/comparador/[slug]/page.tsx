@@ -234,7 +234,7 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Antes de elegir</h2>
           <ul className="space-y-1.5">
             <li>
-              <Link href="/cyber-monday/tecnologia" className="font-bold text-cyan-300 hover:underline">🛒 Cyber Monday: ¿bajan de verdad {c.slug === 'smart-tv' ? 'los smart TV' : 'los celulares y notebooks'}? →</Link>
+              <Link href="/black-friday" className="font-bold text-cyan-300 hover:underline">🛒 Black Friday: ¿bajan de verdad {c.slug === 'smart-tv' ? 'los smart TV' : 'los celulares y notebooks'}? →</Link>
             </li>
             {precios.map(p => (
               <li key={p!.slug}>

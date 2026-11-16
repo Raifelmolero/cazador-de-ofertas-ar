@@ -103,7 +103,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/ofertas-cyber-monday',
+      href: '/mejores/ofertas-black-friday',
       titulo: 'Cyber Monday 2026: qué ofertas bajaron de verdad',
       boton: 'Ver las ofertas de Cyber Monday 🎯',
     },
@@ -1258,7 +1258,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-notebooks',
+      href: '/mejores/black-friday-notebooks',
       titulo: 'Notebooks en el Cyber Monday 2026: precios verificados',
       boton: 'Ver notebooks en oferta 💻',
     },
@@ -1297,7 +1297,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-smart-tv',
+      href: '/mejores/black-friday-smart-tv',
       titulo: 'Smart TV en el Cyber Monday 2026: cuáles bajan de verdad',
       boton: 'Ver smart TV en oferta 📺',
     },
@@ -1339,7 +1339,7 @@ export const GUIAS: Guia[] = [
       { href: '/guias/que-celular-gama-alta-comprar', texto: 'Qué celular de gama alta comprar: iPhone, Galaxy S, Edge y Xiaomi' },
     ],
     cta: {
-      href: '/mejores/cyber-monday-celulares',
+      href: '/mejores/black-friday-celulares',
       titulo: 'Celulares en el Cyber Monday 2026: ofertas reales',
       boton: 'Ver celulares en oferta 📱',
     },
@@ -1376,7 +1376,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-aires-acondicionados',
+      href: '/mejores/mejores-aires-acondicionados',
       titulo: 'Aires acondicionados en el Cyber Monday 2026',
       boton: 'Ver aires en oferta ❄️',
     },
@@ -1415,7 +1415,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-lavarropas',
+      href: '/mejores/mejores-lavarropas',
       titulo: 'Lavarropas en el Cyber Monday 2026: precios comparados',
       boton: 'Ver lavarropas en oferta 🧺',
     },
@@ -1454,7 +1454,7 @@ export const GUIAS: Guia[] = [
       },
     ],
     cta: {
-      href: '/mejores/cyber-monday-auriculares',
+      href: '/mejores/mejores-auriculares',
       titulo: 'Auriculares en el Cyber Monday 2026: ofertas verificadas',
       boton: 'Ver auriculares en oferta 🎧',
     },

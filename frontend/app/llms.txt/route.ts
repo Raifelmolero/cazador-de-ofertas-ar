@@ -82,10 +82,6 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   dónde ver los cupones oficiales (mercadolibre.com.ar/cupones, requiere sesión),
   cómo son sus condiciones, Meli+ y beneficios bancarios según
   mercadolibre.com.ar/l/promociones (leído el 28/09/2026). No lista códigos.
-- [Previa del Black Friday 2026: ofertas de hoy por rubro](https://cazadordeofertas.com.ar/cyber-monday):
-  precios de hoy de tecnología y electro para comparar con el Black Friday (viernes
-  27 de noviembre de 2026), cómo detectar descuentos inflados y ofertas
-  verificadas contra el historial de precios.
 - [Black Friday 2026 en Argentina](https://cazadordeofertas.com.ar/black-friday):
   viernes 27 de noviembre de 2026 (día siguiente al Thanksgiving de EE.UU.); en
   Argentina no tiene organizador oficial: cada tienda arma sus promos. Cómo
@@ -190,15 +186,6 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [hidrolavadoras](https://cazadordeofertas.com.ar/mejores/mejores-hidrolavadoras),
   [perfumes](https://cazadordeofertas.com.ar/mejores/mejores-perfumes),
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
-  [ofertas de la previa del Black Friday 2026](https://cazadordeofertas.com.ar/mejores/ofertas-cyber-monday),
-  y por rubro: [smart TV](https://cazadordeofertas.com.ar/mejores/cyber-monday-smart-tv),
-  [aires](https://cazadordeofertas.com.ar/mejores/cyber-monday-aires-acondicionados),
-  [notebooks](https://cazadordeofertas.com.ar/mejores/cyber-monday-notebooks),
-  [celulares](https://cazadordeofertas.com.ar/mejores/cyber-monday-celulares),
-  [lavarropas](https://cazadordeofertas.com.ar/mejores/cyber-monday-lavarropas),
-  [cafeteras](https://cazadordeofertas.com.ar/mejores/cyber-monday-cafeteras),
-  [heladeras](https://cazadordeofertas.com.ar/mejores/cyber-monday-heladeras),
-  [colchones y sommiers](https://cazadordeofertas.com.ar/mejores/cyber-monday-colchones),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday)
   (por rubro: [celulares](https://cazadordeofertas.com.ar/mejores/black-friday-celulares),
   [notebooks](https://cazadordeofertas.com.ar/mejores/black-friday-notebooks),

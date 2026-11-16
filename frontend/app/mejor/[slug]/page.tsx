@@ -12,6 +12,7 @@ import { getScrapedAt } from '@/lib/productos'
 import { getComparador, type Equipo } from '@/lib/comparador'
 import { armarPresupuesto, getPresupuesto, presupuestosConEquipos, type PresupuestoArmado } from '@/lib/presupuesto'
 import { duelosConPrecio } from '@/lib/vs'
+import { etapaBlackFriday } from '@/lib/cybermonday'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -143,6 +144,21 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
           </a>
         </div>
       </header>
+
+      {/* Aviso del Black Friday (BF-1): mismo estilo que BannerTemporada, sin precios ni
+          promesas. Se apaga solo en el primer deploy posterior al evento. */}
+      {etapaBlackFriday().etapa !== 'despues' && (
+        <aside aria-label="Black Friday" className="max-w-5xl mx-auto px-4 pt-4">
+          <Link
+            href="/black-friday"
+            className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/10 px-4 py-2.5 text-center transition-colors hover:border-yellow-400/60 sm:px-5 sm:py-3"
+          >
+            <span className="font-display text-sm font-black text-yellow-200 sm:text-base [text-wrap:balance]">
+              🖤 Black Friday es el viernes 27/11: mirá las ofertas →
+            </span>
+          </Link>
+        </aside>
+      )}
 
       <section className="border-b border-zinc-900 px-4 py-8 sm:py-10">
         <div className="max-w-5xl mx-auto">

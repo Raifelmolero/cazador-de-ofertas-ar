@@ -282,7 +282,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     categoria: { slug: 'gamer', nombre: 'gamer' },
-    cta: { href: '/mejores/cyber-monday-auriculares', titulo: 'Auriculares en oferta hoy', boton: 'Ver auriculares en oferta' },
+    cta: { href: '/mejores/mejores-auriculares', titulo: 'Auriculares en oferta hoy', boton: 'Ver auriculares en oferta' },
     faq: [
       {
         q: '¿Vale la pena la cancelación de ruido?',

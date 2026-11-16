@@ -40,7 +40,7 @@ const nextConfig = {
       '/tv': '/mejores/mejores-smart-tv',
       '/lavarropas': '/mejores/mejores-lavarropas',
       '/heladeras': '/mejores/mejores-heladeras',
-      '/cyber': '/cyber-monday',
+      '/cyber': '/black-friday',
       '/madre': '/dia-de-la-madre',
     }
     // Las páginas de ofertas vistas desde calculadoraml.com.ar no venden
@@ -66,7 +66,34 @@ const nextConfig = {
     const guiasDuplicadas = {
       '/guias/termotanque-a-gas-o-electrico': '/guias/termotanque-electrico-o-a-gas-o-calefon',
     }
+    // Cyber Monday (2 al 4/11) ya pasó: todas sus URLs van con 301 al Black Friday
+    // (BF-1). Los rubros que tienen comparativa propia de Black Friday
+    // (lib/comparativas.ts: black-friday-celulares/notebooks/smart-tv/heladeras)
+    // van a esa; el resto, a /black-friday. Las reglas puntuales van antes que
+    // las generales. Ningún destino contiene «cyber-monday»: no hay bucle.
+    // Las guías /guias/*cyber-monday* NO se tocan (siguen vivas).
+    const rubrosBF = ['celulares', 'notebooks', 'smart-tv', 'heladeras']
+    const cyberABF = [
+      ...rubrosBF.map(r => [`/mejores/cyber-monday-${r}`, `/mejores/black-friday-${r}`]),
+      ...rubrosBF.map(r => [`/cyber-monday/${r}`, `/mejores/black-friday-${r}`]),
+      ['/mejores/:slug(.*cyber-monday.*)', '/black-friday'],
+      ['/cyber-monday/:path*', '/black-friday'],
+    ]
+    // Van antes que aOfertas: desde calculadoraml se salta directo al destino
+    // final en el dominio de ofertas (un solo 301, no dos encadenados).
+    const cyber = [
+      ...calcHosts.flatMap(host =>
+        cyberABF.map(([source, destination]) => ({
+          source,
+          has: [{ type: 'host', value: host }],
+          destination: `https://${DEALS_HOST}${destination}`,
+          permanent: true,
+        })),
+      ),
+      ...cyberABF.map(([source, destination]) => ({ source, destination, permanent: true })),
+    ]
     return [
+      ...cyber,
       ...aOfertas,
       ...Object.entries(guiasDuplicadas).map(([source, destination]) => ({ source, destination, permanent: true })),
       ...Object.entries(cortos).map(([source, destination]) => ({ source, destination, permanent: false })),

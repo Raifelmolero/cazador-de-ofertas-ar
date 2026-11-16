@@ -129,7 +129,7 @@ ${LANDINGS.filter(indexableLanding)
 - [Cupones de Mercado Libre](${DEALS_URL}/cupones-mercado-libre)
 - [Calculadora de frigorías](${DEALS_URL}/calculadora-frigorias)
 - [Calculadora de consumo eléctrico](${DEALS_URL}/calculadora-consumo-electrico)
-- [Cyber Monday](${DEALS_URL}/cyber-monday), [Black Friday](${DEALS_URL}/black-friday), [Día de la Madre](${DEALS_URL}/dia-de-la-madre) y [regalos de Navidad](${DEALS_URL}/regalos-navidad)
+- [Black Friday](${DEALS_URL}/black-friday), [Día de la Madre](${DEALS_URL}/dia-de-la-madre) y [regalos de Navidad](${DEALS_URL}/regalos-navidad)
 
 ## Guías
 

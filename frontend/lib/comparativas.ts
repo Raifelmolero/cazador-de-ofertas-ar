@@ -40,12 +40,7 @@ const PERENNES = new Set([
   'mejores-notebooks', 'mejores-celulares', 'mejores-celulares-gama-alta',
   'mejores-colchones', 'mejores-colchones-2-plazas', 'mejores-sommiers',
   'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
-  // Cyber Monday (2 al 4/11): tienen que estar indexadas semanas antes del evento,
-  // y "aire acondicionado cyber monday" ya rankea en la posición ~17 (GSC 04/10).
-  'ofertas-cyber-monday', 'cyber-monday-smart-tv', 'cyber-monday-aires-acondicionados',
-  'cyber-monday-notebooks', 'cyber-monday-celulares', 'cyber-monday-lavarropas', 'cyber-monday-auriculares', 'cyber-monday-cafeteras',
-  'cyber-monday-heladeras', 'cyber-monday-colchones',
-  // Black Friday (27/11): mismas razones, se publican 3+ semanas antes.
+  // Black Friday (27/11): tienen que estar indexadas semanas antes del evento.
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
 ])
 
@@ -55,7 +50,7 @@ const NO_CELULAR = ['notebook', 'galaxy book', 'bicicleta', 'monopatin', 'scoote
 
 const AÑO = 2026
 
-export const COMPARATIVAS: Comparativa[] = [
+const TODAS: Comparativa[] = [
   {
     slug: 'mejores-aires-acondicionados',
     nombre: 'aires acondicionados',
@@ -964,7 +959,7 @@ export const COMPARATIVAS: Comparativa[] = [
       { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: '¿Vale la pena la cancelación de ruido?' },
       { href: '/guias/sony-wh-ch520-o-anker-soundcore-q20i', texto: 'Sony WH-CH520 o Anker Q20i' },
       { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Auriculares open ear o in-ear' },
-      { href: '/mejores/cyber-monday-auriculares', texto: 'Auriculares en el Cyber Monday' },
+      { href: '/black-friday', texto: 'Black Friday 2026: ofertas de hoy' },
     ],
   },
   {
@@ -1280,6 +1275,13 @@ export const COMPARATIVAS: Comparativa[] = [
     ],
   },
 ]
+
+/** Comparativas del Cyber Monday (/mejores/*cyber-monday*): pasado el evento redirigen
+ *  con 301 al Black Friday (next.config.mjs), así que ya no se listan, no se enlazan
+ *  ni se generan. Los datos quedan arriba por si se reactivan el año que viene. */
+export const esCyber = (slug: string) => slug.includes('cyber-monday')
+
+export const COMPARATIVAS: Comparativa[] = TODAS.filter(c => !esCyber(c.slug))
 
 export function getComparativa(slug: string) {
   return COMPARATIVAS.find(c => c.slug === slug)

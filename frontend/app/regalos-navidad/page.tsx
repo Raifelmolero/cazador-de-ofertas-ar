@@ -64,7 +64,7 @@ const COMPARATIVAS_REL = [
   'mejores-monitores-gamer',
   'mejores-freidoras-de-aire',
   'mejores-taladros',
-  'cyber-monday-auriculares',
+  'mejores-auriculares',
 ]
 
 const TITULO = `Regalos de Navidad ${AÑO}: ofertas reales por presupuesto`
@@ -324,9 +324,6 @@ export default function RegalosNavidadPage() {
             regalo que te interesa y comparalo después.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/cyber-monday" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors">
-              Previa del Black Friday: precios de hoy →
-            </Link>
             <Link href="/black-friday" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors">
               Black Friday {BLACK_FRIDAY.año} →
             </Link>

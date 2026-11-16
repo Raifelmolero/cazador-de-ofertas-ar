@@ -57,7 +57,7 @@ export const TEMPORADAS: Temporada[] = [
   {
     id: 'blackfriday',
     href: '/black-friday',
-    titulo: `🖤 Previa del Black Friday: ${BLACK_FRIDAY.fechasTexto} — preventa desde el lunes 16/11`,
+    titulo: `🖤 Black Friday: ${BLACK_FRIDAY.fechasTexto}`,
     bajada: 'Ofertas comparadas contra el historial de precios → mirá la previa',
     caja: 'border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60',
     texto: 'text-yellow-200',

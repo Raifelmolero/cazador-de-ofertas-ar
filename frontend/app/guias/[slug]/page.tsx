@@ -3,7 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { GUIAS, fechasGuia, getGuia as getGuiaBase } from '@/lib/guias'
-import { aBlackFridayTrasCyber } from '@/lib/cybermonday'
+import { aBlackFridayTrasCyber, etapaBlackFriday } from '@/lib/cybermonday'
 
 /** Las guías «…-cyber-monday» ya están en Google: misma dirección, pero pasado el evento
  *  el título y la descripción hablan del Black Friday. */
@@ -101,6 +101,11 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
   const cta = ctaDeGuia(g)
+  // Bloque Black Friday 2026: solo hasta el viernes 27/11 (hora argentina). Link a la comparativa
+  // del rubro únicamente si existe en lib/comparativas.ts.
+  const bf = etapaBlackFriday().etapa === 'despues'
+    ? null
+    : { comparativa: g.categoria && getComparativa(`black-friday-${g.categoria.slug}`) ? `black-friday-${g.categoria.slug}` : null }
   // La caja del medio va después de la mitad de las secciones (en guías cortas, tras la primera).
   const medio = Math.ceil(g.secciones.length / 2) - 1
   const org = { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL }
@@ -337,6 +342,25 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             ml={cta.ml}
             internos={cta.internos}
           />
+        )}
+
+        {bf && (
+          <section className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 p-5" aria-label="Black Friday 2026">
+            <h2 className="font-display text-lg font-black mb-1">🖤 Black Friday 2026</h2>
+            <p className="text-sm text-zinc-400 mb-3">
+              Es el viernes 27/11/2026. Antes de comprar, mirá el historial de precios del producto: así sabés si el descuento es real.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <a href="/black-friday" className="text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-4 py-2">
+                Ver el Black Friday →
+              </a>
+              {bf.comparativa && (
+                <a href={`/mejores/${bf.comparativa}`} className="text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-4 py-2">
+                  Comparativa Black Friday →
+                </a>
+              )}
+            </div>
+          </section>
         )}
 
         {comp && ofertas.length > 0 && (

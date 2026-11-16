@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-16T23:18:59+00:00",
+  "generado": "2026-11-16T23:43:38+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-16T04:37:11+00:00",
+      "ultima_actividad": "2026-11-16T23:43:38+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,16 +17,16 @@
       ],
       "metricas": [
         {
+          "label": "Facebook",
+          "valor": 5
+        },
+        {
           "label": "whatsapp_kit",
           "valor": 3
         },
         {
-          "label": "Facebook",
-          "valor": 2
-        },
-        {
           "label": "Telegram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Reels IG",
@@ -39,10 +39,14 @@
         {
           "label": "Threads",
           "valor": 1
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Thinkpad T16 Gen 5 Amd Ryzen Ai7 32gb 1tb 16 Black"
+      "ultimo_trabajo": "Notebook Gigabyte Aero X16 AMD Ryzen AI 7 350 32GB RAM 1TB SSD NVIDIA GeForce RT"
     },
     {
       "id": "investigacion",

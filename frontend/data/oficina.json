@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-16T04:37:11+00:00",
+  "generado": "2026-11-16T19:42:12+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -18,30 +18,30 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 7
+          "valor": 5
         },
         {
           "label": "whatsapp_kit",
-          "valor": 6
+          "valor": 3
         },
         {
           "label": "Telegram",
-          "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 3
-        },
-        {
-          "label": "Reels IG",
           "valor": 2
         },
         {
-          "label": "Historias IG",
+          "label": "Threads",
           "valor": 2
         },
         {
           "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
           "valor": 1
         }
       ],
@@ -164,7 +164,7 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
-      "ultima_actividad": "2026-11-09T08:58:54+00:00",
+      "ultima_actividad": "2026-11-16T08:55:37+00:00",
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -174,18 +174,18 @@
       "metricas": [
         {
           "label": "Seguidores IG",
-          "valor": 1481,
-          "delta": -3
+          "valor": 1487,
+          "delta": 6
         },
         {
           "label": "Seguidores Threads",
-          "valor": 108,
-          "delta": 2
+          "valor": 109,
+          "delta": 1
         },
         {
           "label": "Suscriptores TG",
-          "valor": 12,
-          "delta": 1
+          "valor": 14,
+          "delta": 2
         },
         {
           "label": "Seguidores FB",

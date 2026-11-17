@@ -10,6 +10,7 @@
 import { normalizar } from '@/lib/categorias'
 import { CELU_EXCLUIR } from '@/lib/preciohoy'
 import { getOfertas } from '@/lib/productos'
+import { diasDesde } from '@/lib/frescura'
 import { actualizadoSeguimiento, getSeguidosPrincipales, precioActual, slugPorId } from '@/lib/seguimiento'
 
 export interface Equipo {
@@ -22,6 +23,7 @@ export interface Equipo {
   descuento: number | null // % OFF de hoy (solo si está en oferta)
   enOferta: boolean
   visto: string // última vez que lo vimos (YYYY-MM-DD)
+  dias?: number | null // días desde que se vio el precio, al armar el sitio (lib/frescura)
   url: string
   img: string | null
   historial: string | null // slug de /precio/*
@@ -371,6 +373,7 @@ export function equiposDe(c: Comparador): Equipo[] {
       descuento: o.descuento_pct ?? null,
       enOferta: true,
       visto: o.precio_visto ?? hoyIso,
+      dias: diasDesde(o.precio_visto ?? hoyIso),
       url: o.url_producto,
       img: o.url_imagen,
       historial: historial[o.id_ml] ?? null,
@@ -393,6 +396,7 @@ export function equiposDe(c: Comparador): Equipo[] {
       descuento: null,
       enOferta: false,
       visto: s.ultimo_visto,
+      dias: diasDesde(s.ultimo_visto),
       url: s.url,
       img: s.img,
       historial: s.slug,

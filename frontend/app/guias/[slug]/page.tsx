@@ -28,6 +28,7 @@ import CtaCalculadora from '@/components/CtaCalculadora'
 import CtaFijoML from '@/components/CtaFijoML'
 import { elegirDestacado } from '@/components/DestacadoML'
 import { equiposDeGuia, guiaIndexable } from '@/lib/guias-equipos'
+import { etiquetaEdad } from '@/lib/frescura'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 
@@ -237,6 +238,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                       <strong className="text-yellow-400">${e.precio.toLocaleString('es-AR')}</strong>
                       {e.descuento ? <span className="ml-1 text-emerald-400">{e.descuento}% OFF</span> : null}
                     </p>
+                    {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
                     {e.minimo ? (
                       <p className="text-xs text-zinc-500">
                         Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}

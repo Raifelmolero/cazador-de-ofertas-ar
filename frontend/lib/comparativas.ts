@@ -8,6 +8,7 @@
 // historial de precios que registramos. La página lo dice explícitamente.
 
 import { CATEGORIAS, getCategoria, normalizar, ofertasDeCategoria, type Categoria } from '@/lib/categorias'
+import { diasDesde, tramoEdad } from '@/lib/frescura'
 import type { ProductWithMargins } from '@/lib/productos'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
 
@@ -1308,10 +1309,13 @@ export function productosDe(c: Comparativa): ProductWithMargins[] {
   const fuera = (c.excluir ?? []).map(normalizar).filter(x => !ok.includes(x))
   // Accesorio suelto: el título arranca con la palabra permitida o dice "<palabra> para".
   const suelto = (t: string) => ok.some(x => t.startsWith(x) || t.includes(`${x} para`))
-  return productosBase(c).filter(p => {
+  const lista = productosBase(c).filter(p => {
     const t = normalizar(p.titulo)
     return !fuera.some(x => t.includes(x)) && !suelto(t)
   })
+  // Precios de la última semana primero (orden estable: dentro de cada grupo sigue la ganancia esperada).
+  const tramo = (p: ProductWithMargins) => tramoEdad(diasDesde(p.precio_visto))
+  return lista.sort((a, b) => tramo(a) - tramo(b))
 }
 
 function productosBase(c: Comparativa): ProductWithMargins[] {

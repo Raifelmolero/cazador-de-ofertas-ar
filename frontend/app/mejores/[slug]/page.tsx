@@ -21,6 +21,7 @@ import SinOfertas from '@/components/SinOfertas'
 import { enlacesAfines } from '@/lib/afines'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import { getComparador } from '@/lib/comparador'
+import { diasDesde, etiquetaEdad } from '@/lib/frescura'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -271,6 +272,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                         <span className="font-display text-lg font-black text-zinc-50">{precio(p.precio_actual)}</span>
                         {p.descuento_pct != null && <span className="text-xs font-bold text-red-400">{p.descuento_pct}% OFF</span>}
                       </p>
+                      {etiquetaEdad(diasDesde(p.precio_visto)) && (
+                        <p className="text-[11px] text-amber-300/90">{etiquetaEdad(diasDesde(p.precio_visto))}</p>
+                      )}
                       <p className="text-[11px] text-zinc-500">
                         {p.minimo_historico
                           ? '📉 En su mínimo histórico'
@@ -329,7 +333,12 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                           )}
                         </span>
                       </td>
-                      <td className="px-3 py-2 whitespace-nowrap text-zinc-100 font-semibold">{precio(p.precio_actual)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-zinc-100 font-semibold">
+                        {precio(p.precio_actual)}
+                        {etiquetaEdad(diasDesde(p.precio_visto)) && (
+                          <span className="block text-[11px] font-normal text-amber-300/90">{etiquetaEdad(diasDesde(p.precio_visto))}</span>
+                        )}
+                      </td>
                       <td className="px-3 py-2 whitespace-nowrap text-red-400 font-bold">
                         {p.descuento_pct != null ? `${p.descuento_pct}% OFF` : '—'}
                       </td>

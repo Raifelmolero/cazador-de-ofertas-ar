@@ -9,6 +9,7 @@
 // sitemap (regla del sitio: páginas flacas no se indexan).
 import { normalizar } from '@/lib/categorias'
 import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
+import { tramoEdad } from '@/lib/frescura'
 import type { Guia } from '@/lib/guias'
 
 type ComparadorSlug = 'celulares' | 'notebooks' | 'smart-tv'
@@ -69,7 +70,8 @@ export function equiposDeGuia(g: Pick<Guia, 'equipos'>): Equipo[] {
   const conocidas = s.soloConocidas ?? true
   const vistos = new Set<string>()
   const fuentes = Array.isArray(s.comparador) ? s.comparador : [s.comparador]
-  const base = fuentes.flatMap(todos).sort((a, b) => a.precio - b.precio)
+  // Precios recientes primero (el «más barato de cada modelo» sale de ahí); los viejos solo completan.
+  const base = fuentes.flatMap(todos).sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || a.precio - b.precio)
   const xs = base.filter(e => {
     const t = normalizar(e.titulo)
     if (s.incluye && !s.incluye.test(t)) return false
@@ -88,7 +90,7 @@ export function equiposDeGuia(g: Pick<Guia, 'equipos'>): Equipo[] {
   // Después de quedarse con el más barato de cada modelo: si hay otra publicación
   // del mismo modelo más barata, la cara no cuenta como "en su mínimo".
   const final = s.enMinimo ? xs.filter(e => e.minimo != null && e.precio <= e.minimo) : xs
-  const orden = s.orden === 'precio-desc' ? [...final].reverse() : final
+  const orden = s.orden === 'precio-desc' ? [...final].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || b.precio - a.precio) : final
   return orden.slice(0, s.max ?? 6)
 }
 

@@ -7,6 +7,7 @@
 // Si el título no lo dice, no suma: nunca se adivina una spec.
 import { normalizar } from '@/lib/categorias'
 import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
+import { tramoEdad } from '@/lib/frescura'
 
 export interface Presupuesto {
   slug: string
@@ -90,14 +91,16 @@ export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
   // Solo equipos nuevos: nada de usados ni reacondicionados.
   const xs = equipos(p.comparador).filter(e => e.precio <= p.hasta && puntaje(p.comparador, e) > 0 && !USADOS.test(normalizar(e.titulo)))
   if (xs.length < MIN_EQUIPOS) return null
-  const orden = [...xs].sort((a, b) => puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
+  // Primero los de precio reciente (hasta 7 días); los de precio viejo van después aunque rindan más,
+  // así lo «recomendado de hoy» no sale de un precio de hace dos semanas.
+  const orden = [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
   const marcas = orden.filter(conocida)
   return {
     p,
     equipos: orden,
     recomendado: marcas[0] ?? orden[0],
     franjaAlta: marcas.filter(e => e.precio >= p.hasta * 0.6).slice(0, 3),
-    masBarato: [...xs].sort((a, b) => a.precio - b.precio)[0],
+    masBarato: [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || a.precio - b.precio)[0],
     enMinimo: orden.filter(e => e.minimo !== null && e.precio <= e.minimo).slice(0, 5),
   }
 }

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import { CATEGORIAS, enCategoria } from '@/lib/categorias'
 import { ofertasHoyLight } from '@/lib/ofertashoy'
+import { diasDesde, tramoEdad } from '@/lib/frescura'
 import { busquedaML } from '@/lib/afiliado'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { EQUIPOS } from '@/lib/consumo'
@@ -64,7 +65,10 @@ export default function CalculadoraConsumoPage() {
   const ofertas = ofertasPorEquipo()
   // Electro eficiente para el bloque de ofertas arriba (sin aires/ventiladores: hace frío).
   const catsEficientes = CATEGORIAS.filter(c => ['heladeras', 'lavarropas', 'freidoras-de-aire', 'smart-tv'].includes(c.slug))
-  const eficientes = ofertasHoyLight().filter(o => catsEficientes.some(c => enCategoria(c, o.titulo)))
+  // «En oferta hoy»: primero los de precio de la última semana (orden estable: sigue el de la home).
+  const eficientes = ofertasHoyLight()
+    .filter(o => catsEficientes.some(c => enCategoria(c, o.titulo)))
+    .sort((a, b) => tramoEdad(diasDesde(a.precio_visto)) - tramoEdad(diasDesde(b.precio_visto)))
   const busquedas = Object.fromEntries(EQUIPOS.map(e => [e.id, busquedaML(e.busqueda)]))
   // Landing /ofertas/* del equipo, solo si hoy es indexable (tiene productos).
   const LANDING_POR_EQUIPO: Record<string, string> = {

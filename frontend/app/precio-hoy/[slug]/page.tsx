@@ -7,6 +7,7 @@ import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
+import { diasDesde, edadVieja, etiquetaEdad } from '@/lib/frescura'
 import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art, precioHoyVisible, preciosHoyVisibles } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
@@ -36,7 +37,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cuando = `${MESES[d.getMonth()]} ${d.getFullYear()}`
   // El precio real en el título: en Google compite contra títulos genéricos (1.549
   // impresiones y 0 clics en iPhone la semana del 27/10 con el título sin precio).
-  const precios = ofertasDe(p).map(o => o.precio_actual)
+  // El «desde $X» del título sale de precios vistos en la última semana (no de uno de hace dos).
+  const vigentes = ofertasDe(p)
+  const hoyOfertas = vigentes.filter(o => !edadVieja(diasDesde(o.precio_visto)))
+  const precios = (hoyOfertas.length ? hoyOfertas : vigentes).map(o => o.precio_actual)
   const desde = precios.length ? ` desde ${precio(precios[0])}` : ''
   const t = tituloSeo(p.nombre, [
     n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
@@ -63,7 +67,15 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   const url = `${DEALS_URL}/precio-hoy/${p.slug}`
   const scrapedAt = getScrapedAt().toISOString()
   const hoy = fecha(scrapedAt)
-  const ofertas = ofertasDe(p)
+  // Precio «de hoy» = visto en los últimos 7 días (lib/frescura). Los números de arriba (más barato,
+  // mediana, cantidad) salen solo de esos; las de precio más viejo van al final de la tabla con su antigüedad.
+  // Si no hay ninguna reciente, se muestran las que hay, dichas como lo que son: últimos precios vistos.
+  const todas = ofertasDe(p)
+  const recientes = todas.filter(o => !edadVieja(diasDesde(o.precio_visto)))
+  const sinRecientes = recientes.length === 0 && todas.length > 0
+  const ofertas = sinRecientes ? todas : recientes
+  const viejas = sinRecientes ? [] : todas.filter(o => edadVieja(diasDesde(o.precio_visto)))
+  const filasTabla = [...ofertas, ...viejas].slice(0, 10)
   const seguidos = seguidosDe(p).sort((a, b) => precioActual(a) - precioActual(b))
   const precios = ofertas.map(o => o.precio_actual)
   const min = precios[0]
@@ -77,7 +89,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
 
   // El párrafo que un buscador o una IA puede citar tal cual
   const respuesta = ofertas.length
-    ? `Hoy (${hoy}) ${art(p, true)} ${p.nombre} más barat${p.fem ? "a" : "o"} en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
+    ? `${sinRecientes ? 'Con los últimos precios que vimos' : `Hoy (${hoy})`} ${art(p, true)} ${p.nombre} más barat${p.fem ? "a" : "o"} en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
       (ofertas.length > 1
         ? `Entre las ${ofertas.length} ofertas con descuento real que relevamos, el precio va de ${precio(min)} a ${precio(max)}, con una mediana de ${precio(med)}.`
         : 'Es la única oferta con descuento real de este producto que relevamos hoy.')
@@ -178,7 +190,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60 p-3 transition-colors"
             >
               <p className="text-xl sm:text-2xl font-black text-yellow-300">{precio(min)}</p>
-              <p className="text-xs text-zinc-400 mt-1">el más barato hoy ↗</p>
+              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'el más barato que vimos ↗' : 'el más barato hoy ↗'}</p>
             </a>
             {/* Clarity 16-18/11: 7 clics muertos en /precio-hoy/smart-tv-55-pulgadas,
                 se tocaban estos recuadros como botones. Ahora llevan a ML / a la tabla. */}
@@ -197,7 +209,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               className="rounded-xl border border-zinc-800 bg-zinc-900 hover:border-yellow-400/60 p-3 transition-colors"
             >
               <p className="text-xl sm:text-2xl font-black">{ofertas.length}</p>
-              <p className="text-xs text-zinc-400 mt-1">ofertas reales hoy ↓</p>
+              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'ofertas vistas ↓' : 'ofertas reales hoy ↓'}</p>
             </a>
           </div>
         )}
@@ -244,7 +256,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
                   </tr>
                 </thead>
                 <tbody>
-                  {ofertas.slice(0, 10).map(o => (
+                  {filasTabla.map(o => (
                     <tr key={o.id_ml} className="border-t border-zinc-800">
                       <td className="px-3 py-2 text-zinc-300">
                         <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="hover:text-yellow-400">
@@ -256,6 +268,9 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
                         <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">
                           {precio(o.precio_actual)}
                         </a>
+                        {etiquetaEdad(diasDesde(o.precio_visto)) && (
+                          <span className="block text-[11px] font-normal text-amber-300/90">{etiquetaEdad(diasDesde(o.precio_visto))}</span>
+                        )}
                       </td>
                       <td className="px-3 py-2 whitespace-nowrap text-zinc-400">
                         <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">

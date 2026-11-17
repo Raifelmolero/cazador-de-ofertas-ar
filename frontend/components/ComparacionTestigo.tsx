@@ -56,7 +56,7 @@ export default function ComparacionTestigo({
             Avisame por WhatsApp
           </a>
           {(evento === 'Cyber Monday' || evento === 'Black Friday') && (
-            <a href={evento === 'Cyber Monday' ? '/cyber-monday/agenda.ics' : '/black-friday/agenda.ics'} download className="inline-block text-sm font-bold border border-cyan-400/60 text-cyan-300 rounded-xl px-5 py-2.5">
+            <a href="/black-friday/agenda.ics" download className="inline-block text-sm font-bold border border-cyan-400/60 text-cyan-300 rounded-xl px-5 py-2.5">
               📅 Agendar el {evento}
             </a>
           )}

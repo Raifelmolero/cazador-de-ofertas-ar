@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-17T18:39:13+00:00",
+  "generado": "2026-11-17T22:51:27+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-17T06:21:06+00:00",
+      "ultima_actividad": "2026-11-17T22:51:26+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,19 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
+          "valor": 2
+        },
+        {
+          "label": "Threads",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Samsung Qn77s90daeczb - Televisor 65 4k Oled"
+      "ultimo_trabajo": "Notebook Acer Nitro V 15 AMD Ryzen 7 32GB RAM 1TB SSD GeForce RTX 4050"
     },
     {
       "id": "investigacion",
@@ -186,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-16T20:48:39+00:00",
+      "ultima_actividad": "2026-11-17T19:38:14+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -198,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 16 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

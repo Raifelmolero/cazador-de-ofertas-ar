@@ -9,7 +9,7 @@
 // (nunca se adivinan).
 import { normalizar } from '@/lib/categorias'
 import { CELU_EXCLUIR } from '@/lib/preciohoy'
-import { getOfertas } from '@/lib/productos'
+import { getOfertas, getOfertasVencidas } from '@/lib/productos'
 import { diasDesde } from '@/lib/frescura'
 import { actualizadoSeguimiento, getSeguidosPrincipales, precioActual, slugPorId } from '@/lib/seguimiento'
 
@@ -346,7 +346,11 @@ export const getComparador = (slug: string) => COMPARADORES.find(c => c.slug ===
 /** Días hacia atrás que cuenta un producto seguido como "visto hace poco". */
 const DIAS_VISTO = 7
 
-export function equiposDe(c: Comparador): Equipo[] {
+/**
+ * `conVencidas`: suma las ofertas vencidas (>14 días) y los seguidos de más de 7 días con su último precio
+ * conocido. Solo lo usa /mejor para completar hasta 3 equipos (lib/presupuesto.ts); el resto del sitio no.
+ */
+export function equiposDe(c: Comparador, conVencidas = false): Equipo[] {
   const es = (titulo: string) => {
     const t = normalizar(titulo)
     const inicio = t.split(/\s+/).slice(0, 6).join(' ')
@@ -359,7 +363,7 @@ export function equiposDe(c: Comparador): Equipo[] {
   const hoyIso = actualizadoSeguimiento() || new Date().toISOString().slice(0, 10)
   const out: Equipo[] = []
 
-  for (const o of getOfertas()) {
+  for (const o of conVencidas ? [...getOfertas(), ...getOfertasVencidas()] : getOfertas()) {
     if (!es(o.titulo) || vistos.has(clave(o.titulo))) continue
     const datos = c.parse(o.titulo)
     if (!valido(datos)) continue
@@ -383,7 +387,7 @@ export function equiposDe(c: Comparador): Equipo[] {
 
   const limite = new Date(new Date(hoyIso).getTime() - DIAS_VISTO * 86_400_000).toISOString().slice(0, 10)
   for (const s of getSeguidosPrincipales()) {
-    if (s.ultimo_visto < limite || !es(s.titulo) || vistos.has(clave(s.titulo))) continue
+    if ((!conVencidas && s.ultimo_visto < limite) || !es(s.titulo) || vistos.has(clave(s.titulo))) continue
     const datos = c.parse(s.titulo)
     if (!valido(datos)) continue
     vistos.add(clave(s.titulo))

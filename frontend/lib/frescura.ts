@@ -37,6 +37,8 @@ export const tramoEdad = (dias?: number | null) => (edadVieja(dias) ? 1 : 0)
 /** Rótulo para el precio según su antigüedad; null si es de hoy o de ayer. */
 export function etiquetaEdad(dias?: number | null): string | null {
   if (dias == null || dias < 2) return null
+  // Más allá de la vigencia solo aparece en /mejor, que completa hasta 3 con el último precio conocido.
+  if (dias > DIAS_VIGENCIA) return `Precio visto hace ${dias} días`
   return dias > DIAS_PRECIO_VIEJO
     ? `Precio de hace ${dias} días: confirmalo en Mercado Libre`
     : `Precio visto hace ${dias} días`

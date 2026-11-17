@@ -106,6 +106,17 @@ export function getOfertas(): ProductWithMargins[] {
   )
 }
 
+/**
+ * Solo las ofertas vencidas (más de DIAS_VIGENCIA días desde que se vio el precio), más recientes primero.
+ * Único uso: completar /mejor/[slug] hasta 3 equipos con el último precio conocido (decisión 16/11).
+ * Ninguna otra página las muestra.
+ */
+export function getOfertasVencidas(): ProductWithMargins[] {
+  return (readJson().items as ProductWithMargins[])
+    .filter(o => precioVencido(o.precio_visto))
+    .sort((a, b) => String(b.precio_visto).localeCompare(String(a.precio_visto)))
+}
+
 export function getScrapedAt(): Date {
   return new Date(readJson().metadata.scraped_at)
 }

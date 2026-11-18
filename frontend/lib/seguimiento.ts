@@ -4,7 +4,7 @@
 // producto hoy no esté en oferta (hasta 60 días sin verlo).
 import fs from 'fs'
 import path from 'path'
-import { CATEGORIAS, normalizar } from '@/lib/categorias'
+import { CATEGORIAS, enCategoria, normalizar } from '@/lib/categorias'
 
 export interface Seguido {
   id: string
@@ -82,9 +82,7 @@ export const vigente = (s: Seguido) => s.ultimo_visto === actualizadoSeguimiento
 
 /** Categoría del sitio a la que pertenece (misma regla de keywords que /categoria). */
 export function categoriaDeSeguido(s: Seguido) {
-  const t = normalizar(s.titulo)
-  const inicio = t.split(/\s+/).slice(0, 4).join(' ')
-  return CATEGORIAS.find(c => c.keywords.some(k => t.includes(k)) && !c.excluir.some(x => inicio.includes(x)))
+  return CATEGORIAS.find(c => enCategoria(c, s.titulo))
 }
 
 export function seguidosDeCategoria(slug: string) {

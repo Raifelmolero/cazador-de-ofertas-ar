@@ -2,29 +2,29 @@
   "_nota": "Cupones del día que Mercado Libre manda al canal oficial de Afiliados (grupo «Ofertas MELI», para difundir). Solo códigos de ahí; nunca inventados. Se esconden solos al vencer.",
   "cupones": [
     {
-      "codigo": "AFILIMELI10",
-      "descuento": 10000,
-      "minimo": 150000,
-      "hasta": "2026-11-17T23:59:00-03:00",
-      "condiciones": "Compra mínima $150.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 17/11 a las 08:59 («¡Cupones de hoy!»); vigencia de 9:00 a 23:59 de hoy.",
+      "codigo": "MELIDESCU8",
+      "descuento": 8000,
+      "minimo": 100000,
+      "hasta": "2026-11-18T23:59:00-03:00",
+      "condiciones": "Compra mínima $100.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 18/11 a las 09:00 («¡Buen día, afiliados!»); válido hoy de 9 a 23:59.",
       "campania": "Semana del 16/11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
-      "codigo": "MELIMAS20",
-      "descuento": 20000,
-      "minimo": 250000,
-      "hasta": "2026-11-17T23:59:00-03:00",
-      "condiciones": "Compra mínima $250.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 17/11 a las 08:59 («¡Cupones de hoy!»); vigencia de 9:00 a 23:59 de hoy.",
+      "codigo": "AFILIAHORRA18",
+      "descuento": 18000,
+      "minimo": 200000,
+      "hasta": "2026-11-18T23:59:00-03:00",
+      "condiciones": "Compra mínima $200.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 18/11 a las 09:00 («¡Buen día, afiliados!»); válido hoy de 9 a 23:59.",
       "campania": "Semana del 16/11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     },
     {
-      "codigo": "AFILIOFF45",
-      "descuento": 45000,
-      "minimo": 500000,
-      "hasta": "2026-11-17T23:59:00-03:00",
-      "condiciones": "Compra mínima $500.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 17/11 a las 08:59 («¡Cupones de hoy!»); vigencia de 9:00 a 23:59 de hoy.",
+      "codigo": "MELIBENEF25",
+      "descuento": 25000,
+      "minimo": 300000,
+      "hasta": "2026-11-18T23:59:00-03:00",
+      "condiciones": "Compra mínima $300.000. Cupón exclusivo para afiliados publicado en el canal oficial de Afiliados («Ofertas MELI») el 18/11 a las 09:00 («¡Buen día, afiliados!»); válido hoy de 9 a 23:59.",
       "campania": "Semana del 16/11",
       "link": "https://www.mercadolibre.com.ar/ofertas"
     }

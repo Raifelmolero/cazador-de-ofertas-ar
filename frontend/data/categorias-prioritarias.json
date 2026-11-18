@@ -1,0 +1,30 @@
+{
+  "actualizado": "2026-11-18",
+  "fuente": "EQUIPO-GROK/tendencias-hoy.md (18/11/2026 09:14). Se actualiza cada día copiando ahí el top de categorías; no hace falta tocar código.",
+  "comentario": "orden = prioridad en la home (1 va primero). crecimiento_pct = el que dice tendencias-hoy.md (null = no figura en el reporte de hoy; entra por pedido de Raifel). Una oferta por categoría por vuelta, así la mezcla siempre es variada. tope_computacion_pct es el máximo de notebooks/computación sobre el total de destacados.",
+  "vigencia_dias": 3,
+  "ticket_alto_desde": 300000,
+  "tope_computacion_pct": 20,
+  "categorias": [
+    { "id": "climatizacion", "nombre": "Climatización (aires, ventiladores)", "orden": 1, "crecimiento_pct": 205, "patrones": ["aire acondicionado", "\\bsplit\\b", "ventilador", "climatizador", "aire portatil"] },
+    { "id": "consolas", "nombre": "Consolas y videojuegos", "orden": 2, "crecimiento_pct": 134, "patrones": ["\\bps5\\b", "playstation", "\\bxbox\\b", "nintendo switch", "consola"] },
+    { "id": "refrigeracion", "nombre": "Refrigeración (heladeras, freezers)", "orden": 3, "crecimiento_pct": 113, "patrones": ["heladera", "freezer", "refrigerador"] },
+    { "id": "tv_audio", "nombre": "TV y audio", "orden": 4, "crecimiento_pct": 81, "patrones": ["smart tv", "televisor", "\\btv\\b", "soundbar", "barra de sonido", "home theater"] },
+    { "id": "lavado", "nombre": "Lavado (lavarropas)", "orden": 5, "crecimiento_pct": null, "patrones": ["lavarropas", "lavasecarropas", "secarropas", "lavavajillas"] },
+    { "id": "celulares", "nombre": "Celulares", "orden": 6, "crecimiento_pct": null, "patrones": ["iphone", "\\bgalaxy (s|z|a)\\s?\\d", "celular", "motorola edge", "xiaomi", "redmi"] },
+    { "id": "piletas", "nombre": "Piletas", "orden": 7, "crecimiento_pct": null, "patrones": ["pileta", "piscina"] }
+  ],
+  "computacion": {
+    "nombre": "Computación",
+    "crecimiento_pct": 26,
+    "patrones": ["notebook", "laptop", "macbook", "\\bpc\\b", "computadora", "monitor", "tablet", "impresora"]
+  },
+  "accesorios_no_destacar": ["funda", "\\bcable\\b", "soporte", "control remoto", "repuesto", "filtro", "joystick", "mando", "cargador", "protector", "carcasa", "pie para", "base para"],
+  "excluir_destacados": [
+    { "patron": "\\bomen\\b", "motivo": "HP Omen gamer: precio del 9/11, $8-10 M", "visto_hasta": "2026-11-09" },
+    { "patron": "simmons", "motivo": "Colchón Simmons Queen visto el 04/11", "visto_hasta": "2026-11-04" },
+    { "patron": "motosoldadora", "motivo": "Motosoldadora Esab: no es compra de casa" },
+    { "patron": "\\besab\\b", "motivo": "Equipamiento industrial Esab, fuera de la vidriera", "visto_hasta": "2026-11-12" },
+    { "patron": "side by side", "motivo": "Heladeras side by side vistas el 03/11", "visto_hasta": "2026-11-03" }
+  ]
+}

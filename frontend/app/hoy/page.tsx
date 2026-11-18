@@ -15,7 +15,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
-import { elegirTop } from '@/lib/top3'
+import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
@@ -79,17 +79,30 @@ export default function HoyPage() {
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
-  const top3Ids = new Set(elegirTop(ofertasLight, 5).map(o => o.id_ml))
-  // Celulares y notebooks caros arriba (40 % de la ganancia en sep-oct): sin
-  // repetir las 3 destacadas; las «compras grandes» no repiten estos.
-  // Notebooks primero (panel 22-28/10: más de la mitad de la ganancia y las páginas más visitadas después de la portada)
-  const notebooks = vidrieraTecno({ cantidad: 6, excluir: top3Ids, solo: 'notebook', hasta: 2_000_000 })
-  const tecno = vidrieraTecno({ cantidad: 6, excluir: [...top3Ids, ...notebooks.map(o => o.id_ml)] })
+  // Mezcla de categorías (data/categorias-prioritarias.json, se actualiza cada día
+  // desde tendencias-hoy.md): aires, consolas, heladeras, TV, lavarropas, celulares
+  // y piletas de ticket alto y vigentes. Computación queda con su tope (~20 %).
+  const top5 = elegirMezcla(ofertasLight, 5)
+  const top3Ids = new Set(top5.map(o => o.id_ml))
+  const mezclaTendencia = elegirMezcla(ofertasLight, 6, top3Ids)
+  const sacarIds = ofertasLight.filter(esExcluidaDeDestacados).map(o => o.id_ml)
+  const usadosMezcla = new Set([...top3Ids, ...mezclaTendencia.map(o => o.id_ml), ...sacarIds])
+  const comprasGrandes = elegirMezcla(ofertasLight, 3, usadosMezcla)
+  const usadosTodos = [...usadosMezcla, ...comprasGrandes.map(o => o.id_ml)]
+  // Notebooks: solo lo que entra en el tope de computación sobre el total de destacados.
+  const totalDestacados = top5.length + mezclaTendencia.length + 6 + comprasGrandes.length
+  const notebooks = vidrieraTecno({
+    cantidad: Math.max(1, cupoComputacion(totalDestacados)),
+    excluir: usadosTodos,
+    solo: 'notebook',
+    hasta: 2_000_000,
+  })
+  const tecno = vidrieraTecno({ cantidad: 6, excluir: [...usadosTodos, ...notebooks.map(o => o.id_ml)], solo: 'celular' })
   const tecnoIds = new Set(tecno.map(o => o.id_ml))
-  const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml))
+  const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml) && !esExcluidaDeDestacados(o) && categoriaPrioritaria(o.titulo) !== 'computacion')
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
   // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
-  const yaMostrados = new Set([...top3Ids, ...elegirTop(ticketAlto, 3).map(o => o.id_ml)])
+  const yaMostrados = new Set([...top3Ids, ...comprasGrandes.map(o => o.id_ml)])
   const colchones = catColchones
     ? ofertasLight.filter(o => enCategoria(catColchones, o.titulo) && !yaMostrados.has(o.id_ml))
     : []
@@ -278,21 +291,14 @@ export default function HoyPage() {
 
       {/* Clarity 4-6/11: la home manda solo el 12 % a ML. Las 5 mejores de hoy,
           con botón directo, antes que cualquier otra cosa. */}
-      <TopOfertasHoy ofertas={ofertasLight} n={5} titulo="🔥 Las 5 de hoy" seccion="top5_home" id="top5-hoy" />
-
-      <VidrieraTecno
-        items={notebooks}
-        titulo="💻 Notebooks en oferta hoy"
-        bajada="Lenovo, HP, Asus, Acer, Dell, Apple: en su precio más bajo o con descuento real."
-        seccion="portada-notebooks"
-        id="notebooks-hoy"
-        atajos={[
-          { href: '/mejor/notebook-hasta-800-mil', texto: 'Hasta $800 mil' },
-          { href: '/mejor/notebook-hasta-1-millon', texto: 'Hasta $1 millón' },
-          { href: '/mejor/notebook-hasta-1-5-millones', texto: 'Hasta $1,5 millones' },
-          { href: '/comparador/notebooks', texto: 'Comparar notebooks' },
-        ]}
-        className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
+      <TopOfertasHoy ofertas={top5.length ? top5 : ofertasLight} n={5} tal_cual={top5.length > 0} titulo="🔥 Las 5 de hoy" seccion="top5_home" id="top5-hoy" />
+      <TopOfertasHoy
+        ofertas={mezclaTendencia}
+        n={6}
+        tal_cual
+        titulo="🌡️ Lo que más sube: aires, heladeras, consolas y TV"
+        seccion="mezcla_tendencias_home"
+        id="mezcla-tendencias-hoy"
       />
 
       {/* Hero: el verificador es lo primero que se ve */}
@@ -395,8 +401,8 @@ export default function HoyPage() {
         <div className="order-1 sm:order-none">
           <VidrieraTecno
             items={tecno}
-            titulo="📱💻 Celulares y notebooks en su precio más bajo"
-            bajada="iPhone, Samsung Galaxy, Motorola Edge, Xiaomi, Lenovo, HP, Asus, Dell: en su mínimo o con descuento real."
+            titulo="📱 Celulares en su precio más bajo"
+            bajada="iPhone, Samsung Galaxy, Motorola Edge, Xiaomi: en su mínimo o con descuento real."
             seccion="portada-ticket-alto"
             id="tecno-hoy"
           />
@@ -405,11 +411,27 @@ export default function HoyPage() {
       {/* Compras grandes (el tráfico de asistentes de IA llega con intención de
           ticket alto): las 3 mejores que no estén ya en el top 3. */}
       <TopOfertasHoy
-        ofertas={ticketAlto}
+        ofertas={comprasGrandes.length ? comprasGrandes : ticketAlto}
+        tal_cual={comprasGrandes.length > 0}
         titulo="💎 Compras grandes: lo mejor de hoy"
         seccion="ticket_alto_home"
         id="ticket-alto-hoy"
       />
+      <VidrieraTecno
+        items={notebooks}
+        titulo="💻 Notebooks en oferta hoy"
+        bajada="Lenovo, HP, Asus, Acer, Dell, Apple: en su precio más bajo o con descuento real."
+        seccion="portada-notebooks"
+        id="notebooks-hoy"
+        atajos={[
+          { href: '/mejor/notebook-hasta-800-mil', texto: 'Hasta $800 mil' },
+          { href: '/mejor/notebook-hasta-1-millon', texto: 'Hasta $1 millón' },
+          { href: '/mejor/notebook-hasta-1-5-millones', texto: 'Hasta $1,5 millones' },
+          { href: '/comparador/notebooks', texto: 'Comparar notebooks' },
+        ]}
+        className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
+      />
+
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />

@@ -9,7 +9,8 @@
 // (nunca se adivinan).
 import { normalizar } from '@/lib/categorias'
 import { CELU_EXCLUIR } from '@/lib/preciohoy'
-import { getOfertas } from '@/lib/productos'
+import { getOfertas, getOfertasVencidas } from '@/lib/productos'
+import { diasDesde } from '@/lib/frescura'
 import { actualizadoSeguimiento, getSeguidosPrincipales, precioActual, slugPorId } from '@/lib/seguimiento'
 
 export interface Equipo {
@@ -22,6 +23,7 @@ export interface Equipo {
   descuento: number | null // % OFF de hoy (solo si está en oferta)
   enOferta: boolean
   visto: string // última vez que lo vimos (YYYY-MM-DD)
+  dias?: number | null // días desde que se vio el precio, al armar el sitio (lib/frescura)
   url: string
   img: string | null
   historial: string | null // slug de /precio/*
@@ -279,7 +281,7 @@ export const COMPARADORES: Comparador[] = [
     slug: 'notebooks',
     categoria: 'notebooks',
     incluye: /^(notebook|laptop|macbook|apple macbook)\b|^(samsung )?galaxy book\b/,
-    excluir: ['funda', 'mochila', 'cargador', 'soporte', 'bateria', 'teclado', 'base', 'cooler', 'repuesto', 'pantalla', 'bisagra', 'flex', 'mother'],
+    excluir: ['funda', 'mochila', 'cargador', 'soporte', 'bateria', 'teclado', 'base', 'cooler', 'repuesto', 'pantalla', 'bisagra', 'flex', 'mother', 'valija', 'carry on', 'maletin', 'bolso', 'bandeja'],
     nombre: 'notebook',
     plural: 'notebooks',
     fem: true,
@@ -310,7 +312,7 @@ export const COMPARADORES: Comparador[] = [
     slug: 'smart-tv',
     categoria: 'smart-tv',
     incluye: /\b(smart ?tv|televisor|television|tv)\b/,
-    excluir: ['soporte', 'rack', 'mueble', 'control', 'cable', 'funda', 'antena', 'barra', 'parlante', 'soundbar', 'proyector', 'stick', 'streamer', 'box', 'convertidor', 'chromecast', 'pedestal', 'mesa', 'protector', 'repuesto', 'tira led', 'placa', 'fuente', 'edifier', 'monitor'],
+    excluir: ['soporte', 'rack', 'mueble', 'control', 'cable', 'funda', 'antena', 'barra', 'parlante', 'soundbar', 'proyector', 'stick', 'streamer', 'box', 'convertidor', 'chromecast', 'pedestal', 'mesa', 'protector', 'repuesto', 'tira led', 'placa', 'fuente', 'edifier', 'monitor', 'panel de tv', 'estante'],
     requiere: 'pulgadas',
     nombre: 'smart TV',
     plural: 'smart TV',
@@ -344,7 +346,11 @@ export const getComparador = (slug: string) => COMPARADORES.find(c => c.slug ===
 /** Días hacia atrás que cuenta un producto seguido como "visto hace poco". */
 const DIAS_VISTO = 7
 
-export function equiposDe(c: Comparador): Equipo[] {
+/**
+ * `conVencidas`: suma las ofertas vencidas (>14 días) y los seguidos de más de 7 días con su último precio
+ * conocido. Solo lo usa /mejor para completar hasta 3 equipos (lib/presupuesto.ts); el resto del sitio no.
+ */
+export function equiposDe(c: Comparador, conVencidas = false): Equipo[] {
   const es = (titulo: string) => {
     const t = normalizar(titulo)
     const inicio = t.split(/\s+/).slice(0, 6).join(' ')
@@ -357,7 +363,7 @@ export function equiposDe(c: Comparador): Equipo[] {
   const hoyIso = actualizadoSeguimiento() || new Date().toISOString().slice(0, 10)
   const out: Equipo[] = []
 
-  for (const o of getOfertas()) {
+  for (const o of conVencidas ? [...getOfertas(), ...getOfertasVencidas()] : getOfertas()) {
     if (!es(o.titulo) || vistos.has(clave(o.titulo))) continue
     const datos = c.parse(o.titulo)
     if (!valido(datos)) continue
@@ -371,6 +377,7 @@ export function equiposDe(c: Comparador): Equipo[] {
       descuento: o.descuento_pct ?? null,
       enOferta: true,
       visto: o.precio_visto ?? hoyIso,
+      dias: diasDesde(o.precio_visto ?? hoyIso),
       url: o.url_producto,
       img: o.url_imagen,
       historial: historial[o.id_ml] ?? null,
@@ -380,7 +387,7 @@ export function equiposDe(c: Comparador): Equipo[] {
 
   const limite = new Date(new Date(hoyIso).getTime() - DIAS_VISTO * 86_400_000).toISOString().slice(0, 10)
   for (const s of getSeguidosPrincipales()) {
-    if (s.ultimo_visto < limite || !es(s.titulo) || vistos.has(clave(s.titulo))) continue
+    if ((!conVencidas && s.ultimo_visto < limite) || !es(s.titulo) || vistos.has(clave(s.titulo))) continue
     const datos = c.parse(s.titulo)
     if (!valido(datos)) continue
     vistos.add(clave(s.titulo))
@@ -393,6 +400,7 @@ export function equiposDe(c: Comparador): Equipo[] {
       descuento: null,
       enOferta: false,
       visto: s.ultimo_visto,
+      dias: diasDesde(s.ultimo_visto),
       url: s.url,
       img: s.img,
       historial: s.slug,

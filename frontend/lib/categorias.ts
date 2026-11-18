@@ -33,6 +33,8 @@ export interface Categoria {
   intro: string
   keywords: string[]
   excluir: string[]
+  /** Exclusiones que se miran en TODO el título (accesorios que arrancan con otra palabra: "Valija … Porta Notebook"). */
+  excluirTodo?: string[]
   guia: { h: string; p: string[] }[]
   faqs: { q: string; a: string }[]
 }
@@ -1126,7 +1128,9 @@ export const CATEGORIAS: Categoria[] = [
       'ssd', 'disco', 'memoria', 'ram ', 'bateria', 'pantalla para', 'display para', 'repuesto', 'flex', 'placa',
       'limpieza', 'kit', 'candado', 'lamina', 'protector', 'skin', 'sticker', 'vinilo', 'impresora',
       'mesa', 'escritorio', 'monitor', 'parlante', 'auricular', 'para notebook', 'para laptop', 'para pc',
+      'valija', 'carry', 'bandeja', 'barra de',
     ],
+    excluirTodo: ['porta notebook', 'porta laptop', 'portanotebook', 'portalaptop'],
     guia: [
       {
         h: 'Cómo elegir una notebook',
@@ -1181,7 +1185,9 @@ export const CATEGORIAS: Categoria[] = [
       'repuesto', 'flex', 'placa', 'camara para', 'lente', 'lupa', 'palo selfie', 'cinta', 'correa',
       'reloj', 'smartwatch', 'watch', 'smart band', 'buds', 'tablet', 'tab ', 'ipad', 'consola', 'juguete',
       'para celular', 'para iphone', 'para samsung', 'para moto',
+      'microfono', 'teclado', 'porta celular', 'porta telefono',
     ],
+    excluirTodo: ['porta celular', 'porta telefono', 'portacelular'],
     guia: [
       {
         h: 'Cómo elegir un celular',
@@ -1243,7 +1249,11 @@ export function ofertasDeCategoria(cat: Categoria): ProductWithMargins[] {
 export function enCategoria(cat: Categoria, titulo: string): boolean {
   const t = normalizar(titulo)
   const inicio = t.split(/\s+/).slice(0, 4).join(' ')
-  return cat.keywords.some(k => t.includes(k)) && !cat.excluir.some(x => inicio.includes(x))
+  return (
+    cat.keywords.some(k => t.includes(k)) &&
+    !cat.excluir.some(x => inicio.includes(x)) &&
+    !(cat.excluirTodo ?? []).some(x => t.includes(x))
+  )
 }
 
 /** Nombre de la categoría para usar dentro de una frase ("ofertas de monitores"). */

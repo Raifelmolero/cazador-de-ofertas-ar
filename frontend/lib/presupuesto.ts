@@ -7,6 +7,7 @@
 // Si el título no lo dice, no suma: nunca se adivina una spec.
 import { normalizar } from '@/lib/categorias'
 import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
+import { DIAS_VIGENCIA, tramoEdad } from '@/lib/frescura'
 
 export interface Presupuesto {
   slug: string
@@ -77,27 +78,45 @@ export interface PresupuestoArmado {
 const conocida = (e: Equipo) => e.marca !== 'Otra'
 
 const cache = new Map<string, Equipo[]>()
-function equipos(slug: Presupuesto['comparador']): Equipo[] {
-  if (!cache.has(slug)) {
+const cacheConVencidas = new Map<string, Equipo[]>()
+function equipos(slug: Presupuesto['comparador'], conVencidas = false): Equipo[] {
+  const m = conVencidas ? cacheConVencidas : cache
+  if (!m.has(slug)) {
     const c = getComparador(slug)
-    cache.set(slug, c ? equiposDe(c) : [])
+    m.set(slug, c ? equiposDe(c, conVencidas) : [])
   }
-  return cache.get(slug)!
+  return m.get(slug)!
 }
+
+/** Último precio conocido de más de DIAS_VIGENCIA días (solo completan hasta 3 en /mejor). */
+const vencido = (e: Equipo) => (e.dias ?? 0) > DIAS_VIGENCIA
 
 export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
   // Solo lo que entra en el presupuesto y del que sabemos algo más que el precio.
   // Solo equipos nuevos: nada de usados ni reacondicionados.
-  const xs = equipos(p.comparador).filter(e => e.precio <= p.hasta && puntaje(p.comparador, e) > 0 && !USADOS.test(normalizar(e.titulo)))
+  const sirve = (e: Equipo) => e.precio <= p.hasta && puntaje(p.comparador, e) > 0 && !USADOS.test(normalizar(e.titulo))
+  const xs = equipos(p.comparador).filter(sirve)
+  if (xs.length < MIN_EQUIPOS) {
+    // Decisión 16/11: la página no se oculta. Se completa hasta MIN_EQUIPOS con el último precio conocido
+    // (los más recientes primero); la página los rotula «Precio visto hace N días» y van después de los vigentes.
+    const ids = new Set(xs.map(e => e.id))
+    const extra = equipos(p.comparador, true)
+      .filter(e => !ids.has(e.id) && sirve(e))
+      .sort((a, b) => (a.dias ?? 0) - (b.dias ?? 0) || puntaje(p.comparador, b) - puntaje(p.comparador, a))
+      .slice(0, MIN_EQUIPOS - xs.length)
+    xs.push(...extra)
+  }
   if (xs.length < MIN_EQUIPOS) return null
-  const orden = [...xs].sort((a, b) => puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
+  // Primero los de precio reciente (hasta 7 días); los de precio viejo van después aunque rindan más,
+  // así lo «recomendado de hoy» no sale de un precio de hace dos semanas.
+  const orden = [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
   const marcas = orden.filter(conocida)
   return {
     p,
     equipos: orden,
     recomendado: marcas[0] ?? orden[0],
     franjaAlta: marcas.filter(e => e.precio >= p.hasta * 0.6).slice(0, 3),
-    masBarato: [...xs].sort((a, b) => a.precio - b.precio)[0],
+    masBarato: [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || a.precio - b.precio)[0],
     enMinimo: orden.filter(e => e.minimo !== null && e.precio <= e.minimo).slice(0, 5),
   }
 }

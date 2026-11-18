@@ -2,6 +2,7 @@ import { normalizar } from '@/lib/categorias'
 import fs from 'fs'
 import path from 'path'
 import { CARGO_REFERENCIA, costoFijo, netoML } from '@/lib/costosml'
+import { precioVencido } from '@/lib/frescura'
 
 export interface ProductWithMargins {
   id_ml: string
@@ -92,14 +93,28 @@ export function getProductoById(id: string): ProductWithMargins | undefined {
 
 // Ofertas para compradores (/hoy): primero las de mayor ganancia esperada
 // (ticket × comisión, calculada por el bot), después por % OFF.
+// Sin las ofertas vencidas: más de DIAS_VIGENCIA días desde que se vio el precio (lib/frescura).
+// El bot ya las poda al escribir el JSON, pero entre corridas y el deploy agrupado el sitio puede
+// quedar con precios más viejos que eso: una oferta vencida no se muestra en ninguna página.
 export function getOfertas(): ProductWithMargins[] {
-  const items = readJson().items as ProductWithMargins[]
+  const items = (readJson().items as ProductWithMargins[]).filter(o => !precioVencido(o.precio_visto))
   return items.sort(
     (a, b) =>
       (b.prioridad ?? 0) - (a.prioridad ?? 0) ||
       Number(b.minimo_historico ?? false) - Number(a.minimo_historico ?? false) ||
       (b.descuento_pct ?? 0) - (a.descuento_pct ?? 0)
   )
+}
+
+/**
+ * Solo las ofertas vencidas (más de DIAS_VIGENCIA días desde que se vio el precio), más recientes primero.
+ * Único uso: completar /mejor/[slug] hasta 3 equipos con el último precio conocido (decisión 16/11).
+ * Ninguna otra página las muestra.
+ */
+export function getOfertasVencidas(): ProductWithMargins[] {
+  return (readJson().items as ProductWithMargins[])
+    .filter(o => precioVencido(o.precio_visto))
+    .sort((a, b) => String(b.precio_visto).localeCompare(String(a.precio_visto)))
 }
 
 export function getScrapedAt(): Date {

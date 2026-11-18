@@ -44,7 +44,7 @@ export const TEMPORADAS: Temporada[] = [
   },
   {
     id: 'cyber',
-    href: '/cyber-monday',
+    href: '/black-friday',
     titulo: `💻 Cyber Monday: ${CYBER_MONDAY.oficial ? CYBER_MONDAY.fechasTexto : 'fechas a confirmar'}`,
     bajada: 'Cada oferta contra su precio más bajo registrado → ver cuáles bajaron de verdad',
     caja: 'border-cyan-400/30 bg-cyan-500/10 hover:border-cyan-400/60',
@@ -52,7 +52,7 @@ export const TEMPORADAS: Temporada[] = [
     desde: '2026-10-19',
     hasta: CYBER_MONDAY.fin,
     escena: '/personaje/escena-cyber-monday.webp',
-    agenda: { href: '/cyber-monday/agenda.ics', inicio: CYBER_MONDAY.inicio },
+    agenda: { href: '/black-friday/agenda.ics', inicio: CYBER_MONDAY.inicio },
   },
   {
     id: 'blackfriday',

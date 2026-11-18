@@ -301,18 +301,36 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-heladera-comprar',
-    titulo: '¿Qué heladera comprar? No frost o cíclica, litros por persona y etiqueta energética',
+    titulo: '¿Qué heladera comprar en 2026? No frost o cíclica, litros por persona e inverter',
     descripcion:
-      'Cómo elegir una heladera en Argentina: no frost o cíclica, cuántos litros según las personas, freezer, medidas y cómo leer la etiqueta de eficiencia energética.',
+      'Cómo elegir una heladera en Argentina en 2026: no frost, cíclica o inverter, cuántos litros según las personas, freezer, medidas, etiqueta energética y cómo comprarla en el Black Friday (27/11) sin caer en descuentos de cartel.',
     pregunta: '¿Qué heladera conviene comprar?',
     respuestaCorta:
-      'Elegí primero la capacidad (como referencia orientativa, 250 a 300 litros suelen alcanzar para una familia chica; con más personas, más litros) y después el sistema: no frost si no querés descongelar nunca, cíclica si buscás precio. Como la heladera está enchufada las 24 horas, la etiqueta de eficiencia energética (obligatoria en Argentina) pesa más que en casi cualquier otro electrodoméstico: compará el consumo anual en kWh que figura en ella.',
+      'Elegí primero la capacidad (como referencia orientativa, 250 a 300 litros suelen alcanzar para una familia chica; con más personas o compras grandes, más litros) y después el sistema: no frost si no querés descongelar nunca, cíclica si buscás el precio más bajo. Si la vas a tener muchos años, una con compresor inverter suele gastar menos luz y hacer menos ruido. Como está enchufada las 24 horas, compará el consumo anual en kWh de la etiqueta de eficiencia energética, obligatoria en Argentina.',
+    tabla: {
+      titulo: 'Cíclica, no frost, inverter o side by side: cuál te conviene',
+      columnas: ['Tipo', 'Cómo funciona', 'A favor', 'En contra', 'Para quién'],
+      filas: [
+        ['Cíclica', 'El freezer junta escarcha y se descongela a mano cada tanto', 'Es la más barata y suele gastar menos luz', 'Hay que descongelarla; el hielo le quita espacio al freezer', 'Presupuesto ajustado, 1 a 2 personas'],
+        ['No frost', 'Un ventilador reparte el frío y no se forma hielo', 'Nunca se descongela; frío más parejo', 'Cuesta más; lo que no está tapado se reseca antes', 'Familias que no quieren mantenimiento'],
+        ['No frost inverter', 'El compresor regula la velocidad en vez de prender y apagar', 'Suele consumir menos y hacer menos ruido', 'Precio de entrada más alto', 'Quien la va a usar muchos años y mira la factura de luz'],
+        ['Side by side', 'Heladera y freezer en dos puertas verticales, uno al lado del otro', 'Mucho volumen; suele traer dispenser de agua o hielo', 'Necesita un hueco ancho; es la más cara', 'Familias grandes o quien congela mucho'],
+      ],
+      nota: 'Orientativo: el consumo real de cada modelo está en su etiqueta de eficiencia energética (kWh por año). Los precios de hoy están en la comparativa de abajo.',
+    },
     secciones: [
       {
         h: 'No frost o cíclica',
         p: [
           'No frost: un ventilador distribuye el frío y no se forma escarcha, así que no hay que descongelarla. Suele costar más.',
           'Cíclica: acumula hielo en el freezer y cada tanto hay que descongelarla a mano. Es más económica de entrada.',
+        ],
+      },
+      {
+        h: '¿Conviene una heladera inverter?',
+        p: [
+          'El compresor inverter ajusta su velocidad según el frío que hace falta, en lugar de arrancar y cortar todo el tiempo. Por eso suele gastar menos energía, hacer menos ruido y mantener la temperatura más estable.',
+          'Cuesta más de entrada. Para saber si se paga sola, compará el consumo anual en kWh de la etiqueta entre la inverter y la común, y pasá la diferencia a la calculadora de consumo eléctrico con tu precio del kWh: así ves cuántos meses tardás en recuperar lo que pagaste de más.',
         ],
       },
       {
@@ -329,6 +347,13 @@ export const GUIAS: Guia[] = [
           'Medí el hueco (alto, ancho y profundidad), dejá espacio atrás y a los costados para ventilación y comprobá que pase por puertas y pasillos. Fijate también hacia qué lado abre la puerta y si se puede invertir.',
         ],
       },
+      {
+        h: 'Comprar la heladera en el Black Friday 2026',
+        p: [
+          'El Black Friday 2026 es el viernes 27 de noviembre y el Cyber Monday, el lunes 30. Es una buena fecha para electrodomésticos grandes por las cuotas y los envíos, pero algunas tiendas suben el precio de lista las semanas previas para mostrar un % OFF más grande.',
+          'Antes de comprar, definí la capacidad y el sistema que querés, y compará el precio del día contra el mínimo registrado en nuestra comparativa de heladeras del Black Friday: si ya estuvo igual de barata en un día común, el descuento es de cartel. Sumá el costo del envío y revisá la garantía del fabricante.',
+        ],
+      },
     ],
     categoria: { slug: 'heladeras', nombre: 'heladeras' },
     comparativa: 'mejores-heladeras',
@@ -343,6 +368,14 @@ export const GUIAS: Guia[] = [
         a: 'La no frost no forma escarcha y no hay que descongelarla; la cíclica acumula hielo y hay que descongelarla cada tanto, pero suele ser más barata.',
       },
       {
+        q: '¿Conviene comprar una heladera inverter?',
+        a: 'Si la vas a usar muchos años, suele convenir: el compresor inverter regula su velocidad, gasta menos luz y hace menos ruido. Cuesta más de entrada, así que compará el consumo anual en kWh de la etiqueta contra una común para ver en cuánto tiempo recuperás la diferencia.',
+      },
+      {
+        q: '¿Conviene comprar la heladera en el Black Friday?',
+        a: 'Puede convenir por las cuotas y los envíos, pero no por el % OFF de cartel: algunas tiendas suben el precio de lista antes del 27 de noviembre. Compará el precio del día con el mínimo registrado; si ya estuvo igual de barata antes, esperar no te ahorra nada.',
+      },
+      {
         q: '¿Cómo leo la etiqueta de eficiencia energética de una heladera?',
         a: 'La etiqueta, obligatoria en Argentina, muestra la clase de eficiencia con letras (las primeras son las más eficientes) y el consumo de energía anual en kWh. Para comparar dos heladeras, mirá ese consumo anual: menos kWh es menos gasto de luz.',
       },
@@ -353,8 +386,9 @@ export const GUIAS: Guia[] = [
     ],
     enlaces: [
       { href: '/mejores/mejores-heladeras', texto: 'Comparativa de heladeras' },
+      { href: '/mejores/black-friday-heladeras', texto: 'Heladeras en el Black Friday 🖤' },
       { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
-      { href: '/guias/que-lavavajillas-comprar', texto: 'Qué lavavajillas comprar' },
+      { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
     fuentes: [
@@ -2757,7 +2791,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-es-el-minimo-historico-en-mercado-libre': { publicada: '2026-09-23', modificada: '2026-09-23' },
   'cupones-y-codigos-de-descuento-de-mercado-libre-argentina': { publicada: '2026-09-23', modificada: '2026-09-23' },
   'cuantas-frigorias-necesito-aire-acondicionado': { publicada: '2026-09-23', modificada: '2026-09-30' },
-  'que-heladera-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
+  'que-heladera-comprar': { publicada: '2026-09-30', modificada: '2026-11-18' },
   'que-lavarropas-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },
   'que-lavavajillas-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'que-freidora-de-aire-comprar': { publicada: '2026-09-30', modificada: '2026-09-30' },

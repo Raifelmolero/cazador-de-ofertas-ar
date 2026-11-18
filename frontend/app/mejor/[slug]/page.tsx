@@ -13,6 +13,7 @@ import { getComparador, type Equipo } from '@/lib/comparador'
 import { armarPresupuesto, getPresupuesto, presupuestosConEquipos, type PresupuestoArmado } from '@/lib/presupuesto'
 import { duelosConPrecio } from '@/lib/vs'
 import { etapaBlackFriday } from '@/lib/cybermonday'
+import { etiquetaEdad } from '@/lib/frescura'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -78,6 +79,7 @@ function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
           <strong className="text-yellow-400">{pesos(e.precio)}</strong>
           {e.descuento ? <span className="ml-1 text-emerald-400">{e.descuento}% OFF</span> : null}
         </p>
+        {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
         {e.minimo ? (
           <p className="text-xs text-zinc-500">
             Más bajo registrado: {pesos(e.minimo)}
@@ -224,7 +226,10 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
                   {e.titulo}
                   {specsDe(e) && <span className="block text-xs text-zinc-500">{specsDe(e)}</span>}
                 </a>
-                <strong className="whitespace-nowrap text-yellow-400">{pesos(e.precio)}</strong>
+                <span className="whitespace-nowrap text-right">
+                  <strong className="text-yellow-400">{pesos(e.precio)}</strong>
+                  {e.dias != null && e.dias >= 2 && <span className="block text-[11px] text-amber-300/90">hace {e.dias} días</span>}
+                </span>
               </li>
             ))}
           </ol>

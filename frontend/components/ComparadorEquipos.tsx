@@ -7,6 +7,7 @@
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import type { Equipo, FiltroSpec, Rango } from '@/lib/comparador'
+import { etiquetaEdad } from '@/lib/frescura'
 
 const pesos = (n: number) => `$${n.toLocaleString('es-AR')}`
 const diaMes = (iso: string) => iso.slice(8, 10) + '/' + iso.slice(5, 7)
@@ -246,6 +247,7 @@ export default function ComparadorEquipos({
                   {e.enOferta && e.descuento ? <span className="ml-1.5 text-emerald-300 font-semibold">{e.descuento}% OFF</span> : null}
                   {!e.enOferta && <span className="ml-1.5 text-zinc-500 text-xs">visto el {diaMes(e.visto)}</span>}
                 </p>
+                {e.enOferta && etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
                 {e.minimo ? (
                   <p className="text-xs text-zinc-400">
                     Más bajo registrado: <span className="text-cyan-300">{pesos(e.minimo)}</span>

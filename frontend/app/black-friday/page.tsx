@@ -20,6 +20,7 @@ import TarjetaBF from '@/components/black-friday/TarjetaBF'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getOfertas } from '@/lib/productos'
 import { ticketAltoPrimero } from '@/lib/ofertashoy'
+import { categoriaPrioritaria, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { slugPorId } from '@/lib/seguimiento'
 
@@ -31,7 +32,13 @@ function ofertasRespaldo(): OfertaLight[] {
   const bf = getComparativa('ofertas-black-friday')
   const deBF = bf ? productosDe(bf) : []
   const historial = slugPorId()
-  return ticketAltoPrimero(deBF.length >= 4 ? deBF : getOfertas())
+  const base = ticketAltoPrimero(deBF.length >= 4 ? deBF : getOfertas())
+  // Mezcla de categorías prioritarias primero (aires, heladeras, TV, consolas...);
+  // se completa con el orden de siempre, sin computación de más ni lo que hay que sacar.
+  const mezcla = elegirMezcla(base, MAX_RESPALDO)
+  const ids = new Set(mezcla.map(o => o.id_ml))
+  const resto = base.filter(o => !ids.has(o.id_ml) && !esExcluidaDeDestacados(o) && categoriaPrioritaria(o.titulo) !== 'computacion')
+  return [...mezcla, ...resto]
     .slice(0, MAX_RESPALDO)
     .map(o => ({
       id_ml: o.id_ml,

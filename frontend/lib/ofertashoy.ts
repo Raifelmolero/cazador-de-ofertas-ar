@@ -5,6 +5,7 @@ import type { OfertaLight } from '@/components/OfertaCard'
 import { getOfertas } from '@/lib/productos'
 import { slugPorId } from '@/lib/seguimiento'
 import { enCategoria, getCategoria } from '@/lib/categorias'
+import { esExcluidaDeDestacados } from '@/lib/prioridades'
 
 // "La caza del día" (la 1ª tarjeta) la ve casi todo el que entra desde la bio:
 // que sea algo de casa con buen descuento, no equipamiento industrial.
@@ -38,7 +39,12 @@ export function ticketAltoPrimero<T extends { titulo: string; precio_actual: num
 
 export function ofertasHoyLight(): OfertaLight[] {
   const historial = slugPorId()
-  return conDestacada(ticketAltoPrimero(getOfertas())).map(o => ({
+  // Lo que tendencias-hoy.md manda sacar (data/categorias-prioritarias.json)
+  // baja al final de la grilla en vez de encabezarla.
+  const ordenadas = ticketAltoPrimero(getOfertas())
+  const sacar = ordenadas.filter(esExcluidaDeDestacados)
+  const lista = sacar.length ? [...ordenadas.filter(o => !esExcluidaDeDestacados(o)), ...sacar] : ordenadas
+  return conDestacada(lista).map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
     precio_actual: o.precio_actual,

@@ -17,14 +17,17 @@ export default function TopOfertasHoy({
   seccion = 'top3_home',
   id = 'top3-hoy',
   n = 3,
+  tal_cual = false,
 }: {
   ofertas: OfertaLight[]
   n?: number
+  /** la lista ya viene elegida y ordenada (mezcla de categorías): no reordenar por descuento */
+  tal_cual?: boolean
   titulo?: string
   seccion?: string
   id?: string
 }) {
-  const top = elegirTop(ofertas, n)
+  const top = tal_cual ? ofertas.slice(0, n) : elegirTop(ofertas, n)
   if (top.length === 0) return null
   return (
     <section aria-labelledby={id} data-seccion={seccion} className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">

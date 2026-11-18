@@ -112,6 +112,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [mejor notebook hasta $1 millón](https://cazadordeofertas.com.ar/mejor/notebook-hasta-1-millon),
   [mejor smart TV hasta $800 mil](https://cazadordeofertas.com.ar/mejor/smart-tv-hasta-800-mil)
   (más montos en /mejor/<celular|notebook|smart-tv>-hasta-<monto>).
+  Guía de compra de aires: [frigorías según m², inverter vs on/off y aires en oferta](https://cazadordeofertas.com.ar/mejor/aires-acondicionados).
 - Secciones por rubro (ofertas + comparativas + guías + historial):
   [herramientas](https://cazadordeofertas.com.ar/herramientas),
   [hogar](https://cazadordeofertas.com.ar/hogar),

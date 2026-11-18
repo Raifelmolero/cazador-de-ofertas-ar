@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-17T22:51:27+00:00",
+  "generado": "2026-11-18T05:45:47+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,25 +8,25 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-17T22:51:26+00:00",
+      "ultima_actividad": "2026-11-18T05:45:45+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11612 productos en la última corrida"
+          "tarea": "Revisó 10505 productos en la última corrida"
         }
       ],
       "metricas": [
-        {
-          "label": "Facebook",
-          "valor": 6
-        },
         {
           "label": "Telegram",
           "valor": 3
         },
         {
+          "label": "Facebook",
+          "valor": 3
+        },
+        {
           "label": "Instagram",
-          "valor": 2
+          "valor": 1
         },
         {
           "label": "Threads",
@@ -34,7 +34,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Acer Nitro V 15 AMD Ryzen 7 32GB RAM 1TB SSD GeForce RTX 4050"
+      "ultimo_trabajo": "Hp Victus 15.6 I5 - Laptop Para Juegos, 15.6 Pulgadas Fhd"
     },
     {
       "id": "investigacion",

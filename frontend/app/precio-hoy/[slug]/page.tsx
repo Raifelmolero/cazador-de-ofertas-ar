@@ -180,14 +180,25 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               <p className="text-xl sm:text-2xl font-black text-yellow-300">{precio(min)}</p>
               <p className="text-xs text-zinc-400 mt-1">el más barato hoy ↗</p>
             </a>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
+            {/* Clarity 16-18/11: 7 clics muertos en /precio-hoy/smart-tv-55-pulgadas,
+                se tocaban estos recuadros como botones. Ahora llevan a ML / a la tabla. */}
+            <a
+              href={busquedaML(p.busqueda)}
+              data-seccion="preciohoy_mediana"
+              target="_blank"
+              rel="sponsored nofollow noopener"
+              className="rounded-xl border border-zinc-800 bg-zinc-900 hover:border-yellow-400/60 p-3 transition-colors"
+            >
               <p className="text-xl sm:text-2xl font-black">{precio(med)}</p>
-              <p className="text-xs text-zinc-400 mt-1">mediana</p>
-            </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
+              <p className="text-xs text-zinc-400 mt-1">mediana · ver todos ↗</p>
+            </a>
+            <a
+              href="#los-mas-baratos"
+              className="rounded-xl border border-zinc-800 bg-zinc-900 hover:border-yellow-400/60 p-3 transition-colors"
+            >
               <p className="text-xl sm:text-2xl font-black">{ofertas.length}</p>
-              <p className="text-xs text-zinc-400 mt-1">ofertas reales hoy</p>
-            </div>
+              <p className="text-xs text-zinc-400 mt-1">ofertas reales hoy ↓</p>
+            </a>
           </div>
         )}
 
@@ -221,7 +232,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         </div>
 
         {ofertas.length > 0 && (
-          <section className="mb-8">
+          <section id="los-mas-baratos" data-seccion="preciohoy_tabla" className="mb-8 scroll-mt-4">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Los más baratos hoy</h2>
             <div className="overflow-x-auto rounded-xl border border-zinc-800">
               <table className="w-full text-sm">
@@ -280,9 +291,13 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
                       <td className="px-3 py-2">
                         <a href={`/precio/${s.slug}`} className="text-yellow-400/80 hover:text-yellow-400">{s.titulo}</a>
                       </td>
-                      <td className="px-3 py-2 whitespace-nowrap">{precio(precioActual(s))}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
+                        <a href={`/precio/${s.slug}`} className="block hover:text-yellow-400">{precio(precioActual(s))}</a>
+                      </td>
                       <td className="px-3 py-2 whitespace-nowrap text-zinc-400">
-                        {precio(s.min)} <span className="text-xs">({fecha(s.min_ts)})</span>
+                        <a href={`/precio/${s.slug}`} className="block hover:text-yellow-400">
+                          {precio(s.min)} <span className="text-xs">({fecha(s.min_ts)})</span>
+                        </a>
                       </td>
                     </tr>
                   ))}

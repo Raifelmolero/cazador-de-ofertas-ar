@@ -1462,18 +1462,18 @@ export const GUIAS_TECNO: Guia[] = [
   // ── 9/11: consolas (Analista de Tendencias: Consolas y Videojuegos +98 % en ML) ──
   {
     slug: 'que-consola-comprar-black-friday',
-    titulo: 'Qué consola comprar en el Black Friday 2026: PlayStation 5, Nintendo Switch 2 o Xbox',
+    titulo: 'Qué consola comprar en el Black Friday 2026: PS5 Slim, Nintendo Switch 2 o Xbox',
     descripcion:
-      'Qué consola comprar en 2026: PS5 con lectora o digital, PS5 Pro, Nintendo Switch 2 o Xbox Series. Para quién conviene cada una, qué revisar en la publicación y cómo saber si el descuento del Black Friday es real.',
+      'Qué consola comprar en el Black Friday 2026: PS5 Slim Standard o Digital, PS5 Pro, Nintendo Switch 2 o Xbox Series. Para quién conviene cada una, cómo comparar los combos con juegos y cómo saber si el descuento es real.',
     pregunta: '¿Qué consola conviene comprar en el Black Friday 2026?',
     respuestaCorta:
-      'Depende de para quién es y de qué juegos quiere: la PlayStation 5 es la más elegida para fútbol, acción y juego online con amigos; la Nintendo Switch 2 se usa también portátil y es la mejor para jugar en familia con chicos; la Xbox Series conviene si vas a usar Game Pass. En noviembre las consolas son de lo que más crece en Mercado Libre: compará el precio de hoy con el más bajo registrado antes de comprar, y fijate que sea la versión que creés (con lectora o digital, y con o sin juego incluido).',
+      'Depende de para quién es y de qué juegos quiere: la PlayStation 5 —hoy se vende como PS5 Slim, Standard (con lectora) o Digital— es la más elegida para fútbol, acción y juego online con amigos; la Nintendo Switch 2 se usa también portátil y es la mejor para jugar en familia con chicos; la Xbox Series conviene si vas a usar Game Pass. En noviembre las consolas son de lo que más crece en Mercado Libre: compará el precio de hoy con el más bajo registrado antes de comprar, y fijate que sea la versión que creés (con lectora o digital, y con o sin juego incluido).',
     tabla: {
       titulo: 'PS5, Switch 2 o Xbox: para quién es cada una',
       columnas: ['Consola', 'Conviene si…', 'Ojo con'],
       filas: [
-        ['PlayStation 5 (con lectora)', 'querés juegos físicos, usados o prestados, y fútbol y acción', 'que diga "con lectora" o "edición estándar"'],
-        ['PlayStation 5 Digital', 'comprás todo online y querés ahorrar en la consola', 'no lee discos: los juegos físicos no sirven'],
+        ['PS5 Slim Standard (con lectora)', 'querés juegos físicos, usados o prestados, y fútbol y acción', 'que diga "Standard" o "con lectora"; mirá si el combo trae juegos'],
+        ['PS5 Slim Digital', 'comprás todo online y querés ahorrar en la consola', 'no lee discos: los juegos físicos no sirven'],
         ['PlayStation 5 Pro', 'tenés un TV 4K grande y querés la mejor imagen', 'es la más cara y no trae lectora de serie'],
         ['Nintendo Switch 2', 'es para chicos o para jugar en familia, y también portátil', 'que sea Switch 2 y no la Switch original'],
         ['Xbox Series X / S', 'vas a usar Game Pass (catálogo por suscripción)', 'la Series S es más chica y no tiene lectora'],
@@ -1481,6 +1481,15 @@ export const GUIAS_TECNO: Guia[] = [
       nota: 'Comparación orientativa. El precio real de cada consola cambia todos los días: miralo en las ofertas gamer de abajo.',
     },
     secciones: [
+      {
+        h: 'PS5 Slim: Standard, Digital o combo con juegos',
+        p: [
+          'La PS5 que se vende hoy en Argentina es casi siempre la Slim: más chica y liviana que la primera PS5, con 1 TB de almacenamiento según Sony. Viene en dos versiones: Standard, con lectora de discos, y Digital, sin lectora. Las dos tienen la misma potencia y corren los mismos juegos; la diferencia es solo cómo los comprás.',
+          'La Digital se puede pasar a Standard más adelante comprando aparte la lectora oficial de Sony, que se enchufa a la consola. Si no sabés si vas a querer juegos físicos, la Standard te ahorra ese paso; si ya comprás todo en la tienda online, la Digital es la opción más barata.',
+          'En noviembre la PS5 es de los productos más buscados en Mercado Libre y aparecen muchos combos: consola con uno o dos juegos (Astro Bot, Gran Turismo 7, Fortnite), con un segundo joystick DualSense o con suscripción. Para comparar bien, restá lo que valen por separado los juegos o el joystick que no ibas a comprar: un combo más caro puede salir mejor que la consola sola, o al revés.',
+          'Fijate que el título y la ficha digan lo mismo: algunas publicaciones dicen "PS5 Slim" en el título pero son la versión Digital, o son la PS5 original de 2020 (más grande). El modelo figura en la ficha técnica o en la caja (los de la Slim empiezan con CFI-20).',
+        ],
+      },
       {
         h: 'Qué revisar en la publicación',
         p: [
@@ -1513,6 +1522,14 @@ export const GUIAS_TECNO: Guia[] = [
         a: 'Con lectora si vas a comprar juegos físicos, usados o prestados; la digital es más barata pero solo usa juegos descargados de la tienda online.',
       },
       {
+        q: '¿Qué diferencia hay entre la PS5 Slim Standard y la Digital?',
+        a: 'Solo la lectora de discos: la Standard lee juegos físicos y la Digital no. La potencia y los juegos son los mismos. A la Digital se le puede agregar después la lectora oficial de Sony, que se compra aparte.',
+      },
+      {
+        q: '¿Conviene la PS5 Slim sola o en combo con juegos?',
+        a: 'Conviene el combo si los juegos que trae son los que ibas a comprar igual: restá lo que valen por separado y compará. Si no te interesan, la consola sola suele salir mejor.',
+      },
+      {
         q: '¿Qué consola conviene para chicos?',
         a: 'La Nintendo Switch 2: se juega en el TV y también portátil, tiene muchos juegos para toda la familia y control parental desde el celular.',
       },
@@ -1527,6 +1544,7 @@ export const GUIAS_TECNO: Guia[] = [
     ],
     enlaces: [
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
+      { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
       { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
@@ -1783,10 +1801,12 @@ export const GUIAS_TECNO: Guia[] = [
 ]
 
 const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
+// Guías revisadas después de publicarse (dateModified del JSON-LD).
+const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19' }
 
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_TECNO.map(g => {
     const f = FECHA_GUIA_TECNO[g.slug] ?? '2026-10-23'
-    return [g.slug, { publicada: f, modificada: f }]
+    return [g.slug, { publicada: f, modificada: FECHA_MOD_GUIA_TECNO[g.slug] ?? f }]
   }),
 )

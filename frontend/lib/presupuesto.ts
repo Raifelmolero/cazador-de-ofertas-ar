@@ -6,7 +6,7 @@
 // pulgadas, resolución, panel).
 // Si el título no lo dice, no suma: nunca se adivina una spec.
 import { normalizar } from '@/lib/categorias'
-import { equiposDe, getComparador, USADOS, type Equipo } from '@/lib/comparador'
+import { equiposDe, getComparador, rangoOficial, USADOS, type Equipo } from '@/lib/comparador'
 import { DIAS_VIGENCIA, tramoEdad } from '@/lib/frescura'
 
 export interface Presupuesto {
@@ -109,14 +109,23 @@ export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
   if (xs.length < MIN_EQUIPOS) return null
   // Primero los de precio reciente (hasta 7 días); los de precio viejo van después aunque rindan más,
   // así lo «recomendado de hoy» no sale de un precio de hace dos semanas.
-  const orden = [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || puntaje(p.comparador, b) - puntaje(p.comparador, a) || a.precio - b.precio)
+  // Smart TV: a igual puntaje (o igual precio) va primero la de tienda oficial, después «sin dato», al final las no oficiales
+  // (rangoOficial es 1 para todos en los demás rubros, así que ahí no cambia nada).
+  const orden = [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || puntaje(p.comparador, b) - puntaje(p.comparador, a) || rangoOficial(a) - rangoOficial(b) || a.precio - b.precio)
   const marcas = orden.filter(conocida)
+  // «Recomendado»: si hay una TV oficial con puntaje hasta 10 % menor que la primera (y misma frescura), se prefiere esa.
+  let recomendado = marcas[0] ?? orden[0]
+  if (p.comparador === 'smart-tv' && marcas[0] && marcas[0].tienda_oficial !== true) {
+    const top = puntaje(p.comparador, marcas[0])
+    const oficial = marcas.find(e => e.tienda_oficial === true && tramoEdad(e.dias) === tramoEdad(marcas[0].dias) && vencido(e) === vencido(marcas[0]) && puntaje(p.comparador, e) >= top * 0.9)
+    if (oficial) recomendado = oficial
+  }
   return {
     p,
     equipos: orden,
-    recomendado: marcas[0] ?? orden[0],
+    recomendado,
     franjaAlta: marcas.filter(e => e.precio >= p.hasta * 0.6).slice(0, 3),
-    masBarato: [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || a.precio - b.precio)[0],
+    masBarato: [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || a.precio - b.precio || rangoOficial(a) - rangoOficial(b))[0],
     enMinimo: orden.filter(e => e.minimo !== null && e.precio <= e.minimo).slice(0, 5),
   }
 }

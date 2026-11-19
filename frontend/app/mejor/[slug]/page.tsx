@@ -75,6 +75,7 @@ function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
           {e.titulo}
         </a>
         {specsDe(e) && <p className="text-xs text-zinc-400">{specsDe(e)}</p>}
+        {e.tienda_oficial === true && <p><span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] text-emerald-300">Tienda oficial</span></p>}
         <p>
           <strong className="text-yellow-400">{pesos(e.precio)}</strong>
           {e.descuento ? <span className="ml-1 text-emerald-400">{e.descuento}% OFF</span> : null}

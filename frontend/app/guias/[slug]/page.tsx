@@ -31,6 +31,8 @@ import { equiposDeGuia, guiaIndexable } from '@/lib/guias-equipos'
 import { etiquetaEdad } from '@/lib/frescura'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
+import CajaQueConviene from '@/components/CajaQueConviene'
+import { cajaDeGuia } from '@/lib/queconviene'
 
 const GUIAS_TITULO_PRECIO = new Set(['mejor-celular-para-jugar', 'que-motorola-comprar-moto-g-o-edge'])
 
@@ -101,6 +103,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   ])
   const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
+  const queConviene = cajaDeGuia(g)
   const cta = ctaDeGuia(g)
   // Bloque Black Friday 2026: solo hasta el viernes 27/11 (hora argentina). Link a la comparativa
   // del rubro únicamente si existe en lib/comparativas.ts.
@@ -180,6 +183,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-6 [text-wrap:balance]">
           {g.titulo}
         </h1>
+
+        {/* Propuesta 1 (19/11): guías que más entran de Google, producto con botón en la primera pantalla. */}
+        <CajaQueConviene items={queConviene} seccion="queconviene_guia" className="mb-6" />
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>

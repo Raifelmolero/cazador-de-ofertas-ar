@@ -17,6 +17,8 @@ import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
+import CajaQueConviene from '@/components/CajaQueConviene'
+import { ofertasVerificadasHome } from '@/lib/queconviene'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
@@ -82,13 +84,17 @@ export default function HoyPage() {
   // Mezcla de categorías (data/categorias-prioritarias.json, se actualiza cada día
   // desde tendencias-hoy.md): aires, consolas, heladeras, TV, lavarropas, celulares
   // y piletas de ticket alto y vigentes. Computación queda con su tope (~20 %).
-  const top5 = elegirMezcla(ofertasLight, 5)
+  // Propuesta 1 (19/11): notebook, TV y aire con precio reciente, arriba de todo.
+  // Esos ids no se repiten en «Las 5 de hoy» ni en la vidriera de notebooks.
+  const verificadas = ofertasVerificadasHome(ofertasLight)
+  const verificadasIds = verificadas.map(v => v.id)
+  const top5 = elegirMezcla(ofertasLight, 5, verificadasIds)
   const top3Ids = new Set(top5.map(o => o.id_ml))
   const mezclaTendencia = elegirMezcla(ofertasLight, 6, top3Ids)
   const sacarIds = ofertasLight.filter(esExcluidaDeDestacados).map(o => o.id_ml)
   const usadosMezcla = new Set([...top3Ids, ...mezclaTendencia.map(o => o.id_ml), ...sacarIds])
   const comprasGrandes = elegirMezcla(ofertasLight, 3, usadosMezcla)
-  const usadosTodos = [...usadosMezcla, ...comprasGrandes.map(o => o.id_ml)]
+  const usadosTodos = [...usadosMezcla, ...comprasGrandes.map(o => o.id_ml), ...verificadasIds]
   // Notebooks: solo lo que entra en el tope de computación sobre el total de destacados.
   const totalDestacados = top5.length + mezclaTendencia.length + 6 + comprasGrandes.length
   const notebooks = vidrieraTecno({
@@ -288,6 +294,12 @@ export default function HoyPage() {
         </div>
         <AtajosCelular />
       </header>
+
+      {verificadas.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+          <CajaQueConviene items={verificadas} titulo="Ofertas verificadas de hoy" seccion="verificadas_home" />
+        </div>
+      )}
 
       {/* Clarity 4-6/11: la home manda solo el 12 % a ML. Las 5 mejores de hoy,
           con botón directo, antes que cualquier otra cosa. */}

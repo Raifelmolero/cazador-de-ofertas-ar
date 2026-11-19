@@ -18,6 +18,8 @@ export interface ProductWithMargins {
   seguimiento_desde?: string | null
   /** fecha (YYYY-MM-DD) en que se vio el precio; solo ofertas cargadas a mano */
   precio_visto?: string
+  /** vendedor = tienda oficial de la marca (solo TV verificadas; undefined = sin dato) */
+  tienda_oficial?: boolean
   moneda: string
   ventas_estimadas: number | string | null
   url_producto: string

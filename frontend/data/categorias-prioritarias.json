@@ -25,6 +25,7 @@
     { "patron": "simmons", "motivo": "Colchón Simmons Queen visto el 04/11", "visto_hasta": "2026-11-04" },
     { "patron": "motosoldadora", "motivo": "Motosoldadora Esab: no es compra de casa" },
     { "patron": "\\besab\\b", "motivo": "Equipamiento industrial Esab, fuera de la vidriera", "visto_hasta": "2026-11-12" },
-    { "patron": "side by side", "motivo": "Heladeras side by side vistas el 03/11", "visto_hasta": "2026-11-03" }
+    { "patron": "side by side", "motivo": "Heladeras side by side vistas el 03/11", "visto_hasta": "2026-11-03" },
+    { "patron": "consola potenciada", "motivo": "Equipo de audio con bafles, no es una consola de juegos (19/11)" }
   ]
 }

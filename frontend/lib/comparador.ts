@@ -24,6 +24,7 @@ export interface Equipo {
   enOferta: boolean
   visto: string // última vez que lo vimos (YYYY-MM-DD)
   dias?: number | null // días desde que se vio el precio, al armar el sitio (lib/frescura)
+  tienda_oficial?: boolean // true = tienda oficial de la marca; undefined = sin dato (solo smart TV)
   url: string
   img: string | null
   historial: string | null // slug de /precio/*
@@ -305,7 +306,7 @@ export const COMPARADORES: Comparador[] = [
     ],
     specs: ['procesador', 'ram', 'disco', 'pantalla', 'uso'],
     guias: ['que-notebook-comprar', 'notebook-para-la-facultad', 'que-notebook-comprar-para-programar', 'notebook-para-editar-video-y-diseno', 'notebook-14-o-15-pulgadas'],
-    precioHoy: ['notebook'],
+    precioHoy: ['notebook', 'notebook-16gb-ram'],
     parse: parseNotebook,
   },
   {
@@ -378,6 +379,7 @@ export function equiposDe(c: Comparador, conVencidas = false): Equipo[] {
       enOferta: true,
       visto: o.precio_visto ?? hoyIso,
       dias: diasDesde(o.precio_visto ?? hoyIso),
+      ...(c.slug === 'smart-tv' && o.tienda_oficial !== undefined ? { tienda_oficial: o.tienda_oficial } : {}),
       url: o.url_producto,
       img: o.url_imagen,
       historial: historial[o.id_ml] ?? null,
@@ -407,8 +409,12 @@ export function equiposDe(c: Comparador, conVencidas = false): Equipo[] {
       ...datos,
     })
   }
-  return out.sort((a, b) => a.precio - b.precio)
+  return out.sort((a, b) => a.precio - b.precio || rangoOficial(a) - rangoOficial(b))
 }
+
+/** Desempate solo para smart TV: tienda oficial (0) antes que «sin dato» (1) antes que no oficial (2).
+ *  Se usa SOLO cuando el criterio principal empata (mismo precio / mismo puntaje); no cambia filtros ni puntajes. */
+export const rangoOficial = (e: Pick<Equipo, 'tienda_oficial'>) => (e.tienda_oficial === true ? 0 : e.tienda_oficial === false ? 2 : 1)
 
 /** Índice del rango de presupuesto de un precio. */
 export const rangoDe = (c: Comparador, precio: number) => {

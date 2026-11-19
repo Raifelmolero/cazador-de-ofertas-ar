@@ -17,6 +17,8 @@ import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
+import CajaQueConviene from '@/components/CajaQueConviene'
+import { ofertasVerificadasHome } from '@/lib/queconviene'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
 import TendenciasML from '@/components/TendenciasML'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
@@ -27,7 +29,7 @@ import ColchonesDestacados from '@/components/ColchonesDestacados'
 import DesdeAsistenteIA from '@/components/DesdeAsistenteIA'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
-import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
+import { CATEGORIAS, enCategoria, getCategoria, normalizar } from '@/lib/categorias'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
@@ -82,13 +84,17 @@ export default function HoyPage() {
   // Mezcla de categorías (data/categorias-prioritarias.json, se actualiza cada día
   // desde tendencias-hoy.md): aires, consolas, heladeras, TV, lavarropas, celulares
   // y piletas de ticket alto y vigentes. Computación queda con su tope (~20 %).
-  const top5 = elegirMezcla(ofertasLight, 5)
+  // Propuesta 1 (19/11): notebook, TV y aire con precio reciente, arriba de todo.
+  // Esos ids no se repiten en «Las 5 de hoy» ni en la vidriera de notebooks.
+  const verificadas = ofertasVerificadasHome(ofertasLight)
+  const verificadasIds = verificadas.map(v => v.id)
+  const top5 = elegirMezcla(ofertasLight, 5, verificadasIds)
   const top3Ids = new Set(top5.map(o => o.id_ml))
   const mezclaTendencia = elegirMezcla(ofertasLight, 6, top3Ids)
   const sacarIds = ofertasLight.filter(esExcluidaDeDestacados).map(o => o.id_ml)
   const usadosMezcla = new Set([...top3Ids, ...mezclaTendencia.map(o => o.id_ml), ...sacarIds])
   const comprasGrandes = elegirMezcla(ofertasLight, 3, usadosMezcla)
-  const usadosTodos = [...usadosMezcla, ...comprasGrandes.map(o => o.id_ml)]
+  const usadosTodos = [...usadosMezcla, ...comprasGrandes.map(o => o.id_ml), ...verificadasIds]
   // Notebooks: solo lo que entra en el tope de computación sobre el total de destacados.
   const totalDestacados = top5.length + mezclaTendencia.length + 6 + comprasGrandes.length
   const notebooks = vidrieraTecno({
@@ -99,6 +105,14 @@ export default function HoyPage() {
   })
   const tecno = vidrieraTecno({ cantidad: 6, excluir: [...usadosTodos, ...notebooks.map(o => o.id_ml)], solo: 'celular' })
   const tecnoIds = new Set(tecno.map(o => o.id_ml))
+  // Panel 11-17/11: herramientas y bicis pagan 15 % de comisión directa y
+  // dejaron el 27 % de la ganancia con 3 ventas (una bici $64.500). El título
+  // tiene que EMPEZAR con el producto: así quedan afuera mechas, baterías, cascos.
+  const RUBRO_15 = /^(kit |combo )?(taladro|atornillador|rotomartillo|amoladora|soldadora|hidrolavadora|sierra circular|bicicleta)/
+  const ocupados = new Set([...usadosTodos, ...notebooks.map(o => o.id_ml), ...tecnoIds])
+  const candidatas15 = ofertasLight.filter(o => o.precio_actual >= 60000 && !ocupados.has(o.id_ml) && RUBRO_15.test(normalizar(o.titulo)))
+  const bicis = candidatas15.filter(o => normalizar(o.titulo).includes('bicicleta')).slice(0, 2)
+  const herramientas = [...bicis, ...candidatas15.filter(o => !normalizar(o.titulo).includes('bicicleta'))].slice(0, 6)
   const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml) && !esExcluidaDeDestacados(o) && categoriaPrioritaria(o.titulo) !== 'computacion')
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
   // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
@@ -289,6 +303,12 @@ export default function HoyPage() {
         <AtajosCelular />
       </header>
 
+      {verificadas.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+          <CajaQueConviene items={verificadas} titulo="Ofertas verificadas de hoy" seccion="verificadas_home" />
+        </div>
+      )}
+
       {/* Clarity 4-6/11: la home manda solo el 12 % a ML. Las 5 mejores de hoy,
           con botón directo, antes que cualquier otra cosa. */}
       <TopOfertasHoy ofertas={top5.length ? top5 : ofertasLight} n={5} tal_cual={top5.length > 0} titulo="🔥 Las 5 de hoy" seccion="top5_home" id="top5-hoy" />
@@ -432,6 +452,23 @@ export default function HoyPage() {
         className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
       />
 
+      {herramientas.length >= 3 && (
+        <>
+          <TopOfertasHoy
+            ofertas={herramientas}
+            n={6}
+            tal_cual
+            titulo="🛠️ Herramientas y bicis en oferta hoy"
+            seccion="herramientas_bicis_home"
+            id="herramientas-bicis-hoy"
+          />
+          <p className="max-w-7xl mx-auto px-4 sm:px-6 pt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <Link href="/mejores/mejores-taladros" className="font-semibold text-yellow-400 hover:text-yellow-300">Taladros →</Link>
+            <Link href="/mejores/mejores-soldadoras" className="font-semibold text-yellow-400 hover:text-yellow-300">Soldadoras →</Link>
+            <Link href="/mejores/mejores-bicicletas" className="font-semibold text-yellow-400 hover:text-yellow-300">Bicicletas →</Link>
+          </p>
+        </>
+      )}
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />

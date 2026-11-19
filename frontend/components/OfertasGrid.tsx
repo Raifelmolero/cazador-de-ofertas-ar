@@ -43,6 +43,31 @@ function BuscarEnML({ q }: { q: string }) {
   )
 }
 
+/** Llega desde Google con ?q= («monitor 22 pulgadas», «rotomartillo westul»):
+ *  Clarity 12-19/11, esas visitas se iban sin un clic (la mayoría buscaba algo
+ *  que no tenemos cargado). Botón amarillo arriba, antes que cualquier tarjeta. */
+function BuscarEnMLGrande({ q, hay }: { q: string; hay: number }) {
+  return (
+    <div data-seccion="buscar_ml_desde_google" className="mb-4 rounded-2xl border border-yellow-400/40 bg-yellow-400/10 p-4">
+      <p className="text-sm text-zinc-300 mb-3">
+        {hay > 0 ? (
+          <>Tenemos {hay} {hay === 1 ? 'oferta verificada' : 'ofertas verificadas'} con «{q.trim()}» (abajo). Para ver todos los modelos y vendedores:</>
+        ) : (
+          <>Hoy no tenemos «{q.trim()}» entre las ofertas verificadas. Mirá todas las publicaciones en Mercado Libre:</>
+        )}
+      </p>
+      <a
+        href={busquedaML(q)}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        className="flex items-center justify-center text-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3.5 font-black text-black transition-colors"
+      >
+        Ver «{q.trim()}» en Mercado Libre 🛒
+      </a>
+    </div>
+  )
+}
+
 // Atajos de búsqueda en ML: con catálogo chico, mucha gente busca algo que no
 // cargamos. Es un link de afiliado a un listado, no consulta nada a ML.
 const RUBROS_ML = ['Heladeras', 'Aires acondicionados', 'Celulares', 'Notebooks', 'Smart TV', 'Colchones', 'Zapatillas', 'Lavarropas']
@@ -200,6 +225,7 @@ export default function OfertasGrid({
           Resultados para «{q.trim()}» <span className="text-sm font-semibold text-zinc-400">({visibles.length})</span>
         </p>
       )}
+      {desdeUrl && nq.length >= 3 && <BuscarEnMLGrande q={q} hay={visibles.length} />}
       {/* Búsqueda + filtros */}
       {!catalogoChico && (
       <div className="mb-4 sm:mb-5 space-y-3">
@@ -249,7 +275,7 @@ export default function OfertasGrid({
       </div>
       )}
 
-      {nq.length >= 3 && (
+      {nq.length >= 3 && !desdeUrl && (
         <div className="mb-4">
           <BuscarEnML q={q} />
         </div>

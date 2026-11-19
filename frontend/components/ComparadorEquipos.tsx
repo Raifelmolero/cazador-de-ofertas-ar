@@ -7,6 +7,9 @@
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import type { Equipo, FiltroSpec, Rango } from '@/lib/comparador'
+
+// Misma regla que rangoOficial de lib/comparador (no se importa: ese módulo lee datos del servidor).
+const rangoOficial = (e: Pick<Equipo, 'tienda_oficial'>) => (e.tienda_oficial === true ? 0 : e.tienda_oficial === false ? 2 : 1)
 import { etiquetaEdad } from '@/lib/frescura'
 
 const pesos = (n: number) => `$${n.toLocaleString('es-AR')}`
@@ -70,9 +73,10 @@ export default function ComparadorEquipos({
         Object.entries(minimos).every(([k, v]) => (e.orden[k] ?? 0) >= v),
     )
     const s = [...f]
-    if (orden === 'precio-desc') s.sort((a, b) => b.precio - a.precio)
-    else if (orden === 'descuento') s.sort((a, b) => (b.descuento ?? -1) - (a.descuento ?? -1))
-    else if (orden === 'minimo') s.sort((a, b) => (sobreMinimo(a) ?? 999) - (sobreMinimo(b) ?? 999) || a.precio - b.precio)
+    // rangoOficial: desempate de smart TV (oficial → sin dato → no oficial); en otros rubros es 1 para todos.
+    if (orden === 'precio-desc') s.sort((a, b) => b.precio - a.precio || rangoOficial(a) - rangoOficial(b))
+    else if (orden === 'descuento') s.sort((a, b) => (b.descuento ?? -1) - (a.descuento ?? -1) || rangoOficial(a) - rangoOficial(b))
+    else if (orden === 'minimo') s.sort((a, b) => (sobreMinimo(a) ?? 999) - (sobreMinimo(b) ?? 999) || rangoOficial(a) - rangoOficial(b) || a.precio - b.precio)
     return s
   }, [equipos, rangos, rango, marca, minimos, soloOferta, orden])
 
@@ -240,6 +244,7 @@ export default function ComparadorEquipos({
                     {specs.filter(k => e.specs[k]).map(k => (
                       <span key={k} className="rounded bg-zinc-800 px-1.5 py-0.5 text-[11px] text-zinc-300">{e.specs[k]}</span>
                     ))}
+                    {e.tienda_oficial === true && <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] text-emerald-300">Tienda oficial</span>}
                   </p>
                 )}
                 <p className="mt-1.5 text-sm">

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-18T22:47:21+00:00",
+  "generado": "2026-11-19T18:17:00+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,33 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-18T22:47:21+00:00",
+      "ultima_actividad": "2026-11-19T05:44:55+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 11008 productos en la última corrida"
+          "tarea": "Revisó 9785 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 6
-        },
-        {
-          "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Instagram",
+          "label": "Telegram",
           "valor": 2
         },
         {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
           "label": "Threads",
-          "valor": 2
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Hp Gamer Core I7 1355u 1tb Ssd 32gb Ram Fhd Outlet"
+      "ultimo_trabajo": "Notebook HP Omen 16-AM2013dx Negro 16\" Intel 356H NVIDIA GeForce RTX RTX 5060 16"
     },
     {
       "id": "investigacion",
@@ -59,11 +59,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },

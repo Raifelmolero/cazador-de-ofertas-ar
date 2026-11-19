@@ -31,6 +31,8 @@ import { equiposDeGuia, guiaIndexable } from '@/lib/guias-equipos'
 import { etiquetaEdad } from '@/lib/frescura'
 import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
+import CajaQueConviene from '@/components/CajaQueConviene'
+import { cajaDeGuia } from '@/lib/queconviene'
 
 const GUIAS_TITULO_PRECIO = new Set(['mejor-celular-para-jugar', 'que-motorola-comprar-moto-g-o-edge'])
 
@@ -101,6 +103,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   ])
   const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
+  const queConviene = cajaDeGuia(g)
   const cta = ctaDeGuia(g)
   // Bloque Black Friday 2026: solo hasta el viernes 27/11 (hora argentina). Link a la comparativa
   // del rubro únicamente si existe en lib/comparativas.ts.
@@ -181,6 +184,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           {g.titulo}
         </h1>
 
+        {/* Propuesta 1 (19/11): guías que más entran de Google, producto con botón en la primera pantalla. */}
+        <CajaQueConviene items={queConviene} seccion="queconviene_guia" className="mb-6" />
+
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>
           <p className="text-zinc-200 leading-relaxed">{g.respuestaCorta}</p>
@@ -224,15 +230,17 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             <h2 className="font-display text-lg sm:text-xl font-black mb-3">{g.equipos!.titulo}</h2>
             <ul className="space-y-2">
               {equipos.map(e => (
-                <li key={e.id} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+                <li key={e.id}>
+                  {/* Toda la fila es el link: Clarity 17/11, se tocaba «Más bajo registrado» sin respuesta */}
+                  <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="group flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3 hover:border-yellow-400/50 transition-colors">
                   {e.img && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={e.img} alt="" loading="lazy" className="h-16 w-16 shrink-0 rounded-lg bg-white object-contain p-1" />
                   )}
                   <div className="min-w-0 flex-1 text-sm">
-                    <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="font-semibold text-zinc-100 hover:text-yellow-400 line-clamp-2">
+                    <span className="font-semibold text-zinc-100 group-hover:text-yellow-400 line-clamp-2">
                       {e.titulo}
-                    </a>
+                    </span>
                     {Object.values(e.specs).length > 0 && <p className="text-xs text-zinc-400">{Object.values(e.specs).join(' · ')}</p>}
                     <p>
                       <strong className="text-yellow-400">${e.precio.toLocaleString('es-AR')}</strong>
@@ -246,13 +254,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                       </p>
                     ) : null}
                   </div>
-                  <a
-                    href={e.url}
-                    target="_blank"
-                    rel="sponsored nofollow noopener"
-                    className="self-center shrink-0 rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black hover:bg-yellow-300"
-                  >
+                  <span className="self-center shrink-0 rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black group-hover:bg-yellow-300">
                     Ver en ML ↗
+                  </span>
                   </a>
                 </li>
               ))}

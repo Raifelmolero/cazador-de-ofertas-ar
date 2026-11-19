@@ -21,6 +21,7 @@ import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import { topDescuento } from '@/lib/relacionados'
+import { presupuestosConEquipos } from '@/lib/presupuesto'
 import {
   enlacesRelacionados,
   faqDatos,
@@ -110,6 +111,14 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
 
   const destacado = elegirDestacado(ofertasLight)
   const top3 = topDescuento(ofertasLight, 3)
+  // Estratega 19/11: las /mejor/ por presupuesto están entre las más visitadas y
+  // la categoría no las enlazaba (Clarity 17-19/11: 3 quick backs en /categoria/smart-tv).
+  const porPresupuesto: { href: string; txt: string }[] =
+    c.slug === 'aire-acondicionado'
+      ? [{ href: '/mejor/aires-acondicionados', txt: 'Qué aire comprar según tu ambiente' }]
+      : presupuestosConEquipos()
+          .filter(x => x.p.comparador === c.slug)
+          .map(x => ({ href: `/mejor/${x.p.slug}`, txt: `Hasta $${x.p.texto}` }))
   // Categoría con 0-2 ofertas hoy (carga manual): se completa con las mejores
   // del día para que el que llega desde Google tenga algo para comprar.
   const idsCat = new Set(ofertasLight.map(o => o.id_ml))
@@ -231,6 +240,24 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
             {minimos > 0 && <> · {minimos} en mínimo histórico</>}
             {ofertas.length > 0 && <span aria-hidden="true">· Ver ↓</span>}
           </a>
+          {porPresupuesto.length > 0 && (
+            <div data-seccion={`cat_${c.slug}_presupuesto`} className="mt-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-zinc-500 mb-2">
+                💰 ¿Cuánto querés gastar? Te decimos cuál comprar
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {porPresupuesto.map(x => (
+                  <Link
+                    key={x.href}
+                    href={x.href}
+                    className="text-xs sm:text-sm font-bold bg-yellow-400/10 border border-yellow-400/40 hover:border-yellow-400 text-yellow-300 rounded-full px-3 py-1.5 transition-colors"
+                  >
+                    {x.txt}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
           {COMPARATIVAS.some(x => x.categoria === c.slug && indexable(x)) && (
             <div className="mt-4 flex flex-wrap gap-2">
               {COMPARATIVAS.filter(x => x.categoria === c.slug && indexable(x)).slice(0, 4).map(x => (

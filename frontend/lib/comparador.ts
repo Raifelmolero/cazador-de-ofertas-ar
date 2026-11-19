@@ -305,7 +305,7 @@ export const COMPARADORES: Comparador[] = [
     ],
     specs: ['procesador', 'ram', 'disco', 'pantalla', 'uso'],
     guias: ['que-notebook-comprar', 'notebook-para-la-facultad', 'que-notebook-comprar-para-programar', 'notebook-para-editar-video-y-diseno', 'notebook-14-o-15-pulgadas'],
-    precioHoy: ['notebook'],
+    precioHoy: ['notebook', 'notebook-16gb-ram'],
     parse: parseNotebook,
   },
   {

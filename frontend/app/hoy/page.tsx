@@ -29,7 +29,7 @@ import ColchonesDestacados from '@/components/ColchonesDestacados'
 import DesdeAsistenteIA from '@/components/DesdeAsistenteIA'
 import LastUpdated from '@/components/LastUpdated'
 import { GUIAS } from '@/lib/guias'
-import { CATEGORIAS, enCategoria, getCategoria } from '@/lib/categorias'
+import { CATEGORIAS, enCategoria, getCategoria, normalizar } from '@/lib/categorias'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
@@ -105,6 +105,14 @@ export default function HoyPage() {
   })
   const tecno = vidrieraTecno({ cantidad: 6, excluir: [...usadosTodos, ...notebooks.map(o => o.id_ml)], solo: 'celular' })
   const tecnoIds = new Set(tecno.map(o => o.id_ml))
+  // Panel 11-17/11: herramientas y bicis pagan 15 % de comisión directa y
+  // dejaron el 27 % de la ganancia con 3 ventas (una bici $64.500). El título
+  // tiene que EMPEZAR con el producto: así quedan afuera mechas, baterías, cascos.
+  const RUBRO_15 = /^(kit |combo )?(taladro|atornillador|rotomartillo|amoladora|soldadora|hidrolavadora|sierra circular|bicicleta)/
+  const ocupados = new Set([...usadosTodos, ...notebooks.map(o => o.id_ml), ...tecnoIds])
+  const candidatas15 = ofertasLight.filter(o => o.precio_actual >= 60000 && !ocupados.has(o.id_ml) && RUBRO_15.test(normalizar(o.titulo)))
+  const bicis = candidatas15.filter(o => normalizar(o.titulo).includes('bicicleta')).slice(0, 2)
+  const herramientas = [...bicis, ...candidatas15.filter(o => !normalizar(o.titulo).includes('bicicleta'))].slice(0, 6)
   const ticketAlto = ofertasLight.filter(o => o.precio_actual >= TICKET_ALTO_DESDE && !top3Ids.has(o.id_ml) && !tecnoIds.has(o.id_ml) && !esExcluidaDeDestacados(o) && categoriaPrioritaria(o.titulo) !== 'computacion')
   // Ni las destacadas ni las 3 «compras grandes» se repiten en colchones
   // (auditoría 18/10: la home mostraba el mismo sommier en tres secciones).
@@ -444,6 +452,23 @@ export default function HoyPage() {
         className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
       />
 
+      {herramientas.length >= 3 && (
+        <>
+          <TopOfertasHoy
+            ofertas={herramientas}
+            n={6}
+            tal_cual
+            titulo="🛠️ Herramientas y bicis en oferta hoy"
+            seccion="herramientas_bicis_home"
+            id="herramientas-bicis-hoy"
+          />
+          <p className="max-w-7xl mx-auto px-4 sm:px-6 pt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <Link href="/mejores/mejores-taladros" className="font-semibold text-yellow-400 hover:text-yellow-300">Taladros →</Link>
+            <Link href="/mejores/mejores-soldadoras" className="font-semibold text-yellow-400 hover:text-yellow-300">Soldadoras →</Link>
+            <Link href="/mejores/mejores-bicicletas" className="font-semibold text-yellow-400 hover:text-yellow-300">Bicicletas →</Link>
+          </p>
+        </>
+      )}
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />

@@ -230,15 +230,17 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             <h2 className="font-display text-lg sm:text-xl font-black mb-3">{g.equipos!.titulo}</h2>
             <ul className="space-y-2">
               {equipos.map(e => (
-                <li key={e.id} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+                <li key={e.id}>
+                  {/* Toda la fila es el link: Clarity 17/11, se tocaba «Más bajo registrado» sin respuesta */}
+                  <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="group flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3 hover:border-yellow-400/50 transition-colors">
                   {e.img && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={e.img} alt="" loading="lazy" className="h-16 w-16 shrink-0 rounded-lg bg-white object-contain p-1" />
                   )}
                   <div className="min-w-0 flex-1 text-sm">
-                    <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="font-semibold text-zinc-100 hover:text-yellow-400 line-clamp-2">
+                    <span className="font-semibold text-zinc-100 group-hover:text-yellow-400 line-clamp-2">
                       {e.titulo}
-                    </a>
+                    </span>
                     {Object.values(e.specs).length > 0 && <p className="text-xs text-zinc-400">{Object.values(e.specs).join(' · ')}</p>}
                     <p>
                       <strong className="text-yellow-400">${e.precio.toLocaleString('es-AR')}</strong>
@@ -247,20 +249,14 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                     {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
                     {e.minimo ? (
                       <p className="text-xs text-zinc-500">
-                        <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="underline decoration-zinc-700 underline-offset-2 hover:text-yellow-400">
-                          Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}
-                        </a>
+                        Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}
                         {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
                       </p>
                     ) : null}
                   </div>
-                  <a
-                    href={e.url}
-                    target="_blank"
-                    rel="sponsored nofollow noopener"
-                    className="self-center shrink-0 rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black hover:bg-yellow-300"
-                  >
+                  <span className="self-center shrink-0 rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black group-hover:bg-yellow-300">
                     Ver en ML ↗
+                  </span>
                   </a>
                 </li>
               ))}

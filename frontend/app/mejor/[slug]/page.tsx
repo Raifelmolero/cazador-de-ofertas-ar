@@ -67,13 +67,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
   return (
-    <li className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+    // Toda la tarjeta es el link (Clarity 16-18/11: se tocaba el precio y el
+    // «más bajo registrado» y no pasaba nada; la tarjeta no tenía botón).
+    <li>
+      <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="group flex h-full gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3 hover:border-yellow-400/50 transition-colors">
       {e.img && <Image src={e.img} alt="" width={64} height={64} className="h-16 w-16 shrink-0 rounded-lg bg-white object-contain" />}
-      <div className="min-w-0 text-sm">
+      <div className="min-w-0 flex-1 text-sm">
         {destacado && <p className="text-xs font-bold uppercase tracking-wide text-yellow-400">{destacado}</p>}
-        <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-zinc-100 hover:text-yellow-400 line-clamp-2">
+        <span className="font-semibold text-zinc-100 group-hover:text-yellow-400 line-clamp-2">
           {e.titulo}
-        </a>
+        </span>
         {specsDe(e) && <p className="text-xs text-zinc-400">{specsDe(e)}</p>}
         {e.tienda_oficial === true && <p><span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] text-emerald-300">Tienda oficial</span></p>}
         <p>
@@ -83,13 +86,13 @@ function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
         {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
         {e.minimo ? (
           <p className="text-xs text-zinc-500">
-            <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="underline decoration-zinc-700 underline-offset-2 hover:text-yellow-400">
-              Más bajo registrado: {pesos(e.minimo)}
-            </a>
+            Más bajo registrado: {pesos(e.minimo)}
             {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
           </p>
         ) : null}
+        <span className="mt-2 inline-block rounded-lg bg-yellow-400 px-3 py-1.5 text-xs font-black text-black group-hover:bg-yellow-300">Ver en Mercado Libre ↗</span>
       </div>
+      </a>
     </li>
   )
 }
@@ -185,11 +188,15 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
       <div className="max-w-5xl mx-auto px-4 py-8">
         <section className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Respuesta rápida</h2>
-          <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">
-            <a href={x.recomendado.url} target="_blank" rel="noopener noreferrer sponsored" className="underline decoration-zinc-600 underline-offset-2 hover:text-yellow-400">
-              {resumen(x, hoy)}
-            </a>
-          </p>
+          <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">{resumen(x, hoy)}</p>
+          <a
+            href={x.recomendado.url}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="mt-3 inline-flex items-center justify-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3 font-black text-black transition-colors"
+          >
+            Ver {fem ? 'la' : 'el'} que más trae a {pesos(x.recomendado.precio)} en Mercado Libre 🛒
+          </a>
         </section>
 
         <section className="mb-8">

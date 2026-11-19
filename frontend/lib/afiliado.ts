@@ -23,6 +23,10 @@ export const ETIQUETA_SITIO = 'sitio'
  *  (docs/META-ADS-TEST-2026.md). Requiere la etiqueta `meta` creada en el panel. */
 export const ETIQUETA_META = 'meta'
 
+/** Redes: quien llega con `utm_source=<red>` (link de la bio o del post) hace sus
+ *  clics con esa etiqueta. Todas creadas en el panel (facebook el 19/11). */
+export const ETIQUETAS_REDES = ['instagram', 'facebook', 'tiktok', 'youtube', 'threads', 'telegram', 'whatsapp'] as const
+
 /** Etiqueta configurable por env var (se inyecta en el build). Si no está o no
  *  parece una etiqueta, queda la de siempre. */
 function etiquetaEnv(valor: string | undefined, porDefecto: string) {

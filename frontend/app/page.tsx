@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { tituloSeo } from '@/lib/seo'
 import Link from 'next/link'
-import { aLight, getProductos, getScrapedAt } from '@/lib/productos'
+import { aLight, getFichasPorPrecio, getProductos, getProductosCalc, getScrapedAt } from '@/lib/productos'
 import { CARGO_MAX, CARGO_MIN, COSTOS_VIGENCIA } from '@/lib/costosml'
 import { CALC_URL, GUIAS_VENDER } from '@/lib/vender'
 import CalcHeader from '@/components/CalcHeader'
@@ -212,10 +212,10 @@ export default function HomePage() {
         </div>
 
         <div className="pb-8">
-          <ProductsGrid productos={productos.map(aLight)} />
+          <ProductsGrid productos={getProductosCalc().map(aLight)} />
           <p className="mt-4 text-center text-xs">
             <Link href="/calculadora" className="text-yellow-400 hover:underline">
-              Ver el índice de todas las fichas por precio ({productos.length})
+              Ver el índice de todas las fichas por precio ({getFichasPorPrecio().length})
             </Link>
           </p>
         </div>

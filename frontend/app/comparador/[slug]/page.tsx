@@ -160,12 +160,13 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Respuesta rápida: hoy, {hoy}</h2>
             <ul className="grid gap-2 sm:grid-cols-2">
               {rapidas.map(({ q, e }) => (
-                <li key={q} className="rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm">
-                  <span className="text-zinc-400">{q[0].toUpperCase() + q.slice(1)}:</span>{' '}
-                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-zinc-100 hover:text-yellow-400">
-                    {e.titulo}
-                  </a>{' '}
-                  <strong className="text-yellow-400 whitespace-nowrap">{pesos(e.precio)}</strong>
+                <li key={q}>
+                  {/* Toda la caja es el link: Clarity 18/11, se tocaba «La notebook más barata con…» sin respuesta */}
+                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="group block h-full rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm hover:border-yellow-400/50 transition-colors">
+                    <span className="text-zinc-400">{q[0].toUpperCase() + q.slice(1)}:</span>{' '}
+                    <span className="font-semibold text-zinc-100 group-hover:text-yellow-400">{e.titulo}</span>{' '}
+                    <strong className="text-yellow-400 whitespace-nowrap">{pesos(e.precio)} ↗</strong>
+                  </a>
                 </li>
               ))}
             </ul>

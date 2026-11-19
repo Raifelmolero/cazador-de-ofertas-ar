@@ -67,13 +67,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
   return (
-    <li className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+    // Toda la tarjeta es el link (Clarity 16-18/11: se tocaba el precio y el
+    // «más bajo registrado» y no pasaba nada; la tarjeta no tenía botón).
+    <li>
+      <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="group flex h-full gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3 hover:border-yellow-400/50 transition-colors">
       {e.img && <Image src={e.img} alt="" width={64} height={64} className="h-16 w-16 shrink-0 rounded-lg bg-white object-contain" />}
-      <div className="min-w-0 text-sm">
+      <div className="min-w-0 flex-1 text-sm">
         {destacado && <p className="text-xs font-bold uppercase tracking-wide text-yellow-400">{destacado}</p>}
-        <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-zinc-100 hover:text-yellow-400 line-clamp-2">
+        <span className="font-semibold text-zinc-100 group-hover:text-yellow-400 line-clamp-2">
           {e.titulo}
-        </a>
+        </span>
         {specsDe(e) && <p className="text-xs text-zinc-400">{specsDe(e)}</p>}
         <p>
           <strong className="text-yellow-400">{pesos(e.precio)}</strong>
@@ -86,7 +89,9 @@ function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
             {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
           </p>
         ) : null}
+        <span className="mt-2 inline-block rounded-lg bg-yellow-400 px-3 py-1.5 text-xs font-black text-black group-hover:bg-yellow-300">Ver en Mercado Libre ↗</span>
       </div>
+      </a>
     </li>
   )
 }
@@ -183,6 +188,14 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
         <section className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Respuesta rápida</h2>
           <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">{resumen(x, hoy)}</p>
+          <a
+            href={x.recomendado.url}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="mt-3 inline-flex items-center justify-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3 font-black text-black transition-colors"
+          >
+            Ver {fem ? 'la' : 'el'} que más trae a {pesos(x.recomendado.precio)} en Mercado Libre 🛒
+          </a>
         </section>
 
         <section className="mb-8">

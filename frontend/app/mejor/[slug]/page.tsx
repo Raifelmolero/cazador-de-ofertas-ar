@@ -82,7 +82,9 @@ function Tarjeta({ e, destacado }: { e: Equipo; destacado?: string }) {
         {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
         {e.minimo ? (
           <p className="text-xs text-zinc-500">
-            Más bajo registrado: {pesos(e.minimo)}
+            <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="underline decoration-zinc-700 underline-offset-2 hover:text-yellow-400">
+              Más bajo registrado: {pesos(e.minimo)}
+            </a>
             {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
           </p>
         ) : null}
@@ -182,7 +184,11 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
       <div className="max-w-5xl mx-auto px-4 py-8">
         <section className="mb-8 rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-2">Respuesta rápida</h2>
-          <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">{resumen(x, hoy)}</p>
+          <p className="text-zinc-200 leading-relaxed [text-wrap:pretty]">
+            <a href={x.recomendado.url} target="_blank" rel="noopener noreferrer sponsored" className="underline decoration-zinc-600 underline-offset-2 hover:text-yellow-400">
+              {resumen(x, hoy)}
+            </a>
+          </p>
         </section>
 
         <section className="mb-8">

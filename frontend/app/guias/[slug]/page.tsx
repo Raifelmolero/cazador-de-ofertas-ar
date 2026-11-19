@@ -241,7 +241,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
                     {etiquetaEdad(e.dias) && <p className="text-xs text-amber-300/90">{etiquetaEdad(e.dias)}</p>}
                     {e.minimo ? (
                       <p className="text-xs text-zinc-500">
-                        Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}
+                        <a href={e.url} target="_blank" rel="sponsored nofollow noopener" className="underline decoration-zinc-700 underline-offset-2 hover:text-yellow-400">
+                          Más bajo registrado: ${e.minimo.toLocaleString('es-AR')}
+                        </a>
                         {e.precio <= e.minimo ? <span className="text-cyan-300"> · está en su mínimo</span> : null}
                       </p>
                     ) : null}

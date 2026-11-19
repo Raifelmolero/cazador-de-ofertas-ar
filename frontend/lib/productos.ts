@@ -86,6 +86,17 @@ export function getProductos(): ProductWithMargins[] {
   return cache
 }
 
+/**
+ * Fichas de /calculadora/[id]: solo las 200 de más margen, prerenderizadas.
+ * 18/11/2026: las ~8.000 que se armaban a pedido (casi todo bots) eran el 71 %
+ * de las escrituras ISR de Vercel y la calculadora vende $0. Los links internos
+ * (home, índice, «precio parecido») salen solo de esta lista: ninguno da 404.
+ */
+export const FICHAS_CALC = 200
+export function getProductosCalc(): ProductWithMargins[] {
+  return getProductos().slice(0, FICHAS_CALC)
+}
+
 export function getProductoById(id: string): ProductWithMargins | undefined {
   porId ??= new Map(getProductos().map(p => [p.id_ml, p]))
   return porId.get(id)
@@ -131,7 +142,7 @@ export function fichaPrincipal(p: ProductWithMargins): ProductWithMargins {
   if (!principalPorId) {
     const clave = (x: ProductWithMargins) => normalizar(x.titulo).replace(/\s+/g, ' ').trim()
     const mejor = new Map<string, ProductWithMargins>()
-    const todos = getProductos()
+    const todos = getProductosCalc()
     for (const x of todos) {
       const m = mejor.get(clave(x))
       if (!m || x.precio_actual < m.precio_actual || (x.precio_actual === m.precio_actual && x.id_ml < m.id_ml)) mejor.set(clave(x), x)
@@ -143,7 +154,7 @@ export function fichaPrincipal(p: ProductWithMargins): ProductWithMargins {
 
 /** Fichas de /calculadora ordenadas por precio (orden estable: precio, id), sin duplicados. */
 export function getFichasPorPrecio(): ProductWithMargins[] {
-  return getProductos().filter(p => fichaPrincipal(p).id_ml === p.id_ml).sort((a, b) => a.precio_actual - b.precio_actual || a.id_ml.localeCompare(b.id_ml))
+  return getProductosCalc().filter(p => fichaPrincipal(p).id_ml === p.id_ml).sort((a, b) => a.precio_actual - b.precio_actual || a.id_ml.localeCompare(b.id_ml))
 }
 
 /** Vecinos fijos en el orden por precio (circular): n/2 más baratos y n/2 más

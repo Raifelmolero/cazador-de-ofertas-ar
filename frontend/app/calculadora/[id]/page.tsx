@@ -1,4 +1,4 @@
-import { getProductos, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
+import { getProductosCalc, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
 import { CALC_URL } from '@/lib/vender'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import { permanentRedirect } from 'next/navigation'
@@ -13,11 +13,11 @@ import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
 import Footer from '@/components/Footer'
 
-// Solo se prerenderizan las 200 de más margen; el resto (~8.000) se arma la
-// primera vez que alguien la visita y queda cacheada hasta el próximo deploy.
-// Prerenderizar todas hacía builds de más de 30 minutos.
+// Solo existen las 200 de más margen (getProductosCalc); cualquier otro id da
+// 404 estático sin armar la página ni escribir caché ISR (ver lib/productos).
+export const dynamicParams = false
 export async function generateStaticParams() {
-  return getProductos().slice(0, 200).map(p => ({ id: p.id_ml }))
+  return getProductosCalc().map(p => ({ id: p.id_ml }))
 }
 
 const FORMATOS_TITULO = [

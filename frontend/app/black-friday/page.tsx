@@ -23,6 +23,8 @@ import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import { categoriaPrioritaria, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { slugPorId } from '@/lib/seguimiento'
+import CajaQueConviene from '@/components/CajaQueConviene'
+import { ofertasVerificadasHome } from '@/lib/queconviene'
 
 const MAX_RESPALDO = 12
 
@@ -108,6 +110,8 @@ const CATEGORIAS_A = [
   { nombre: 'Celulares', detalle: 'gama media y alta vigente', href: '/mejores/black-friday-celulares', id: 'celulares' },
   { nombre: 'Smart TV', detalle: '50 o 55 pulgadas, como referencia', href: '/mejores/black-friday-smart-tv', id: 'smart_tv' },
   { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/guias/que-aire-acondicionado-comprar', id: 'aires' },
+  { nombre: 'Herramientas', detalle: 'taladros, soldadoras, amoladoras', href: '/mejores/mejores-taladros', id: 'herramientas' },
+  { nombre: 'Bicicletas', detalle: 'rodado 29 y urbanas', href: '/mejores/mejores-bicicletas', id: 'bicicletas' },
 ]
 const CATEGORIAS_B = [
   { nombre: 'Belleza y cuidado personal', detalle: 'kits de skincare, protector solar' },
@@ -134,6 +138,10 @@ export default function BlackFridayPage() {
   const publicables = slots.filter(s => slotPublicable(s))
   // JSON vacío → la página no queda sin productos: grilla automática del bot.
   const respaldo = slots.length === 0 ? ofertasRespaldo() : []
+  // Primera pantalla con producto y botón (Clarity 16-18/11: las páginas de
+  // Google sin producto arriba casi no mandan clics). Notebook, TV y aire con
+  // precio visto en los últimos días; el top completo sigue más abajo (#top).
+  const yaConviene = ofertasVerificadasHome()
 
   const faqs = [
     {
@@ -255,6 +263,14 @@ export default function BlackFridayPage() {
               </a>
             )}
           </div>
+          {yaConviene.length > 0 && (
+            <div className="mt-6">
+              <CajaQueConviene items={yaConviene} titulo="Lo que ya conviene hoy" seccion="queconviene_black_friday" />
+              <p className="mt-2 text-right text-sm">
+                <a href="#top" className={linkTxt}>Ver más ofertas verificadas de hoy ↓</a>
+              </p>
+            </div>
+          )}
           <p className="mt-3 text-sm text-zinc-400 [text-wrap:pretty]">
             Gratis. Te avisamos a las 19:00, hora Argentina, cuando hay una oferta verificada. El precio para vos es el
             mismo que entrando directo a Mercado Libre.

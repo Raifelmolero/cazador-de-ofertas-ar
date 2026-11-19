@@ -56,20 +56,22 @@ export default function ProductCard({ producto }: { producto: ProductoLight }) {
 
       {/* CTAs */}
       <div className="px-4 pb-4 pt-1 flex flex-col gap-2">
+        {/* Calculadora = vendedores: 263 clics/sem a ML con etiqueta calcml y 0 ventas
+            (panel 11-17/11). El botón grande va al análisis; ML queda como link chico. */}
+        <Link
+          href={`/calculadora/${producto.id_ml}`}
+          className="block w-full text-center text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl py-2.5 transition-colors"
+        >
+          Ver análisis y ganancia →
+        </Link>
         <a
           href={producto.url_producto}
           target="_blank"
           rel="noopener noreferrer sponsored"
-          className="block w-full text-center text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl py-2.5 transition-colors"
-        >
-          Ver Oferta y Stock en ML ↗
-        </a>
-        <Link
-          href={`/calculadora/${producto.id_ml}`}
           className="block text-center text-xs text-zinc-600 hover:text-yellow-400 transition-colors py-1"
         >
-          Ver análisis completo →
-        </Link>
+          Ver publicación en ML ↗
+        </a>
       </div>
 
     </article>

@@ -71,6 +71,9 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
     permanentRedirect(slug ? `${DEALS_URL}/precio/${slug}` : `${CALC_URL}/`)
   }
 
+  // Si lo seguimos en el sitio de ofertas, quien lo quiere COMPRAR va ahí
+  // (etiqueta sitio, convierte 4,6 %); calcml: 0 ventas en semanas.
+  const slugOferta = slugPorId()[id]
   const comisionArs = producto.precio_actual * producto.comision_clasica_pct
   const iibbArs = producto.precio_actual * producto.retencion_iibb_pct
   const envioArs = producto.costo_envio_base_ars
@@ -136,14 +139,26 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
                 </p>
               </div>
             </div>
-            <a
-              href={producto.url_producto}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors"
-            >
-              Ver Oferta y Stock en ML ↗
-            </a>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              {slugOferta && (
+                <a
+                  href={`${DEALS_URL}/precio/${slugOferta}`}
+                  className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors"
+                >
+                  ¿Lo querés comprar? Ver historial de precio →
+                </a>
+              )}
+              <a
+                href={producto.url_producto}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className={slugOferta
+                  ? 'text-sm font-semibold text-zinc-400 hover:text-yellow-400'
+                  : 'inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors'}
+              >
+                Ver publicación en ML ↗
+              </a>
+            </div>
             <AlertaCTA id={producto.id_ml} className="mt-3" />
           </div>
         </section>

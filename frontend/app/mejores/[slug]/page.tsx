@@ -267,7 +267,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                       <span className="absolute top-1 left-1 rounded-full bg-zinc-900 px-1.5 text-[11px] font-bold text-zinc-200">#{i + 1}</span>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm text-zinc-200 line-clamp-2">{p.titulo}</p>
+                      <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="block text-sm text-zinc-200 hover:text-yellow-400 line-clamp-2">
+                        {p.titulo}
+                      </a>
                       <p className="mt-1 flex items-baseline gap-2">
                         <span className="font-display text-lg font-black text-zinc-50">{precio(p.precio_actual)}</span>
                         {p.descuento_pct != null && <span className="text-xs font-bold text-red-400">{p.descuento_pct}% OFF</span>}

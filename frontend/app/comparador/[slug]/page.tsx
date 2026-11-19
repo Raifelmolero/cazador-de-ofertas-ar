@@ -161,7 +161,9 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
             <ul className="grid gap-2 sm:grid-cols-2">
               {rapidas.map(({ q, e }) => (
                 <li key={q} className="rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm">
-                  <span className="text-zinc-400">{q[0].toUpperCase() + q.slice(1)}:</span>{' '}
+                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="text-zinc-400 underline decoration-zinc-700 underline-offset-2 hover:text-yellow-400">
+                    {q[0].toUpperCase() + q.slice(1)}:
+                  </a>{' '}
                   <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-zinc-100 hover:text-yellow-400">
                     {e.titulo}
                   </a>{' '}

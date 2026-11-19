@@ -2377,6 +2377,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/como-saber-si-un-descuento-de-mercado-libre-es-real', texto: 'Cómo saber si un descuento es real' },
       { href: '/guias/que-es-el-minimo-historico-en-mercado-libre', texto: 'Qué es el mínimo histórico' },
       { href: '/guias/hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre', texto: 'Hot Sale, Cyber Monday o día común' },
+      { href: '/guias/que-bicicleta-comprar-black-friday', texto: 'Qué bicicleta comprar en el Black Friday' },
       { href: '/precio', texto: 'Precio de hoy de cada producto' },
     ],
   },
@@ -2755,6 +2756,58 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       { href: '/guias/que-notebook-comprar', texto: 'Qué notebook comprar' },
       { href: '/guias/cuanta-ram-necesita-una-notebook', texto: 'Cuánta RAM necesita una notebook' },
       { href: '/guias/notebook-ssd-256-o-512-gb', texto: 'SSD de 256 o 512 GB' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
+    ],
+  },
+  {
+    slug: 'que-bicicleta-comprar-black-friday',
+    titulo: '¿Qué bicicleta comprar en el Black Friday? Tipo, rodado, frenos y precio',
+    descripcion:
+      'Guía para comprar bicicleta en el Black Friday: qué tipo según por dónde andás, rodado y talle de cuadro, frenos a disco o V-brake, cambios y cómo comparar el precio con el de las semanas anteriores.',
+    pregunta: '¿Qué bicicleta conviene comprar en el Black Friday?',
+    respuestaCorta:
+      'Primero elegí el tipo según por dónde vas a andar: urbana para la ciudad, mountain bike para tierra y calles rotas, ruta para asfalto. Después el talle de cuadro según tu altura y, si se puede, frenos a disco. En el Black Friday compará el precio final con el historial: una bici de gama media con buen descuento rinde más que una barata sin marca.',
+    secciones: [
+      {
+        h: 'Tipo y rodado',
+        p: [
+          'Para la ciudad y paseos alcanza con una urbana o una mountain bike rodado 26 o 27,5. Para tierra y caminos rotos, una mountain bike rodado 29 rueda mejor y mantiene la velocidad.',
+          'El talle del cuadro pesa más que el rodado: buscá en la publicación la tabla de talles del fabricante y elegí según tu altura.',
+        ],
+      },
+      {
+        h: 'Frenos y cambios',
+        p: [
+          'Los frenos a disco (mecánicos o hidráulicos) frenan mejor con lluvia y en bajada; los V-brake son más baratos y fáciles de arreglar.',
+          'Fijate la marca de los cambios (Shimano es la más común) y cuántas velocidades trae. Para uso urbano, 7 a 21 velocidades sobran.',
+        ],
+      },
+      {
+        h: 'Precio y garantía',
+        p: [
+          'Compará con el historial de precio y el mínimo registrado: si el descuento es real, el precio tiene que estar por debajo del de las semanas anteriores.',
+          'Preferí tiendas oficiales o vendedores con factura y garantía. Revisá si viene armada o hay que terminar de armarla, y si el envío es gratis: una bici voluminosa puede tener un envío caro.',
+        ],
+      },
+    ],
+    categoria: { slug: 'bicicletas', nombre: 'bicicletas' },
+    comparativa: 'mejores-bicicletas',
+    cta: { href: '/mejores/mejores-bicicletas', titulo: 'Bicicletas en oferta hoy', boton: 'Ver bicicletas en oferta' },
+    faq: [
+      {
+        q: '¿Conviene esperar al Black Friday para comprar la bici?',
+        a: 'Si no la necesitás ya, seguí el precio unas semanas y compará en el evento. Antes del verano las bicis suelen subir, así que el Black Friday es buen momento.',
+      },
+      {
+        q: '¿Qué rodado elijo si mido menos de 1,65 m?',
+        a: 'Un rodado 26 o 27,5 con cuadro chico suele quedar mejor. Confirmalo con la tabla de talles de la publicación.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-bicicletas', texto: 'Bicicletas en oferta' },
+      { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
+      { href: '/guias/bicicleta-rodado-26-27-5-o-29', texto: 'Rodado 26, 27,5 o 29' },
+      { href: '/guias/herramientas-electricas-cyber-monday-black-friday', texto: 'Herramientas en el Black Friday' },
       { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Black Friday: qué conviene comprar' },
     ],
   },
@@ -3512,6 +3565,7 @@ const FECHAS_NUEVAS: Record<string, string> = {
   'eau-de-parfum-o-eau-de-toilette-diferencia': '2026-11-05',
   'silla-gamer-o-silla-ergonomica-cual-conviene': '2026-11-05',
   'tablet-para-chicos-cual-comprar': '2026-11-05',
+  'que-bicicleta-comprar-black-friday': '2026-11-19',
 }
 
 export const FECHAS_GUIAS_LONG_TAIL: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(

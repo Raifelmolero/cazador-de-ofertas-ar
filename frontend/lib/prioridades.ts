@@ -59,18 +59,13 @@ function restarDias(fecha: string, dias: number): string {
 }
 
 /** Clave de modelo: evita varias tarjetas del mismo aire en distintos colores/vendedores. */
-function modelo(titulo: string): string {
+export function claveModelo(titulo: string): string {
   return normalizar(titulo).replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(Boolean).slice(0, 4).join(' ')
 }
 
-/**
- * Elige `n` destacados mezclando categorías: una por categoría por vuelta, en el
- * orden del JSON; solo ofertas vigentes (precio visto dentro de `vigencia_dias`
- * respecto de la carga más nueva), de ticket alto, sin accesorios ni lo excluido.
- * Computación nunca entra acá (su cupo lo respeta la vidriera de notebooks).
- * Respeta el orden recibido dentro de cada categoría.
- */
-export function elegirMezcla<T extends OfertaMezclable>(lista: T[], n: number, excluir: Iterable<string> = []): T[] {
+/** Candidatas a destacado por categoría prioritaria (vigentes, ticket alto, sin
+ *  accesorios ni lo excluido, un modelo por tarjeta), en el orden recibido. */
+function candidatasPorCategoria<T extends OfertaMezclable>(lista: T[], excluir: Iterable<string>): Map<string, T[]> {
   const fuera = new Set(excluir)
   const desde = restarDias(fechaMasNueva(lista) || '1970-01-01', datos.vigencia_dias)
   const porCat = new Map<string, T[]>(CATEGORIAS.map(c => [c.id, []]))
@@ -82,11 +77,28 @@ export function elegirMezcla<T extends OfertaMezclable>(lista: T[], n: number, e
     const cat = categoriaPrioritaria(o.titulo)
     const grupo = cat ? porCat.get(cat) : undefined
     if (!grupo) continue
-    const m = modelo(o.titulo)
+    const m = claveModelo(o.titulo)
     if (modelos.has(m)) continue
     modelos.add(m)
     grupo.push(o)
   }
+  return porCat
+}
+
+/** Las candidatas de UNA categoría prioritaria (mismas reglas que elegirMezcla). */
+export function candidatasDeCategoria<T extends OfertaMezclable>(lista: T[], categoria: string, excluir: Iterable<string> = []): T[] {
+  return candidatasPorCategoria(lista, excluir).get(categoria) ?? []
+}
+
+/**
+ * Elige `n` destacados mezclando categorías: una por categoría por vuelta, en el
+ * orden del JSON; solo ofertas vigentes (precio visto dentro de `vigencia_dias`
+ * respecto de la carga más nueva), de ticket alto, sin accesorios ni lo excluido.
+ * Computación nunca entra acá (su cupo lo respeta la vidriera de notebooks).
+ * Respeta el orden recibido dentro de cada categoría.
+ */
+export function elegirMezcla<T extends OfertaMezclable>(lista: T[], n: number, excluir: Iterable<string> = []): T[] {
+  const porCat = candidatasPorCategoria(lista, excluir)
   const out: T[] = []
   for (let vuelta = 0; out.length < n; vuelta++) {
     let agrego = false

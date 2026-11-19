@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-19T18:22:56+00:00",
+  "generado": "2026-11-19T22:44:23+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-19T05:44:55+00:00",
+      "ultima_actividad": "2026-11-19T22:44:22+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 1
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook HP Omen 16-AM2013dx Negro 16\" Intel 356H NVIDIA GeForce RTX RTX 5060 16"
+      "ultimo_trabajo": "Notebook ASUS TUF A16 16\" WUXGA 512GB / 16GB RAM Ryzen 7 170 RTX4050 6GB - Black"
     },
     {
       "id": "investigacion",
@@ -59,11 +59,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },
@@ -190,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-18T19:15:06+00:00",
+      "ultima_actividad": "2026-11-19T19:21:26+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -202,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 13 h"
+          "titulo": "✖ Última publicación hace 14 h"
         },
         {
           "fecha": "",

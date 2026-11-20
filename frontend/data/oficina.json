@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-20T18:20:04+00:00",
+  "generado": "2026-11-20T22:13:29+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-20T05:33:45+00:00",
+      "ultima_actividad": "2026-11-20T22:13:28+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,23 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Instagram",
-          "valor": 1
+          "valor": 2
         },
         {
           "label": "Threads",
-          "valor": 1
+          "valor": 2
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Smart TV Samsung 85 Mini LED M80H 4K Vision AI 2026"
+      "ultimo_trabajo": "Notebook Asus Rog Strix G16 Ryzen 9 Rtx 5070 16gb 1tb 165hz"
     },
     {
       "id": "investigacion",
@@ -190,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-19T19:21:26+00:00",
+      "ultima_actividad": "2026-11-20T18:58:11+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -202,7 +202,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 14 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

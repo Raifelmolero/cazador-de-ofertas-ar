@@ -1580,12 +1580,26 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-termotanque-comprar',
-    titulo: '¿Qué termotanque comprar? Litros, gas o eléctrico y recuperación',
+    titulo: '¿Qué termotanque comprar en 2026? Eléctrico o a gas, litros y precios para Black Friday',
     descripcion:
-      'Cómo elegir un termotanque en Argentina: cuántos litros según cuántos viven, gas natural, envasado o eléctrico, recuperación por hora, instalación y consumo.',
+      'Cómo elegir un termotanque eléctrico o a gas en Argentina: litros según cuántos viven, potencia, recuperación, carga superior o inferior, cuánto sale hoy y si conviene esperar al Black Friday.',
     pregunta: '¿Qué termotanque conviene comprar?',
     respuestaCorta:
-      'Como referencia, elegí unos 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos. Si tenés gas natural, el termotanque a gas suele salir más barato de usar y recupera más rápido; el eléctrico no necesita salida de gases y se instala en más lugares, pero gasta más luz. Mirá la recuperación en litros por hora y la etiqueta de eficiencia energética, y hacé instalar el de gas por un gasista matriculado.',
+      'Como referencia, elegí unos 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos. Si tenés gas natural, el termotanque a gas suele salir más barato de usar y recupera más rápido; el eléctrico no necesita salida de gases y se instala en más lugares, pero gasta más luz. Mirá la recuperación en litros por hora y la etiqueta de eficiencia energética, y hacé instalar el de gas por un gasista matriculado. En nuestro catálogo de la semana del 13 al 19/11, los termotanques eléctricos de 30 a 100 litros en oferta se vieron entre unos $250.000 y $475.000.',
+    tabla: {
+      titulo: 'Termotanques eléctricos en oferta por capacidad (precios vistos en nuestro catálogo, 13 al 19/11/2026)',
+      columnas: ['Litros', 'Para cuántas personas (referencia)', 'Modelo', 'Precio visto', 'Fecha'],
+      filas: [
+        ['30 L', '1', 'Daewoo 30 L carga superior 2000 W', '$252.103', '18/11'],
+        ['40 L', '1 o 2', 'Sirena TE40', '$267.527', '14/11'],
+        ['50 L', '1 o 2', 'Liliana Acqua Hot 50 L', '$314.999', '19/11'],
+        ['60 L', '2 o 3', 'Kacemaster 60 L carga inferior', '$349.682', '16/11'],
+        ['90 L', '3 o 4', 'Sirena 90 L con protección anticorrosiva', '$312.344', '14/11'],
+        ['100 L', '4 o 5', 'Siam 100 L 1700 W conexión inferior', '$313.599', '19/11'],
+        ['100 L', '4 o 5', 'Daewoo 100 L alta recuperación 3000 W', '$472.875', '18/11'],
+      ],
+      nota: 'Precios de Mercado Libre vistos en la fecha indicada; cambian todos los días. El precio actual y el mínimo que registramos de cada uno están en la comparativa de termotanques.',
+    },
     secciones: [
       {
         h: 'Cuántos litros según cuántos viven',
@@ -1611,9 +1625,25 @@ export const GUIAS: Guia[] = [
         ],
       },
       {
+        h: 'Termotanque eléctrico: qué mirar antes de comprar',
+        p: [
+          'Potencia: los eléctricos de uso doméstico suelen ir de 1500 a 3000 W. Más potencia calienta más rápido (los «alta recuperación»), pero exige que la instalación eléctrica y la llave térmica estén preparadas para esa carga.',
+          'Carga (conexión) superior o inferior: indica por dónde entran y salen los caños de agua. Elegí la que coincida con tu instalación actual para no tener que mover cañerías.',
+          'De pie o de colgar: los de colgar ahorran piso, pero necesitan una pared que aguante el peso del tanque lleno de agua.',
+          'Consumo: como mantiene el agua caliente todo el día, lo que gasta depende de los litros, la aislación y cuánta agua usan. Con la potencia del modelo podés estimar el costo mensual en la calculadora de consumo eléctrico.',
+        ],
+      },
+      {
+        h: '¿Conviene esperar al Black Friday?',
+        p: [
+          'El Black Friday 2026 es el viernes 27 de noviembre y el Cyber Monday el lunes 30. Es buena fecha para comprar un termotanque si el tuyo todavía anda: tenés tiempo de comparar. Si se rompió, no esperes un descuento que puede no llegar.',
+          'Antes de comprar, mirá el historial de precios: si el «40 % OFF» se calcula contra un precio que nunca se cobró, no hay ahorro real. En la comparativa mostramos el precio más bajo que registramos para cada modelo.',
+        ],
+      },
+      {
         h: 'Cuánto sale',
         p: [
-          'Es un equipo de ticket alto y el precio cambia mucho según litros, tipo y marca. No damos un precio fijo: en la comparativa de termotanques están los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+          'Es un equipo de ticket alto y el precio cambia mucho según litros, tipo y marca. Como referencia, en nuestro catálogo del 13 al 19/11 los eléctricos de 30 a 100 litros se vieron entre unos $250.000 y $475.000, y los a gas de 30 a 80 litros desde unos $340.000. El precio de hoy está en la comparativa de termotanques, con el mínimo que registramos para cada uno.',
         ],
       },
     ],
@@ -1637,11 +1667,28 @@ export const GUIAS: Guia[] = [
         q: '¿Puedo instalar el termotanque yo mismo?',
         a: 'El de gas lo tiene que instalar un gasista matriculado, con la salida de gases y la ventilación que pide la normativa. El eléctrico necesita una instalación eléctrica adecuada a su potencia.',
       },
+      {
+        q: '¿Cuánto sale un termotanque eléctrico en 2026?',
+        a: 'En nuestro catálogo de Mercado Libre del 13 al 19/11/2026, los termotanques eléctricos de 30 a 100 litros en oferta se vieron entre unos $250.000 y $475.000, según litros, potencia y marca. El precio cambia todos los días: el actual está en la comparativa de termotanques.',
+      },
+      {
+        q: '¿Qué es carga superior o inferior en un termotanque?',
+        a: 'Es por dónde se conectan los caños de entrada y salida de agua: arriba o abajo del equipo. Conviene elegir la misma que tu instalación actual para no mover cañerías.',
+      },
+      {
+        q: '¿Qué potencia tiene que tener un termotanque eléctrico?',
+        a: 'Los domésticos suelen ir de 1500 a 3000 W. Más potencia recupera más rápido, pero la instalación eléctrica y la llave térmica tienen que soportar esa carga; consultalo con un electricista matriculado.',
+      },
+      {
+        q: '¿Conviene comprar el termotanque en Black Friday?',
+        a: 'Si el tuyo todavía funciona, sí: el Black Friday es el 27/11 y el Cyber Monday el 30/11, y tenés tiempo de comparar con el historial de precios. Si se rompió, no esperes un descuento que puede no aparecer.',
+      },
     ],
     enlaces: [
       { href: '/mejores/mejores-termotanques', texto: 'Comparativa de termotanques' },
+      { href: '/guias/termotanque-electrico-o-a-gas-o-calefon', texto: 'Termotanque eléctrico, a gas o calefón' },
       { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
-      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/black-friday', texto: 'Ofertas de Black Friday' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
     fuentes: [
@@ -2780,7 +2827,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-smartwatch-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-monitor-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
-  'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-11-20' },
   'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-silla-gamer-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },

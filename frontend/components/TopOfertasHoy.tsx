@@ -18,11 +18,14 @@ export default function TopOfertasHoy({
   id = 'top3-hoy',
   n = 3,
   tal_cual = false,
+  boton = false,
 }: {
   ofertas: OfertaLight[]
   n?: number
   /** la lista ya viene elegida y ordenada (mezcla de categorías): no reordenar por descuento */
   tal_cual?: boolean
+  /** botón amarillo #FACC15 con texto negro en vez del texto suelto */
+  boton?: boolean
   titulo?: string
   seccion?: string
   id?: string
@@ -71,9 +74,15 @@ export default function TopOfertasHoy({
                   ) : ahorro > 0 ? (
                     <span className="text-[11px] font-semibold text-green-400">Ahorrás {precio(ahorro)}</span>
                   ) : null}
-                  <span className="mt-auto pt-1.5 text-sm font-extrabold text-yellow-400 group-hover:text-yellow-300">
-                    Ver en Mercado Libre ↗
-                  </span>
+                  {boton ? (
+                    <span className="mt-auto pt-0 mt-2 inline-block rounded-full bg-[#FACC15] px-4 py-2 text-center text-sm font-extrabold text-black group-hover:brightness-110">
+                      Ver en Mercado Libre
+                    </span>
+                  ) : (
+                    <span className="mt-auto pt-1.5 text-sm font-extrabold text-yellow-400 group-hover:text-yellow-300">
+                      Ver en Mercado Libre ↗
+                    </span>
+                  )}
                 </span>
               </a>
             </li>

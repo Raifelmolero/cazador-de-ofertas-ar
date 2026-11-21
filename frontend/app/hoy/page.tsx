@@ -15,6 +15,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { topConcurso } from '@/lib/topconcurso'
 import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
 import CajaQueConviene from '@/components/CajaQueConviene'
@@ -302,6 +303,8 @@ export default function HoyPage() {
         </div>
         <AtajosCelular />
       </header>
+
+      <TopOfertasHoy ofertas={topConcurso()} n={7} tal_cual boton titulo="🏆 Top del finde: precios reconfirmados hoy" seccion="top_concurso_hoy" id="top-concurso-hoy" />
 
       {verificadas.length > 0 && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">

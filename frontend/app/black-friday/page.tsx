@@ -23,6 +23,8 @@ import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import { categoriaPrioritaria, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { slugPorId } from '@/lib/seguimiento'
+import TopOfertasHoy from '@/components/TopOfertasHoy'
+import { topConcurso } from '@/lib/topconcurso'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
 
@@ -226,6 +228,8 @@ export default function BlackFridayPage() {
           </a>
         </div>
       </header>
+
+      <TopOfertasHoy ofertas={topConcurso()} n={7} tal_cual boton titulo="🏆 Top del finde: precios reconfirmados hoy" seccion="top_concurso_bf" id="top-concurso-bf" />
 
       {/* 4.1 Hero */}
       <section

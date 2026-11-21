@@ -207,6 +207,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué auriculares comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-auriculares-comprar-cyber-monday),
   [herramientas eléctricas en el Black Friday](https://cazadordeofertas.com.ar/guias/herramientas-electricas-cyber-monday-black-friday),
   [qué consola comprar en el Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-consola-comprar-black-friday),
+  [qué joystick comprar para PS5: DualSense, Edge o alternativos](https://cazadordeofertas.com.ar/guias/que-joystick-comprar-para-ps5),
   [qué aire acondicionado comprar en 2026: frigorías por m² e inverter](https://cazadordeofertas.com.ar/guias/que-aire-acondicionado-comprar),
   [qué smart TV de 55 pulgadas comprar](https://cazadordeofertas.com.ar/guias/smart-tv-55-pulgadas-cual-comprar),
   [cómo ahorrar en Mercado Libre](https://cazadordeofertas.com.ar/guias/como-ahorrar-en-mercado-libre-argentina),

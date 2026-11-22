@@ -3,6 +3,7 @@
 // después de pintar: el HTML pesaba ~600 KB y frenaba el celular.
 import type { OfertaLight } from '@/components/OfertaCard'
 import { getOfertas } from '@/lib/productos'
+import { corregirConcurso } from '@/lib/topconcurso'
 import { slugPorId } from '@/lib/seguimiento'
 import { enCategoria, getCategoria } from '@/lib/categorias'
 import { esExcluidaDeDestacados } from '@/lib/prioridades'
@@ -41,7 +42,7 @@ export function ofertasHoyLight(): OfertaLight[] {
   const historial = slugPorId()
   // Lo que tendencias-hoy.md manda sacar (data/categorias-prioritarias.json)
   // baja al final de la grilla en vez de encabezarla.
-  const ordenadas = ticketAltoPrimero(getOfertas())
+  const ordenadas = ticketAltoPrimero(corregirConcurso(getOfertas()))
   const sacar = ordenadas.filter(esExcluidaDeDestacados)
   const lista = sacar.length ? [...ordenadas.filter(o => !esExcluidaDeDestacados(o)), ...sacar] : ordenadas
   return conDestacada(lista).map(o => ({

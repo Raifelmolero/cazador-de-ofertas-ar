@@ -15,7 +15,8 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
-import { topConcurso } from '@/lib/topconcurso'
+import TopConcurso from '@/components/TopConcurso'
+import { corregirConcurso } from '@/lib/topconcurso'
 import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
 import CajaQueConviene from '@/components/CajaQueConviene'
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
 }
 
 export default function HoyPage() {
-  const ofertas = conDestacada(getOfertas())
+  const ofertas = conDestacada(corregirConcurso(getOfertas()))
   const scrapedAt = getScrapedAt().toISOString()
   const minimos = ofertas.filter(o => o.minimo_historico).length
   const estudio = getEstudio()
@@ -304,7 +305,7 @@ export default function HoyPage() {
         <AtajosCelular />
       </header>
 
-      <TopOfertasHoy ofertas={topConcurso()} n={7} tal_cual boton titulo="🏆 Top del finde: precios reconfirmados hoy" seccion="top_concurso_hoy" id="top-concurso-hoy" />
+      <TopConcurso seccion="top_concurso_hoy" id="top-concurso-hoy" />
 
       {verificadas.length > 0 && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
@@ -441,7 +442,7 @@ export default function HoyPage() {
         id="ticket-alto-hoy"
       />
       <VidrieraTecno
-        items={notebooks}
+        items={corregirConcurso(notebooks)}
         titulo="💻 Notebooks en oferta hoy"
         bajada="Lenovo, HP, Asus, Acer, Dell, Apple: en su precio más bajo o con descuento real."
         seccion="portada-notebooks"

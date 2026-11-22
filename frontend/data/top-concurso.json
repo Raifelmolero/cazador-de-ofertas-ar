@@ -1,51 +1,44 @@
 {
- "verificado": "2026-11-21 10:05-10:17",
+ "_leeme": "descuento_pct va SOLO con % real del Analista de Precios (nunca el tachado de ML). retirados = no se muestran en /hoy ni /black-friday.",
+ "retirados": ["MLA61057517"],
  "items": [
+  {
+   "id_ml": "MLA51001226",
+   "titulo": "Smart TV Noblex 75″ 4K Google TV DV75X8580",
+   "precio_actual": 1502999,
+   "descuento_pct": 15,
+   "url_producto": "https://www.mercadolibre.com.ar/smart-tv-noblex-75-4k-led-google-tv-dv75x8580-wifi-bluetooth-hdr-hdmi/p/MLA51001226?matt_word=repo&matt_tool=37267219",
+   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_829456-MLA99524474450_122025-F.webp",
+   "precio_visto": "2026-11-22"
+  },
   {
    "id_ml": "MLA74743728",
    "titulo": "Smart TV AI LG QNED 4K 55 Pulgadas 55QNED82",
    "precio_actual": 1299999,
-   "descuento_pct": 26,
    "url_producto": "https://www.mercadolibre.com.ar/smart-tv-ai-lg-qned-4k-55-pulgadas-55qned82/p/MLA74743728?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_666992-MLA112781201772_062026-F.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 1759999
+   "precio_visto": "2026-11-21"
   },
   {
    "id_ml": "MLA60932288",
    "titulo": "Aire Acondicionado Samsung Split Frío/calor Inverter 2580F",
    "precio_actual": 868670,
-   "descuento_pct": 17,
    "url_producto": "https://www.mercadolibre.com.ar/aire-acondicionado-samsung-split-friocalor-inverter-2580f/p/MLA60932288?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_828877-MLA116616829620_092026-O.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 1055999
-  },
-  {
-   "id_ml": "MLA61057517",
-   "titulo": "Heladera Smartlife Sl-rnf270sdinv Con Dispenser No Frost Inverter 260l",
-   "precio_actual": 799999,
-   "descuento_pct": 20,
-   "url_producto": "https://www.mercadolibre.com.ar/heladera-smartlife-sl-rnf270sdinv-con-dispenser-no-frost-inverter-260l/p/MLA61057517?matt_word=repo&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_938794-MLA99990284005_112025-F.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 999999
+   "precio_visto": "2026-11-21"
   },
   {
    "id_ml": "MLA53187433",
    "titulo": "Colchón Simmons Beautyrest Silver 2 Plazas Queen 190x160",
    "precio_actual": 2538740,
-   "descuento_pct": 20,
    "url_producto": "https://www.mercadolibre.com.ar/colchon-simmons-beautyrest-silver-2-plazas-queen-190x160/p/MLA53187433?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_963596-MLA99935872457_112025-F.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 3173425
+   "precio_visto": "2026-11-21"
   },
   {
    "id_ml": "MLA64652412",
    "titulo": "Notebook Lenovo Thinkpad E16 Gen3 Ryzen 7 250 16gb 512gb 21su0008ac",
    "precio_actual": 2496099,
-   "descuento_pct": 20,
    "url_producto": "https://www.mercadolibre.com.ar/notebook-lenovo-thinkpad-e16-gen3-ryzen-7-250-16gb-512gb-21su0008ac/p/MLA64652412?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_847795-MLA104900152090_012026-F.webp",
    "precio_visto": "2026-11-21"
@@ -54,21 +47,17 @@
    "id_ml": "MLA77328354",
    "titulo": "Notebook Asus TUF Gaming A15 RTX 3050 Ryzen 7 16gb 512gb",
    "precio_actual": 3160999,
-   "descuento_pct": 28,
    "url_producto": "https://www.mercadolibre.com.ar/notebook-asus-tuf-gaming-a15-rtx-3050-ryzen-7-16gb-512gb/p/MLA77328354?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_890404-MLA117821763902_102026-F.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 4399999
+   "precio_visto": "2026-11-21"
   },
   {
    "id_ml": "MLA81307010",
-   "titulo": "NOTEBOOK ACER NITRO V16 GAMING, CORE 7 240H, 512SSD, 16GB DDR5, RTX 5050, 165HZ, WIN 11, WUXGA, COLOR OBSIDIAN BLACK",
+   "titulo": "Notebook Acer Nitro V16 Core 7 240H 16GB 512GB RTX 5050",
    "precio_actual": 3200990,
-   "descuento_pct": 25,
    "url_producto": "https://www.mercadolibre.com.ar/notebook-acer-nitro-v16-gaming-core-7-240h-512ssd-16gb-ddr5-rtx-5050-165hz-win-11-wuxga-color-obsidian-black/p/MLA81307010?matt_word=repo&matt_tool=37267219",
    "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_855710-MLA120506784811_102026-F.webp",
-   "precio_visto": "2026-11-21",
-   "precio_anterior": 4299999
+   "precio_visto": "2026-11-21"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-22T18:19:44+00:00",
+  "generado": "2026-11-22T21:00:03+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-22T04:55:42+00:00",
+      "ultima_actividad": "2026-11-22T21:00:02+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -33,20 +33,20 @@
           "valor": 2
         },
         {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
           "label": "Reels IG",
           "valor": 1
         },
         {
           "label": "Historias IG",
           "valor": 1
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Gamer Gigabyte Aero Ryzen 9 32gb Ddr5 1tb Rtx 5070"
+      "ultimo_trabajo": "Gigabyte - Laptop Para Juegos Aorus 15 (2024) - 165hz"
     },
     {
       "id": "investigacion",

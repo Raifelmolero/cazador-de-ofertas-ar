@@ -11,6 +11,7 @@ import { CATEGORIAS, getCategoria, normalizar, ofertasDeCategoria, type Categori
 import { diasDesde, tramoEdad } from '@/lib/frescura'
 import type { ProductWithMargins } from '@/lib/productos'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
+import { esOmen } from '@/lib/prioridades'
 
 export interface Comparativa {
   slug: string
@@ -1311,7 +1312,7 @@ export function productosDe(c: Comparativa): ProductWithMargins[] {
   const suelto = (t: string) => ok.some(x => t.startsWith(x) || t.includes(`${x} para`))
   const lista = productosBase(c).filter(p => {
     const t = normalizar(p.titulo)
-    return !fuera.some(x => t.includes(x)) && !suelto(t)
+    return !fuera.some(x => t.includes(x)) && !suelto(t) && !esOmen(t)
   })
   // Precios de la última semana primero (orden estable: dentro de cada grupo sigue la ganancia esperada).
   const tramo = (p: ProductWithMargins) => tramoEdad(diasDesde(p.precio_visto))

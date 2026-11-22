@@ -48,6 +48,18 @@ body::before {
   .rise-in, .stamp { animation: none; }
 }
 
+/* Páginas que venden (/hoy, /black-friday, /mejores, /precio): en el celular ningún
+   texto de menos de 16 px y nada tocable de menos de 44 px de alto. */
+@media (max-width: 639px) {
+  .lectura-movil :is(.text-xs, .text-sm, .text-\[10px\], .text-\[11px\], .text-\[13px\]) {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+  .lectura-movil :is(button, summary, select, input, a.rounded-full, a.rounded-xl, a.rounded-lg) {
+    min-height: 44px;
+  }
+}
+
 /* Custom scrollbar (paleta zinc, como el resto del sitio) */
 ::-webkit-scrollbar {
   width: 6px;

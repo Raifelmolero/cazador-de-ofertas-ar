@@ -42,8 +42,13 @@ export function categoriaPrioritaria(titulo: string): string | null {
   return CATEGORIAS.find(c => c.re.test(t))?.id ?? null
 }
 
+/** HP Omen no se muestra en /hoy, /black-friday ni las comparativas (decisión de Raifel), sea cual sea su fecha. */
+export const esOmen = (titulo: string) => /\bomen\b/.test(normalizar(titulo))
+export const sinOmen = <T extends { titulo: string }>(lista: T[]): T[] => lista.filter(o => !esOmen(o.titulo))
+
 /** Lo que tendencias-hoy.md manda sacar de la home. */
 export function esExcluidaDeDestacados(o: { titulo: string; precio_visto?: string }): boolean {
+  if (esOmen(o.titulo)) return true
   const t = normalizar(o.titulo)
   return EXCLUIR.some(e => e.re.test(t) && (!e.hasta || !o.precio_visto || o.precio_visto <= e.hasta))
 }

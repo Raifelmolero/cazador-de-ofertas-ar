@@ -2,9 +2,11 @@
 
 import Image from 'next/image'
 import { miniaturaML } from '@/lib/imagenml'
+import { nombreCorto } from '@/lib/nombrecorto'
 import Link from 'next/link'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { alertaUrl } from '@/components/AlertaCTA'
+import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 
 /** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
  *  necesita, y mantiene liviano el payload que viaja al cliente. */
@@ -22,35 +24,29 @@ export interface OfertaLight {
   precio_visto?: string
   /** slug de /precio/[slug] si el producto tiene historial propio */
   historial?: string
+  /** slug del filtro rápido de /hoy (lib/rubros-filtro) */
+  rubro?: string
 }
 
 function precio(n: number) {
   return `$${Math.round(n).toLocaleString('es-AR')}`
 }
 
-/** «precio visto el 14/10» a partir de YYYY-MM-DD (sin Date: evita desfases de zona). */
-function precioVisto(fecha?: string): string | null {
-  const m = fecha ? /^\d{4}-(\d{2})-(\d{2})$/.exec(fecha) : null
-  return m ? `Precio visto el ${m[2]}/${m[1]}` : null
-}
-
 function shareWhatsApp(e: React.MouseEvent, producto: OfertaLight) {
   e.preventDefault()
   e.stopPropagation()
-  const texto =
-    `Mirá esta oferta: ${producto.titulo}` +
-    (producto.descuento_pct != null ? ` — ${producto.descuento_pct}% OFF` : '') +
-    `\n${precio(producto.precio_actual)}\n\n${producto.url_producto}`
+  // Sin %: descuento_pct sale del tachado de ML, no del historial.
+  const texto = `Mirá esta oferta: ${producto.titulo}\n${precio(producto.precio_actual)}\n\n${producto.url_producto}`
   window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer')
 }
 
-function ShareButton({ producto, className = '' }: { producto: OfertaLight; className?: string }) {
+function ShareButton({ producto }: { producto: OfertaLight }) {
   return (
     <button
       type="button"
       onClick={e => shareWhatsApp(e, producto)}
       aria-label="Compartir por WhatsApp"
-      className={`absolute top-0 right-0 z-10 flex items-center justify-center w-11 h-11 group/share focus-visible:outline-none ${className}`}
+      className="absolute top-0 right-0 z-10 flex items-center justify-center w-11 h-11 group/share focus-visible:outline-none"
     >
       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/70 text-white transition-colors group-hover/share:bg-green-600 group-focus-visible/share:ring-2 group-focus-visible/share:ring-yellow-400">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -59,30 +55,6 @@ function ShareButton({ producto, className = '' }: { producto: OfertaLight; clas
       </svg>
       </span>
     </button>
-  )
-}
-
-function Badges({ producto, className = '' }: { producto: OfertaLight; className?: string }) {
-  return (
-    // En celular, carteles cortos: con el texto completo tapaban media foto
-    // y no se reconocía el producto de un vistazo.
-    <div className={`absolute top-2 left-2 flex flex-col items-start gap-1 sm:gap-1.5 ${className}`}>
-      {producto.descuento_pct != null && (
-        <span className="text-[11px] sm:text-xs font-extrabold bg-red-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
-          {producto.descuento_pct}% OFF
-        </span>
-      )}
-      {producto.minimo_historico && (
-        <span className="text-[11px] sm:text-xs font-extrabold bg-yellow-400 text-black px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
-          📉 Mínimo<span className="hidden sm:inline"> histórico</span>
-        </span>
-      )}
-      {producto.relampago && (
-        <span className="text-[11px] sm:text-xs font-extrabold bg-blue-600 text-white px-2 sm:px-2.5 py-0.5 rounded-full shadow-sm">
-          ⚡ Relámpago<span className="hidden sm:inline">: dura pocas horas</span>
-        </span>
-      )}
-    </div>
   )
 }
 
@@ -103,24 +75,17 @@ export default function OfertaCard(props: {
   // «Avisame si baja»: solo ticket alto, donde esperar la baja vale más plata
   const alerta = props.producto.precio_actual >= TICKET_ALTO_DESDE ? alertaUrl(props.producto.id_ml) : null
   if (!slug && !alerta) return <Tarjeta {...props} />
+  const enlace = 'flex min-h-11 items-center justify-center text-center text-base leading-tight transition-colors'
   return (
-    <div className={`flex flex-col ${props.featured ? 'col-span-full' : ''}`}>
+    <div className={`flex min-w-0 flex-col ${props.featured ? 'col-span-full' : ''}`}>
       <Tarjeta {...props} />
       {slug && (
-        <Link
-          href={`/precio/${slug}`}
-          className="mt-1.5 text-center text-xs font-semibold text-zinc-400 hover:text-yellow-400 transition-colors"
-        >
-          📈 Historial de precio: ¿conviene hoy?
+        <Link href={`/precio/${slug}`} className={`${enlace} text-zinc-400 hover:text-yellow-400`}>
+          📈 Historial
         </Link>
       )}
       {alerta && (
-        <a
-          href={alerta}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 text-center text-xs font-semibold text-sky-300/90 hover:text-sky-200 transition-colors"
-        >
+        <a href={alerta} target="_blank" rel="noopener noreferrer" className={`${enlace} text-sky-300/90 hover:text-sky-200`}>
           🔔 Avisame si baja
         </a>
       )}
@@ -128,6 +93,7 @@ export default function OfertaCard(props: {
   )
 }
 
+/** Imagen, nombre corto, precio, fecha y botón. `featured`: la misma, acostada y a todo el ancho. */
 function Tarjeta({
   producto,
   featured = false,
@@ -139,150 +105,50 @@ function Tarjeta({
   priority?: boolean
   posicion?: number
 }) {
-  const ticketAlto = producto.precio_actual >= TICKET_ALTO_DESDE ? '' : undefined
-  const ahorro =
-    producto.precio_anterior != null
-      ? producto.precio_anterior - producto.precio_actual
-      : null
-
-  if (featured) {
-    return (
-      <a
-        href={producto.url_producto}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-        data-destacada
-        data-posicion={posicion}
-        data-ticket-alto={ticketAlto}
-        className="rise-in group col-span-full flex bg-zinc-900 border border-yellow-400/40 rounded-2xl overflow-hidden transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
-      >
-        <div className="relative w-[38%] max-w-72 shrink-0 self-stretch bg-white min-h-36">
-          {producto.url_imagen ? (
-            <Image
-              src={miniaturaML(producto.url_imagen)}
-              alt={producto.titulo}
-              fill
-              priority={priority}
-              unoptimized
-              className="object-contain p-3"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-zinc-300 text-4xl">📦</div>
-          )}
-          {/* En lg el % va en grande a la derecha; el badge chico duplicaría */}
-          <Badges producto={producto} className="lg:hidden" />
-          <ShareButton producto={producto} />
-        </div>
-
-        <div className="flex-1 min-w-0 flex flex-col justify-center px-4 py-4 sm:px-6 sm:py-5">
-          <span className="text-[11px] font-extrabold tracking-wide text-yellow-400 mb-1.5">
-            🎯 LA CAZA DEL DÍA
-          </span>
-          <h2 className="text-sm sm:text-lg font-bold text-white leading-snug line-clamp-2 mb-2 [text-wrap:balance]">
-            {producto.titulo}
-          </h2>
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 tabular-nums">
-            {producto.precio_anterior != null && (
-              <span className="text-xs sm:text-sm text-zinc-500 line-through">
-                {precio(producto.precio_anterior)}
-              </span>
-            )}
-            <span className="font-display text-2xl sm:text-3xl font-black text-yellow-400 leading-tight">
-              {precio(producto.precio_actual)}
-            </span>
-          </div>
-          {ahorro != null && ahorro > 0 && (
-            <span className="text-xs sm:text-sm font-semibold text-green-400 mt-0.5 tabular-nums">
-              Te ahorrás {precio(ahorro)}
-            </span>
-          )}
-          {producto.minimo_historico && (
-            <span className="mt-1.5 w-fit text-xs font-extrabold bg-yellow-400 text-black px-2.5 py-1 rounded-md">
-              📉 El precio más bajo que registramos
-            </span>
-          )}
-          {precioVisto(producto.precio_visto) && (
-            <span className="mt-1.5 text-xs text-zinc-500">{precioVisto(producto.precio_visto)}</span>
-          )}
-          <span className="mt-3 inline-flex w-fit items-center text-sm sm:text-base font-extrabold bg-yellow-400 text-black rounded-xl px-6 py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
-            Comprar en Mercado Libre ↗
-          </span>
-        </div>
-
-        {/* Desktop: el % en grande llena el espacio con el dato que importa */}
-        {producto.descuento_pct != null && (
-          <div className="hidden lg:flex flex-col items-center justify-center shrink-0 px-10 border-l border-zinc-800">
-            <span className="font-display text-6xl font-black text-yellow-400 leading-none tabular-nums">
-              -{producto.descuento_pct}%
-            </span>
-            {producto.minimo_historico && (
-              <span className="mt-3 text-xs font-extrabold bg-yellow-400 text-black px-2.5 py-0.5 rounded-full">
-                📉 Mínimo histórico
-              </span>
-            )}
-          </div>
-        )}
-      </a>
-    )
-  }
-
   return (
     <a
       href={producto.url_producto}
       target="_blank"
       rel="noopener noreferrer sponsored"
+      data-destacada={featured ? true : undefined}
       data-posicion={posicion}
-      data-ticket-alto={ticketAlto}
-      className="rise-in group flex-1 flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-200 hover:border-yellow-400/40 hover:shadow-[0_0_24px_rgba(250,204,21,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+      data-ticket-alto={producto.precio_actual >= TICKET_ALTO_DESDE ? '' : undefined}
+      className={`rise-in group flex min-w-0 overflow-hidden rounded-2xl border bg-zinc-900 transition-colors duration-200 hover:border-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+        featured ? 'col-span-full flex-wrap border-yellow-400/40 sm:flex-nowrap' : 'flex-1 flex-col border-zinc-800'
+      }`}
     >
-      <div className="relative aspect-square bg-white">
+      <span className={`relative block bg-white ${featured ? 'h-36 w-36 shrink-0 sm:h-56 sm:w-56' : 'aspect-square w-full'}`}>
         {producto.url_imagen ? (
           <Image
-            src={miniaturaML(producto.url_imagen)}
+            src={miniaturaML(producto.url_imagen, featured ? 'media' : 'chica')}
             alt={producto.titulo}
             fill
             priority={priority}
             unoptimized
-            className="object-contain p-3"
+            sizes={featured ? '(min-width: 640px) 224px, 144px' : '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw'}
+            className="object-contain p-2"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-zinc-300 text-4xl">📦</div>
+          <span className="flex h-full w-full items-center justify-center text-4xl text-zinc-300">📦</span>
         )}
-        <Badges producto={producto} />
         <ShareButton producto={producto} />
-      </div>
+      </span>
 
-      <div className="px-3 pt-3 pb-3 sm:px-4 sm:pt-4 flex-1 flex flex-col">
-        <h2 className="text-[13px] sm:text-sm font-medium text-zinc-200 line-clamp-2 leading-snug mb-auto">
-          {producto.titulo}
-        </h2>
-
-        <div className="mt-2.5 pt-2.5 sm:mt-3 sm:pt-3 border-t border-zinc-800 space-y-0.5 tabular-nums">
-          {producto.precio_anterior != null && (
-            <div className="text-xs text-zinc-500 line-through">
-              {precio(producto.precio_anterior)}
-            </div>
-          )}
-          <div className="font-display text-lg sm:text-xl font-black text-white leading-tight">
+      {/* `contents` en la acostada: en celular el botón baja a su propia fila, a todo el ancho */}
+      <span className={featured ? 'contents sm:flex sm:flex-1 sm:flex-col sm:justify-center' : 'flex flex-1 flex-col'}>
+        <span className={`flex min-w-0 flex-col ${featured ? 'flex-1 justify-center p-3 sm:flex-none sm:px-6' : 'p-2.5 sm:p-4'}`}>
+          <h2 className={`line-clamp-2 text-base leading-snug text-zinc-100 ${featured ? 'font-bold sm:text-xl' : 'font-medium'}`}>
+            {nombreCorto(producto.titulo)}
+          </h2>
+          <span className={`mt-1.5 font-display font-black leading-tight tabular-nums text-yellow-400 ${featured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-2xl'}`}>
             {precio(producto.precio_actual)}
-          </div>
-          {ahorro != null && ahorro > 0 && (
-            <div className="text-xs font-semibold text-green-400">
-              Ahorrás {precio(ahorro)}
-            </div>
-          )}
-        </div>
-
-        {producto.minimo_historico && (
-          <div className="mt-1.5 text-[11px] font-extrabold text-yellow-300">📉 Precio más bajo que registramos</div>
-        )}
-        {precioVisto(producto.precio_visto) && (
-          <div className="mt-1.5 text-[11px] text-zinc-500">{precioVisto(producto.precio_visto)}</div>
-        )}
-        <span className="mt-3 block w-full text-center text-sm sm:text-[15px] font-extrabold bg-yellow-400 text-black rounded-xl py-3 shadow-[0_2px_0_rgba(0,0,0,0.35)] transition-colors group-hover:bg-yellow-300">
-          Comprar en ML ↗
+          </span>
+          <UltVerificacion fecha={producto.precio_visto} />
         </span>
-      </div>
+        <span className={featured ? 'w-full p-3 pt-2 sm:max-w-sm sm:px-6' : 'mt-auto block p-2 pt-0 sm:p-4 sm:pt-0'}>
+          <span className={BOTON_ML}>Ver en Mercado Libre</span>
+        </span>
+      </span>
     </a>
   )
 }

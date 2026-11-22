@@ -15,7 +15,7 @@ import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
-import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
+import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados, sinOmen } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
@@ -136,13 +136,13 @@ export default function HoyPage() {
     name: 'Ofertas de hoy — Cazador de Ofertas AR',
     url: DEALS_URL,
     numberOfItems: ofertas.length,
-    itemListElement: ofertas.slice(0, 20).map((o, i) => ({
+    itemListElement: sinOmen(ofertas).slice(0, 20).map((o, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       item: {
         '@type': 'Product',
         name: o.titulo,
-        description: `${o.titulo} en oferta en Mercado Libre Argentina${o.descuento_pct ? ` con ${o.descuento_pct}% OFF` : ''}${o.minimo_historico ? ', en su precio más bajo registrado' : ''}.`,
+        description: `${o.titulo} en oferta en Mercado Libre Argentina${o.minimo_historico ? ', en su precio más bajo registrado' : ''}.`,
         ...(o.url_imagen ? { image: o.url_imagen } : {}),
         offers: {
           '@type': 'Offer',
@@ -233,7 +233,7 @@ export default function HoyPage() {
     },
     {
       q: '¿Cuáles son las mejores ofertas de Mercado Libre Argentina hoy?',
-      a: 'Las de hoy están arriba en esta página, ordenadas por relevancia: primero las que están en su mínimo histórico y después las de mayor descuento real. Se actualizan a medida que cargamos ofertas nuevas, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
+      a: 'Las de hoy están arriba en esta página, ordenadas por relevancia, con la fecha en que vimos cada precio. Se actualizan a medida que cargamos ofertas nuevas, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
     },
     {
       q: '¿Cuándo es el Black Friday y conviene esperar?',
@@ -260,7 +260,7 @@ export default function HoyPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="lectura-movil min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -276,9 +276,9 @@ export default function HoyPage() {
 
       {/* Header */}
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/85 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-1 sm:py-3.5 flex items-center justify-between gap-2">
           {/* Clarity 21-23/10: el logo se tocaba sin respuesta; lleva a las ofertas */}
-          <a href="#ofertas" className="font-display text-lg font-extrabold tracking-tight flex shrink-0 items-center gap-2 whitespace-nowrap">
+          <a href="#ofertas" className="font-display text-base sm:text-lg font-extrabold tracking-tight flex min-h-11 min-w-0 items-center gap-2 leading-tight sm:shrink-0 sm:whitespace-nowrap">
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" priority />
             <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
@@ -295,17 +295,17 @@ export default function HoyPage() {
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+            className="inline-flex min-h-11 items-center text-base sm:text-xs font-bold text-yellow-400 border border-yellow-400/50 hover:border-yellow-300 px-3 rounded-full transition-colors whitespace-nowrap"
           >
-            Alertas gratis
+            Alertas
           </a>
         </div>
         <AtajosCelular />
       </header>
 
       {verificadas.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          <CajaQueConviene items={verificadas} titulo="Ofertas verificadas de hoy" seccion="verificadas_home" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2 sm:pt-4">
+          <CajaQueConviene items={verificadas} titulo="Precios vistos en los últimos días" seccion="verificadas_home" />
         </div>
       )}
 
@@ -329,9 +329,9 @@ export default function HoyPage() {
         <div className="max-w-3xl mx-auto">
           {/* Celular: primero el atajo a las ofertas (el que entra quiere comprar) */}
           <div className="sm:hidden flex items-center gap-3 mb-4">
-            <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={84} height={104} className="shrink-0" priority />
+            <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={84} height={104} className="shrink-0" />
             <div>
-              <p className="font-display text-xl font-black leading-tight">Ofertas reales de Mercado Libre, verificadas hoy</p>
+              <p className="font-display text-xl font-black leading-tight">Ofertas de Mercado Libre, con la fecha de cada precio</p>
               <p className="mt-1 text-xs text-zinc-400">{ofertas.length.toLocaleString('es-AR')} ofertas{minimos > 0 ? ` · ${minimos} en su mínimo histórico` : ''}</p>
             </div>
           </div>
@@ -421,8 +421,7 @@ export default function HoyPage() {
         <div className="order-1 sm:order-none">
           <VidrieraTecno
             items={tecno}
-            titulo="📱 Celulares en su precio más bajo"
-            bajada="iPhone, Samsung Galaxy, Motorola Edge, Xiaomi: en su mínimo o con descuento real."
+            titulo="📱 Celulares destacados"
             seccion="portada-ticket-alto"
             id="tecno-hoy"
           />
@@ -440,7 +439,6 @@ export default function HoyPage() {
       <VidrieraTecno
         items={notebooks}
         titulo="💻 Notebooks en oferta hoy"
-        bajada="Lenovo, HP, Asus, Acer, Dell, Apple: en su precio más bajo o con descuento real."
         seccion="portada-notebooks"
         id="notebooks-hoy"
         atajos={[
@@ -530,7 +528,7 @@ export default function HoyPage() {
               </span>
             </div>
             <ul className="mt-4 divide-y divide-zinc-800 border-y border-zinc-800">
-              {infladas.casos.slice(0, 3).map(c => (
+              {sinOmen(infladas.casos).slice(0, 3).map(c => (
                 <li key={c.id}>
                   <Link href={`/descuentos-inflados#${c.id}`} className="group flex items-center gap-3 py-3">
                     <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-white">
@@ -539,7 +537,7 @@ export default function HoyPage() {
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-semibold text-zinc-200 group-hover:text-red-300">{c.titulo}</span>
                       <span className="block text-xs text-zinc-400 tabular-nums">
-                        Tachado {pesos(c.precio_tachado)} (-{c.descuento_anunciado}% anunciado) · el{' '}
+                        Tachado {pesos(c.precio_tachado)} · el{' '}
                         {diaMes(c.minimo_fecha, infladas.fecha)} lo registramos a{' '}
                         <span className="font-semibold text-zinc-200">{pesos(c.minimo_registrado)}</span>
                       </span>
@@ -662,7 +660,8 @@ export default function HoyPage() {
                 Previa del Black Friday (27/11)
               </a>
             </li>
-            {LANDINGS.filter(indexableLanding).filter(l => !l.slug.includes('cyber-monday')).map(l => (
+            {/* Sin las landings «X% OFF»: ese % es el tachado de ML */}
+            {LANDINGS.filter(indexableLanding).filter(l => !l.slug.includes('cyber-monday') && !l.nombre.includes('%')).map(l => (
               <li key={l.slug}>
                 <a
                   href={`/ofertas/${l.slug}`}

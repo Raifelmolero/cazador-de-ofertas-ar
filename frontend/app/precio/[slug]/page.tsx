@@ -14,6 +14,10 @@ import { NICHOS } from '@/lib/nichos'
 import { preciosHoyVisibles, seguidosDe } from '@/lib/preciohoy'
 import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { marcaDeTitulo } from '@/lib/marca-producto'
+import { miniaturaML } from '@/lib/imagenml'
+import { nombreCorto as nombreTarjeta } from '@/lib/nombrecorto'
+import { sinOmen } from '@/lib/prioridades'
+import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -104,11 +108,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const hoy = precioActual(s)
   const enOferta = vigente(s)
   const enMinimo = enOferta && hoy <= s.min
-  const sobreMin = Math.round(((hoy - s.min) / s.min) * 100)
-  const descuentoLista = s.precio_lista > hoy ? Math.round((1 - hoy / s.precio_lista) * 100) : 0
   const cat = categoriaDeSeguido(s)
   // Si hoy no está en oferta, mostramos las de su categoría que sí lo están
-  const alternativas = !enOferta && cat ? ofertasDeCategoria(cat).filter(o => o.id_ml !== s.id).slice(0, 4) : []
+  const alternativas = !enOferta && cat ? sinOmen(ofertasDeCategoria(cat)).filter(o => o.id_ml !== s.id).slice(0, 4) : []
   const comparativas = cat ? COMPARATIVAS.filter(c => c.categoria === cat.slug).slice(0, 3) : []
   const nicho = cat ? NICHOS.find(n => n.categorias.includes(cat.slug)) : undefined
   const preciosHoy = preciosHoyVisibles().filter(
@@ -116,9 +118,12 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   ).slice(0, 3)
   // Ficha de ganancia para vendedores en calculadoraml (otro dominio, mismo deploy)
   const ficha = getProductoById(s.id)
-  const relacionados = hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidosPrincipales())
+  // La fecha sale del catálogo y solo si es de este mismo precio: `ultimo_visto` se renueva
+  // cada día aunque el precio no se haya releído (tendencias 22/11).
+  const verificado = ficha && ficha.precio_actual === hoy ? ficha.precio_visto : undefined
+  const relacionados = sinOmen(hermanos(s, cat ? seguidosDeCategoria(cat.slug) : getSeguidosPrincipales()))
   const nombre = nombreCorto(s)
-  const tambien = relacionadosDePrecio(s, 4)
+  const tambien = sinOmen(relacionadosDePrecio(s, 8)).slice(0, 4)
   const tambienExtras = extrasDeCategoria(cat?.slug)
   // Sin campo de marca en los datos: se deduce del título solo si es inequívoca
   const marca = marcaDeTitulo(s.titulo)
@@ -126,8 +131,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const veredicto = !enOferta
     ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(s.min)} el ${fecha(s.min_ts)}.`
     : enMinimo
-      ? `Hoy está en el precio más bajo que registramos desde que lo seguimos (${fecha(s.desde)}): ${precio(hoy)}.`
-      : `Hoy cuesta ${precio(hoy)}, un ${sobreMin}% más que el mínimo que registramos (${precio(s.min)} el ${fecha(s.min_ts)}).`
+      ? `El último precio que vimos, ${precio(hoy)}, es el más bajo que registramos desde que lo seguimos (${fecha(s.desde)}).`
+      : `El último precio que vimos, ${precio(hoy)}, está por encima del mínimo que registramos (${precio(s.min)} el ${fecha(s.min_ts)}).`
 
   const faqs = [
     {
@@ -184,15 +189,15 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   ]
 
   return (
-    <main className="min-h-screen pb-24 sm:pb-0">
+    <main className="lectura-movil min-h-screen pb-28 sm:pb-0">
       <meta property="og:type" content="product" />
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
 
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight flex items-center gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-4 flex items-center justify-between gap-2">
+          <a href={DEALS_URL} className="font-display text-base sm:text-lg font-extrabold tracking-tight flex min-h-11 min-w-0 items-center gap-2 leading-tight">
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="rounded-full" />
             <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
@@ -200,15 +205,15 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+            className="inline-flex min-h-11 items-center text-base sm:text-xs font-bold text-yellow-400 border border-yellow-400/50 hover:border-yellow-300 px-3 rounded-full transition-colors whitespace-nowrap"
           >
-            Unite al canal ✈️
+            Canal ✈️
           </a>
         </div>
       </header>
 
-      <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
-        <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
+      <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
+        <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a>
           {cat && (
             <>
@@ -223,7 +228,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
         </nav>
 
         {/* Móvil: foto chica al costado + precio y botón de compra visibles sin scroll */}
-        <div className="flex flex-row gap-4 sm:gap-5 mb-5">
+        <div className="flex flex-row gap-3 sm:gap-5 mb-3">
           {s.img && (
             <a
               href={s.url}
@@ -234,10 +239,11 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={s.img}
+                src={miniaturaML(s.img, 'chica')}
                 alt={s.titulo}
                 width={160}
                 height={160}
+                sizes="(min-width: 640px) 160px, 96px"
                 fetchPriority="high"
                 decoding="async"
                 className="w-24 h-24 sm:w-40 sm:h-40 object-contain bg-white rounded-xl p-1.5 sm:p-2"
@@ -245,7 +251,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             </a>
           )}
           <div className="min-w-0">
-            <h1 className="font-display text-xl sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">
+            {/* Celular: 2 líneas a la vista; el título completo sigue en el HTML */}
+            <h1 className="line-clamp-2 sm:line-clamp-none font-display text-base sm:text-4xl font-black leading-tight tracking-tight mb-1.5 [text-wrap:balance]">
               {/* Clarity 21-23/10: el título se tocaba sin respuesta (clic muerto) */}
               <a href={s.url} data-seccion="precio_titulo" target="_blank" rel="sponsored nofollow noopener" className="hover:text-yellow-300">
                 {s.titulo}
@@ -257,13 +264,23 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               data-seccion="precio_cabecera"
               target="_blank"
               rel="sponsored nofollow noopener"
-              className="block font-display text-2xl font-black text-yellow-400 leading-tight sm:hidden tabular-nums"
+              className="block font-display text-2xl sm:text-3xl font-black text-yellow-400 leading-tight tabular-nums"
             >
               {precio(hoy)}
             </a>
-            <p className="hidden sm:block text-sm text-zinc-500">Seguimos este precio en Mercado Libre desde el {fecha(s.desde)}.</p>
+            <UltVerificacion fecha={verificado} />
+            {!verificado && <p className="text-base leading-snug text-zinc-300">último precio registrado</p>}
           </div>
         </div>
+        <a
+          href={s.url}
+          data-seccion="precio_cta"
+          target="_blank"
+          rel="sponsored nofollow noopener"
+          className={`${BOTON_ML} mb-5 sm:max-w-sm`}
+        >
+          Ver en Mercado Libre
+        </a>
 
         <section
           className={`rounded-2xl border p-5 mb-6 ${
@@ -280,22 +297,13 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               className="h-14 w-14 shrink-0 object-contain"
             />
             <p className="font-bold text-zinc-100">
-              {enMinimo ? '📉 Buen momento para comprar' : enOferta ? '¿Es buen precio?' : 'Hoy no está en oferta'}
+              {enMinimo ? '📉 El más bajo que registramos' : enOferta ? '¿Es buen precio?' : 'Hoy no está en oferta'}
             </p>
           </div>
           <p className="text-zinc-300 leading-relaxed">{veredicto}</p>
           {s.relampago && enOferta && (
             <p className="text-sm font-bold text-blue-400 mt-2">⚡ Es una oferta relámpago: dura pocas horas o hasta agotar stock.</p>
           )}
-          <a
-            href={s.url}
-            data-seccion="precio_cta"
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="mt-4 block sm:inline-block text-center text-base sm:text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-6 py-3.5 sm:py-3"
-          >
-            {enOferta ? `Ver a ${precio(hoy)} en Mercado Libre 🛒` : 'Ver precio actual en Mercado Libre'}
-          </a>
           <p className="mt-2 text-xs text-zinc-500">Link oficial de Mercado Libre. Comprás ahí, al mismo precio.</p>
           <AlertaCTA id={s.id} className="mt-4" />
         </section>
@@ -303,22 +311,20 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
         {alternativas.length > 0 && (
           <section className="mb-8" aria-label="En oferta hoy">
             <p className="text-xs font-bold tracking-widest text-yellow-400 mb-2">🔥 PARECIDOS QUE SÍ ESTÁN EN OFERTA HOY</p>
-            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <ul className="grid grid-cols-2 gap-3">
               {alternativas.map(p => (
-                <li key={p.id_ml} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-2">
-                  <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="block">
-                    <div className="h-28 rounded-xl bg-white overflow-hidden">
+                <li key={p.id_ml} className="min-w-0 rounded-2xl border border-zinc-800 bg-zinc-900 p-2">
+                  <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="group flex h-full flex-col">
+                    <div className="h-28 shrink-0 rounded-xl bg-white overflow-hidden">
                       {p.url_imagen && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.url_imagen} alt="" loading="lazy" className="w-full h-full object-contain p-1" />
+                        <img src={miniaturaML(p.url_imagen, 'chica')} alt="" width={160} height={112} sizes="(min-width: 768px) 360px, 50vw" loading="lazy" decoding="async" className="w-full h-full object-contain p-1" />
                       )}
                     </div>
-                    <p className="mt-2 text-xs text-zinc-300 line-clamp-2">{p.titulo}</p>
-                    <p className="mt-1 flex items-baseline gap-1.5">
-                      <span className="font-black text-zinc-50">{precio(p.precio_actual)}</span>
-                      {p.descuento_pct != null && <span className="text-[11px] font-bold text-red-400">-{p.descuento_pct}%</span>}
-                    </p>
-                    <span className="mt-2 block rounded-lg bg-yellow-400 py-1.5 text-center text-xs font-black text-black">Ver en ML ↗</span>
+                    <p className="mt-2 text-base leading-snug text-zinc-300 line-clamp-2">{nombreTarjeta(p.titulo)}</p>
+                    <p className="mt-1 text-lg font-black tabular-nums text-yellow-400">{precio(p.precio_actual)}</p>
+                    <UltVerificacion fecha={p.precio_visto} />
+                    <span className="mt-auto pt-2"><span className={BOTON_ML}>Ver en Mercado Libre</span></span>
                   </a>
                 </li>
               ))}
@@ -328,10 +334,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
 
         <TambienTeServira items={tambien} extras={tambienExtras} seccion="precio_tambien" />
 
-        <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-sm">
-          <Dato label={enOferta ? 'Precio hoy' : 'Último precio'} valor={precio(hoy)} />
+        <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 text-sm">
+          <Dato label="Último precio" valor={precio(hoy)} />
           <Dato label="Más bajo registrado" valor={precio(s.min)} sub={fecha(s.min_ts)} />
-          <Dato label="Precio de lista" valor={precio(s.precio_lista)} sub={descuentoLista ? `${descuentoLista}% OFF` : undefined} />
           <Dato label="Seguido desde" valor={fecha(s.desde)} />
         </dl>
 
@@ -423,7 +428,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       {/* Celular: el botón de compra queda siempre a mano al bajar por el historial */}
       <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] text-zinc-500 truncate">{enMinimo ? 'En su mínimo histórico' : enOferta ? 'Precio hoy' : 'Último precio'}</p>
+          <p className="text-base text-zinc-300 truncate">Último precio</p>
           <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(hoy)}</p>
         </div>
         <a
@@ -431,9 +436,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           data-seccion="precio_barra_fija"
           target="_blank"
           rel="sponsored nofollow noopener"
-          className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3.5 text-sm font-black text-black active:scale-[0.97] transition-transform"
+          className="flex min-h-12 w-[52%] shrink-0 items-center justify-center rounded-xl bg-[#FACC15] px-2 text-center text-base font-black leading-tight text-black active:scale-[0.97] transition-transform"
         >
-          Ver en Mercado Libre 🛒
+          Ver en Mercado Libre
         </a>
       </div>
     </main>

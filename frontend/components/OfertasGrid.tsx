@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { busquedaML } from '@/lib/afiliado'
+import { RUBROS_FILTRO } from '@/lib/rubros-filtro'
 
 function normalizar(s: string) {
   return s
@@ -94,22 +95,23 @@ function BuscaPorRubro() {
   )
 }
 
+// Sin filtro por % OFF: descuento_pct es el tachado de ML, no un descuento verificado.
 const CHIPS = [
   { id: 'all', label: 'Todas' },
+  ...RUBROS_FILTRO.map(r => ({ id: r.slug, label: r.label })),
   { id: 'flash', label: '⚡ Relámpago' },
   { id: 'low', label: '📉 Mínimo histórico' },
-  { id: 'half', label: '50% OFF o más' },
   { id: 'cheap', label: 'Hasta $100.000' },
 ] as const
 
 type ChipId = (typeof CHIPS)[number]['id']
 
 function pasaChip(o: OfertaLight, chip: ChipId) {
+  if (chip === 'all') return true
   if (chip === 'flash') return !!o.relampago
   if (chip === 'low') return !!o.minimo_historico
-  if (chip === 'half') return (o.descuento_pct ?? 0) >= 50
   if (chip === 'cheap') return o.precio_actual <= 100_000
-  return true
+  return o.rubro === chip
 }
 
 const ORDENES = [
@@ -179,9 +181,16 @@ export default function OfertasGrid({
 
   // ?q=heladera en la URL: búsquedas compartibles (y que una IA pueda linkear).
   useEffect(() => {
-    const inicial = new URLSearchParams(window.location.search).get('q')
+    const params = new URLSearchParams(window.location.search)
+    // ?categoria=notebooks: filtro rápido del header.
+    const rubro = RUBROS_FILTRO.find(r => r.slug === params.get('categoria'))
+    if (rubro) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- leer la URL solo existe en el cliente
+      setChip(rubro.slug)
+      requestAnimationFrame(() => resultadosRef.current?.scrollIntoView({ block: 'start' }))
+    }
+    const inicial = params.get('q')
     if (!inicial) return
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- leer la URL solo existe en el cliente
     setQ(inicial)
     setDesdeUrl(true)
     // Llega con intención de compra (Google/IA): saltar directo a los resultados
@@ -190,13 +199,9 @@ export default function OfertasGrid({
   }, [])
 
   const counts = useMemo(() => {
-    const c: Record<ChipId, number> = { all: Math.max(ofertas.length, total ?? 0), flash: 0, low: 0, half: 0, cheap: 0 }
-    for (const o of ofertas) {
-      if (pasaChip(o, 'flash')) c.flash++
-      if (pasaChip(o, 'low')) c.low++
-      if (pasaChip(o, 'half')) c.half++
-      if (pasaChip(o, 'cheap')) c.cheap++
-    }
+    const c = Object.fromEntries(CHIPS.map(x => [x.id, 0])) as Record<ChipId, number>
+    for (const o of ofertas) for (const x of CHIPS) if (pasaChip(o, x.id)) c[x.id]++
+    c.all = Math.max(ofertas.length, total ?? 0)
     return c
   }, [ofertas, total])
 
@@ -255,13 +260,13 @@ export default function OfertasGrid({
           {CHIPS.map(c => {
             const activo = chip === c.id
             const n = counts[c.id]
-            if (c.id !== 'all' && n === 0) return null
+            if (c.id !== 'all' && !activo && n === 0) return null
             return (
               <button
                 key={c.id}
                 onClick={() => setChip(activo && c.id !== 'all' ? 'all' : c.id)}
                 aria-pressed={activo}
-                className={`shrink-0 text-xs font-bold rounded-full px-4 py-2.5 border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+                className={`min-h-11 shrink-0 text-base font-bold rounded-full px-4 py-2 border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
                   activo
                     ? 'bg-yellow-400 text-black border-yellow-400'
                     : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
@@ -284,7 +289,7 @@ export default function OfertasGrid({
       {visibles.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-zinc-400 mb-4">
-            {nq ? <>Hoy no tenemos «{q.trim()}» en oferta 🎯 — mirá en Mercado Libre o estas ofertas de hoy.</> : 'Nada con ese filtro por ahora 🎯 — sumamos ofertas nuevas seguido.'}
+            {nq ? <>Hoy no tenemos «{q.trim()}» en oferta 🎯 — mirá en Mercado Libre o estas ofertas de hoy.</> : (total ?? 0) > todasOfertas.length ? 'Cargando ofertas…' : 'Nada con ese filtro por ahora 🎯 — sumamos ofertas nuevas seguido.'}
           </p>
           {nq !== '' && nq.length < 3 && (
             <div className="mb-4">
@@ -315,9 +320,10 @@ export default function OfertasGrid({
             visibles.slice(0, limite).map((o, i) => <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />)
           ) : (
             <>
-              <OfertaCard producto={visibles[0]} featured priority posicion={1} />
+              {/* Sin priority: la grilla está varias pantallas abajo, las fotos van lazy */}
+              <OfertaCard producto={visibles[0]} featured posicion={1} />
               {visibles.slice(1, 7).map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={o} priority={i < 3} posicion={i + 2} />
+                <OfertaCard key={o.id_ml} producto={o} posicion={i + 2} />
               ))}
 
               {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}

@@ -30,6 +30,8 @@ export interface ItemConviene {
   /** link de afiliado del catálogo, tal cual lo usan las demás fichas (clics-ml.tsx le pone `sitio` al clic) */
   url: string
   img: string | null
+  /** precio_visto del catálogo: día en que se leyó el precio */
+  visto?: string
 }
 
 /** ¿El precio se vio hace DIAS_PRECIO_RECIENTE días o menos? Sin fecha: no. */
@@ -48,6 +50,7 @@ function desdeOferta(o: OfertaLight, rubro?: string): ItemConviene {
     minimo_historico: !!o.minimo_historico,
     url: o.url_producto,
     img: o.url_imagen,
+    visto: o.precio_visto,
   }
 }
 
@@ -116,6 +119,7 @@ function deEquipos(g: Guia, n: number): ItemConviene[] {
       minimo_historico: e.minimo != null && e.precio <= e.minimo,
       url: e.url,
       img: e.img,
+      visto: visto.get(e.id),
     }))
 }
 

@@ -9,6 +9,7 @@
 import { COMPARADORES, USADOS, equiposDe, type Equipo } from '@/lib/comparador'
 import { normalizar } from '@/lib/categorias'
 import { getOfertas } from '@/lib/productos'
+import { esOmen } from '@/lib/prioridades'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 
 export interface ItemTecno {
@@ -21,6 +22,7 @@ export interface ItemTecno {
   minimo_historico?: boolean
   url_producto: string
   url_imagen: string | null
+  precio_visto?: string
   /** ganancia esperada del bot (ticket × comisión de la categoría) */
   prioridad: number
   marca: string
@@ -47,7 +49,7 @@ function modelo(titulo: string): string {
 
 function califica(e: Equipo, tipo: ItemTecno['tipo']): boolean {
   const t = normalizar(e.titulo)
-  if (USADOS.test(t)) return false
+  if (USADOS.test(t) || esOmen(t)) return false
   return tipo === 'celular' ? CELU_OK.test(t) : NB_MARCAS.has(e.marca)
 }
 
@@ -81,6 +83,7 @@ export function vidrieraTecno({ cantidad = 6, minimo = 0, excluir = [], solo, ha
         minimo_historico: o.minimo_historico,
         url_producto: o.url_producto,
         url_imagen: o.url_imagen,
+        precio_visto: o.precio_visto,
         prioridad: o.prioridad ?? 0,
         marca: e.marca,
       })

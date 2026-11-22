@@ -52,6 +52,7 @@ function ofertasRespaldo(): OfertaLight[] {
       relampago: o.relampago,
       url_producto: o.url_producto,
       url_imagen: o.url_imagen,
+      precio_visto: o.precio_visto,
       historial: historial[o.id_ml],
     }))
 }
@@ -210,18 +211,20 @@ export default function BlackFridayPage() {
   ]
 
   return (
-    <main className="min-h-screen pb-20 sm:pb-0">
+    <main className="lectura-movil min-h-screen pb-20 sm:pb-0">
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
       <EventosBF />
 
       <header className="sticky top-0 z-20 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
-            🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-4 flex items-center justify-between gap-2">
+          <a href={DEALS_URL} className="font-display text-base sm:text-lg font-extrabold tracking-tight flex min-h-11 min-w-0 items-center gap-2 leading-tight">
+            {/* eslint-disable-next-line @next/next/no-img-element -- avatar local de 64 px, ya optimizado */}
+            <img src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="h-8 w-8 shrink-0 rounded-full" />
+            <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
-          <a href="#top" className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap">
+          <a href="#top" className="inline-flex min-h-11 items-center text-base sm:text-xs font-bold text-yellow-400 border border-yellow-400/50 hover:border-yellow-300 px-3 rounded-full transition-colors whitespace-nowrap">
             Ver el top
           </a>
         </div>
@@ -229,24 +232,32 @@ export default function BlackFridayPage() {
 
       {/* 4.1 Hero */}
       <section
-        className="border-b border-zinc-900 px-4 py-8 sm:py-12"
+        className="border-b border-zinc-900 px-4 pt-3 pb-6 sm:py-12"
         style={{ background: 'radial-gradient(ellipse 70% 60% at 50% -20%, rgba(250,204,21,0.07) 0%, transparent 70%)' }}
       >
         <div className="max-w-3xl mx-auto">
-          <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
+          <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
             <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
             <span className="text-zinc-300">Black Friday {BF.año}</span>
           </nav>
-          <p className="text-xs font-bold uppercase tracking-wider text-yellow-300">Black Friday 2026 en Argentina</p>
-          <h1 className="mt-2 font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">
-            Viernes 27 de noviembre: el descuento, verificado
+          <p className="hidden sm:block text-xs font-bold uppercase tracking-wider text-yellow-300">Black Friday 2026 en Argentina</p>
+          <h1 className="sm:mt-2 font-display text-xl sm:text-5xl font-black leading-[1.1] tracking-tight [text-wrap:balance]">
+            <span className="sm:hidden">Black Friday: </span>Viernes 27 de noviembre<span className="hidden sm:inline">: el descuento, verificado</span>
           </h1>
+          {/* Productos primero: la cuenta regresiva y la explicación van debajo */}
+          {yaConviene.length > 0 && (
+            <div className="mt-3 sm:mt-6">
+              <CajaQueConviene items={yaConviene} titulo="Lo que podés mirar hoy" seccion="queconviene_black_friday" />
+              <p className="text-right text-base">
+                <a href="#top" className={`${linkTxt} inline-flex min-h-11 items-center`}>Ver más ofertas ↓</a>
+              </p>
+            </div>
+          )}
           <CuentaRegresivaBF horaActualizacion={datos.hora_actualizacion_pagina} estadoEvento={datos.estado_evento} />
           <p className="mt-6 text-zinc-300 leading-relaxed [text-wrap:pretty]">
             El Black Friday en Argentina es el viernes 27 de noviembre de 2026. No tiene organizador ni fecha oficial de
             preventa: cada tienda decide si se suma y por cuántos días. Acá anotamos precios de antes, comparamos contra el
-            historial y te mostramos solo lo que cierra de verdad. El precio que ves se reconfirma el mismo día.
-            Desde el lunes 16 de noviembre publicamos hallazgos de la previa, siempre con el precio reconfirmado el mismo día.
+            historial y en cada producto te decimos qué día vimos ese precio.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3">
             {wa && (
@@ -263,14 +274,6 @@ export default function BlackFridayPage() {
               </a>
             )}
           </div>
-          {yaConviene.length > 0 && (
-            <div className="mt-6">
-              <CajaQueConviene items={yaConviene} titulo="Lo que ya conviene hoy" seccion="queconviene_black_friday" />
-              <p className="mt-2 text-right text-sm">
-                <a href="#top" className={linkTxt}>Ver más ofertas verificadas de hoy ↓</a>
-              </p>
-            </div>
-          )}
           <p className="mt-3 text-sm text-zinc-400 [text-wrap:pretty]">
             Gratis. Te avisamos a las 19:00, hora Argentina, cuando hay una oferta verificada. El precio para vos es el
             mismo que entrando directo a Mercado Libre.
@@ -374,35 +377,26 @@ export default function BlackFridayPage() {
       {/* 4.4 Top de productos */}
       <section id="top" data-seccion="top_black_friday" className="scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 py-10 border-b border-zinc-900">
         <div className="max-w-3xl">
-          <h2 className={h2}>El top de ahora (precios reconfirmados el mismo día)</h2>
-          <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Esta no es una lista eterna ni un catálogo de preventa. Son hallazgos de ahora, verificados contra el
-            historial. Si un precio, el stock o las cuotas cambian, la ficha se baja o se actualiza. Abajo de cada uno ves
-            cuándo se reconfirmó.
-          </p>
-          <p className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-sm text-zinc-300">
+          <h2 className={h2}>{slots.length > 0 ? 'El top de ahora (precios reconfirmados el mismo día)' : 'Ofertas para ir mirando'}</h2>
+          <p className="text-base text-zinc-400 leading-relaxed [text-wrap:pretty]">
             {datos.grilla_fecha && datos.grilla_hora
               ? `Actualizado el ${datos.grilla_fecha} a las ${datos.grilla_hora} (hora Argentina). `
               : ''}
-            Precios reconfirmados el mismo día. Los links son de afiliado: pagás lo mismo que entrando directo a Mercado
-            Libre.
+            El precio puede cambiar. Links de afiliado: pagás lo mismo.
           </p>
         </div>
         {slots.length > 0 ? (
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {slots.map((s, i) => (
-              <TarjetaBF key={s.slot} s={s} publicableEnBuild={slotPublicable(s)} prioridad={i === 0} />
+              <TarjetaBF key={s.slot} s={s} publicableEnBuild={slotPublicable(s)} prioridad={i === 0 && yaConviene.length === 0} />
             ))}
           </div>
         ) : (
           <>
-            <p className="mt-6 text-sm text-zinc-400">
-              Todavía no hay hallazgos reconfirmados hoy para esta lista. Mientras tanto, mirá las ofertas verificadas del día.
-            </p>
             {respaldo.length > 0 && (
               <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {respaldo.map((o, i) => (
-                  <OfertaCard key={o.id_ml} producto={o} priority={i < 4} />
+                  <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />
                 ))}
               </div>
             )}

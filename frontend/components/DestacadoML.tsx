@@ -27,6 +27,26 @@ export function elegirDestacado<T extends ProductoCTA>(lista: T[]): T | undefine
   return lista.slice(0, 8).find(p => p.minimo_historico) ?? lista[0]
 }
 
+/** HP/OMEN/Victus quedan afuera de la vidriera. Preferimos la Lenovo IdeaPad Slim 3
+ *  Ryzen 5 (la que ya vendió, ~$1.723.049); si no está, otra IdeaPad; si no, el
+ *  criterio general sobre la lista sin HP. */
+const HP_EXCLUIDA = /\b(hp|omen|victus)\b/i
+const IDEAPAD_SLIM_3 = /ideapad\s+slim\s*3/i
+const RYZEN_5 = /ryzen\s*5/i
+const PRECIO_IDEAPAD_VENDIDA = 1_723_049
+
+export function elegirDestacadoNotebooks<T extends ProductoCTA>(lista: T[]): T | undefined {
+  const sinHp = lista.filter(p => !HP_EXCLUIDA.test(p.titulo))
+  const slim3r5 = sinHp.filter(p => IDEAPAD_SLIM_3.test(p.titulo) && RYZEN_5.test(p.titulo))
+  const candidatas = slim3r5.length ? slim3r5 : sinHp.filter(p => /ideapad/i.test(p.titulo))
+  if (candidatas.length) {
+    return [...candidatas].sort(
+      (a, b) => Math.abs(a.precio_actual - PRECIO_IDEAPAD_VENDIDA) - Math.abs(b.precio_actual - PRECIO_IDEAPAD_VENDIDA),
+    )[0]
+  }
+  return elegirDestacado(sinHp)
+}
+
 /**
  * Producto destacado arriba del fold: foto, nombre corto, precio, fecha y un botón
  * grande. Server component: no suma JS al cliente. El clic lo cuentan

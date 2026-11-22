@@ -15,7 +15,7 @@ import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
-import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
+import DestacadoML, { elegirDestacado, elegirDestacadoNotebooks } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import SinOfertas from '@/components/SinOfertas'
 import { enlacesAfines } from '@/lib/afines'
@@ -124,7 +124,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   // Celulares, notebooks y smart TV tienen páginas «mejor … hasta $X»: las enlazamos para que Google las encuentre.
   const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
   const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined
-  const destacado = elegirDestacado(productos)
+  const destacado = c.slug === 'black-friday-notebooks' ? elegirDestacadoNotebooks(productos) : elegirDestacado(productos)
 
   const jsonLd = [
     {

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-21T20:52:50+00:00",
+  "generado": "2026-11-22T04:55:42+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,33 +8,45 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-21T20:52:49+00:00",
+      "ultima_actividad": "2026-11-22T04:55:42+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 10356 productos en la última corrida"
+          "tarea": "Revisó 9738 productos en la última corrida"
         }
       ],
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 6
+          "valor": 5
         },
         {
           "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Instagram",
-          "valor": 2
+          "label": "whatsapp_kit",
+          "valor": 3
         },
         {
           "label": "Threads",
           "valor": 2
+        },
+        {
+          "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Reels IG",
+          "valor": 1
+        },
+        {
+          "label": "Historias IG",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Acer Nitro V 16s Amd Ryzen 7 32gb 1tb Rtx 5060"
+      "ultimo_trabajo": "Notebook Gamer Gigabyte Aero Ryzen 9 32gb Ddr5 1tb Rtx 5070"
     },
     {
       "id": "investigacion",

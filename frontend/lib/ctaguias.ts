@@ -38,7 +38,7 @@ export interface CtaGuia {
  *  (ej. guías de método): ahí no hay a dónde llevar sin inventar. */
 export function ctaDeGuia(g: Guia): CtaGuia | null {
   const comp = comparativaDeGuia(g)
-  const nombre = comp?.nombre ?? g.categoria?.nombre
+  const nombre = g.producto?.nombre ?? comp?.nombre ?? g.categoria?.nombre
   if (!nombre) return null
   const internos: EnlaceCta[] = []
   if (comp && indexable(comp)) internos.push({ href: `/mejores/${comp.slug}`, texto: `Comparativa de ${comp.nombre}` })

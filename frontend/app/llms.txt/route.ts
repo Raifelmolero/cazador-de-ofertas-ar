@@ -290,6 +290,7 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué parrilla comprar](https://cazadordeofertas.com.ar/guias/que-parrilla-comprar),
   [qué bicicleta comprar](https://cazadordeofertas.com.ar/guias/que-bicicleta-comprar),
   [qué muebles de jardín comprar](https://cazadordeofertas.com.ar/guias/que-muebles-de-jardin-comprar),
+  [qué mesa plegable comprar: medidas y cuántas personas entran](https://cazadordeofertas.com.ar/guias/que-mesa-plegable-comprar),
   [qué freezer comprar](https://cazadordeofertas.com.ar/guias/que-freezer-comprar),
   [qué cocina comprar](https://cazadordeofertas.com.ar/guias/que-cocina-comprar),
   [qué monitor comprar](https://cazadordeofertas.com.ar/guias/que-monitor-comprar),

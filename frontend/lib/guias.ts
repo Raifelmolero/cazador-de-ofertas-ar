@@ -31,6 +31,9 @@ export interface Guia {
   fuentes?: { texto: string; url: string }[]
   /** Slug de /mejores/* de donde mostrar ofertas reales del catálogo del día. */
   comparativa?: string
+  /** Guía de un producto puntual dentro de una comparativa más amplia: de ahí muestra solo lo que coincide
+   *  (título normalizado, precio con fecha, descuento de hasta 50 %) y la búsqueda en ML usa este nombre. */
+  producto?: { nombre: string; patron: RegExp }
   /** Equipos del comparador que cumplen el criterio de la guía (lib/guias-equipos.ts).
    *  Con menos de 3 hoy, la guía queda noindex y fuera del sitemap. */
   equipos?: SeleccionEquipos
@@ -2513,9 +2516,105 @@ export const GUIAS: Guia[] = [
     ],
     enlaces: [
       { href: '/mejores/mejores-muebles-de-jardin', texto: 'Comparativa de muebles de jardín' },
+      { href: '/guias/que-mesa-plegable-comprar', texto: 'Qué mesa plegable comprar' },
       { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
       { href: '/mejores/mejores-parrillas', texto: 'Comparativa de parrillas' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
+  // ── 22/11: mesa plegable (Tendencias 21/11: 3.ª búsqueda que más crece). Sin precios fijos: salen del catálogo.
+  {
+    slug: 'que-mesa-plegable-comprar',
+    titulo: 'Qué mesa plegable comprar en 2026: medidas y personas',
+    descripcion:
+      'Qué mesa plegable comprar para las fiestas y el verano: 120, 180 o 240 cm, cuántas personas entran, plástica, de madera o metal y qué revisar antes de comprar.',
+    pregunta: '¿Qué mesa plegable conviene comprar?',
+    respuestaCorta:
+      'Para las fiestas, el patio o un camping, la más práctica es una mesa plástica tipo valija de 180 cm con patas metálicas: entran 6 personas cómodas (8 ajustadas) y se guarda doblada al medio. Para 4 personas o un balcón grande alcanza una de 120 cm; en un balcón chico va mejor una mesita plegable de metal con 2 sillas. Guía actualizada el 22/11/2026.',
+    tabla: {
+      titulo: 'Qué medida de mesa plegable necesito',
+      columnas: ['Mesa', 'Personas cómodas', 'Ajustadas', 'Para qué conviene'],
+      filas: [
+        ['Mesita de balcón con 2 sillas', '2', '2', 'desayuno o mate en un espacio chico'],
+        ['120 cm', '4', '6', 'comedor chico, balcón grande, camping en familia'],
+        ['180 cm tipo valija', '6', '8', 'fiestas, asados, patio y quincho'],
+        ['240 cm', '8', '10', 'reuniones grandes, si tenés dónde guardarla'],
+        ['Dos de 180 cm en fila', '12', '14', 'Nochebuena con mucha gente'],
+      ],
+      nota: 'Cuenta orientativa: unos 60 cm de borde por persona. En «cómodas», nadie se sienta en las cabeceras. Las mesas en oferta, con su precio, salen de nuestro catálogo de Mercado Libre.',
+    },
+    secciones: [
+      {
+        h: 'Cómo calcular cuántas personas entran',
+        p: [
+          'Calculá unos 60 cm de borde por persona. En una mesa de 180 cm entran 3 de cada lado; sumando las dos cabeceras llegás a 8, más apretados. En una de 120 cm entran 2 de cada lado.',
+          'Mirá también el ancho: las de 180 cm suelen tener entre 70 y 75 cm. Alcanza para platos de los dos lados, con poco lugar para fuentes en el medio. Si en Nochebuena ponés muchas fuentes, sumá una mesa auxiliar.',
+          'Dejá unos 75 cm libres detrás de las sillas para poder levantarse y pasar. Una mesa de 180 x 74 cm con sillas de los dos lados pide un espacio de unos 2,25 m de ancho.',
+        ],
+      },
+      {
+        h: 'Plástica, de madera o de metal',
+        p: [
+          'Plástica con patas metálicas: es la más común. Se limpia fácil y no se arruina si se moja, aunque al sol permanente pierde color y con algo muy caliente se marca. Usá siempre posafuentes.',
+          'De madera o MDF: se ve mejor adentro, pero suele pesar más y el MDF se hincha con el agua. «Símil madera» en una publicación suele querer decir plástico con esa textura: confirmá el material en la ficha.',
+          'De metal: las de chapa o hierro van bien en un balcón porque son firmes, pero se oxidan si se salta la pintura. Las de aluminio son livianas y no se oxidan como el hierro, útiles para camping.',
+        ],
+      },
+      {
+        h: '¿Tipo valija o tapa entera?',
+        p: [
+          'La mesa tipo valija se dobla al medio y trae manija: una de 180 cm queda de unos 90 cm de largo y entra más fácil en un placard o un baúl. La bisagra del medio es su punto débil: que nadie se siente arriba y no cargues todo el peso en el centro.',
+          'La de tapa entera, con patas rebatibles, no tiene unión en el medio, pero para guardarla necesitás una pared libre del largo de la mesa. Si la vas a transportar, elegí tipo valija.',
+        ],
+      },
+      {
+        h: 'Qué revisar en la publicación',
+        p: [
+          'Medidas abierta y plegada, peso de la mesa y altura: para comer sentado, lo habitual son 72 a 75 cm. Algunas de 120 cm tienen altura regulable y también sirven de mesa baja o auxiliar.',
+          'Carga máxima: suele estar informada como carga repartida, no en un solo punto. Buscá trabas en las patas y en la bisagra, y regatones para no marcar el piso.',
+          'Qué incluye: muchas fotos muestran sillas o banquetas que no vienen. Leé el título y la ficha, y compará el costo de envío, porque es un producto voluminoso.',
+        ],
+      },
+      {
+        h: '¿Conviene esperar al Black Friday 2026?',
+        p: [
+          'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. Si la querés para Nochebuena, esas fechas te dejan margen para el envío y para cambiarla si llega con una falla.',
+          'En mesas plegables hay publicaciones casi iguales con descuentos anunciados muy distintos. No elijas por el porcentaje: compará el precio final con envío entre mesas de la misma medida y mirá el historial.',
+        ],
+      },
+    ],
+    categoria: { slug: 'muebles-de-jardin', nombre: 'muebles de jardín' },
+    comparativa: 'mejores-muebles-de-jardin',
+    producto: { nombre: 'mesas plegables', patron: /^mesa (exterior )?plegable/ },
+    cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Mesas y muebles de exterior en oferta, comparados', boton: 'Comparar mesas y muebles de exterior' },
+    faq: [
+      {
+        q: '¿Cuántas personas entran en una mesa plegable de 180 cm?',
+        a: 'Entran 6 personas cómodas, 3 de cada lado, y hasta 8 si usás las dos cabeceras.',
+      },
+      {
+        q: '¿Qué mesa plegable necesito para 12 personas?',
+        a: 'Dos mesas de 180 cm puestas en fila: entran 6 personas de cada lado, y 14 en total si usás las cabeceras.',
+      },
+      {
+        q: '¿Cuánto ocupa guardada una mesa tipo valija de 180 cm?',
+        a: 'Doblada al medio mide unos 90 cm de largo por el ancho de la tapa, en general 70 a 75 cm. El espesor cambia según el modelo: miralo en la ficha.',
+      },
+      {
+        q: '¿Una mesa plegable de plástico puede quedar a la intemperie?',
+        a: 'Aguanta que se moje, pero no conviene dejarla siempre al sol y la lluvia: el plástico pierde color y las patas de hierro se pueden oxidar. Secala y guardala bajo techo.',
+      },
+      {
+        q: '¿Es mejor una mesa plegable de plástico o de madera?',
+        a: 'La de plástico es más práctica para exterior, porque se lava fácil y tolera el agua. La de madera queda mejor adentro, pero suele pesar más y necesita más cuidado.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Comparativa de muebles de jardín' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/guias/que-parrilla-comprar', texto: 'Qué parrilla comprar' },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
   {
@@ -2830,6 +2929,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-11-20' },
   'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-mesa-plegable-comprar': { publicada: '2026-11-22', modificada: '2026-11-22' },
   'que-silla-gamer-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'como-saber-si-un-descuento-de-mercado-libre-es-real': { publicada: '2026-09-21', modificada: '2026-09-21' },
   'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre': { publicada: '2026-09-21', modificada: '2026-09-21' },

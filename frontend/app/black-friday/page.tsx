@@ -23,6 +23,8 @@ import { ticketAltoPrimero } from '@/lib/ofertashoy'
 import { categoriaPrioritaria, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { slugPorId } from '@/lib/seguimiento'
+import TopConcurso from '@/components/TopConcurso'
+import { corregirConcurso } from '@/lib/topconcurso'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
 
@@ -34,7 +36,7 @@ function ofertasRespaldo(): OfertaLight[] {
   const bf = getComparativa('ofertas-black-friday')
   const deBF = bf ? productosDe(bf) : []
   const historial = slugPorId()
-  const base = ticketAltoPrimero(deBF.length >= 4 ? deBF : getOfertas())
+  const base = ticketAltoPrimero(corregirConcurso(deBF.length >= 4 ? deBF : getOfertas()))
   // Mezcla de categorías prioritarias primero (aires, heladeras, TV, consolas...);
   // se completa con el orden de siempre, sin computación de más ni lo que hay que sacar.
   const mezcla = elegirMezcla(base, MAX_RESPALDO)
@@ -229,6 +231,8 @@ export default function BlackFridayPage() {
           </a>
         </div>
       </header>
+
+      <TopConcurso seccion="top_concurso_bf" id="top-concurso-bf" />
 
       {/* 4.1 Hero */}
       <section

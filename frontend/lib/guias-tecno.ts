@@ -1543,6 +1543,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/guias/ps5-digital-standard-o-pro', texto: 'PS5 Digital, Standard o Pro: cuál conviene' },
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
       { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
@@ -1798,9 +1799,93 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
   },
+  // ── 23/11: PS5 Digital, Standard o Pro (Tendencias 22/11: Consolas +174 %, los 3 más vendidos) ──
+  {
+    slug: 'ps5-digital-standard-o-pro',
+    titulo: 'PS5 Digital, Standard o Pro: cuál conviene comprar en el Black Friday',
+    descripcion:
+      'PS5 Slim Digital, Slim Standard con lectora o PS5 Pro: qué diferencia hay, para quién conviene cada una, cómo comparar los combos con juegos y qué revisar en la publicación de Mercado Libre.',
+    pregunta: '¿Qué PS5 conviene comprar: Digital, Standard (con lectora) o Pro?',
+    respuestaCorta:
+      'Si comprás juegos en disco, usados o prestados, la PS5 Slim Standard (con lectora) es la más práctica. Si comprás todo en la tienda online y querés gastar menos, la Slim Digital corre los mismos juegos. La PS5 Pro solo vale la pena si tenés un TV 4K bueno y querés la mejor imagen: es la más cara y no trae lectora de serie. En cualquiera de las tres, mirá que la publicación diga el modelo exacto y qué juegos incluye el combo.',
+    tabla: {
+      titulo: 'PS5 Slim Standard, Slim Digital y PS5 Pro: diferencias clave',
+      columnas: ['Modelo', 'Conviene si…', 'Ojo con'],
+      filas: [
+        ['PS5 Slim Standard (con lectora)', 'jugás con discos, comprás usados o te prestan juegos', 'que el título diga "Standard" o "con lectora" y no solo "PS5 Slim"'],
+        ['PS5 Slim Digital', 'comprás todo en la PlayStation Store y querés pagar menos por la consola', 'no lee discos; la lectora se compra aparte'],
+        ['PS5 Pro', 'tenés un TV 4K de buena calidad y querés la mejor imagen y fluidez', 'es la más cara y no trae lectora de serie'],
+      ],
+      nota: 'Comparación orientativa. El precio de cada versión cambia todos los días: miralo en las ofertas gamer de abajo, no en esta tabla.',
+    },
+    secciones: [
+      {
+        h: 'Standard o Digital: la única diferencia es el disco',
+        p: [
+          'La PS5 Slim Standard y la Slim Digital tienen la misma potencia, el mismo almacenamiento y corren los mismos juegos. Lo único que cambia es la lectora de discos: la Standard la trae y la Digital no.',
+          'Elegí la Standard si querés comprar juegos en disco (suelen bajar de precio con el tiempo), venderlos después, prestarlos o comprar usados. Elegí la Digital si ya comprás todo online y no te importa depender de la tienda: la consola sale menos.',
+          'Una Digital se puede convertir en Standard más adelante comprando la lectora externa oficial de Sony, que se enchufa por USB. Hacé la cuenta: si sumás consola Digital y lectora, conviene comparar contra la Standard directamente.',
+        ],
+      },
+      {
+        h: 'PS5 Pro: cuándo vale la pena pagar más',
+        p: [
+          'La PS5 Pro es la versión más potente: apunta a mejor resolución, más cuadros por segundo y trazado de rayos en los juegos compatibles, y trae más almacenamiento (2 TB según Sony). Para notarla necesitás un TV 4K con buen panel; en un TV Full HD o un 4K básico casi no se ve la diferencia.',
+          'No trae lectora de serie: si querés discos, hay que comprarla aparte. Antes de pagar la Pro, revisá qué TV tenés: en nuestra guía de smart TV para PS5 explicamos qué mirar (HDMI 2.1, 120 Hz, modo juego).',
+          'Si jugás poco o con chicos, la Slim alcanza y sobra: la diferencia de precio se aprovecha mejor en juegos o en un segundo joystick.',
+        ],
+      },
+      {
+        h: 'Combos con juegos: cómo saber si conviene',
+        p: [
+          'En noviembre abundan los combos: consola con uno o dos juegos (por ejemplo Astro Bot o Gran Turismo 7), con un segundo DualSense o con suscripción. Es lo que más se vende en consolas, y no siempre es la mejor opción.',
+          'Restá del precio lo que valdría cada juego o accesorio por separado, y solo contá los que ibas a comprar igual. Si el combo sale más que la consola sola más lo que usarías, comprá la consola sola.',
+          'Los juegos de un combo pueden ser un código digital (se canjea en tu cuenta) o un disco: en una Digital solo sirve el código. Confirmalo en la descripción.',
+        ],
+      },
+      {
+        h: 'Qué revisar en la publicación antes de pagar',
+        p: [
+          'Modelo exacto en la ficha técnica: Slim o primera PS5 (la original de 2020 es más grande), Digital o Standard, Pro o no. Los títulos mezclan versiones: no te guíes solo por la foto.',
+          'Qué incluye: juegos, joystick extra, cables. Y si es nueva, de importación o reacondicionada; para eso preferí tiendas oficiales o vendedores con buena reputación y garantía escrita válida en Argentina.',
+          'Pagá siempre dentro de Mercado Libre. Si el precio está muy por debajo del resto, desconfiá.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'gamer' },
+    cta: { href: '/categoria/gamer', titulo: 'Consolas y productos gamer en oferta hoy, con el descuento verificado', boton: 'Ver ofertas gamer 🎮' },
+    faq: [
+      {
+        q: '¿Qué diferencia hay entre la PS5 Digital y la Standard?',
+        a: 'Solo la lectora de discos. La Standard lee juegos físicos y la Digital no. La potencia, el almacenamiento y los juegos que corren son los mismos.',
+      },
+      {
+        q: '¿Conviene la PS5 Pro o la Slim?',
+        a: 'La Pro conviene si tenés un TV 4K bueno y querés la mejor imagen. Para la mayoría de la gente y con un TV común, la Slim alcanza y sale bastante menos.',
+      },
+      {
+        q: '¿La PS5 Pro trae lectora de discos?',
+        a: 'No, viene sin lectora de serie. Si querés jugar con discos, hay que comprar la lectora oficial de Sony aparte.',
+      },
+      {
+        q: '¿Se le puede agregar la lectora a la PS5 Digital?',
+        a: 'Sí, con la lectora externa oficial de Sony. Antes de comprarla comparalo con el precio de la PS5 Standard.',
+      },
+      {
+        q: '¿Conviene comprar la PS5 en el Black Friday?',
+        a: 'Es una de las categorías que más crece en esas semanas, con combos con juegos y cuotas. Compará siempre contra el precio más bajo registrado de esa misma versión y fijate qué incluye el combo. El Black Friday 2026 es el 27 de noviembre.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-consola-comprar-black-friday', texto: 'Qué consola comprar en el Black Friday' },
+      { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
+      { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13', 'ps5-digital-standard-o-pro': '2026-11-23' }
 // Guías revisadas después de publicarse (dateModified del JSON-LD).
 const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19' }
 

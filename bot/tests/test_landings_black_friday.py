@@ -105,6 +105,119 @@ class TestLandingsBlackFriday(unittest.TestCase):
         self.assertIn("'37267219'", self.src)
 
 
+class TestBicicletasBF(unittest.TestCase):
+    """Landing corta /mejores/black-friday-bicicletas (pedido del 23/11/2026)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.bloques = _bloques(LANDINGS.read_text(encoding="utf-8"))
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {p["id_ml"]: p for p in items}
+
+    def test_battle_primera_y_todas_r29(self):
+        b = self.bloques["black-friday-bicicletas"]
+        ids = re.findall(r"id: '(MLA\d+)'", b)
+        self.assertEqual(ids[0], "MLA53194352")
+        for i in ids:
+            p = self.catalogo.get(i)
+            if p:
+                self.assertRegex(p["titulo"], r"(?i)\b(r29|rodado 29)\b", i)
+                self.assertIn("bicicleta", p["titulo"].lower(), i)
+
+    def test_titulo_60_y_en_comparativas(self):
+        b = self.bloques["black-friday-bicicletas"]
+        self.assertLessEqual(len(re.search(r"titulo: '([^']+)'", b).group(1)), 60)
+        comp = (FRONT / "lib" / "comparativas.ts").read_text(encoding="utf-8")
+        self.assertIn("slug: 'black-friday-bicicletas'", comp)  # generateStaticParams, sitemap y OG
+        self.assertIn("'black-friday-bicicletas'", comp.split("const PERENNES")[1].split("])")[0])
+
+    def test_enlazada_desde_black_friday(self):
+        # /black-friday arma los botones por rubro con LANDINGS_BF.
+        self.assertIn("LANDINGS_BF.map", (FRONT / "app" / "black-friday" / "page.tsx").read_text(encoding="utf-8"))
+
+
+class TestGuiasBF2026(unittest.TestCase):
+    """Guías «Qué notebook / qué TV de 50 pulgadas comprar en Black Friday 2026»."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.src = (FRONT / "lib" / "guias-bf-2026.ts").read_text(encoding="utf-8")
+        cls.comp = (FRONT / "components" / "black-friday" / "GuiaBF.tsx").read_text(encoding="utf-8")
+        cls.guias = {}
+        for parte in re.split(r"\n  \{\n    slug: '", cls.src)[1:]:
+            cls.guias[parte.split("'", 1)[0]] = parte
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {p["id_ml"]: p for p in items}
+
+    def test_estan_las_dos_y_su_recomendada_primero(self):
+        nb = self.guias["que-notebook-comprar-black-friday-2026"]
+        tv = self.guias["que-tv-50-pulgadas-comprar-black-friday-2026"]
+        self.assertEqual(re.findall(r"id: '(MLAU?\d+)'", nb)[0], "MLA77766168")
+        self.assertEqual(re.findall(r"id: '(MLAU?\d+)'", tv)[0], "MLA53221633")
+        p = self.catalogo.get("MLA53221633")
+        if p:
+            self.assertIn("dv50x8580", p["titulo"].lower())
+        for g in (nb, tv):
+            self.assertIn("/mejores/black-friday-notebooks", g)
+            self.assertIn("/mejores/black-friday-smart-tv", g)
+
+    def test_productos_del_repo_sin_marcas_prohibidas(self):
+        for slug, b in self.guias.items():
+            for i in re.findall(r"id: '(MLAU?\d+)'", b):
+                p = self.catalogo.get(i)
+                if p is None:
+                    continue  # el bot poda a los 14 días: la página lo saltea
+                self.assertNotRegex(p["titulo"], PROHIBIDAS, f"{slug}: {i}")
+                self.assertIn("matt_tool=37267219", p["url_producto"], i)
+        self.assertNotRegex(re.sub(r"//.*", "", self.src), PROHIBIDAS)
+
+    def test_seo_y_respuesta_directa(self):
+        for slug, b in self.guias.items():
+            self.assertLessEqual(len(re.search(r"seoTitulo: '([^']+)'", b).group(1)), 60, slug)
+            self.assertLessEqual(len(re.search(r"seoDescripcion:\s*'([^']+)'", b).group(1)), 158, slug)
+            self.assertIn("respuestaCorta", b)
+            self.assertIn("faq:", b)
+
+    def test_sin_descuentos_tachados_minimos_ni_cupones(self):
+        texto = re.sub(r"//.*", "", (self.src + self.comp).lower())
+        for prohibido in ("% off", "descuento", "precio_anterior", "line-through", "minimo_historico",
+                          "mínimo histórico", "minimo historico", "cupón", "cupones de", "cupones-mercado-libre"):
+            self.assertNotIn(prohibido, texto, prohibido)
+        self.assertNotRegex(texto, r"\d+\s*%")
+        self.assertIn('<Footer brand="ofertas" sinCupones />', self.comp)
+
+    def test_en_guias_sitemap_y_llms(self):
+        guias = (FRONT / "lib" / "guias.ts").read_text(encoding="utf-8")
+        self.assertIn("...GUIAS_BF_2026", guias)
+        self.assertIn("GUIAS.filter(guiaIndexable)", (FRONT / "app" / "sitemap.ts").read_text(encoding="utf-8"))
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        for slug in self.guias:
+            self.assertIn("/guias/" + slug + ")", llms)
+        self.assertIn("/mejores/black-friday-bicicletas)", llms)
+        pagina = (FRONT / "app" / "guias" / "[slug]" / "page.tsx").read_text(encoding="utf-8")
+        self.assertIn("if (g.bf) return <GuiaBFPage g={g} />", pagina)
+
+
+class TestAvisoBFCalculadora(unittest.TestCase):
+    """Bloque amarillo arriba de la calculadora (calculadoraml.com.ar, etiqueta calcml)."""
+
+    def test_bloque(self):
+        comp = (FRONT / "components" / "AvisoBFCalculadora.tsx").read_text(encoding="utf-8")
+        self.assertIn("#FACC15", comp)
+        self.assertIn("text-black", comp)
+        for ruta in ("/black-friday", "/mejores/black-friday-notebooks", "/mejores/black-friday-smart-tv"):
+            self.assertIn(ruta, comp)
+        self.assertIn("avisoBFVigente()", comp)
+        self.assertIn("SoloHastaFinBF", comp)
+        self.assertNotRegex(re.sub(r"//.*", "", comp), r"\d+\s*%|cup[oó]n|m[ií]nimo hist")
+
+    def test_en_las_paginas_de_la_calculadora(self):
+        self.assertIn("<AvisoBFCalculadora />", (FRONT / "components" / "CalcHeader.tsx").read_text(encoding="utf-8"))
+        self.assertIn("<AvisoBFCalculadora />", (FRONT / "app" / "calculadora" / "[id]" / "page.tsx").read_text(encoding="utf-8"))
+        for f in ("app/page.tsx", "app/calculadora/page.tsx", "app/calculadora-de-comisiones/page.tsx"):
+            self.assertIn("<CalcHeader />", (FRONT / f).read_text(encoding="utf-8"), f)
+
+
 class TestAvisoBFRubro(unittest.TestCase):
     """Bloque «Black Friday 27/11: lo que conviene» en 10 páginas (lib/bf-enlaces.ts)."""
 

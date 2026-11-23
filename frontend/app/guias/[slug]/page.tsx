@@ -3,6 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import AvisoBFRubro from '@/components/AvisoBFRubro'
+import GuiaBFPage from '@/components/black-friday/GuiaBF'
 import { GUIAS, fechasGuia, getGuia as getGuiaBase } from '@/lib/guias'
 import { aBlackFridayTrasCyber, etapaBlackFriday } from '@/lib/cybermonday'
 
@@ -83,6 +84,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function GuiaPage({ params }: { params: Promise<{ slug: string }> }) {
   const g = getGuia((await params).slug)
   if (!g) notFound()
+  // Guías de Black Friday 2026 (lib/guias-bf-2026.ts): recomendado y botón de afiliado arriba, sin descuentos.
+  if (g.bf) return <GuiaBFPage g={g} />
   const url = `${DEALS_URL}/guias/${g.slug}`
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   // Guías de tecnología: los equipos del comparador que cumplen su criterio (precio de hoy y mínimo registrado).

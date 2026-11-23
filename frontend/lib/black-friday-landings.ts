@@ -201,6 +201,42 @@ export const LANDINGS_BF: LandingBF[] = [
       { href: '/calculadora-consumo-electrico', texto: 'Cuánta luz gasta un aire' },
     ],
   },
+  {
+    slug: 'black-friday-bicicletas',
+    rubro: 'Bicicletas',
+    emoji: '🚲',
+    h1: 'Bicicletas rodado 29 para el Black Friday 2026',
+    titulo: 'Black Friday 2026 bicicletas R29 Argentina: cuál',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 Battle, SLP, Overtech, Alpina y Gariotti elegidas, con link directo a Mercado Libre.',
+    keywords: ['black friday 2026 bicicletas argentina', 'bicicleta r29 black friday 2026', 'mountain bike black friday', 'bicicleta mercado libre black friday'],
+    intro:
+      'Mountain bikes rodado 29 para tierra, ripio y calles rotas, todas de aluminio. Arriba, la que más recomendamos; abajo, otras R29 de varias marcas y talles.',
+    items: [
+      { id: 'MLA53194352', nombre: 'Bicicleta MTB Battle R29', detalle: 'Aluminio · monoplato Shimano 8 velocidades · talle 16', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
+      { id: 'MLA51766931', nombre: 'SLP MTB 10 Pro R29', detalle: 'Aluminio · Shimano 21 velocidades · cuadro 21', nota: 'Cuadro grande, para gente alta.' },
+      { id: 'MLA47640884', nombre: 'Overtech Fortis R29', detalle: 'Aluminio · full Shimano · talle M' },
+      { id: 'MLA44916984', nombre: 'Overtech Q6 R29', detalle: 'Aluminio · 21 velocidades · freno a disco · talle S', nota: 'Cuadro chico.' },
+      { id: 'MLA2316228782', nombre: 'Alpina 3.0 R29', detalle: 'Aluminio · Shimano 21 velocidades · freno a disco' },
+      { id: 'MLA59672753', nombre: 'Gariotti R29', detalle: 'Aluminio · Shimano 21 velocidades · disco · suspensión · talle M' },
+    ],
+    criterios: [
+      'Talle de cuadro según tu altura: está en la tabla de talles de cada publicación y pesa más que el rodado.',
+      'Freno a disco: frena mejor con lluvia y en bajada que el V-brake.',
+      'Monoplato es más simple de usar y de mantener; 21 velocidades da más cambios para subidas.',
+      'Fijate si llega armada o hay que terminar de armarla (manubrio, pedales, ajuste de frenos).',
+    ],
+    faq: [
+      { q: '¿Qué bicicleta conviene comprar en el Black Friday 2026?', a: 'Para andar por tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio, como la Battle R29 monoplato de esta página. Si querés más cambios para subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0.' },
+      { q: '¿Qué talle de cuadro necesito?', a: 'Depende de tu altura: cada publicación trae la tabla de talles del fabricante (S, M, L, XL o en pulgadas). Elegí por esa tabla antes que por el rodado.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('bicicleta mtb rodado 29'),
+    enlaces: [
+      { href: '/guias/que-bicicleta-comprar-black-friday', texto: 'Guía: qué bicicleta comprar en el Black Friday' },
+      { href: '/guias/que-bicicleta-comprar', texto: 'Guía: qué bicicleta comprar' },
+    ],
+  },
 ]
 
 export function getLandingBF(slug: string): LandingBF | undefined {
@@ -237,9 +273,14 @@ export function esLinkAfiliado(url: string | null | undefined): boolean {
 /** Arma los productos de la landing con los datos del repo (catálogo y, para aires, lib/mejor-aires).
  *  Un producto sin link de afiliado no se muestra: así el botón principal siempre lo lleva. */
 export function productosBF(l: LandingBF, hoy?: string): ProductoBF[] {
+  return productosDeItems(l.items, hoy)
+}
+
+/** Lo mismo para cualquier lista de ItemBF (las guías de Black Friday 2026 usan esta). */
+export function productosDeItems(items: ItemBF[], hoy?: string): ProductoBF[] {
   const aires = new Map(AIRES_HOY.map(a => [a.id, a]))
   const out: ProductoBF[] = []
-  for (const it of l.items) {
+  for (const it of items) {
     const p = getProductoById(it.id)
     const a = aires.get(it.id)
     const titulo = p?.titulo ?? a?.titulo

@@ -1,4 +1,5 @@
 import { getProductosCalc, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
+import AvisoBFCalculadora from '@/components/AvisoBFCalculadora'
 import { CALC_URL } from '@/lib/vender'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import { permanentRedirect } from 'next/navigation'
@@ -96,6 +97,8 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           <span className="text-sm text-gray-200 truncate">{producto.titulo}</span>
         </div>
       </header>
+      {/* Black Friday 27/11 (hasta el 30/11): link al sitio de ofertas */}
+      <AvisoBFCalculadora />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-5">
         {/* Product hero card */}

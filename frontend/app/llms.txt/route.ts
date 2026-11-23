@@ -192,7 +192,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [notebooks](https://cazadordeofertas.com.ar/mejores/black-friday-notebooks),
   [smart TV](https://cazadordeofertas.com.ar/mejores/black-friday-smart-tv),
   [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras),
-  [aires acondicionados](https://cazadordeofertas.com.ar/mejores/black-friday-aires-acondicionados)) y
+  [aires acondicionados](https://cazadordeofertas.com.ar/mejores/black-friday-aires-acondicionados),
+  [bicicletas rodado 29](https://cazadordeofertas.com.ar/mejores/black-friday-bicicletas)) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
   por producto de ticket alto con precio de hoy, precio más bajo registrado
@@ -263,6 +264,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué celular comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-celular-comprar-black-friday),
   [qué notebook comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-notebook-comprar-black-friday),
   [qué smart TV comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar-black-friday),
+  [qué notebook comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-notebook-comprar-black-friday-2026)
+  (para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB y 512 GB SSD),
+  [qué TV de 50 pulgadas comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-tv-50-pulgadas-comprar-black-friday-2026)
+  (para la mayoría, la Noblex 50" DV50X8580 4K con Google TV),
   [ventilador de pie, de techo o turbo](https://cazadordeofertas.com.ar/guias/ventilador-de-pie-de-techo-o-turbo),
   [cómo mantener limpia el agua de la pileta](https://cazadordeofertas.com.ar/guias/como-mantener-el-agua-de-la-pileta),
   [gazebo o sombrilla](https://cazadordeofertas.com.ar/guias/gazebo-o-sombrilla-cual-conviene),

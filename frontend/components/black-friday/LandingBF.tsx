@@ -11,11 +11,11 @@ import { LANDINGS_BF, productosBF, type LandingBF, type ProductoBF } from '@/lib
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
-const pesos = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
+export const pesos = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 /** '2026-11-22' → '22/11' */
 const diaMes = (iso: string) => iso.slice(8, 10) + '/' + iso.slice(5, 7)
 
-function Foto({ p, tam, prioridad }: { p: ProductoBF; tam: number; prioridad?: boolean }) {
+export function Foto({ p, tam, prioridad }: { p: ProductoBF; tam: number; prioridad?: boolean }) {
   return (
     <div className="shrink-0 overflow-hidden rounded-xl bg-white" style={{ width: tam, height: tam }}>
       {p.img ? (
@@ -29,7 +29,7 @@ function Foto({ p, tam, prioridad }: { p: ProductoBF; tam: number; prioridad?: b
   )
 }
 
-function Precio({ p, claro }: { p: ProductoBF; claro?: boolean }) {
+export function Precio({ p, claro }: { p: ProductoBF; claro?: boolean }) {
   if (p.precio === null || !p.visto) {
     return <p className={`text-sm font-bold ${claro ? 'text-zinc-300' : 'text-zinc-400'}`}>Mirá el precio de hoy en Mercado Libre</p>
   }
@@ -41,7 +41,7 @@ function Precio({ p, claro }: { p: ProductoBF; claro?: boolean }) {
   )
 }
 
-function Tarjeta({ p, slug, pos }: { p: ProductoBF; slug: string; pos: number }) {
+export function Tarjeta({ p, slug, pos }: { p: ProductoBF; slug: string; pos: number }) {
   return (
     <li className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3" data-seccion={`bf_${slug}_item_${pos}`}>
       <a href={p.url} target="_blank" rel="sponsored nofollow noopener" className="flex gap-3">

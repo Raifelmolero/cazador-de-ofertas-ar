@@ -45,7 +45,7 @@ const PERENNES = new Set([
   'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
   // Black Friday (27/11): tienen que estar indexadas semanas antes del evento.
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
-  'black-friday-aires-acondicionados',
+  'black-friday-aires-acondicionados', 'black-friday-bicicletas',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -592,6 +592,22 @@ const TODAS: Comparativa[] = [
       'La instalación casi nunca está incluida: sumala al presupuesto.',
     ],
     guia: 'que-aire-acondicionado-comprar',
+  },
+  {
+    slug: 'black-friday-bicicletas',
+    nombre: 'bicicletas en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} bicicletas R29 Argentina: cuál`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 elegidas, con link directo a Mercado Libre.',
+    intro: 'Mountain bikes rodado 29 de aluminio elegidas para tierra, ripio y calles rotas.',
+    categoria: 'bicicletas',
+    criterios: [
+      'Talle de cuadro según tu altura: está en la tabla de talles de cada publicación.',
+      'Freno a disco: frena mejor con lluvia y en bajada que el V-brake.',
+      'Fijate si llega armada o hay que terminar de armarla.',
+    ],
+    guia: 'que-bicicleta-comprar-black-friday',
   },
   {
     slug: 'regalos-de-navidad',

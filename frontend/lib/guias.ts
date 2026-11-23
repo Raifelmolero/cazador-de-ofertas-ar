@@ -7,6 +7,8 @@ import { FECHAS_GUIAS_TICKET_ALTO, GUIAS_TICKET_ALTO } from './guias-ticket-alto
 import { FECHAS_GUIAS_LONG_TAIL, GUIAS_LONG_TAIL } from './guias-long-tail'
 import { FECHAS_GUIAS_TECNO, GUIAS_TECNO } from './guias-tecno'
 import type { SeleccionEquipos } from './guias-equipos'
+import type { ItemBF } from './black-friday-landings'
+import { FECHAS_GUIAS_BF_2026, GUIAS_BF_2026 } from './guias-bf-2026'
 import { TEXTO_MODIFICADO_ISO } from './sitemap-fechas'
 
 export interface Guia {
@@ -38,9 +40,13 @@ export interface Guia {
   /** Equipos del comparador que cumplen el criterio de la guía (lib/guias-equipos.ts).
    *  Con menos de 3 hoy, la guía queda noindex y fuera del sitemap. */
   equipos?: SeleccionEquipos
+  /** Guía de Black Friday 2026 (lib/guias-bf-2026.ts): la arma components/black-friday/GuiaBF.tsx
+   *  con el recomendado y su botón de afiliado arriba. `landing` = slug de /mejores/black-friday-*. */
+  bf?: { landing: string; items: ItemBF[] }
 }
 
 export const GUIAS: Guia[] = [
+  ...GUIAS_BF_2026,
   ...GUIAS_TECNO,
   ...GUIAS_TICKET_ALTO,
   ...GUIAS_LONG_TAIL,
@@ -2776,6 +2782,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   ...FECHAS_GUIAS_TECNO,
   ...FECHAS_GUIAS_TICKET_ALTO,
   ...FECHAS_GUIAS_LONG_TAIL,
+  ...FECHAS_GUIAS_BF_2026,
   'climatizador-o-ventilador-o-aire': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-bicicleta-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },

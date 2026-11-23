@@ -174,13 +174,12 @@ export const LANDINGS_BF: LandingBF[] = [
     h1: 'Aires acondicionados para el Black Friday 2026',
     titulo: 'Black Friday 2026 aires acondicionados Argentina',
     descripcion:
-      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor Samsung, LG, Philco, Hyundai y Likon para el verano, con link a Mercado Libre.',
+      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor Samsung, LG, Philco y Hyundai para el verano, con link a Mercado Libre.',
     keywords: ['black friday 2026 aires acondicionados argentina', 'aire acondicionado black friday 2026', 'split inverter black friday', 'ofertas verano mercado libre'],
     intro:
       'Antes de que arranque el calor fuerte: splits inverter frío/calor de 2.500 a 4.500 frigorías. Arriba, el que más recomendamos para un ambiente de hasta 20 m².',
     items: [
       { id: 'MLA60932288', nombre: 'Samsung split inverter 2580 F', detalle: 'Frío/calor · inverter · 2580 frigorías', nota: 'El que recomendamos para hasta 20 m².' },
-      { id: 'MLA80862058', nombre: 'Likon split inverter 3200 F', detalle: 'Frío/calor · inverter · 3200 frigorías', nota: 'Más frigorías por menos plata.' },
       { id: 'MLA45670320', nombre: 'Hyundai split inverter 3200 W con wifi', detalle: 'Inverter · wifi · 3200 W' },
       { id: 'MLA63226247', nombre: 'Philco split inverter 3225 F', detalle: 'Frío/calor · inverter · 3225 frigorías' },
       { id: 'MLA15316559', nombre: 'LG DualCool 4500 F', detalle: 'Frío/calor · inverter · 4500 frigorías', nota: 'Para ambientes de unos 30 m².' },

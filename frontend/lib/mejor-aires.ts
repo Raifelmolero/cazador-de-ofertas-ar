@@ -17,7 +17,6 @@ export interface AireHoy {
 const link = (id: string) => `https://www.mercadolibre.com.ar/p/${id}?${TAG}`
 
 export const AIRES_HOY: AireHoy[] = [
-  { id: 'MLA80862058', titulo: 'Aire Likon split inverter frío/calor 3200F', capacidad: '3200 frigorías', precio: 699999, url: link('MLA80862058'), nota: 'El más barato de la lista.' },
   { id: 'MLA45670320', titulo: 'Aire Hyundai split inverter con wifi 3200W', capacidad: '3200 W', precio: 761779, url: link('MLA45670320') },
   { id: 'MLA63226247', titulo: 'Aire Philco split inverter frío/calor 3225 fg', capacidad: '3225 frigorías', precio: 824754, url: link('MLA63226247') },
   { id: 'MLA80863421', titulo: 'Aire BGH split inverter con wifi frío/calor', capacidad: 'ver publicación', precio: 828870, url: link('MLA80863421') },

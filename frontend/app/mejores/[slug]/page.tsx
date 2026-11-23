@@ -22,6 +22,8 @@ import { enlacesAfines } from '@/lib/afines'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import { getComparador } from '@/lib/comparador'
 import { diasDesde, etiquetaEdad } from '@/lib/frescura'
+import { getLandingBF } from '@/lib/black-friday-landings'
+import LandingBFPage from '@/components/black-friday/LandingBF'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -32,7 +34,22 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const c = getComparativa((await params).slug)
+  const { slug } = await params
+  // Black Friday de ticket alto: landing curada para el celular (lib/black-friday-landings.ts).
+  const bfl = getLandingBF(slug)
+  if (bfl) {
+    const url = `${DEALS_URL}/mejores/${bfl.slug}`
+    const descripcion = descripcionSeo(bfl.descripcion)
+    return {
+      title: { absolute: bfl.titulo },
+      description: descripcion,
+      keywords: bfl.keywords,
+      metadataBase: new globalThis.URL(DEALS_URL),
+      alternates: { canonical: url },
+      openGraph: { title: bfl.titulo, description: descripcion, url, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+    }
+  }
+  const c = getComparativa(slug)
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
@@ -77,7 +94,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function ComparativaPage({ params }: { params: Promise<{ slug: string }> }) {
-  const c = getComparativa((await params).slug)
+  const { slug } = await params
+  const bfl = getLandingBF(slug)
+  if (bfl) return <LandingBFPage l={bfl} />
+  const c = getComparativa(slug)
   if (!c) notFound()
 
   const url = `${DEALS_URL}/mejores/${c.slug}`

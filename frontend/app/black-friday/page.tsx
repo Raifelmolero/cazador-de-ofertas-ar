@@ -25,6 +25,7 @@ import { getComparativa, productosDe } from '@/lib/comparativas'
 import { slugPorId } from '@/lib/seguimiento'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
+import { LANDINGS_BF } from '@/lib/black-friday-landings'
 
 const MAX_RESPALDO = 12
 
@@ -109,7 +110,7 @@ const CATEGORIAS_A = [
   { nombre: 'Notebooks', detalle: 'prioridad: 16 GB de RAM o más', href: '/mejores/black-friday-notebooks', id: 'notebooks' },
   { nombre: 'Celulares', detalle: 'gama media y alta vigente', href: '/mejores/black-friday-celulares', id: 'celulares' },
   { nombre: 'Smart TV', detalle: '50 o 55 pulgadas, como referencia', href: '/mejores/black-friday-smart-tv', id: 'smart_tv' },
-  { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/guias/que-aire-acondicionado-comprar', id: 'aires' },
+  { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/mejores/black-friday-aires-acondicionados', id: 'aires' },
   { nombre: 'Herramientas', detalle: 'taladros, soldadoras, amoladoras', href: '/mejores/mejores-taladros', id: 'herramientas' },
   { nombre: 'Bicicletas', detalle: 'rodado 29 y urbanas', href: '/mejores/mejores-bicicletas', id: 'bicicletas' },
 ]
@@ -242,6 +243,25 @@ export default function BlackFridayPage() {
             Viernes 27 de noviembre: el descuento, verificado
           </h1>
           <CuentaRegresivaBF horaActualizacion={datos.hora_actualizacion_pagina} estadoEvento={datos.estado_evento} />
+          {/* Ticket alto por rubro, arriba: cada landing abre con el botón a ML del recomendado */}
+          <nav aria-label="Black Friday por rubro" className="mt-5" data-seccion="bf_rubros_ticket_alto">
+            <p className="text-sm font-black text-zinc-100 mb-2">Elegí qué buscás:</p>
+            <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {LANDINGS_BF.map(l => (
+                <li key={l.slug}>
+                  <Link
+                    href={`/mejores/${l.slug}`}
+                    data-bf-evento="click_categoria"
+                    data-bf-categoria={l.slug.replace('black-friday-', '')}
+                    data-bf-placement="hero"
+                    className="flex min-h-[52px] items-center justify-center gap-1.5 rounded-xl bg-yellow-400 px-3 text-center text-sm font-black text-black hover:bg-yellow-300"
+                  >
+                    <span aria-hidden="true">{l.emoji}</span> {l.rubro}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <p className="mt-6 text-zinc-300 leading-relaxed [text-wrap:pretty]">
             El Black Friday en Argentina es el viernes 27 de noviembre de 2026. No tiene organizador ni fecha oficial de
             preventa: cada tienda decide si se suma y por cuántos días. Acá anotamos precios de antes, comparamos contra el

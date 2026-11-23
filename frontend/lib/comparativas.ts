@@ -43,6 +43,7 @@ const PERENNES = new Set([
   'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
   // Black Friday (27/11): tienen que estar indexadas semanas antes del evento.
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
+  'black-friday-aires-acondicionados',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -502,9 +503,10 @@ const TODAS: Comparativa[] = [
   {
     slug: 'black-friday-celulares',
     nombre: 'celulares en el Black Friday',
-    titulo: `Celulares en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} celulares Argentina: iPhone y Samsung Galaxy`,
     descripcion:
-      'Celulares en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): iPhone y Samsung Galaxy elegidos, con link directo a la publicación de Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada celular se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'celulares',
@@ -520,9 +522,10 @@ const TODAS: Comparativa[] = [
   {
     slug: 'black-friday-notebooks',
     nombre: 'notebooks en el Black Friday',
-    titulo: `Notebooks en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} notebooks Argentina: cuál comprar`,
     descripcion:
-      'Notebooks en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: para estudiar, trabajar y gaming, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): notebooks elegidas para estudiar, trabajar y jugar, con link directo a Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada notebook se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'notebooks',
@@ -539,9 +542,10 @@ const TODAS: Comparativa[] = [
     slug: 'black-friday-smart-tv',
     nombre: 'smart TV en el Black Friday',
     excluir: ['proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
-    titulo: `Smart TV en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} smart TV Argentina: 50, 55 y 65 pulgadas`,
     descripcion:
-      'Smart TV en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: 4K de 43 a 75 pulgadas, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): smart TV 4K de 50 a 65 pulgadas elegidas, con link directo a Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada smart TV se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'smart-tv',
@@ -569,6 +573,23 @@ const TODAS: Comparativa[] = [
       'Medí el hueco y la apertura de la puerta, y confirmá si el envío llega hasta tu casa.',
     ],
     guia: 'que-heladera-comprar',
+  },
+  {
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    slug: 'black-friday-aires-acondicionados',
+    nombre: 'aires acondicionados en el Black Friday',
+    titulo: `Black Friday ${AÑO} aires acondicionados Argentina: split inverter`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor elegidos para el verano, con link directo a Mercado Libre.',
+    intro:
+      'Aires split inverter frío/calor elegidos para el verano, de 2.500 a 4.500 frigorías.',
+    categoria: 'aire-acondicionado',
+    criterios: [
+      'Frigorías según el ambiente: hasta 20 m², 2.500 a 3.000; unos 30 m², 4.500.',
+      'Inverter si lo vas a usar muchas horas: gasta menos luz y hace menos ruido.',
+      'La instalación casi nunca está incluida: sumala al presupuesto.',
+    ],
+    guia: 'que-aire-acondicionado-comprar',
   },
   {
     slug: 'regalos-de-navidad',

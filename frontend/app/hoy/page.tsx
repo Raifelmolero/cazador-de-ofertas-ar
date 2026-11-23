@@ -33,6 +33,8 @@ import { CATEGORIAS, enCategoria, getCategoria, normalizar } from '@/lib/categor
 import { LANDINGS, indexableLanding } from '@/lib/landings'
 import { NICHOS } from '@/lib/nichos'
 import { COMPARATIVAS } from '@/lib/comparativas'
+import { LANDINGS_BF } from '@/lib/black-friday-landings'
+import { etapaBlackFriday } from '@/lib/cybermonday'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
 import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { DEALS_URL, MARCA, ORG_ID, SAME_AS, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL as WHATSAPP_DEFAULT } from '@/lib/marca'
@@ -302,6 +304,30 @@ export default function HoyPage() {
         </div>
         <AtajosCelular />
       </header>
+
+      {/* Black Friday (27/11): los cuatro rubros de ticket alto, a un toque. Se apaga solo después del evento. */}
+      {etapaBlackFriday().etapa !== 'despues' && (
+        <nav aria-label="Black Friday por rubro" className="bg-yellow-400 text-black" data-seccion="bf_rubros_home">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+            <p className="text-sm font-black">
+              🖤 Black Friday viernes 27/11 ·{' '}
+              <Link href="/black-friday" className="underline underline-offset-2">ver todo</Link>
+            </p>
+            <ul className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {LANDINGS_BF.map(l => (
+                <li key={l.slug}>
+                  <Link
+                    href={`/mejores/${l.slug}`}
+                    className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl bg-black px-3 text-center text-sm font-black text-yellow-400 hover:bg-zinc-900"
+                  >
+                    <span aria-hidden="true">{l.emoji}</span> {l.rubro}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      )}
 
       {verificadas.length > 0 && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">

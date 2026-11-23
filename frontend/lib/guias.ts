@@ -7,12 +7,19 @@ import { FECHAS_GUIAS_TICKET_ALTO, GUIAS_TICKET_ALTO } from './guias-ticket-alto
 import { FECHAS_GUIAS_LONG_TAIL, GUIAS_LONG_TAIL } from './guias-long-tail'
 import { FECHAS_GUIAS_TECNO, GUIAS_TECNO } from './guias-tecno'
 import type { SeleccionEquipos } from './guias-equipos'
+import type { ItemBF } from './black-friday-landings'
+import { FECHAS_GUIAS_BF_2026, GUIAS_BF_2026 } from './guias-bf-2026'
 import { TEXTO_MODIFICADO_ISO } from './sitemap-fechas'
+import { FECHA_REVISION_BF, esGuiaBF } from './bf-guias'
 
 export interface Guia {
   slug: string
   titulo: string
   descripcion: string
+  /** Title/description para Google (CTR, Search Console) cuando difieren del H1. Pisan a todo lo demás;
+   *  title ≤ 60 y description ≤ 158 (los fija el test de guías). */
+  seoTitulo?: string
+  seoDescripcion?: string
   pregunta: string
   respuestaCorta: string // el párrafo que una IA puede citar textual
   secciones: { h: string; p: string[] }[]
@@ -34,9 +41,13 @@ export interface Guia {
   /** Equipos del comparador que cumplen el criterio de la guía (lib/guias-equipos.ts).
    *  Con menos de 3 hoy, la guía queda noindex y fuera del sitemap. */
   equipos?: SeleccionEquipos
+  /** Guía de Black Friday 2026 (lib/guias-bf-2026.ts): la arma components/black-friday/GuiaBF.tsx
+   *  con el recomendado y su botón de afiliado arriba. `landing` = slug de /mejores/black-friday-*. */
+  bf?: { landing: string; items: ItemBF[] }
 }
 
 export const GUIAS: Guia[] = [
+  ...GUIAS_BF_2026,
   ...GUIAS_TECNO,
   ...GUIAS_TICKET_ALTO,
   ...GUIAS_LONG_TAIL,
@@ -1796,6 +1807,9 @@ export const GUIAS: Guia[] = [
     titulo: '¿Qué cocina comprar? Gas natural, envasado, multigas o eléctrica',
     descripcion:
       'Cómo elegir una cocina en Argentina: a gas, multigas o eléctrica, medidas del hueco, horno con visor y luz, válvula de seguridad, encendido y instalación por gasista matriculado.',
+    seoTitulo: '¿Qué es una cocina multigas? Y qué cocina comprar en 2026',
+    seoDescripcion:
+      'Cocina multigas: qué significa, cómo se convierte de gas natural a envasado y cuándo conviene. Guía para elegir entre gas, multigas o eléctrica.',
     pregunta: '¿Qué cocina conviene comprar?',
     respuestaCorta:
       'Primero fijate qué gas tenés: si es gas natural o garrafa (envasado), elegí una cocina para ese gas o una multigas que traiga los picos para los dos. Si no tenés gas, la opción es una cocina o anafe eléctrico o de inducción, con una instalación eléctrica que aguante su potencia. Medí el hueco (la mayoría mide entre 50 y 56 cm de ancho), buscá válvula de seguridad en hornallas y horno, y hacé la conexión de gas con un gasista matriculado.',
@@ -2775,6 +2789,7 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   ...FECHAS_GUIAS_TECNO,
   ...FECHAS_GUIAS_TICKET_ALTO,
   ...FECHAS_GUIAS_LONG_TAIL,
+  ...FECHAS_GUIAS_BF_2026,
   'climatizador-o-ventilador-o-aire': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-bicicleta-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
   'que-parrilla-comprar': { publicada: '2026-10-03', modificada: '2026-10-03' },
@@ -2827,5 +2842,7 @@ const FECHA_DEFAULT = '2026-09-30'
 // (bloque Black Friday 2026, 16/11), sin tocar el mapa de arriba. JSON-LD de la guía y sitemap la comparten.
 export const fechasGuia = (slug: string) => {
   const f = FECHAS_GUIAS[slug] ?? { publicada: FECHA_DEFAULT, modificada: FECHA_DEFAULT }
-  return { ...f, modificada: TEXTO_MODIFICADO_ISO > f.modificada ? TEXTO_MODIFICADO_ISO : f.modificada }
+  // Guías de Black Friday: la última revisión de su texto (lib/bf-guias.ts), que se muestra como «Actualizado el».
+  const piso = esGuiaBF(slug) && FECHA_REVISION_BF > TEXTO_MODIFICADO_ISO ? FECHA_REVISION_BF : TEXTO_MODIFICADO_ISO
+  return { ...f, modificada: piso > f.modificada ? piso : f.modificada }
 }

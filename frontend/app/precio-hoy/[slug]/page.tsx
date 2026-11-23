@@ -3,6 +3,8 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
+import { avisoBFVigente } from '@/lib/bf-enlaces'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
@@ -34,6 +36,61 @@ function titulo(nombre: string) {
   return `Precio de ${nombre} hoy en Argentina (${MESES[d.getMonth()]} ${d.getFullYear()})`
 }
 
+// Title/description a mano para las búsquedas con CTR bajo en Search Console (lote 24/11). Solo con
+// ofertas de hoy (si no, quedan los genéricos). Formatos del más completo al más corto; title ≤ 60.
+// `desde` = « desde $X» (con espacio adelante) y `cuando` = «noviembre 2026», los mismos de siempre.
+const MAX_TITULO_CTR = 60
+const mesCorto = (cuando: string) => cuando.replace(/^(\S{3})\S*/, '$1')
+const ofertas = (n: number) => `${n} ${n === 1 ? 'oferta' : 'ofertas'}`
+const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: string) => string)[]; descripcion: (desde: string, n: number) => string }> = {
+  'aire-acondicionado-inverter': {
+    titulo: (desde, cuando) => [
+      () => `Aire acondicionado inverter: precio hoy${desde} (${mesCorto(cuando)})`,
+      () => `Aire acondicionado inverter: precio hoy${desde}`,
+      () => 'Aire acondicionado inverter: precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Aires acondicionados inverter en oferta hoy en Mercado Libre desde ${desde}. ${ofertas(n)} con descuento real y el historial de precio antes del Black Friday.`,
+  },
+  // 24/11: 7.207 impresiones en 28 días, posición 8,4 y 0 clics. El título nombra la compra y el BF
+  // (hasta el 30/11; después, el mes) y lleva el precio del más barato de hoy si lo hay.
+  iphone: {
+    titulo: (desde, cuando) =>
+      avisoBFVigente(getScrapedAt().getTime())
+        ? [
+            () => `iPhone: precio hoy${desde} y ofertas Black Friday`,
+            () => `iPhone: precio hoy${desde} (Black Friday)`,
+            () => 'iPhone: precio hoy y ofertas Black Friday 2026',
+          ]
+        : [
+            () => `iPhone: precio hoy${desde} en Argentina (${mesCorto(cuando)})`,
+            () => `iPhone: precio hoy${desde}`,
+            () => 'iPhone: precio hoy en Argentina',
+          ],
+    descripcion: (desde, n) =>
+      `Cuánto sale el iPhone hoy en Mercado Libre Argentina: desde ${desde}, con ${ofertas(n)} y el historial de precio de cada modelo. Elegí el tuyo y compralo ahí.`,
+  },
+  // 24/11: «tv / televisor / smart tv 32 pulgadas», ~390 impresiones en posición 10-14.
+  'smart-tv-32-pulgadas': {
+    titulo: desde => [
+      () => `Smart TV 32 pulgadas: ofertas y precio hoy${desde}`,
+      () => `Smart TV 32 pulgadas: precio hoy${desde}`,
+      () => 'Smart TV 32 pulgadas: ofertas y precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Televisores y smart TV de 32 pulgadas en oferta hoy en Mercado Libre Argentina desde ${desde}: ${ofertas(n)}, con el historial de precio de cada una.`,
+  },
+  celular: {
+    titulo: desde => [
+      () => `Celulares en oferta hoy${desde} en Mercado Libre`,
+      () => `Celulares en oferta hoy${desde}`,
+      () => 'Celulares en oferta hoy en Mercado Libre',
+    ],
+    descripcion: (desde, n) =>
+      `${n} ${n === 1 ? 'celular' : 'celulares'} en oferta hoy en Mercado Libre Argentina, con descuento real verificado. Desde ${desde}. Compará antes del Black Friday.`,
+  },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = getPrecioHoy((await params).slug)
   if (!p) return {}
@@ -47,14 +104,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hoyOfertas = vigentes.filter(o => !edadVieja(diasDesde(o.precio_visto)))
   const precios = (hoyOfertas.length ? hoyOfertas : vigentes).map(o => o.precio_actual)
   const desde = precios.length ? ` desde ${precio(precios[0])}` : ''
-  const t = tituloSeo(p.nombre, [
-    n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
-    n => `${n}${desde}: precio hoy (${cuando})`,
-    n => `Precio de ${n} hoy (${cuando})`,
-  ])
-  const description = descripcionSeo(precios.length
-    ? `Desde ${precio(precios[0])}: ${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre (${precios.length} ofertas, ${cuando}). Rango, mediana e historial para llegar al Black Friday sin pagar de más.`
-    : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de las ofertas e historial de precios.`)
+  const especial = precios.length ? SEO_CTR[p.slug] : undefined
+  const t = especial
+    ? tituloSeo('', especial.titulo(desde, cuando), MAX_TITULO_CTR)
+    : tituloSeo(p.nombre, [
+        n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
+        n => `${n}${desde}: precio hoy (${cuando})`,
+        n => `Precio de ${n} hoy (${cuando})`,
+      ])
+  const description = descripcionSeo(especial
+    ? especial.descripcion(precio(precios[0]), precios.length)
+    : precios.length
+    ? `Desde ${precio(precios[0])}: ${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre (${precios.length} ofertas con descuento real, ${cuando}). Rango, mediana e historial para llegar al Black Friday sin pagar de más.`
+    : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {
     title: t,
     description,
@@ -173,6 +235,9 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
           </a>
         </div>
       </header>
+
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/precio-hoy/${p.slug}`} />
 
       <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
         <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">

@@ -68,11 +68,13 @@ const nextConfig = {
     }
     // Cyber Monday (2 al 4/11) ya pasó: todas sus URLs van con 301 al Black Friday
     // (BF-1). Los rubros que tienen comparativa propia de Black Friday
-    // (lib/comparativas.ts: black-friday-celulares/notebooks/smart-tv/heladeras)
-    // van a esa; el resto, a /black-friday. Las reglas puntuales van antes que
-    // las generales. Ningún destino contiene «cyber-monday»: no hay bucle.
-    // Las guías /guias/*cyber-monday* NO se tocan (siguen vivas).
-    const rubrosBF = ['celulares', 'notebooks', 'smart-tv', 'heladeras']
+    // (lib/comparativas.ts: black-friday-celulares/notebooks/smart-tv/heladeras/
+    // aires-acondicionados/lavarropas/cafeteras) van a esa; el resto, a /black-friday.
+    // Las reglas puntuales van antes que las generales. Ningún destino contiene
+    // «cyber-monday»: no hay bucle. Las guías /guias/*cyber-monday* NO se tocan.
+    // 24/11: aires, lavarropas y cafeteras iban a /black-friday (genérica) y perdían
+    // la relevancia del rubro (~470 impresiones de compra en Search Console).
+    const rubrosBF = ['celulares', 'notebooks', 'smart-tv', 'heladeras', 'aires-acondicionados', 'lavarropas', 'cafeteras']
     const cyberABF = [
       ...rubrosBF.map(r => [`/mejores/cyber-monday-${r}`, `/mejores/black-friday-${r}`]),
       ...rubrosBF.map(r => [`/cyber-monday/${r}`, `/mejores/black-friday-${r}`]),

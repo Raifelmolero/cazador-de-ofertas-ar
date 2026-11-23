@@ -31,7 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const l = getLanding((await params).slug)
   if (!l) return {}
   const url = `${DEALS_URL}/ofertas/${l.slug}`
-  const titulo = tituloSeo(vis(l.slug, l.titulo), [n => `${n} — Cazador de Ofertas AR`, n => n])
+  // seoTitulo: puesto a mano por CTR bajo en Search Console (≤ 60, sin la marca); pisa al automático.
+  const titulo = l.seoTitulo ?? tituloSeo(vis(l.slug, l.titulo), [n => `${n} — Cazador de Ofertas AR`, n => n])
   const descripcion = descripcionSeo(vis(l.slug, l.descripcion))
   return {
     title: titulo,

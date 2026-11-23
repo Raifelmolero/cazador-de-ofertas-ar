@@ -426,6 +426,9 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejor celular para jugar: Free Fire, COD y Genshin',
     descripcion:
       'Qué celular comprar para jugar: procesador, RAM real, pantalla de 120 Hz, batería y temperatura. Con los modelos de hoy y su precio más bajo registrado.',
+    seoTitulo: 'Celular para jugar Free Fire y COD: cuál comprar (2026)',
+    seoDescripcion:
+      'Qué celular comprar para jugar Free Fire, COD y Genshin: procesador, RAM y 120 Hz. Opciones baratas y gama alta, con ofertas de hoy en Mercado Libre.',
     pregunta: '¿Qué celular conviene para jugar?',
     respuestaCorta:
       'Para jugar fluido conviene un gama media alta con buen procesador, 8 GB de RAM real, pantalla de 120 Hz o más y 256 GB de memoria: el Motorola Edge Fusion, el Poco X de Xiaomi o los Galaxy A37 y A57 de Samsung. Para Free Fire alcanza con un gama media común; para Genshin Impact o COD con gráficos altos, cuanto mejor el procesador, mejor. Desconfiá de los "24 GB de RAM" en el título: suele ser memoria virtual.',
@@ -1465,9 +1468,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Qué consola comprar en el Black Friday 2026: PS5 Slim, Nintendo Switch 2 o Xbox',
     descripcion:
       'Qué consola comprar en el Black Friday 2026: PS5 Slim Standard o Digital, PS5 Pro, Nintendo Switch 2 o Xbox Series. Para quién conviene cada una, cómo comparar los combos con juegos y cómo saber si el descuento es real.',
+    seoTitulo: 'Qué consola comprar en Black Friday 2026: PS5 o Switch 2',
+    seoDescripcion:
+      'PS5 Slim para fútbol y juego online, Nintendo Switch 2 para jugar en familia y portátil, Xbox Series si usás Game Pass. Black Friday 2026 en Argentina.',
     pregunta: '¿Qué consola conviene comprar en el Black Friday 2026?',
     respuestaCorta:
-      'Depende de para quién es y de qué juegos quiere: la PlayStation 5 —hoy se vende como PS5 Slim, Standard (con lectora) o Digital— es la más elegida para fútbol, acción y juego online con amigos; la Nintendo Switch 2 se usa también portátil y es la mejor para jugar en familia con chicos; la Xbox Series conviene si vas a usar Game Pass. En noviembre las consolas son de lo que más crece en Mercado Libre: compará el precio de hoy con el más bajo registrado antes de comprar, y fijate que sea la versión que creés (con lectora o digital, y con o sin juego incluido).',
+      'Para la mayoría, la PlayStation 5 Slim: es la más elegida para fútbol, acción y juego online con amigos, y se vende con lectora o en versión digital. Para jugar en familia y también en modo portátil, la Nintendo Switch 2; la Xbox Series conviene si vas a usar Game Pass. Antes de pagar, fijate que sea la versión que buscás: con lectora o digital, y con o sin juego incluido.',
     tabla: {
       titulo: 'PS5, Switch 2 o Xbox: para quién es cada una',
       columnas: ['Consola', 'Conviene si…', 'Ojo con'],
@@ -1547,6 +1553,7 @@ export const GUIAS_TECNO: Guia[] = [
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
       { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
       { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
@@ -1556,9 +1563,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejores aires acondicionados Black Friday 2026 Argentina',
     descripcion:
       'Qué aire acondicionado conviene en el Black Friday 2026 en Argentina: frigorías, inverter y cómo detectar un descuento inflado antes del verano.',
+    seoTitulo: 'Mejores aires acondicionados Black Friday 2026 Argentina',
+    seoDescripcion:
+      'Para hasta 20 m², el Samsung split inverter de 2580 frigorías; para unos 30 m², el LG DualCool de 4500. Qué aire comprar en el Black Friday 2026 (27/11).',
     pregunta: '¿Qué aire acondicionado conviene comprar en el Black Friday 2026 en Argentina?',
     respuestaCorta:
-      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un split inverter frío-calor, con las frigorías justas para el ambiente —como referencia, el volumen (metros cuadrados × altura del techo) multiplicado por 50 frigorías— y el precio comparado contra el historial del producto, no contra el tachado de la publicación. La instalación casi nunca viene incluida: hay que sumarla al presupuesto y, si se puede, dejarla agendada antes del pico de calor de diciembre y enero. Si el modelo que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos de ese mínimo, tiene sentido seguirlo hasta ese día.',
+      'Para un ambiente de hasta 20 m², el Samsung split inverter frío/calor de 2580 frigorías: el inverter gasta menos luz y hace menos ruido si lo usás muchas horas. Para unos 30 m², el LG DualCool de 4500 frigorías. La instalación casi nunca viene incluida: sumala al presupuesto y pedí turno antes del calor fuerte de diciembre y enero.',
     tabla: {
       titulo: 'Frigorías orientativas según los m² del ambiente',
       columnas: ['Ambiente', 'Superficie aprox.', 'Frigorías de referencia', 'Tipo de equipo habitual'],
@@ -1645,6 +1655,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-aires-acondicionados', texto: 'Aires del Black Friday 2026' },
       { href: '/categoria/aire-acondicionado', texto: 'Ofertas de aire acondicionado' },
       { href: '/ofertas/aires-acondicionados-inverter-en-oferta', texto: 'Aires inverter en oferta hoy' },
       { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires acondicionados' },
@@ -1673,9 +1684,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejores lavarropas Black Friday 2026 Argentina',
     descripcion:
       'Qué lavarropas o lavasecarropas conviene en el Black Friday 2026 en Argentina: kilos, carga, inverter y cómo verificar el descuento contra el historial.',
+    seoTitulo: 'Mejores lavarropas Black Friday 2026 Argentina',
+    seoDescripcion:
+      'Para una familia, el Samsung Ecobubble de 10,5 kg; para 1 a 3 personas, el Drean de 6 kg; lavasecarropas TCL 10/7 kg. Black Friday 2026 (27/11).',
     pregunta: '¿Qué lavarropas conviene comprar en el Black Friday 2026 en Argentina?',
     respuestaCorta:
-      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un lavarropas automático con la capacidad justa (6 a 7 kg para 1 a 3 personas, 8 kg o más si son más o si lavás acolchados), inverter si lo usás seguido, y el precio comparado contra el historial, no contra el tachado de la publicación. La carga frontal suele gastar menos agua; la superior es más cómoda y, en general, más barata. Un lavasecarropas tiene sentido si no hay lugar para dos equipos: lava y seca en la misma máquina, aunque el secado suele admitir menos ropa que el lavado. Si el que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos, tiene sentido seguirlo hasta ese día.',
+      'Para una familia, el Samsung Ecobubble de 10,5 kg: alcanza para acolchados y lavados grandes. Para 1 a 3 personas, el Drean automático de 6 kg; si no tenés dónde tender, el lavasecarropas TCL inverter de 10/7 kg lava y seca en el mismo equipo. Medí el lugar antes de comprar y confirmá si el envío lo sube al piso.',
     tabla: {
       titulo: 'Capacidad orientativa según el tamaño del hogar',
       columnas: ['Hogar', 'Capacidad de lavado', 'Qué suele alcanzar'],
@@ -1772,6 +1786,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-lavarropas', texto: 'Lavarropas elegidos para el Black Friday 2026' },
       { href: '/categoria/lavarropas', texto: 'Ofertas de lavarropas' },
       { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
       { href: '/precio-hoy/lavarropas-automatico', texto: 'Precio de lavarropas automático hoy' },

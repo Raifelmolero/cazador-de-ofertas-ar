@@ -27,6 +27,7 @@ import TopConcurso from '@/components/TopConcurso'
 import { corregirConcurso } from '@/lib/topconcurso'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
+import { LANDINGS_BF } from '@/lib/black-friday-landings'
 
 const MAX_RESPALDO = 12
 
@@ -69,22 +70,22 @@ const AFILIADOS_ML_URL = 'https://www.mercadolibre.com.ar/l/afiliados'
 function textosSeo(fase: FaseBF, okDiaD: boolean) {
   if (fase !== 'previa' && okDiaD) {
     return {
-      titulo: 'Black Friday 2026 (27/11): ofertas de Mercado Libre verificadas hoy',
+      titulo: 'Black Friday y Cyber Monday 2026: ofertas verificadas hoy',
       descripcion:
-        'Black Friday 2026: viernes 27 de noviembre. Ofertas de Mercado Libre de hoy, verificadas contra el historial de precios. El precio se reconfirma el mismo día. Pagás lo mismo que entrando directo a ML.',
+        'Black Friday 27/11 y Cyber Monday 2026: ofertas de Mercado Libre de hoy, verificadas contra el historial de precios. Sin descuentos inflados.',
     }
   }
   return {
-    titulo: 'Black Friday 2026 Argentina: viernes 27/11, ofertas verificadas',
+    titulo: 'Black Friday y Cyber Monday 2026 Argentina: ofertas reales',
     descripcion:
-      'Black Friday 2026 en Argentina: viernes 27 de noviembre. Armá tu lista, sumate al canal y mirá ofertas de Mercado Libre verificadas contra el historial. El precio se reconfirma el mismo día.',
+      'Black Friday 27/11 y Cyber Monday 2026: las mejores ofertas de Mercado Libre, verificadas contra el historial de precios. Sin descuentos inflados.',
   }
 }
 
 export function generateMetadata(): Metadata {
   const { titulo, descripcion } = textosSeo(faseBF(), getDatosBF().ok_dia_d)
   return {
-    // Textos finales del brief, sin recortar (el de Día D tiene 67 caracteres).
+    // Ambas fases nombran Cyber Monday (/cyber-monday redirige acá): title ≤ 60, description ≤ 158.
     title: { absolute: titulo },
     description: descripcion,
     keywords: [
@@ -92,6 +93,7 @@ export function generateMetadata(): Metadata {
       `black friday ${BF.año} argentina`,
       'cuándo es el black friday',
       'black friday mercado libre',
+      `cyber monday ${BF.año}`,
       'ofertas black friday',
       'descuentos inflados black friday',
     ],
@@ -112,7 +114,7 @@ const CATEGORIAS_A = [
   { nombre: 'Notebooks', detalle: 'prioridad: 16 GB de RAM o más', href: '/mejores/black-friday-notebooks', id: 'notebooks' },
   { nombre: 'Celulares', detalle: 'gama media y alta vigente', href: '/mejores/black-friday-celulares', id: 'celulares' },
   { nombre: 'Smart TV', detalle: '50 o 55 pulgadas, como referencia', href: '/mejores/black-friday-smart-tv', id: 'smart_tv' },
-  { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/guias/que-aire-acondicionado-comprar', id: 'aires' },
+  { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/mejores/black-friday-aires-acondicionados', id: 'aires' },
   { nombre: 'Herramientas', detalle: 'taladros, soldadoras, amoladoras', href: '/mejores/mejores-taladros', id: 'herramientas' },
   { nombre: 'Bicicletas', detalle: 'rodado 29 y urbanas', href: '/mejores/mejores-bicicletas', id: 'bicicletas' },
 ]
@@ -258,6 +260,25 @@ export default function BlackFridayPage() {
             </div>
           )}
           <CuentaRegresivaBF horaActualizacion={datos.hora_actualizacion_pagina} estadoEvento={datos.estado_evento} />
+          {/* Ticket alto por rubro, arriba: cada landing abre con el botón a ML del recomendado */}
+          <nav aria-label="Black Friday por rubro" className="mt-5" data-seccion="bf_rubros_ticket_alto">
+            <p className="text-sm font-black text-zinc-100 mb-2">Elegí qué buscás:</p>
+            <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {LANDINGS_BF.map(l => (
+                <li key={l.slug}>
+                  <Link
+                    href={`/mejores/${l.slug}`}
+                    data-bf-evento="click_categoria"
+                    data-bf-categoria={l.slug.replace('black-friday-', '')}
+                    data-bf-placement="hero"
+                    className="flex min-h-[52px] items-center justify-center gap-1.5 rounded-xl bg-yellow-400 px-3 text-center text-sm font-black text-black hover:bg-yellow-300"
+                  >
+                    <span aria-hidden="true">{l.emoji}</span> {l.rubro}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <p className="mt-6 text-zinc-300 leading-relaxed [text-wrap:pretty]">
             El Black Friday en Argentina es el viernes 27 de noviembre de 2026. No tiene organizador ni fecha oficial de
             preventa: cada tienda decide si se suma y por cuántos días. Acá anotamos precios de antes, comparamos contra el

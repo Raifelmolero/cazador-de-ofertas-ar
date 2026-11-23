@@ -2,7 +2,7 @@
  "metadata": {
   "scraped_at": "2026-11-23T18:20:05+00:00",
   "fuente": "mercadolibre.com.ar/ofertas",
-  "total_items": 9940
+  "total_items": 9939
  },
  "items": [
   {
@@ -238408,28 +238408,6 @@
    "costo_envio_base_ars": 0.0,
    "margen_neto_clasico_ars": 196212.15,
    "margen_neto_premium_ars": 165392.28
-  },
-  {
-   "id_ml": "MLA80862058",
-   "titulo": "Aire Acondicionado Likon Split Inverter Frío/Calor 3200F",
-   "categoria_principal": "ofertas del día",
-   "precio_actual": 699999.0,
-   "minimo_historico": false,
-   "relampago": false,
-   "prioridad": 1200000,
-   "precio_minimo_registrado": 699999.0,
-   "seguimiento_desde": "2026-11-19",
-   "moneda": "ARS",
-   "ventas_estimadas": null,
-   "url_producto": "https://www.mercadolibre.com.ar/aire-acondicionado-likon-split-inverter-friocalor-3200f/p/MLA80862058?matt_word=repo&matt_tool=37267219",
-   "url_imagen": "https://http2.mlstatic.com/D_NQ_NP_670131-MLA120084420477_102026-O.webp",
-   "precio_visto": "2026-11-19",
-   "comision_clasica_pct": 0.1469,
-   "comision_premium_pct": 0.2809,
-   "retencion_iibb_pct": 0,
-   "costo_envio_base_ars": 0,
-   "margen_neto_clasico_ars": 597169.15,
-   "margen_neto_premium_ars": 503369.28
   },
   {
    "id_ml": "MLA60932288",

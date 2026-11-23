@@ -17,6 +17,8 @@ export interface Comparativa {
   slug: string
   nombre: string // "aires acondicionados"
   titulo: string
+  /** <title> exacto para Google (CTR, Search Console), ≤ 60: sin «desde $X» ni marca. Pisa al automático. */
+  seoTitulo?: string
   descripcion: string
   intro: string
   categoria?: string // slug de /categoria/* de donde salen los productos
@@ -44,6 +46,8 @@ const PERENNES = new Set([
   'mejores-aires-acondicionados', 'mejores-smart-tv', 'mejores-heladeras', 'mejores-lavarropas',
   // Black Friday (27/11): tienen que estar indexadas semanas antes del evento.
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
+  'black-friday-aires-acondicionados', 'black-friday-bicicletas',
+  'black-friday-lavarropas', 'black-friday-cafeteras',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -503,9 +507,10 @@ const TODAS: Comparativa[] = [
   {
     slug: 'black-friday-celulares',
     nombre: 'celulares en el Black Friday',
-    titulo: `Celulares en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} celulares Argentina: iPhone y Samsung Galaxy`,
     descripcion:
-      'Celulares en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: Samsung, Motorola, iPhone y más, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): iPhone y Samsung Galaxy elegidos, con link directo a la publicación de Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada celular se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'celulares',
@@ -521,9 +526,10 @@ const TODAS: Comparativa[] = [
   {
     slug: 'black-friday-notebooks',
     nombre: 'notebooks en el Black Friday',
-    titulo: `Notebooks en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} notebooks Argentina: cuál comprar`,
     descripcion:
-      'Notebooks en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: para estudiar, trabajar y gaming, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): notebooks elegidas para estudiar, trabajar y jugar, con link directo a Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada notebook se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'notebooks',
@@ -540,9 +546,10 @@ const TODAS: Comparativa[] = [
     slug: 'black-friday-smart-tv',
     nombre: 'smart TV en el Black Friday',
     excluir: ['proyector', 'barra de sonido', 'barra sonido', 'convertidor', 'fire tv stick', 'tv box'],
-    titulo: `Smart TV en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} smart TV Argentina: 50, 55 y 65 pulgadas`,
     descripcion:
-      'Smart TV en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: 4K de 43 a 75 pulgadas, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): smart TV 4K de 50 a 65 pulgadas elegidas, con link directo a Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada smart TV se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'smart-tv',
@@ -570,6 +577,73 @@ const TODAS: Comparativa[] = [
       'Medí el hueco y la apertura de la puerta, y confirmá si el envío llega hasta tu casa.',
     ],
     guia: 'que-heladera-comprar',
+  },
+  {
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    slug: 'black-friday-aires-acondicionados',
+    nombre: 'aires acondicionados en el Black Friday',
+    titulo: `Black Friday ${AÑO} aires acondicionados Argentina: split inverter`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor elegidos para el verano, con link directo a Mercado Libre.',
+    intro:
+      'Aires split inverter frío/calor elegidos para el verano, de 2.500 a 4.500 frigorías.',
+    categoria: 'aire-acondicionado',
+    criterios: [
+      'Frigorías según el ambiente: hasta 20 m², 2.500 a 3.000; unos 30 m², 4.500.',
+      'Inverter si lo vas a usar muchas horas: gasta menos luz y hace menos ruido.',
+      'La instalación casi nunca está incluida: sumala al presupuesto.',
+    ],
+    guia: 'que-aire-acondicionado-comprar',
+  },
+  {
+    slug: 'black-friday-lavarropas',
+    nombre: 'lavarropas en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} lavarropas Argentina: cuál comprar`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): lavarropas y lavasecarropas elegidos, con link directo a Mercado Libre.',
+    intro: 'Lavarropas automáticos de 6 a 11 kg y un lavasecarropas, elegidos para el Black Friday.',
+    categoria: 'lavarropas',
+    keywords: ['lavarropas'],
+    criterios: [
+      'Kilos según la casa: 6 a 7 kg para 1 a 3 personas; 8 kg o más para una familia.',
+      'Carga frontal: gasta menos agua; carga superior: más cómoda y, en general, más barata.',
+      'Medí el lugar y confirmá si el envío lo sube al piso.',
+    ],
+    guia: 'mejores-lavarropas-black-friday-2026',
+  },
+  {
+    slug: 'black-friday-cafeteras',
+    nombre: 'cafeteras en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} cafeteras Argentina: espresso y cápsulas`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): cafeteras espresso, de cápsulas y de filtro elegidas, con link directo a Mercado Libre.',
+    intro: 'Cafeteras espresso, de cápsulas y de filtro elegidas para el Black Friday.',
+    categoria: 'electro-de-cocina',
+    keywords: ['cafetera'],
+    criterios: [
+      'Tipo según cómo tomás el café: de filtro, espresso o de cápsulas.',
+      'Espresso: fijate si trae vaporizador para la leche.',
+      'Cápsulas: confirmá qué cápsulas usa antes de comprar.',
+    ],
+    guia: 'que-cafetera-comprar',
+  },
+  {
+    slug: 'black-friday-bicicletas',
+    nombre: 'bicicletas en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} bicicletas R29 Argentina: cuál`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 elegidas, con link directo a Mercado Libre.',
+    intro: 'Mountain bikes rodado 29 de aluminio elegidas para tierra, ripio y calles rotas.',
+    categoria: 'bicicletas',
+    criterios: [
+      'Talle de cuadro según tu altura: está en la tabla de talles de cada publicación.',
+      'Freno a disco: frena mejor con lluvia y en bajada que el V-brake.',
+      'Fijate si llega armada o hay que terminar de armarla.',
+    ],
+    guia: 'que-bicicleta-comprar-black-friday',
   },
   {
     slug: 'regalos-de-navidad',
@@ -715,8 +789,10 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-cafeteras',
     nombre: 'cafeteras',
     titulo: `Cafeteras en oferta ${AÑO}: descuentos de hoy`,
+    // Sin «desde $X»: el más barato de la tabla solía ser una espresso cara y espantaba al que busca barato.
+    seoTitulo: 'Cafeteras en oferta hoy: espresso, cápsulas y filtro',
     descripcion:
-      'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+      'Cafeteras en oferta en Mercado Libre Argentina: espresso, de cápsulas y de filtro, con precio, descuento real e historial de precios. Actualizado hoy.',
     intro:
       'Las cafeteras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',
@@ -733,7 +809,8 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-microondas',
     nombre: 'microondas',
     excluir: ['taper', 'vasos'],
-    titulo: `Mejores microondas en oferta ${AÑO}: comparativa de precios`,
+    // 24/11: «microondas baratos» (80 impresiones, posición 11). El «: comparativa de precios» no va al <title>.
+    titulo: 'Microondas baratos en oferta hoy: comparativa de precios',
     descripcion:
       'Comparativa de microondas en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
@@ -1200,7 +1277,7 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-tv-55-65-pulgadas',
     categoria: 'smart-tv',
     nombre: 'smart TV de 55 y 65 pulgadas',
-    titulo: `Mejores smart TV de 55 y 65 pulgadas en oferta ${AÑO}`,
+    titulo: `Mejores smart TV de 65 y 55 pulgadas en oferta ${AÑO}`,
     descripcion:
       'Comparativa de smart TV de 55, 65 y 75 pulgadas en oferta hoy en Mercado Libre Argentina: panel, resolución, precio, descuento y precio mínimo registrado.',
     intro:

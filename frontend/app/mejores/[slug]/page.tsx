@@ -8,6 +8,7 @@ import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, MIN_PRODUCTOS_INDEXABLE, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
@@ -245,6 +246,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
           </a>
         </div>
       </header>
+
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/mejores/${slug}`} />
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">

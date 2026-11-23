@@ -3,6 +3,7 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
@@ -166,6 +167,9 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
           </a>
         </div>
       </header>
+
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/precio-hoy/${p.slug}`} />
 
       <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">

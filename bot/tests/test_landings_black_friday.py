@@ -97,6 +97,48 @@ class TestLandingsBlackFriday(unittest.TestCase):
         self.assertIn("pulgar.webp", self.comp)  # Don Ofertín
         self.assertIn('<Footer brand="ofertas" sinCupones />', self.comp)  # sin el link a cupones del footer
 
+    def test_boton_principal_con_link_de_afiliado(self):
+        # El botón grande de arriba abre el link del recomendado (no la búsqueda) y
+        # productosBF descarta los productos sin link de afiliado.
+        self.assertRegex(self.comp, r"href=\{principal\.url\}[\s\S]{0,800}Ver en Mercado Libre")
+        self.assertIn("esLinkAfiliado(p ? p.url_producto : a?.url)", self.src)
+        self.assertIn("'37267219'", self.src)
+
+
+class TestAvisoBFRubro(unittest.TestCase):
+    """Bloque «Black Friday 27/11: lo que conviene» en 10 páginas (lib/bf-enlaces.ts)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.src = (FRONT / "lib" / "bf-enlaces.ts").read_text(encoding="utf-8")
+        cls.comp = (FRONT / "components" / "AvisoBFRubro.tsx").read_text(encoding="utf-8")
+        cls.rutas = dict(re.findall(r"'(/(?:mejor|mejores|guias|precio-hoy)/[a-z0-9-]+)': (\w+)", cls.src))
+
+    def test_diez_paginas_de_los_cuatro_rubros(self):
+        self.assertEqual(len(self.rutas), 10)
+        self.assertEqual(set(self.rutas.values()), {"NOTEBOOKS", "CELULARES", "TV", "AIRES"})
+        landings = LANDINGS.read_text(encoding="utf-8")
+        for slug in re.findall(r"slug: '(black-friday-[a-z-]+)'", self.src):
+            self.assertIn(f"slug: '{slug}'", landings)
+
+    def test_se_apaga_despues_del_30_11(self):
+        self.assertIn("FIN_AVISO_BF = '2026-12-01T00:00:00-03:00'", self.src)
+        self.assertIn("avisoBFVigente()", self.comp)
+        self.assertIn("SoloHastaFinBF", self.comp)
+
+    def test_texto_y_colores(self):
+        self.assertIn("Black Friday 27/11: lo que conviene", self.comp)
+        self.assertIn("#FACC15", self.comp)
+        self.assertIn("text-black", self.comp)
+        # Los comentarios explican la regla: se miran solo los textos y el JSX.
+        sin_comentarios = re.sub(r"//.*", "", self.src + self.comp)
+        self.assertNotRegex(sin_comentarios, r"\d+\s*%|cup[oó]n|m[ií]nimo hist")
+
+    def test_las_plantillas_lo_usan(self):
+        for f in ("app/mejores/[slug]/page.tsx", "app/precio-hoy/[slug]/page.tsx",
+                  "app/guias/[slug]/page.tsx", "app/mejor/aires-acondicionados/page.tsx"):
+            self.assertIn("<AvisoBFRubro ruta=", (FRONT / f).read_text(encoding="utf-8"), f)
+
 
 if __name__ == "__main__":
     unittest.main()

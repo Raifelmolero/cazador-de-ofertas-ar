@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
 import { AIRES_HOY, AIRES_VERIFICADO } from '@/lib/mejor-aires'
 import { etapaBlackFriday } from '@/lib/cybermonday'
 
@@ -82,6 +83,9 @@ export default function MejorAiresPage() {
           </a>
         </div>
       </header>
+
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta="/mejor/aires-acondicionados" />
 
       {etapaBlackFriday().etapa !== 'despues' && (
         <aside aria-label="Black Friday" className="max-w-5xl mx-auto px-4 pt-4">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
 import { GUIAS, fechasGuia, getGuia as getGuiaBase } from '@/lib/guias'
 import { aBlackFridayTrasCyber, etapaBlackFriday } from '@/lib/cybermonday'
 
@@ -177,6 +178,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           </a>
         </div>
       </header>
+
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/guias/${g.slug}`} />
 
       <article className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
         <p className="text-xs font-bold tracking-widest text-yellow-400 mb-3">GUÍA</p>

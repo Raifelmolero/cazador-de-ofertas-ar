@@ -137,7 +137,7 @@ export const LANDINGS_BF: LandingBF[] = [
     h1: 'Smart TV para el Black Friday 2026',
     titulo: 'Black Friday 2026 smart TV Argentina: 50, 55 y 65"',
     descripcion:
-      'Black Friday 2026 en Argentina (viernes 27/11): smart TV 4K Samsung, LG y Hisense de 50, 55 y 65 pulgadas (QLED, Mini LED y OLED), con link directo a Mercado Libre.',
+      'Black Friday 2026 en Argentina (viernes 27/11): smart TV 4K Samsung, LG y Hisense de 50, 55 y 65 pulgadas (QLED, Mini LED y OLED), con link a Mercado Libre.',
     keywords: ['black friday 2026 smart tv argentina', 'smart tv black friday 2026', 'tv 55 pulgadas black friday', 'televisor black friday mercado libre'],
     intro:
       'Teles 4K de marcas conocidas, de 50 a 65 pulgadas. Arriba, la de 55" que más recomendamos para un living común.',
@@ -172,7 +172,7 @@ export const LANDINGS_BF: LandingBF[] = [
     h1: 'Aires acondicionados para el Black Friday 2026',
     titulo: 'Black Friday 2026 aires acondicionados Argentina',
     descripcion:
-      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor Samsung, LG, Philco, Hyundai y Likon para el verano, con link directo a Mercado Libre.',
+      'Black Friday 2026 en Argentina (viernes 27/11): aires split inverter frío/calor Samsung, LG, Philco, Hyundai y Likon para el verano, con link a Mercado Libre.',
     keywords: ['black friday 2026 aires acondicionados argentina', 'aire acondicionado black friday 2026', 'split inverter black friday', 'ofertas verano mercado libre'],
     intro:
       'Antes de que arranque el calor fuerte: splits inverter frío/calor de 2.500 a 4.500 frigorías. Arriba, el que más recomendamos para un ambiente de hasta 20 m².',
@@ -223,7 +223,19 @@ export function precioMostrable(precio: number | null | undefined, visto: string
   return d !== null && d <= DIAS_PRECIO_VIEJO ? precio : null
 }
 
-/** Arma los productos de la landing con los datos del repo (catálogo y, para aires, lib/mejor-aires). */
+/** Link de afiliado nuestro: publicación de ML con `matt_tool` fijo y etiqueta `matt_word`. */
+export function esLinkAfiliado(url: string | null | undefined): boolean {
+  if (!url) return false
+  try {
+    const u = new URL(url)
+    return /(^|\.)mercadolibre\.com\.ar$/.test(u.hostname) && u.searchParams.get('matt_tool') === '37267219' && !!u.searchParams.get('matt_word')
+  } catch {
+    return false
+  }
+}
+
+/** Arma los productos de la landing con los datos del repo (catálogo y, para aires, lib/mejor-aires).
+ *  Un producto sin link de afiliado no se muestra: así el botón principal siempre lo lleva. */
 export function productosBF(l: LandingBF, hoy?: string): ProductoBF[] {
   const aires = new Map(AIRES_HOY.map(a => [a.id, a]))
   const out: ProductoBF[] = []
@@ -232,6 +244,7 @@ export function productosBF(l: LandingBF, hoy?: string): ProductoBF[] {
     const a = aires.get(it.id)
     const titulo = p?.titulo ?? a?.titulo
     if (!titulo || MARCAS_PROHIBIDAS.test(titulo) || MARCAS_PROHIBIDAS.test(it.nombre)) continue
+    if (!esLinkAfiliado(p ? p.url_producto : a?.url)) continue
     if (p) {
       const precio = precioMostrable(p.precio_actual, p.precio_visto, hoy)
       out.push({ ...it, url: p.url_producto, img: p.url_imagen, precio, visto: precio ? p.precio_visto ?? null : null })

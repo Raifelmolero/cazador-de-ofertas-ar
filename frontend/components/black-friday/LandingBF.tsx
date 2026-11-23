@@ -140,13 +140,18 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
                   </div>
                 </div>
               </a>
+              {/* Botón principal: link de afiliado del recomendado (productosBF descarta los que no lo tienen).
+                  En 390 px: texto grande en una sola línea y debajo, chico, qué producto abre. */}
               <a
                 href={principal.url}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                className="mt-3 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-black px-4 text-lg font-black text-yellow-400 shadow-lg transition-transform active:scale-[0.98]"
+                aria-label={`Ver ${principal.nombre} en Mercado Libre`}
+                data-seccion={`bf_${l.slug}_boton`}
+                className="mt-3 flex min-h-[60px] w-full flex-col items-center justify-center rounded-2xl bg-black px-4 py-2 text-center shadow-lg transition-transform active:scale-[0.98]"
               >
-                Ver en Mercado Libre ↗
+                <span className="whitespace-nowrap text-xl font-black leading-tight text-yellow-400">Ver en Mercado Libre ↗</span>
+                <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-zinc-300">{principal.nombre}</span>
               </a>
             </>
           ) : (

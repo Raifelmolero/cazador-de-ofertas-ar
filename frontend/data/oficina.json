@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-23T18:20:06+00:00",
+  "generado": "2026-11-23T21:31:36+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -17,19 +17,7 @@
       ],
       "metricas": [
         {
-          "label": "Facebook",
-          "valor": 3
-        },
-        {
           "label": "Telegram",
-          "valor": 2
-        },
-        {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
-          "label": "Threads",
           "valor": 1
         }
       ],
@@ -59,11 +47,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },

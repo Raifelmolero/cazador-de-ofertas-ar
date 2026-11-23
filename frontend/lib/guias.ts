@@ -48,6 +48,12 @@ export const GUIAS: Guia[] = [
     pregunta: '¿Cómo sé si un descuento de Mercado Libre es real?',
     respuestaCorta:
       'Un descuento es real si el precio "anterior" que se muestra fue efectivamente el precio de venta en días previos. Si el producto ya se vendía al precio actual (o más barato) la semana pasada, el "40% OFF" es solo un precio de lista inflado. La forma de comprobarlo es mirar el historial de precios del producto.',
+    enlaces: [
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy 🔎' },
+      { href: '/black-friday', texto: 'Black Friday: ofertas verificadas 🔥' },
+      { href: '/mejores/mejores-tv-55-65-pulgadas', texto: 'Comparativa de TV 55-65"' },
+      { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
     secciones: [
       {
         h: 'Por qué existen los descuentos inflados',

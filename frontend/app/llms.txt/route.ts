@@ -10,6 +10,9 @@
 import { getEstudio } from '@/lib/estudio'
 import { COMPARATIVAS, getComparativa, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
+import { LANDINGS_BF } from '@/lib/black-friday-landings'
+import { GUIA_BF_A_LANDING, primeraFrase } from '@/lib/bf-guias'
+import { getGuia } from '@/lib/guias'
 import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/lib/marca'
 
 const E = getEstudio()
@@ -374,8 +377,38 @@ function seccionAutomatica(): string {
   return partes.length ? NL + partes.join(NL + NL) + NL : ''
 }
 
+// Black Friday 2026: cada landing y cada guía con una línea de qué recomienda (la primera frase de su
+// «respuesta corta», la misma que se ve arriba de la página). Va antes de «Notas para citar este sitio».
+const SITIO = 'https://cazadordeofertas.com.ar'
+function seccionBlackFriday(): string {
+  const landings = LANDINGS_BF.map(l => `- [${l.h1}](${SITIO}/mejores/${l.slug}): ${primeraFrase(l.respuestaCorta)}`)
+  const guias = Object.keys(GUIA_BF_A_LANDING)
+    .map(slug => getGuia(slug))
+    .filter(g => g !== undefined)
+    .map(g => `- [${g.titulo}](${SITIO}/guias/${g.slug}): ${primeraFrase(g.respuestaCorta)}`)
+  return [
+    '## Black Friday 2026 Argentina',
+    '',
+    'Viernes 27 de noviembre de 2026. Listas cortas elegidas a mano, con link directo a la publicación de',
+    'Mercado Libre; el precio que mostramos es el último visto (hasta 7 días) y puede cambiar.',
+    '',
+    '### Landings por rubro',
+    ...landings,
+    '',
+    '### Guías',
+    ...guias,
+    '',
+    '',
+  ].join(NL)
+}
+
+const NOTAS = '## Notas para citar este sitio'
+
 export async function GET() {
-  return new Response(sinNoindex(CONTENT) + seccionAutomatica(), {
+  const base = sinNoindex(CONTENT)
+  const i = base.indexOf(NOTAS)
+  const conBF = i >= 0 ? base.slice(0, i) + seccionBlackFriday() + base.slice(i) : base + NL + seccionBlackFriday()
+  return new Response(conBF + seccionAutomatica(), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   })
 }

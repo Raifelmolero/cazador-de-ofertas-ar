@@ -33,7 +33,7 @@ export const GUIAS_BF_2026: Guia[] = [
       'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB SSD. Cuál conviene para estudiar, trabajar o jugar en el Black Friday del 27/11.',
     pregunta: '¿Qué notebook conviene comprar en el Black Friday 2026?',
     respuestaCorta:
-      'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: alcanza de sobra para estudiar, trabajar y el uso diario durante años. Si preferís Intel, la Lenovo V15 Gen 5 con Core i5 y la misma memoria. Para jugar o editar video hace falta placa de video dedicada, como la de la Lenovo LOQ o la Asus TUF Gaming A15. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+      'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: rinde de sobra para estudiar, trabajar y el uso diario durante años. Si preferís Intel, la Lenovo V15 Gen 5 con Core i5 y la misma memoria; para jugar o editar video, la Lenovo LOQ o la Asus TUF Gaming A15, que traen placa de video dedicada. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
     bf: {
       landing: 'black-friday-notebooks',
       items: [
@@ -110,7 +110,7 @@ export const GUIAS_BF_2026: Guia[] = [
       'Para la mayoría, la Noblex 50" DV50X8580: 4K y Google TV. Cuándo conviene Samsung Mini LED, Hisense QLED o Philips en el Black Friday del 27/11 en Argentina.',
     pregunta: '¿Qué TV de 50 pulgadas conviene comprar en el Black Friday 2026?',
     respuestaCorta:
-      'Para la mayoría, la Noblex 50" DV50X8580: 4K y Google TV, con las apps de siempre sin sumar otro aparato. Si querés mejor imagen, la Samsung 50" Mini LED M60H o la Hisense 50" QLED 50Q6. Antes de comprar, confirmá que diga 4K (UHD): hay teles de 50" que son Full HD. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+      'Para la mayoría, la Noblex 50" DV50X8580: 4K y Google TV, con las apps de siempre sin sumar otro aparato. Si querés mejor imagen, la Samsung 50" Mini LED M60H o la Hisense 50" QLED 50Q6; antes de comprar, confirmá que diga 4K (UHD), porque hay teles de 50" que son Full HD. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
     bf: {
       landing: 'black-friday-smart-tv',
       items: [

@@ -7,7 +7,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
-import { Foto, Precio, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import { Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
 import { getLandingBF, productosDeItems } from '@/lib/black-friday-landings'
 import { fechasGuia, type Guia } from '@/lib/guias'
 import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
@@ -36,33 +37,15 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
       publisher: org,
       isPartOf: { '@id': WEBSITE_ID },
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
-        { '@type': 'ListItem', position: 3, name: g.titulo, item: url },
-      ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: g.pregunta, acceptedAnswer: { '@type': 'Answer', text: g.respuestaCorta } },
-        ...(g.faq ?? []).map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-      ],
-    },
-    ...(productos.length > 0
-      ? [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: g.titulo,
-            itemListElement: productos.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.nombre, url: p.url })),
-          },
-        ]
-      : []),
+    breadcrumbLD([
+      { name: 'Ofertas de hoy', item: DEALS_URL },
+      { name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
+      { name: g.titulo, item: url },
+    ]),
+    // Las mismas preguntas que se ven en la página: la principal (respuesta corta) y las de abajo.
+    faqLD([{ q: g.pregunta, a: g.respuestaCorta }, ...(g.faq ?? [])]),
+    // Product + Offer solo con precio visto hace 7 días o menos (productosDeItems); nada de ratings.
+    ...(productos.length > 0 ? [itemListLD(g.titulo, url, productos)] : []),
   ]
 
   return (
@@ -89,10 +72,7 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
           <p className="text-[11px] font-black uppercase tracking-wider">Guía · Black Friday 2026 · viernes 27/11</p>
           <h1 className="mt-1 font-display text-[26px] sm:text-4xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">{g.titulo}</h1>
 
-          <div className="mt-3 rounded-2xl bg-black/90 px-4 py-3 text-zinc-100">
-            <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">Respuesta corta</p>
-            <p className="mt-1 text-[15px] leading-relaxed [text-wrap:pretty]">{g.respuestaCorta}</p>
-          </div>
+          <RespuestaCorta texto={g.respuestaCorta} actualizado={fechas.modificada} />
 
           {principal ? (
             <>
@@ -118,6 +98,7 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
                 <span className="whitespace-nowrap text-xl font-black leading-tight text-yellow-400">Ver en Mercado Libre ↗</span>
                 <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-zinc-300">{principal.nombre}</span>
               </a>
+              <LineaConfianza p={principal} claro />
             </>
           ) : (
             landing && (

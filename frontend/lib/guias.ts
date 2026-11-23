@@ -10,6 +10,7 @@ import type { SeleccionEquipos } from './guias-equipos'
 import type { ItemBF } from './black-friday-landings'
 import { FECHAS_GUIAS_BF_2026, GUIAS_BF_2026 } from './guias-bf-2026'
 import { TEXTO_MODIFICADO_ISO } from './sitemap-fechas'
+import { FECHA_REVISION_BF, esGuiaBF } from './bf-guias'
 
 export interface Guia {
   slug: string
@@ -2835,5 +2836,7 @@ const FECHA_DEFAULT = '2026-09-30'
 // (bloque Black Friday 2026, 16/11), sin tocar el mapa de arriba. JSON-LD de la guía y sitemap la comparten.
 export const fechasGuia = (slug: string) => {
   const f = FECHAS_GUIAS[slug] ?? { publicada: FECHA_DEFAULT, modificada: FECHA_DEFAULT }
-  return { ...f, modificada: TEXTO_MODIFICADO_ISO > f.modificada ? TEXTO_MODIFICADO_ISO : f.modificada }
+  // Guías de Black Friday: la última revisión de su texto (lib/bf-guias.ts), que se muestra como «Actualizado el».
+  const piso = esGuiaBF(slug) && FECHA_REVISION_BF > TEXTO_MODIFICADO_ISO ? FECHA_REVISION_BF : TEXTO_MODIFICADO_ISO
+  return { ...f, modificada: piso > f.modificada ? piso : f.modificada }
 }

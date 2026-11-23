@@ -35,6 +35,22 @@ import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { cajaDeGuia } from '@/lib/queconviene'
+import { LANDINGS_BF, getLandingBF, productosBF, type ProductoBF } from '@/lib/black-friday-landings'
+import { GUIA_BF_A_LANDING, esGuiaBF, fechaAR } from '@/lib/bf-guias'
+import { breadcrumbLD, itemListLD } from '@/lib/bf-jsonld'
+import { Tarjeta } from '@/components/black-friday/LandingBF'
+
+/** Guías BF sin componente propio (lib/bf-guias.ts): productos de su landing (los 3 primeros) o, en la
+ *  guía general, el recomendado de cada landing. Sin landing del rubro: ninguno. */
+function productosGuiaBF(slug: string): ProductoBF[] {
+  if (!esGuiaBF(slug)) return []
+  const landing = GUIA_BF_A_LANDING[slug] ? getLandingBF(GUIA_BF_A_LANDING[slug]!) : undefined
+  if (landing) return productosBF(landing).slice(0, 3)
+  if (slug === 'black-friday-argentina-que-conviene-comprar') {
+    return LANDINGS_BF.map(l => productosBF(l)[0]).filter((p): p is ProductoBF => !!p).slice(0, 4)
+  }
+  return []
+}
 
 const GUIAS_TITULO_PRECIO = new Set(['mejor-celular-para-jugar', 'que-motorola-comprar-moto-g-o-edge'])
 
@@ -87,13 +103,18 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   // Guías de Black Friday 2026 (lib/guias-bf-2026.ts): recomendado y botón de afiliado arriba, sin descuentos.
   if (g.bf) return <GuiaBFPage g={g} />
   const url = `${DEALS_URL}/guias/${g.slug}`
+  // Guías de Black Friday (lib/bf-guias.ts): sin % de descuento ni «mínimo» (no van la tira de ofertas
+  // del día ni la caja «qué conviene»); en su lugar, los elegidos de la landing BF con su botón.
+  const guiaBF = esGuiaBF(g.slug)
+  const landingBF = guiaBF && GUIA_BF_A_LANDING[g.slug] ? getLandingBF(GUIA_BF_A_LANDING[g.slug]!) : undefined
+  const elegidosBF = productosGuiaBF(g.slug)
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   // Guías de tecnología: los equipos del comparador que cumplen su criterio (precio de hoy y mínimo registrado).
   const equipos = equiposDeGuia(g)
   // Sin comparativa propia: las ofertas del día en su precio más bajo registrado
   // (58 de 84 guías no mostraban ningún producto). Guías de vendedores, no.
   const deVendedor = /vend|comisi|tiendanube|factur|monotrib/.test(g.slug)
-  const ofertas = equipos.length > 0
+  const ofertas = equipos.length > 0 || guiaBF
     ? []
     : comp
     ? productosDe(comp).slice(0, 4)
@@ -110,7 +131,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   ])
   const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
-  const queConviene = cajaDeGuia(g)
+  const queConviene = guiaBF ? [] : cajaDeGuia(g)
   const cta = ctaDeGuia(g)
   // Bloque Black Friday 2026: solo hasta el viernes 27/11 (hora argentina). Link a la comparativa
   // del rubro únicamente si existe en lib/comparativas.ts.
@@ -121,8 +142,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const medio = Math.ceil(g.secciones.length / 2) - 1
   const org = { '@type': 'Organization', '@id': ORG_ID, name: MARCA, url: DEALS_URL }
 
-  const ctaHref = g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL
-  const ctaBoton = g.cta ? g.cta.boton : g.categoria ? `Ver ${g.categoria.nombre} en oferta 🎯` : 'Ver las ofertas de hoy 🎯'
+  // Guía BF con landing del rubro: el botón de la respuesta corta lleva a esa landing (enlazado guía → landing).
+  const ctaHref = landingBF ? `/mejores/${landingBF.slug}` : g.cta ? g.cta.href : g.categoria ? `/categoria/${g.categoria.slug}` : DEALS_URL
+  const ctaBoton = landingBF ? `${landingBF.emoji} Ver ${landingBF.rubro.toLowerCase()} del Black Friday 2026 →` : g.cta ? g.cta.boton : g.categoria ? `Ver ${g.categoria.nombre} en oferta 🎯` : 'Ver las ofertas de hoy 🎯'
 
   const jsonLd = [
     {
@@ -138,14 +160,20 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       publisher: org,
       isPartOf: { '@id': WEBSITE_ID },
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Inicio', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: g.titulo, item: url },
-      ],
-    },
+    guiaBF
+      ? breadcrumbLD([
+          { name: 'Ofertas de hoy', item: DEALS_URL },
+          { name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
+          { name: g.titulo, item: url },
+        ])
+      : {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: DEALS_URL },
+            { '@type': 'ListItem', position: 2, name: g.titulo, item: url },
+          ],
+        },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -164,6 +192,8 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           },
         ]
       : []),
+    // Guías BF: Product + Offer solo con precio visto hace 7 días o menos (lib/bf-jsonld.ts); sin ratings.
+    ...(elegidosBF.length > 0 ? [itemListLD(`Los que elegimos: ${g.titulo}`, url, elegidosBF)] : []),
   ]
 
   return (
@@ -200,6 +230,11 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>
           <p className="text-zinc-200 leading-relaxed">{g.respuestaCorta}</p>
+          {guiaBF && (
+            <p className="mt-2 text-xs text-zinc-500">
+              Actualizado el <time dateTime={fechas.modificada}>{fechaAR(fechas.modificada)}</time>
+            </p>
+          )}
           <a
             href={ctaHref}
             className="mt-4 flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 text-center font-black text-black hover:bg-yellow-300 transition-colors"
@@ -207,6 +242,24 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             {ctaBoton}
           </a>
         </div>
+
+        {elegidosBF.length > 0 && (
+          <section className="mb-8" aria-label="Los que elegimos para el Black Friday" data-seccion={`guiabf_${g.slug}_elegidos`}>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">
+              {landingBF ? 'Los que elegimos para el Black Friday 2026' : 'Lo que elegimos por rubro'}
+            </h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {elegidosBF.map((p, i) => (
+                <Tarjeta key={p.id} p={p} slug={`guia_${g.slug}`} pos={i + 1} />
+              ))}
+            </ul>
+            {landingBF && (
+              <a href={`/mejores/${landingBF.slug}`} className="mt-3 inline-block text-sm font-bold text-yellow-400 hover:underline">
+                Ver la lista completa: {landingBF.rubro} del Black Friday 2026 →
+              </a>
+            )}
+          </section>
+        )}
 
         {ofertas.length > 0 && (
           <section className="mb-8 -mx-4 sm:mx-0" aria-label="En oferta hoy">

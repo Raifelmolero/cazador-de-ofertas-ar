@@ -7,7 +7,9 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
 import { miniaturaML } from '@/lib/imagenml'
-import { LANDINGS_BF, productosBF, type LandingBF, type ProductoBF } from '@/lib/black-friday-landings'
+import { LANDINGS_BF, actualizadoBF, productosBF, type LandingBF, type ProductoBF } from '@/lib/black-friday-landings'
+import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
+import { fechaAR } from '@/lib/bf-guias'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
@@ -41,6 +43,30 @@ export function Precio({ p, claro }: { p: ProductoBF; claro?: boolean }) {
   )
 }
 
+/** Debajo del botón: «Tienda oficial» solo si el dato existe (tiendaOficial); envío y cuotas nunca los
+ *  afirmamos, se miran en la publicación. */
+export function LineaConfianza({ p, claro }: { p: ProductoBF; claro?: boolean }) {
+  return (
+    <p className={`mt-1.5 text-center text-xs ${claro ? 'text-black/70' : 'text-zinc-400'}`}>
+      {p.tiendaOficial && <span className="font-bold">✔ Tienda oficial · </span>}
+      Envío y cuotas: mirá en ML
+    </p>
+  )
+}
+
+/** Respuesta corta (la que citan Google y las IAs) + «Actualizado el». */
+export function RespuestaCorta({ texto, actualizado }: { texto: string; actualizado: string }) {
+  return (
+    <div className="mt-3 rounded-2xl bg-black/90 px-4 py-3 text-zinc-100">
+      <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">Respuesta corta</p>
+      <p className="mt-1 text-[15px] leading-relaxed [text-wrap:pretty]">{texto}</p>
+      <p className="mt-1.5 text-[11px] text-zinc-400">
+        Actualizado el <time dateTime={actualizado}>{fechaAR(actualizado)}</time>
+      </p>
+    </div>
+  )
+}
+
 export function Tarjeta({ p, slug, pos }: { p: ProductoBF; slug: string; pos: number }) {
   return (
     <li className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3" data-seccion={`bf_${slug}_item_${pos}`}>
@@ -55,14 +81,18 @@ export function Tarjeta({ p, slug, pos }: { p: ProductoBF; slug: string; pos: nu
           </div>
         </div>
       </a>
+      {/* Botón de afiliado: ancho completo y 48 px de alto como mínimo (dedo en el celular). */}
       <a
         href={p.url}
         target="_blank"
         rel="sponsored nofollow noopener"
+        aria-label={`Ver ${p.nombre} en Mercado Libre`}
+        data-seccion={`bf_${slug}_item_${pos}_boton`}
         className="mt-3 flex min-h-[48px] w-full items-center justify-center rounded-xl bg-yellow-400 px-4 text-base font-black text-black transition-colors hover:bg-yellow-300 active:scale-[0.98]"
       >
         Ver en Mercado Libre ↗
       </a>
+      <LineaConfianza p={p} />
     </li>
   )
 }
@@ -72,28 +102,18 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
   const [principal, ...resto] = productos
   const url = `${DEALS_URL}/mejores/${l.slug}`
   const otras = LANDINGS_BF.filter(x => x.slug !== l.slug)
+  const actualizado = actualizadoBF(productos)
 
+  // JSON-LD (lib/bf-jsonld.ts): Product + Offer solo con precio visto hace 7 días o menos; nada de ratings.
   const jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        { '@type': 'ListItem', position: 2, name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
-        { '@type': 'ListItem', position: 3, name: l.rubro, item: url },
-      ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: l.h1,
-      itemListElement: productos.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.nombre, url: p.url })),
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: l.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-    },
+    breadcrumbLD([
+      { name: 'Ofertas de hoy', item: DEALS_URL },
+      { name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
+      { name: l.rubro, item: url },
+    ]),
+    ...(productos.length > 0 ? [itemListLD(l.h1, url, productos)] : []),
+    // Las mismas preguntas que se ven en la página (Google pide que coincidan).
+    faqLD(l.faq),
   ]
 
   return (
@@ -127,6 +147,8 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
             <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={64} height={79} className="shrink-0" priority />
           </div>
 
+          <RespuestaCorta texto={l.respuestaCorta} actualizado={actualizado} />
+
           {principal ? (
             <>
               <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="mt-3 flex gap-3 rounded-2xl bg-black p-3">
@@ -153,6 +175,7 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
                 <span className="whitespace-nowrap text-xl font-black leading-tight text-yellow-400">Ver en Mercado Libre ↗</span>
                 <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-zinc-300">{principal.nombre}</span>
               </a>
+              <LineaConfianza p={principal} claro />
             </>
           ) : (
             <a

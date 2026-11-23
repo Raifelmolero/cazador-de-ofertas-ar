@@ -17,6 +17,7 @@ import { getProductoById } from '@/lib/productos'
 import { AIRES_HOY, AIRES_VERIFICADO } from '@/lib/mejor-aires'
 import { DIAS_PRECIO_VIEJO, diasDesde } from '@/lib/frescura'
 import { busquedaML } from '@/lib/afiliado'
+import { FECHA_REVISION_BF } from '@/lib/bf-guias'
 
 /** Marcas que no se muestran en estas landings. */
 export const MARCAS_PROHIBIDAS = /\b(bgh|hp|omen|victus)\b/i
@@ -30,6 +31,8 @@ export interface ItemBF {
   detalle: string
   /** por qué está en la lista (sin precios ni porcentajes) */
   nota?: string
+  /** true solo si la publicación es de una tienda oficial (dato verificado en ML). Sin el dato, no se muestra. */
+  tiendaOficial?: boolean
 }
 
 export interface FaqBF {
@@ -49,6 +52,8 @@ export interface LandingBF {
   descripcion: string
   keywords: string[]
   intro: string
+  /** «Respuesta corta» arriba de todo (2 o 3 frases, modelo concreto y por qué): la que citan Google y las IAs */
+  respuestaCorta: string
   /** el primero es el principal (botón grande de arriba) */
   items: ItemBF[]
   criterios: string[]
@@ -70,6 +75,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 notebooks argentina', 'notebook black friday 2026', 'mejor notebook black friday', 'notebook mercado libre black friday'],
     intro:
       'Elegimos pocas y buenas: 16 GB de RAM y disco SSD en todas, de marcas con service en Argentina. Arriba, la que más recomendamos para la mayoría.',
+    respuestaCorta:
+      'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: rinde de sobra para estudiar, trabajar y el uso diario, y con esa memoria no se queda corta en un par de años. Si preferís Intel, la Lenovo V15 Gen 5 con Core i5; para jugar o editar video, la Lenovo LOQ o la Asus TUF Gaming A15, que traen placa de video dedicada.',
     items: [
       { id: 'MLA77766168', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La que recomendamos para la mayoría: estudio, oficina y uso diario.' },
       { id: 'MLA72201400', nombre: 'Lenovo V15 Gen 5', detalle: 'Intel Core i5 · 16 GB de RAM · 512 GB SSD', nota: 'Alternativa con Intel para trabajar.' },
@@ -91,7 +98,8 @@ export const LANDINGS_BF: LandingBF[] = [
     ],
     busqueda: busquedaML('notebook 16gb ram'),
     enlaces: [
-      { href: '/guias/que-notebook-comprar-black-friday', texto: 'Guía: qué notebook comprar en el Black Friday' },
+      { href: '/guias/que-notebook-comprar-black-friday-2026', texto: 'Guía: qué notebook comprar en Black Friday 2026' },
+      { href: '/guias/que-notebook-comprar-black-friday', texto: 'Guía: procesador, RAM y SSD para el Black Friday' },
       { href: '/comparador/notebooks', texto: 'Comparador de notebooks con filtros' },
     ],
   },
@@ -106,6 +114,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 celulares argentina', 'iphone black friday 2026 argentina', 'samsung galaxy black friday 2026', 'celular black friday mercado libre'],
     intro:
       'Los celulares que más se buscan, sin vueltas: iPhone de los últimos tres años y Samsung Galaxy de gama media y alta. Arriba, el que más recomendamos.',
+    respuestaCorta:
+      'Si querés iPhone, el iPhone 16 de 128 GB es el equilibrio entre precio y años de actualizaciones. En Samsung, el Galaxy A56 5G de 256 GB es la gama media que más rinde y el Galaxy S26 FE suma prestaciones de gama alta sin llegar al S26 Ultra. Comprá a la tienda oficial o a un distribuidor autorizado, con factura y garantía en Argentina.',
     items: [
       { id: 'MLA1040287808', nombre: 'Apple iPhone 16', detalle: '128 GB · Negro · Distribuidor autorizado', nota: 'El iPhone que más recomendamos hoy.' },
       { id: 'MLA55309009', nombre: 'Apple iPhone 17', detalle: '256 GB · Blanco', nota: 'El más nuevo, con el doble de memoria.' },
@@ -127,6 +137,7 @@ export const LANDINGS_BF: LandingBF[] = [
     busqueda: busquedaML('iphone'),
     enlaces: [
       { href: '/guias/que-celular-comprar-black-friday', texto: 'Guía: qué celular comprar en el Black Friday' },
+      { href: '/guias/iphone-o-samsung-cual-conviene-argentina', texto: 'Guía: iPhone o Samsung, cuál conviene' },
       { href: '/comparador/celulares', texto: 'Comparador de celulares con filtros' },
     ],
   },
@@ -141,6 +152,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 smart tv argentina', 'smart tv black friday 2026', 'tv 55 pulgadas black friday', 'televisor black friday mercado libre'],
     intro:
       'Teles 4K de marcas conocidas, de 50 a 65 pulgadas. Arriba, la de 55" que más recomendamos para un living común.',
+    respuestaCorta:
+      'Para un living común, la Samsung 55" QLED Serie D: es 4K, a unos 2 metros del sillón 55 pulgadas es el tamaño justo y el QLED da más brillo y color que un LED común. Para consola, la Hisense 55" Mini LED 55U6QV, que tiene modo juego. Antes de comprar, confirmá que el sistema de la tele tenga las apps que usás.',
     items: [
       { id: 'MLA47330762', nombre: 'Samsung 55" QLED Serie D', detalle: '4K · QLED', nota: 'La que recomendamos para un living común.' },
       { id: 'MLA80753446', nombre: 'Samsung 50" Mini LED M60H', detalle: 'Mini LED · HDR', nota: 'Si el espacio da para 50".' },
@@ -162,6 +175,7 @@ export const LANDINGS_BF: LandingBF[] = [
     busqueda: busquedaML('smart tv 55 4k'),
     enlaces: [
       { href: '/guias/que-smart-tv-comprar-black-friday', texto: 'Guía: qué smart TV comprar en el Black Friday' },
+      { href: '/guias/que-tv-50-pulgadas-comprar-black-friday-2026', texto: 'Guía: qué TV de 50 pulgadas comprar' },
       { href: '/comparador/smart-tv', texto: 'Comparador de smart TV con filtros' },
       { href: '/mejores/mejores-tv-55-65-pulgadas', texto: 'Smart TV 65 pulgadas' },
       { href: '/precio-hoy/smart-tv-32-pulgadas', texto: 'Smart TV 32 pulgadas: precio hoy' },
@@ -178,6 +192,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 aires acondicionados argentina', 'aire acondicionado black friday 2026', 'split inverter black friday', 'ofertas verano mercado libre'],
     intro:
       'Antes de que arranque el calor fuerte: splits inverter frío/calor de 2.500 a 4.500 frigorías. Arriba, el que más recomendamos para un ambiente de hasta 20 m².',
+    respuestaCorta:
+      'Para un ambiente de hasta 20 m², el Samsung split inverter frío/calor de 2580 frigorías: el inverter gasta menos luz y hace menos ruido si lo usás muchas horas. Para unos 30 m², el LG DualCool de 4500 frigorías. La instalación casi nunca viene incluida: sumala al presupuesto y pedí turno antes de enero.',
     items: [
       { id: 'MLA60932288', nombre: 'Samsung split inverter 2580 F', detalle: 'Frío/calor · inverter · 2580 frigorías', nota: 'El que recomendamos para hasta 20 m².' },
       { id: 'MLA45670320', nombre: 'Hyundai split inverter 3200 W con wifi', detalle: 'Inverter · wifi · 3200 W' },
@@ -197,6 +213,8 @@ export const LANDINGS_BF: LandingBF[] = [
     ],
     busqueda: busquedaML('aire acondicionado split inverter'),
     enlaces: [
+      { href: '/guias/mejores-aires-acondicionados-black-friday-2026', texto: 'Guía: mejores aires para el Black Friday 2026' },
+      { href: '/guias/cuantas-frigorias-necesito-aire-acondicionado', texto: 'Guía: cuántas frigorías necesito' },
       { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías' },
       { href: '/mejor/aires-acondicionados', texto: 'Guía: qué aire acondicionado comprar' },
       { href: '/calculadora-consumo-electrico', texto: 'Cuánta luz gasta un aire' },
@@ -213,6 +231,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 lavarropas argentina', 'lavarropas black friday 2026', 'lavarropas cyber monday', 'lavarropas carga frontal black friday', 'lavasecarropas black friday'],
     intro:
       'Automáticos de marcas con service en Argentina, de 6 a 11 kg, y un lavasecarropas para cuando no hay dónde tender. Arriba, el que más recomendamos para una familia.',
+    respuestaCorta:
+      'Para una familia, el Samsung Ecobubble de 10,5 kg: alcanza para acolchados y lavados grandes. Para 1 a 3 personas, el Drean automático de 6 kg; si no tenés dónde tender, el lavasecarropas TCL inverter de 10/7 kg lava y seca en el mismo equipo. Medí el lugar antes de comprar y confirmá si el envío lo sube al piso.',
     items: [
       { id: 'MLA52816628', nombre: 'Samsung Ecobubble 10,5 kg', detalle: 'Ecobubble · 10,5 kg · blanco', nota: 'El que recomendamos para una familia.' },
       { id: 'MLA47076104', nombre: 'Drean carga frontal 10 kg', detalle: 'Carga frontal · 10 kg · blanco', nota: 'Misma capacidad, de Drean.' },
@@ -250,6 +270,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 cafeteras argentina', 'cafetera black friday 2026', 'cafetera express cyber monday', 'cafetera oferta', 'cafetera espresso black friday'],
     intro:
       'Una de cada tipo, para elegir según cómo tomás el café: espresso automática, espresso manual, de cápsulas y de filtro. Arriba, la que más recomendamos.',
+    respuestaCorta:
+      'Si querés espresso y café con leche sin complicarte, la Philips Serie 2200 LatteGo: es automática y prepara el café con leche con su sistema LatteGo. Si priorizás la practicidad, la Nespresso Inissia con Aeroccino 3, de cápsulas; para hacer varias tazas juntas, la Suono de filtro de 1,8 L.',
     items: [
       { id: 'MLA18154570', nombre: 'Philips Serie 2200 LatteGo', detalle: 'Espresso automática · LatteGo · 1,8 L', nota: 'La que recomendamos si querés espresso y café con leche sin complicarte.' },
       { id: 'MLA59887976', nombre: 'Oster PrimaLatte', detalle: 'Espresso automática · 15 bares', nota: 'Otra automática, de Oster.' },
@@ -271,6 +293,7 @@ export const LANDINGS_BF: LandingBF[] = [
     busqueda: busquedaML('cafetera espresso'),
     enlaces: [
       { href: '/guias/que-cafetera-comprar', texto: 'Guía: qué cafetera comprar' },
+      { href: '/guias/black-friday-argentina-que-conviene-comprar', texto: 'Guía: qué conviene comprar en el Black Friday' },
       { href: '/mejores/mejores-cafeteras', texto: 'Todas las cafeteras en oferta hoy' },
     ],
   },
@@ -285,6 +308,8 @@ export const LANDINGS_BF: LandingBF[] = [
     keywords: ['black friday 2026 bicicletas argentina', 'bicicleta r29 black friday 2026', 'mountain bike black friday', 'bicicleta mercado libre black friday'],
     intro:
       'Mountain bikes rodado 29 para tierra, ripio y calles rotas, todas de aluminio. Arriba, la que más recomendamos; abajo, otras R29 de varias marcas y talles.',
+    respuestaCorta:
+      'Para tierra, ripio y calles rotas, la Battle R29 de aluminio con monoplato Shimano: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
     items: [
       { id: 'MLA53194352', nombre: 'Bicicleta MTB Battle R29', detalle: 'Aluminio · monoplato Shimano 8 velocidades · talle 16', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
       { id: 'MLA51766931', nombre: 'SLP MTB 10 Pro R29', detalle: 'Aluminio · Shimano 21 velocidades · cuadro 21', nota: 'Cuadro grande, para gente alta.' },
@@ -368,4 +393,10 @@ export function productosDeItems(items: ItemBF[], hoy?: string): ProductoBF[] {
     }
   }
   return out
+}
+
+/** «Actualizado el»: la fecha más nueva entre la última revisión del texto (FECHA_REVISION_BF)
+ *  y el último precio visto de los productos que muestra la página. Formato 'AAAA-MM-DD'. */
+export function actualizadoBF(productos: ProductoBF[]): string {
+  return productos.reduce((max, p) => (p.visto && p.visto.slice(0, 10) > max ? p.visto.slice(0, 10) : max), FECHA_REVISION_BF)
 }

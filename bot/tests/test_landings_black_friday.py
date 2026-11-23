@@ -7,6 +7,8 @@ y títulos/descripciones que entran en Google.
 """
 import json
 import re
+import shutil
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -303,6 +305,193 @@ class TestAvisoBFRubro(unittest.TestCase):
         for f in ("app/mejores/[slug]/page.tsx", "app/precio-hoy/[slug]/page.tsx",
                   "app/guias/[slug]/page.tsx", "app/mejor/aires-acondicionados/page.tsx"):
             self.assertIn("<AvisoBFRubro ruta=", (FRONT / f).read_text(encoding="utf-8"), f)
+
+
+JSONLD = FRONT / "lib" / "bf-jsonld.ts"
+BF_GUIAS = FRONT / "lib" / "bf-guias.ts"
+TS = FRONT / "node_modules" / "typescript"
+
+# Transpila lib/bf-jsonld.ts con el TypeScript del frontend y lo corre en node con productos de ejemplo.
+_NODE_JSONLD = r"""
+const ts = require(process.argv[1]);
+const fs = require('fs');
+const src = fs.readFileSync(process.argv[2], 'utf8');
+const js = ts.transpileModule(src, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
+const m = { exports: {} };
+new Function('module', 'exports', 'require', js)(m, m.exports, require);
+const L = m.exports;
+const productos = [
+  { nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB', url: 'https://www.mercadolibre.com.ar/p/MLA1?matt_tool=37267219&matt_word=web', img: 'https://http2.mlstatic.com/x.webp', precio: 1573949.4 },
+  { nombre: 'Lenovo V15 Gen 5', detalle: 'Core i5', url: 'https://www.mercadolibre.com.ar/p/MLA2?matt_tool=37267219&matt_word=web', img: null, precio: null },
+];
+process.stdout.write(JSON.stringify({
+  lista: L.itemListLD('Notebooks para el Black Friday 2026', 'https://cazadordeofertas.com.ar/mejores/black-friday-notebooks', productos),
+  faq: L.faqLD([{ q: '¿Qué notebook conviene?', a: 'La IdeaPad Slim 3.' }]),
+  migas: L.breadcrumbLD([{ name: 'Ofertas de hoy', item: 'https://cazadordeofertas.com.ar' }, { name: 'Black Friday 2026', item: 'https://cazadordeofertas.com.ar/black-friday' }]),
+}));
+"""
+
+
+def _todas_las_claves(x):
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield k
+            yield from _todas_las_claves(v)
+    elif isinstance(x, list):
+        for v in x:
+            yield from _todas_las_claves(v)
+
+
+class TestJsonLdBF(unittest.TestCase):
+    """JSON-LD de landings y guías BF (lib/bf-jsonld.ts, pedido GEO del 23/11/2026): ItemList con
+    Product/Offer solo con precio reciente, FAQPage y BreadcrumbList; nunca ratings ni stock."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.src = JSONLD.read_text(encoding="utf-8")
+
+    @unittest.skipUnless(shutil.which("node") and TS.exists(), "hace falta node y frontend/node_modules")
+    def test_estructura_en_node(self):
+        out = subprocess.run(["node", "-e", _NODE_JSONLD, str(TS), str(JSONLD)],
+                             capture_output=True, text=True, check=True, timeout=60).stdout
+        ld = json.loads(out)
+        lista = ld["lista"]
+        self.assertEqual(lista["@context"], "https://schema.org")
+        self.assertEqual(lista["@type"], "ItemList")
+        self.assertEqual(lista["numberOfItems"], 2)
+        con, sin = lista["itemListElement"]
+        self.assertEqual([con["position"], sin["position"]], [1, 2])
+        # Con precio reciente: Product + Offer en ARS, precio entero, sin ratings.
+        prod = con["item"]
+        self.assertEqual(prod["@type"], "Product")
+        self.assertEqual(prod["offers"]["@type"], "Offer")
+        self.assertEqual(prod["offers"]["priceCurrency"], "ARS")
+        self.assertEqual(prod["offers"]["price"], 1573949)
+        self.assertIn("matt_tool=37267219", prod["offers"]["url"])
+        # Sin precio (visto hace más de 7 días): ListItem simple, nunca un Product sin offers (inválido).
+        self.assertNotIn("item", sin)
+        self.assertEqual(sin["@type"], "ListItem")
+        self.assertEqual(sin["name"], "Lenovo V15 Gen 5")
+        claves = set(_todas_las_claves(ld))
+        for prohibida in ("aggregateRating", "review", "ratingValue", "availability", "inventoryLevel"):
+            self.assertNotIn(prohibida, claves)
+        faq = ld["faq"]
+        self.assertEqual(faq["@type"], "FAQPage")
+        self.assertEqual(faq["mainEntity"][0]["@type"], "Question")
+        self.assertEqual(faq["mainEntity"][0]["acceptedAnswer"]["@type"], "Answer")
+        migas = ld["migas"]
+        self.assertEqual(migas["@type"], "BreadcrumbList")
+        self.assertEqual([m["position"] for m in migas["itemListElement"]], [1, 2])
+        self.assertTrue(all(m["item"].startswith("https://") for m in migas["itemListElement"]))
+
+    def test_sin_ratings_en_el_codigo(self):
+        sin_comentarios = re.sub(r"//.*", "", self.src)
+        for prohibida in ("aggregateRating", "ratingValue", "review", "availability", "InStock"):
+            self.assertNotIn(prohibida, sin_comentarios)
+
+    def test_paginas_usan_el_modulo(self):
+        landing = COMPONENTE.read_text(encoding="utf-8")
+        guia_bf = (FRONT / "components" / "black-friday" / "GuiaBF.tsx").read_text(encoding="utf-8")
+        guias = (FRONT / "app" / "guias" / "[slug]" / "page.tsx").read_text(encoding="utf-8")
+        for src in (landing, guia_bf):
+            for fn in ("breadcrumbLD(", "faqLD(", "itemListLD("):
+                self.assertIn(fn, src)
+        self.assertIn("breadcrumbLD(", guias)
+        self.assertIn("itemListLD(", guias)
+        # El precio que llega al JSON-LD ya viene filtrado a 7 días (productosDeItems → precioMostrable).
+        self.assertIn("d <= DIAS_PRECIO_VIEJO ? precio : null", LANDINGS.read_text(encoding="utf-8"))
+
+
+class TestGeoYConversionBF(unittest.TestCase):
+    """Respuesta corta + «Actualizado el», llms.txt, enlazado guía ↔ landing y botón de las tarjetas."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.src = LANDINGS.read_text(encoding="utf-8")
+        cls.bloques = _bloques(cls.src)
+        cls.mapa = dict(re.findall(r"^  '([a-z0-9-]+)': (?:'([a-z0-9-]+)'|null),", BF_GUIAS.read_text(encoding="utf-8"), re.M))
+        cls.guias_src = "".join((FRONT / "lib" / f).read_text(encoding="utf-8") for f in (
+            "guias.ts", "guias-long-tail.ts", "guias-tecno.ts", "guias-bf-2026.ts", "guias-ticket-alto.ts"))
+        cls.guias = {}
+        for parte in re.split(r"\n  \{\n    slug: '", cls.guias_src)[1:]:
+            cls.guias.setdefault(parte.split("'", 1)[0], parte.split("\n  },\n")[0])
+
+    @staticmethod
+    def _frases(texto):
+        return [f for f in re.split(r"(?<=[.!?])\s+", texto.strip()) if f]
+
+    def _respuesta(self, bloque):
+        return re.search(r"respuestaCorta:\s*'((?:[^'\\]|\\.)*)'", bloque).group(1).replace("\\'", "'")
+
+    def test_respuesta_corta_landings(self):
+        for slug, b in self.bloques.items():
+            rc = self._respuesta(b)
+            self.assertIn(len(self._frases(rc)), (2, 3), slug)
+            # Modelo concreto: el nombre (o su marca + modelo) del recomendado de la lista.
+            principal = re.search(r"nombre: '([^']+)'", b).group(1)
+            modelo = [t for t in principal.split() if t.lower() not in ("bicicleta", "mtb", "apple")][0]
+            self.assertIn(modelo, rc, slug)
+            self.assertNotRegex(rc, r"\d+\s*%|tachad|m[ií]nimo|cup[oó]n|\$\s*\d")
+            self.assertNotRegex(rc, PROHIBIDAS)
+
+    def test_respuesta_corta_guias_bf(self):
+        self.assertGreaterEqual(len(self.mapa), 8)
+        for slug in self.mapa:
+            self.assertIn(slug, self.guias, slug)
+            rc = self._respuesta(self.guias[slug])
+            self.assertIn(len(self._frases(rc)), (2, 3), slug)
+            self.assertNotRegex(rc, r"\d+\s*%|tachad|m[ií]nimo|cup[oó]n|\$\s*\d", slug)
+            self.assertNotRegex(rc, PROHIBIDAS, slug)
+            b = self.guias[slug]
+            st = re.search(r"seoTitulo: '([^']+)'", b)
+            sd = re.search(r"seoDescripcion:\s*'((?:[^'\\]|\\.)+)'", b)
+            self.assertTrue(st and sd, f"{slug}: falta seoTitulo/seoDescripcion")
+            self.assertLessEqual(len(st.group(1)), 60, slug)
+            self.assertLessEqual(len(sd.group(1)), 158, slug)
+
+    def test_actualizado_el_visible(self):
+        self.assertIn("Actualizado el", COMPONENTE.read_text(encoding="utf-8"))
+        self.assertIn("<RespuestaCorta", (FRONT / "components" / "black-friday" / "GuiaBF.tsx").read_text(encoding="utf-8"))
+        self.assertIn("Actualizado el", (FRONT / "app" / "guias" / "[slug]" / "page.tsx").read_text(encoding="utf-8"))
+        self.assertIn("esGuiaBF(slug)", (FRONT / "lib" / "guias.ts").read_text(encoding="utf-8"))
+
+    def test_titulos_landings_60(self):
+        for slug, b in self.bloques.items():
+            self.assertLessEqual(len(re.search(r"titulo: '([^']+)'", b).group(1)), 60, slug)
+
+    def test_cada_guia_enlaza_a_su_landing(self):
+        for slug, landing in self.mapa.items():
+            destino = f"/mejores/{landing}" if landing else "/black-friday"
+            self.assertIn(f"href: '{destino}'", self.guias[slug], slug)
+            if landing:
+                self.assertIn(f"slug: '{landing}'", self.src)
+
+    def test_cada_landing_enlaza_a_dos_guias(self):
+        for slug, b in self.bloques.items():
+            enlaces = b.split("enlaces: [")[1].split("]")[0]
+            guias = re.findall(r"href: '/guias/([a-z0-9-]+)'", enlaces)
+            self.assertGreaterEqual(len(guias), 2, slug)
+            for g in guias:
+                self.assertIn(g, self.guias, f"{slug} → /guias/{g} no existe")
+
+    def test_llms_txt_seccion_black_friday(self):
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        self.assertIn("## Black Friday 2026 Argentina", llms)
+        self.assertIn("LANDINGS_BF.map", llms)
+        self.assertIn("Object.keys(GUIA_BF_A_LANDING)", llms)
+        self.assertIn("primeraFrase(", llms)
+
+    def test_boton_de_las_tarjetas(self):
+        comp = COMPONENTE.read_text(encoding="utf-8")
+        tarjeta = comp.split("export function Tarjeta(")[1].split("\nexport ")[0]
+        boton = re.search(r'className="([^"]*)"\s*>\s*Ver en Mercado Libre', tarjeta).group(1)
+        self.assertIn("w-full", boton)
+        self.assertIn("min-h-[48px]", boton)
+        self.assertIn("<LineaConfianza p={p} />", tarjeta)
+        confianza = comp.split("export function LineaConfianza(")[1].split("\nexport ")[0]
+        self.assertIn("Envío y cuotas: mirá en ML", confianza)
+        # «Tienda oficial» solo si el dato existe.
+        self.assertIn("{p.tiendaOficial && ", confianza)
 
 
 if __name__ == "__main__":

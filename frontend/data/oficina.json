@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-23T05:33:10+00:00",
+  "generado": "2026-11-23T18:20:06+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -12,7 +12,7 @@
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 9787 productos en la última corrida"
+          "tarea": "Revisó 9918 productos en la última corrida"
         }
       ],
       "metricas": [
@@ -59,11 +59,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },
@@ -152,7 +152,7 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
-      "ultima_actividad": "2026-11-16T08:55:37+00:00",
+      "ultima_actividad": "2026-11-23T10:11:32+00:00",
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -162,18 +162,18 @@
       "metricas": [
         {
           "label": "Seguidores IG",
-          "valor": 1487,
-          "delta": 6
+          "valor": 1480,
+          "delta": -7
         },
         {
           "label": "Seguidores Threads",
-          "valor": 109,
+          "valor": 110,
           "delta": 1
         },
         {
           "label": "Suscriptores TG",
-          "valor": 14,
-          "delta": 2
+          "valor": 15,
+          "delta": 1
         },
         {
           "label": "Seguidores FB",

@@ -46,6 +46,7 @@ const PERENNES = new Set([
   // Black Friday (27/11): tienen que estar indexadas semanas antes del evento.
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
   'black-friday-aires-acondicionados', 'black-friday-bicicletas',
+  'black-friday-lavarropas', 'black-friday-cafeteras',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -594,6 +595,40 @@ const TODAS: Comparativa[] = [
     guia: 'que-aire-acondicionado-comprar',
   },
   {
+    slug: 'black-friday-lavarropas',
+    nombre: 'lavarropas en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} lavarropas Argentina: cuál comprar`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): lavarropas y lavasecarropas elegidos, con link directo a Mercado Libre.',
+    intro: 'Lavarropas automáticos de 6 a 11 kg y un lavasecarropas, elegidos para el Black Friday.',
+    categoria: 'lavarropas',
+    keywords: ['lavarropas'],
+    criterios: [
+      'Kilos según la casa: 6 a 7 kg para 1 a 3 personas; 8 kg o más para una familia.',
+      'Carga frontal: gasta menos agua; carga superior: más cómoda y, en general, más barata.',
+      'Medí el lugar y confirmá si el envío lo sube al piso.',
+    ],
+    guia: 'mejores-lavarropas-black-friday-2026',
+  },
+  {
+    slug: 'black-friday-cafeteras',
+    nombre: 'cafeteras en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} cafeteras Argentina: espresso y cápsulas`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): cafeteras espresso, de cápsulas y de filtro elegidas, con link directo a Mercado Libre.',
+    intro: 'Cafeteras espresso, de cápsulas y de filtro elegidas para el Black Friday.',
+    categoria: 'electro-de-cocina',
+    keywords: ['cafetera'],
+    criterios: [
+      'Tipo según cómo tomás el café: de filtro, espresso o de cápsulas.',
+      'Espresso: fijate si trae vaporizador para la leche.',
+      'Cápsulas: confirmá qué cápsulas usa antes de comprar.',
+    ],
+    guia: 'que-cafetera-comprar',
+  },
+  {
     slug: 'black-friday-bicicletas',
     nombre: 'bicicletas en el Black Friday',
     // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
@@ -773,7 +808,8 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-microondas',
     nombre: 'microondas',
     excluir: ['taper', 'vasos'],
-    titulo: `Mejores microondas en oferta ${AÑO}: comparativa de precios`,
+    // 24/11: «microondas baratos» (80 impresiones, posición 11). El «: comparativa de precios» no va al <title>.
+    titulo: 'Microondas baratos en oferta hoy: comparativa de precios',
     descripcion:
       'Comparativa de microondas en oferta hoy en Mercado Libre Argentina: precio, descuento, capacidad y precio mínimo registrado.',
     intro:
@@ -1240,7 +1276,7 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-tv-55-65-pulgadas',
     categoria: 'smart-tv',
     nombre: 'smart TV de 55 y 65 pulgadas',
-    titulo: `Mejores smart TV de 55 y 65 pulgadas en oferta ${AÑO}`,
+    titulo: `Mejores smart TV de 65 y 55 pulgadas en oferta ${AÑO}`,
     descripcion:
       'Comparativa de smart TV de 55, 65 y 75 pulgadas en oferta hoy en Mercado Libre Argentina: panel, resolución, precio, descuento y precio mínimo registrado.',
     intro:

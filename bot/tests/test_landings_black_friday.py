@@ -46,6 +46,8 @@ class TestLandingsBlackFriday(unittest.TestCase):
             "black-friday-celulares",
             "black-friday-smart-tv",
             "black-friday-aires-acondicionados",
+            "black-friday-lavarropas",
+            "black-friday-cafeteras",
         ):
             self.assertIn(slug, self.bloques)
 
@@ -103,6 +105,56 @@ class TestLandingsBlackFriday(unittest.TestCase):
         self.assertRegex(self.comp, r"href=\{principal\.url\}[\s\S]{0,800}Ver en Mercado Libre")
         self.assertIn("esLinkAfiliado(p ? p.url_producto : a?.url)", self.src)
         self.assertIn("'37267219'", self.src)
+
+
+class TestLavarropasCafeterasBF(unittest.TestCase):
+    """/mejores/black-friday-lavarropas y -cafeteras (SEO quick wins del 24/11/2026):
+    reciben el 308 de su /mejores/cyber-monday-* y están en sitemap, llms.txt y /black-friday."""
+
+    SLUGS = ("black-friday-lavarropas", "black-friday-cafeteras")
+
+    @classmethod
+    def setUpClass(cls):
+        cls.bloques = _bloques(LANDINGS.read_text(encoding="utf-8"))
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {p["id_ml"]: p for p in items}
+
+    def test_estan_y_son_del_rubro(self):
+        palabra = {"black-friday-lavarropas": r"(?i)lava(seca)?rropas", "black-friday-cafeteras": r"(?i)cafetera"}
+        for slug in self.SLUGS:
+            self.assertIn(slug, self.bloques)
+            for i in re.findall(r"id: '(MLA\d+)'", self.bloques[slug]):
+                p = self.catalogo.get(i)
+                if p:  # el bot poda a los 14 días: la página saltea los que ya no están
+                    self.assertRegex(p["titulo"], palabra[slug], i)
+
+    def test_titulos_60_y_descripcion_158(self):
+        for slug in self.SLUGS + ("black-friday-aires-acondicionados", "black-friday-smart-tv"):
+            b = self.bloques[slug]
+            self.assertLessEqual(len(re.search(r"titulo: '([^']+)'", b).group(1)), 60, slug)
+            self.assertLessEqual(len(re.search(r"descripcion:\s*'([^']+)'", b).group(1)), 158, slug)
+
+    def test_redirects_cyber_a_su_landing(self):
+        conf = (FRONT / "next.config.mjs").read_text(encoding="utf-8")
+        rubros = re.search(r"const rubrosBF = \[([^\]]+)\]", conf).group(1)
+        for r in ("aires-acondicionados", "lavarropas", "cafeteras"):
+            self.assertIn(f"'{r}'", rubros)
+        self.assertIn("[`/mejores/cyber-monday-${r}`, `/mejores/black-friday-${r}`]", conf)
+
+    def test_sitemap_llms_y_black_friday(self):
+        comp = (FRONT / "lib" / "comparativas.ts").read_text(encoding="utf-8")
+        perennes = comp.split("const PERENNES")[1].split("])")[0]
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        for slug in self.SLUGS:
+            self.assertIn(f"slug: '{slug}'", comp)  # generateStaticParams, sitemap y OG
+            self.assertIn(f"'{slug}'", perennes)
+            self.assertIn(f"/mejores/{slug})", llms)
+        self.assertIn("LANDINGS_BF.map", (FRONT / "app" / "black-friday" / "page.tsx").read_text(encoding="utf-8"))
+
+    def test_guia_de_lavarropas_ida_y_vuelta(self):
+        self.assertIn("/guias/mejores-lavarropas-black-friday-2026", self.bloques["black-friday-lavarropas"])
+        guia = (FRONT / "lib" / "guias-tecno.ts").read_text(encoding="utf-8")
+        self.assertIn("href: '/mejores/black-friday-lavarropas'", guia)
 
 
 class TestBicicletasBF(unittest.TestCase):

@@ -193,6 +193,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [smart TV](https://cazadordeofertas.com.ar/mejores/black-friday-smart-tv),
   [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras),
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/black-friday-aires-acondicionados),
+  [lavarropas](https://cazadordeofertas.com.ar/mejores/black-friday-lavarropas),
+  [cafeteras](https://cazadordeofertas.com.ar/mejores/black-friday-cafeteras),
   [bicicletas rodado 29](https://cazadordeofertas.com.ar/mejores/black-friday-bicicletas)) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página

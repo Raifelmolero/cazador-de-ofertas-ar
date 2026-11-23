@@ -135,7 +135,7 @@ export const LANDINGS_BF: LandingBF[] = [
     rubro: 'Smart TV',
     emoji: '📺',
     h1: 'Smart TV para el Black Friday 2026',
-    titulo: 'Black Friday 2026 smart TV Argentina: 50, 55 y 65"',
+    titulo: 'Black Friday 2026 y Cyber Monday: smart TV en Argentina',
     descripcion:
       'Black Friday 2026 en Argentina (viernes 27/11): smart TV 4K Samsung, LG y Hisense de 50, 55 y 65 pulgadas (QLED, Mini LED y OLED), con link a Mercado Libre.',
     keywords: ['black friday 2026 smart tv argentina', 'smart tv black friday 2026', 'tv 55 pulgadas black friday', 'televisor black friday mercado libre'],
@@ -163,6 +163,8 @@ export const LANDINGS_BF: LandingBF[] = [
     enlaces: [
       { href: '/guias/que-smart-tv-comprar-black-friday', texto: 'Guía: qué smart TV comprar en el Black Friday' },
       { href: '/comparador/smart-tv', texto: 'Comparador de smart TV con filtros' },
+      { href: '/mejores/mejores-tv-55-65-pulgadas', texto: 'Smart TV 65 pulgadas' },
+      { href: '/precio-hoy/smart-tv-32-pulgadas', texto: 'Smart TV 32 pulgadas: precio hoy' },
     ],
   },
   {
@@ -199,6 +201,78 @@ export const LANDINGS_BF: LandingBF[] = [
       { href: '/calculadora-frigorias', texto: 'Calculadora de frigorías' },
       { href: '/mejor/aires-acondicionados', texto: 'Guía: qué aire acondicionado comprar' },
       { href: '/calculadora-consumo-electrico', texto: 'Cuánta luz gasta un aire' },
+    ],
+  },
+  {
+    slug: 'black-friday-lavarropas',
+    rubro: 'Lavarropas',
+    emoji: '🧺',
+    h1: 'Lavarropas para el Black Friday 2026',
+    titulo: 'Black Friday 2026 lavarropas Argentina: cuál comprar',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): lavarropas carga frontal y lavasecarropas Samsung, Drean, Electrolux, Philco y TCL, con link a Mercado Libre.',
+    keywords: ['black friday 2026 lavarropas argentina', 'lavarropas black friday 2026', 'lavarropas cyber monday', 'lavarropas carga frontal black friday', 'lavasecarropas black friday'],
+    intro:
+      'Automáticos de marcas con service en Argentina, de 6 a 11 kg, y un lavasecarropas para cuando no hay dónde tender. Arriba, el que más recomendamos para una familia.',
+    items: [
+      { id: 'MLA52816628', nombre: 'Samsung Ecobubble 10,5 kg', detalle: 'Ecobubble · 10,5 kg · blanco', nota: 'El que recomendamos para una familia.' },
+      { id: 'MLA47076104', nombre: 'Drean carga frontal 10 kg', detalle: 'Carga frontal · 10 kg · blanco', nota: 'Misma capacidad, de Drean.' },
+      { id: 'MLA64336388', nombre: 'Electrolux carga frontal 8,5 kg', detalle: 'Carga frontal · 8,5 kg · gris ónix', nota: 'Para 3 o 4 personas.' },
+      { id: 'MLA65950656', nombre: 'Philco 11 kg Slim Fit', detalle: 'Carga frontal · inverter · 11 kg · blanco', nota: 'El de más capacidad de la lista.' },
+      { id: 'MLA47905826', nombre: 'Drean automático 6 kg', detalle: 'Automático · 6 kg · blanco', nota: 'Para 1 a 3 personas.' },
+      { id: 'MLA59107268', nombre: 'TCL lavasecarropas inverter 10/7 kg', detalle: 'Lava 10 kg y seca 7 kg · inverter', nota: 'Lava y seca en el mismo equipo.' },
+    ],
+    criterios: [
+      'Kilos según la casa: 6 a 7 kg para 1 a 3 personas; 8 kg o más para una familia o si lavás acolchados.',
+      'Carga frontal: gasta menos agua y centrifuga más fuerte; carga superior: más cómoda y, en general, más barata.',
+      'Inverter si lavás seguido: hace menos ruido y vibra menos.',
+      'Medí el lugar (ancho, profundidad y alto) y confirmá si el envío lo sube al piso.',
+    ],
+    faq: [
+      { q: '¿Qué lavarropas conviene comprar en el Black Friday 2026?', a: 'Para una familia, un automático de 8 kg o más, como el Samsung Ecobubble de 10,5 kg de esta página. Para 1 a 3 personas alcanza uno de 6 kg, como el Drean. Si no tenés dónde tender, un lavasecarropas como el TCL de 10/7 kg.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('lavarropas automatico'),
+    enlaces: [
+      { href: '/guias/mejores-lavarropas-black-friday-2026', texto: 'Guía: mejores lavarropas para el Black Friday 2026' },
+      { href: '/mejores/mejores-lavarropas', texto: 'Todos los lavarropas en oferta hoy' },
+      { href: '/guias/lavarropas-carga-frontal-o-superior', texto: 'Carga frontal o superior' },
+    ],
+  },
+  {
+    slug: 'black-friday-cafeteras',
+    rubro: 'Cafeteras',
+    emoji: '☕',
+    h1: 'Cafeteras para el Black Friday 2026',
+    titulo: 'Black Friday 2026 cafeteras Argentina: espresso y cápsulas',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): cafeteras espresso, de cápsulas y de filtro Philips, Oster, Nespresso y Dolce Gusto, con link a Mercado Libre.',
+    keywords: ['black friday 2026 cafeteras argentina', 'cafetera black friday 2026', 'cafetera express cyber monday', 'cafetera oferta', 'cafetera espresso black friday'],
+    intro:
+      'Una de cada tipo, para elegir según cómo tomás el café: espresso automática, espresso manual, de cápsulas y de filtro. Arriba, la que más recomendamos.',
+    items: [
+      { id: 'MLA18154570', nombre: 'Philips Serie 2200 LatteGo', detalle: 'Espresso automática · LatteGo · 1,8 L', nota: 'La que recomendamos si querés espresso y café con leche sin complicarte.' },
+      { id: 'MLA59887976', nombre: 'Oster PrimaLatte', detalle: 'Espresso automática · 15 bares', nota: 'Otra automática, de Oster.' },
+      { id: 'MLA73112539', nombre: 'Suono Slim Digital', detalle: 'Espresso · 20 bares · vaporizador de leche · 1,2 L', nota: 'Espresso manual, compacta.' },
+      { id: 'MLA19920468', nombre: 'Nespresso Inissia + Aeroccino 3', detalle: 'Cápsulas Nespresso · con espumador de leche', nota: 'La más práctica: cápsula y botón.' },
+      { id: 'MLA63853117', nombre: 'Dolce Gusto Genio S', detalle: 'Cápsulas Dolce Gusto · blanca', nota: 'Otra de cápsulas, de Dolce Gusto.' },
+      { id: 'MLA69661898', nombre: 'Suono de filtro digital 1,8 L', detalle: 'Filtro · 12 tazas · programable', nota: 'Para hacer varias tazas juntas.' },
+    ],
+    criterios: [
+      'Tipo según cómo tomás el café: de filtro para varias tazas, espresso si te gusta concentrado, de cápsulas si priorizás la practicidad.',
+      'Espresso: fijate si trae vaporizador para la leche y si usa café molido o en grano.',
+      'Cápsulas: la máquina es barata, pero cada taza sale más cara; confirmá qué cápsulas usa.',
+    ],
+    faq: [
+      { q: '¿Qué cafetera conviene comprar en el Black Friday 2026?', a: 'Si querés espresso y café con leche con un botón, una automática como la Philips Serie 2200 LatteGo. Si priorizás la practicidad, una de cápsulas como la Nespresso Inissia. Para varias tazas juntas, una de filtro como la Suono de 1,8 L.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('cafetera espresso'),
+    enlaces: [
+      { href: '/guias/que-cafetera-comprar', texto: 'Guía: qué cafetera comprar' },
+      { href: '/mejores/mejores-cafeteras', texto: 'Todas las cafeteras en oferta hoy' },
     ],
   },
   {

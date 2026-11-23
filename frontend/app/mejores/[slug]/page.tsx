@@ -56,10 +56,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
   // Sin los que cuestan menos de un tercio de la mediana: son accesorios ("lavarropas
   // desde $5.300" eran pastillas limpiadoras).
-  // Solo los que muestra la tabla: con todo el catálogo salía «desde» un modelo que no aparece.
-  const todos = productosDe(c).slice(0, MAX_FILAS).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
+  // Solo los que muestra la página: con todo el catálogo salía «desde» un modelo que no aparece.
+  // 24/11: la tabla son los 12 de más ganancia (ticket alto), así que en ofertas-black-friday el
+  // «desde» daba $4.399.990 aunque la sección «Por presupuesto» lista equipos mucho más baratos.
+  // Ahora entran también esos: el «desde» es el más barato de todo lo que la página lista.
+  const lista = productosDe(c)
+  const mostrados = [...lista.slice(0, MAX_FILAS), ...(c.presupuestos ? armarTramos(lista, c.presupuestos).flatMap(t => t.items) : [])]
+  const todos = mostrados.map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
   const mediana = todos[Math.floor(todos.length / 2)] ?? 0
-  const precios = todos.filter(n => n >= mediana / 3)
+  // Con tramos de presupuesto los baratos son a propósito (no accesorios): no se filtran.
+  const precios = c.presupuestos ? todos : todos.filter(n => n >= mediana / 3)
   const esCyber = c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')
   // T-002 (15/11): las de Cyber (muchas vistas, pocos clics) llevan además el año 2026 antes del «:».
   const anio = (t: string) => (esCyber && !/20\d\d/.test(t) ? t.replace(/^([^:]+)/, '$1 2026') : t)
@@ -70,7 +76,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const desde = precios.length >= MIN_PRODUCTOS_INDEXABLE ? `: desde ${precio(Math.min(...precios))}` : ''
   const corto = base.split(':')[0].trim()
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
-  const titulo = c.seoTitulo ?? opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
+  // Black Friday: tope de 60 (pedido del 24/11), el resto sigue con MAX_TITULO.
+  const max = c.slug.includes('black-friday') ? 60 : MAX_TITULO
+  const titulo = c.seoTitulo ?? opciones.find(o => o.length <= max) ?? tituloSeo(base, [n => n], max)
   const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
   const descripcion = descripcionSeo(
     esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)

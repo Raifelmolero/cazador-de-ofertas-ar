@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import AvisoBFRubro from '@/components/AvisoBFRubro'
+import { avisoBFVigente } from '@/lib/bf-enlaces'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
@@ -45,6 +46,34 @@ const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: 
     ],
     descripcion: (desde, n) =>
       `Aires acondicionados inverter en oferta hoy en Mercado Libre desde ${desde}. ${ofertas(n)} con descuento real y el historial de precio antes del Black Friday.`,
+  },
+  // 24/11: 7.207 impresiones en 28 días, posición 8,4 y 0 clics. El título nombra la compra y el BF
+  // (hasta el 30/11; después, el mes) y lleva el precio del más barato de hoy si lo hay.
+  iphone: {
+    titulo: (desde, cuando) =>
+      avisoBFVigente(getScrapedAt().getTime())
+        ? [
+            () => `iPhone: precio hoy${desde} y ofertas Black Friday`,
+            () => `iPhone: precio hoy${desde} (Black Friday)`,
+            () => 'iPhone: precio hoy y ofertas Black Friday 2026',
+          ]
+        : [
+            () => `iPhone: precio hoy${desde} en Argentina (${mesCorto(cuando)})`,
+            () => `iPhone: precio hoy${desde}`,
+            () => 'iPhone: precio hoy en Argentina',
+          ],
+    descripcion: (desde, n) =>
+      `Cuánto sale el iPhone hoy en Mercado Libre Argentina: desde ${desde}, con ${ofertas(n)} y el historial de precio de cada modelo. Elegí el tuyo y compralo ahí.`,
+  },
+  // 24/11: «tv / televisor / smart tv 32 pulgadas», ~390 impresiones en posición 10-14.
+  'smart-tv-32-pulgadas': {
+    titulo: desde => [
+      () => `Smart TV 32 pulgadas: ofertas y precio hoy${desde}`,
+      () => `Smart TV 32 pulgadas: precio hoy${desde}`,
+      () => 'Smart TV 32 pulgadas: ofertas y precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Televisores y smart TV de 32 pulgadas en oferta hoy en Mercado Libre Argentina desde ${desde}: ${ofertas(n)}, con el historial de precio de cada una.`,
   },
   celular: {
     titulo: desde => [

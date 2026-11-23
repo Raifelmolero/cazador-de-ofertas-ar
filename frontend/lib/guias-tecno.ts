@@ -1774,6 +1774,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-lavarropas', texto: 'Lavarropas elegidos para el Black Friday 2026' },
       { href: '/categoria/lavarropas', texto: 'Ofertas de lavarropas' },
       { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
       { href: '/precio-hoy/lavarropas-automatico', texto: 'Precio de lavarropas automático hoy' },

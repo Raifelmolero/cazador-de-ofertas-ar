@@ -1867,8 +1867,8 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
     ],
     faq: [
       {
-        q: '¿Cuándo es el Black Friday 2026?',
-        a: 'El viernes 27 de noviembre, el día siguiente al Día de Acción de Gracias de Estados Unidos. En Argentina no hay un organizador oficial: cada tienda define sus promociones.',
+        q: '¿Cuándo es el Black Friday 2026 en Mercado Libre?',
+        a: 'El viernes 27 de noviembre de 2026, el día siguiente al Día de Acción de Gracias de Estados Unidos. En Argentina no hay un organizador oficial: cada tienda define sus promociones.',
       },
       {
         q: '¿Es mejor el Black Friday o el Cyber Monday?',
@@ -1968,7 +1968,7 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
   },
 
   'mejores-samsung-galaxy': {
-    titulo: 'Mejores Samsung Galaxy en oferta 2026: serie A, S y plegables',
+    titulo: 'Mejores Samsung Galaxy Black Friday 2026: serie A, S y plegables',
     secciones: [
       {
         titulo: 'Cómo se ordena la línea Galaxy',
@@ -2113,7 +2113,7 @@ export const CONTENIDO: Record<string, ContenidoComparativa> = {
   },
 
   'mejores-tv-55-65-pulgadas': {
-    titulo: 'Mejores smart TV de 55 y 65 pulgadas 2026: cuál elegir',
+    titulo: 'Mejores smart TV de 65 y 55 pulgadas 2026: cuál elegir',
     secciones: [
       {
         titulo: 'Qué tamaño conviene según tu living',

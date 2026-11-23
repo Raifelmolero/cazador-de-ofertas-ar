@@ -13,6 +13,10 @@ export interface Guia {
   slug: string
   titulo: string
   descripcion: string
+  /** Title/description para Google (CTR, Search Console) cuando difieren del H1. Pisan a todo lo demás;
+   *  title ≤ 60 y description ≤ 158 (los fija el test de guías). */
+  seoTitulo?: string
+  seoDescripcion?: string
   pregunta: string
   respuestaCorta: string // el párrafo que una IA puede citar textual
   secciones: { h: string; p: string[] }[]
@@ -1790,6 +1794,9 @@ export const GUIAS: Guia[] = [
     titulo: '¿Qué cocina comprar? Gas natural, envasado, multigas o eléctrica',
     descripcion:
       'Cómo elegir una cocina en Argentina: a gas, multigas o eléctrica, medidas del hueco, horno con visor y luz, válvula de seguridad, encendido y instalación por gasista matriculado.',
+    seoTitulo: '¿Qué es una cocina multigas? Y qué cocina comprar en 2026',
+    seoDescripcion:
+      'Cocina multigas: qué significa, cómo se convierte de gas natural a envasado y cuándo conviene. Guía para elegir entre gas, multigas o eléctrica.',
     pregunta: '¿Qué cocina conviene comprar?',
     respuestaCorta:
       'Primero fijate qué gas tenés: si es gas natural o garrafa (envasado), elegí una cocina para ese gas o una multigas que traiga los picos para los dos. Si no tenés gas, la opción es una cocina o anafe eléctrico o de inducción, con una instalación eléctrica que aguante su potencia. Medí el hueco (la mayoría mide entre 50 y 56 cm de ancho), buscá válvula de seguridad en hornallas y horno, y hacé la conexión de gas con un gasista matriculado.',

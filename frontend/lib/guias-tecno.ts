@@ -426,6 +426,9 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejor celular para jugar: Free Fire, COD y Genshin',
     descripcion:
       'Qué celular comprar para jugar: procesador, RAM real, pantalla de 120 Hz, batería y temperatura. Con los modelos de hoy y su precio más bajo registrado.',
+    seoTitulo: 'Celular para jugar Free Fire y COD: cuál comprar (2026)',
+    seoDescripcion:
+      'Qué celular comprar para jugar Free Fire, COD y Genshin: procesador, RAM y 120 Hz. Opciones baratas y gama alta, con ofertas de hoy en Mercado Libre.',
     pregunta: '¿Qué celular conviene para jugar?',
     respuestaCorta:
       'Para jugar fluido conviene un gama media alta con buen procesador, 8 GB de RAM real, pantalla de 120 Hz o más y 256 GB de memoria: el Motorola Edge Fusion, el Poco X de Xiaomi o los Galaxy A37 y A57 de Samsung. Para Free Fire alcanza con un gama media común; para Genshin Impact o COD con gráficos altos, cuanto mejor el procesador, mejor. Desconfiá de los "24 GB de RAM" en el título: suele ser memoria virtual.',

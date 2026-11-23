@@ -7,7 +7,6 @@ import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import AvisoBFRubro from '@/components/AvisoBFRubro'
 import { AIRES_HOY, AIRES_VERIFICADO } from '@/lib/mejor-aires'
-import { etapaBlackFriday } from '@/lib/cybermonday'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -86,19 +85,6 @@ export default function MejorAiresPage() {
 
       {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
       <AvisoBFRubro ruta="/mejor/aires-acondicionados" />
-
-      {etapaBlackFriday().etapa !== 'despues' && (
-        <aside aria-label="Black Friday" className="max-w-5xl mx-auto px-4 pt-4">
-          <Link
-            href="/black-friday"
-            className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/10 px-4 py-2.5 text-center transition-colors hover:border-yellow-400/60 sm:px-5 sm:py-3"
-          >
-            <span className="font-display text-sm font-black text-yellow-200 sm:text-base [text-wrap:balance]">
-              🖤 Black Friday es el viernes 27/11: mirá las ofertas →
-            </span>
-          </Link>
-        </aside>
-      )}
 
       <section className="border-b border-zinc-900 px-4 py-8 sm:py-10">
         <div className="max-w-5xl mx-auto">

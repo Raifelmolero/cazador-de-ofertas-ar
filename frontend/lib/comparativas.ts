@@ -16,6 +16,8 @@ export interface Comparativa {
   slug: string
   nombre: string // "aires acondicionados"
   titulo: string
+  /** <title> exacto para Google (CTR, Search Console), ≤ 60: sin «desde $X» ni marca. Pisa al automático. */
+  seoTitulo?: string
   descripcion: string
   intro: string
   categoria?: string // slug de /categoria/* de donde salen los productos
@@ -735,8 +737,10 @@ const TODAS: Comparativa[] = [
     slug: 'mejores-cafeteras',
     nombre: 'cafeteras',
     titulo: `Cafeteras en oferta ${AÑO}: descuentos de hoy`,
+    // Sin «desde $X»: el más barato de la tabla solía ser una espresso cara y espantaba al que busca barato.
+    seoTitulo: 'Cafeteras en oferta hoy: espresso, cápsulas y filtro',
     descripcion:
-      'Comparativa de cafeteras espresso, de cápsulas y de filtro en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado.',
+      'Cafeteras en oferta en Mercado Libre Argentina: espresso, de cápsulas y de filtro, con precio, descuento real e historial de precios. Actualizado hoy.',
     intro:
       'Las cafeteras en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
     categoria: 'electro-de-cocina',

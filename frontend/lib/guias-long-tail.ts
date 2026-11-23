@@ -994,6 +994,9 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: 'Aire acondicionado solo frío o frío-calor: cuál conviene',
     descripcion:
       'Diferencia entre un split solo frío y uno frío-calor (bomba de calor): para qué sirve cada uno, qué clima te conviene y cuándo vale la pena pagar de más.',
+    seoTitulo: 'Aire acondicionado frío calor o solo frío: cuál conviene',
+    seoDescripcion:
+      'Aire acondicionado frío calor vs solo frío: diferencia, consumo y cuándo conviene. Con los split frío/calor inverter en oferta hoy en Mercado Libre.',
     pregunta: '¿Conviene un aire acondicionado solo frío o frío-calor?',
     respuestaCorta:
       'Un split frío-calor enfría en verano y también calefacciona en invierno usando la misma unidad; el solo frío únicamente enfría y suele costar menos. Si vas a usarlo todo el año o no tenés otra calefacción, el frío-calor suele convenir; si solo lo necesitás para el verano, el solo frío alcanza.',
@@ -1528,6 +1531,9 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: 'Aspiradora inalámbrica o con cable: cuál conviene',
     descripcion:
       'Comparación entre aspiradoras verticales inalámbricas y las de cable: potencia, autonomía, peso, filtros y qué conviene según tu casa.',
+    seoTitulo: 'Aspiradora con cable o inalámbrica: ¿cuál conviene? (W vs V)',
+    seoDescripcion:
+      '¿2000 W con cable o 25 V inalámbrica? Qué significan los watts y los volts, cuánto dura la batería y cuál conviene según tu casa. Con ofertas de hoy.',
     pregunta: '¿Conviene una aspiradora inalámbrica o una con cable?',
     respuestaCorta:
       'La inalámbrica es más cómoda para limpiar rápido y por zonas; la de cable no depende de la batería y suele rendir parejo en casas grandes. Mirá la autonomía declarada, el tipo de filtro y el tamaño del depósito antes de decidir.',

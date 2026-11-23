@@ -59,6 +59,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       desde ? `Hoy desde ${desde} en Mercado Libre, con vista al Black Friday 2026. ${g.descripcion}` : `${g.descripcion} Actualizada a 2026, con vista al Black Friday.`,
     )
   }
+  // Textos puestos a mano por CTR bajo en Search Console (lote 24/11): pisan a los automáticos.
+  if (g.seoTitulo) titulo = g.seoTitulo
+  if (g.seoDescripcion) descripcion = g.seoDescripcion
   return {
     metadataBase: new URL(DEALS_URL),
     title: titulo,

@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const desde = precios.length >= MIN_PRODUCTOS_INDEXABLE ? `: desde ${precio(Math.min(...precios))}` : ''
   const corto = base.split(':')[0].trim()
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
-  const titulo = opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
+  const titulo = c.seoTitulo ?? opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
   const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
   const descripcion = descripcionSeo(
     esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)

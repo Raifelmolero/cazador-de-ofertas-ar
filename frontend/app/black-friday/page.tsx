@@ -67,22 +67,22 @@ const AFILIADOS_ML_URL = 'https://www.mercadolibre.com.ar/l/afiliados'
 function textosSeo(fase: FaseBF, okDiaD: boolean) {
   if (fase !== 'previa' && okDiaD) {
     return {
-      titulo: 'Black Friday 2026 (27/11): ofertas de Mercado Libre verificadas hoy',
+      titulo: 'Black Friday y Cyber Monday 2026: ofertas verificadas hoy',
       descripcion:
-        'Black Friday 2026: viernes 27 de noviembre. Ofertas de Mercado Libre de hoy, verificadas contra el historial de precios. El precio se reconfirma el mismo día. Pagás lo mismo que entrando directo a ML.',
+        'Black Friday 27/11 y Cyber Monday 2026: ofertas de Mercado Libre de hoy, verificadas contra el historial de precios. Sin descuentos inflados.',
     }
   }
   return {
-    titulo: 'Black Friday 2026 Argentina: viernes 27/11, ofertas verificadas',
+    titulo: 'Black Friday y Cyber Monday 2026 Argentina: ofertas reales',
     descripcion:
-      'Black Friday 2026 en Argentina: viernes 27 de noviembre. Armá tu lista, sumate al canal y mirá ofertas de Mercado Libre verificadas contra el historial. El precio se reconfirma el mismo día.',
+      'Black Friday 27/11 y Cyber Monday 2026: las mejores ofertas de Mercado Libre, verificadas contra el historial de precios. Sin descuentos inflados.',
   }
 }
 
 export function generateMetadata(): Metadata {
   const { titulo, descripcion } = textosSeo(faseBF(), getDatosBF().ok_dia_d)
   return {
-    // Textos finales del brief, sin recortar (el de Día D tiene 67 caracteres).
+    // Ambas fases nombran Cyber Monday (/cyber-monday redirige acá): title ≤ 60, description ≤ 158.
     title: { absolute: titulo },
     description: descripcion,
     keywords: [
@@ -90,6 +90,7 @@ export function generateMetadata(): Metadata {
       `black friday ${BF.año} argentina`,
       'cuándo es el black friday',
       'black friday mercado libre',
+      `cyber monday ${BF.año}`,
       'ofertas black friday',
       'descuentos inflados black friday',
     ],

@@ -30,6 +30,33 @@ function titulo(nombre: string) {
   return `Precio de ${nombre} hoy en Argentina (${MESES[d.getMonth()]} ${d.getFullYear()})`
 }
 
+// Title/description a mano para las búsquedas con CTR bajo en Search Console (lote 24/11). Solo con
+// ofertas de hoy (si no, quedan los genéricos). Formatos del más completo al más corto; title ≤ 60.
+// `desde` = « desde $X» (con espacio adelante) y `cuando` = «noviembre 2026», los mismos de siempre.
+const MAX_TITULO_CTR = 60
+const mesCorto = (cuando: string) => cuando.replace(/^(\S{3})\S*/, '$1')
+const ofertas = (n: number) => `${n} ${n === 1 ? 'oferta' : 'ofertas'}`
+const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: string) => string)[]; descripcion: (desde: string, n: number) => string }> = {
+  'aire-acondicionado-inverter': {
+    titulo: (desde, cuando) => [
+      () => `Aire acondicionado inverter: precio hoy${desde} (${mesCorto(cuando)})`,
+      () => `Aire acondicionado inverter: precio hoy${desde}`,
+      () => 'Aire acondicionado inverter: precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Aires acondicionados inverter en oferta hoy en Mercado Libre desde ${desde}. ${ofertas(n)} con descuento real y el historial de precio antes del Black Friday.`,
+  },
+  celular: {
+    titulo: desde => [
+      () => `Celulares en oferta hoy${desde} en Mercado Libre`,
+      () => `Celulares en oferta hoy${desde}`,
+      () => 'Celulares en oferta hoy en Mercado Libre',
+    ],
+    descripcion: (desde, n) =>
+      `${n} ${n === 1 ? 'celular' : 'celulares'} en oferta hoy en Mercado Libre Argentina, con descuento real verificado. Desde ${desde}. Compará antes del Black Friday.`,
+  },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = getPrecioHoy((await params).slug)
   if (!p) return {}
@@ -43,12 +70,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hoyOfertas = vigentes.filter(o => !edadVieja(diasDesde(o.precio_visto)))
   const precios = (hoyOfertas.length ? hoyOfertas : vigentes).map(o => o.precio_actual)
   const desde = precios.length ? ` desde ${precio(precios[0])}` : ''
-  const t = tituloSeo(p.nombre, [
-    n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
-    n => `${n}${desde}: precio hoy (${cuando})`,
-    n => `Precio de ${n} hoy (${cuando})`,
-  ])
-  const description = descripcionSeo(precios.length
+  const especial = precios.length ? SEO_CTR[p.slug] : undefined
+  const t = especial
+    ? tituloSeo('', especial.titulo(desde, cuando), MAX_TITULO_CTR)
+    : tituloSeo(p.nombre, [
+        n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
+        n => `${n}${desde}: precio hoy (${cuando})`,
+        n => `Precio de ${n} hoy (${cuando})`,
+      ])
+  const description = descripcionSeo(especial
+    ? especial.descripcion(precio(precios[0]), precios.length)
+    : precios.length
     ? `Desde ${precio(precios[0])}: ${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre (${precios.length} ofertas con descuento real, ${cuando}). Rango, mediana e historial para llegar al Black Friday sin pagar de más.`
     : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {

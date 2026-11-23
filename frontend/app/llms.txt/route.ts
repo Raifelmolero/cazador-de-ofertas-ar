@@ -192,6 +192,8 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday)
   (por rubro: [celulares](https://cazadordeofertas.com.ar/mejores/black-friday-celulares),
+  [celulares baratos hasta $400.000](https://cazadordeofertas.com.ar/mejores/black-friday-celulares-baratos),
+  [gaming: PC y monitores](https://cazadordeofertas.com.ar/mejores/black-friday-gaming),
   [notebooks](https://cazadordeofertas.com.ar/mejores/black-friday-notebooks),
   [smart TV](https://cazadordeofertas.com.ar/mejores/black-friday-smart-tv),
   [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras),

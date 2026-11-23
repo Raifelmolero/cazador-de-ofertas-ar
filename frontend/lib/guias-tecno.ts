@@ -1550,6 +1550,7 @@ export const GUIAS_TECNO: Guia[] = [
     ],
     enlaces: [
       { href: '/guias/ps5-digital-standard-o-pro', texto: 'PS5 Digital, Standard o Pro: cuál conviene' },
+      { href: '/mejores/black-friday-gaming', texto: 'PC y monitores gamer para el Black Friday 2026' },
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
       { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },

@@ -48,6 +48,7 @@ const PERENNES = new Set([
   'black-friday-celulares', 'black-friday-notebooks', 'black-friday-smart-tv', 'black-friday-heladeras',
   'black-friday-aires-acondicionados', 'black-friday-bicicletas',
   'black-friday-lavarropas', 'black-friday-cafeteras',
+  'black-friday-celulares-baratos', 'black-friday-gaming',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -564,9 +565,10 @@ const TODAS: Comparativa[] = [
     slug: 'black-friday-heladeras',
     nombre: 'heladeras en el Black Friday',
     excluir: ['estabilizador', 'protector', 'taper', 'frasco', 'organizador', 'zapatilla', 'carro de traslado'],
-    titulo: `Heladeras en el Black Friday ${AÑO}: ofertas con descuento verificado`,
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} heladeras Argentina: no frost e inverter`,
     descripcion:
-      'Heladeras en oferta para el Black Friday 2026 (viernes 27 de noviembre) en Mercado Libre Argentina: no frost y cíclicas, con el precio comparado contra el mínimo registrado.',
+      'Black Friday 2026 en Argentina (viernes 27/11): heladeras no frost e inverter elegidas, con link directo a Mercado Libre.',
     intro:
       'El Black Friday 2026 es el viernes 27 de noviembre. Muchas tiendas suben el precio de lista las semanas previas para anunciar un % OFF más grande: por eso acá cada heladera se compara contra el precio más bajo que registramos. La tabla se actualiza con cada carga de ofertas, también antes del evento.',
     categoria: 'heladeras',
@@ -644,6 +646,38 @@ const TODAS: Comparativa[] = [
       'Fijate si llega armada o hay que terminar de armarla.',
     ],
     guia: 'que-bicicleta-comprar-black-friday',
+  },
+  {
+    slug: 'black-friday-celulares-baratos',
+    nombre: 'celulares baratos en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO}: celulares hasta $400.000 en Argentina`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): celulares Motorola, Samsung, Xiaomi y ZTE de hasta $400.000 elegidos, con link directo a Mercado Libre.',
+    intro: 'Celulares de gama de entrada de marcas conocidas, de hasta $400.000, elegidos para el Black Friday.',
+    categoria: 'celulares',
+    criterios: [
+      '128 GB de memoria o más; 256 GB si sacás muchas fotos.',
+      'Batería de 5.000 mAh o más para llegar a la noche.',
+      'Comprá a la tienda oficial o a un vendedor con factura y garantía en Argentina.',
+    ],
+    guia: 'que-celular-comprar-segun-presupuesto',
+  },
+  {
+    slug: 'black-friday-gaming',
+    nombre: 'PC y monitores gamer en el Black Friday',
+    // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
+    titulo: `Black Friday ${AÑO} gaming Argentina: PC gamer y monitores`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): PC gamer, monitores de 144 a 240 Hz y una notebook gamer elegidos, con link directo a Mercado Libre.',
+    intro: 'PC gamer armadas, monitores gamer y una notebook gamer elegidos para el Black Friday.',
+    categoria: 'gamer',
+    criterios: [
+      'Placa de video dedicada para jugar títulos nuevos; los gráficos integrados alcanzan para juegos livianos.',
+      'Monitor de 144 Hz o más para juegos competitivos.',
+      'Fijate qué incluye la PC (monitor, teclado, mouse, Windows) antes de comparar.',
+    ],
+    guia: 'que-monitor-gamer-comprar',
   },
   {
     slug: 'regalos-de-navidad',

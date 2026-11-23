@@ -139,6 +139,7 @@ export const LANDINGS_BF: LandingBF[] = [
       { href: '/guias/que-celular-comprar-black-friday', texto: 'Guía: qué celular comprar en el Black Friday' },
       { href: '/guias/iphone-o-samsung-cual-conviene-argentina', texto: 'Guía: iPhone o Samsung, cuál conviene' },
       { href: '/comparador/celulares', texto: 'Comparador de celulares con filtros' },
+      { href: '/mejores/black-friday-celulares-baratos', texto: 'Celulares baratos, hasta $400.000' },
     ],
   },
   {
@@ -333,6 +334,138 @@ export const LANDINGS_BF: LandingBF[] = [
     enlaces: [
       { href: '/guias/que-bicicleta-comprar-black-friday', texto: 'Guía: qué bicicleta comprar en el Black Friday' },
       { href: '/guias/que-bicicleta-comprar', texto: 'Guía: qué bicicleta comprar' },
+    ],
+  },
+  {
+    slug: 'black-friday-heladeras',
+    rubro: 'Heladeras',
+    emoji: '🧊',
+    h1: 'Heladeras para el Black Friday 2026',
+    titulo: 'Black Friday 2026 heladeras Argentina: no frost e inverter',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): heladeras no frost e inverter Gafa, Philco, Electrolux y Samsung, de 244 a 523 litros, con link a ML.',
+    keywords: ['black friday 2026 heladeras argentina', 'heladera black friday 2026', 'heladera no frost black friday', 'heladera inverter mercado libre black friday'],
+    intro:
+      'Heladeras con freezer de marcas con service en Argentina, de 244 a 523 litros. Arriba, la que más recomendamos para una familia de 3 o 4 personas.',
+    respuestaCorta:
+      'Para una familia de 3 o 4 personas, la Gafa HGNF340P de 350 litros: es no frost, así que no junta hielo, y el motor inverter gasta menos luz y hace menos ruido. Para 1 o 2 personas alcanza una de unos 250 litros, como la Philco de 244 litros; para familias grandes, la Electrolux Multidoor de 523 litros. Antes de comprar, medí el hueco y fijate para qué lado abre la puerta.',
+    items: [
+      { id: 'MLA75812333', nombre: 'Gafa HGNF340P 350 L', detalle: 'No frost · inverter · con freezer · 350 litros', nota: 'La que recomendamos para una familia de 3 o 4 personas.' },
+      { id: 'MLA76009709', nombre: 'Philco NPHNC304P 299 L', detalle: 'No frost · freezer abajo · 299 litros · plata', nota: 'Freezer abajo: lo que más usás queda a la altura de la vista.' },
+      { id: 'MLA82629454', nombre: 'Smartlife Combi 313 L', detalle: 'No frost · inverter · combi · 313 litros · inox' },
+      { id: 'MLA61746423', nombre: 'Electrolux Multidoor IM7S 523 L', detalle: 'No frost · inverter · multidoor · 523 litros', nota: 'Para familias grandes.' },
+      { id: 'MLA79807332', nombre: 'Samsung French Door RF44A5101S9 431 L', detalle: 'French door · 431 litros', nota: 'Puertas dobles, para cocinas amplias.' },
+      { id: 'MLA75795585', nombre: 'Philco NPHCT260B 244 L', detalle: 'Con freezer · 244 litros · blanca', nota: 'Para 1 o 2 personas.' },
+    ],
+    criterios: [
+      'Litros según la casa: unos 250 para 1 o 2 personas; 300 a 400 para una familia; más de 450 si son muchos o comprás para el mes.',
+      'No frost: no junta hielo ni hay que descongelarla. Inverter: gasta menos luz y hace menos ruido.',
+      'Medí el hueco (alto, ancho y profundidad) y dejá unos centímetros atrás y arriba para que ventile.',
+      'Confirmá si el envío la sube al piso y si se llevan la heladera vieja.',
+    ],
+    faq: [
+      { q: '¿Qué heladera conviene comprar en el Black Friday 2026?', a: 'Para una familia de 3 o 4 personas, una no frost de 300 a 400 litros, como la Gafa HGNF340P de 350 litros de esta página. Para 1 o 2 personas alcanza una de unos 250 litros, como la Philco de 244 litros.' },
+      { q: '¿Cuántos litros de heladera necesito?', a: 'Como referencia, unos 250 litros para 1 o 2 personas, 300 a 400 para una familia de 3 o 4, y más de 450 si son más o comprás para todo el mes.' },
+      { q: '¿Conviene una heladera no frost o una cíclica?', a: 'La no frost no junta hielo y conserva parejo en todo el freezer; la cíclica es más simple y suele ser más barata, pero hay que descongelarla cada tanto. Si la usás mucho, la no frost te ahorra trabajo.' },
+      { q: '¿Qué es una heladera inverter?', a: 'Una con motor que ajusta la velocidad en vez de prenderse y apagarse a fondo: gasta menos luz y hace menos ruido. Conviene sobre todo si la heladera va a estar muchos años.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('heladera no frost'),
+    enlaces: [
+      { href: '/guias/que-heladera-comprar', texto: 'Guía: qué heladera comprar' },
+      { href: '/guias/heladera-cuantos-litros-necesito', texto: 'Guía: cuántos litros de heladera necesito' },
+      { href: '/guias/heladera-no-frost-o-con-freezer', texto: 'Guía: heladera no frost o con freezer' },
+      { href: '/mejores/mejores-heladeras-no-frost', texto: 'Heladeras no frost en oferta hoy' },
+      { href: '/mejores/black-friday-lavarropas', texto: 'Lavarropas para el Black Friday 2026' },
+    ],
+  },
+  {
+    slug: 'black-friday-celulares-baratos',
+    rubro: 'Celulares baratos',
+    emoji: '📲',
+    h1: 'Celulares baratos para el Black Friday 2026 (hasta $400.000)',
+    titulo: 'Black Friday 2026: celulares hasta $400.000 en Argentina',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): celulares Motorola, Samsung, Xiaomi y ZTE de hasta $400.000, con 128 o 256 GB, con link a Mercado Libre.',
+    keywords: ['black friday 2026 celulares baratos argentina', 'celular barato black friday 2026', 'celular hasta 400000', 'celular gama de entrada black friday', 'moto g15 black friday'],
+    intro:
+      'Celulares de hasta $400.000 de marcas conocidas, todos con 128 GB de memoria o más. Arriba, el que más recomendamos para la mayoría.',
+    respuestaCorta:
+      'Para la mayoría, el Motorola Moto G15 Power de 256 GB y 8 GB de RAM: en este rango es el que más memoria trae, así que entran fotos, videos y apps sin andar borrando. Si preferís Samsung, el Galaxy A17 o el Galaxy A16 de 128 GB; si querés pantalla grande, el ZTE Blade V80 Max de 256 GB. Comprá a la tienda oficial o a un vendedor con factura y garantía en Argentina.',
+    items: [
+      { id: 'MLA65683670', nombre: 'Motorola Moto G15 Power', detalle: '256 GB · 8 GB de RAM · verde', nota: 'El que recomendamos: la mayor memoria de la lista.' },
+      { id: 'MLA62751899', nombre: 'Samsung Galaxy A17', detalle: '128 GB · 4 GB de RAM · negro', nota: 'El Samsung más nuevo de la lista.' },
+      { id: 'MLA66345012', nombre: 'Samsung Galaxy A16', detalle: '128 GB · 4 GB de RAM · gris', nota: 'Otro Samsung, un modelo anterior.' },
+      { id: 'MLA76204388', nombre: 'Motorola Moto G17', detalle: '128 GB · 4 GB de RAM · azul' },
+      { id: 'MLA45605578', nombre: 'Xiaomi Redmi 14C', detalle: '256 GB · 8 GB de RAM (4 + 4 virtuales) · dual SIM', nota: 'La opción de Xiaomi, con 256 GB.' },
+      { id: 'MLA75083957', nombre: 'ZTE Blade V80 Max', detalle: '256 GB · pantalla de 6,9" · NFC', nota: 'Pantalla grande y NFC para pagar con el celular.' },
+    ],
+    criterios: [
+      'Memoria: 128 GB o más; 256 GB si sacás muchas fotos y videos.',
+      'RAM: 4 GB alcanza para WhatsApp, redes y banco; 8 GB anda más suelto con muchas apps abiertas.',
+      'NFC si querés pagar con el celular en el comercio.',
+      'Comprá a la tienda oficial o a un vendedor con factura y garantía en Argentina.',
+    ],
+    faq: [
+      { q: '¿Qué celular barato conviene comprar en el Black Friday 2026?', a: 'Para la mayoría, el Motorola Moto G15 Power de 256 GB y 8 GB de RAM de esta página. Si preferís Samsung, el Galaxy A17 o el A16 de 128 GB.' },
+      { q: '¿Cuántos GB necesita un celular?', a: '128 GB alcanzan para la mayoría; si sacás muchas fotos y videos o no querés andar borrando, mejor 256 GB. De RAM, 4 GB para un uso común y 8 GB si usás muchas apps a la vez.' },
+      { q: '¿Conviene un Motorola o un Samsung barato?', a: 'Los dos tienen service en Argentina. En este rango, Motorola suele dar más memoria por el mismo precio y Samsung, más años de actualizaciones: elegí según qué te importa más.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('celular 128gb'),
+    enlaces: [
+      { href: '/guias/que-celular-comprar-segun-presupuesto', texto: 'Guía: qué celular comprar según tu presupuesto' },
+      { href: '/guias/cuantos-gb-necesito-celular', texto: 'Guía: cuántos GB necesito en el celular' },
+      { href: '/guias/celular-con-mejor-bateria', texto: 'Guía: celulares con mejor batería' },
+      { href: '/mejores/black-friday-celulares', texto: 'iPhone y Samsung Galaxy para el Black Friday' },
+      { href: '/comparador/celulares', texto: 'Comparador de celulares con filtros' },
+    ],
+  },
+  {
+    slug: 'black-friday-gaming',
+    rubro: 'Gaming',
+    emoji: '🎮',
+    h1: 'PC gamer y monitores para el Black Friday 2026',
+    titulo: 'Black Friday 2026 gaming Argentina: PC gamer y monitores',
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): PC gamer armadas, monitores LG, Xiaomi y KTC de 144 a 240 Hz y la notebook Lenovo LOQ, con link a ML.',
+    keywords: ['black friday 2026 gaming argentina', 'pc gamer black friday 2026', 'monitor gamer black friday', 'black friday gamer mercado libre', 'notebook gamer black friday'],
+    intro:
+      'Para armar el puesto de juego: PC gamer armadas, monitores de 144 a 240 Hz y una notebook gamer. Arriba, la PC que más recomendamos para empezar.',
+    respuestaCorta:
+      'Para empezar a jugar en serio sin gastar de más, la PC Gamer Compufan con Ryzen 7 5700G, 16 GB de RAM y placa de video RX 580 de 8 GB: la placa dedicada mueve juegos que los gráficos integrados no aguantan. Para acompañarla, un monitor de 144 Hz o más, como el LG UltraGear de 24" a 180 Hz. Si necesitás llevarla a todos lados, la notebook Lenovo LOQ con RTX 4050.',
+    items: [
+      { id: 'MLA65739116', nombre: 'PC Gamer Compufan Ryzen 7', detalle: 'Ryzen 7 5700G · 16 GB de RAM · RX 580 8 GB · SSD 480 GB', nota: 'La que recomendamos: placa de video dedicada.' },
+      { id: 'MLA43957281', nombre: 'Monitor LG UltraGear 24GS60F', detalle: '24" · Full HD · 180 Hz', nota: 'El monitor que recomendamos para la mayoría.' },
+      { id: 'MLA80767524', nombre: 'Monitor Xiaomi G25i', detalle: '25" · IPS · Full HD · 240 Hz · FreeSync Premium', nota: 'Para juegos competitivos.' },
+      { id: 'MLA80311332', nombre: 'Monitor KTC 27DQ721', detalle: '27" · 2K QHD · 144 Hz · FreeSync Premium', nota: 'Más grande y con más resolución.' },
+      { id: 'MLA73027866', nombre: 'PC Gamer Gaming City Ryzen 7 8700G', detalle: 'Ryzen 7 8700G · AM5 · 16 GB DDR5 · SSD 960 GB', nota: 'Plataforma nueva (AM5), lista para sumarle placa de video después.' },
+      { id: 'MLA78830231', nombre: 'Notebook Lenovo LOQ', detalle: 'Ryzen 7 · 16 GB · 512 GB SSD · RTX 4050 · 15,6" Full HD', nota: 'Si la necesitás portátil.' },
+    ],
+    criterios: [
+      'Placa de video dedicada (RX, RTX) para juegos nuevos; los gráficos integrados alcanzan para juegos livianos.',
+      'Monitor: 144 Hz o más para juegos competitivos; 2K desde 27".',
+      'Fijate qué incluye la PC (monitor, teclado, mouse, Windows) antes de comparar.',
+      'PC de escritorio: más potencia por la misma plata y se puede mejorar; notebook: la llevás a todos lados.',
+    ],
+    faq: [
+      { q: '¿Qué PC gamer conviene comprar en el Black Friday 2026?', a: 'Para empezar, una con placa de video dedicada y 16 GB de RAM, como la PC Gamer Compufan con Ryzen 7 5700G y RX 580 de esta página. Sin placa dedicada, solo vas a poder jugar títulos livianos.' },
+      { q: '¿Qué monitor gamer conviene?', a: 'Para la mayoría, uno de 24" Full HD de 144 Hz o más, como el LG UltraGear de 180 Hz. Para juegos competitivos, 240 Hz como el Xiaomi G25i; si querés más pantalla, uno de 27" 2K como el KTC.' },
+      { q: '¿PC de escritorio o notebook gamer?', a: 'La de escritorio da más potencia por la misma plata y se puede mejorar de a partes. La notebook gamer, como la Lenovo LOQ, conviene si la necesitás llevar a la facu, al trabajo o de viaje.' },
+      { q: '¿Hay consolas en esta página?', a: 'Hoy no: esta lista es de PC, monitores y notebook gamer. Para elegir consola, mirá la guía de qué consola comprar en el Black Friday.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('pc gamer'),
+    enlaces: [
+      { href: '/guias/que-monitor-gamer-comprar', texto: 'Guía: qué monitor gamer comprar' },
+      { href: '/guias/pc-de-escritorio-o-notebook', texto: 'Guía: PC de escritorio o notebook' },
+      { href: '/guias/que-notebook-gamer-comprar', texto: 'Guía: qué notebook gamer comprar' },
+      { href: '/guias/que-consola-comprar-black-friday', texto: 'Guía: qué consola comprar en el Black Friday' },
+      { href: '/mejores/mejores-monitores-gamer', texto: 'Monitores gamer en oferta hoy' },
+      { href: '/mejores/black-friday-notebooks', texto: 'Notebooks para el Black Friday 2026' },
     ],
   },
 ]

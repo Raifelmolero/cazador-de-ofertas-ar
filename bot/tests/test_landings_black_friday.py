@@ -50,6 +50,9 @@ class TestLandingsBlackFriday(unittest.TestCase):
             "black-friday-aires-acondicionados",
             "black-friday-lavarropas",
             "black-friday-cafeteras",
+            "black-friday-heladeras",
+            "black-friday-celulares-baratos",
+            "black-friday-gaming",
         ):
             self.assertIn(slug, self.bloques)
 
@@ -188,6 +191,58 @@ class TestBicicletasBF(unittest.TestCase):
     def test_enlazada_desde_black_friday(self):
         # /black-friday arma los botones por rubro con LANDINGS_BF.
         self.assertIn("LANDINGS_BF.map", (FRONT / "app" / "black-friday" / "page.tsx").read_text(encoding="utf-8"))
+
+
+class TestHeladerasCelularesBaratosGamingBF(unittest.TestCase):
+    """Landings /mejores/black-friday-heladeras, -celulares-baratos (hasta $400.000) y -gaming
+    (pedido del 23/11/2026): productos del rubro, FAQ de 4 a 6, en sitemap y llms.txt."""
+
+    SLUGS = ("black-friday-heladeras", "black-friday-celulares-baratos", "black-friday-gaming")
+
+    @classmethod
+    def setUpClass(cls):
+        cls.bloques = _bloques(LANDINGS.read_text(encoding="utf-8"))
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {p["id_ml"]: p for p in items}
+
+    def test_estan_y_son_del_rubro(self):
+        palabra = {
+            "black-friday-heladeras": r"(?i)^heladera",
+            "black-friday-celulares-baratos": r"(?i)(celular|galaxy|moto g|redmi)",
+            "black-friday-gaming": r"(?i)(pc gamer|monitor gamer|gamer|lenovo loq)",
+        }
+        for slug in self.SLUGS:
+            self.assertIn(slug, self.bloques)
+            for i in re.findall(r"id: '(MLA\d+)'", self.bloques[slug]):
+                p = self.catalogo.get(i)
+                if p:  # el bot poda a los 14 días: la página saltea los que ya no están
+                    self.assertRegex(p["titulo"], palabra[slug], i)
+                    self.assertNotRegex(p["titulo"], r"(?i)\blikon\b", i)
+
+    def test_celulares_baratos_hasta_400_mil(self):
+        for i in re.findall(r"id: '(MLA\d+)'", self.bloques["black-friday-celulares-baratos"]):
+            p = self.catalogo.get(i)
+            if p:
+                self.assertLessEqual(p["precio_actual"], 400000, i)
+
+    def test_faq_entre_4_y_6(self):
+        for slug in self.SLUGS:
+            faq = self.bloques[slug].split("faq: [")[1].split("\n    ],")[0]
+            self.assertIn(len(re.findall(r"\{ q: '", faq)), range(4, 7), slug)
+
+    def test_sitemap_llms_y_black_friday(self):
+        comp = (FRONT / "lib" / "comparativas.ts").read_text(encoding="utf-8")
+        perennes = comp.split("const PERENNES")[1].split("])")[0]
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        for slug in self.SLUGS:
+            self.assertIn(f"slug: '{slug}'", comp)  # generateStaticParams, sitemap y OG
+            self.assertIn(f"'{slug}'", perennes)
+            self.assertIn(f"/mejores/{slug})", llms)
+        self.assertIn("LANDINGS_BF.map", (FRONT / "app" / "black-friday" / "page.tsx").read_text(encoding="utf-8"))
+
+    def test_boton_con_tracking_por_landing(self):
+        # bf_<slug>_boton: el botón grande de arriba de cada landing.
+        self.assertIn("data-seccion={`bf_${l.slug}_boton`}", COMPONENTE.read_text(encoding="utf-8"))
 
 
 class TestGuiasBF2026(unittest.TestCase):

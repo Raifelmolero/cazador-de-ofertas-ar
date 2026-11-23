@@ -1545,8 +1545,101 @@ export const GUIAS_TECNO: Guia[] = [
     enlaces: [
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
       { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
+      { href: '/guias/que-joystick-comprar-para-ps5', texto: 'Qué joystick comprar para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
       { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
+  // ── 21/11: joystick PS5 (Tendencias 20/11: «joystick ps5» entre las búsquedas que más crecen, Consolas +160 %) ──
+  {
+    slug: 'que-joystick-comprar-para-ps5',
+    titulo: 'Qué joystick comprar para PS5 en 2026: DualSense, DualSense Edge o alternativos (y cuánto sale)',
+    descripcion:
+      'Qué joystick conviene para la PS5: DualSense original, DualSense Edge o un control alternativo. Qué cambia entre ellos, si sirve el de PS4, cuánto se vio el DualSense en Mercado Libre antes del Black Friday 2026 y qué revisar en la publicación.',
+    pregunta: '¿Qué joystick conviene comprar para la PS5?',
+    respuestaCorta:
+      'Para la mayoría, el DualSense original de Sony: es el que trae la consola, tiene vibración háptica y gatillos adaptativos, y funciona con todos los juegos de PS5. El DualSense Edge conviene solo si jugás competitivo y querés botones traseros y palancas reemplazables. Un joystick alternativo puede salir más barato, pero fijate que diga compatible con PS5 (muchos genéricos son solo para PS4 o PC). El joystick de PS4 (DualShock 4) se puede usar en la PS5, pero solo con juegos de PS4. En nuestro catálogo del 18 y 19/11/2026, el DualSense de Sony en oferta se vio a $144.999.',
+    tabla: {
+      titulo: 'Joysticks para PS5 en oferta (precios vistos en nuestro catálogo de Mercado Libre, noviembre 2026)',
+      columnas: ['Joystick', 'Para quién', 'Precio visto', 'Fecha'],
+      filas: [
+        ['Sony DualSense blanco (CFI-ZCT1W)', 'segundo joystick o reemplazo del original', '$144.999', '18/11'],
+        ['Sony DualSense Midnight Black + cable USB', 'el mismo control, en negro y con cable para PC', '$144.999', '19/11'],
+        ['Sony DualSense Edge', 'juego competitivo: botones traseros y palancas cambiables', 'sin precio verificado en nuestro catálogo', '—'],
+        ['Joystick genérico bluetooth (PS4, PS3, PC, celular)', 'PC o juegos de PS4; no figura PS5 en la compatibilidad', '$54.579', '09/11'],
+      ],
+      nota: 'Precios de Mercado Libre vistos en la fecha indicada; cambian todos los días. Las ofertas gamer de hoy, con su precio actual, están más abajo.',
+    },
+    secciones: [
+      {
+        h: 'DualSense original: el que conviene a casi todos',
+        p: [
+          'El DualSense es el joystick oficial de la PS5 y el que viene en la caja. Tiene vibración háptica (se sienten distintas texturas y golpes), gatillos adaptativos que ofrecen resistencia según el juego, micrófono incorporado, entrada para auriculares y batería recargable por USB-C.',
+          'Si buscás un segundo joystick para jugar de a dos (fútbol, carreras, juegos en familia) o reemplazar uno que empezó a fallar, es la opción más segura: funciona con todos los juegos y se actualiza desde la consola.',
+          'Viene en varios colores (blanco, Midnight Black y ediciones especiales). Por dentro son iguales: el color no cambia las funciones, a veces sí el precio.',
+        ],
+      },
+      {
+        h: 'DualSense Edge: solo si jugás competitivo',
+        p: [
+          'El DualSense Edge es la versión «pro» de Sony: suma botones traseros configurables, palancas que se cambian si se gastan (el famoso drift), gatillos con recorrido ajustable y perfiles que se guardan en el control. Viene con estuche y cable trenzado.',
+          'Cuesta bastante más que el DualSense común. Conviene si pasás muchas horas en shooters o juegos online y aprovechás los botones traseros; para jugar de vez en cuando o de a dos en el sillón, el DualSense estándar alcanza.',
+        ],
+      },
+      {
+        h: 'Joysticks alternativos y el de PS4: qué funciona y qué no',
+        p: [
+          'Hay controles de otras marcas con licencia oficial para PS5 y muchos genéricos más baratos. Antes de comprar, mirá que la publicación diga «compatible con PS5»: muchos genéricos dicen PS4, PS3 o PC y en la PS5 no sirven para los juegos nuevos.',
+          'El DualShock 4 (el joystick de la PS4) se conecta a la PS5, pero Sony lo habilita solo para juegos de PS4. Si ya tenés uno, sirve para jugar esos juegos de a dos; para los de PS5 hace falta un DualSense o un control compatible con PS5.',
+          'Los alternativos no suelen tener vibración háptica ni gatillos adaptativos. Si te importa sentir el juego como fue pensado, el original de Sony vale la diferencia.',
+        ],
+      },
+      {
+        h: 'Qué revisar en la publicación',
+        p: [
+          'Que sea original: el DualSense de Sony trae el modelo en la caja y en la ficha (por ejemplo, CFI-ZCT1W en el blanco). Desconfiá de precios muy por debajo del resto y de fotos sin la caja.',
+          'Vendedor y garantía: preferí tiendas oficiales o vendedores con buena reputación y garantía escrita válida en Argentina.',
+          'Qué incluye: algunos traen cable USB-C y otros no. El cable sirve para cargarlo y para usarlo en la PC.',
+        ],
+      },
+      {
+        h: '¿Conviene esperar al Black Friday?',
+        p: [
+          'El Black Friday 2026 es el viernes 27 de noviembre y el Cyber Monday el lunes 30. Los joysticks suelen entrar en promoción junto con las consolas, y algunos combos de PS5 traen un segundo DualSense: si vas a comprar consola, compará el combo contra la consola sola más el joystick aparte.',
+          'Si el joystick es un regalo de fin de año, comprarlo en el Black Friday te deja margen para el envío. Mirá el historial de precios: un «40 % OFF» sobre un precio que nunca se cobró no es ahorro real.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'gamer' },
+    cta: { href: '/categoria/gamer', titulo: 'Joysticks, consolas y productos gamer en oferta hoy, con el descuento verificado', boton: 'Ver ofertas gamer 🎮' },
+    faq: [
+      {
+        q: '¿Cuánto sale un joystick de PS5 en Argentina?',
+        a: 'En nuestro catálogo de Mercado Libre del 18 y 19/11/2026, el DualSense original de Sony en oferta se vio a $144.999 (blanco y Midnight Black). El DualSense Edge cuesta bastante más. El precio cambia todos los días: el de hoy está en las ofertas gamer.',
+      },
+      {
+        q: '¿El joystick de PS4 sirve para la PS5?',
+        a: 'Sí, pero solo para juegos de PS4 que corren en la PS5. Para los juegos de PS5 hace falta un DualSense o un control que diga compatible con PS5.',
+      },
+      {
+        q: '¿Qué diferencia hay entre el DualSense y el DualSense Edge?',
+        a: 'El Edge suma botones traseros, palancas reemplazables, gatillos con recorrido ajustable y perfiles guardados, y viene con estuche. Para jugar de forma casual o de a dos, el DualSense común alcanza.',
+      },
+      {
+        q: '¿Los joysticks genéricos funcionan en la PS5?',
+        a: 'Solo si dicen compatible con PS5. Muchos genéricos son para PS4, PS3 o PC y en la PS5 no sirven para juegos nuevos. Además no suelen tener vibración háptica ni gatillos adaptativos.',
+      },
+      {
+        q: '¿El DualSense se puede usar en la PC?',
+        a: 'Sí, por cable USB-C o por bluetooth. Muchos juegos de PC lo reconocen directamente; algunas publicaciones lo venden con el cable incluido.',
+      },
+    ],
+    enlaces: [
+      { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
+      { href: '/guias/que-consola-comprar-black-friday', texto: 'Qué consola comprar en el Black Friday' },
+      { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
@@ -1800,7 +1893,7 @@ export const GUIAS_TECNO: Guia[] = [
   },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13', 'que-joystick-comprar-para-ps5': '2026-11-21' }
 // Guías revisadas después de publicarse (dateModified del JSON-LD).
 const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19' }
 

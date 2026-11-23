@@ -137,6 +137,16 @@ export default function CuponesPage() {
   ]
 
   const a = 'text-yellow-400 hover:underline'
+  const botonMisCupones = (
+    <a
+      href={paginaML('https://www.mercadolibre.com.ar/cupones')}
+      target="_blank"
+      rel="sponsored nofollow noopener"
+      className="flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 font-black text-black hover:bg-yellow-300 transition-colors"
+    >
+      🎟️ Ver mis cupones en Mercado Libre ↗
+    </a>
+  )
   return (
     <main className="min-h-screen">
       {jsonLd.map((j, i) => (
@@ -183,6 +193,14 @@ export default function CuponesPage() {
           </div>
         ))}
 
+        {/* Sin cupón del día, lo que se vino a buscar va antes que la vidriera */}
+        {!cupon && (
+          <div data-seccion="cupones_arriba" className="mb-6">
+            <p className="mb-3 text-zinc-200">Ahora no tenemos un cupón general cargado. Los tuyos los ves con tu cuenta de Mercado Libre.</p>
+            {botonMisCupones}
+          </div>
+        )}
+
         <VidrieraTecno
           items={tecno}
           titulo={cupon ? `🎟️ Usá el cupón ${cupon.codigo} en estos` : '📱💻 Celulares y notebooks en su precio más bajo'}
@@ -203,14 +221,7 @@ export default function CuponesPage() {
             con descuento sea de verdad bajo.
           </p>
           <div data-seccion="cupones_hero" className="mt-4 flex flex-col gap-2">
-            <a
-              href={paginaML('https://www.mercadolibre.com.ar/cupones')}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              className="flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-3 font-black text-black hover:bg-yellow-300 transition-colors"
-            >
-              🎟️ Ver mis cupones en Mercado Libre ↗
-            </a>
+            {cupon && botonMisCupones}
             <a
               href="#ofertas-hoy"
               className="flex items-center justify-center rounded-xl border border-yellow-400/40 px-4 py-3 font-bold text-yellow-200 hover:border-yellow-400 transition-colors"

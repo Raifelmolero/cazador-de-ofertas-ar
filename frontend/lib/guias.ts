@@ -31,6 +31,9 @@ export interface Guia {
   fuentes?: { texto: string; url: string }[]
   /** Slug de /mejores/* de donde mostrar ofertas reales del catálogo del día. */
   comparativa?: string
+  /** Guía de un producto puntual dentro de una comparativa más amplia: de ahí muestra solo lo que coincide
+   *  (título normalizado, precio con fecha, descuento de hasta 50 %) y la búsqueda en ML usa este nombre. */
+  producto?: { nombre: string; patron: RegExp }
   /** Equipos del comparador que cumplen el criterio de la guía (lib/guias-equipos.ts).
    *  Con menos de 3 hoy, la guía queda noindex y fuera del sitemap. */
   equipos?: SeleccionEquipos
@@ -1580,12 +1583,26 @@ export const GUIAS: Guia[] = [
   },
   {
     slug: 'que-termotanque-comprar',
-    titulo: '¿Qué termotanque comprar? Litros, gas o eléctrico y recuperación',
+    titulo: '¿Qué termotanque comprar en 2026? Eléctrico o a gas, litros y precios para Black Friday',
     descripcion:
-      'Cómo elegir un termotanque en Argentina: cuántos litros según cuántos viven, gas natural, envasado o eléctrico, recuperación por hora, instalación y consumo.',
+      'Cómo elegir un termotanque eléctrico o a gas en Argentina: litros según cuántos viven, potencia, recuperación, carga superior o inferior, cuánto sale hoy y si conviene esperar al Black Friday.',
     pregunta: '¿Qué termotanque conviene comprar?',
     respuestaCorta:
-      'Como referencia, elegí unos 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos. Si tenés gas natural, el termotanque a gas suele salir más barato de usar y recupera más rápido; el eléctrico no necesita salida de gases y se instala en más lugares, pero gasta más luz. Mirá la recuperación en litros por hora y la etiqueta de eficiencia energética, y hacé instalar el de gas por un gasista matriculado.',
+      'Como referencia, elegí unos 50 litros para 1 o 2 personas, 80 litros para 3 o 4 y 120 litros o más para familias grandes o si se bañan varios seguidos. Si tenés gas natural, el termotanque a gas suele salir más barato de usar y recupera más rápido; el eléctrico no necesita salida de gases y se instala en más lugares, pero gasta más luz. Mirá la recuperación en litros por hora y la etiqueta de eficiencia energética, y hacé instalar el de gas por un gasista matriculado. En nuestro catálogo de la semana del 13 al 19/11, los termotanques eléctricos de 30 a 100 litros en oferta se vieron entre unos $250.000 y $475.000.',
+    tabla: {
+      titulo: 'Termotanques eléctricos en oferta por capacidad (precios vistos en nuestro catálogo, 13 al 19/11/2026)',
+      columnas: ['Litros', 'Para cuántas personas (referencia)', 'Modelo', 'Precio visto', 'Fecha'],
+      filas: [
+        ['30 L', '1', 'Daewoo 30 L carga superior 2000 W', '$252.103', '18/11'],
+        ['40 L', '1 o 2', 'Sirena TE40', '$267.527', '14/11'],
+        ['50 L', '1 o 2', 'Liliana Acqua Hot 50 L', '$314.999', '19/11'],
+        ['60 L', '2 o 3', 'Kacemaster 60 L carga inferior', '$349.682', '16/11'],
+        ['90 L', '3 o 4', 'Sirena 90 L con protección anticorrosiva', '$312.344', '14/11'],
+        ['100 L', '4 o 5', 'Siam 100 L 1700 W conexión inferior', '$313.599', '19/11'],
+        ['100 L', '4 o 5', 'Daewoo 100 L alta recuperación 3000 W', '$472.875', '18/11'],
+      ],
+      nota: 'Precios de Mercado Libre vistos en la fecha indicada; cambian todos los días. El precio actual y el mínimo que registramos de cada uno están en la comparativa de termotanques.',
+    },
     secciones: [
       {
         h: 'Cuántos litros según cuántos viven',
@@ -1611,9 +1628,25 @@ export const GUIAS: Guia[] = [
         ],
       },
       {
+        h: 'Termotanque eléctrico: qué mirar antes de comprar',
+        p: [
+          'Potencia: los eléctricos de uso doméstico suelen ir de 1500 a 3000 W. Más potencia calienta más rápido (los «alta recuperación»), pero exige que la instalación eléctrica y la llave térmica estén preparadas para esa carga.',
+          'Carga (conexión) superior o inferior: indica por dónde entran y salen los caños de agua. Elegí la que coincida con tu instalación actual para no tener que mover cañerías.',
+          'De pie o de colgar: los de colgar ahorran piso, pero necesitan una pared que aguante el peso del tanque lleno de agua.',
+          'Consumo: como mantiene el agua caliente todo el día, lo que gasta depende de los litros, la aislación y cuánta agua usan. Con la potencia del modelo podés estimar el costo mensual en la calculadora de consumo eléctrico.',
+        ],
+      },
+      {
+        h: '¿Conviene esperar al Black Friday?',
+        p: [
+          'El Black Friday 2026 es el viernes 27 de noviembre y el Cyber Monday el lunes 30. Es buena fecha para comprar un termotanque si el tuyo todavía anda: tenés tiempo de comparar. Si se rompió, no esperes un descuento que puede no llegar.',
+          'Antes de comprar, mirá el historial de precios: si el «40 % OFF» se calcula contra un precio que nunca se cobró, no hay ahorro real. En la comparativa mostramos el precio más bajo que registramos para cada modelo.',
+        ],
+      },
+      {
         h: 'Cuánto sale',
         p: [
-          'Es un equipo de ticket alto y el precio cambia mucho según litros, tipo y marca. No damos un precio fijo: en la comparativa de termotanques están los que están en oferta hoy, con el precio actual y el mínimo que registramos para cada uno.',
+          'Es un equipo de ticket alto y el precio cambia mucho según litros, tipo y marca. Como referencia, en nuestro catálogo del 13 al 19/11 los eléctricos de 30 a 100 litros se vieron entre unos $250.000 y $475.000, y los a gas de 30 a 80 litros desde unos $340.000. El precio de hoy está en la comparativa de termotanques, con el mínimo que registramos para cada uno.',
         ],
       },
     ],
@@ -1637,11 +1670,28 @@ export const GUIAS: Guia[] = [
         q: '¿Puedo instalar el termotanque yo mismo?',
         a: 'El de gas lo tiene que instalar un gasista matriculado, con la salida de gases y la ventilación que pide la normativa. El eléctrico necesita una instalación eléctrica adecuada a su potencia.',
       },
+      {
+        q: '¿Cuánto sale un termotanque eléctrico en 2026?',
+        a: 'En nuestro catálogo de Mercado Libre del 13 al 19/11/2026, los termotanques eléctricos de 30 a 100 litros en oferta se vieron entre unos $250.000 y $475.000, según litros, potencia y marca. El precio cambia todos los días: el actual está en la comparativa de termotanques.',
+      },
+      {
+        q: '¿Qué es carga superior o inferior en un termotanque?',
+        a: 'Es por dónde se conectan los caños de entrada y salida de agua: arriba o abajo del equipo. Conviene elegir la misma que tu instalación actual para no mover cañerías.',
+      },
+      {
+        q: '¿Qué potencia tiene que tener un termotanque eléctrico?',
+        a: 'Los domésticos suelen ir de 1500 a 3000 W. Más potencia recupera más rápido, pero la instalación eléctrica y la llave térmica tienen que soportar esa carga; consultalo con un electricista matriculado.',
+      },
+      {
+        q: '¿Conviene comprar el termotanque en Black Friday?',
+        a: 'Si el tuyo todavía funciona, sí: el Black Friday es el 27/11 y el Cyber Monday el 30/11, y tenés tiempo de comparar con el historial de precios. Si se rompió, no esperes un descuento que puede no aparecer.',
+      },
     ],
     enlaces: [
       { href: '/mejores/mejores-termotanques', texto: 'Comparativa de termotanques' },
+      { href: '/guias/termotanque-electrico-o-a-gas-o-calefon', texto: 'Termotanque eléctrico, a gas o calefón' },
       { href: '/calculadora-consumo-electrico', texto: 'Calculadora de consumo ⚡' },
-      { href: '/guias/que-heladera-comprar', texto: 'Qué heladera comprar' },
+      { href: '/black-friday', texto: 'Ofertas de Black Friday' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
     ],
     fuentes: [
@@ -2466,9 +2516,105 @@ export const GUIAS: Guia[] = [
     ],
     enlaces: [
       { href: '/mejores/mejores-muebles-de-jardin', texto: 'Comparativa de muebles de jardín' },
+      { href: '/guias/que-mesa-plegable-comprar', texto: 'Qué mesa plegable comprar' },
       { href: '/guias/que-pileta-comprar', texto: 'Qué pileta comprar' },
       { href: '/mejores/mejores-parrillas', texto: 'Comparativa de parrillas' },
       { href: '/hoy', texto: 'Ofertas de hoy' },
+    ],
+  },
+  // ── 22/11: mesa plegable (Tendencias 21/11: 3.ª búsqueda que más crece). Sin precios fijos: salen del catálogo.
+  {
+    slug: 'que-mesa-plegable-comprar',
+    titulo: 'Qué mesa plegable comprar en 2026: medidas y personas',
+    descripcion:
+      'Qué mesa plegable comprar para las fiestas y el verano: 120, 180 o 240 cm, cuántas personas entran, plástica, de madera o metal y qué revisar antes de comprar.',
+    pregunta: '¿Qué mesa plegable conviene comprar?',
+    respuestaCorta:
+      'Para las fiestas, el patio o un camping, la más práctica es una mesa plástica tipo valija de 180 cm con patas metálicas: entran 6 personas cómodas (8 ajustadas) y se guarda doblada al medio. Para 4 personas o un balcón grande alcanza una de 120 cm; en un balcón chico va mejor una mesita plegable de metal con 2 sillas. Guía actualizada el 22/11/2026.',
+    tabla: {
+      titulo: 'Qué medida de mesa plegable necesito',
+      columnas: ['Mesa', 'Personas cómodas', 'Ajustadas', 'Para qué conviene'],
+      filas: [
+        ['Mesita de balcón con 2 sillas', '2', '2', 'desayuno o mate en un espacio chico'],
+        ['120 cm', '4', '6', 'comedor chico, balcón grande, camping en familia'],
+        ['180 cm tipo valija', '6', '8', 'fiestas, asados, patio y quincho'],
+        ['240 cm', '8', '10', 'reuniones grandes, si tenés dónde guardarla'],
+        ['Dos de 180 cm en fila', '12', '14', 'Nochebuena con mucha gente'],
+      ],
+      nota: 'Cuenta orientativa: unos 60 cm de borde por persona. En «cómodas», nadie se sienta en las cabeceras. Las mesas en oferta, con su precio, salen de nuestro catálogo de Mercado Libre.',
+    },
+    secciones: [
+      {
+        h: 'Cómo calcular cuántas personas entran',
+        p: [
+          'Calculá unos 60 cm de borde por persona. En una mesa de 180 cm entran 3 de cada lado; sumando las dos cabeceras llegás a 8, más apretados. En una de 120 cm entran 2 de cada lado.',
+          'Mirá también el ancho: las de 180 cm suelen tener entre 70 y 75 cm. Alcanza para platos de los dos lados, con poco lugar para fuentes en el medio. Si en Nochebuena ponés muchas fuentes, sumá una mesa auxiliar.',
+          'Dejá unos 75 cm libres detrás de las sillas para poder levantarse y pasar. Una mesa de 180 x 74 cm con sillas de los dos lados pide un espacio de unos 2,25 m de ancho.',
+        ],
+      },
+      {
+        h: 'Plástica, de madera o de metal',
+        p: [
+          'Plástica con patas metálicas: es la más común. Se limpia fácil y no se arruina si se moja, aunque al sol permanente pierde color y con algo muy caliente se marca. Usá siempre posafuentes.',
+          'De madera o MDF: se ve mejor adentro, pero suele pesar más y el MDF se hincha con el agua. «Símil madera» en una publicación suele querer decir plástico con esa textura: confirmá el material en la ficha.',
+          'De metal: las de chapa o hierro van bien en un balcón porque son firmes, pero se oxidan si se salta la pintura. Las de aluminio son livianas y no se oxidan como el hierro, útiles para camping.',
+        ],
+      },
+      {
+        h: '¿Tipo valija o tapa entera?',
+        p: [
+          'La mesa tipo valija se dobla al medio y trae manija: una de 180 cm queda de unos 90 cm de largo y entra más fácil en un placard o un baúl. La bisagra del medio es su punto débil: que nadie se siente arriba y no cargues todo el peso en el centro.',
+          'La de tapa entera, con patas rebatibles, no tiene unión en el medio, pero para guardarla necesitás una pared libre del largo de la mesa. Si la vas a transportar, elegí tipo valija.',
+        ],
+      },
+      {
+        h: 'Qué revisar en la publicación',
+        p: [
+          'Medidas abierta y plegada, peso de la mesa y altura: para comer sentado, lo habitual son 72 a 75 cm. Algunas de 120 cm tienen altura regulable y también sirven de mesa baja o auxiliar.',
+          'Carga máxima: suele estar informada como carga repartida, no en un solo punto. Buscá trabas en las patas y en la bisagra, y regatones para no marcar el piso.',
+          'Qué incluye: muchas fotos muestran sillas o banquetas que no vienen. Leé el título y la ficha, y compará el costo de envío, porque es un producto voluminoso.',
+        ],
+      },
+      {
+        h: '¿Conviene esperar al Black Friday 2026?',
+        p: [
+          'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. Si la querés para Nochebuena, esas fechas te dejan margen para el envío y para cambiarla si llega con una falla.',
+          'En mesas plegables hay publicaciones casi iguales con descuentos anunciados muy distintos. No elijas por el porcentaje: compará el precio final con envío entre mesas de la misma medida y mirá el historial.',
+        ],
+      },
+    ],
+    categoria: { slug: 'muebles-de-jardin', nombre: 'muebles de jardín' },
+    comparativa: 'mejores-muebles-de-jardin',
+    producto: { nombre: 'mesas plegables', patron: /^mesa (exterior )?plegable/ },
+    cta: { href: '/mejores/mejores-muebles-de-jardin', titulo: 'Mesas y muebles de exterior en oferta, comparados', boton: 'Comparar mesas y muebles de exterior' },
+    faq: [
+      {
+        q: '¿Cuántas personas entran en una mesa plegable de 180 cm?',
+        a: 'Entran 6 personas cómodas, 3 de cada lado, y hasta 8 si usás las dos cabeceras.',
+      },
+      {
+        q: '¿Qué mesa plegable necesito para 12 personas?',
+        a: 'Dos mesas de 180 cm puestas en fila: entran 6 personas de cada lado, y 14 en total si usás las cabeceras.',
+      },
+      {
+        q: '¿Cuánto ocupa guardada una mesa tipo valija de 180 cm?',
+        a: 'Doblada al medio mide unos 90 cm de largo por el ancho de la tapa, en general 70 a 75 cm. El espesor cambia según el modelo: miralo en la ficha.',
+      },
+      {
+        q: '¿Una mesa plegable de plástico puede quedar a la intemperie?',
+        a: 'Aguanta que se moje, pero no conviene dejarla siempre al sol y la lluvia: el plástico pierde color y las patas de hierro se pueden oxidar. Secala y guardala bajo techo.',
+      },
+      {
+        q: '¿Es mejor una mesa plegable de plástico o de madera?',
+        a: 'La de plástico es más práctica para exterior, porque se lava fácil y tolera el agua. La de madera queda mejor adentro, pero suele pesar más y necesita más cuidado.',
+      },
+    ],
+    enlaces: [
+      { href: '/mejores/mejores-muebles-de-jardin', texto: 'Comparativa de muebles de jardín' },
+      { href: '/guias/que-muebles-de-jardin-comprar', texto: 'Qué muebles de jardín comprar' },
+      { href: '/guias/que-parrilla-comprar', texto: 'Qué parrilla comprar' },
+      { href: '/black-friday', texto: 'Black Friday 2026' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
   },
   {
@@ -2780,9 +2926,10 @@ export const FECHAS_GUIAS: Record<string, { publicada: string; modificada: strin
   'que-smartwatch-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cocina-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-monitor-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
-  'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-termotanque-comprar': { publicada: '2026-10-02', modificada: '2026-11-20' },
   'que-tablet-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
   'que-cafetera-comprar': { publicada: '2026-10-02', modificada: '2026-10-02' },
+  'que-mesa-plegable-comprar': { publicada: '2026-11-22', modificada: '2026-11-22' },
   'que-silla-gamer-comprar': { publicada: '2026-10-01', modificada: '2026-10-01' },
   'como-saber-si-un-descuento-de-mercado-libre-es-real': { publicada: '2026-09-21', modificada: '2026-09-21' },
   'hot-sale-cyber-monday-o-dia-comun-cuando-comprar-en-mercado-libre': { publicada: '2026-09-21', modificada: '2026-09-21' },

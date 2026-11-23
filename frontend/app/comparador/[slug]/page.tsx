@@ -147,6 +147,23 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
             <span className="text-zinc-300">Comparador de {c.plural}</span>
           </nav>
           <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">{c.titulo}</h1>
+          {rapidas.length > 0 && (
+            <section className="mb-5" data-seccion="comparador_rapida">
+              <h2 className="font-display text-lg sm:text-xl font-black mb-2">Respuesta rápida: hoy, {hoy}</h2>
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {rapidas.map(({ q, e }) => (
+                  <li key={q}>
+                    {/* Estratega 21/11: arriba del intro (Clarity 19-21/11: scroll 4-6 % en /comparador). Toda la caja es el link: Clarity 18/11, se tocaba «La notebook más barata con…» sin respuesta */}
+                    <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="group block h-full rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm hover:border-yellow-400/50 transition-colors">
+                      <span className="text-zinc-400">{q[0].toUpperCase() + q.slice(1)}:</span>{' '}
+                      <span className="font-semibold text-zinc-100 group-hover:text-yellow-400">{e.titulo}</span>{' '}
+                      <strong className="text-yellow-400 whitespace-nowrap">{pesos(e.precio)} ↗</strong>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           <p className="max-w-3xl text-zinc-400 leading-relaxed [text-wrap:pretty]">{c.intro}</p>
           <p className="mt-3 text-sm text-zinc-500">
             {equipos.length} {c.plural} · {enOferta} en oferta hoy · <LastUpdated scrapedAt={getScrapedAt().toISOString()} />.
@@ -155,24 +172,6 @@ export default async function ComparadorPage({ params }: { params: Promise<{ slu
       </section>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
-        {rapidas.length > 0 && (
-          <section className="mb-8">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Respuesta rápida: hoy, {hoy}</h2>
-            <ul className="grid gap-2 sm:grid-cols-2">
-              {rapidas.map(({ q, e }) => (
-                <li key={q}>
-                  {/* Toda la caja es el link: Clarity 18/11, se tocaba «La notebook más barata con…» sin respuesta */}
-                  <a href={e.url} target="_blank" rel="noopener noreferrer sponsored" className="group block h-full rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm hover:border-yellow-400/50 transition-colors">
-                    <span className="text-zinc-400">{q[0].toUpperCase() + q.slice(1)}:</span>{' '}
-                    <span className="font-semibold text-zinc-100 group-hover:text-yellow-400">{e.titulo}</span>{' '}
-                    <strong className="text-yellow-400 whitespace-nowrap">{pesos(e.precio)} ↗</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
         <section className="mb-8">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Por presupuesto</h2>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 text-sm">

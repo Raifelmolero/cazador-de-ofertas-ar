@@ -33,6 +33,19 @@ import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { cajaDeGuia } from '@/lib/queconviene'
+import { getCategoria, enCategoria, normalizar } from '@/lib/categorias'
+
+// Estratega 20/11: la tira «Hoy en su precio más bajo» mostraba las mismas 4 ofertas en todas las
+// guías (la de consolas, la que más crece, mostraba una soldadora; 3 quick backs en Clarity 18-20/11).
+// Ahora va primero lo del rubro de la guía, sin repetir publicación, y se completa con lo general.
+function delRubroPrimero<T extends { id_ml: string; titulo: string }>(lista: T[], slug?: string): T[] {
+  const vistos = new Set<string>()
+  const unicos = lista.filter(p => !vistos.has(p.id_ml) && (vistos.add(p.id_ml), true))
+  const cat = slug ? getCategoria(slug) : undefined
+  if (!cat) return unicos
+  const rubro = unicos.filter(p => enCategoria(cat, p.titulo))
+  return [...rubro, ...unicos.filter(p => !rubro.includes(p))]
+}
 
 const GUIAS_TITULO_PRECIO = new Set(['mejor-celular-para-jugar', 'que-motorola-comprar-moto-g-o-edge'])
 
@@ -89,10 +102,12 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   const ofertas = equipos.length > 0
     ? []
     : comp
-    ? productosDe(comp).slice(0, 4)
+    ? productosDe(comp)
+        .filter(p => !g.producto || (!!p.precio_visto && g.producto.patron.test(normalizar(p.titulo)) && (p.descuento_pct ?? 0) <= 50))
+        .slice(0, 4)
     : deVendedor
     ? []
-    : getOfertas().filter(p => p.minimo_historico).slice(0, 4)
+    : delRubroPrimero(getOfertas().filter(p => p.minimo_historico), g.categoria?.slug).slice(0, 4)
   // Barra fija de compra en celular: solo si la guía muestra ofertas reales del día.
   const destacado = ofertas.length > 0 ? elegirDestacado(ofertas) : undefined
   const equipoFijo = equipos[0]

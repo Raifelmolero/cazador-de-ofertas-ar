@@ -12,6 +12,7 @@ import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
+import OfertasCalculadora from '@/components/OfertasCalculadora'
 import Footer from '@/components/Footer'
 
 // Solo existen las 200 de más margen (getProductosCalc); cualquier otro id da
@@ -189,6 +190,9 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           iibbArs={iibbArs}
           envioArs={envioArs}
         />
+
+        {/* Ofertas de las landings BF con botón de afiliado (calcml: 0 ventas) */}
+        <OfertasCalculadora />
 
         {parecidas.length > 0 && (
           <nav aria-label="Fichas de precio parecido" className="text-sm">

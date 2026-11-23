@@ -5,6 +5,7 @@ import CalcHeader from '@/components/CalcHeader'
 import CalculadoraComisiones from '@/components/CalculadoraComisiones'
 import Footer from '@/components/Footer'
 import CtaCalculadora from '@/components/CtaCalculadora'
+import OfertasCalculadora from '@/components/OfertasCalculadora'
 import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
 import {
   CARGO_MAX,
@@ -79,6 +80,9 @@ export default function CalculadoraComisionesPage() {
         </p>
 
         <CalculadoraComisiones />
+
+        {/* Ofertas de las landings BF con botón de afiliado (calcml: 0 ventas) */}
+        <OfertasCalculadora className="mt-6 max-w-3xl" />
 
         <CtaCalculadora
           className="mt-6 max-w-3xl"

@@ -494,5 +494,55 @@ class TestGeoYConversionBF(unittest.TestCase):
         self.assertIn("{p.tiendaOficial && ", confianza)
 
 
+class TestOfertasCalculadora(unittest.TestCase):
+    """Ofertas debajo del resultado de la calculadora (etiqueta calcml, 0 ventas)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.lib = (FRONT / "lib" / "calc-ofertas.ts").read_text(encoding="utf-8")
+        cls.comp = (FRONT / "components" / "OfertasCalculadora.tsx").read_text(encoding="utf-8")
+        cls.bloques = _bloques(LANDINGS.read_text(encoding="utf-8"))
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {i["id_ml"]: i for i in items}
+
+    def test_salen_de_landings_bf_y_hay_al_menos_3(self):
+        self.assertIn("productosBF(l)", self.lib)
+        self.assertIn("MAX_OFERTAS_CALC = 4", self.lib)
+        slugs = re.findall(r"'(black-friday-[a-z-]+)'", self.lib)
+        self.assertGreaterEqual(len(slugs), 3)
+        con_producto = 0
+        for slug in slugs:
+            self.assertIn(slug, self.bloques, slug)
+            ids = re.findall(r"id: '(MLA\d+)'", self.bloques[slug])
+            ok = [
+                i for i in ids
+                if i in self.catalogo and self.catalogo[i].get("url_imagen")
+                and not PROHIBIDAS.search(self.catalogo[i]["titulo"])
+                and "matt_tool=37267219" in self.catalogo[i]["url_producto"]
+            ]
+            con_producto += bool(ok)
+        self.assertGreaterEqual(con_producto, 3)
+
+    def test_boton_48px_tracking_y_black_friday(self):
+        self.assertIn("min-h-[48px]", self.comp)
+        self.assertIn('data-evento="calcml_oferta_boton"', self.comp)
+        self.assertIn('rel="sponsored nofollow noopener"', self.comp)
+        self.assertIn("/black-friday", self.comp)
+        self.assertIn("a.dataset.evento", (FRONT / "app" / "clics-ml.tsx").read_text(encoding="utf-8"))
+
+    def test_sin_precios_descuentos_ni_cupones(self):
+        jsx = re.sub(r"//.*", "", self.comp)
+        self.assertNotRegex(jsx, r"\d+\s*%|cup[oó]n|m[ií]nimo hist|line-through|p\.precio")
+
+    def test_debajo_de_las_calculadoras(self):
+        for f in ("app/calculadora/[id]/page.tsx", "app/calculadora-de-comisiones/page.tsx"):
+            src = (FRONT / f).read_text(encoding="utf-8")
+            self.assertIn("<OfertasCalculadora", src, f)
+        idp = (FRONT / "app" / "calculadora" / "[id]" / "page.tsx").read_text(encoding="utf-8")
+        self.assertLess(idp.index("<ProfitCalculator"), idp.index("<OfertasCalculadora"))
+        com = (FRONT / "app" / "calculadora-de-comisiones" / "page.tsx").read_text(encoding="utf-8")
+        self.assertLess(com.index("<CalculadoraComisiones />"), com.index("<OfertasCalculadora"))
+
+
 if __name__ == "__main__":
     unittest.main()

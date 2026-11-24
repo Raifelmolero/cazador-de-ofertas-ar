@@ -3,17 +3,30 @@
 // calculadora en el celular. Fotos chicas del CDN de ML con carga diferida.
 // El clic en «Ver en Mercado Libre» lo mide app/clics-ml.tsx: `clic_ml` (etiqueta
 // calcml en este dominio) y, por el data-evento, `calcml_oferta_boton`.
-import { ofertasCalculadora } from '@/lib/calc-ofertas'
+import { ofertasCalculadora, type OfertaCalc } from '@/lib/calc-ofertas'
 import { miniaturaML } from '@/lib/imagenml'
 import { DEALS_URL } from '@/lib/marca'
 
-export default function OfertasCalculadora({ className = '' }: { className?: string }) {
-  const ofertas = ofertasCalculadora()
+// Mismo bloque en la calculadora de consumo eléctrico (lote ctr-cta 24/11): le pasa sus
+// ofertas (lib/calc-ofertas.ts, ofertasConsumo), su título y su evento/sección.
+export default function OfertasCalculadora({
+  className = '',
+  ofertas = ofertasCalculadora(),
+  titulo = '¿También estás por comprar? Lo que elegimos para el Black Friday',
+  seccion = 'calcml_ofertas',
+  evento = 'calcml_oferta_boton',
+}: {
+  className?: string
+  ofertas?: OfertaCalc[]
+  titulo?: string
+  seccion?: string
+  evento?: string
+}) {
   if (ofertas.length === 0) return null
   return (
-    <section aria-label="Ofertas para comprar" data-seccion="calcml_ofertas" className={className}>
+    <section aria-label="Ofertas para comprar" data-seccion={seccion} className={className}>
       <h2 className="font-display text-lg font-black text-zinc-50 [text-wrap:balance]">
-        ¿También estás por comprar? Lo que elegimos para el Black Friday
+        {titulo}
       </h2>
       <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {ofertas.map(({ slug, rubro, emoji, producto: p }) => (
@@ -41,9 +54,9 @@ export default function OfertasCalculadora({ className = '' }: { className?: str
               href={p.url}
               target="_blank"
               rel="sponsored nofollow noopener"
-              data-evento="calcml_oferta_boton"
+              data-evento={evento}
               data-mla={p.id}
-              className="mt-3 flex min-h-[48px] items-center justify-center rounded-xl bg-yellow-400 px-4 text-center font-black text-black hover:bg-yellow-300 transition-colors"
+              className="mt-3 flex min-h-[48px] items-center justify-center rounded-xl bg-[#FACC15] px-4 text-center font-black text-black hover:bg-yellow-300 transition-colors"
             >
               Ver en Mercado Libre ↗
             </a>

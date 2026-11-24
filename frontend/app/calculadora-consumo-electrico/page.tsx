@@ -3,6 +3,8 @@ import Link from 'next/link'
 import CalculadoraConsumo, { type OfertaEquipo } from '@/components/CalculadoraConsumo'
 import Footer from '@/components/Footer'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
+import OfertasCalculadora from '@/components/OfertasCalculadora'
+import { ofertasConsumo } from '@/lib/calc-ofertas'
 import { CATEGORIAS, enCategoria } from '@/lib/categorias'
 import { ofertasHoyLight } from '@/lib/ofertashoy'
 import { diasDesde, tramoEdad } from '@/lib/frescura'
@@ -14,9 +16,11 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/calculadora-consumo-electrico`
-const TITULO = 'Calculadora de consumo eléctrico 2026: kWh y costo'
+// 24/11 (ctr-cta): 1.510 impresiones y 0,33 % de CTR en 28 días. El título nombra lo que se busca
+// («cuánto gasta / consume cada aparato») además de kWh.
+const TITULO = 'Calculadora de consumo eléctrico: cuánto gasta cada aparato'
 const DESCRIPCION =
-  'Calculá cuántos kWh consume tu casa en Argentina y cuánto gastás por aparato (aire, heladera, estufa) y mirá los equipos eficientes en oferta hoy, antes del Black Friday 2026. Gratis.'
+  'Calculá gratis cuántos kWh consume cada aparato (aire, heladera, estufa) y cuánto pagás por mes. Y los equipos que gastan menos, para el Black Friday 2026.'
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} | Cazador de Ofertas`, t => t]),
@@ -136,6 +140,16 @@ export default function CalculadoraConsumoPage() {
         )}
 
         <CalculadoraConsumo ofertas={ofertas} busquedas={busquedas} landings={landings} />
+
+        {/* Mismo bloque que la calculadora de comisiones, con equipos que gastan menos luz
+            (lote ctr-cta 24/11: 1.510 impresiones y 0,33 % de CTR en 28 días). */}
+        <OfertasCalculadora
+          className="mt-6 max-w-3xl"
+          ofertas={ofertasConsumo()}
+          titulo="¿Vas a cambiar un equipo? Los que gastan menos, elegidos para el Black Friday"
+          seccion="consumo_ofertas"
+          evento="consumo_oferta_boton"
+        />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>

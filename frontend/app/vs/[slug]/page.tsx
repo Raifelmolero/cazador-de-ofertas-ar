@@ -9,6 +9,7 @@ import { tituloSeo, descripcionSeo, MAX_DESCRIPCION } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import { armarDuelo, diferencia, duelosConPrecio, getDuelo, type DueloArmado, type Lado } from '@/lib/vs'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -204,6 +205,7 @@ export default async function DueloPage({ params }: { params: Promise<{ slug: st
             lowPrice: l.desde,
             highPrice: Math.max(...l.equipos.map(e => e.precio)),
             offerCount: l.equipos.length,
+            availability: disponibilidadLD(l.desde),
           },
         },
       })),

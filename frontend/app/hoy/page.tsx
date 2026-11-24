@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import OfertasGrid, { OFERTAS_EN_HTML } from '@/components/OfertasGrid'
 import { conDestacada, ofertasHoyLight } from '@/lib/ofertashoy'
 import BackToTop from '@/components/BackToTop'
@@ -153,7 +154,7 @@ export default function HoyPage() {
           '@type': 'Offer',
           price: Math.round(o.precio_actual),
           priceCurrency: 'ARS',
-          availability: 'https://schema.org/InStock',
+          availability: disponibilidadLD(o.precio_actual),
           itemCondition: 'https://schema.org/NewCondition',
           priceValidUntil,
           validFrom: scrapedAt,

@@ -35,6 +35,9 @@ import { duelosConPrecio } from '@/lib/vs'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { cajaDeGuia } from '@/lib/queconviene'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import EnlacesBF from '@/components/EnlacesBF'
+import { MAX_TITULO_CTA, SEO_CTA, ctaDestacado, desdeCta } from '@/lib/cta-destacados'
 import { LANDINGS_BF, getLandingBF, productosBF, type ProductoBF } from '@/lib/black-friday-landings'
 import { GUIA_BF_A_LANDING, esGuiaBF, fechaAR } from '@/lib/bf-guias'
 import { breadcrumbLD, itemListLD } from '@/lib/bf-jsonld'
@@ -79,6 +82,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Textos puestos a mano por CTR bajo en Search Console (lote 24/11): pisan a los automáticos.
   if (g.seoTitulo) titulo = g.seoTitulo
   if (g.seoDescripcion) descripcion = g.seoDescripcion
+  // Lote ctr-cta (24/11): guías de celulares con bloque destacado. El «desde $X» sale de los
+  // productos que muestra el bloque (precio visto hace 7 días o menos); sin precio, sin «desde».
+  const seoCta = SEO_CTA[`/guias/${g.slug}`]
+  if (seoCta) {
+    const desde = desdeCta(ctaDestacado(`/guias/${g.slug}`))
+    titulo = tituloSeo('', seoCta.titulo(desde), MAX_TITULO_CTA)
+    descripcion = descripcionSeo(seoCta.descripcion(desde))
+  }
   return {
     metadataBase: new URL(DEALS_URL),
     title: titulo,
@@ -131,7 +142,10 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   ])
   const enlaces = (g.enlaces ?? []).filter(e => !/^\/(vs|mejor)\//.test(e.href) || vivos.has(e.href))
   const fechas = fechasGuia(g.slug)
-  const queConviene = guiaBF ? [] : cajaDeGuia(g)
+  // Guías de alto impresiones y bajo CTR en Search Console (lote 24/11, lib/cta-destacados.ts):
+  // bloque de productos elegidos con botón arriba. Si está, reemplaza a la caja «qué conviene».
+  const destacadoGuia = ctaDestacado(`/guias/${g.slug}`)
+  const queConviene = guiaBF || destacadoGuia ? [] : cajaDeGuia(g)
   const cta = ctaDeGuia(g)
   // Bloque Black Friday 2026: solo hasta el viernes 27/11 (hora argentina). Link a la comparativa
   // del rubro únicamente si existe en lib/comparativas.ts.
@@ -226,6 +240,7 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
 
         {/* Propuesta 1 (19/11): guías que más entran de Google, producto con botón en la primera pantalla. */}
         <CajaQueConviene items={queConviene} seccion="queconviene_guia" className="mb-6" />
+        <CtaOfertaDestacada cta={destacadoGuia} className="mb-6" />
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>
@@ -242,6 +257,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             {ctaBoton}
           </a>
         </div>
+
+        {/* Enlazado interno a /black-friday y sus landings (lib/bf-enlaces.ts, guías top de GSC). */}
+        <EnlacesBF ruta={`/guias/${g.slug}`} className="-mt-4 mb-8" />
 
         {elegidosBF.length > 0 && (
           <section className="mb-8" aria-label="Los que elegimos para el Black Friday" data-seccion={`guiabf_${g.slug}_elegidos`}>

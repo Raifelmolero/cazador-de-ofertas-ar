@@ -330,6 +330,8 @@ export const CATEGORIAS: Categoria[] = [
       'rotomartillo', 'sierra circular', 'sierra caladora', 'soldadora',
       'compresor de aire', 'motosierra', 'desmalezadora', 'bordeadora',
       'hidrolavadora',
+      // 24/11: las 2 herramientas confirmadas (martillo Lusqtoff, llave Pektra; lib/seguidos-manuales.ts)
+      'martillo demoledor', 'llave de impacto', 'llave impacto',
     ],
     excluir: [
       'funda', 'repuesto', 'accesorio', 'broca', 'disco de corte', 'mecha',

@@ -341,7 +341,7 @@ export const LANDINGS: Landing[] = [
     intro:
       'Herramientas eléctricas en oferta hoy en Mercado Libre Argentina: taladros, atornilladores, amoladoras y sierras. Comparalas con su mínimo registrado y fijate qué incluye cada kit.',
     tipo: 'ofertas',
-    filtrar: p => /(taladro|atornillador|amoladora|sierra circular|caladora|rotomartillo|lijadora|esmeril)/.test(normalizar(p.titulo)),
+    filtrar: p => /(taladro|atornillador|amoladora|sierra circular|caladora|rotomartillo|lijadora|esmeril|martillo demoledor|llave (de )?impacto)/.test(normalizar(p.titulo)),
     ordenar: porDescuento,
     min: 5,
     criterios: [
@@ -352,6 +352,12 @@ export const LANDINGS: Landing[] = [
     faq: [
       { q: '¿Taladro con cable o a batería?', a: 'Con cable rinde más potencia constante y es más barato; a batería es más cómodo para trabajos cortos o en altura.' },
       { q: '¿Qué significa percutor?', a: 'Que además de girar golpea, para perforar mampostería y hormigón. Para madera y metal no hace falta.' },
+    ],
+    // 24/11: fichas de precio de las 2 herramientas confirmadas (lib/seguidos-manuales.ts)
+    enlaces: [
+      { href: '/precio/martillo-demoledor-900w-8-5-joules-lusqtoff-maletin-color-mla25570995', label: 'Martillo demoledor Lusqtoff 900 W: precio hoy' },
+      { href: '/precio/llave-impacto-inalambrica-20v-1-2-pulgadas-pektra-brushless-mla42782167', label: 'Llave de impacto Pektra 20 V: precio hoy' },
+      { href: '/guias/herramientas-electricas-cyber-monday-black-friday', label: 'Herramientas en el Black Friday' },
     ],
   },
   {

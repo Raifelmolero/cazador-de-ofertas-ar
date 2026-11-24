@@ -892,6 +892,13 @@ export const GUIAS: Guia[] = [
     ],
     categoria: { slug: 'herramientas-electricas', nombre: 'herramientas eléctricas' },
     cta: { href: '/herramientas', titulo: 'Herramientas eléctricas en oferta hoy', boton: 'Ver herramientas en oferta' },
+    // 24/11: fichas de precio de las 2 herramientas confirmadas (lib/seguidos-manuales.ts)
+    enlaces: [
+      { href: '/precio/martillo-demoledor-900w-8-5-joules-lusqtoff-maletin-color-mla25570995', texto: 'Martillo demoledor Lusqtoff 900 W: precio hoy' },
+      { href: '/precio/llave-impacto-inalambrica-20v-1-2-pulgadas-pektra-brushless-mla42782167', texto: 'Llave de impacto Pektra 20 V: precio hoy' },
+      { href: '/categoria/herramientas-electricas', texto: 'Herramientas eléctricas en oferta' },
+      { href: '/ofertas/herramientas-electricas-en-oferta', texto: 'Taladros, amoladoras y más en oferta' },
+    ],
   },
   {
     slug: 'que-horno-pizzero-comprar-para-mi-negocio',

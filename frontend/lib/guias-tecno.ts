@@ -426,6 +426,9 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejor celular para jugar: Free Fire, COD y Genshin',
     descripcion:
       'Qué celular comprar para jugar: procesador, RAM real, pantalla de 120 Hz, batería y temperatura. Con los modelos de hoy y su precio más bajo registrado.',
+    seoTitulo: 'Celular para jugar Free Fire y COD: cuál comprar (2026)',
+    seoDescripcion:
+      'Qué celular comprar para jugar Free Fire, COD y Genshin: procesador, RAM y 120 Hz. Opciones baratas y gama alta, con ofertas de hoy en Mercado Libre.',
     pregunta: '¿Qué celular conviene para jugar?',
     respuestaCorta:
       'Para jugar fluido conviene un gama media alta con buen procesador, 8 GB de RAM real, pantalla de 120 Hz o más y 256 GB de memoria: el Motorola Edge Fusion, el Poco X de Xiaomi o los Galaxy A37 y A57 de Samsung. Para Free Fire alcanza con un gama media común; para Genshin Impact o COD con gráficos altos, cuanto mejor el procesador, mejor. Desconfiá de los "24 GB de RAM" en el título: suele ser memoria virtual.',
@@ -1465,9 +1468,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Qué consola comprar en el Black Friday 2026: PS5 Slim, Nintendo Switch 2 o Xbox',
     descripcion:
       'Qué consola comprar en el Black Friday 2026: PS5 Slim Standard o Digital, PS5 Pro, Nintendo Switch 2 o Xbox Series. Para quién conviene cada una, cómo comparar los combos con juegos y cómo saber si el descuento es real.',
+    seoTitulo: 'Qué consola comprar en Black Friday 2026: PS5 o Switch 2',
+    seoDescripcion:
+      'PS5 Slim para fútbol y juego online, Nintendo Switch 2 para jugar en familia y portátil, Xbox Series si usás Game Pass. Black Friday 2026 en Argentina.',
     pregunta: '¿Qué consola conviene comprar en el Black Friday 2026?',
     respuestaCorta:
-      'Depende de para quién es y de qué juegos quiere: la PlayStation 5 —hoy se vende como PS5 Slim, Standard (con lectora) o Digital— es la más elegida para fútbol, acción y juego online con amigos; la Nintendo Switch 2 se usa también portátil y es la mejor para jugar en familia con chicos; la Xbox Series conviene si vas a usar Game Pass. En noviembre las consolas son de lo que más crece en Mercado Libre: compará el precio de hoy con el más bajo registrado antes de comprar, y fijate que sea la versión que creés (con lectora o digital, y con o sin juego incluido).',
+      'Para la mayoría, la PlayStation 5 Slim: es la más elegida para fútbol, acción y juego online con amigos, y se vende con lectora o en versión digital. Para jugar en familia y también en modo portátil, la Nintendo Switch 2; la Xbox Series conviene si vas a usar Game Pass. Antes de pagar, fijate que sea la versión que buscás: con lectora o digital, y con o sin juego incluido.',
     tabla: {
       titulo: 'PS5, Switch 2 o Xbox: para quién es cada una',
       columnas: ['Consola', 'Conviene si…', 'Ojo con'],
@@ -1543,9 +1549,12 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/guias/ps5-digital-standard-o-pro', texto: 'PS5 Digital, Standard o Pro: cuál conviene' },
+      { href: '/mejores/black-friday-gaming', texto: 'PC y monitores gamer para el Black Friday 2026' },
       { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
       { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Mejores monitores gamer' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
       { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV en el Black Friday' },
       { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
     ],
@@ -1555,9 +1564,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejores aires acondicionados Black Friday 2026 Argentina',
     descripcion:
       'Qué aire acondicionado conviene en el Black Friday 2026 en Argentina: frigorías, inverter y cómo detectar un descuento inflado antes del verano.',
+    seoTitulo: 'Mejores aires acondicionados Black Friday 2026 Argentina',
+    seoDescripcion:
+      'Para hasta 20 m², el Samsung split inverter de 2580 frigorías; para unos 30 m², el LG DualCool de 4500. Qué aire comprar en el Black Friday 2026 (27/11).',
     pregunta: '¿Qué aire acondicionado conviene comprar en el Black Friday 2026 en Argentina?',
     respuestaCorta:
-      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un split inverter frío-calor, con las frigorías justas para el ambiente —como referencia, el volumen (metros cuadrados × altura del techo) multiplicado por 50 frigorías— y el precio comparado contra el historial del producto, no contra el tachado de la publicación. La instalación casi nunca viene incluida: hay que sumarla al presupuesto y, si se puede, dejarla agendada antes del pico de calor de diciembre y enero. Si el modelo que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos de ese mínimo, tiene sentido seguirlo hasta ese día.',
+      'Para un ambiente de hasta 20 m², el Samsung split inverter frío/calor de 2580 frigorías: el inverter gasta menos luz y hace menos ruido si lo usás muchas horas. Para unos 30 m², el LG DualCool de 4500 frigorías. La instalación casi nunca viene incluida: sumala al presupuesto y pedí turno antes del calor fuerte de diciembre y enero.',
     tabla: {
       titulo: 'Frigorías orientativas según los m² del ambiente',
       columnas: ['Ambiente', 'Superficie aprox.', 'Frigorías de referencia', 'Tipo de equipo habitual'],
@@ -1644,6 +1656,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-aires-acondicionados', texto: 'Aires del Black Friday 2026' },
       { href: '/categoria/aire-acondicionado', texto: 'Ofertas de aire acondicionado' },
       { href: '/ofertas/aires-acondicionados-inverter-en-oferta', texto: 'Aires inverter en oferta hoy' },
       { href: '/mejores/mejores-aires-acondicionados', texto: 'Comparativa de aires acondicionados' },
@@ -1672,9 +1685,12 @@ export const GUIAS_TECNO: Guia[] = [
     titulo: 'Mejores lavarropas Black Friday 2026 Argentina',
     descripcion:
       'Qué lavarropas o lavasecarropas conviene en el Black Friday 2026 en Argentina: kilos, carga, inverter y cómo verificar el descuento contra el historial.',
+    seoTitulo: 'Mejores lavarropas Black Friday 2026 Argentina',
+    seoDescripcion:
+      'Para una familia, el Samsung Ecobubble de 10,5 kg; para 1 a 3 personas, el Drean de 6 kg; lavasecarropas TCL 10/7 kg. Black Friday 2026 (27/11).',
     pregunta: '¿Qué lavarropas conviene comprar en el Black Friday 2026 en Argentina?',
     respuestaCorta:
-      'El Black Friday 2026 en Argentina es el viernes 27 de noviembre. Para la mayoría de las casas conviene un lavarropas automático con la capacidad justa (6 a 7 kg para 1 a 3 personas, 8 kg o más si son más o si lavás acolchados), inverter si lo usás seguido, y el precio comparado contra el historial, no contra el tachado de la publicación. La carga frontal suele gastar menos agua; la superior es más cómoda y, en general, más barata. Un lavasecarropas tiene sentido si no hay lugar para dos equipos: lava y seca en la misma máquina, aunque el secado suele admitir menos ropa que el lavado. Si el que estás mirando ya está en el mínimo que registramos, no hace falta esperar al 27/11; si está lejos, tiene sentido seguirlo hasta ese día.',
+      'Para una familia, el Samsung Ecobubble de 10,5 kg: alcanza para acolchados y lavados grandes. Para 1 a 3 personas, el Drean automático de 6 kg; si no tenés dónde tender, el lavasecarropas TCL inverter de 10/7 kg lava y seca en el mismo equipo. Medí el lugar antes de comprar y confirmá si el envío lo sube al piso.',
     tabla: {
       titulo: 'Capacidad orientativa según el tamaño del hogar',
       columnas: ['Hogar', 'Capacidad de lavado', 'Qué suele alcanzar'],
@@ -1771,6 +1787,7 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-lavarropas', texto: 'Lavarropas elegidos para el Black Friday 2026' },
       { href: '/categoria/lavarropas', texto: 'Ofertas de lavarropas' },
       { href: '/guias/que-lavarropas-comprar', texto: 'Qué lavarropas comprar' },
       { href: '/precio-hoy/lavarropas-automatico', texto: 'Precio de lavarropas automático hoy' },
@@ -1798,9 +1815,93 @@ export const GUIAS_TECNO: Guia[] = [
       },
     ],
   },
+  // ── 23/11: PS5 Digital, Standard o Pro (Tendencias 22/11: Consolas +174 %, los 3 más vendidos) ──
+  {
+    slug: 'ps5-digital-standard-o-pro',
+    titulo: 'PS5 Digital, Standard o Pro: cuál conviene comprar en el Black Friday',
+    descripcion:
+      'PS5 Slim Digital, Slim Standard con lectora o PS5 Pro: qué diferencia hay, para quién conviene cada una, cómo comparar los combos con juegos y qué revisar en la publicación de Mercado Libre.',
+    pregunta: '¿Qué PS5 conviene comprar: Digital, Standard (con lectora) o Pro?',
+    respuestaCorta:
+      'Si comprás juegos en disco, usados o prestados, la PS5 Slim Standard (con lectora) es la más práctica. Si comprás todo en la tienda online y querés gastar menos, la Slim Digital corre los mismos juegos. La PS5 Pro solo vale la pena si tenés un TV 4K bueno y querés la mejor imagen: es la más cara y no trae lectora de serie. En cualquiera de las tres, mirá que la publicación diga el modelo exacto y qué juegos incluye el combo.',
+    tabla: {
+      titulo: 'PS5 Slim Standard, Slim Digital y PS5 Pro: diferencias clave',
+      columnas: ['Modelo', 'Conviene si…', 'Ojo con'],
+      filas: [
+        ['PS5 Slim Standard (con lectora)', 'jugás con discos, comprás usados o te prestan juegos', 'que el título diga "Standard" o "con lectora" y no solo "PS5 Slim"'],
+        ['PS5 Slim Digital', 'comprás todo en la PlayStation Store y querés pagar menos por la consola', 'no lee discos; la lectora se compra aparte'],
+        ['PS5 Pro', 'tenés un TV 4K de buena calidad y querés la mejor imagen y fluidez', 'es la más cara y no trae lectora de serie'],
+      ],
+      nota: 'Comparación orientativa. El precio de cada versión cambia todos los días: miralo en las ofertas gamer de abajo, no en esta tabla.',
+    },
+    secciones: [
+      {
+        h: 'Standard o Digital: la única diferencia es el disco',
+        p: [
+          'La PS5 Slim Standard y la Slim Digital tienen la misma potencia, el mismo almacenamiento y corren los mismos juegos. Lo único que cambia es la lectora de discos: la Standard la trae y la Digital no.',
+          'Elegí la Standard si querés comprar juegos en disco (suelen bajar de precio con el tiempo), venderlos después, prestarlos o comprar usados. Elegí la Digital si ya comprás todo online y no te importa depender de la tienda: la consola sale menos.',
+          'Una Digital se puede convertir en Standard más adelante comprando la lectora externa oficial de Sony, que se enchufa por USB. Hacé la cuenta: si sumás consola Digital y lectora, conviene comparar contra la Standard directamente.',
+        ],
+      },
+      {
+        h: 'PS5 Pro: cuándo vale la pena pagar más',
+        p: [
+          'La PS5 Pro es la versión más potente: apunta a mejor resolución, más cuadros por segundo y trazado de rayos en los juegos compatibles, y trae más almacenamiento (2 TB según Sony). Para notarla necesitás un TV 4K con buen panel; en un TV Full HD o un 4K básico casi no se ve la diferencia.',
+          'No trae lectora de serie: si querés discos, hay que comprarla aparte. Antes de pagar la Pro, revisá qué TV tenés: en nuestra guía de smart TV para PS5 explicamos qué mirar (HDMI 2.1, 120 Hz, modo juego).',
+          'Si jugás poco o con chicos, la Slim alcanza y sobra: la diferencia de precio se aprovecha mejor en juegos o en un segundo joystick.',
+        ],
+      },
+      {
+        h: 'Combos con juegos: cómo saber si conviene',
+        p: [
+          'En noviembre abundan los combos: consola con uno o dos juegos (por ejemplo Astro Bot o Gran Turismo 7), con un segundo DualSense o con suscripción. Es lo que más se vende en consolas, y no siempre es la mejor opción.',
+          'Restá del precio lo que valdría cada juego o accesorio por separado, y solo contá los que ibas a comprar igual. Si el combo sale más que la consola sola más lo que usarías, comprá la consola sola.',
+          'Los juegos de un combo pueden ser un código digital (se canjea en tu cuenta) o un disco: en una Digital solo sirve el código. Confirmalo en la descripción.',
+        ],
+      },
+      {
+        h: 'Qué revisar en la publicación antes de pagar',
+        p: [
+          'Modelo exacto en la ficha técnica: Slim o primera PS5 (la original de 2020 es más grande), Digital o Standard, Pro o no. Los títulos mezclan versiones: no te guíes solo por la foto.',
+          'Qué incluye: juegos, joystick extra, cables. Y si es nueva, de importación o reacondicionada; para eso preferí tiendas oficiales o vendedores con buena reputación y garantía escrita válida en Argentina.',
+          'Pagá siempre dentro de Mercado Libre. Si el precio está muy por debajo del resto, desconfiá.',
+        ],
+      },
+    ],
+    categoria: { slug: 'gamer', nombre: 'gamer' },
+    cta: { href: '/categoria/gamer', titulo: 'Consolas y productos gamer en oferta hoy, con el descuento verificado', boton: 'Ver ofertas gamer 🎮' },
+    faq: [
+      {
+        q: '¿Qué diferencia hay entre la PS5 Digital y la Standard?',
+        a: 'Solo la lectora de discos. La Standard lee juegos físicos y la Digital no. La potencia, el almacenamiento y los juegos que corren son los mismos.',
+      },
+      {
+        q: '¿Conviene la PS5 Pro o la Slim?',
+        a: 'La Pro conviene si tenés un TV 4K bueno y querés la mejor imagen. Para la mayoría de la gente y con un TV común, la Slim alcanza y sale bastante menos.',
+      },
+      {
+        q: '¿La PS5 Pro trae lectora de discos?',
+        a: 'No, viene sin lectora de serie. Si querés jugar con discos, hay que comprar la lectora oficial de Sony aparte.',
+      },
+      {
+        q: '¿Se le puede agregar la lectora a la PS5 Digital?',
+        a: 'Sí, con la lectora externa oficial de Sony. Antes de comprarla comparalo con el precio de la PS5 Standard.',
+      },
+      {
+        q: '¿Conviene comprar la PS5 en el Black Friday?',
+        a: 'Es una de las categorías que más crece en esas semanas, con combos con juegos y cuotas. Compará siempre contra el precio más bajo registrado de esa misma versión y fijate qué incluye el combo. El Black Friday 2026 es el 27 de noviembre.',
+      },
+    ],
+    enlaces: [
+      { href: '/guias/que-consola-comprar-black-friday', texto: 'Qué consola comprar en el Black Friday' },
+      { href: '/guias/smart-tv-para-ps5', texto: 'Qué smart TV conviene para la PS5' },
+      { href: '/categoria/gamer', texto: 'Ofertas gamer de hoy' },
+      { href: '/descuentos-inflados', texto: 'Descuentos inflados de hoy' },
+    ],
+  },
 ]
 
-const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13' }
+const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13', 'ps5-digital-standard-o-pro': '2026-11-23' }
 // Guías revisadas después de publicarse (dateModified del JSON-LD).
 const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19' }
 

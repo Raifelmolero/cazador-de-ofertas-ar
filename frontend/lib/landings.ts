@@ -23,6 +23,8 @@ export interface Landing {
   categoria?: string
   nombre: string
   titulo: string
+  /** <title> exacto para Google (CTR, Search Console), ≤ 60. Si falta, se arma con `titulo` + marca. */
+  seoTitulo?: string
   descripcion: string
   h1: string
   intro: string
@@ -141,8 +143,9 @@ export const LANDINGS: Landing[] = [
     categoria: 'aire-acondicionado',
     nombre: 'aires acondicionados hasta 3.000 frigorías',
     titulo: 'Aires acondicionados hasta 3.000 frigorías en oferta hoy',
+    seoTitulo: 'Aire acondicionado hasta 3000 frigorías: ofertas hoy',
     descripcion:
-      'Aires acondicionados de hasta 3.000 frigorías en oferta hoy en Mercado Libre Argentina: split y portátiles para ambientes chicos, con precio y descuento.',
+      'Aires de hasta 3000 frigorías en oferta en Mercado Libre: split y portátiles para dormitorios y ambientes chicos, con precio y descuento real.',
     h1: 'Aires acondicionados de hasta 3.000 frigorías en oferta',
     intro:
       'Equipos de hasta 3.000 frigorías (las declara el título de la publicación) para dormitorios y ambientes chicos, en oferta hoy en Mercado Libre. Si no sabés cuántas necesitás, usá la calculadora de frigorías.',
@@ -165,8 +168,11 @@ export const LANDINGS: Landing[] = [
     categoria: 'aire-acondicionado',
     nombre: 'aires acondicionados de más de 3.000 frigorías',
     titulo: 'Aires acondicionados de más de 3.000 frigorías en oferta hoy',
+    // «De más de» y no «o más» como en la propuesta: los de 3000 justas van a la otra landing.
+    // Sin rango de m²: la FAQ de abajo da 3000 frigorías ≈ 24 m² y no se fija un tope inventado.
+    seoTitulo: 'Aire acondicionado de más de 3000 frigorías: ofertas hoy',
     descripcion:
-      'Aires acondicionados de más de 3.000 frigorías en oferta hoy en Mercado Libre Argentina: para livings y ambientes grandes, con precio y descuento.',
+      'Aires de más de 3000 frigorías en oferta en Mercado Libre: split para livings y ambientes grandes, con precio y descuento real.',
     h1: 'Aires acondicionados de más de 3.000 frigorías en oferta',
     intro:
       'Equipos de más de 3.000 frigorías (declaradas en el título) para ambientes grandes, en oferta hoy en Mercado Libre. Compará precio, descuento y mínimo registrado.',
@@ -220,6 +226,7 @@ export const LANDINGS: Landing[] = [
     categoria: 'aire-acondicionado',
     nombre: 'aires acondicionados inverter',
     titulo: 'Aires acondicionados inverter en oferta hoy',
+    seoTitulo: 'Aires acondicionados inverter en oferta: precio y descuento',
     descripcion:
       'Aires acondicionados inverter en oferta hoy en Mercado Libre Argentina: precio, descuento y mínimo registrado para comparar antes de comprar.',
     h1: 'Aires acondicionados inverter en oferta',

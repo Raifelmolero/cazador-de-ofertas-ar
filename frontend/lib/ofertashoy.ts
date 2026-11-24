@@ -3,9 +3,19 @@
 // después de pintar: el HTML pesaba ~600 KB y frenaba el celular.
 import type { OfertaLight } from '@/components/OfertaCard'
 import { getOfertas } from '@/lib/productos'
+import { corregirConcurso } from '@/lib/topconcurso'
 import { slugPorId } from '@/lib/seguimiento'
 import { enCategoria, getCategoria } from '@/lib/categorias'
-import { esExcluidaDeDestacados } from '@/lib/prioridades'
+import { esExcluidaDeDestacados, sinOmen } from '@/lib/prioridades'
+import { RUBROS_FILTRO } from '@/lib/rubros-filtro'
+
+/** slug del filtro rápido de /hoy al que pertenece el título (misma regla que /categoria). */
+function rubroDe(titulo: string): string | undefined {
+  return RUBROS_FILTRO.find(r => {
+    const c = getCategoria(r.slug)
+    return !!c && enCategoria(c, titulo)
+  })?.slug
+}
 
 // "La caza del día" (la 1ª tarjeta) la ve casi todo el que entra desde la bio:
 // que sea algo de casa con buen descuento, no equipamiento industrial.
@@ -41,10 +51,10 @@ export function ofertasHoyLight(): OfertaLight[] {
   const historial = slugPorId()
   // Lo que tendencias-hoy.md manda sacar (data/categorias-prioritarias.json)
   // baja al final de la grilla en vez de encabezarla.
-  const ordenadas = ticketAltoPrimero(getOfertas())
+  const ordenadas = ticketAltoPrimero(corregirConcurso(getOfertas()))
   const sacar = ordenadas.filter(esExcluidaDeDestacados)
   const lista = sacar.length ? [...ordenadas.filter(o => !esExcluidaDeDestacados(o)), ...sacar] : ordenadas
-  return conDestacada(lista).map(o => ({
+  return conDestacada(sinOmen(lista)).map(o => ({
     id_ml: o.id_ml,
     titulo: o.titulo,
     precio_actual: o.precio_actual,
@@ -56,5 +66,6 @@ export function ofertasHoyLight(): OfertaLight[] {
     url_imagen: o.url_imagen,
     precio_visto: o.precio_visto,
     historial: historial[o.id_ml],
+    rubro: rubroDe(o.titulo),
   }))
 }

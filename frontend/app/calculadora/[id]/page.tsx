@@ -1,4 +1,5 @@
 import { getProductosCalc, getProductoById, fichasParecidas, fichaPrincipal, getFichasPorPrecio } from '@/lib/productos'
+import AvisoBFCalculadora from '@/components/AvisoBFCalculadora'
 import { CALC_URL } from '@/lib/vender'
 import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
 import { permanentRedirect } from 'next/navigation'
@@ -11,6 +12,7 @@ import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
+import OfertasCalculadora from '@/components/OfertasCalculadora'
 import Footer from '@/components/Footer'
 
 // Solo existen las 200 de más margen (getProductosCalc); cualquier otro id da
@@ -96,6 +98,8 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           <span className="text-sm text-gray-200 truncate">{producto.titulo}</span>
         </div>
       </header>
+      {/* Black Friday 27/11 (hasta el 30/11): link al sitio de ofertas */}
+      <AvisoBFCalculadora />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-5">
         {/* Product hero card */}
@@ -186,6 +190,9 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           iibbArs={iibbArs}
           envioArs={envioArs}
         />
+
+        {/* Ofertas de las landings BF con botón de afiliado (calcml: 0 ventas) */}
+        <OfertasCalculadora />
 
         {parecidas.length > 0 && (
           <nav aria-label="Fichas de precio parecido" className="text-sm">

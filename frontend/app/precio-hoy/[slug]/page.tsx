@@ -3,11 +3,18 @@ import { descripcionSeo, tituloSeo } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
+import { avisoBFVigente } from '@/lib/bf-enlaces'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
-import { diasDesde, edadVieja, etiquetaEdad } from '@/lib/frescura'
+import { diasDesde, edadVieja } from '@/lib/frescura'
+import { miniaturaML } from '@/lib/imagenml'
+import { nombreCorto } from '@/lib/nombrecorto'
+import { sinOmen } from '@/lib/prioridades'
+import DestacadoML from '@/components/DestacadoML'
+import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art, precioHoyVisible, preciosHoyVisibles } from '@/lib/preciohoy'
 import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
@@ -29,6 +36,61 @@ function titulo(nombre: string) {
   return `Precio de ${nombre} hoy en Argentina (${MESES[d.getMonth()]} ${d.getFullYear()})`
 }
 
+// Title/description a mano para las búsquedas con CTR bajo en Search Console (lote 24/11). Solo con
+// ofertas de hoy (si no, quedan los genéricos). Formatos del más completo al más corto; title ≤ 60.
+// `desde` = « desde $X» (con espacio adelante) y `cuando` = «noviembre 2026», los mismos de siempre.
+const MAX_TITULO_CTR = 60
+const mesCorto = (cuando: string) => cuando.replace(/^(\S{3})\S*/, '$1')
+const ofertas = (n: number) => `${n} ${n === 1 ? 'oferta' : 'ofertas'}`
+const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: string) => string)[]; descripcion: (desde: string, n: number) => string }> = {
+  'aire-acondicionado-inverter': {
+    titulo: (desde, cuando) => [
+      () => `Aire acondicionado inverter: precio hoy${desde} (${mesCorto(cuando)})`,
+      () => `Aire acondicionado inverter: precio hoy${desde}`,
+      () => 'Aire acondicionado inverter: precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Aires acondicionados inverter en oferta hoy en Mercado Libre desde ${desde}. ${ofertas(n)} con descuento real y el historial de precio antes del Black Friday.`,
+  },
+  // 24/11: 7.207 impresiones en 28 días, posición 8,4 y 0 clics. El título nombra la compra y el BF
+  // (hasta el 30/11; después, el mes) y lleva el precio del más barato de hoy si lo hay.
+  iphone: {
+    titulo: (desde, cuando) =>
+      avisoBFVigente(getScrapedAt().getTime())
+        ? [
+            () => `iPhone: precio hoy${desde} y ofertas Black Friday`,
+            () => `iPhone: precio hoy${desde} (Black Friday)`,
+            () => 'iPhone: precio hoy y ofertas Black Friday 2026',
+          ]
+        : [
+            () => `iPhone: precio hoy${desde} en Argentina (${mesCorto(cuando)})`,
+            () => `iPhone: precio hoy${desde}`,
+            () => 'iPhone: precio hoy en Argentina',
+          ],
+    descripcion: (desde, n) =>
+      `Cuánto sale el iPhone hoy en Mercado Libre Argentina: desde ${desde}, con ${ofertas(n)} y el historial de precio de cada modelo. Elegí el tuyo y compralo ahí.`,
+  },
+  // 24/11: «tv / televisor / smart tv 32 pulgadas», ~390 impresiones en posición 10-14.
+  'smart-tv-32-pulgadas': {
+    titulo: desde => [
+      () => `Smart TV 32 pulgadas: ofertas y precio hoy${desde}`,
+      () => `Smart TV 32 pulgadas: precio hoy${desde}`,
+      () => 'Smart TV 32 pulgadas: ofertas y precio hoy',
+    ],
+    descripcion: (desde, n) =>
+      `Televisores y smart TV de 32 pulgadas en oferta hoy en Mercado Libre Argentina desde ${desde}: ${ofertas(n)}, con el historial de precio de cada una.`,
+  },
+  celular: {
+    titulo: desde => [
+      () => `Celulares en oferta hoy${desde} en Mercado Libre`,
+      () => `Celulares en oferta hoy${desde}`,
+      () => 'Celulares en oferta hoy en Mercado Libre',
+    ],
+    descripcion: (desde, n) =>
+      `${n} ${n === 1 ? 'celular' : 'celulares'} en oferta hoy en Mercado Libre Argentina, con descuento real verificado. Desde ${desde}. Compará antes del Black Friday.`,
+  },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = getPrecioHoy((await params).slug)
   if (!p) return {}
@@ -38,16 +100,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // El precio real en el título: en Google compite contra títulos genéricos (1.549
   // impresiones y 0 clics en iPhone la semana del 27/10 con el título sin precio).
   // El «desde $X» del título sale de precios vistos en la última semana (no de uno de hace dos).
-  const vigentes = ofertasDe(p)
+  const vigentes = sinOmen(ofertasDe(p))
   const hoyOfertas = vigentes.filter(o => !edadVieja(diasDesde(o.precio_visto)))
   const precios = (hoyOfertas.length ? hoyOfertas : vigentes).map(o => o.precio_actual)
   const desde = precios.length ? ` desde ${precio(precios[0])}` : ''
-  const t = tituloSeo(p.nombre, [
-    n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
-    n => `${n}${desde}: precio hoy (${cuando})`,
-    n => `Precio de ${n} hoy (${cuando})`,
-  ])
-  const description = descripcionSeo(precios.length
+  const especial = precios.length ? SEO_CTR[p.slug] : undefined
+  const t = especial
+    ? tituloSeo('', especial.titulo(desde, cuando), MAX_TITULO_CTR)
+    : tituloSeo(p.nombre, [
+        n => `Precio de ${n} hoy${desde} en Argentina (${cuando})`,
+        n => `${n}${desde}: precio hoy (${cuando})`,
+        n => `Precio de ${n} hoy (${cuando})`,
+      ])
+  const description = descripcionSeo(especial
+    ? especial.descripcion(precio(precios[0]), precios.length)
+    : precios.length
     ? `Desde ${precio(precios[0])}: ${art(p, true)} ${p.nombre} más barat${p.fem ? 'a' : 'o'} hoy en Mercado Libre (${precios.length} ofertas con descuento real, ${cuando}). Rango, mediana e historial para llegar al Black Friday sin pagar de más.`
     : `Cuánto sale ${art(p, false)} ${p.nombre} hoy en Mercado Libre Argentina: precio más bajo, rango y mediana de ofertas con descuento real e historial de precios.`)
   return {
@@ -70,13 +137,13 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   // Precio «de hoy» = visto en los últimos 7 días (lib/frescura). Los números de arriba (más barato,
   // mediana, cantidad) salen solo de esos; las de precio más viejo van al final de la tabla con su antigüedad.
   // Si no hay ninguna reciente, se muestran las que hay, dichas como lo que son: últimos precios vistos.
-  const todas = ofertasDe(p)
+  const todas = sinOmen(ofertasDe(p))
   const recientes = todas.filter(o => !edadVieja(diasDesde(o.precio_visto)))
   const sinRecientes = recientes.length === 0 && todas.length > 0
   const ofertas = sinRecientes ? todas : recientes
   const viejas = sinRecientes ? [] : todas.filter(o => edadVieja(diasDesde(o.precio_visto)))
   const filasTabla = [...ofertas, ...viejas].slice(0, 10)
-  const seguidos = seguidosDe(p).sort((a, b) => precioActual(a) - precioActual(b))
+  const seguidos = sinOmen(seguidosDe(p)).sort((a, b) => precioActual(a) - precioActual(b))
   const precios = ofertas.map(o => o.precio_actual)
   const min = precios[0]
   const max = precios[precios.length - 1]
@@ -89,20 +156,20 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
 
   // El párrafo que un buscador o una IA puede citar tal cual
   const respuesta = ofertas.length
-    ? `${sinRecientes ? 'Con los últimos precios que vimos' : `Hoy (${hoy})`} ${art(p, true)} ${p.nombre} más barat${p.fem ? "a" : "o"} en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
+    ? `${sinRecientes ? 'Con los últimos precios que vimos' : 'Con los precios vistos en la última semana,'} ${art(p, true)} ${p.nombre} más barat${p.fem ? "a" : "o"} en oferta en Mercado Libre Argentina cuesta ${precio(min)}. ` +
       (ofertas.length > 1
-        ? `Entre las ${ofertas.length} ofertas con descuento real que relevamos, el precio va de ${precio(min)} a ${precio(max)}, con una mediana de ${precio(med)}.`
-        : 'Es la única oferta con descuento real de este producto que relevamos hoy.')
+        ? `Entre las ${ofertas.length} ofertas que relevamos, el precio va de ${precio(min)} a ${precio(max)}, con una mediana de ${precio(med)}.`
+        : 'Es la única oferta de este producto que relevamos.')
     : seguidos.length
-      ? `Hoy (${hoy}) no hay ${p.nombre} con descuento real en mercadolibre.com.ar/ofertas. El último precio que registramos del más barato que seguimos fue ${precio(precioActual(seguidos[0]))}.`
-      : `Hoy (${hoy}) no hay ${p.nombre} con descuento real en mercadolibre.com.ar/ofertas.`
+      ? `Hoy (${hoy}) no tenemos ${p.nombre} en oferta. El último precio que registramos del más barato que seguimos fue ${precio(precioActual(seguidos[0]))}.`
+      : `Hoy (${hoy}) no tenemos ${p.nombre} en oferta.`
 
   const faqs = [
     { q: `¿Cuánto sale ${art(p, false)} ${p.nombre} hoy en Argentina?`, a: respuesta },
     { q: `¿Qué mirar antes de comprar ${art(p, false)} ${p.nombre}?`, a: p.consejo },
     {
       q: '¿De dónde salen estos precios?',
-      a: 'Revisamos las ofertas de Mercado Libre y guardamos el precio de cada producto. Acá solo aparecen ofertas con descuento real: descartamos las que ya habíamos visto más baratas antes.',
+      a: 'Revisamos las ofertas de Mercado Libre y guardamos el precio de cada producto. En cada oferta mostramos el día en que vimos ese precio; puede cambiar.',
     },
   ]
 
@@ -154,33 +221,39 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   ]
 
   return (
-    <main className={ofertas.length ? 'min-h-screen pb-20 sm:pb-0' : 'min-h-screen'}>
+    <main className={`lectura-movil min-h-screen ${ofertas.length ? 'pb-24 sm:pb-0' : ''}`}>
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
 
       <header className="border-b border-zinc-900 bg-zinc-950/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
-            🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-4">
+          <a href={DEALS_URL} className="font-display text-base sm:text-lg font-extrabold tracking-tight flex min-h-11 items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element -- avatar local de 64 px, ya optimizado */}
+            <img src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="h-8 w-8 shrink-0 rounded-full" />
+            <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
         </div>
       </header>
 
-      <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
-        <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/precio-hoy/${p.slug}`} />
+
+      <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
+        <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> /{' '}
           <Link href="/precio-hoy" className="hover:text-yellow-400">Precio hoy</Link> / <span className="text-zinc-300">{p.nombre}</span>
         </nav>
-        <h1 className="font-display text-3xl sm:text-4xl font-black leading-[1.1] tracking-tight mb-4 [text-wrap:balance]">
+        <h1 className="font-display text-xl sm:text-4xl font-black leading-[1.1] tracking-tight mb-3 [text-wrap:balance]">
           {titulo(p.nombre)}
         </h1>
+        {ofertas[0] && <DestacadoML producto={ofertas[0]} lista={ofertas} rotulo="El más barato que vimos" />}
         <p className="mb-6 inline-flex text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
           <LastUpdated scrapedAt={scrapedAt} />
         </p>
 
         {ofertas.length > 0 && (
-          <div className="grid grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-6">
             {/* Clarity 21-23/10: este recuadro se tocaba como si fuera un botón */}
             <a
               href={ofertas[0].url_producto}
@@ -190,7 +263,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60 p-3 transition-colors"
             >
               <p className="text-xl sm:text-2xl font-black text-yellow-300">{precio(min)}</p>
-              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'el más barato que vimos ↗' : 'el más barato hoy ↗'}</p>
+              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'el más barato que vimos ↗' : 'el más barato de la semana ↗'}</p>
             </a>
             {/* Clarity 16-18/11: 7 clics muertos en /precio-hoy/smart-tv-55-pulgadas,
                 se tocaban estos recuadros como botones. Ahora llevan a ML / a la tabla. */}
@@ -209,7 +282,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               className="rounded-xl border border-zinc-800 bg-zinc-900 hover:border-yellow-400/60 p-3 transition-colors"
             >
               <p className="text-xl sm:text-2xl font-black">{ofertas.length}</p>
-              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'ofertas vistas ↓' : 'ofertas reales hoy ↓'}</p>
+              <p className="text-xs text-zinc-400 mt-1">{sinRecientes ? 'ofertas vistas ↓' : 'ofertas de la semana ↓'}</p>
             </a>
           </div>
         )}
@@ -219,16 +292,6 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         {/* Botón a ML arriba: en el celular el scroll medio es 25% (Clarity 21-23/10)
             y el botón de abajo de las tablas casi nadie lo ve. */}
         <div data-seccion="preciohoy_cta_arriba" className="mb-8 flex flex-col sm:flex-row gap-2">
-          {ofertas[0] && (
-            <a
-              href={ofertas[0].url_producto}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              className="flex items-center justify-center text-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3.5 font-black text-black transition-colors"
-            >
-              Ver el más barato a {precio(ofertas[0].precio_actual)} en Mercado Libre 🛒
-            </a>
-          )}
           <a
             href={busquedaML(p.busqueda)}
             target="_blank"
@@ -245,43 +308,31 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
 
         {ofertas.length > 0 && (
           <section id="los-mas-baratos" data-seccion="preciohoy_tabla" className="mb-8 scroll-mt-4">
-            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Los más baratos hoy</h2>
-            <div className="overflow-x-auto rounded-xl border border-zinc-800">
-              <table className="w-full text-sm">
-                <thead className="bg-zinc-900 text-zinc-400 text-left">
-                  <tr>
-                    <th className="px-3 py-2 font-semibold">Producto</th>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Precio hoy</th>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Descuento</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filasTabla.map(o => (
-                    <tr key={o.id_ml} className="border-t border-zinc-800">
-                      <td className="px-3 py-2 text-zinc-300">
-                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="hover:text-yellow-400">
-                          {o.titulo}
-                        </a>
-                        {o.minimo_historico && <span className="ml-1 text-emerald-400 text-xs font-bold">mínimo histórico</span>}
-                      </td>
-                      <td className="px-3 py-2 whitespace-nowrap font-semibold">
-                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">
-                          {precio(o.precio_actual)}
-                        </a>
-                        {etiquetaEdad(diasDesde(o.precio_visto)) && (
-                          <span className="block text-[11px] font-normal text-amber-300/90">{etiquetaEdad(diasDesde(o.precio_visto))}</span>
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Los más baratos</h2>
+            {/* Tarjetas en vez de tabla: en el celular el botón quedaba fuera de pantalla */}
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {filasTabla.map(o => (
+                <li key={o.id_ml} className="min-w-0">
+                  <a href={o.url_producto} rel="sponsored nofollow noopener" target="_blank" className="group flex h-full flex-col gap-2.5 rounded-2xl border border-zinc-800 bg-zinc-900 p-2.5 hover:border-yellow-400">
+                    <span className="flex gap-3">
+                      <span className="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-white">
+                        {o.url_imagen && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={miniaturaML(o.url_imagen, 'chica')} alt="" width={96} height={96} sizes="96px" loading="lazy" decoding="async" className="h-full w-full object-contain p-1" />
                         )}
-                      </td>
-                      <td className="px-3 py-2 whitespace-nowrap text-zinc-400">
-                        <a href={o.url_producto} rel="sponsored nofollow" target="_blank" className="block hover:text-yellow-400">
-                          {o.descuento_pct ? `${o.descuento_pct}% OFF` : 'Ver en ML'}
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                      </span>
+                      <span className="flex min-w-0 flex-1 flex-col">
+                        <span className="line-clamp-2 text-base leading-snug text-zinc-100">{nombreCorto(o.titulo)}</span>
+                        <span className="mt-1 font-display text-xl font-black leading-tight tabular-nums text-yellow-400">{precio(o.precio_actual)}</span>
+                        <UltVerificacion fecha={o.precio_visto} />
+                        {edadVieja(diasDesde(o.precio_visto)) && <span className="text-base text-amber-300">Confirmalo en ML</span>}
+                      </span>
+                    </span>
+                    <span className={`${BOTON_ML} mt-auto`}>Ver en Mercado Libre</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 
@@ -375,16 +426,16 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
       {ofertas[0] && (
         <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className="text-[11px] text-zinc-500 truncate">Más barato hoy: {ofertas[0].titulo}</p>
+            <p className="text-base text-zinc-300 truncate">{ofertas[0].titulo}</p>
             <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(ofertas[0].precio_actual)}</p>
           </div>
           <a
             href={ofertas[0].url_producto}
             target="_blank"
             rel="sponsored nofollow noopener"
-            className="shrink-0 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-black text-black active:scale-[0.97] transition-transform"
+            className="flex min-h-12 w-[52%] shrink-0 items-center justify-center rounded-xl bg-[#FACC15] px-2 text-center text-base font-black leading-tight text-black active:scale-[0.97] transition-transform"
           >
-            Ver en ML 🛒
+            Ver en Mercado Libre
           </a>
         </div>
       )}

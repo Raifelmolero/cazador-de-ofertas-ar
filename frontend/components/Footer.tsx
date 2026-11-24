@@ -15,7 +15,8 @@ const BRANDS = {
   },
 } as const
 
-export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof BRANDS }) {
+/** `sinCupones`: las landings de Black Friday de ticket alto no mencionan cupones (pedido 23/11/2026). */
+export default function Footer({ brand = 'calculadora', sinCupones = false }: { brand?: keyof typeof BRANDS; sinCupones?: boolean }) {
   const b = BRANDS[brand]
   return (
     <footer className="border-t border-zinc-900 mt-12 py-10 px-4">
@@ -41,10 +42,14 @@ export default function Footer({ brand = 'calculadora' }: { brand?: keyof typeof
           </a>
           {brand === 'ofertas' && (
             <>
-              {' · '}
-              <a href="https://cazadordeofertas.com.ar/cupones-mercado-libre" className="underline hover:text-yellow-400 transition-colors">
-                Cupones de Mercado Libre
-              </a>
+              {!sinCupones && (
+                <>
+                  {' · '}
+                  <a href="https://cazadordeofertas.com.ar/cupones-mercado-libre" className="underline hover:text-yellow-400 transition-colors">
+                    Cupones de Mercado Libre
+                  </a>
+                </>
+              )}
               {' · '}
               <a href="https://cazadordeofertas.com.ar/guias" className="underline hover:text-yellow-400 transition-colors">
                 Guías de compra

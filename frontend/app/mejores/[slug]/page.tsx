@@ -8,6 +8,7 @@ import type { ProductWithMargins } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
+import AvisoBFRubro from '@/components/AvisoBFRubro'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
 import { COMPARATIVAS, MIN_PRODUCTOS_INDEXABLE, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
@@ -15,13 +16,18 @@ import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
 import { normalizar } from '@/lib/categorias'
 import { CONTENIDO } from '@/lib/comparativas-contenido'
-import DestacadoML, { elegirDestacado } from '@/components/DestacadoML'
+import DestacadoML, { elegirDestacado, elegirDestacadoNotebooks } from '@/components/DestacadoML'
 import CtaFijoML from '@/components/CtaFijoML'
 import SinOfertas from '@/components/SinOfertas'
 import { enlacesAfines } from '@/lib/afines'
 import { presupuestosConEquipos } from '@/lib/presupuesto'
 import { getComparador } from '@/lib/comparador'
-import { diasDesde, etiquetaEdad } from '@/lib/frescura'
+import { diasDesde, edadVieja } from '@/lib/frescura'
+import { miniaturaML } from '@/lib/imagenml'
+import { nombreCorto } from '@/lib/nombrecorto'
+import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
+import { getLandingBF } from '@/lib/black-friday-landings'
+import LandingBFPage from '@/components/black-friday/LandingBF'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -32,16 +38,37 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const c = getComparativa((await params).slug)
+  const { slug } = await params
+  // Black Friday de ticket alto: landing curada para el celular (lib/black-friday-landings.ts).
+  const bfl = getLandingBF(slug)
+  if (bfl) {
+    const url = `${DEALS_URL}/mejores/${bfl.slug}`
+    const descripcion = descripcionSeo(bfl.descripcion)
+    return {
+      title: { absolute: bfl.titulo },
+      description: descripcion,
+      keywords: bfl.keywords,
+      metadataBase: new globalThis.URL(DEALS_URL),
+      alternates: { canonical: url },
+      openGraph: { title: bfl.titulo, description: descripcion, url, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+    }
+  }
+  const c = getComparativa(slug)
   if (!c) return {}
   const url = `${DEALS_URL}/mejores/${c.slug}`
   // "desde $X" (el más barato de la tabla de hoy): el precio en el título sube los clics.
   // Sin los que cuestan menos de un tercio de la mediana: son accesorios ("lavarropas
   // desde $5.300" eran pastillas limpiadoras).
-  // Solo los que muestra la tabla: con todo el catálogo salía «desde» un modelo que no aparece.
-  const todos = productosDe(c).slice(0, MAX_FILAS).map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
+  // Solo los que muestra la página: con todo el catálogo salía «desde» un modelo que no aparece.
+  // 24/11: la tabla son los 12 de más ganancia (ticket alto), así que en ofertas-black-friday el
+  // «desde» daba $4.399.990 aunque la sección «Por presupuesto» lista equipos mucho más baratos.
+  // Ahora entran también esos: el «desde» es el más barato de todo lo que la página lista.
+  const lista = productosDe(c)
+  const mostrados = [...lista.slice(0, MAX_FILAS), ...(c.presupuestos ? armarTramos(lista, c.presupuestos).flatMap(t => t.items) : [])]
+  const todos = mostrados.map(p => p.precio_actual).filter(n => n > 0).sort((a, b) => a - b)
   const mediana = todos[Math.floor(todos.length / 2)] ?? 0
-  const precios = todos.filter(n => n >= mediana / 3)
+  // Con tramos de presupuesto los baratos son a propósito (no accesorios): no se filtran.
+  const precios = c.presupuestos ? todos : todos.filter(n => n >= mediana / 3)
   const esCyber = c.slug === 'ofertas-cyber-monday' || c.slug.startsWith('cyber-monday-')
   // T-002 (15/11): las de Cyber (muchas vistas, pocos clics) llevan además el año 2026 antes del «:».
   const anio = (t: string) => (esCyber && !/20\d\d/.test(t) ? t.replace(/^([^:]+)/, '$1 2026') : t)
@@ -52,7 +79,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const desde = precios.length >= MIN_PRODUCTOS_INDEXABLE ? `: desde ${precio(Math.min(...precios))}` : ''
   const corto = base.split(':')[0].trim()
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
-  const titulo = opciones.find(o => o.length <= MAX_TITULO) ?? tituloSeo(base, [n => n])
+  // Black Friday: tope de 60 (pedido del 24/11), el resto sigue con MAX_TITULO.
+  const max = c.slug.includes('black-friday') ? 60 : MAX_TITULO
+  const titulo = c.seoTitulo ?? opciones.find(o => o.length <= max) ?? tituloSeo(base, [n => n], max)
   const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
   const descripcion = descripcionSeo(
     esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)
@@ -77,7 +106,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function ComparativaPage({ params }: { params: Promise<{ slug: string }> }) {
-  const c = getComparativa((await params).slug)
+  const { slug } = await params
+  const bfl = getLandingBF(slug)
+  if (bfl) return <LandingBFPage l={bfl} />
+  const c = getComparativa(slug)
   if (!c) notFound()
 
   const url = `${DEALS_URL}/mejores/${c.slug}`
@@ -121,7 +153,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   // Celulares, notebooks y smart TV tienen páginas «mejor … hasta $X»: las enlazamos para que Google las encuentre.
   const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
   const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined
-  const destacado = elegirDestacado(productos)
+  const destacado = c.slug === 'black-friday-notebooks' ? elegirDestacadoNotebooks(productos) : elegirDestacado(productos)
 
   const jsonLd = [
     {
@@ -156,8 +188,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   '@type': 'Answer',
                   text:
                     `Hoy la primera de nuestra comparativa es ${productos[0].titulo} a ${precio(productos[0].precio_actual)}` +
-                    (productos[0].descuento_pct != null ? ` (${productos[0].descuento_pct}% OFF)` : '') +
-                    `. Comparamos ${productos.length} ${c.nombre} en oferta por precio, descuento y precio mínimo registrado; la tabla se actualiza a medida que cargamos ofertas nuevas.`,
+                    `. Comparamos ${productos.length} ${c.nombre} en oferta por precio y precio mínimo registrado; la tabla se actualiza a medida que cargamos ofertas nuevas.`,
                 },
               },
             ]
@@ -205,34 +236,40 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   ]
 
   return (
-    <main className={productos.length ? 'min-h-screen pb-20 sm:pb-0' : 'min-h-screen'}>
+    <main className={`lectura-movil min-h-screen ${productos.length ? 'pb-20 sm:pb-0' : ''}`}>
       {jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />
       ))}
 
       <header className="sticky top-0 z-10 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <a href={DEALS_URL} className="font-display text-lg font-extrabold tracking-tight">
-            🎯 <span className="text-yellow-400">Cazador de Ofertas</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-4 flex items-center justify-between gap-2">
+          <a href={DEALS_URL} className="font-display text-base sm:text-lg font-extrabold tracking-tight flex min-h-11 min-w-0 items-center gap-2 leading-tight">
+            {/* eslint-disable-next-line @next/next/no-img-element -- avatar local de 64 px, ya optimizado */}
+            <img src="/personaje/avatar-64.webp" alt="Don Ofertín" width={32} height={32} className="h-8 w-8 shrink-0 rounded-full" />
+            <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
           <a
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+            className="inline-flex min-h-11 items-center text-base sm:text-xs font-bold text-yellow-400 border border-yellow-400/50 hover:border-yellow-300 px-3 rounded-full transition-colors whitespace-nowrap"
           >
-            Unite al canal ✈️
+            Canal ✈️
           </a>
         </div>
       </header>
 
-      <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
-        <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
+      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
+      <AvisoBFRubro ruta={`/mejores/${slug}`} />
+
+      <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
+        <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> <span aria-hidden="true">/</span>{' '}
           <span className="text-zinc-300">Comparativas</span>
         </nav>
-        <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-4 [text-wrap:balance]">
-          {tituloVis}
+        {/* «con descuento verificado» no va a la vista: las tarjetas ya no afirman ningún descuento */}
+        <h1 className="font-display text-xl sm:text-5xl font-black leading-[1.1] tracking-tight mb-3 [text-wrap:balance]">
+          {tituloVis.replace(/:? (ofertas )?con descuento verificado/i, ': precios y ofertas')}
         </h1>
         {trasCyber && (
           <p className="text-sm text-zinc-200 bg-zinc-900 border border-yellow-400/30 rounded-xl px-4 py-3 mb-4">
@@ -241,12 +278,12 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             Los precios de abajo son los de hoy.
           </p>
         )}
-        <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">{c.intro}</p>
-        <p className="inline-flex flex-wrap items-center gap-x-2 text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5 mb-8">
+        {destacado && <DestacadoML producto={destacado} lista={productos} />}
+        {/* El texto va después del primer producto */}
+        <p className="text-base text-zinc-400 leading-relaxed mb-3 [text-wrap:pretty]">{c.intro}</p>
+        <p className="text-base sm:text-xs text-zinc-400 mb-6">
           <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} en la comparativa
         </p>
-
-        {destacado && <DestacadoML producto={destacado} lista={productos} />}
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativa de precios de hoy</h2>
@@ -256,47 +293,30 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             <>
             {/* Celular: tarjetas con foto y botón (la tabla dejaba el precio y la compra fuera de pantalla) */}
             <ol className="sm:hidden space-y-3">
-              {productos.map((p, i) => (
+              {productos.map(p => (
                 <li key={p.id_ml} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-3">
                   <div className="flex gap-3">
-                    <div className="relative w-24 h-24 shrink-0 rounded-xl bg-white overflow-hidden">
+                    <div className="w-24 h-24 shrink-0 rounded-xl bg-white overflow-hidden">
                       {p.url_imagen && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.url_imagen} alt="" loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-contain p-1" />
+                        <img src={miniaturaML(p.url_imagen, 'chica')} alt="" width={96} height={96} sizes="96px" loading="lazy" decoding="async" className="w-full h-full object-contain p-1" />
                       )}
-                      <span className="absolute top-1 left-1 rounded-full bg-zinc-900 px-1.5 text-[11px] font-bold text-zinc-200">#{i + 1}</span>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="block text-sm text-zinc-200 hover:text-yellow-400 line-clamp-2">
-                        {p.titulo}
+                      <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className="text-base leading-snug text-zinc-200 hover:text-yellow-400 line-clamp-2">
+                        {nombreCorto(p.titulo)}
                       </a>
-                      <p className="mt-1 flex items-baseline gap-2">
-                        <span className="font-display text-lg font-black text-zinc-50">{precio(p.precio_actual)}</span>
-                        {p.descuento_pct != null && <span className="text-xs font-bold text-red-400">{p.descuento_pct}% OFF</span>}
-                      </p>
-                      {etiquetaEdad(diasDesde(p.precio_visto)) && (
-                        <p className="text-[11px] text-amber-300/90">{etiquetaEdad(diasDesde(p.precio_visto))}</p>
-                      )}
-                      <p className="text-[11px] text-zinc-500">
-                        {p.minimo_historico
-                          ? '📉 En su mínimo histórico'
-                          : p.precio_minimo_registrado
-                            ? `Mínimo registrado: ${precio(p.precio_minimo_registrado)}`
-                            : ' '}
-                      </p>
+                      <p className="mt-1 font-display text-xl font-black leading-tight tabular-nums text-yellow-400">{precio(p.precio_actual)}</p>
+                      <UltVerificacion fecha={p.precio_visto} />
+                      {edadVieja(diasDesde(p.precio_visto)) && <p className="text-base text-amber-300">Confirmalo en ML</p>}
                     </div>
                   </div>
                   <div className="mt-3 flex gap-2">
-                    <a
-                      href={p.url_producto}
-                      rel="sponsored nofollow noopener"
-                      target="_blank"
-                      className="flex-1 rounded-xl bg-yellow-400 px-3 py-2.5 text-center text-sm font-black text-black"
-                    >
-                      Ver oferta en ML ↗
+                    <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className={`${BOTON_ML} flex-1`}>
+                      Ver en Mercado Libre
                     </a>
                     {historial[p.id_ml] && (
-                      <a href={`/precio/${historial[p.id_ml]}`} aria-label="Historial de precio" className="rounded-xl border border-zinc-700 px-3 py-2.5 text-sm font-bold text-zinc-300">
+                      <a href={`/precio/${historial[p.id_ml]}`} aria-label="Historial de precio" className="flex min-h-12 min-w-12 items-center justify-center rounded-xl border border-zinc-700 text-base font-bold text-zinc-300">
                         📈
                       </a>
                     )}
@@ -311,8 +331,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                     <th className="px-3 py-2 font-semibold">#</th>
                     <th className="px-3 py-2 font-semibold">Producto</th>
                     <th className="px-3 py-2 font-semibold whitespace-nowrap">Precio hoy</th>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Descuento</th>
                     <th className="px-3 py-2 font-semibold whitespace-nowrap">Mínimo registrado</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Comprar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -330,22 +350,20 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                               📈 Historial
                             </a>
                           )}
-                          {p.minimo_historico && (
-                            <span className="text-[11px] font-bold text-yellow-400">📉 Mínimo histórico</span>
-                          )}
                         </span>
                       </td>
-                      <td className="px-3 py-2 whitespace-nowrap text-zinc-100 font-semibold">
+                      <td className="px-3 py-2 text-base text-zinc-100 font-semibold">
                         {precio(p.precio_actual)}
-                        {etiquetaEdad(diasDesde(p.precio_visto)) && (
-                          <span className="block text-[11px] font-normal text-amber-300/90">{etiquetaEdad(diasDesde(p.precio_visto))}</span>
-                        )}
-                      </td>
-                      <td className="px-3 py-2 whitespace-nowrap text-red-400 font-bold">
-                        {p.descuento_pct != null ? `${p.descuento_pct}% OFF` : '—'}
+                        <span className="font-normal"><UltVerificacion fecha={p.precio_visto} /></span>
+                        {edadVieja(diasDesde(p.precio_visto)) && <span className="block font-normal text-amber-300">Confirmalo en ML</span>}
                       </td>
                       <td className="px-3 py-2 whitespace-nowrap text-zinc-400">
                         {p.precio_minimo_registrado ? precio(p.precio_minimo_registrado) : '—'}
+                      </td>
+                      <td className="px-3 py-2">
+                        <a href={p.url_producto} rel="sponsored nofollow noopener" target="_blank" className={BOTON_ML}>
+                          Ver en Mercado Libre
+                        </a>
                       </td>
                     </tr>
                   ))}
@@ -365,7 +383,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             </a>
           )}
           <p className="text-xs text-zinc-500 mt-3">
-            Cómo armamos esta comparativa: no probamos los productos. Comparamos precio, descuento e historial de
+            Cómo armamos esta comparativa: no probamos los productos. Comparamos precio e historial de
             precios que registramos revisando las ofertas de Mercado Libre. Los links son de afiliado: el precio
             para vos es el mismo.
           </p>
@@ -396,14 +414,11 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   <h3 className="font-bold text-zinc-200 mb-2">{t.titulo}</h3>
                   <ul className="space-y-1.5">
                     {t.items.map(p => (
-                      <li key={p.id_ml} className="flex items-baseline justify-between gap-3 text-sm">
-                        <a href={p.url_producto} rel="sponsored nofollow" target="_blank" className="text-zinc-300 hover:text-yellow-400 line-clamp-1">
-                          {p.titulo}
+                      <li key={p.id_ml} className="flex items-center justify-between gap-3 text-base">
+                        <a href={p.url_producto} rel="sponsored nofollow" target="_blank" className="flex min-h-11 min-w-0 items-center text-zinc-300 hover:text-yellow-400">
+                          <span className="line-clamp-2">{nombreCorto(p.titulo)}</span>
                         </a>
-                        <span className="whitespace-nowrap font-semibold text-zinc-100">
-                          {precio(p.precio_actual)}
-                          {p.descuento_pct != null && <span className="ml-2 text-red-400">-{p.descuento_pct}%</span>}
-                        </span>
+                        <span className="whitespace-nowrap font-semibold text-zinc-100">{precio(p.precio_actual)}</span>
                       </li>
                     ))}
                   </ul>

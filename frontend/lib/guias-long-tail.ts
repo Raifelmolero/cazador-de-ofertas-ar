@@ -994,6 +994,9 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: 'Aire acondicionado solo frío o frío-calor: cuál conviene',
     descripcion:
       'Diferencia entre un split solo frío y uno frío-calor (bomba de calor): para qué sirve cada uno, qué clima te conviene y cuándo vale la pena pagar de más.',
+    seoTitulo: 'Aire acondicionado frío calor o solo frío: cuál conviene',
+    seoDescripcion:
+      'Aire acondicionado frío calor vs solo frío: diferencia, consumo y cuándo conviene. Con los split frío/calor inverter en oferta hoy en Mercado Libre.',
     pregunta: '¿Conviene un aire acondicionado solo frío o frío-calor?',
     respuestaCorta:
       'Un split frío-calor enfría en verano y también calefacciona en invierno usando la misma unidad; el solo frío únicamente enfría y suele costar menos. Si vas a usarlo todo el año o no tenés otra calefacción, el frío-calor suele convenir; si solo lo necesitás para el verano, el solo frío alcanza.',
@@ -1528,6 +1531,9 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: 'Aspiradora inalámbrica o con cable: cuál conviene',
     descripcion:
       'Comparación entre aspiradoras verticales inalámbricas y las de cable: potencia, autonomía, peso, filtros y qué conviene según tu casa.',
+    seoTitulo: 'Aspiradora con cable o inalámbrica: ¿cuál conviene? (W vs V)',
+    seoDescripcion:
+      '¿2000 W con cable o 25 V inalámbrica? Qué significan los watts y los volts, cuánto dura la batería y cuál conviene según tu casa. Con ofertas de hoy.',
     pregunta: '¿Conviene una aspiradora inalámbrica o una con cable?',
     respuestaCorta:
       'La inalámbrica es más cómoda para limpiar rápido y por zonas; la de cable no depende de la batería y suele rendir parejo en casas grandes. Mirá la autonomía declarada, el tipo de filtro y el tamaño del depósito antes de decidir.',
@@ -2324,9 +2330,12 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: 'Black Friday en Argentina: qué conviene comprar y cómo no caer en falsos descuentos',
     descripcion:
       'Cómo aprovechar el Black Friday en Mercado Libre Argentina: qué productos suelen bajar, cómo comparar con el precio de las semanas anteriores, cuotas sin interés y qué revisar antes de pagar.',
+    seoTitulo: 'Black Friday 2026 Argentina: qué conviene comprar',
+    seoDescripcion:
+      'Notebooks como la Lenovo IdeaPad Slim 3, iPhone 16, Galaxy A56 5G y smart TV Samsung 55" QLED: qué conviene comprar en el Black Friday 2026 (27/11).',
     pregunta: '¿Qué conviene comprar en el Black Friday de Argentina?',
     respuestaCorta:
-      'En el Black Friday suelen convenir los productos de precio alto, donde un descuento real se nota en pesos: celulares, notebooks, smart TV, heladeras y aires acondicionados. La clave es comparar con el precio de las semanas anteriores, no con el precio tachado, y fijarse si las cuotas son realmente sin interés.',
+      'En el Black Friday 2026 (viernes 27/11) conviene apuntar a lo que igual ibas a comprar y sale caro: notebooks como la Lenovo IdeaPad Slim 3, celulares como el iPhone 16 o el Samsung Galaxy A56 5G y smart TV como la Samsung 55" QLED Serie D. Ahí es donde una baja real se nota en pesos. Compará el precio final con el de las semanas anteriores y fijate si las cuotas son realmente sin interés.',
     secciones: [
       {
         h: 'Qué suele bajar en el Black Friday',
@@ -2658,9 +2667,12 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: '¿Qué celular comprar en el Black Friday? Qué mirar para no pagar de más',
     descripcion:
       'Cómo elegir un celular en el Black Friday de Mercado Libre Argentina: gama según presupuesto, memoria, batería, cámara, actualizaciones y cómo comparar el precio con el de las semanas anteriores.',
+    seoTitulo: 'Qué celular comprar en el Black Friday 2026: iPhone o Galaxy',
+    seoDescripcion:
+      'iPhone 16 si querés iPhone; Samsung Galaxy A56 5G o S26 FE si preferís Android. Qué mirar antes de comprar en el Black Friday 2026 (27/11) en Argentina.',
     pregunta: '¿Qué celular conviene comprar en el Black Friday?',
     respuestaCorta:
-      'Primero definí el presupuesto y la gama: entrada para uso básico, media para la mayoría y alta si usás mucho la cámara o jugás. Buscá al menos 128 GB de almacenamiento, buena batería y años de actualizaciones del fabricante. En el Black Friday, compará el precio final con el de las semanas anteriores, no con el precio tachado.',
+      'Si querés iPhone, el iPhone 16 de 128 GB es el equilibrio entre precio y años de actualizaciones. En Samsung, el Galaxy A56 5G de 256 GB es la gama media que más rinde, y el Galaxy S26 FE suma prestaciones de gama alta sin llegar al S26 Ultra. Comprá a la tienda oficial o a un distribuidor autorizado, con factura y garantía en Argentina.',
     secciones: [
       {
         h: 'Gama según el uso',
@@ -2712,9 +2724,12 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: '¿Qué notebook comprar en el Black Friday? Procesador, RAM y SSD',
     descripcion:
       'Guía para elegir una notebook en el Black Friday: procesador según el uso, cuánta RAM, disco SSD, pantalla y cómo comparar el precio con el de las semanas anteriores.',
+    seoTitulo: 'Qué notebook comprar en el Black Friday: RAM, SSD y CPU',
+    seoDescripcion:
+      'Para estudio y oficina, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB y 512 GB SSD; para jugar, una con RTX como la Lenovo LOQ. Black Friday 2026: 27/11.',
     pregunta: '¿Qué notebook conviene comprar en el Black Friday?',
     respuestaCorta:
-      'Para estudio y oficina buscá un procesador de gama media (Intel Core i5 o Ryzen 5 o equivalentes), 16 GB de RAM si el presupuesto da (8 GB como mínimo) y un disco SSD de 512 GB. Para juegos o edición, sumá placa de video dedicada. En el Black Friday, compará el precio final con el de las semanas previas.',
+      'Para estudio y oficina, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: es la combinación que no se queda corta en un par de años. Para jugar o editar video hace falta placa de video dedicada, como la RTX 3050 de la Lenovo LOQ. Antes de pagar, mirá en la publicación si trae Windows o viene sin sistema operativo.',
     secciones: [
       {
         h: 'Procesador y RAM',
@@ -2764,9 +2779,12 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: '¿Qué bicicleta comprar en el Black Friday? Tipo, rodado, frenos y precio',
     descripcion:
       'Guía para comprar bicicleta en el Black Friday: qué tipo según por dónde andás, rodado y talle de cuadro, frenos a disco o V-brake, cambios y cómo comparar el precio con el de las semanas anteriores.',
+    seoTitulo: 'Qué bicicleta comprar en el Black Friday 2026: R29 y talles',
+    seoDescripcion:
+      'Mountain bike rodado 29 como la Battle R29 monoplato, o de 21 velocidades con disco como la Overtech Q6. Talle, frenos y rodado para el Black Friday 2026.',
     pregunta: '¿Qué bicicleta conviene comprar en el Black Friday?',
     respuestaCorta:
-      'Primero elegí el tipo según por dónde vas a andar: urbana para la ciudad, mountain bike para tierra y calles rotas, ruta para asfalto. Después el talle de cuadro según tu altura y, si se puede, frenos a disco. En el Black Friday compará el precio final con el historial: una bici de gama media con buen descuento rinde más que una barata sin marca.',
+      'Para tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio como la Battle R29 con monoplato Shimano: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
     secciones: [
       {
         h: 'Tipo y rodado',
@@ -2804,6 +2822,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     enlaces: [
+      { href: '/mejores/black-friday-bicicletas', texto: 'Bicicletas R29 del Black Friday 2026' },
       { href: '/mejores/mejores-bicicletas', texto: 'Bicicletas en oferta' },
       { href: '/guias/que-bicicleta-comprar', texto: 'Qué bicicleta comprar' },
       { href: '/guias/bicicleta-rodado-26-27-5-o-29', texto: 'Rodado 26, 27,5 o 29' },
@@ -2816,9 +2835,12 @@ export const GUIAS_LONG_TAIL: Guia[] = [
     titulo: '¿Qué smart TV comprar en el Black Friday? Pulgadas, panel y sistema',
     descripcion:
       'Cómo elegir un smart TV en el Black Friday: tamaño según la distancia, LED, QLED u OLED, 4K, sistema operativo y cómo comparar el precio con el de las semanas anteriores.',
+    seoTitulo: 'Qué smart TV comprar en el Black Friday 2026 (Argentina)',
+    seoDescripcion:
+      'Para un living común, la Samsung 55" QLED Serie D; para consola, la Hisense 55U6QV con modo juego. Pulgadas, panel y sistema para el Black Friday 2026.',
     pregunta: '¿Qué smart TV conviene comprar en el Black Friday?',
     respuestaCorta:
-      'Elegí primero las pulgadas según la distancia al sillón (a unos 2 metros, 50 a 55 pulgadas van bien), después el tipo de panel: LED es lo más económico, QLED da más brillo y color, y OLED tiene los mejores negros. Que sea 4K y con un sistema que tenga tus apps. En el Black Friday, compará con el precio de las semanas previas.',
+      'Para un living común, la Samsung 55" QLED Serie D: es 4K, a unos 2 metros del sillón 55 pulgadas es el tamaño justo y el QLED da más brillo y color que un LED común. Para consola, la Hisense 55" Mini LED 55U6QV, que tiene modo juego. Antes de comprar, confirmá que el sistema de la tele (Tizen, Google TV o webOS) tenga las apps que usás.',
     secciones: [
       {
         h: 'Tamaño',

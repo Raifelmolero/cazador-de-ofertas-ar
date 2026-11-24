@@ -10,6 +10,9 @@
 import { getEstudio } from '@/lib/estudio'
 import { COMPARATIVAS, getComparativa, indexable } from '@/lib/comparativas'
 import { LANDINGS, indexableLanding } from '@/lib/landings'
+import { LANDINGS_BF } from '@/lib/black-friday-landings'
+import { GUIA_BF_A_LANDING, primeraFrase } from '@/lib/bf-guias'
+import { getGuia } from '@/lib/guias'
 import { BOT_ALERTAS_URL, CALC_URL, INSTAGRAM_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/lib/marca'
 
 const E = getEstudio()
@@ -189,9 +192,15 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [regalos para el Día de la Madre](https://cazadordeofertas.com.ar/mejores/regalos-dia-de-la-madre),
   [ofertas de Black Friday](https://cazadordeofertas.com.ar/mejores/ofertas-black-friday)
   (por rubro: [celulares](https://cazadordeofertas.com.ar/mejores/black-friday-celulares),
+  [celulares baratos hasta $400.000](https://cazadordeofertas.com.ar/mejores/black-friday-celulares-baratos),
+  [gaming: PC y monitores](https://cazadordeofertas.com.ar/mejores/black-friday-gaming),
   [notebooks](https://cazadordeofertas.com.ar/mejores/black-friday-notebooks),
   [smart TV](https://cazadordeofertas.com.ar/mejores/black-friday-smart-tv),
-  [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras)) y
+  [heladeras](https://cazadordeofertas.com.ar/mejores/black-friday-heladeras),
+  [aires acondicionados](https://cazadordeofertas.com.ar/mejores/black-friday-aires-acondicionados),
+  [lavarropas](https://cazadordeofertas.com.ar/mejores/black-friday-lavarropas),
+  [cafeteras](https://cazadordeofertas.com.ar/mejores/black-friday-cafeteras),
+  [bicicletas rodado 29](https://cazadordeofertas.com.ar/mejores/black-friday-bicicletas)) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
   por producto de ticket alto con precio de hoy, precio más bajo registrado
@@ -262,6 +271,10 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [qué celular comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-celular-comprar-black-friday),
   [qué notebook comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-notebook-comprar-black-friday),
   [qué smart TV comprar en el Black Friday](https://cazadordeofertas.com.ar/guias/que-smart-tv-comprar-black-friday),
+  [qué notebook comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-notebook-comprar-black-friday-2026)
+  (para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB y 512 GB SSD),
+  [qué TV de 50 pulgadas comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-tv-50-pulgadas-comprar-black-friday-2026)
+  (para la mayoría, la Noblex 50" DV50X8580 4K con Google TV),
   [ventilador de pie, de techo o turbo](https://cazadordeofertas.com.ar/guias/ventilador-de-pie-de-techo-o-turbo),
   [cómo mantener limpia el agua de la pileta](https://cazadordeofertas.com.ar/guias/como-mantener-el-agua-de-la-pileta),
   [gazebo o sombrilla](https://cazadordeofertas.com.ar/guias/gazebo-o-sombrilla-cual-conviene),
@@ -366,8 +379,38 @@ function seccionAutomatica(): string {
   return partes.length ? NL + partes.join(NL + NL) + NL : ''
 }
 
+// Black Friday 2026: cada landing y cada guía con una línea de qué recomienda (la primera frase de su
+// «respuesta corta», la misma que se ve arriba de la página). Va antes de «Notas para citar este sitio».
+const SITIO = 'https://cazadordeofertas.com.ar'
+function seccionBlackFriday(): string {
+  const landings = LANDINGS_BF.map(l => `- [${l.h1}](${SITIO}/mejores/${l.slug}): ${primeraFrase(l.respuestaCorta)}`)
+  const guias = Object.keys(GUIA_BF_A_LANDING)
+    .map(slug => getGuia(slug))
+    .filter(g => g !== undefined)
+    .map(g => `- [${g.titulo}](${SITIO}/guias/${g.slug}): ${primeraFrase(g.respuestaCorta)}`)
+  return [
+    '## Black Friday 2026 Argentina',
+    '',
+    'Viernes 27 de noviembre de 2026. Listas cortas elegidas a mano, con link directo a la publicación de',
+    'Mercado Libre; el precio que mostramos es el último visto (hasta 7 días) y puede cambiar.',
+    '',
+    '### Landings por rubro',
+    ...landings,
+    '',
+    '### Guías',
+    ...guias,
+    '',
+    '',
+  ].join(NL)
+}
+
+const NOTAS = '## Notas para citar este sitio'
+
 export async function GET() {
-  return new Response(sinNoindex(CONTENT) + seccionAutomatica(), {
+  const base = sinNoindex(CONTENT)
+  const i = base.indexOf(NOTAS)
+  const conBF = i >= 0 ? base.slice(0, i) + seccionBlackFriday() + base.slice(i) : base + NL + seccionBlackFriday()
+  return new Response(conBF + seccionAutomatica(), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   })
 }

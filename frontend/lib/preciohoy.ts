@@ -17,6 +17,9 @@ export interface PrecioHoy {
   nombre: string // "smart TV de 55 pulgadas"
   patron: RegExp // sobre el título normalizado (minúsculas, sin tildes)
   excluir?: string[] // en las primeras 5 palabras: accesorios/repuestos
+  /** Se mira en TODO el título: «Reacondicionado» va al final («iPhone 12 mini 64 GB - Excelente (Reacondicionado)»);
+   *  «100% Batería» es la marca de un equipo usado («Apple iPhone 14 (128gb) 100% Batería + Cable»). */
+  excluirTodo?: string[]
   /** Tiene que aparecer en las primeras 3 palabras: el producto ES eso y no un
    *  accesorio «para notebook» (el 6/11 el «desde» del título era un adaptador
    *  Bluetooth de $6.629 en notebook y pastillas limpia-lavarropas en lavarropas). */
@@ -70,7 +73,7 @@ export const PRECIOS_HOY: PrecioHoy[] = [
   { slug: 'notebook-16gb-ram', fem: true, nombre: 'notebook con 16 GB de RAM', patron: /\b16 ?gb( de)? ram\b|\b16 ?gb,? (ddr[45]|\d{3} ?gb|\d ?tb)/, inicio: /notebook|macbook|laptop/, excluir: ['funda', 'mochila', 'cargador', 'soporte', 'bateria', 'teclado', 'mesa', 'memoria', 'parlante', 'mouse', 'cooler', 'base', 'hub', 'adaptador', 'bisagra', 'sticker'], busqueda: 'notebook 16gb ram', categoria: 'notebooks', consejo: '16 GB de RAM sirve para tener muchas pestañas y programas abiertos, edición liviana y juegos; para estudiar o trabajar con lo básico alcanzan 8 GB. Fijate que la RAM no sea soldada si querés ampliarla más adelante, y que el disco sea SSD.', minOfertas: 3 },
   { slug: 'monitor', nombre: 'monitor', patron: /monitor/, inicio: /^(\S+ )?monitor\b/, excluir: ['arterial', 'presion', 'bebe', 'soporte', 'brazo', 'tensiometro', 'vlog', 'selfie', 'lampara'], busqueda: 'monitor', categoria: 'monitores', consejo: '24" Full HD sirve para casi todo; para jugar, 144 Hz o más. IPS da mejores colores.' },
   // Tecnología: la mitad de la ganancia de oct-2026 fueron celulares y notebooks.
-  { slug: 'iphone', nombre: 'iPhone', patron: /^(celular |smartphone )?(apple )?iphone \d/, excluir: CELU_EXCLUIR, busqueda: 'iphone', categoria: 'celulares', consejo: 'Compará la capacidad (128, 256 o 512 GB) antes que el modelo: es lo que más cambia el precio. Comprá a la tienda oficial de Apple o a vendedores con garantía en Argentina, y fijate que diga "nuevo" y no "reacondicionado".' },
+  { slug: 'iphone', nombre: 'iPhone', patron: /^(celular |smartphone )?(apple )?iphone \d/, excluir: CELU_EXCLUIR, excluirTodo: ['reacondicionado', 'usado', '% bateria'], busqueda: 'iphone', categoria: 'celulares', consejo: 'Compará la capacidad (128, 256 o 512 GB) antes que el modelo: es lo que más cambia el precio. Comprá a la tienda oficial de Apple o a vendedores con garantía en Argentina, y fijate que diga "nuevo" y no "reacondicionado".' },
   { slug: 'samsung-galaxy-s', nombre: 'Samsung Galaxy S', patron: /galaxy s\d{2}/, excluir: CELU_EXCLUIR, busqueda: 'samsung galaxy s', categoria: 'celulares', consejo: 'La versión Ultra suma lápiz y mejor zoom; la base y la Plus alcanzan para casi todo. Fijate que sea la versión para Argentina (con garantía oficial de Samsung).' },
   { slug: 'motorola-moto-g', nombre: 'Motorola Moto G', patron: /moto ?g\d|motorola g\d/, excluir: CELU_EXCLUIR, busqueda: 'motorola moto g', categoria: 'celulares', consejo: 'Es la gama media más vendida: pedí al menos 8 GB de RAM y 256 GB para que no se quede corto en dos años. Los Moto G con 5G cuestan poco más y duran más.' },
   { slug: 'celular', nombre: 'celular', patron: /^(celular|smartphone)\b|^(apple )?iphone \d|^(samsung|motorola|xiaomi|zte|tcl|nokia|honor|realme|oppo|infinix|tecno)\b.*\b\d+ ?gb\b/, excluir: CELU_EXCLUIR, busqueda: 'celular', categoria: 'celulares', consejo: 'Definí primero el presupuesto y la memoria (128 GB como mínimo). Para durar, conviene una marca con actualizaciones y service en Argentina.' },
@@ -90,7 +93,12 @@ function coincide(p: PrecioHoy, titulo: string) {
   const t = normalizar(titulo)
   const inicio = t.split(/\s+/).slice(0, 5).join(' ')
   const primeras = t.split(/\s+/).slice(0, 3).join(' ')
-  return p.patron.test(t) && !(p.excluir ?? []).some(x => inicio.includes(x)) && (!p.inicio || p.inicio.test(primeras))
+  return (
+    p.patron.test(t) &&
+    !(p.excluir ?? []).some(x => inicio.includes(x)) &&
+    !(p.excluirTodo ?? []).some(x => t.includes(x)) &&
+    (!p.inicio || p.inicio.test(primeras))
+  )
 }
 
 export function ofertasDe(p: PrecioHoy): ProductWithMargins[] {

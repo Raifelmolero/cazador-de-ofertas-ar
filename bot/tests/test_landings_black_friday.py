@@ -580,7 +580,9 @@ class TestOfertasCalculadora(unittest.TestCase):
 
     def test_boton_48px_tracking_y_black_friday(self):
         self.assertIn("min-h-[48px]", self.comp)
-        self.assertIn('data-evento="calcml_oferta_boton"', self.comp)
+        # El evento es una prop (la calculadora de consumo usa otro); el default sigue siendo calcml.
+        self.assertIn("evento = 'calcml_oferta_boton'", self.comp)
+        self.assertIn("data-evento={evento}", self.comp)
         self.assertIn('rel="sponsored nofollow noopener"', self.comp)
         self.assertIn("/black-friday", self.comp)
         self.assertIn("a.dataset.evento", (FRONT / "app" / "clics-ml.tsx").read_text(encoding="utf-8"))

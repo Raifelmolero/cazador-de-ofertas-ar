@@ -19,6 +19,8 @@ import { PRECIOS_HOY, getPrecioHoy, mediana, ofertasDe, seguidosDe, art, precioH
 import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import TambienTeServira from '@/components/TambienTeServira'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaDestacado } from '@/lib/cta-destacados'
 import { extrasDeCategoria, relacionadosDePrecioHoy } from '@/lib/relacionados'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
@@ -67,8 +69,9 @@ const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: 
             () => `iPhone: precio hoy${desde}`,
             () => 'iPhone: precio hoy en Argentina',
           ],
+    // 24/11 (ctr-cta): «nuevo» porque la lista ya no suma reacondicionados (lib/preciohoy, excluirTodo).
     descripcion: (desde, n) =>
-      `Cuánto sale el iPhone hoy en Mercado Libre Argentina: desde ${desde}, con ${ofertas(n)} y el historial de precio de cada modelo. Elegí el tuyo y compralo ahí.`,
+      `Cuánto sale un iPhone nuevo hoy en Mercado Libre Argentina: desde ${desde}, ${ofertas(n)} y el historial de cada modelo. El que conviene, con link directo.`,
   },
   // 24/11: «tv / televisor / smart tv 32 pulgadas», ~390 impresiones en posición 10-14.
   'smart-tv-32-pulgadas': {
@@ -153,6 +156,9 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   const referencia = med || mediana(seguidos.map(precioActual))
   const tambien = relacionadosDePrecioHoy(p.categoria, new Set(seguidos.map(x => x.id)), referencia, 4)
   const tambienExtras = extrasDeCategoria(p.categoria, p.slug)
+  // Bloque de productos elegidos con botón en la primera pantalla (lote ctr-cta 24/11,
+  // lib/cta-destacados.ts). Hoy solo iPhone: 2.866 impresiones en 7 días y 0 clics.
+  const destacado = ctaDestacado(`/precio-hoy/${p.slug}`)
 
   // El párrafo que un buscador o una IA puede citar tal cual
   const respuesta = ofertas.length
@@ -247,7 +253,11 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         <h1 className="font-display text-xl sm:text-4xl font-black leading-[1.1] tracking-tight mb-3 [text-wrap:balance]">
           {titulo(p.nombre)}
         </h1>
-        {ofertas[0] && <DestacadoML producto={ofertas[0]} lista={ofertas} rotulo="El más barato que vimos" />}
+        {destacado ? (
+          <CtaOfertaDestacada cta={destacado} className="mb-4" />
+        ) : (
+          ofertas[0] && <DestacadoML producto={ofertas[0]} lista={ofertas} rotulo="El más barato que vimos" />
+        )}
         <p className="mb-6 inline-flex text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
           <LastUpdated scrapedAt={scrapedAt} />
         </p>

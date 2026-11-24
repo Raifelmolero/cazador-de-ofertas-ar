@@ -5,6 +5,7 @@
 import fs from 'fs'
 import path from 'path'
 import { CATEGORIAS, enCategoria, normalizar } from '@/lib/categorias'
+import { seguidosManualesVivos } from '@/lib/seguidos-manuales'
 
 export interface Seguido {
   id: string
@@ -34,7 +35,11 @@ function leer() {
   } catch {
     raw = { items: {} }
   }
-  const items = Object.entries(raw.items).map(([id, v]) => ({ id, ...v }))
+  const delBot = Object.entries(raw.items).map(([id, v]) => ({ id, ...v }))
+  // Fichas confirmadas a mano que el bot no sigue (lib/seguidos-manuales.ts). Van primero para
+  // que entren en las listas recortadas (p. ej. las 30 de «Historial de precios» de /categoria).
+  const manuales = seguidosManualesVivos(raw.actualizado ?? '', new Set(delBot.map(s => s.id)))
+  const items = [...manuales, ...delBot]
   cache = { items, actualizado: raw.actualizado ?? '' }
   return cache
 }

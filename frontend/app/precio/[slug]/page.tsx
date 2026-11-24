@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { MAX_DESCRIPCION, conDiferencia, diferenciadores, tituloSeo } from '@/lib/seo'
+import { MAX_DESCRIPCION, conDiferencia, diferenciadores, recortar, tituloSeo } from '@/lib/seo'
 import AlertaCTA from '@/components/AlertaCTA'
 import TambienTeServira from '@/components/TambienTeServira'
 import { extrasDeCategoria, relacionadosDePrecio } from '@/lib/relacionados'
@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
+import { seoManual } from '@/lib/seguidos-manuales'
 import { CALC_URL } from '@/lib/vender'
 import { COMPARATIVAS } from '@/lib/comparativas'
 import { ofertasDeCategoria } from '@/lib/categorias'
@@ -73,8 +74,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!s) return {}
   const url = `${DEALS_URL}/precio/${principalDe(s).slug}`
   const dif = diferenciaDe(s)
-  const titulo = tituloSeo(s.titulo, conDiferencia(dif, FORMATOS_TITULO))
-  const descripcion = tituloSeo(s.titulo, conDiferencia(dif, [
+  // Fichas confirmadas a mano (lib/seguidos-manuales.ts): title y description propios.
+  const manual = seoManual(s.id)
+  const titulo = manual ? manual.seoTitulo : tituloSeo(s.titulo, conDiferencia(dif, FORMATOS_TITULO))
+  const ultimo = s.serie[s.serie.length - 1]
+  const descripcion = manual
+    ? recortar(`${manual.seoDescripcion} Último precio visto: ${precio(ultimo[1])} el ${fecha(ultimo[0])}.`, MAX_DESCRIPCION)
+    : tituloSeo(s.titulo, conDiferencia(dif, [
     n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
     n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
   ]), MAX_DESCRIPCION)

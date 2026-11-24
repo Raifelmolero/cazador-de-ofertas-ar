@@ -19,18 +19,40 @@ export interface OfertaCalc {
   producto: ProductoBF
 }
 
+/** Calculadora de consumo eléctrico (cazadordeofertas.com.ar, lote ctr-cta 24/11: 1.510 imp /
+ *  0,33 % de CTR en 28 días): mismo bloque, con equipos que gastan menos luz (aire inverter,
+ *  heladera inverter no frost, lavarropas). Sin BGH ni Likon: lo filtra ofertasDeRubros. */
+export const RUBROS_CONSUMO = ['black-friday-aires-acondicionados', 'black-friday-heladeras', 'black-friday-lavarropas'] as const
+
+/** Likon y su id (MLA80862058) tampoco van en estos bloques, además de MARCAS_PROHIBIDAS. */
+const EXCLUIDAS_EXTRA = /\blikon\b/i
+const IDS_EXCLUIDOS = new Set(['MLA80862058'])
+
+/** Primer producto con foto de cada landing BF de `rubros`, hasta `max`. */
+export function ofertasDeRubros(rubros: readonly string[], max: number): OfertaCalc[] {
+  const out: OfertaCalc[] = []
+  for (const slug of rubros) {
+    const l = getLandingBF(slug)
+    if (!l) continue
+    const p = productosBF(l).find(
+      x => x.img && !MARCAS_PROHIBIDAS.test(x.nombre) && !EXCLUIDAS_EXTRA.test(x.nombre) && !IDS_EXCLUIDOS.has(x.id),
+    )
+    if (p) out.push({ slug, rubro: l.rubro, emoji: l.emoji, producto: p })
+    if (out.length >= max) break
+  }
+  return out
+}
+
 let cache: OfertaCalc[] | null = null
 
 export function ofertasCalculadora(): OfertaCalc[] {
-  if (cache) return cache
-  const out: OfertaCalc[] = []
-  for (const slug of RUBROS_CALC) {
-    const l = getLandingBF(slug)
-    if (!l) continue
-    const p = productosBF(l).find(x => x.img && !MARCAS_PROHIBIDAS.test(x.nombre))
-    if (p) out.push({ slug, rubro: l.rubro, emoji: l.emoji, producto: p })
-    if (out.length >= MAX_OFERTAS_CALC) break
-  }
-  cache = out
-  return out
+  cache ??= ofertasDeRubros(RUBROS_CALC, MAX_OFERTAS_CALC)
+  return cache
+}
+
+let cacheConsumo: OfertaCalc[] | null = null
+
+export function ofertasConsumo(): OfertaCalc[] {
+  cacheConsumo ??= ofertasDeRubros(RUBROS_CONSUMO, RUBROS_CONSUMO.length)
+  return cacheConsumo
 }

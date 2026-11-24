@@ -29,7 +29,7 @@ export const SEGUIDOS_MANUALES: SeguidoManual[] = [
     url: 'https://www.mercadolibre.com.ar/martillo-demoledor-900w-85-joules-lusqtoff-maletin-color-naranja/p/MLA25570995?matt_word=web&matt_tool=37267219',
     img: 'https://http2.mlstatic.com/D_NQ_NP_2X_665272-MLU78713137057_082024-F.webp',
     precio_lista: 181999,
-    ultimo_visto: '2026-11-23',
+    ultimo_visto: '2026-11-24',
     relampago: false,
     min: 94108,
     min_ts: '2026-11-21',
@@ -37,7 +37,7 @@ export const SEGUIDOS_MANUALES: SeguidoManual[] = [
     serie: [
       ['2026-10-03', 99999],
       ['2026-11-21', 94108],
-      ['2026-11-23', 94108],
+      ['2026-11-24', 94108],
     ],
     seoTitulo: 'Martillo demoledor Lusqtoff 900 W 8,5 J: precio hoy',
     seoDescripcion:
@@ -50,7 +50,7 @@ export const SEGUIDOS_MANUALES: SeguidoManual[] = [
     url: 'https://www.mercadolibre.com.ar/llave-impacto-inalambrica-20v-12-pulgadas-pektra-brushless/p/MLA42782167?matt_word=web&matt_tool=37267219',
     img: 'https://http2.mlstatic.com/D_NQ_NP_2X_764441-MLA115250057830_082026-F.webp',
     precio_lista: 139999,
-    ultimo_visto: '2026-11-23',
+    ultimo_visto: '2026-11-24',
     relampago: false,
     min: 99999,
     min_ts: '2026-11-15',
@@ -58,7 +58,7 @@ export const SEGUIDOS_MANUALES: SeguidoManual[] = [
     serie: [
       ['2026-11-15', 99999],
       ['2026-11-21', 99999],
-      ['2026-11-23', 99999],
+      ['2026-11-24', 99999],
     ],
     seoTitulo: 'Llave de impacto Pektra 20 V brushless 1/2": precio hoy',
     seoDescripcion:

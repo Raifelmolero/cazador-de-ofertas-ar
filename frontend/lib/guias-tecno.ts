@@ -871,7 +871,7 @@ export const GUIAS_TECNO: Guia[] = [
       'Google TV, Roku, Tizen, webOS o Vidaa: qué sistema de smart TV conviene en Argentina por apps, Chromecast y control por voz. Con precios de hoy.',
     pregunta: '¿Qué sistema operativo de smart TV es mejor?',
     respuestaCorta:
-      'Google TV es el que tiene más apps y trae Chromecast integrado para mandar videos desde el celular; lo usan TCL, Philips, Noblex, BGH y Philco, entre otros. Roku es el más simple y rápido en TV económicos. Tizen (Samsung) y webOS (LG) son muy fluidos y vienen solo en esas marcas. Antes de comprar, confirmá que esté la app que más usás (por ejemplo la de tu cable o un servicio local).',
+      'Google TV es el que tiene más apps y trae Chromecast integrado para mandar videos desde el celular; lo usan TCL, Philips, Noblex y Philco, entre otros. Roku es el más simple y rápido en TV económicos. Tizen (Samsung) y webOS (LG) son muy fluidos y vienen solo en esas marcas. Antes de comprar, confirmá que esté la app que más usás (por ejemplo la de tu cable o un servicio local).',
     secciones: [
       {
         h: 'Google TV y Android TV',
@@ -1903,7 +1903,7 @@ export const GUIAS_TECNO: Guia[] = [
 
 const FECHA_GUIA_TECNO: Record<string, string> = { 'smart-tv-55-pulgadas-cual-comprar': '2026-11-08', 'que-aire-acondicionado-comprar': '2026-11-09', 'que-consola-comprar-black-friday': '2026-11-09', 'mejores-aires-acondicionados-black-friday-2026': '2026-11-13', 'mejores-lavarropas-black-friday-2026': '2026-11-13', 'ps5-digital-standard-o-pro': '2026-11-23' }
 // Guías revisadas después de publicarse (dateModified del JSON-LD).
-const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19' }
+const FECHA_MOD_GUIA_TECNO: Record<string, string> = { 'que-consola-comprar-black-friday': '2026-11-19', 'google-tv-roku-tizen-o-webos-cual-conviene': '2026-11-24' }
 
 export const FECHAS_GUIAS_TECNO: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_TECNO.map(g => {

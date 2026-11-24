@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-24T20:14:42+00:00",
+  "generado": "2026-11-24T23:51:07+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-24T08:30:27+00:00",
+      "ultima_actividad": "2026-11-24T23:51:07+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -17,15 +17,19 @@
       ],
       "metricas": [
         {
+          "label": "Facebook",
+          "valor": 5
+        },
+        {
+          "label": "Telegram",
+          "valor": 3
+        },
+        {
           "label": "whatsapp_kit",
           "valor": 3
         },
         {
-          "label": "Telegram",
-          "valor": 2
-        },
-        {
-          "label": "Facebook",
+          "label": "Threads",
           "valor": 2
         },
         {
@@ -37,12 +41,12 @@
           "valor": 1
         },
         {
-          "label": "Threads",
+          "label": "Instagram",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Dell Inspiron 15 con Ryzen 7 7730u, 64GB RAM y 2TB SSD"
+      "ultimo_trabajo": "Notebook Dell Inspiron 15 con Ryzen 7, 32GB RAM y 2TB SSD"
     },
     {
       "id": "investigacion",
@@ -67,11 +71,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },
@@ -96,7 +100,7 @@
         },
         {
           "label": "Comparativas",
-          "valor": 70
+          "valor": 77
         }
       ],
       "entregas": [
@@ -198,7 +202,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-23T22:27:30+00:00",
+      "ultima_actividad": "2026-11-24T21:00:00+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -210,7 +214,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 17 h"
+          "titulo": "✖ Última publicación hace 12 h"
         },
         {
           "fecha": "",

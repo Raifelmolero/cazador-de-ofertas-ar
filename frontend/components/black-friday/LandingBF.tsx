@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
+import CanalWhatsAppBF from '@/components/black-friday/CanalWhatsAppBF'
 import { miniaturaML } from '@/lib/imagenml'
 import { LANDINGS_BF, actualizadoBF, productosBF, type LandingBF, type ProductoBF } from '@/lib/black-friday-landings'
 import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
@@ -14,6 +15,11 @@ import { fechaAR } from '@/lib/bf-guias'
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
 export const pesos = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
+
+/** Botón grande de la primera pantalla (landings y guías BF): amarillo de marca #FACC15, texto
+ *  negro, 48 px de alto como mínimo, sobre la tarjeta negra del recomendado. */
+export const BOTON_HERO =
+  'mt-3 flex min-h-12 w-full flex-col items-center justify-center rounded-xl bg-[#FACC15] px-4 py-2 text-center text-black shadow-lg transition-transform hover:bg-yellow-300 active:scale-[0.98]'
 /** '2026-11-22' → '22/11' */
 const diaMes = (iso: string) => iso.slice(8, 10) + '/' + iso.slice(5, 7)
 
@@ -151,41 +157,41 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
 
           {principal ? (
             <>
-              <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="mt-3 flex gap-3 rounded-2xl bg-black p-3">
-                <Foto p={principal} tam={84} prioridad />
-                <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">🏆 La que recomendamos</p>
-                  <p className="font-bold text-white leading-snug">{principal.nombre}</p>
-                  <p className="text-xs text-zinc-400">{principal.detalle}</p>
-                  <div className="mt-1">
-                    <Precio p={principal} claro />
+              <div className="mt-3 rounded-2xl bg-black p-3">
+                <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="flex gap-3">
+                  <Foto p={principal} tam={84} prioridad />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">🏆 La que recomendamos</p>
+                    <p className="font-bold text-white leading-snug">{principal.nombre}</p>
+                    <p className="text-xs text-zinc-400">{principal.detalle}</p>
+                    <div className="mt-1">
+                      <Precio p={principal} claro />
+                    </div>
                   </div>
-                </div>
-              </a>
-              {/* Botón principal: link de afiliado del recomendado (productosBF descarta los que no lo tienen).
-                  En 390 px: texto grande en una sola línea y debajo, chico, qué producto abre. */}
-              <a
-                href={principal.url}
-                target="_blank"
-                rel="sponsored nofollow noopener"
-                aria-label={`Ver ${principal.nombre} en Mercado Libre`}
-                data-seccion={`bf_${l.slug}_boton`}
-                className="mt-3 flex min-h-[60px] w-full flex-col items-center justify-center rounded-2xl bg-black px-4 py-2 text-center shadow-lg transition-transform active:scale-[0.98]"
-              >
-                <span className="whitespace-nowrap text-xl font-black leading-tight text-yellow-400">Ver en Mercado Libre ↗</span>
-                <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-zinc-300">{principal.nombre}</span>
-              </a>
+                </a>
+                {/* Botón principal (patrón «oferta destacada»: #FACC15, texto negro, 48 px como mínimo):
+                    link de afiliado del recomendado (productosBF descarta los que no lo tienen).
+                    En 390 px: texto grande en una sola línea y debajo, chico, qué producto abre. */}
+                <a
+                  href={principal.url}
+                  target="_blank"
+                  rel="sponsored nofollow noopener"
+                  aria-label={`Ver ${principal.nombre} en Mercado Libre`}
+                  data-seccion={`bf_${l.slug}_boton`}
+                  className={BOTON_HERO}
+                >
+                  <span className="whitespace-nowrap text-xl font-black leading-tight">Ver en Mercado Libre ↗</span>
+                  <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-black/70">{principal.nombre}</span>
+                </a>
+              </div>
               <LineaConfianza p={principal} claro />
             </>
           ) : (
-            <a
-              href={l.busqueda}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              className="mt-4 flex min-h-[56px] w-full items-center justify-center rounded-2xl bg-black px-4 text-lg font-black text-yellow-400"
-            >
-              Ver en Mercado Libre ↗
-            </a>
+            <div className="mt-4 rounded-2xl bg-black p-3">
+              <a href={l.busqueda} target="_blank" rel="sponsored nofollow noopener" data-seccion={`bf_${l.slug}_boton`} className={BOTON_HERO}>
+                <span className="whitespace-nowrap text-xl font-black leading-tight">Ver en Mercado Libre ↗</span>
+              </a>
+            </div>
           )}
           <p className="mt-2 text-[11px] font-semibold text-black/70 [text-wrap:pretty]">
             Link de afiliado: pagás lo mismo que entrando directo a Mercado Libre. Confirmá el precio ahí antes de comprar.
@@ -215,6 +221,8 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
         >
           ¿Ninguno te convence? Ver todos los modelos en Mercado Libre ↗
         </a>
+
+        <CanalWhatsAppBF placement={`landing_${l.slug}`} className="mt-6" />
 
         <section className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
           <h2 className="font-display text-lg font-black mb-2">Qué mirar antes de comprar</h2>

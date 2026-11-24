@@ -7,7 +7,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
-import { Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import { BOTON_HERO, Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import CanalWhatsAppBF from '@/components/black-friday/CanalWhatsAppBF'
 import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
 import { getLandingBF, productosDeItems } from '@/lib/black-friday-landings'
 import { fechasGuia, type Guia } from '@/lib/guias'
@@ -76,40 +77,39 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
 
           {principal ? (
             <>
-              <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="mt-3 flex gap-3 rounded-2xl bg-black p-3">
-                <Foto p={principal} tam={84} prioridad />
-                <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">🏆 La que recomendamos</p>
-                  <p className="font-bold text-white leading-snug">{principal.nombre}</p>
-                  <p className="text-xs text-zinc-400">{principal.detalle}</p>
-                  <div className="mt-1">
-                    <Precio p={principal} claro />
+              <div className="mt-3 rounded-2xl bg-black p-3">
+                <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="flex gap-3">
+                  <Foto p={principal} tam={84} prioridad />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[11px] font-black uppercase tracking-wide text-yellow-400">🏆 La que recomendamos</p>
+                    <p className="font-bold text-white leading-snug">{principal.nombre}</p>
+                    <p className="text-xs text-zinc-400">{principal.detalle}</p>
+                    <div className="mt-1">
+                      <Precio p={principal} claro />
+                    </div>
                   </div>
-                </div>
-              </a>
-              <a
-                href={principal.url}
-                target="_blank"
-                rel="sponsored nofollow noopener"
-                aria-label={`Ver ${principal.nombre} en Mercado Libre`}
-                data-seccion={`${seccion}_boton`}
-                className="mt-3 flex min-h-[60px] w-full flex-col items-center justify-center rounded-2xl bg-black px-4 py-2 text-center shadow-lg transition-transform active:scale-[0.98]"
-              >
-                <span className="whitespace-nowrap text-xl font-black leading-tight text-yellow-400">Ver en Mercado Libre ↗</span>
-                <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-zinc-300">{principal.nombre}</span>
-              </a>
+                </a>
+                <a
+                  href={principal.url}
+                  target="_blank"
+                  rel="sponsored nofollow noopener"
+                  aria-label={`Ver ${principal.nombre} en Mercado Libre`}
+                  data-seccion={`${seccion}_boton`}
+                  className={BOTON_HERO}
+                >
+                  <span className="whitespace-nowrap text-xl font-black leading-tight">Ver en Mercado Libre ↗</span>
+                  <span className="mt-0.5 max-w-full truncate text-xs font-semibold text-black/70">{principal.nombre}</span>
+                </a>
+              </div>
               <LineaConfianza p={principal} claro />
             </>
           ) : (
             landing && (
-              <a
-                href={landing.busqueda}
-                target="_blank"
-                rel="sponsored nofollow noopener"
-                className="mt-4 flex min-h-[56px] w-full items-center justify-center rounded-2xl bg-black px-4 text-lg font-black text-yellow-400"
-              >
-                Ver en Mercado Libre ↗
-              </a>
+              <div className="mt-4 rounded-2xl bg-black p-3">
+                <a href={landing.busqueda} target="_blank" rel="sponsored nofollow noopener" data-seccion={`${seccion}_boton`} className={BOTON_HERO}>
+                  <span className="whitespace-nowrap text-xl font-black leading-tight">Ver en Mercado Libre ↗</span>
+                </a>
+              </div>
             )
           )}
           <p className="mt-2 text-[11px] font-semibold text-black/70 [text-wrap:pretty]">
@@ -186,6 +186,8 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
             {g.cta.boton} →
           </Link>
         )}
+
+        <CanalWhatsAppBF placement={`guia_${g.slug}`} className="mb-8" />
 
         {g.faq && g.faq.length > 0 && (
           <section className="mb-8">

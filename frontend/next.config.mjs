@@ -74,7 +74,12 @@ const nextConfig = {
     // «cyber-monday»: no hay bucle. Las guías /guias/*cyber-monday* NO se tocan.
     // 24/11: aires, lavarropas y cafeteras iban a /black-friday (genérica) y perdían
     // la relevancia del rubro (~470 impresiones de compra en Search Console).
-    const rubrosBF = ['celulares', 'notebooks', 'smart-tv', 'heladeras', 'aires-acondicionados', 'lavarropas', 'cafeteras']
+    // 24/11 (bf-conv-2411): + los rubros con landing nueva; /mejores/cyber-monday-auriculares
+    // y -colchones existían y caían en /black-friday genérica.
+    const rubrosBF = [
+      'celulares', 'notebooks', 'smart-tv', 'heladeras', 'aires-acondicionados', 'lavarropas', 'cafeteras',
+      'freidoras-de-aire', 'auriculares', 'tablets', 'smartwatch', 'colchones', 'herramientas', 'juguetes',
+    ]
     const cyberABF = [
       ...rubrosBF.map(r => [`/mejores/cyber-monday-${r}`, `/mejores/black-friday-${r}`]),
       ...rubrosBF.map(r => [`/cyber-monday/${r}`, `/mejores/black-friday-${r}`]),

@@ -150,6 +150,22 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
     ],
     verMas: { href: '/mejores/black-friday-celulares', texto: 'Galaxy y iPhone para el Black Friday' },
   },
+  // ── /black-friday (bf-conv-2411, 24/11) ─────────────────────────────────────────────
+  // Respaldo de la primera pantalla: solo se muestra si la caja automática «Lo que podés mirar
+  // hoy» (ofertasVerificadasHome) queda vacía, así la página nunca abre sin producto y botón.
+  // Son los recomendados de las landings BF de más ticket.
+  '/black-friday': {
+    titulo: 'Los que recomendamos para el Black Friday',
+    seccion: 'cta_black_friday',
+    evento: 'cta_black_friday',
+    items: [
+      { id: 'MLA77766168', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La notebook que recomendamos.' },
+      { id: 'MLA47330762', nombre: 'Samsung 55" QLED Serie D', detalle: '4K · QLED', nota: 'El smart TV que recomendamos.' },
+      { id: 'MLA1040287808', nombre: 'Apple iPhone 16', detalle: '128 GB · Negro · Distribuidor autorizado', nota: 'El iPhone que recomendamos.' },
+      { id: 'MLA54262263', nombre: 'Philips XL Series 6,2 L', detalle: 'Freidora de aire · 6,2 litros', nota: 'La freidora que recomendamos.' },
+    ],
+    verMas: { href: '#rubros-bf', texto: 'Elegí tu rubro del Black Friday' },
+  },
 }
 
 /** <title> y meta description por CTR (lote 24/11). `desde` = « desde $X» (con espacio adelante)

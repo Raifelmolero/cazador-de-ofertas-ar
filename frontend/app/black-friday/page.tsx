@@ -28,6 +28,8 @@ import { corregirConcurso } from '@/lib/topconcurso'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
 import { LANDINGS_BF } from '@/lib/black-friday-landings'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaDestacado } from '@/lib/cta-destacados'
 
 const MAX_RESPALDO = 12
 
@@ -115,14 +117,14 @@ const CATEGORIAS_A = [
   { nombre: 'Celulares', detalle: 'gama media y alta vigente', href: '/mejores/black-friday-celulares', id: 'celulares' },
   { nombre: 'Smart TV', detalle: '50 o 55 pulgadas, como referencia', href: '/mejores/black-friday-smart-tv', id: 'smart_tv' },
   { nombre: 'Aires acondicionados', detalle: 'split inverter; las frigorías, según el ambiente', href: '/mejores/black-friday-aires-acondicionados', id: 'aires' },
-  { nombre: 'Herramientas', detalle: 'taladros, soldadoras, amoladoras', href: '/mejores/mejores-taladros', id: 'herramientas' },
+  { nombre: 'Herramientas', detalle: 'taladros, amoladoras, sierras', href: '/mejores/black-friday-herramientas', id: 'herramientas' },
   { nombre: 'Bicicletas', detalle: 'rodado 29 y urbanas', href: '/mejores/mejores-bicicletas', id: 'bicicletas' },
 ]
-const CATEGORIAS_B = [
+const CATEGORIAS_B: { nombre: string; detalle: string; href?: string; id?: string }[] = [
   { nombre: 'Belleza y cuidado personal', detalle: 'kits de skincare, protector solar' },
-  { nombre: 'Hogar, muebles y jardín', detalle: 'colchón 2 plazas, por ejemplo' },
+  { nombre: 'Colchones', detalle: '2 plazas y queen, espuma o resortes', href: '/mejores/black-friday-colchones', id: 'colchones' },
   { nombre: 'Ropa y accesorios', detalle: 'zapatillas, mallas, verano' },
-  { nombre: 'Juegos y juguetes', detalle: 'para adelantar regalos de Navidad' },
+  { nombre: 'Juegos y juguetes', detalle: 'para adelantar regalos de Navidad', href: '/mejores/black-friday-juguetes', id: 'juguetes' },
 ]
 
 const btnWA = 'inline-flex items-center justify-center rounded-xl bg-green-500 hover:bg-green-400 px-6 py-3 text-sm font-bold text-black transition-colors'
@@ -147,6 +149,8 @@ export default function BlackFridayPage() {
   // Google sin producto arriba casi no mandan clics). Notebook, TV y aire con
   // precio visto en los últimos días; el top completo sigue más abajo (#top).
   const yaConviene = ofertasVerificadasHome()
+  // Si esa caja queda vacía, el bloque destacado (lib/cta-destacados.ts): botón amarillo de 48 px arriba igual.
+  const destacado = yaConviene.length === 0 ? ctaDestacado('/black-friday') : null
 
   const faqs = [
     {
@@ -259,9 +263,10 @@ export default function BlackFridayPage() {
               </p>
             </div>
           )}
+          <CtaOfertaDestacada cta={destacado} className="mt-3 sm:mt-6" />
           <CuentaRegresivaBF horaActualizacion={datos.hora_actualizacion_pagina} estadoEvento={datos.estado_evento} />
           {/* Ticket alto por rubro, arriba: cada landing abre con el botón a ML del recomendado */}
-          <nav aria-label="Black Friday por rubro" className="mt-5" data-seccion="bf_rubros_ticket_alto">
+          <nav id="rubros-bf" aria-label="Black Friday por rubro" className="mt-5 scroll-mt-20" data-seccion="bf_rubros_ticket_alto">
             <p className="text-sm font-black text-zinc-100 mb-2">Elegí qué buscás:</p>
             <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {LANDINGS_BF.map(l => (
@@ -385,7 +390,13 @@ export default function BlackFridayPage() {
               <ul className="mt-3 space-y-2 text-sm">
                 {CATEGORIAS_B.map(c => (
                   <li key={c.nombre}>
-                    <span className="font-semibold text-zinc-200">{c.nombre}</span>{' '}
+                    {c.href ? (
+                      <a href={c.href} data-bf-evento="click_categoria" data-bf-categoria={c.id} className={linkTxt}>
+                        {c.nombre} →
+                      </a>
+                    ) : (
+                      <span className="font-semibold text-zinc-200">{c.nombre}</span>
+                    )}{' '}
                     <span className="text-zinc-500">({c.detalle})</span>
                   </li>
                 ))}

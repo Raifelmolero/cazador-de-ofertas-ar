@@ -184,8 +184,225 @@ export const GUIAS_BF_2026: Guia[] = [
       { href: '/guias/que-smart-tv-comprar', texto: 'Qué smart TV comprar' },
     ],
   },
+  // ── Lote del 24/11/2026 (bf-conv-2411) ─────────────────────────────────────────────
+  {
+    slug: 'que-freidora-de-aire-comprar-black-friday-2026',
+    titulo: 'Qué freidora de aire comprar en Black Friday 2026',
+    descripcion:
+      'Qué freidora de aire comprar en el Black Friday 2026 en Argentina: la Philips XL Series de 6,2 litros para una familia, y cuál elegir si son más o si vivís solo.',
+    seoTitulo: 'Qué freidora de aire comprar en Black Friday 2026',
+    seoDescripcion:
+      'Para una familia de 3 o 4, la Philips XL Series de 6,2 litros. Cuántos litros conviene y cuándo una de doble canasto, para el Black Friday del 27/11.',
+    pregunta: '¿Qué freidora de aire conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Para una familia de 3 o 4 personas, la Philips XL Series de 6,2 litros: alcanza para cocinar para todos de una vez. Si son más o querés hacer dos cosas al mismo tiempo, la Novohome de doble canasto (6 + 6 litros); para 1 o 2 personas alcanza una de 4,5 litros, como la Daewoo DAF1857. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+    bf: {
+      landing: 'black-friday-freidoras-de-aire',
+      items: [
+        { id: 'MLA54262263', nombre: 'Philips XL Series 6,2 L', detalle: 'Freidora de aire · 6,2 litros · negra · PHNA13000', nota: 'La que recomendamos para una familia de 3 o 4 personas.' },
+        { id: 'MLA51421298', nombre: 'Novohome doble canasto 12 L', detalle: 'Dos canastos de 6 litros · panel táctil', nota: 'Dos comidas distintas al mismo tiempo.' },
+        { id: 'MLA23078273', nombre: 'Electrolux Experience EAF90 12 L', detalle: 'Freidora de aire · 12 litros · grafito', nota: 'Grande: para familias numerosas.' },
+        { id: 'MLA41829394', nombre: 'Peabody PE-AFD720N 7,2 L', detalle: '7,2 litros · visor · 11 programas · negra', nota: 'Con visor para ver la comida sin abrir.' },
+        { id: 'MLA27351841', nombre: 'Atma Pro FR60AR 6,5 L', detalle: 'Digital · 6,5 litros · blanca' },
+        { id: 'MLA24096771', nombre: 'Daewoo DAF1857 4,5 L', detalle: '4,5 litros · 1400 W · negra', nota: 'Para 1 o 2 personas.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Cuántos litros según la casa',
+      columnas: ['Personas', 'Litros', 'De esta guía'],
+      filas: [
+        ['1 o 2', '3 a 4,5 litros', 'Daewoo DAF1857 (4,5 L)'],
+        ['3 o 4', '6 a 7 litros', 'Philips XL Series (6,2 L), Atma Pro FR60AR (6,5 L) o Peabody (7,2 L)'],
+        ['5 o más', '10 a 12 litros', 'Electrolux EAF90 (12 L)'],
+        ['Dos comidas a la vez', 'Doble canasto', 'Novohome doble canasto (6 + 6 L)'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Por qué la Philips XL Series va primero',
+        p: [
+          'Con 6,2 litros entra comida para 3 o 4 personas en una sola tanda, que es lo que más se usa en una casa. Es de una marca con service en Argentina y repuestos fáciles de conseguir.',
+          'Si casi siempre cocinás para 1 o 2, una más chica ocupa menos lugar y calienta más rápido.',
+        ],
+      },
+      {
+        h: 'Doble canasto o uno grande',
+        p: [
+          'El doble canasto sirve para hacer dos cosas distintas a la vez, por ejemplo papas y milanesas, cada una con su temperatura. Un canasto grande, como el de la Electrolux de 12 litros, conviene para un pollo entero o tandas grandes de lo mismo.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Medí la mesada: las de 10 litros o más son altas y anchas. Confirmá en la publicación los litros reales del canasto y si es apto lavavajillas.',
+          'El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿Cuántos litros de freidora de aire necesito?', a: 'Como referencia, 3 a 4,5 litros para 1 o 2 personas, 6 a 7 litros para 3 o 4 y 10 litros o más si son muchos o querés hacer un pollo entero.' },
+      { q: '¿Gasta mucha luz una freidora de aire?', a: 'Consume entre 1400 y 2200 W mientras calienta, pero cocina en pocos minutos. Para porciones chicas suele gastar menos que prender el horno eléctrico.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-freidoras-de-aire', titulo: 'Las freidoras de aire que elegimos para el Black Friday', boton: 'Ver las freidoras del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-freidoras-de-aire', texto: 'Freidoras de aire del Black Friday 2026' },
+      { href: '/mejores/black-friday-cafeteras', texto: 'Cafeteras del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/freidora-de-aire-cuantos-litros-conviene', texto: 'Cuántos litros de freidora conviene' },
+    ],
+  },
+  {
+    slug: 'que-tablet-comprar-black-friday-2026',
+    titulo: 'Qué tablet comprar en Black Friday 2026',
+    descripcion:
+      'Qué tablet comprar en el Black Friday 2026 en Argentina: la Samsung Galaxy Tab S10 Lite para la mayoría, el iPad 11 si usás iPhone y la Redmi Pad 7 si querés más memoria.',
+    seoTitulo: 'Qué tablet comprar en Black Friday 2026 (Argentina)',
+    seoDescripcion:
+      'Para la mayoría, la Samsung Galaxy Tab S10 Lite. Cuándo conviene el iPad 11, la Xiaomi Redmi Pad 7 o una Lenovo con lápiz en el Black Friday del 27/11.',
+    pregunta: '¿Qué tablet conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Para la mayoría, la Samsung Galaxy Tab S10 Lite de 128 GB y 6 GB de RAM: pantalla de 10,9 pulgadas para series, estudio y videollamadas. Si usás iPhone, el iPad 11 (A16) de 128 GB; si querés más memoria por menos, la Xiaomi Redmi Pad 7 de 256 GB. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+    bf: {
+      landing: 'black-friday-tablets',
+      items: [
+        { id: 'MLA61965090', nombre: 'Samsung Galaxy Tab S10 Lite', detalle: '128 GB · 6 GB de RAM · 10,9"', nota: 'La que recomendamos para la mayoría.' },
+        { id: 'MLA57493504', nombre: 'Apple iPad 11 (A16)', detalle: '11" · 128 GB · 6 GB de RAM · rosa', nota: 'Si ya usás iPhone.' },
+        { id: 'MLA50195168', nombre: 'Xiaomi Redmi Pad 7', detalle: '11,2" · 256 GB · 8 GB de RAM · gris', nota: 'La que más memoria trae.' },
+        { id: 'MLA61753207', nombre: 'Lenovo Idea Tab 11 2.5K', detalle: '128 GB · 8 GB de RAM · con lápiz y funda', nota: 'Viene con lápiz: para tomar apuntes.' },
+        { id: 'MLA59138771', nombre: 'Samsung Galaxy Tab S10 FE+', detalle: '13,1" · 128 GB · 8 GB de RAM · con lápiz', nota: 'Pantalla grande, para dibujar o trabajar.' },
+        { id: 'MLA65189679', nombre: 'Samsung Galaxy Tab A11', detalle: '8,7" · 64 GB · 4 GB de RAM · wifi', nota: 'Chica: para leer o para chicos.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Cuál elegir según el uso',
+      columnas: ['Uso', 'Qué buscar', 'De esta guía'],
+      filas: [
+        ['Series, estudio, videollamadas', '10 u 11 pulgadas, 128 GB', 'Samsung Galaxy Tab S10 Lite'],
+        ['Si tenés iPhone', 'iPadOS, misma cuenta de Apple', 'iPad 11 (A16)'],
+        ['Mucha memoria', '256 GB y 8 GB de RAM', 'Xiaomi Redmi Pad 7'],
+        ['Tomar apuntes', 'Lápiz incluido', 'Lenovo Idea Tab 11 o Galaxy Tab S10 FE+'],
+        ['Leer o para chicos', '8 a 9 pulgadas, liviana', 'Samsung Galaxy Tab A11'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Por qué la Galaxy Tab S10 Lite va primero',
+        p: [
+          'Tiene el tamaño que más se usa (10,9 pulgadas), 128 GB para apps, fotos y series descargadas, y 6 GB de RAM para pasar de una app a otra sin que se trabe. Samsung tiene service en Argentina.',
+          'Si la querés para dibujar o tomar apuntes, mirá en la publicación si viene con lápiz: algunas versiones lo traen.',
+        ],
+      },
+      {
+        h: 'iPad o Android',
+        p: [
+          'Si ya usás iPhone, el iPad comparte fotos, mensajes y apps con tu celular sin hacer nada. Con un celular Android, una Samsung, Xiaomi o Lenovo se llevan mejor y suelen dar más memoria por la misma plata.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Confirmá en la publicación la memoria (64, 128 o 256 GB), si es la versión wifi o con chip y si trae lápiz o funda.',
+          'El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿Cuánta memoria necesita una tablet?', a: '128 GB alcanzan para la mayoría. Con 64 GB se llena rápido si descargás series o juegos; 256 GB si la vas a usar mucho para fotos y videos.' },
+      { q: '¿Tablet o notebook para estudiar?', a: 'La tablet es mejor para leer, mirar clases y tomar apuntes con lápiz. Si vas a escribir trabajos largos o usar programas de la facultad, conviene una notebook.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-tablets', titulo: 'Las tablets que elegimos para el Black Friday', boton: 'Ver las tablets del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-tablets', texto: 'Tablets del Black Friday 2026' },
+      { href: '/mejores/black-friday-notebooks', texto: 'Notebooks del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/tablet-o-notebook-cual-conviene', texto: 'Tablet o notebook, cuál conviene' },
+    ],
+  },
+  {
+    slug: 'que-smartwatch-comprar-black-friday-2026',
+    titulo: 'Qué smartwatch comprar en Black Friday 2026',
+    descripcion:
+      'Qué smartwatch comprar en el Black Friday 2026 en Argentina: el Huawei Watch GT 7 si querés que ande con Android y iPhone, el Apple Watch SE 3 con iPhone y el Galaxy Watch9 con Samsung.',
+    seoTitulo: 'Qué smartwatch comprar en Black Friday 2026',
+    seoDescripcion:
+      'Huawei Watch GT 7, Apple Watch SE 3, Galaxy Watch9 o Garmin: cuál conviene según tu celular y para qué lo usás, para el Black Friday del 27/11.',
+    pregunta: '¿Qué smartwatch conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Si querés uno que funcione con Android y con iPhone y que la batería dure varios días, el Huawei Watch GT 7 de 46 mm, con GPS y NFC. Con iPhone, el Apple Watch SE 3 es el que mejor se integra; con un celular Samsung, el Galaxy Watch9, y para correr, el Garmin Forerunner 170 Music. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+    bf: {
+      landing: 'black-friday-smartwatch',
+      items: [
+        { id: 'MLA77843334', nombre: 'Huawei Watch GT 7 46 mm', detalle: 'GPS · NFC · bluetooth · Android e iOS', nota: 'El que recomendamos: anda con Android y con iPhone.' },
+        { id: 'MLA54110750', nombre: 'Apple Watch SE 3 44 mm', detalle: 'GPS · caja de aluminio · blanco estelar', nota: 'Para iPhone.' },
+        { id: 'MLA75492569', nombre: 'Samsung Galaxy Watch9 44 mm', detalle: 'Bluetooth · resistente al agua 5ATM · grafito', nota: 'Para celulares Samsung.' },
+        { id: 'MLA70715360', nombre: 'Garmin Forerunner 170 Music', detalle: 'GPS · pantalla AMOLED · música', nota: 'Para correr.' },
+        { id: 'MLA43283375', nombre: 'Amazfit T-Rex 3', detalle: 'GPS · mapas sin conexión · 10 ATM', nota: 'Resistente, para aire libre.' },
+        { id: 'MLA39368735', nombre: 'Huawei Watch GT 5 41 mm', detalle: 'Caja de 41 mm · para correr y bici', nota: 'Más chico, para muñecas finas.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Cuál elegir según tu celular y el uso',
+      columnas: ['Situación', 'Qué buscar', 'De esta guía'],
+      filas: [
+        ['Android o iPhone, batería larga', 'Que ande con los dos sistemas', 'Huawei Watch GT 7'],
+        ['Tenés iPhone', 'Integración con el iPhone', 'Apple Watch SE 3'],
+        ['Tenés un Samsung', 'Integración con Galaxy', 'Samsung Galaxy Watch9'],
+        ['Correr', 'GPS y métricas de entrenamiento', 'Garmin Forerunner 170 Music'],
+        ['Aire libre, trekking', 'Resistente y mapas sin conexión', 'Amazfit T-Rex 3'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Primero, tu celular',
+        p: [
+          'El Apple Watch solo funciona con iPhone. El Galaxy Watch anda con cualquier Android, pero saca más jugo con un Samsung. Huawei, Garmin y Amazfit funcionan con Android y con iPhone.',
+        ],
+      },
+      {
+        h: 'Por qué el Huawei Watch GT 7 va primero',
+        p: [
+          'Sirve para casi todos: anda con los dos sistemas, trae GPS para salir a correr sin el celular y la batería dura varios días, así que no hay que cargarlo todas las noches.',
+          'Si tenés iPhone y querés responder mensajes y usar apps desde el reloj, el Apple Watch SE 3 hace más cosas, a cambio de cargarlo casi todos los días.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Confirmá el tamaño de la caja (40 a 42 mm para muñecas finas, 44 a 46 mm para el resto) y si es la versión con GPS o con LTE.',
+          'El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿El Apple Watch funciona con Android?', a: 'No. Necesita un iPhone para configurarse y usarse. Con Android conviene un Galaxy Watch, un Huawei, un Garmin o un Amazfit.' },
+      { q: '¿Cuánto dura la batería de un smartwatch?', a: 'Depende del modelo: el Apple Watch y el Galaxy Watch suelen pedir carga casi diaria; los Huawei, Garmin y Amazfit duran varios días.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-smartwatch', titulo: 'Los smartwatch que elegimos para el Black Friday', boton: 'Ver los smartwatch del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-smartwatch', texto: 'Smartwatch del Black Friday 2026' },
+      { href: '/mejores/black-friday-auriculares', texto: 'Auriculares del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/que-smartwatch-comprar', texto: 'Qué smartwatch comprar' },
+    ],
+  },
 ]
 
+/** Guías del lote del 24/11 (bf-conv-2411): publicadas un día después que las primeras. */
+const PUBLICADAS_24_11 = new Set([
+  'que-freidora-de-aire-comprar-black-friday-2026',
+  'que-tablet-comprar-black-friday-2026',
+  'que-smartwatch-comprar-black-friday-2026',
+])
+
 export const FECHAS_GUIAS_BF_2026: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
-  GUIAS_BF_2026.map(g => [g.slug, { publicada: '2026-11-23', modificada: '2026-11-23' }]),
+  GUIAS_BF_2026.map(g => {
+    const f = PUBLICADAS_24_11.has(g.slug) ? '2026-11-24' : '2026-11-23'
+    return [g.slug, { publicada: f, modificada: f }]
+  }),
 )

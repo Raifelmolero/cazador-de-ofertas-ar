@@ -200,7 +200,14 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   [aires acondicionados](https://cazadordeofertas.com.ar/mejores/black-friday-aires-acondicionados),
   [lavarropas](https://cazadordeofertas.com.ar/mejores/black-friday-lavarropas),
   [cafeteras](https://cazadordeofertas.com.ar/mejores/black-friday-cafeteras),
-  [bicicletas rodado 29](https://cazadordeofertas.com.ar/mejores/black-friday-bicicletas)) y
+  [bicicletas rodado 29](https://cazadordeofertas.com.ar/mejores/black-friday-bicicletas),
+  [freidoras de aire](https://cazadordeofertas.com.ar/mejores/black-friday-freidoras-de-aire),
+  [auriculares](https://cazadordeofertas.com.ar/mejores/black-friday-auriculares),
+  [tablets](https://cazadordeofertas.com.ar/mejores/black-friday-tablets),
+  [smartwatch](https://cazadordeofertas.com.ar/mejores/black-friday-smartwatch),
+  [colchones](https://cazadordeofertas.com.ar/mejores/black-friday-colchones),
+  [herramientas](https://cazadordeofertas.com.ar/mejores/black-friday-herramientas),
+  [juguetes para adelantar la Navidad](https://cazadordeofertas.com.ar/mejores/black-friday-juguetes)) y
   [regalos de Navidad](https://cazadordeofertas.com.ar/mejores/regalos-de-navidad).
 - [Historial de precios](https://cazadordeofertas.com.ar/precio): una página
   por producto de ticket alto con precio de hoy, precio más bajo registrado
@@ -275,6 +282,12 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   (para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB y 512 GB SSD),
   [qué TV de 50 pulgadas comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-tv-50-pulgadas-comprar-black-friday-2026)
   (para la mayoría, la Noblex 50" DV50X8580 4K con Google TV),
+  [qué freidora de aire comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-freidora-de-aire-comprar-black-friday-2026)
+  (para una familia de 3 o 4, la Philips XL Series de 6,2 litros),
+  [qué tablet comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-tablet-comprar-black-friday-2026)
+  (para la mayoría, la Samsung Galaxy Tab S10 Lite de 128 GB),
+  [qué smartwatch comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-smartwatch-comprar-black-friday-2026)
+  (para Android y iPhone, el Huawei Watch GT 7; con iPhone, el Apple Watch SE 3),
   [ventilador de pie, de techo o turbo](https://cazadordeofertas.com.ar/guias/ventilador-de-pie-de-techo-o-turbo),
   [cómo mantener limpia el agua de la pileta](https://cazadordeofertas.com.ar/guias/como-mantener-el-agua-de-la-pileta),
   [gazebo o sombrilla](https://cazadordeofertas.com.ar/guias/gazebo-o-sombrilla-cual-conviene),

@@ -307,6 +307,94 @@ class TestGuiasBF2026(unittest.TestCase):
         self.assertIn("if (g.bf) return <GuiaBFPage g={g} />", pagina)
 
 
+class TestLoteBFConv2411(unittest.TestCase):
+    """Lote del 24/11/2026 (bf-conv-2411): 7 landings BF de rubros que faltaban, 3 guías BF 2026,
+    registro en sitemap/llms/redirects y conversión (botón #FACC15 arriba, sticky y WhatsApp)."""
+
+    SLUGS = {
+        "black-friday-freidoras-de-aire": r"(?i)freidora",
+        "black-friday-auriculares": r"(?i)auricular|airpods",
+        "black-friday-tablets": r"(?i)tablet|ipad|galaxy tab",
+        "black-friday-smartwatch": r"(?i)smartwatch|reloj|watch",
+        "black-friday-colchones": r"(?i)colch[oó]n",
+        "black-friday-herramientas": r"(?i)taladro|rotomartillo|amoladora|sierra|hidrolavadora",
+        "black-friday-juguetes": r"(?i)lego|bloques|mu[ñn]eca|babycorns",
+    }
+    GUIAS = {
+        "que-freidora-de-aire-comprar-black-friday-2026": "black-friday-freidoras-de-aire",
+        "que-tablet-comprar-black-friday-2026": "black-friday-tablets",
+        "que-smartwatch-comprar-black-friday-2026": "black-friday-smartwatch",
+    }
+    EXCLUIDAS = re.compile(r"\b(bgh|hp|omen|victus|vivobook|likon)\b", re.I)
+
+    @classmethod
+    def setUpClass(cls):
+        cls.src = LANDINGS.read_text(encoding="utf-8")
+        cls.bloques = _bloques(cls.src)
+        items = json.loads(CATALOGO.read_text(encoding="utf-8"))["items"]
+        cls.catalogo = {p["id_ml"]: p for p in items}
+        cls.guias_src = (FRONT / "lib" / "guias-bf-2026.ts").read_text(encoding="utf-8")
+
+    def test_landings_del_rubro_y_sin_marcas_excluidas(self):
+        for slug, palabra in self.SLUGS.items():
+            self.assertIn(slug, self.bloques)
+            for i in re.findall(r"id: '(MLA\d+)'", self.bloques[slug]):
+                p = self.catalogo.get(i)
+                if p:  # el bot poda a los 14 días: la página saltea los que ya no están
+                    self.assertRegex(p["titulo"], palabra, i)
+                    self.assertNotRegex(p["titulo"], self.EXCLUIDAS, i)
+            self.assertNotRegex(self.bloques[slug], self.EXCLUIDAS, slug)
+        self.assertIn("vivobook|likon", self.src)  # MARCAS_PROHIBIDAS
+
+    def test_registradas_en_comparativas_llms_y_redirects(self):
+        comp = (FRONT / "lib" / "comparativas.ts").read_text(encoding="utf-8")
+        perennes = comp.split("const PERENNES")[1].split("])")[0]
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        conf = (FRONT / "next.config.mjs").read_text(encoding="utf-8")
+        rubros = re.search(r"const rubrosBF = \[([^\]]+)\]", conf).group(1)
+        for slug in self.SLUGS:
+            self.assertIn(f"slug: '{slug}'", comp)
+            self.assertIn(f"'{slug}'", perennes)
+            self.assertIn(f"/mejores/{slug})", llms)
+            self.assertIn("'" + slug.replace("black-friday-", "") + "'", rubros)
+
+    def test_guias_con_su_landing(self):
+        mapa = (FRONT / "lib" / "bf-guias.ts").read_text(encoding="utf-8")
+        llms = (FRONT / "app" / "llms.txt" / "route.ts").read_text(encoding="utf-8")
+        for guia, landing in self.GUIAS.items():
+            self.assertIn(f"'{guia}': '{landing}'", mapa)
+            self.assertIn(f"slug: '{guia}'", self.guias_src)
+            self.assertIn(f"landing: '{landing}'", self.guias_src)
+            self.assertIn(f"/guias/{guia})", llms)
+            self.assertIn(f"/guias/{guia}'", self.bloques[landing])  # ida y vuelta
+
+    def test_boton_amarillo_arriba_sticky_y_whatsapp(self):
+        landing = COMPONENTE.read_text(encoding="utf-8")
+        guia = (FRONT / "components" / "black-friday" / "GuiaBF.tsx").read_text(encoding="utf-8")
+        boton = re.search(r"export const BOTON_HERO =\s*'([^']+)'", landing).group(1)
+        for clase in ("bg-[#FACC15]", "text-black", "min-h-12", "w-full"):
+            self.assertIn(clase, boton)
+        for src in (landing, guia):
+            self.assertIn("className={BOTON_HERO}", src)
+            self.assertIn("<CtaFijoML", src)  # sticky en el celular
+            self.assertIn("<CanalWhatsAppBF", src)
+        wa = (FRONT / "components" / "black-friday" / "CanalWhatsAppBF.tsx").read_text(encoding="utf-8")
+        self.assertIn("WHATSAPP_URL", wa)
+        self.assertIn("https://whatsapp.com/channel/0029Vb9CICi7DAWspd4ius2Z", (FRONT / "lib" / "marca.ts").read_text(encoding="utf-8"))
+
+    def test_black_friday_con_destacado_y_rubros_nuevos(self):
+        bf = (FRONT / "app" / "black-friday" / "page.tsx").read_text(encoding="utf-8")
+        self.assertIn("ctaDestacado('/black-friday')", bf)
+        self.assertIn("<CtaOfertaDestacada", bf)
+        self.assertIn("<StickyWhatsAppBF", bf)
+        self.assertIn("/mejores/black-friday-herramientas", bf)
+        cta = (FRONT / "lib" / "cta-destacados.ts").read_text(encoding="utf-8")
+        bloque = cta.split("'/black-friday': {")[1].split("\n  },")[0]
+        ids = re.findall(r"id: '(MLA\d+)'", bloque)
+        self.assertGreaterEqual(len(ids), 3)
+        self.assertNotRegex(re.sub(r"//.*", "", bloque), r"\d+\s*%|cup[oó]n|m[ií]nimo hist")
+
+
 class TestAvisoBFCalculadora(unittest.TestCase):
     """Bloque amarillo arriba de la calculadora (calculadoraml.com.ar, etiqueta calcml)."""
 

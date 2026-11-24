@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-24T02:21:23+00:00",
+  "generado": "2026-11-24T08:30:29+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-24T02:21:23+00:00",
+      "ultima_actividad": "2026-11-24T08:30:27+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -42,7 +42,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Hp Fb3093dx Victus 15 Ryzen 7 16gb 1tb Win"
+      "ultimo_trabajo": "Notebook Dell Inspiron 15 con Ryzen 7 7730u, 64GB RAM y 2TB SSD"
     },
     {
       "id": "investigacion",

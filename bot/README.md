@@ -50,8 +50,10 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 
 ### Reel diario (experimental, apagado por defecto)
 
-- `bot/reel.py` genera un MP4 9:16 (v1 ~11 s, v2 ~9 s) con la estética de la
-  marca: gancho «LA CAZA DEL DÍA» → producto → precio de hoy → cierre con
+- `bot/reel.py` genera un MP4 9:16 (~11 s) con UN solo estilo: fondo de rayos
+  amarillo #FACC15 / naranja de la marca, barras negras y texto negro (pedido
+  de Raifel 24/11/2026; se eliminó `render_reel_v2` y el A/B por día).
+  Gancho «LA CAZA DEL DÍA» → producto → precio de hoy → cierre con
   `cazadordeofertas.com.ar/ig` entero al menos 3 s (sin corte al final).
 - Regla 24/11/2026: sin %, «OFF», precio tachado/«Antes»/«Estaba», ahorro ni
   «mínimo histórico» en el video ni en los captions de IG/FB/Threads.

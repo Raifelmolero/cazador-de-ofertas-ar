@@ -84,9 +84,8 @@ class TestCierreReel(unittest.TestCase):
 
         with ExitStack() as st:
             st.enter_context(mock.patch.object(reel.subprocess, "Popen", side_effect=popen))
-            st.enter_context(mock.patch.object(reel, "_scene_close_v2", return_value=_CIERRE))
-            for nombre in ("_scene_hook", "_scene_producto", "_scene_precio",
-                           "_scene_hook_v2", "_scene_main_v2"):
+            st.enter_context(mock.patch.object(reel, "_scene_close", return_value=_CIERRE))
+            for nombre in ("_scene_hook", "_scene_producto", "_scene_precio"):
                 st.enter_context(mock.patch.object(reel, nombre, return_value=_OTRA))
             with tempfile.TemporaryDirectory() as tmp:  # ffmpeg es falso: no se escribe nada
                 fn(DEAL, _img_bytes(), Path(tmp) / "reel.mp4")
@@ -103,13 +102,7 @@ class TestCierreReel(unittest.TestCase):
         self.assertIn("-frames:v", proc.cmd)
         self.assertEqual(proc.cmd[proc.cmd.index("-frames:v") + 1], str(proc.frames))
 
-    def test_v2_cierre_de_3_segundos_enteros(self):
-        self.assertGreaterEqual(reel.DUR_CLOSE_V2, 3.0)
-        self.assertGreaterEqual(reel.DUR_CLOSE_V2 - reel.FADE_V2, 3.0)
-        total = reel.DUR_HOOK_V2 + reel.DUR_MAIN_V2 + reel.DUR_CLOSE_V2
-        self._chequear(self._render(reel.render_reel_v2), total)
-
-    def test_v1_tiene_escena_de_cierre_de_3_segundos(self):
+    def test_tiene_escena_de_cierre_de_3_segundos(self):
         self.assertGreaterEqual(reel.DUR_CLOSE - reel.FADE, 3.0)
         total = reel.DUR_HOOK + reel.DUR_PROD + reel.DUR_PRICE + reel.DUR_CLOSE
         self._chequear(self._render(reel.render_reel), total)
@@ -148,9 +141,9 @@ class TestOverlaysSinDescuento(unittest.TestCase):
         for txt in textos:
             self.assertIsNone(PROHIBIDO.search(txt), f"texto prohibido en el reel: {txt!r}")
 
-    def test_v1_sin_badges_ni_precio_anterior(self):
+    def test_sin_badges_ni_precio_anterior(self):
         card = reel._make_card(_img_bytes())
-        thumb = card.resize((520, 520))
+        thumb = card.resize((480, 480))
         textos = (self._textos(reel._scene_hook, DEAL)
                   + self._textos(reel._scene_producto, DEAL, card)
                   + self._textos(reel._scene_precio, DEAL, thumb))
@@ -158,18 +151,60 @@ class TestOverlaysSinDescuento(unittest.TestCase):
         self.assertIn(reel._fmt(DEAL["price_cur"]), textos)        # precio de hoy
         self.assertNotIn(reel._fmt(DEAL["price_prev"]), " ".join(textos))
 
-    def test_v2_sin_badges_ni_precio_anterior(self):
-        hero = reel._hero_crop(_img_bytes(), 600)
-        textos = (self._textos(reel._scene_hook_v2, DEAL, hero)
-                  + self._textos(reel._scene_main_v2, DEAL, hero))
-        self._sin_prohibidos(textos)
-        self.assertIn(reel._fmt(DEAL["price_cur"]), textos)
-        self.assertNotIn(reel._fmt(DEAL["price_prev"]), " ".join(textos))
-
     def test_cierre_lleva_la_web(self):
-        textos = self._textos(reel._scene_close_v2, DEAL)
+        textos = self._textos(reel._scene_close, DEAL)
         self._sin_prohibidos(textos)
         self.assertIn("cazadordeofertas.com.ar/ig", textos)
+
+
+class TestEstiloUnico(unittest.TestCase):
+    """24/11/2026: Raifel eligió el fondo de rayos amarillo/naranja de marca.
+    Una sola función de render, sin v2 ni A/B por día par/impar."""
+
+    def test_no_queda_v2(self):
+        for nombre in ("render_reel_v2", "_scene_hook_v2", "_scene_main_v2", "_scene_close_v2"):
+            self.assertFalse(hasattr(reel, nombre), nombre)
+        fuente = Path(bot.__file__).read_text(encoding="utf-8")
+        self.assertNotIn("render_reel_v2", fuente)
+        self.assertNotIn("toordinal() % 2", fuente)
+
+    def test_fondo_amarillo_con_rayos_naranja(self):
+        fondo = reel._fondo_rayos()
+        self.assertEqual(fondo.size, (reel.W, reel.H))
+        colores = {c for _, c in fondo.getcolors(maxcolors=1 << 20)}
+        self.assertIn(reel.AMARILLO, colores)
+        self.assertIn(reel.NARANJA, colores)
+        self.assertEqual(reel.AMARILLO, (0xFA, 0xCC, 0x15))
+        # ninguna escena arranca sobre fondo oscuro: la esquina sale del fondo de rayos
+        card = reel._make_card(_img_bytes())
+        for img in (reel._scene_hook(DEAL, 0.0), reel._scene_producto(DEAL, card, 0.0),
+                    reel._scene_precio(DEAL, card.resize((480, 480)), 0.0),
+                    reel._scene_close(DEAL, 0.0)):
+            self.assertIn(img.getpixel((5, 5)), (reel.AMARILLO, reel.NARANJA))
+            self.assertIn(img.getpixel((reel.W - 5, reel.H - 5)), (reel.AMARILLO, reel.NARANJA))
+
+    def test_publish_reel_usa_siempre_el_mismo_estilo(self):
+        deal = dict(DEAL)
+        usados = []
+
+        def fake_render(d, img, out):
+            usados.append(Path(out).name)
+            return out
+
+        resp = mock.MagicMock()
+        resp.__enter__.return_value.read.return_value = _img_bytes()
+        for dia in (1, 2):  # un día par y uno impar: mismo render
+            fecha = bot.datetime(2026, 11, 23 + dia, 12, tzinfo=bot.timezone.utc)
+            fake_dt = mock.MagicMock(wraps=bot.datetime)
+            fake_dt.now.return_value = fecha
+            with mock.patch.object(reel, "render_reel", side_effect=fake_render), \
+                 mock.patch.object(bot, "datetime", fake_dt), \
+                 mock.patch.object(bot.urllib.request, "urlopen", return_value=resp), \
+                 mock.patch("builtins.print"):
+                self.assertEqual(bot.publish_reel(deal, "1", "t", dry=True), (None, False))
+            self.assertEqual(deal["_reel_version"], "rayos")
+        self.assertEqual(len(usados), 2)
+        self.assertTrue(all(n.endswith("-rayos.mp4") for n in usados), usados)
 
 
 class TestCaptionsSinDescuento(unittest.TestCase):

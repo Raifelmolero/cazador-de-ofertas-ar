@@ -2,7 +2,7 @@
 // celular (390 px): arriba la respuesta directa (la que citan Google y las IAs) y el
 // recomendado con el botón grande de afiliado; después la tabla, las secciones, las
 // preguntas y los links a la landing BF del rubro. Mismo estilo que LandingBF.
-// Sin porcentajes de descuento, precios tachados, «mínimo histórico» ni cupones.
+// Sin cifras de descuento ni precios tachados.
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'

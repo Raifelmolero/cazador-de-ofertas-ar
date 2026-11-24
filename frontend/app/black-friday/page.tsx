@@ -171,7 +171,7 @@ export default function BlackFridayPage() {
     },
     {
       q: '¿Cómo sé si un descuento del Black Friday es real?',
-      a: `Comparando el precio de ese día contra lo que el producto costó antes, no contra el precio tachado. En nuestro registro, el ${pct} % de las ofertas que revisamos tenía el descuento inflado: el producto ya se había vendido al menos 5 % más barato. Anotá los precios antes, mirá el historial y, si tenés el link, pegalo en el verificador.`,
+      a: `Comparando el precio de ese día contra lo que el producto costó antes, no contra el precio tachado. En nuestro registro, una parte importante de las ofertas que revisamos (${pct} de cada 100) tenía el descuento inflado: el producto ya se había vendido más barato antes. Anotá los precios antes, mirá el historial y, si tenés el link, pegalo en el verificador.`,
     },
     {
       q: '¿Conviene esperar al 27 o comprar ahora?',
@@ -317,8 +317,8 @@ export default function BlackFridayPage() {
           <h2 className={h2}>Cómo detectar un descuento inflado</h2>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
             En las ofertas de Mercado Libre Argentina que venimos revisando desde el {fechaLarga(estudio.desde)}, el{' '}
-            <strong className="text-zinc-100">{pct} %</strong> tenía el precio tachado inflado: ese mismo producto ya se
-            había vendido al menos 5 % más barato. En el Black Friday, con carteles de &quot;% OFF&quot; por todos lados,
+            <strong className="text-zinc-100">{pct} de cada 100</strong> tenía el precio tachado inflado: ese mismo producto ya se
+            había vendido más barato antes. En el Black Friday, con carteles de descuento por todos lados,
             conviene mirarlo con lupa. El criterio completo está en nuestra{' '}
             <Link href="/metodologia" data-bf-evento="click_metodologia" className={linkTxt}>
               metodología
@@ -335,9 +335,9 @@ export default function BlackFridayPage() {
               vende. Lo que cuenta es lo que el producto costó las semanas previas.
             </li>
             <li>
-              <strong className="text-zinc-100">Mirá el historial y el mínimo histórico.</strong> Si ya estuvo igual o más
-              barato en un día común, o en el Cyber Monday, el Black Friday no te ahorra nada. El sello de mínimo
-              histórico lo usamos cuando el precio de hoy es el más bajo que registramos y lo venimos siguiendo desde hace
+              <strong className="text-zinc-100">Mirá el historial de precios.</strong> Si ya estuvo igual o más
+              barato en un día común, o en el Cyber Monday, el Black Friday no te ahorra nada. Marcamos «el precio más
+              bajo que registramos» cuando el de hoy es el menor que vimos y lo venimos siguiendo desde hace
               al menos 3 días.
             </li>
             <li>
@@ -443,11 +443,7 @@ export default function BlackFridayPage() {
           <a href={DEALS_URL} data-bf-evento="click_ofertas_hoy" className={linkTxt}>
             ofertas de hoy, con buscador y filtros
           </a>
-          . También podés mirar{' '}
-          <a href="/cupones-mercado-libre" data-bf-evento="click_cupones" className={linkTxt}>
-            cupones de Mercado Libre
-          </a>
-          : un cupón descuenta sobre el precio publicado, así que primero fijate que el precio sea bueno.
+          . Antes de comprar, fijate que el precio publicado sea bueno.
         </p>
       </section>
 
@@ -534,7 +530,7 @@ export default function BlackFridayPage() {
         </section>
       </div>
 
-      <Footer brand="ofertas" />
+      <Footer brand="ofertas" sinCupones />
       {wa && <StickyWhatsAppBF href={wa} />}
     </main>
   )

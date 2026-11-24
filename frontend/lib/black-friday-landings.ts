@@ -8,7 +8,7 @@
 //   título, precio, foto y link salen de esos datos al armar el sitio.
 // - Precio solo si se vio hace DIAS_PRECIO_VIEJO días o menos; si no, la tarjeta
 //   queda con el botón y sin precio. Nunca se inventa un precio.
-// - Nada de % de descuento, precio tachado, «mínimo histórico» ni cupones.
+// - Nada de cifras de descuento ni precio tachado.
 // - Sin marcas BGH, HP/OMEN/Victus, Vivobook ni Likon (MARCAS_PROHIBIDAS: se filtran
 //   igual por si alguien carga una por error).
 // - Si un producto ya no está en los datos (el bot poda a los 14 días), no se

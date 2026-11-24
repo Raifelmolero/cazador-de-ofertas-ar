@@ -1,7 +1,7 @@
 // Link al canal de WhatsApp en las landings y guías de Black Friday (bf-conv-2411, 24/11/2026).
 // Mismo canal (lib/marca.ts) y mismos atributos de medición que los botones de /black-friday
 // (data-bf-evento="cta_whatsapp" + data-bf-placement).
-// Sin precios, porcentajes ni cupones.
+// Sin precios ni cifras de descuento.
 import { WHATSAPP_URL } from '@/lib/marca'
 
 export default function CanalWhatsAppBF({ placement, className = '' }: { placement: string; className?: string }) {

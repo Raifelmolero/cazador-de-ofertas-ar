@@ -7,7 +7,7 @@
 // - Respuesta directa arriba, en un párrafo que Google y los asistentes de IA puedan citar.
 // - Solo productos y links de afiliado de los datos del repo (acá van solo los ids);
 //   precio solo si se vio hace 7 días o menos (productosDeItems). Nunca se inventa.
-// - Nada de porcentajes de descuento, precios tachados, «mínimo histórico» ni cupones.
+// - Nada de cifras de descuento ni precios tachados.
 // - Sin marcas BGH ni HP/OMEN/Victus.
 // - seoTitulo ≤ 60 y seoDescripcion ≤ 158 caracteres.
 import type { Guia } from './guias'

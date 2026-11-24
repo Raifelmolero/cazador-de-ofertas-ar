@@ -1,7 +1,7 @@
 // Landing de Black Friday de ticket alto (lib/black-friday-landings.ts), pensada
 // para el celular (390 px): arriba de todo el producto principal con un botón
 // grande «Ver en Mercado Libre»; después la lista corta, qué mirar, otros rubros
-// y preguntas. Sin % de descuento, precios tachados, «mínimo histórico» ni cupones.
+// y preguntas. Sin cifras de descuento ni precios tachados.
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'

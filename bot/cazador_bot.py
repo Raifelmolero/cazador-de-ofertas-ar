@@ -42,6 +42,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR))
 import ml_api  # noqa: E402
+from marcas import marca_excluida, sin_marcas_excluidas  # noqa: E402,F401
 
 MIN_API_CON_DESCUENTO = 20  # ofertas con descuento real para aceptar la fuente API
 CONFIG_PATH = BASE_DIR / "config.json"
@@ -1169,8 +1170,8 @@ def post_deal(token: str, channel: str, deal: dict, link: str, dry: bool,
 def send_ig_kit(token: str, admin: str, deal: dict, link: str, dry: bool) -> None:
     """Manda al admin el pack listo para publicar en Instagram (2 min de trabajo)."""
     caption_ig = (
-        f"🔥 ¡{deal['discount']}% OFF en {deal['title'][:60]}!\n"
-        f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 😱\n"
+        f"🔥 {deal['title'][:60]}\n"
+        f"Precio de hoy: {fmt_price(deal['price_cur'])}\n"
         f"Stock y precio pueden volar 🏃\n"
         f"👉 Link en historias y en el canal de Telegram (bio)\n\n"
         f"{ig_hashtags()}"
@@ -1209,7 +1210,7 @@ def story_kit(deal: dict, affiliate_id: str, word: str,
     ml = affiliate_url(deal["url"], affiliate_id, word)
     return "\n".join([
         "📲 <b>KIT STORY CON LINK</b>",
-        f"{esc(deal['title'][:70])} · {deal['discount']}% OFF · {fmt_price(deal['price_cur'])}",
+        f"{esc(deal['title'][:70])} · {fmt_price(deal['price_cur'])}",
         "",
         "1️⃣ Placa 9:16 (o el video de Don Ofertín de hoy):",
         esc(story_url or deal.get("img") or "(sin imagen)"),
@@ -1322,16 +1323,18 @@ IG_HOOKS = [
     "🚨 ALERTA DE PRECIO",
     "🎯 CAZADA DEL DÍA",
     "🔥 OFERTA REAL, CERO HUMO",
-    "⚡ BAJÓN DE PRECIO",
+    "⚡ PRECIO DE HOY",
     "👀 PRECIO VISTO HOY",
 ]
 
+# Sin ganchos que hablen de "bajó" o de descuentos (regla 24/11/2026: nada de
+# %, "Estaba" ni precio tachado en IG/FB/Threads): solo el precio de hoy.
 TH_HOOKS = [
     "🚨 Alerta de precio:",
     "🎯 Cazada del día:",
     "🔥 Encontré esto y tuve que compartirlo:",
-    "⚡ Bajó de verdad, no es humo:",
-    "👀 Ojo con esto antes de que vuelva a subir:",
+    "⚡ Precio de hoy:",
+    "👀 Ojo con esto:",
 ]
 
 # Pool de hashtags: cada post lleva una mezcla distinta — hashtags idénticos
@@ -1827,21 +1830,16 @@ def ganancia_esperada(deal: dict) -> float:
 
 
 def ig_caption(deal: dict) -> str:
-    ahorro = deal["price_prev"] - deal["price_cur"]
+    """Caption de IG (feed y reel). Regla 24/11/2026: sin %, sin "Estaba" ni
+    precio anterior, sin "mínimo histórico" ni ahorro calculado con el
+    descuento — solo producto, precio de hoy y cómo llegar a la web."""
     sello = sello_temporada(deal["title"])
     if deal.get("relampago"):
         hook = "⚡ OFERTA RELÁMPAGO: dura pocas horas"
     elif sello:
         hook = sello.upper()
-    elif deal.get("hist_low"):
-        hook = "📉 MÍNIMO HISTÓRICO"
     else:
         hook = random.choice(IG_HOOKS)
-    badge = (
-        "📉 Nunca lo registramos más barato que hoy\n"
-        if deal.get("hist_low")
-        else ""
-    )
     # Fecha comercial: cuenta regresiva + la landing escrita (en IG no hay
     # links). Cyber/Black Friday no llevan sello pero sí la landing.
     regalo_ig = ""
@@ -1860,13 +1858,11 @@ def ig_caption(deal: dict) -> str:
     if regalo_ig:
         regalo_ig += "\n"
     return (
-        f"{hook} · {deal['discount']}% OFF a {fmt_price(deal['price_cur'])}\n\n"
+        f"{hook} · {fmt_price(deal['price_cur'])}\n\n"
         f"{deal['title'][:80]}\n\n"
-        f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
-        f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
-        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n"
+        f"✅ Precio de hoy: {fmt_price(deal['price_cur'])}\n"
         f"{('💳 ' + deal['cuotas'] + chr(10)) if deal.get('cuotas') else ''}"
-        f"{badge}\n"
+        f"\n"
         # La web va primero y sola: en IG los links del caption no son
         # clickeables (y la cuenta hoy no puede poner link en la bio), así que
         # se escribe la dirección para tipearla. Telegram queda al final.
@@ -1876,8 +1872,8 @@ def ig_caption(deal: dict) -> str:
         f"🔍 ¿Otro descuento de ML te parece raro? En la web pegás el link y te "
         f"decimos si es real.\n\n"
         f"💾 Guardá este post si lo estás pensando.\n"
-        f"📤 Mandáselo a quien lo estaba buscando.\n\n"
-        f"⏳ En ML los precios cambian sin aviso: cuando vuelve a subir, no avisan.\n\n"
+        f"📤 Mandáselo a quien lo venía buscando.\n\n"
+        f"⏳ En ML los precios cambian sin aviso: si lo venías buscando, miralo hoy.\n\n"
         # Sin @: en IG cualquier "@algo" es una mención clickeable a un perfil
         # de Instagram (si existe una cuenta con ese nombre, va ahí, no a
         # Telegram) — pasó de verdad con una cuenta random homónima.
@@ -1889,10 +1885,10 @@ def ig_caption(deal: dict) -> str:
 
 # Posts de solo texto para Threads (el algoritmo premia lo conversacional).
 TH_CONVO = [
-    "¿{price} por esto está bien o espero? 🤔\n\n{title}\nHoy con {discount}% OFF.\n\n🛒 {link}\n\nYo digo que estos precios no suelen repetirse, pero se aceptan opiniones.",
-    "Debate: {title} a {price} ({discount}% OFF).\n\n¿Se compra o se espera al Black Friday? 👀\n\n🛒 {link}",
-    "Si estabas esperando una señal para comprar {title}, es esta:\n\n{discount}% OFF → {price}.\n\n🛒 {link}",
-    "Regla del cazador: cuando algo que querías baja {discount}%, no se duda.\n\n{title} → {price}\n\n🛒 {link}",
+    "¿{price} por esto está bien o espero? 🤔\n\n{title}\n\n🛒 {link}\n\nYo digo que estos precios no suelen repetirse, pero se aceptan opiniones.",
+    "Debate: {title} a {price}.\n\n¿Se compra o se espera? 👀\n\n🛒 {link}",
+    "Si venías esperando una señal para comprar {title}, es esta:\n\nHoy a {price}.\n\n🛒 {link}",
+    "Regla del cazador: cuando algo que querías aparece a buen precio, no se duda.\n\n{title} → {price}\n\n🛒 {link}",
 ]
 
 
@@ -1904,14 +1900,11 @@ def th_text_caption(deal: dict, link: str) -> str:
     caption = random.choice(TH_CONVO).format(
         title=deal["title"][:60],
         price=fmt_price(deal["price_cur"]),
-        discount=deal["discount"],
         link=link,
     )
-    if deal.get("hist_low"):
-        caption = "📉 Mínimo histórico según nuestro registro.\n\n" + caption
     if len(caption) > 500:
         caption = (
-            f"{deal['discount']}% OFF en {deal['title'][:60]} → "
+            f"{deal['title'][:60]} → "
             f"{fmt_price(deal['price_cur'])}\n\n🛒 {link}"
         )
     return con_whatsapp(caption, THREADS_MAX)
@@ -1922,19 +1915,11 @@ def th_caption(deal: dict, link: str) -> str:
 
     Threads corta en 500 caracteres — si el link es largo, va la versión corta.
     """
-    ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = (
-        "📉 Mínimo histórico:" if deal.get("hist_low") else random.choice(TH_HOOKS)
-    )
-    remate = (
-        "📉 Nunca lo registramos más barato que hoy."
-        if deal.get("hist_low")
-        else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
-    )
+    # Regla 24/11/2026: sin %, "Estaba", precio anterior ni mínimo histórico.
+    hook = random.choice(TH_HOOKS)
+    remate = "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
     caption = (
-        f"{hook} {deal['discount']}% OFF a {fmt_price(deal['price_cur'])}: {deal['title'][:60]}\n\n"
-        f"Estaba {fmt_price(deal['price_prev'])} → hoy {fmt_price(deal['price_cur'])}.\n"
-        f"Son {fmt_price(ahorro)} que quedan en tu bolsillo 💸\n\n"
+        f"{hook} {deal['title'][:60]} a {fmt_price(deal['price_cur'])}\n\n"
         f"🛒 {link}\n\n"
         f"{remate}\n\n"
         f"{VERIF_CTA.format(url=verificador_url('threads'))}"
@@ -1944,8 +1929,7 @@ def th_caption(deal: dict, link: str) -> str:
         caption = f"{cuenta}\n\n{caption}"
     if len(caption) > 500:
         caption = (
-            f"{hook} {deal['discount']}% OFF en {deal['title'][:60]}\n\n"
-            f"De {fmt_price(deal['price_prev'])} a {fmt_price(deal['price_cur'])} 💸\n\n"
+            f"{hook} {deal['title'][:60]} a {fmt_price(deal['price_cur'])}\n\n"
             f"🛒 {link}\n\n"
             f"🔎 {site_url('threads')}"
         )
@@ -1956,22 +1940,14 @@ def fb_caption(deal: dict, link: str) -> str:
     """Caption para Facebook: igual que Threads, el link va clickeable directo
     en el texto — a diferencia de Instagram. Facebook no tiene el límite de
     500 caracteres de Threads, así que no hace falta versión corta."""
-    ahorro = deal["price_prev"] - deal["price_cur"]
-    hook = (
-        "📉 MÍNIMO HISTÓRICO:" if deal.get("hist_low") else random.choice(TH_HOOKS)
-    )
-    remate = (
-        "📉 Nunca lo registramos más barato que hoy."
-        if deal.get("hist_low")
-        else "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
-    )
+    # Regla 24/11/2026: sin %, "Estaba", precio anterior ni mínimo histórico.
+    hook = random.choice(TH_HOOKS)
+    remate = "⏳ En ML el precio cambia sin aviso: si lo venías esperando, es ahora."
     cuenta = cuenta_regresiva(deal["title"])
     return (
         (f"{cuenta}\n\n" if cuenta else "")
-        + f"{hook} {deal['discount']}% OFF en {deal['title'][:90]}\n\n"
-        f"❌ Estaba: {fmt_price(deal['price_prev'])}\n"
-        f"✅ Hoy: {fmt_price(deal['price_cur'])}\n"
-        f"💸 Te quedan {fmt_price(ahorro)} en el bolsillo\n\n"
+        + f"{hook} {deal['title'][:90]}\n\n"
+        f"✅ Precio de hoy: {fmt_price(deal['price_cur'])}\n\n"
         f"🛒 Comprá acá: {link}\n\n"
         f"{remate}\n\n"
         f"{VERIF_CTA.format(url=verificador_url('facebook'))}\n\n"
@@ -2073,6 +2049,15 @@ def ig_publish(deal: dict, ig_user_id: str, ig_token: str, dry: bool,
         return f"media_id {media['id']}"
 
 
+def reel_habilitado() -> bool:
+    """El reel solo se publica con un disparo manual explícito: FORCE_REEL=1
+    desde workflow_dispatch. En el cron (GITHUB_EVENT_NAME=schedule) nunca,
+    aunque alguien deje FORCE_REEL prendido. Ninguna franja lo dispara sola."""
+    if os.getenv("GITHUB_EVENT_NAME") == "schedule":
+        return False
+    return os.getenv("FORCE_REEL") == "1"
+
+
 def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple[str | None, bool]:
     """Genera el reel del día (bot/reel.py) y lo publica como REELS en IG.
 
@@ -2083,20 +2068,19 @@ def publish_reel(deal: dict, ig_user_id: str, ig_token: str, dry: bool) -> tuple
     if not deal.get("img"):
         print("[warn] Reel: la oferta no tiene imagen, salteo")
         return None, False
-    from reel import render_reel, render_reel_v2  # requiere Pillow + ffmpeg
+    from reel import render_reel  # requiere Pillow + ffmpeg
 
     req = urllib.request.Request(ig_image_url(deal["img"]), headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=30) as resp:
         image_bytes = resp.read()
 
-    # A/B del diseño (tarjeta #21): días pares v2, impares v1. La versión
-    # queda en el nombre del archivo y en posts_log ("v") para compararlas.
-    version = "v2" if datetime.now(timezone.utc).toordinal() % 2 == 0 else "v1"
-    deal["_reel_version"] = version
-    fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}-{version}.mp4"
+    # Un solo estilo (24/11/2026): fondo de rayos amarillo/naranja de marca.
+    # Se terminó el A/B v1/v2; en posts_log queda "v": "rayos".
+    deal["_reel_version"] = "rayos"
+    fname = f"reel-{datetime.now(timezone.utc).strftime('%Y%m%d-%H')}-rayos.mp4"
     out = BASE_DIR / "reels" / fname
     deal["sello_temporada"] = sello_temporada(deal["title"]).lstrip("🎁🎄 ").upper()
-    (render_reel_v2 if version == "v2" else render_reel)(deal, image_bytes, out)
+    render_reel(deal, image_bytes, out)
     deal["_reel_path"] = str(out)  # lo usa shorts.cross_post (YouTube/TikTok)
     if dry:
         print(f"[DRY] reel renderizado en {out}")
@@ -2531,7 +2515,10 @@ def main() -> int:
             alert_admin(token, cfg["admin_chat"],
                         scrape_alert_text(SCRAPE_BLOCKED, len(deals)), dry)
 
-    candidates = [d for d in deals if es_candidata(d, cfg, posted)]
+    # Marcas que no se publican en ningún canal (HP/OMEN/Victus/Omnibook,
+    # BGH/Likon, Vivobook): se sacan ANTES de armar el lote. La web sigue
+    # igual (se arma con `deals`, no con el lote).
+    candidates = [d for d in deals if es_candidata(d, cfg, posted) and not marca_excluida(d["title"])]
     # Ganancia esperada primero (ticket × comisión, con plus por mínimo
     # histórico y relámpago): pocas ventas grandes valen más que muchas chicas.
     candidates.sort(key=ganancia_esperada, reverse=True)
@@ -2550,13 +2537,15 @@ def main() -> int:
     # vigentes ya enfriadas (van al final: la estrella de IG sigue siendo nueva).
     if not scrape and len(to_post) < cfg.get("max_posts", 5):
         falta = cfg.get("max_posts", 5) - len(to_post)
-        repub = republicables(deals, cfg, posted)[:falta]
+        repub = sin_marcas_excluidas(republicables(deals, cfg, posted))[:falta]
         if repub:
             print(f"[info] re-publico {len(repub)} manuales vigentes (enfriamiento {REPUB_COOLDOWN_HORAS} h)")
         to_post += repub
     # Variedad en IG: la estrella (to_post[0]) no repite familia más de 2 veces
     # en las últimas 6 publicaciones de IG.
     to_post = elegir_estrella(to_post, categorias_recientes_ig())
+    # Red final: nada de marcas excluidas en lo que se publica, venga de donde venga.
+    to_post = sin_marcas_excluidas(to_post)
 
     # Las últimas ofertas del lote quedan EXCLUSIVAS del canal: no salen ni en
     # IG (que siempre usa to_post[0], el producto estrella) ni en la web. Es el
@@ -2621,8 +2610,8 @@ def main() -> int:
     save_state(state)
 
     # Instagram: post de feed + story en los runs de mediodía y tarde
-    # (12/17hs ART). El run de la noche (21hs ART) publica el reel en vez
-    # del feed — ver bloque de abajo. Si hay credenciales de la API publica
+    # (12/17hs ART). El run de la noche (21hs ART) ya no publica el reel solo
+    # (ver bloque de abajo). Si hay credenciales de la API publica
     # solo; si no (o si falla), manda el kit manual.
     ig_slot = slot in ("midday", "evening")
     if (os.getenv("FORCE_IG_KIT") == "1" or ig_slot) and to_post:
@@ -2684,10 +2673,10 @@ def main() -> int:
         else:
             send_ig_kit(token, cfg["admin_chat"], best, best_link, dry)
 
-    # Reel diario: reemplaza el post de feed en el run de la noche (21hs ART
-    # = 0-2 UTC), para no sumar volumen total sobre el feed. FORCE_REEL=1
-    # lo fuerza en cualquier horario (test manual vía workflow_dispatch).
-    if (os.getenv("FORCE_REEL") == "1" or slot == "night") and to_post:
+    # Reel: YA NO sale solo en el run de la noche (24/11/2026: dos reels
+    # salieron mal sin revisión). Solo con FORCE_REEL=1, que se prende a mano
+    # desde workflow_dispatch; el cron nunca lo dispara.
+    if reel_habilitado() and to_post:
         r_deal = to_post[0]
         r_user_id = os.getenv("IG_USER_ID", "")
         r_token = os.getenv("IG_ACCESS_TOKEN", "")
@@ -2808,7 +2797,8 @@ def main() -> int:
             "📋 Para el canal de WhatsApp (copiá y pegá el mensaje de abajo):",
             dry,
         )
-        kit = elegir_kit_wa(deals, to_post, recent_kit_ids())
+        kit = sin_marcas_excluidas(
+            elegir_kit_wa(sin_marcas_excluidas(deals), to_post, recent_kit_ids()))
         alert_admin(token, cfg["admin_chat"], wa_kit(kit, affiliate_id, tool_wa, paginas), dry)
         if not dry:  # una entrada por oferta del kit (canal "whatsapp_kit")
             for d in kit:

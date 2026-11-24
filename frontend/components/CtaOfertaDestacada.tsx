@@ -2,7 +2,7 @@
 // Google y casi no mandan clics a ML (lib/cta-destacados.ts). Componente de servidor,
 // sin JS propio. Mobile-first: botón de 48 px, amarillo de marca (#FACC15) con texto
 // negro (BOTON_ML). Fotos chicas del CDN de ML sin optimizador (ver CLAUDE.md).
-// Sin % de descuento, tachados, «mínimo histórico» ni cupones: precio solo si se vio
+// Sin cifras de descuento ni tachados: precio solo si se vio
 // hace 7 días o menos, con la fecha en que se vio.
 // El clic lo mide app/clics-ml.tsx: `clic_ml` con data-seccion y, por data-evento, el
 // evento propio de cada página.

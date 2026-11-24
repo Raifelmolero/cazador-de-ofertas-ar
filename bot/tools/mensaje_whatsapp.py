@@ -34,6 +34,8 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "bot"))
+from marcas import marca_excluida  # noqa: E402
 DATOS = REPO / "frontend" / "data"
 BASE_REVISAR = Path("C:/Users/pc/Desktop/CAZADOR DE OFERTAS AR/PARA REVISAR")
 NOMBRE_ARCHIVO = "whatsapp-canal.md"
@@ -196,6 +198,8 @@ def candidatos(productos: list[dict], seguimiento: dict, hoy: date,
     infladas = infladas or set()
     out = []
     for it in productos:
+        if marca_excluida(it.get("titulo") or ""):
+            continue  # marcas que no se publican (HP, BGH, Vivobook...)
         c = evaluar(it, seguimiento.get(it.get("id_ml")), hoy, infladas)
         if c:
             out.append(c)

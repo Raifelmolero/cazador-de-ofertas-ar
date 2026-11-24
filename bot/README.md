@@ -50,12 +50,18 @@ Corre en GitHub Actions 3 veces por día (12:00, 17:00 y 21:00 hora Argentina).
 
 ### Reel diario (experimental, apagado por defecto)
 
-- `bot/reel.py` genera un MP4 9:16 de ~8,5 s con la estética de la marca:
-  gancho «LA CAZA DEL DÍA» → producto con zoom y sello CAZADO → revelación
-  de precio + LINK EN BIO
+- `bot/reel.py` genera un MP4 9:16 (~11 s) con UN solo estilo: fondo de rayos
+  amarillo #FACC15 / naranja de la marca, barras negras y texto negro (pedido
+  de Raifel 24/11/2026; se eliminó `render_reel_v2` y el A/B por día).
+  Gancho «LA CAZA DEL DÍA» → producto → precio de hoy → cierre con
+  `cazadordeofertas.com.ar/ig` entero al menos 3 s (sin corte al final).
+- Regla 24/11/2026: sin %, «OFF», precio tachado/«Antes»/«Estaba», ahorro ni
+  «mínimo histórico» en el video ni en los captions de IG/FB/Threads.
 - Solo se publica forzándolo: **Actions → Run workflow → `force_reel`**
-  (sube el video al repo en `bot/reels/` y lo publica vía `media_type=REELS`)
-- Cuando el formato esté aprobado, se le suma un horario fijo en `main()`
+  (sube el video al repo en `bot/reels/` y lo publica vía `media_type=REELS`).
+  El cron (franja night incluida) NUNCA lo publica, aunque quede `FORCE_REEL=1`.
+- Marcas que no salen en ningún canal: `bot/marcas.py` (HP/OMEN/Victus/
+  Omnibook, BGH/Likon, Vivobook; «7.5 Hp» de un compresor no cuenta).
 
 ### Threads (3 posts por día)
 

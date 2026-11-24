@@ -49,6 +49,8 @@ const PERENNES = new Set([
   'black-friday-aires-acondicionados', 'black-friday-bicicletas',
   'black-friday-lavarropas', 'black-friday-cafeteras',
   'black-friday-celulares-baratos', 'black-friday-gaming',
+  'black-friday-freidoras-de-aire', 'black-friday-auriculares', 'black-friday-tablets',
+  'black-friday-smartwatch', 'black-friday-colchones', 'black-friday-herramientas', 'black-friday-juguetes',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",
@@ -678,6 +680,113 @@ const TODAS: Comparativa[] = [
       'Fijate qué incluye la PC (monitor, teclado, mouse, Windows) antes de comparar.',
     ],
     guia: 'que-monitor-gamer-comprar',
+  },
+  // Lote del 24/11/2026 (bf-conv-2411). La página la arma la landing curada
+  // (lib/black-friday-landings.ts); esto queda para generateStaticParams, sitemap e imagen OG.
+  {
+    slug: 'black-friday-freidoras-de-aire',
+    nombre: 'freidoras de aire en el Black Friday',
+    titulo: `Black Friday ${AÑO} freidoras de aire Argentina: cuál comprar`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): freidoras de aire de 4,5 a 12 litros elegidas, con link directo a Mercado Libre.',
+    intro: 'Freidoras de aire de marcas conocidas, de 4,5 a 12 litros, elegidas para el Black Friday.',
+    categoria: 'freidoras-de-aire',
+    criterios: [
+      'Litros según la casa: 3 a 4,5 para 1 o 2 personas; 6 a 7 para una familia.',
+      'Canasto antiadherente fácil de lavar.',
+      'Mirá las medidas: las grandes ocupan bastante mesada.',
+    ],
+    guia: 'que-freidora-de-aire-comprar-black-friday-2026',
+  },
+  {
+    slug: 'black-friday-auriculares',
+    nombre: 'auriculares en el Black Friday',
+    titulo: `Black Friday ${AÑO} auriculares Argentina: cuáles comprar`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): auriculares in-ear y de vincha, con y sin cancelación de ruido, elegidos con link directo a Mercado Libre.',
+    intro: 'Auriculares inalámbricos in-ear y de vincha elegidos para el Black Friday.',
+    keywords: ['auriculares', 'airpods', 'galaxy buds', 'redmi buds'],
+    criterios: [
+      'In-ear para salir y entrenar; de vincha para viajar y trabajar muchas horas.',
+      'Cancelación activa de ruido si viajás en colectivo, subte o avión.',
+      'Batería con y sin cancelación de ruido.',
+    ],
+    guia: 'que-auriculares-comprar',
+  },
+  {
+    slug: 'black-friday-tablets',
+    nombre: 'tablets en el Black Friday',
+    titulo: `Black Friday ${AÑO} tablets Argentina: Samsung, iPad y Xiaomi`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): tablets Samsung, iPad, Xiaomi y Lenovo elegidas, con link directo a Mercado Libre.',
+    intro: 'Tablets de 8,7 a 13 pulgadas elegidas para el Black Friday.',
+    keywords: ['tablet', 'ipad'],
+    criterios: [
+      'Pantalla de 10 u 11 pulgadas para series y estudio.',
+      '128 GB y 6 u 8 GB de RAM si la vas a usar con muchas apps.',
+      'Con chip solo si la usás fuera de casa sin wifi.',
+    ],
+    guia: 'que-tablet-comprar-black-friday-2026',
+  },
+  {
+    slug: 'black-friday-smartwatch',
+    nombre: 'smartwatch en el Black Friday',
+    titulo: `Black Friday ${AÑO} smartwatch Argentina: cuál comprar`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): smartwatch Huawei, Apple Watch, Galaxy Watch, Garmin y Amazfit elegidos, con link directo a Mercado Libre.',
+    intro: 'Relojes inteligentes para Android y para iPhone elegidos para el Black Friday.',
+    keywords: ['smartwatch', 'reloj inteligente', 'apple watch', 'galaxy watch'],
+    criterios: [
+      'Compatibilidad: el Apple Watch solo funciona con iPhone.',
+      'GPS propio si salís a correr sin el celular.',
+      'Batería: de un día a varios días según el modelo.',
+    ],
+    guia: 'que-smartwatch-comprar-black-friday-2026',
+  },
+  {
+    slug: 'black-friday-colchones',
+    nombre: 'colchones en el Black Friday',
+    titulo: `Black Friday ${AÑO} colchones Argentina: espuma o resortes`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): colchones de espuma y de resortes elegidos, de 1 ½ plaza a queen, con link directo a Mercado Libre.',
+    intro: 'Colchones de espuma y de resortes de marcas conocidas, elegidos para el Black Friday.',
+    categoria: 'colchones',
+    criterios: [
+      'Medí la cama: 2 plazas es 140 × 190; queen, 160 × 200.',
+      'Espuma de alta densidad o resortes pocket.',
+      'Confirmá si el envío lo sube al piso.',
+    ],
+    guia: 'que-colchon-comprar-firmeza-y-material',
+  },
+  {
+    slug: 'black-friday-herramientas',
+    nombre: 'herramientas en el Black Friday',
+    titulo: `Black Friday ${AÑO} herramientas Argentina: taladros y más`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): taladros, rotomartillos, amoladoras, sierras e hidrolavadoras elegidos, con link directo a Mercado Libre.',
+    intro: 'Herramientas eléctricas para la casa y para obra, elegidas para el Black Friday.',
+    categoria: 'herramientas-electricas',
+    criterios: [
+      'Inalámbrico para arreglos sueltos; con cable para trabajos largos.',
+      'Percutor para ladrillo; rotomartillo para hormigón.',
+      'Fijate si trae batería y cargador.',
+    ],
+    guia: 'que-taladro-comprar-para-la-casa',
+  },
+  {
+    slug: 'black-friday-juguetes',
+    nombre: 'juguetes en el Black Friday',
+    titulo: `Black Friday ${AÑO} juguetes Argentina: regalos de Navidad`,
+    descripcion:
+      'Black Friday 2026 en Argentina (viernes 27/11): Lego, bloques magnéticos y muñecas para adelantar los regalos de Navidad, con link directo a Mercado Libre.',
+    intro: 'Juguetes de marcas conocidas para adelantar los regalos de Navidad.',
+    categoria: 'bebes-y-jugueteria',
+    criterios: [
+      'Edad recomendada: está en la caja y en la publicación.',
+      'Comprá con tiempo: la semana previa al 24 los envíos se cargan.',
+      'Preferí tiendas oficiales: hay copias de las marcas conocidas.',
+    ],
+    guia: 'que-regalarle-a-un-chico-en-navidad',
   },
   {
     slug: 'regalos-de-navidad',

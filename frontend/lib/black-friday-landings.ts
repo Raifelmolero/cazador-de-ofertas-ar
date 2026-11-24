@@ -8,9 +8,9 @@
 //   título, precio, foto y link salen de esos datos al armar el sitio.
 // - Precio solo si se vio hace DIAS_PRECIO_VIEJO días o menos; si no, la tarjeta
 //   queda con el botón y sin precio. Nunca se inventa un precio.
-// - Nada de % de descuento, precio tachado, «mínimo histórico» ni cupones.
-// - Sin marcas BGH ni HP/OMEN/Victus (MARCAS_PROHIBIDAS: se filtran igual por si
-//   alguien carga una por error).
+// - Nada de cifras de descuento ni precio tachado.
+// - Sin marcas BGH, HP/OMEN/Victus, Vivobook ni Likon (MARCAS_PROHIBIDAS: se filtran
+//   igual por si alguien carga una por error).
 // - Si un producto ya no está en los datos (el bot poda a los 14 días), no se
 //   muestra; si no queda ninguno, la página manda a la búsqueda de ML.
 import { getProductoById } from '@/lib/productos'
@@ -20,7 +20,7 @@ import { busquedaML } from '@/lib/afiliado'
 import { FECHA_REVISION_BF } from '@/lib/bf-guias'
 
 /** Marcas que no se muestran en estas landings. */
-export const MARCAS_PROHIBIDAS = /\b(bgh|hp|omen|victus)\b/i
+export const MARCAS_PROHIBIDAS = /\b(bgh|hp|omen|victus|vivobook|likon)\b/i
 
 export interface ItemBF {
   /** id de ML tal cual figura en los datos del repo */
@@ -466,6 +466,303 @@ export const LANDINGS_BF: LandingBF[] = [
       { href: '/guias/que-consola-comprar-black-friday', texto: 'Guía: qué consola comprar en el Black Friday' },
       { href: '/mejores/mejores-monitores-gamer', texto: 'Monitores gamer en oferta hoy' },
       { href: '/mejores/black-friday-notebooks', texto: 'Notebooks para el Black Friday 2026' },
+    ],
+  },
+  // ── Lote del 24/11/2026 (bf-conv-2411): rubros que faltaban, con productos del catálogo vistos
+  //    entre el 18 y el 24/11. Zapatillas quedó afuera (sin guías del rubro para enlazar, talle por
+  //    publicación); monitores ya están en black-friday-gaming.
+  {
+    slug: 'black-friday-freidoras-de-aire',
+    rubro: 'Freidoras de aire',
+    emoji: '🍟',
+    h1: 'Freidoras de aire para el Black Friday 2026',
+    titulo: 'Black Friday 2026 freidoras de aire Argentina: cuál comprar',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: freidoras de aire Philips, Electrolux, Cuisinart, Peabody y Atma de 4,5 a 12 litros, con link a Mercado Libre.',
+    keywords: ['black friday 2026 freidoras de aire argentina', 'freidora de aire black friday 2026', 'airfryer black friday', 'freidora de aire cyber monday', 'freidora de aire mercado libre black friday'],
+    intro:
+      'Freidoras de aire de marcas conocidas, de 4,5 a 12 litros, para cocinar sin aceite. Arriba, la que más recomendamos para una familia de 3 o 4 personas.',
+    respuestaCorta:
+      'Para una familia de 3 o 4 personas, la Philips XL Series de 6,2 litros: alcanza para cocinar para todos de una vez y es de una marca con service en Argentina. Si son más o querés hacer dos cosas al mismo tiempo, la Novohome de doble canasto (6 + 6 litros); para 1 o 2 personas alcanza una de 4,5 litros, como la Daewoo DAF1857.',
+    items: [
+      { id: 'MLA54262263', nombre: 'Philips XL Series 6,2 L', detalle: 'Freidora de aire · 6,2 litros · negra · PHNA13000', nota: 'La que recomendamos para una familia de 3 o 4 personas.' },
+      { id: 'MLA23078273', nombre: 'Electrolux Experience EAF90 12 L', detalle: 'Freidora de aire · 12 litros · grafito', nota: 'Grande: para familias numerosas.' },
+      { id: 'MLA51421298', nombre: 'Novohome doble canasto 12 L', detalle: 'Dos canastos de 6 litros · panel táctil', nota: 'Dos comidas distintas al mismo tiempo.' },
+      { id: 'MLA66543250', nombre: 'Cuisinart AIR700AR 7 L', detalle: 'Freidora de aire · 7 litros · 1700 W · gris' },
+      { id: 'MLA41829394', nombre: 'Peabody PE-AFD720N 7,2 L', detalle: '7,2 litros · visor · 11 programas · negra', nota: 'Con visor para ver la comida sin abrir.' },
+      { id: 'MLA27351841', nombre: 'Atma Pro FR60AR 6,5 L', detalle: 'Digital · 6,5 litros · blanca' },
+      { id: 'MLA24096771', nombre: 'Daewoo DAF1857 4,5 L', detalle: '4,5 litros · 1400 W · negra', nota: 'Para 1 o 2 personas.' },
+    ],
+    criterios: [
+      'Litros según la casa: 3 a 4,5 para 1 o 2 personas; 6 a 7 para una familia; 10 o más (o doble canasto) si son muchos.',
+      'Canasto antiadherente que se pueda lavar fácil (mejor si va al lavavajillas).',
+      'Visor y panel digital con programas son cómodos, pero no hacen falta para cocinar bien.',
+      'Mirá las medidas: las de 10 litros o más ocupan bastante mesada.',
+    ],
+    faq: [
+      { q: '¿Qué freidora de aire conviene comprar en el Black Friday 2026?', a: 'Para una familia de 3 o 4 personas, una de 6 a 7 litros como la Philips XL Series de 6,2 litros de esta página. Si son más, una de 12 litros o de doble canasto; para 1 o 2 personas alcanza una de 4,5 litros.' },
+      { q: '¿Cuántos litros de freidora de aire necesito?', a: 'Como referencia, 3 a 4,5 litros para 1 o 2 personas, 6 a 7 litros para una familia de 3 o 4 y 10 litros o más si cocinás para muchos o querés hacer un pollo entero.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('freidora de aire'),
+    enlaces: [
+      { href: '/guias/que-freidora-de-aire-comprar-black-friday-2026', texto: 'Guía: qué freidora de aire comprar en Black Friday 2026' },
+      { href: '/guias/freidora-de-aire-cuantos-litros-conviene', texto: 'Guía: cuántos litros de freidora conviene' },
+      { href: '/guias/que-freidora-de-aire-comprar', texto: 'Guía: qué freidora de aire comprar' },
+      { href: '/mejores/mejores-freidoras-de-aire', texto: 'Freidoras de aire en oferta hoy' },
+      { href: '/mejores/black-friday-cafeteras', texto: 'Cafeteras para el Black Friday 2026' },
+    ],
+  },
+  {
+    slug: 'black-friday-auriculares',
+    rubro: 'Auriculares',
+    emoji: '🎧',
+    h1: 'Auriculares para el Black Friday 2026',
+    titulo: 'Black Friday 2026 auriculares Argentina: cuáles comprar',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: auriculares Sony, Apple AirPods, Samsung Galaxy Buds, Soundcore y Redmi, in-ear y de vincha, con link a ML.',
+    keywords: ['black friday 2026 auriculares argentina', 'auriculares black friday 2026', 'airpods black friday argentina', 'auriculares bluetooth cyber monday', 'auriculares cancelacion de ruido black friday'],
+    intro:
+      'Auriculares inalámbricos de marcas conocidas: in-ear para salir y entrenar, y de vincha para viajar o trabajar muchas horas. Arriba, los que más recomendamos para la mayoría.',
+    respuestaCorta:
+      'Para la mayoría, los Sony WF-C710N: son in-ear inalámbricos con cancelación de ruido, que es lo que más se nota en el colectivo o en la oficina. Si tenés iPhone, los Apple AirPods 4 con cancelación de ruido; si preferís de vincha, los Soundcore Space One también cancelan ruido y los Sony WH-CH520 son los más simples y livianos.',
+    items: [
+      { id: 'MLA48785783', nombre: 'Sony WF-C710N', detalle: 'In-ear · bluetooth · cancelación de ruido · azul', nota: 'Los que recomendamos para la mayoría.' },
+      { id: 'MLA40520105', nombre: 'Apple AirPods 4 con cancelación de ruido', detalle: 'In-ear · cancelación activa de ruido', nota: 'Los que mejor se llevan con un iPhone.' },
+      { id: 'MLA54106888', nombre: 'Apple AirPods Pro 3', detalle: 'In-ear · cancelación de ruido · blancos', nota: 'Los AirPods más completos.' },
+      { id: 'MLA58012436', nombre: 'Samsung Galaxy Buds3 FE', detalle: 'In-ear · cancelación activa de ruido', nota: 'Para celulares Samsung.' },
+      { id: 'MLA29041007', nombre: 'Soundcore Space One', detalle: 'Vincha (over-ear) · cancelación de ruido · LDAC', nota: 'De vincha, para viajar.' },
+      { id: 'MLA23138487', nombre: 'Sony WH-CH520', detalle: 'Vincha (on-ear) · bluetooth · negros', nota: 'De vincha, simples y livianos.' },
+      { id: 'MLA73944450', nombre: 'Xiaomi Redmi Buds 8', detalle: 'In-ear · bluetooth · negros', nota: 'Los más baratos de la lista.' },
+    ],
+    criterios: [
+      'Formato: in-ear para salir y entrenar; de vincha para viajar y trabajar muchas horas.',
+      'Cancelación activa de ruido (ANC) si viajás en colectivo, subte o avión: es lo que más se nota.',
+      'Batería: mirá las horas con y sin cancelación de ruido, y cuánto suma el estuche.',
+      'Con iPhone, los AirPods se conectan y cambian de equipo solos; con Samsung, los Galaxy Buds.',
+    ],
+    faq: [
+      { q: '¿Qué auriculares conviene comprar en el Black Friday 2026?', a: 'Para la mayoría, unos in-ear inalámbricos con cancelación de ruido, como los Sony WF-C710N de esta página. Con iPhone, los AirPods 4 con cancelación de ruido; si preferís de vincha, los Soundcore Space One.' },
+      { q: '¿Vale la pena la cancelación de ruido?', a: 'Si viajás en colectivo, subte o avión, o trabajás en un lugar con ruido, sí: es lo que más cambia la experiencia. Para usarlos en casa o para entrenar, no hace falta.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('auriculares bluetooth cancelacion de ruido'),
+    enlaces: [
+      { href: '/guias/que-auriculares-comprar', texto: 'Guía: qué auriculares comprar' },
+      { href: '/guias/auriculares-con-cancelacion-de-ruido-vale-la-pena', texto: 'Guía: ¿vale la pena la cancelación de ruido?' },
+      { href: '/guias/auriculares-open-ear-o-in-ear', texto: 'Guía: auriculares open ear o in-ear' },
+      { href: '/mejores/mejores-auriculares', texto: 'Auriculares en oferta hoy' },
+      { href: '/mejores/black-friday-smartwatch', texto: 'Smartwatch para el Black Friday 2026' },
+    ],
+  },
+  {
+    slug: 'black-friday-tablets',
+    rubro: 'Tablets',
+    emoji: '🖼️',
+    h1: 'Tablets para el Black Friday 2026',
+    titulo: 'Black Friday 2026 tablets Argentina: Samsung, iPad y Xiaomi',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: tablets Samsung Galaxy Tab, iPad, Xiaomi Redmi Pad y Lenovo Idea Tab elegidas, con link a Mercado Libre.',
+    keywords: ['black friday 2026 tablets argentina', 'tablet black friday 2026', 'ipad black friday argentina', 'galaxy tab black friday', 'tablet cyber monday'],
+    intro:
+      'Tablets de marcas con service en Argentina, de 8,7 a 13 pulgadas, para series, estudio y videollamadas. Arriba, la que más recomendamos para la mayoría.',
+    respuestaCorta:
+      'Para la mayoría, la Samsung Galaxy Tab S10 Lite de 128 GB y 6 GB de RAM: pantalla de 10,9 pulgadas para series, estudio y videollamadas, de una marca con service en Argentina. Si usás iPhone, el iPad 11 (A16) de 128 GB; si querés más memoria por menos, la Xiaomi Redmi Pad 7 de 256 GB y 8 GB de RAM.',
+    items: [
+      { id: 'MLA61965090', nombre: 'Samsung Galaxy Tab S10 Lite', detalle: '128 GB · 6 GB de RAM · 10,9"', nota: 'La que recomendamos para la mayoría.' },
+      { id: 'MLA57493504', nombre: 'Apple iPad 11 (A16)', detalle: '11" · 128 GB · 6 GB de RAM · rosa', nota: 'Si ya usás iPhone.' },
+      { id: 'MLA50195168', nombre: 'Xiaomi Redmi Pad 7', detalle: '11,2" · 256 GB · 8 GB de RAM · gris', nota: 'La que más memoria trae de la lista.' },
+      { id: 'MLA61753207', nombre: 'Lenovo Idea Tab 11 2.5K', detalle: '128 GB · 8 GB de RAM · con lápiz y funda', nota: 'Viene con lápiz: para tomar apuntes.' },
+      { id: 'MLA59138771', nombre: 'Samsung Galaxy Tab S10 FE+', detalle: '13,1" · 128 GB · 8 GB de RAM · con lápiz', nota: 'Pantalla grande, para dibujar o trabajar.' },
+      { id: 'MLA65189679', nombre: 'Samsung Galaxy Tab A11', detalle: '8,7" · 64 GB · 4 GB de RAM · wifi', nota: 'Chica y barata: para leer o para chicos.' },
+    ],
+    criterios: [
+      'Pantalla: 8 a 9 pulgadas para leer y llevar; 10 a 11 para series y estudio; 12 o más para dibujar o trabajar.',
+      'Memoria: 128 GB y 6 u 8 GB de RAM si la vas a usar para estudiar o con muchas apps.',
+      'Lápiz: algunas lo traen en la caja; si lo vas a usar, sumalo a la cuenta.',
+      'Con chip (LTE o 5G) solo si la vas a usar fuera de casa sin wifi.',
+    ],
+    faq: [
+      { q: '¿Qué tablet conviene comprar en el Black Friday 2026?', a: 'Para la mayoría, una de 10 u 11 pulgadas con 128 GB, como la Samsung Galaxy Tab S10 Lite de esta página. Si usás iPhone, el iPad 11 (A16); si querés más memoria por menos, la Xiaomi Redmi Pad 7.' },
+      { q: '¿Tablet o notebook?', a: 'La tablet es mejor para series, leer, videollamadas y tomar apuntes con lápiz. Si vas a escribir mucho, usar programas de oficina o de la facultad, conviene una notebook.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('tablet 128gb'),
+    enlaces: [
+      { href: '/guias/que-tablet-comprar-black-friday-2026', texto: 'Guía: qué tablet comprar en Black Friday 2026' },
+      { href: '/guias/que-tablet-comprar', texto: 'Guía: qué tablet comprar' },
+      { href: '/guias/tablet-o-notebook-cual-conviene', texto: 'Guía: tablet o notebook, cuál conviene' },
+      { href: '/mejores/mejores-tablets', texto: 'Tablets en oferta hoy' },
+      { href: '/mejores/black-friday-notebooks', texto: 'Notebooks para el Black Friday 2026' },
+    ],
+  },
+  {
+    slug: 'black-friday-smartwatch',
+    rubro: 'Smartwatch',
+    emoji: '⌚',
+    h1: 'Smartwatch para el Black Friday 2026',
+    titulo: 'Black Friday 2026 smartwatch Argentina: cuál comprar',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: smartwatch Huawei, Apple Watch, Samsung Galaxy Watch, Garmin y Amazfit elegidos, con link a Mercado Libre.',
+    keywords: ['black friday 2026 smartwatch argentina', 'smartwatch black friday 2026', 'apple watch black friday argentina', 'reloj inteligente black friday', 'smartwatch cyber monday'],
+    intro:
+      'Relojes inteligentes de marcas conocidas, para Android y para iPhone. Arriba, el que más recomendamos si querés que funcione con los dos y que la batería dure días.',
+    respuestaCorta:
+      'Si querés uno que funcione con Android y con iPhone y que la batería dure varios días, el Huawei Watch GT 7 de 46 mm, con GPS y NFC. Con iPhone, el Apple Watch SE 3 es el que mejor se integra; con un celular Samsung, el Galaxy Watch9, y para correr, el Garmin Forerunner 170 Music.',
+    items: [
+      { id: 'MLA77843334', nombre: 'Huawei Watch GT 7 46 mm', detalle: 'GPS · NFC · bluetooth · Android e iOS', nota: 'El que recomendamos: anda con Android y con iPhone.' },
+      { id: 'MLA54110750', nombre: 'Apple Watch SE 3 44 mm', detalle: 'GPS · caja de aluminio · blanco estelar', nota: 'Para iPhone.' },
+      { id: 'MLA75492569', nombre: 'Samsung Galaxy Watch9 44 mm', detalle: 'Bluetooth · resistente al agua 5ATM · grafito', nota: 'Para celulares Samsung.' },
+      { id: 'MLA70715360', nombre: 'Garmin Forerunner 170 Music', detalle: 'GPS · pantalla AMOLED · música', nota: 'Para correr.' },
+      { id: 'MLA43283375', nombre: 'Amazfit T-Rex 3', detalle: 'GPS · mapas sin conexión · 10 ATM', nota: 'Resistente, para aire libre.' },
+      { id: 'MLA39368735', nombre: 'Huawei Watch GT 5 41 mm', detalle: 'Caja de 41 mm · para correr y bici', nota: 'Más chico, para muñecas finas.' },
+    ],
+    criterios: [
+      'Compatibilidad: el Apple Watch solo funciona con iPhone; Huawei, Garmin y Amazfit andan con Android y con iPhone.',
+      'Batería: los Huawei, Garmin y Amazfit duran varios días; el Apple Watch y el Galaxy Watch piden carga casi diaria.',
+      'GPS propio si salís a correr o a pedalear sin el celular.',
+      'Tamaño de la caja según la muñeca: 40 a 42 mm para muñecas finas, 44 a 46 mm para el resto.',
+    ],
+    faq: [
+      { q: '¿Qué smartwatch conviene comprar en el Black Friday 2026?', a: 'Depende del celular. Con iPhone, el Apple Watch SE 3; con Samsung, el Galaxy Watch9. Si querés uno que ande con los dos y dure varios días, el Huawei Watch GT 7 de esta página.' },
+      { q: '¿El Apple Watch funciona con Android?', a: 'No. El Apple Watch necesita un iPhone para configurarse y usarse. Con Android conviene un Galaxy Watch, un Huawei, un Garmin o un Amazfit.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('smartwatch'),
+    enlaces: [
+      { href: '/guias/que-smartwatch-comprar-black-friday-2026', texto: 'Guía: qué smartwatch comprar en Black Friday 2026' },
+      { href: '/guias/que-smartwatch-comprar', texto: 'Guía: qué smartwatch comprar' },
+      { href: '/mejores/mejores-smartwatch', texto: 'Smartwatch en oferta hoy' },
+      { href: '/mejores/black-friday-auriculares', texto: 'Auriculares para el Black Friday 2026' },
+    ],
+  },
+  {
+    slug: 'black-friday-colchones',
+    rubro: 'Colchones',
+    emoji: '🛏️',
+    h1: 'Colchones para el Black Friday 2026',
+    titulo: 'Black Friday 2026 colchones Argentina: espuma o resortes',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: colchones y sommiers Cannon, Viggo y King Koil de espuma y resortes, de 1 ½ plaza a queen, con link a ML.',
+    keywords: ['black friday 2026 colchones argentina', 'colchon black friday 2026', 'colchon 2 plazas black friday', 'sommier black friday', 'colchon cyber monday'],
+    intro:
+      'Colchones de marcas conocidas, de espuma y de resortes, en las medidas que más se usan. Arriba, el que más recomendamos para una cama de 2 plazas.',
+    respuestaCorta:
+      'Para una cama de 2 plazas, el Cannon Renovation Pillow de 140 × 190: es de espuma con pillow top y viene en la medida más común de Argentina. Si preferís resortes, el Viggo Cuarzo con resortes pocket; para cama queen, el Viggo Forte de 160 × 200.',
+    items: [
+      { id: 'MLA34102691', nombre: 'Cannon Renovation Pillow 2 plazas', detalle: 'Espuma · pillow top · 140 × 190 × 30 cm', nota: 'El que recomendamos para 2 plazas.' },
+      { id: 'MLA80159945', nombre: 'Viggo Cuarzo 2 plazas', detalle: 'Resortes pocket · 140 × 190 cm', nota: 'Si preferís resortes.' },
+      { id: 'MLA18618129', nombre: 'Cannon Doral Pillow Top 2 plazas', detalle: 'Resortes · pillow top · 33 cm de alto' },
+      { id: 'MLA53968220', nombre: 'Viggo Forte Queen', detalle: 'Resortes · firme · 160 × 200 cm', nota: 'Para cama queen.' },
+      { id: 'MLA15901311', nombre: 'Sommier y colchón Cannon Especial de Lujo', detalle: '2 plazas · 140 × 190 cm', nota: 'El conjunto completo, con sommier.' },
+      { id: 'MLA30019963', nombre: 'King Koil Kensington 1 ½ plaza', detalle: 'Resortes pocket · firme · 100 × 200 cm', nota: 'Para 1 persona.' },
+    ],
+    criterios: [
+      'Medida: 2 plazas es 140 × 190; queen, 160 × 200; king, 180 o 200 × 200. Medí la cama antes de comprar.',
+      'Espuma de alta densidad o resortes pocket: los dos duran; los pocket transmiten menos el movimiento del otro.',
+      'Firmeza según el peso y cómo dormís: firme si dormís boca arriba o pesás más; intermedio si dormís de costado.',
+      'Confirmá si viene en caja o enrollado y si el envío lo sube al piso.',
+    ],
+    faq: [
+      { q: '¿Qué colchón conviene comprar en el Black Friday 2026?', a: 'Para una cama de 2 plazas, uno de espuma de alta densidad o de resortes pocket de una marca conocida, como el Cannon Renovation Pillow de esta página. Si preferís resortes, el Viggo Cuarzo.' },
+      { q: '¿Espuma o resortes?', a: 'Los dos duran si son de buena calidad. Los resortes pocket ventilan más y transmiten menos el movimiento de la otra persona; la espuma es más silenciosa y suele pesar menos.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('colchon 2 plazas'),
+    enlaces: [
+      { href: '/guias/que-colchon-comprar-firmeza-y-material', texto: 'Guía: qué colchón comprar' },
+      { href: '/guias/colchon-de-resortes-o-de-espuma', texto: 'Guía: colchón de resortes o de espuma' },
+      { href: '/guias/medidas-de-colchon-y-sommier', texto: 'Guía: medidas de colchón y sommier' },
+      { href: '/mejores/mejores-colchones', texto: 'Colchones en oferta hoy' },
+    ],
+  },
+  {
+    slug: 'black-friday-herramientas',
+    rubro: 'Herramientas',
+    emoji: '🛠️',
+    h1: 'Herramientas para el Black Friday 2026',
+    titulo: 'Black Friday 2026 herramientas Argentina: taladros y más',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: taladros, rotomartillos, amoladoras, sierras e hidrolavadoras Bosch, Makita y Total, con link a Mercado Libre.',
+    keywords: ['black friday 2026 herramientas argentina', 'taladro black friday 2026', 'herramientas electricas black friday', 'herramientas cyber monday', 'bosch black friday argentina'],
+    intro:
+      'Herramientas eléctricas de marcas conocidas, para arreglos de la casa y para obra. Arriba, la que más recomendamos para tener en casa.',
+    respuestaCorta:
+      'Para arreglos de la casa, el taladro percutor inalámbrico Total brushless con 2 baterías: perfora pared, madera y metal, atornilla y no depende de tener un enchufe cerca. Si vas a hacer obra, el rotomartillo Bosch GBH 3-28 DRE; para cortar y desbastar, la amoladora Bosch GWS 2200 de 9 pulgadas.',
+    items: [
+      { id: 'MLA42686679', nombre: 'Total taladro percutor inalámbrico', detalle: 'Brushless · 2 baterías · maletín y accesorios', nota: 'El que recomendamos para tener en casa.' },
+      { id: 'MLA75242836', nombre: 'Makita DHP490 taladro percutor', detalle: 'A batería · línea Eco', nota: 'Otra a batería, de Makita.' },
+      { id: 'MLA64958954', nombre: 'Caterpillar combo taladro + amoladora', detalle: 'Inalámbricos · 18 V · sin carbones · maletín', nota: 'Dos herramientas con la misma batería.' },
+      { id: 'MLA16120462', nombre: 'Bosch rotomartillo GBH 3-28 DRE', detalle: '800 W · para hormigón', nota: 'Para obra y paredes de hormigón.' },
+      { id: 'MLA18522686', nombre: 'Bosch amoladora GWS 2200-230', detalle: '9" · 2200 W', nota: 'Para cortar y desbastar.' },
+      { id: 'MLA15021003', nombre: 'Bosch sierra circular GKS 150', detalle: '7 ¼" · 1500 W · con disco y guía', nota: 'Para cortar madera.' },
+      { id: 'MLA17940501', nombre: 'Logus hidrolavadora 170 bar', detalle: '2200 W · con espumador', nota: 'Para el patio, la vereda y el auto.' },
+    ],
+    criterios: [
+      'Inalámbrico si la usás para arreglos sueltos; con cable si vas a perforar horas seguidas.',
+      'Percutor para pared de ladrillo; rotomartillo (SDS) para hormigón.',
+      'Brushless (sin carbones) dura más y rinde más por carga.',
+      'Fijate si trae batería y cargador: algunas se venden «solo» la herramienta.',
+    ],
+    faq: [
+      { q: '¿Qué taladro conviene comprar en el Black Friday 2026?', a: 'Para la casa, un taladro percutor inalámbrico con 2 baterías, como el Total brushless de esta página. Si vas a perforar hormigón, un rotomartillo, como el Bosch GBH 3-28 DRE.' },
+      { q: '¿Taladro percutor o rotomartillo?', a: 'El percutor alcanza para ladrillo, madera y metal. El rotomartillo pega más fuerte y es el que hace falta para hormigón o para picar.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('taladro percutor inalambrico'),
+    enlaces: [
+      { href: '/guias/que-taladro-comprar-para-la-casa', texto: 'Guía: qué taladro comprar para la casa' },
+      { href: '/guias/herramientas-electricas-cyber-monday-black-friday', texto: 'Guía: herramientas eléctricas en el Black Friday' },
+      { href: '/mejores/mejores-taladros', texto: 'Taladros en oferta hoy' },
+      { href: '/mejores/mejores-amoladoras', texto: 'Amoladoras en oferta hoy' },
+    ],
+  },
+  {
+    slug: 'black-friday-juguetes',
+    rubro: 'Juguetes',
+    emoji: '🧸',
+    h1: 'Juguetes para el Black Friday 2026: adelantá la Navidad',
+    titulo: 'Black Friday 2026 juguetes Argentina: regalos de Navidad',
+    descripcion:
+      'Black Friday y Cyber Monday 2026 en Argentina: Lego, bloques magnéticos, Cry Babies y Babycorns para adelantar los regalos de Navidad, con link a ML.',
+    keywords: ['black friday 2026 juguetes argentina', 'juguetes black friday 2026', 'lego black friday argentina', 'regalos navidad black friday', 'juguetes cyber monday'],
+    intro:
+      'Juguetes de marcas conocidas para adelantar los regalos de Navidad: sets para armar y muñecas. Arriba, el que más recomendamos para chicos que ya arman solos.',
+    respuestaCorta:
+      'Para un regalo que se arma y se vuelve a armar, el Lego Speed Champions Chevrolet Corvette (76903), de 512 piezas. Para los más chicos, los bloques magnéticos Alamix de 300 piezas; si buscan muñecas, la Cry Babies Sam o la Babycorns interactiva de Zuru.',
+    items: [
+      { id: 'MLA19491975', nombre: 'Lego Speed Champions Chevrolet Corvette', detalle: 'Set 76903 · 512 piezas · dos autos', nota: 'El que recomendamos para chicos que ya arman solos.' },
+      { id: 'MLA29708345', nombre: 'Lego Creator 3 en 1 Pavo real exótico', detalle: 'Set 31157 · 355 piezas · tres modelos', nota: 'Tres armados distintos con las mismas piezas.' },
+      { id: 'MLA63018164', nombre: 'Lego City Camión de papas fritas', detalle: 'Set 60488', nota: 'Un Lego City para empezar.' },
+      { id: 'MLA82409104', nombre: 'Bloques magnéticos Alamix 300 piezas', detalle: 'Cubos imantados para armar figuras', nota: 'Para los más chicos.' },
+      { id: 'MLA53279808', nombre: 'Cry Babies Sam', detalle: 'Muñeca de 32 cm · Day Care', nota: 'La muñeca que llora.' },
+      { id: 'MLA47346030', nombre: 'Zuru Babycorns', detalle: 'Muñeca bebé interactiva grande · cuna con sorpresas' },
+      { id: 'MLA25469156', nombre: 'LOL Surprise Tweens Regina Hartt', detalle: 'Muñeca · línea Masquerade' },
+    ],
+    criterios: [
+      'Edad recomendada: está en la caja y en la publicación; en sets con piezas chicas, respetala.',
+      'Comprá con tiempo: la semana previa al 24 de diciembre los envíos se cargan.',
+      'Preferí tiendas oficiales o vendedores con buena reputación: hay copias de las marcas más conocidas.',
+      'Fijate si usa pilas y si vienen incluidas.',
+    ],
+    faq: [
+      { q: '¿Qué juguete conviene comprar en el Black Friday 2026?', a: 'Para chicos que ya arman solos, un set de Lego como el Speed Champions Corvette de esta página. Para los más chicos, bloques magnéticos; si buscan muñecas, Cry Babies o Babycorns.' },
+      { q: '¿Conviene comprar los regalos de Navidad en el Black Friday?', a: 'Si encontrás el juguete que buscás a buen precio, sí: te ahorrás la semana previa al 24, cuando los envíos se cargan y algunos productos se agotan.' },
+      { q: '¿Cuándo es el Black Friday 2026 en Argentina?', a: 'El viernes 27 de noviembre de 2026. Cada tienda decide si se suma y por cuántos días.' },
+      { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
+    ],
+    busqueda: busquedaML('lego'),
+    enlaces: [
+      { href: '/guias/que-regalarle-a-un-chico-en-navidad', texto: 'Guía: qué regalarle a un chico en Navidad' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Guía: qué regalar en Navidad según el presupuesto' },
+      { href: '/regalos-navidad', texto: 'Regalos de Navidad' },
+      { href: '/mejores/regalos-de-navidad', texto: 'Regalos de Navidad en oferta hoy' },
     ],
   },
 ]

@@ -45,9 +45,14 @@ def _request(url: str, data: bytes | None, headers: dict, method: str = "POST",
 
 def yt_title(deal: dict) -> str:
     """Título ≤100 caracteres terminado en #Shorts (así YouTube lo clasifica)."""
+    # Sin % ni precio anterior (regla 24/11/2026): solo producto y precio de hoy.
     suffix = " #Shorts"
-    base = f"{deal['discount']}% OFF · {deal['title']}"
+    base = f"{_precio(deal['price_cur'])} · {deal['title']}"
     return base[: YT_TITLE_MAX - len(suffix)].rstrip() + suffix
+
+
+def _precio(n) -> str:
+    return "$" + f"{int(n):,}".replace(",", ".")
 
 
 def yt_description(deal: dict, site_link: str, ml_link: str) -> str:
@@ -61,7 +66,7 @@ def yt_description(deal: dict, site_link: str, ml_link: str) -> str:
 
 
 def tiktok_caption(deal: dict) -> str:
-    base = f"{deal['discount']}% OFF · {deal['title']} 🔥 Link en la bio #ofertas #mercadolibre"
+    base = f"{_precio(deal['price_cur'])} · {deal['title']} 🔥 Link en la bio #ofertas #mercadolibre"
     return base[:TIKTOK_TITLE_MAX]
 
 

@@ -69,11 +69,11 @@ def test_producto_sin_familia_nunca_se_limita():
     assert bot.elegir_estrella([deal("Parlante bluetooth")], [None, None, None])[0]["title"] == "Parlante bluetooth"
 
 
-def test_ig_primera_linea_lleva_porcentaje_y_precio():
+def test_ig_primera_linea_lleva_precio_sin_porcentaje():
     d = deal("Colchon Piero 2 plazas", 300_000)
     d["price_prev"], d["discount"] = 600_000, 50
     primera = bot.ig_caption(d).splitlines()[0]
-    assert "50% OFF" in primera and bot.fmt_price(300_000) in primera
+    assert "%" not in primera and bot.fmt_price(300_000) in primera
 
 
 def test_ig_link_de_bio_antes_que_telegram_y_sin_arroba():
@@ -82,9 +82,9 @@ def test_ig_link_de_bio_antes_que_telegram_y_sin_arroba():
     assert "@" not in cap
 
 
-def test_threads_primera_linea_lleva_porcentaje_y_precio_y_cabe():
+def test_threads_primera_linea_lleva_precio_sin_porcentaje_y_cabe():
     d = deal("Taladro Percutor", 90_000)
     cap = bot.th_caption(d, "https://cazadordeofertas.com.ar/x")
     primera = cap.splitlines()[0]
-    assert "50% OFF" in primera and bot.fmt_price(90_000) in primera
+    assert "%" not in primera and bot.fmt_price(90_000) in primera
     assert len(cap) <= 500

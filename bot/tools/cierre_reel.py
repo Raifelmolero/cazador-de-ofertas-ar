@@ -37,6 +37,8 @@ from typing import Callable
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 BOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BOT))
+from marcas import marca_excluida  # noqa: E402
 DATOS = BOT.parent / "frontend" / "data"
 PERSONAJE = BOT / "assets" / "personaje"
 AMARILLO, NEGRO, BLANCO, GRIS = "#FACC15", "#09090B", "#FFFFFF", "#A1A1AA"
@@ -123,7 +125,7 @@ def elegir_producto(items: list[dict], buscar: str | None = None,
     candidatos = []
     for it in items:
         titulo = _norm(it.get("titulo", ""))
-        if not it.get("url_imagen") or not titulo:
+        if not it.get("url_imagen") or not titulo or marca_excluida(titulo):
             continue
         if (it.get("precio_actual") or 0) < minimo or (it.get("descuento_pct") or 0) < DESCUENTO_MIN:
             continue

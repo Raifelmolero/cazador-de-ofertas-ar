@@ -30,6 +30,9 @@ DIAS_SIN_REPETIR = 7
 MIN_DIAS_HISTORIA = 3
 MIN_DESCUENTO = 15
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from marcas import marca_excluida  # noqa: E402
+
 
 def elegir(items: dict, hoy: date, ya: set[str]) -> dict | None:
     """El producto visto hoy, en su mínimo registrado con al menos 3 días de
@@ -37,6 +40,8 @@ def elegir(items: dict, hoy: date, ya: set[str]) -> dict | None:
     mejores = []
     for mla, it in items.items():
         serie = it.get("serie") or []
+        if marca_excluida(it.get("titulo") or ""):
+            continue  # marcas que no se publican (HP, BGH, Vivobook...)
         if mla in ya or it.get("ultimo_visto") != hoy.isoformat() or len(serie) < MIN_DIAS_HISTORIA:
             continue
         # Se compara contra el precio más alto que vimos nosotros, no contra el

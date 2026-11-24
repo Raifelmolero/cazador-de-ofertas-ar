@@ -14,6 +14,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
+from marcas import marca_excluida
 from cazador_bot import (
     SITE_DOMAIN,
     alert_admin,
@@ -48,7 +49,8 @@ def elegir(data: dict, hoy: date) -> list[dict]:
         return []
     if edad > MAX_DIAS:
         return []
-    return data.get("items", [])[:CASOS]
+    items = [c for c in data.get("items", []) if not marca_excluida(c.get("titulo") or "")]
+    return items[:CASOS]
 
 
 def linea(c: dict, html: bool) -> str:

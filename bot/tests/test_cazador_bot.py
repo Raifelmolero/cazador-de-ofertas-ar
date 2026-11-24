@@ -430,19 +430,20 @@ class TestIgCaption(unittest.TestCase):
         self.assertIn("t.me/cazadordeofertasar", cap)
         self.assertNotIn("@cazadordeofertasar", cap)
 
-    def test_el_badge_de_minimo_historico_aparece_solo_cuando_corresponde(self):
-        sin = bot.ig_caption({**self.DEAL, "hist_low": False})
-        con = bot.ig_caption({**self.DEAL, "hist_low": True})
-        self.assertNotIn("MÍNIMO HISTÓRICO", sin)
-        self.assertIn("MÍNIMO HISTÓRICO", con)
+    def test_sin_minimo_historico_ni_con_hist_low(self):
+        # Regla 24/11/2026: nada de "mínimo histórico" en IG.
+        for hl in (False, True):
+            cap = bot.ig_caption({**self.DEAL, "hist_low": hl}).lower()
+            self.assertNotIn("mínimo histórico", cap)
+            self.assertNotIn("más barato", cap)
 
-    def test_muestra_los_dos_precios_y_el_ahorro(self):
+    def test_solo_el_precio_de_hoy_sin_estaba_ni_ahorro(self):
         # Precios que dan un ahorro distinto de ambos, para que las tres
         # aserciones sean independientes.
         cap = bot.ig_caption({**self.DEAL, "price_prev": 100000, "price_cur": 70000})
-        self.assertIn(bot.fmt_price(100000), cap)  # estaba
-        self.assertIn(bot.fmt_price(70000), cap)   # hoy
-        self.assertIn(bot.fmt_price(30000), cap)   # ahorro
+        self.assertNotIn(bot.fmt_price(100000), cap)  # estaba
+        self.assertIn(bot.fmt_price(70000), cap)      # hoy
+        self.assertNotIn(bot.fmt_price(30000), cap)   # ahorro
 
 
 class TestFbCaption(unittest.TestCase):
@@ -460,17 +461,16 @@ class TestFbCaption(unittest.TestCase):
         self.assertIn("cazadordeofertas.com.ar", cap)
         self.assertIn("t.me/cazadordeofertasar", cap)
 
-    def test_el_badge_de_minimo_historico_aparece_solo_cuando_corresponde(self):
-        sin = bot.fb_caption({**self.DEAL, "hist_low": False}, self.LINK)
-        con = bot.fb_caption({**self.DEAL, "hist_low": True}, self.LINK)
-        self.assertNotIn("MÍNIMO HISTÓRICO", sin)
-        self.assertIn("MÍNIMO HISTÓRICO", con)
+    def test_sin_minimo_historico_ni_con_hist_low(self):
+        for hl in (False, True):
+            cap = bot.fb_caption({**self.DEAL, "hist_low": hl}, self.LINK).lower()
+            self.assertNotIn("mínimo histórico", cap)
 
-    def test_muestra_los_dos_precios_y_el_ahorro(self):
+    def test_solo_el_precio_de_hoy_sin_estaba_ni_ahorro(self):
         cap = bot.fb_caption({**self.DEAL, "price_prev": 100000, "price_cur": 70000}, self.LINK)
-        self.assertIn(bot.fmt_price(100000), cap)
+        self.assertNotIn(bot.fmt_price(100000), cap)
         self.assertIn(bot.fmt_price(70000), cap)
-        self.assertIn(bot.fmt_price(30000), cap)
+        self.assertNotIn(bot.fmt_price(30000), cap)
 
 
 class TestSitioEnLosPosts(unittest.TestCase):

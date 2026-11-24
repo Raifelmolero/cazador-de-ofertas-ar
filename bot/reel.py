@@ -1,11 +1,17 @@
 """
-Genera el reel diario 9:16 (MP4 ~8,5 s) con Pillow + ffmpeg.
+Genera el reel 9:16 (MP4 ~11 s) con Pillow + ffmpeg.
 
-Tres escenas con la estética de la marca (negro/ámbar, sello CAZADO):
-  1. Gancho (2,0 s): "LA CAZA DEL DÍA" + badge % OFF con punch-in
-  2. Producto (3,5 s): tarjeta blanca con zoom lento (Ken Burns) + título
-  3. Precio (3,0 s): precio anterior tachado → precio actual con pop +
-     ahorro + banner con la dirección de la web
+Cuatro escenas con la estética de la marca (negro/ámbar, sello CAZADO):
+  1. Gancho (1,6 s): "LA CAZA DEL DÍA"
+  2. Producto (3,4 s): tarjeta blanca con zoom lento (Ken Burns) + título
+  3. Precio (2,5 s): precio de hoy con pop
+  4. Cierre (>= 3 s a pantalla completa): la web cazadordeofertas.com.ar/ig
+
+Regla 24/11/2026 (dos reels salieron mal): sin badges de %, sin "OFF", sin
+precio anterior tachado/"Antes"/"Estaba", sin "Te ahorrás" ni "mínimo
+histórico". Solo título, precio actual y la web. El cierre se ve entero al
+menos CIERRE_MIN_S segundos y ffmpeg no recorta el final (sin -shortest: el
+audio se corta exacto a la duración del video con -t).
 
 Requiere ffmpeg en el PATH (o env FFMPEG_BIN). Audio: si existe
 `bot/assets/reel_music.m4a` se usa como pista (con fade final) — para
@@ -31,22 +37,16 @@ W, H = 1080, 1920
 FPS = 30
 # gancho corto (el que no enganchó en 2 s ya se fue) y más aire para el
 # contador de precio del cierre
-DUR_HOOK, DUR_PROD, DUR_PRICE = 1.6, 3.4, 3.5
+DUR_HOOK, DUR_PROD, DUR_PRICE = 1.6, 3.4, 2.5
 FADE = 0.18  # segundos de fundido en los cortes
+# La tarjeta de la web tiene que verse ENTERA (sin el fundido de entrada)
+# al menos CIERRE_MIN_S segundos, y es lo último del video.
+CIERRE_MIN_S = 3.0
+DUR_CLOSE = 3.5
 
 
 def _ease_out(t: float) -> float:
     return 1 - (1 - t) ** 4
-
-
-def _badge(d: ImageDraw.ImageDraw, cx: int, cy: int, texto: str, scale: float = 1.0) -> None:
-    f = _font(int(72 * scale))
-    tw = d.textlength(texto, font=f)
-    pad_x, pad_y = int(44 * scale), int(30 * scale)
-    x0, x1 = cx - tw / 2 - pad_x, cx + tw / 2 + pad_x
-    d.rounded_rectangle([x0, cy - 36 * scale - pad_y, x1, cy + 36 * scale + pad_y],
-                        radius=int(52 * scale), fill=AMBER)
-    d.text((cx, cy + 2), texto, font=f, fill=BLACK, anchor="mm")
 
 
 def _personaje_entra(img: Image.Image, deal: dict, box: tuple[int, int, int, int],
@@ -67,17 +67,6 @@ def _scene_hook(deal: dict, t: float) -> Image.Image:
 
     d.text((W // 2, 760), "LA CAZA", font=_font(150), fill=WHITE, anchor="mm")
     d.text((W // 2, 920), "DEL DÍA", font=_font(150), fill=AMBER, anchor="mm")
-
-    if deal.get("discount") is not None:
-        # punch-in: arranca grande y asienta (ease-out en los primeros 0,6 s);
-        # después late suave para que el frame nunca quede estático
-        import math
-
-        k = _ease_out(min(t / 0.6, 1.0))
-        scale = 1.6 - 0.6 * k
-        if t > 0.6:
-            scale = 1.0 + 0.02 * math.sin(2 * math.pi * 1.3 * (t - 0.6))
-        _badge(d, W // 2, 1250, f"-{deal['discount']}%", scale)
 
     d.text((W // 2, 1700), "esperá que la veas…", font=_font(40, bold=False), fill=GRAY, anchor="mm")
     return img
@@ -108,8 +97,6 @@ def _scene_producto(deal: dict, card: Image.Image, t: float) -> Image.Image:
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, target, target], radius=48, fill=255)
     img.paste(frame_card, ((W - target) // 2, 260), mask)
 
-    if deal.get("discount") is not None:
-        _badge(d, W - 210, 300, f"-{deal['discount']}%", 0.85)
     _stamp_cazado(img, (240, 1140), 1.1)
 
     title_f = _font(54)
@@ -132,35 +119,45 @@ def _scene_precio(deal: dict, thumb: Image.Image, t: float) -> Image.Image:
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, *thumb.size], radius=36, fill=255)
     img.paste(thumb, ((W - thumb.width) // 2, 240), mask)
 
-    prev_f = _font(54, bold=False)
-    prev_txt = f"Antes {_fmt(deal['price_prev'])}"
-    pw = d.textlength(prev_txt, font=prev_f)
-    d.text((W // 2, 830), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
-    d.line([(W - pw) // 2 - 10, 830, (W + pw) // 2 + 10, 830], fill=GRAY, width=6)
-
-    # contador: el precio "cae" desde el anterior hasta el real en 0,9 s
-    k = _ease_out(min(t / 0.9, 1.0))
-    valor = int(deal["price_prev"] - (deal["price_prev"] - deal["price_cur"]) * k)
-    color = AMBER if k >= 1.0 else WHITE
-    d.text((W // 2, 1010), _fmt(valor), font=_font(170), fill=color, anchor="mm")
-
-    if t > 1.0:
-        ahorro = deal["price_prev"] - deal["price_cur"]
-        d.text((W // 2, 1190), f"Te ahorrás {_fmt(ahorro)}", font=_font(52), fill=WHITE, anchor="mm")
-    if t > 1.3 and deal.get("discount") is not None:
-        _badge(d, W // 2, 1390, f"-{deal['discount']}%", 0.9)
-    _personaje_entra(img, deal, (0, 1170, 300, 1555), t, 1.5)
-
-    d.rectangle([0, 1560, W, 1720], fill=AMBER)
-    banner_f = _font(58)
-    banner_txt = "cazadordeofertas.com.ar/ig"
-    tw = d.textlength(banner_txt, font=banner_f)
-    cx = W // 2
-    d.text((cx, 1640), banner_txt, font=banner_f, fill=BLACK, anchor="mm")
-
-    d.text((W // 2, 1790), "@elcazadordeofertas.ar", font=_font(36, bold=False), fill=GRAY, anchor="mm")
-    d.text((W // 2, 1852), "Seguime para la caza de mañana", font=_font(34), fill=WHITE, anchor="mm")
+    # solo el precio de hoy, con pop (sin precio anterior ni descuento); la
+    # web va en la escena de cierre, entera y a pantalla completa
+    d.text((W // 2, 860), "PRECIO DE HOY", font=_font(52), fill=WHITE, anchor="mm")
+    k = _ease_out(min(t / 0.4, 1.0))
+    d.text((W // 2, 1030), _fmt(deal["price_cur"]), font=_font(int(170 * (1.12 - 0.12 * k))),
+           fill=AMBER, anchor="mm")
+    _personaje_entra(img, deal, (0, 1170, 300, 1555), t, 0.8)
     return img
+
+
+def _ffmpeg_cmd(out_path: Path, n_frames: int, fade_audio: float) -> list[str]:
+    """Comando de ffmpeg que NO recorta el final del video.
+
+    Antes iba con `-shortest`, que puede comerse los últimos frames (justo el
+    cierre con la web). Ahora el video manda: el audio se limita con `-t` a
+    la duración exacta de los frames y el fade de audio termina ahí, así que
+    nunca acorta el video. El último frame es el cierre entero, sin fundido."""
+    dur_s = n_frames / FPS
+    dur = f"{dur_s:.3f}"
+    ffmpeg = os.getenv("FFMPEG_BIN", "ffmpeg")
+    music = Path(__file__).parent / "assets" / "reel_music.m4a"
+    if music.exists():
+        audio_in = ["-stream_loop", "-1", "-t", dur, "-i", str(music)]
+        audio_opts = ["-af", f"afade=t=out:st={dur_s - fade_audio:.3f}:d={fade_audio}",
+                      "-b:a", "128k"]
+    else:
+        audio_in = ["-f", "lavfi", "-t", dur, "-i", "anullsrc=r=44100:cl=stereo"]
+        audio_opts = ["-b:a", "64k"]
+    return [
+        ffmpeg, "-y",
+        "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+        *audio_in,
+        "-map", "0:v", "-map", "1:a",
+        "-frames:v", str(n_frames),
+        "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
+        "-c:a", "aac", *audio_opts,
+        "-movflags", "+faststart",
+        str(out_path),
+    ]
 
 
 def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
@@ -168,41 +165,26 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     card = _make_card(image_bytes)
-    total = DUR_HOOK + DUR_PROD + DUR_PRICE
-    n_frames = int(total * FPS)
+    total = DUR_HOOK + DUR_PROD + DUR_PRICE + DUR_CLOSE
+    n_frames = round(total * FPS)
 
-    ffmpeg = os.getenv("FFMPEG_BIN", "ffmpeg")
-    music = Path(__file__).parent / "assets" / "reel_music.m4a"
-    if music.exists():
-        audio_in = ["-stream_loop", "-1", "-i", str(music)]
-        audio_opts = ["-af", f"afade=t=out:st={total - 1.0:.2f}:d=1.0", "-b:a", "128k"]
-    else:
-        audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
-        audio_opts = ["-b:a", "64k"]
-    cmd = [
-        ffmpeg, "-y",
-        "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-        *audio_in,
-        "-map", "0:v", "-map", "1:a",
-        "-shortest",
-        "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", *audio_opts,
-        "-movflags", "+faststart",
-        str(out_path),
-    ]
-    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc = subprocess.Popen(_ffmpeg_cmd(out_path, n_frames, fade_audio=1.0),
+                            stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     black = Image.new("RGB", (W, H), (0, 0, 0))
     thumb = card.resize((520, 520), Image.LANCZOS)
-    bounds = (DUR_HOOK, DUR_HOOK + DUR_PROD)  # cortes de escena
+    # cortes de escena: gancho | producto | precio | cierre con la web
+    bounds = (DUR_HOOK, DUR_HOOK + DUR_PROD, DUR_HOOK + DUR_PROD + DUR_PRICE)
     for i in range(n_frames):
         ts = i / FPS
         if ts < bounds[0]:
             frame = _scene_hook(deal, ts)
         elif ts < bounds[1]:
             frame = _scene_producto(deal, card, ts - bounds[0])
-        else:
+        elif ts < bounds[2]:
             frame = _scene_precio(deal, thumb, ts - bounds[1])
+        else:
+            frame = _scene_close_v2(deal, ts - bounds[2])
 
         # fundidos SOLO en los cortes de escena — sin fade inicial: el frame 0
         # es la portada del reel en el feed y tiene que verse completo
@@ -227,8 +209,9 @@ def render_reel(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
 # producto protagonista y precio gigante. Variante nueva, no toca render_reel.
 # ---------------------------------------------------------------------------
 
-DUR_HOOK_V2, DUR_MAIN_V2, DUR_CLOSE_V2 = 1.0, 4.5, 1.5
 FADE_V2 = 0.28  # fundidos un poco más largos que v1 para que se sientan suaves
+# cierre: CIERRE_MIN_S entero + el fundido de entrada + margen (3,5 s)
+DUR_HOOK_V2, DUR_MAIN_V2, DUR_CLOSE_V2 = 1.0, 4.5, 3.5
 
 # safe area de reels/stories de IG: la UI tapa ~14% arriba y ~20% abajo.
 # Todo texto/badge/sello relevante va entre SAFE_TOP y SAFE_BOTTOM.
@@ -254,20 +237,13 @@ def _scene_hook_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
     img = Image.blend(overlay, img, 0.85)
     d = ImageDraw.Draw(img)
 
-    # único elemento de esta escena: el %OFF gigante (o mínimo histórico),
-    # centrado dentro del área segura — un solo mensaje, sin badge chico acá
+    # único mensaje de esta escena, centrado en el área segura. Sin % ni
+    # "mínimo histórico" (regla 24/11/2026).
     k = _ease_out(min(t / 0.35, 1.0))
     scale = 1.35 - 0.35 * k
     cy = (SAFE_TOP + SAFE_BOTTOM) // 2
-    if deal.get("hist_low") or deal.get("low"):
-        d.text((W // 2, cy - 260), "MÍNIMO", font=_font(int(110 * scale)), fill=WHITE, anchor="mm")
-        d.text((W // 2, cy - 130), "HISTÓRICO", font=_font(int(110 * scale)), fill=AMBER, anchor="mm")
-        d.text((W // 2, cy + 90), f"-{deal['discount']}% OFF" if deal.get("discount") is not None else "",
-               font=_font(90), fill=WHITE, anchor="mm")
-    elif deal.get("discount") is not None:
-        d.text((W // 2, cy - 40), f"-{deal['discount']}%",
-               font=_font(int(220 * scale)), fill=AMBER, anchor="mm")
-        d.text((W // 2, cy + 200), "OFF", font=_font(int(80 * scale)), fill=WHITE, anchor="mm")
+    d.text((W // 2, cy - 90), "LA CAZA", font=_font(int(150 * scale)), fill=WHITE, anchor="mm")
+    d.text((W // 2, cy + 80), "DEL DÍA", font=_font(int(150 * scale)), fill=AMBER, anchor="mm")
     return img
 
 
@@ -334,61 +310,32 @@ def _scene_main_v2(deal: dict, hero: Image.Image, t: float) -> Image.Image:
 
     title_f = _font(46)
     title_lines = _shorten_title_v2(d, deal["title"], title_f, 940)
-    is_low = bool(deal.get("hist_low") or deal.get("low"))
     sello = (deal.get("sello_temporada") or "").strip()
-    # con mínimo histórico el bloque ya casi no tiene margen (safe area
-    # chica): en ese combo puntual se prioriza el sello de mínimo y se
-    # salta la cinta de temporada para no desbordar
-    show_ribbon = bool(sello) and not is_low
+    show_ribbon = bool(sello)
 
     # bloque título+precio centrado en el espacio oscuro que queda debajo
-    # del producto (respetando el 20% inferior, reservado para la UI de IG)
+    # del producto (respetando el 20% inferior, reservado para la UI de IG).
+    # Solo título y precio de hoy: sin precio anterior, %, ahorro ni mínimo.
     line_h = 58
-    gap_title_prev, gap_prev_price, gap_price_ahorro = (14, 14, 14) if show_ribbon else (34, 34, 34)
-    prev_h, price_h, ahorro_h = 46, 150, 40
-    low_gap, low_h = (30, 44) if is_low else (0, 0)
-    ribbon_gap, ribbon_h = (16, 46) if show_ribbon else (0, 0)
-    block_h = (len(title_lines) * line_h + gap_title_prev + prev_h + gap_prev_price
-               + price_h + gap_price_ahorro + ahorro_h + low_gap + low_h
-               + ribbon_gap + ribbon_h)
+    gap_title_price = 34
+    price_h = 150
+    ribbon_gap, ribbon_h = (24, 46) if show_ribbon else (0, 0)
+    block_h = len(title_lines) * line_h + gap_title_price + price_h + ribbon_gap + ribbon_h
     avail_top, avail_bottom = ph, SAFE_BOTTOM
     y = avail_top + max(20, (avail_bottom - avail_top - block_h) // 2)
 
     for line in title_lines:
         d.text((W // 2, y), line, font=title_f, fill=WHITE, anchor="mm")
         y += line_h
-    y += gap_title_prev
+    y += gap_title_price
 
-    # precio: entra con pop apenas arranca la escena (más rápido que v1).
-    # único badge %OFF de esta escena, pegado al precio (nunca dos a la vez)
+    # precio: entra con pop apenas arranca la escena
     k = _ease_out(min(t / 0.4, 1.0))
-    prev_f = _font(42, bold=False)
-    prev_txt = f"Antes {_fmt(deal['price_prev'])}"
-    pw = d.textlength(prev_txt, font=prev_f)
-    d.text((W // 2, y), prev_txt, font=prev_f, fill=GRAY, anchor="mm")
-    d.line([(W - pw) // 2 - 8, y, (W + pw) // 2 + 8, y], fill=GRAY, width=5)
-    y += gap_prev_price
-
-    price_scale = 1.12 - 0.12 * k
-    price_f = _font(int(132 * price_scale))
-    price_txt = _fmt(deal["price_cur"])
-    price_y = y + price_h // 2
-    d.text((W // 2, price_y), price_txt, font=price_f, fill=AMBER, anchor="mm")
-    if deal.get("discount") is not None:
-        pw2 = d.textlength(price_txt, font=price_f)
-        _badge(d, W // 2 + pw2 / 2 + 90, price_y - 10, f"-{deal['discount']}%", 0.55)
-    y += price_h + gap_price_ahorro
-
-    ahorro = deal["price_prev"] - deal["price_cur"]
-    d.text((W // 2, y), f"Te ahorrás {_fmt(ahorro)}", font=_font(38), fill=WHITE, anchor="mm")
-    if is_low:
-        y += low_gap
-        # DejaVu Sans / Arial (las fuentes locales que usa `_font`) no traen
-        # glifo de emoji a color: mejor texto solo que un tofu roto
-        d.text((W // 2, y), "Precio más bajo que registramos",
-               font=_font(34, bold=False), fill=AMBER, anchor="mm")
+    price_f = _font(int(132 * (1.12 - 0.12 * k)))
+    d.text((W // 2, y + price_h // 2), _fmt(deal["price_cur"]), font=price_f, fill=AMBER, anchor="mm")
+    y += price_h
     if show_ribbon:
-        y += ahorro_h // 2 + ribbon_gap + ribbon_h // 2
+        y += ribbon_gap + ribbon_h // 2
         _ribbon_temporada(d, W // 2, y, sello, font_size=32)
     return img
 
@@ -413,7 +360,7 @@ def _scene_close_v2(deal: dict, t: float) -> Image.Image:
 
 
 def render_reel_v2(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path:
-    """Variante rápida y agresiva del reel (7 s): hook en 1 s, producto
+    """Variante rápida y agresiva del reel (9 s): hook en 1 s, producto
     protagonista a pantalla completa, precio gigante y cierre con CTA fuerte.
     No reemplaza a `render_reel`."""
     out_path = Path(out_path)
@@ -421,28 +368,10 @@ def render_reel_v2(deal: dict, image_bytes: bytes, out_path: str | Path) -> Path
 
     hero = _hero_crop(image_bytes, 1400)
     total = DUR_HOOK_V2 + DUR_MAIN_V2 + DUR_CLOSE_V2
-    n_frames = int(total * FPS)
+    n_frames = round(total * FPS)
 
-    ffmpeg = os.getenv("FFMPEG_BIN", "ffmpeg")
-    music = Path(__file__).parent / "assets" / "reel_music.m4a"
-    if music.exists():
-        audio_in = ["-stream_loop", "-1", "-i", str(music)]
-        audio_opts = ["-af", f"afade=t=out:st={total - 0.6:.2f}:d=0.6", "-b:a", "128k"]
-    else:
-        audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
-        audio_opts = ["-b:a", "64k"]
-    cmd = [
-        ffmpeg, "-y",
-        "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-        *audio_in,
-        "-map", "0:v", "-map", "1:a",
-        "-shortest",
-        "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", *audio_opts,
-        "-movflags", "+faststart",
-        str(out_path),
-    ]
-    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc = subprocess.Popen(_ffmpeg_cmd(out_path, n_frames, fade_audio=0.6),
+                            stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     black = Image.new("RGB", (W, H), (0, 0, 0))
     bounds = (DUR_HOOK_V2, DUR_HOOK_V2 + DUR_MAIN_V2)

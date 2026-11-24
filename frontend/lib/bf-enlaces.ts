@@ -42,3 +42,26 @@ export const AVISO_BF_POR_RUTA: Record<string, DestinoBF> = {
 export function destinoBF(ruta: string): DestinoBF | undefined {
   return AVISO_BF_POR_RUTA[ruta]
 }
+
+/** Bloque compacto de enlaces a /black-friday y a TODAS las landings /mejores/black-friday-*
+ *  (components/EnlacesBF.tsx), pedido del 24/11/2026: las 9 páginas top de Search Console con
+ *  bloque destacado (lib/cta-destacados.ts, lotes 1 y 2). El valor es la landing del rubro de la
+ *  página, que va primera; el resto sigue en el orden de LANDINGS_BF. Se apaga con FIN_AVISO_BF. */
+export const ENLACES_BF_POR_RUTA: Record<string, string> = {
+  '/guias/samsung-galaxy-a-o-s-cual-conviene': 'black-friday-celulares',
+  '/guias/que-motorola-comprar-moto-g-o-edge': 'black-friday-celulares-baratos',
+  '/guias/que-xiaomi-redmi-comprar': 'black-friday-celulares-baratos',
+  '/guias/mejor-celular-para-jugar': 'black-friday-gaming',
+  '/precio-hoy/iphone': 'black-friday-celulares',
+  '/guias/que-cocina-comprar': 'black-friday-heladeras',
+  '/guias/google-tv-roku-tizen-o-webos-cual-conviene': 'black-friday-smart-tv',
+  '/precio-hoy/smart-tv-32-pulgadas': 'black-friday-smart-tv',
+  '/precio-hoy/samsung-galaxy-s': 'black-friday-celulares',
+}
+
+/** Slugs de landings ordenados para la ruta (la del rubro primero), o [] si la ruta no lleva bloque. */
+export function ordenEnlacesBF(ruta: string, slugs: string[]): string[] {
+  const primero = ENLACES_BF_POR_RUTA[ruta]
+  if (!primero) return []
+  return [...slugs.filter(s => s === primero), ...slugs.filter(s => s !== primero)]
+}

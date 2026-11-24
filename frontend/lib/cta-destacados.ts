@@ -56,7 +56,9 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
     items: [
       { id: 'MLA65683670', nombre: 'Motorola Moto G15 Power', detalle: '256 GB · 8 GB de RAM · verde', nota: 'Moto G para el uso de todos los días.' },
       { id: 'MLA68413833', nombre: 'Motorola Moto G67 5G', detalle: '256 GB · 8 GB de RAM · dual SIM · IP68', nota: 'Moto G de gama media, con 5G.' },
-      { id: 'MLA66618502', nombre: 'Motorola Edge 70 Fusion', detalle: '256 GB · 8 GB de RAM · azul celeste', nota: 'La línea Edge: gama media-alta.' },
+      // 24/11 (lote 2): la publicación del Edge 70 Fusion con el precio visto más reciente del catálogo
+      // (22/11). La de antes (MLA66618502, visto 17/11) dejaba de mostrar precio el 25/11.
+      { id: 'MLA79114940', nombre: 'Motorola Edge 70 Fusion', detalle: '256 GB · 12 GB de RAM · celeste', nota: 'La línea Edge: gama media-alta.' },
       { id: 'MLA76204388', nombre: 'Motorola Moto G17', detalle: '128 GB · 4 GB de RAM · azul', nota: 'Moto G de entrada.' },
     ],
     verMas: { href: '/mejores/black-friday-celulares-baratos', texto: 'Celulares baratos para el Black Friday' },
@@ -93,6 +95,60 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
       { id: 'MLA55309009', nombre: 'Apple iPhone 17', detalle: '256 GB · Blanco', nota: 'El más nuevo, con el doble de memoria.' },
     ],
     verMas: { href: '/mejores/black-friday-celulares', texto: 'iPhone y Galaxy para el Black Friday' },
+  },
+  // ── Lote 2 (24/11): 4 páginas más de Search Console ───────────────────────────────
+  //   /guias/que-cocina-comprar                        2.017 imp · 0,10 % CTR · pos 9,4
+  //   /guias/google-tv-roku-tizen-o-webos-cual-conviene 1.198 imp · pos 6,0
+  //   /precio-hoy/smart-tv-32-pulgadas                 1.083 imp · 0,28 % CTR · pos 12,4
+  //   /precio-hoy/samsung-galaxy-s                       893 imp · 0 clics · pos 9,9
+  // Primero los de precio visto más reciente, así el bloque muestra precio el día del deploy.
+  '/guias/que-cocina-comprar': {
+    titulo: 'Multigas, a gas o eléctrica: las cocinas que elegimos hoy',
+    seccion: 'cta_guia_cocina',
+    evento: 'cta_guia_cocina',
+    items: [
+      { id: 'MLA56719132', nombre: 'Cocina multigas Philco Essential', detalle: '56 cm · blanca · PHCM56BL', nota: 'Multigas: gas natural o garrafa.' },
+      { id: 'MLA18735482', nombre: 'Cocina a gas Longvie 12331X', detalle: '56 cm · acero inoxidable · cajón parrilla', nota: 'A gas, con cajón parrilla.' },
+      { id: 'MLA21093847', nombre: 'Cocina vitrocerámica Dalton', detalle: '4 hornallas · 50 cm · acero inoxidable', nota: 'Eléctrica: para casas sin gas.' },
+      { id: 'MLA80241962', nombre: 'Cocina multigas Atma', detalle: '56 cm · negra', nota: 'Otra multigas de 56 cm.' },
+    ],
+    verMas: { href: '/mejores/mejores-cocinas-y-hornos', texto: 'Comparativa de cocinas y hornos' },
+  },
+  '/guias/google-tv-roku-tizen-o-webos-cual-conviene': {
+    titulo: 'Un smart TV por sistema: los que elegimos hoy',
+    seccion: 'cta_guia_sistema_tv',
+    evento: 'cta_guia_sistema_tv',
+    items: [
+      { id: 'MLA68210733', nombre: 'Smart TV TCL 50" 50S5K', detalle: 'Google TV · QLED · Full HD', nota: 'Google TV: más apps y Chromecast integrado.' },
+      { id: 'MLA61729056', nombre: 'Smart TV LG 43" 43UA8050PSA', detalle: 'webOS · UHD 4K', nota: 'webOS, el sistema de LG.' },
+      { id: 'MLA65262384', nombre: 'Smart TV Samsung 43" F6000', detalle: 'Tizen · Full HD', nota: 'Tizen, el sistema de Samsung.' },
+      { id: 'MLA68385201', nombre: 'Smart TV Noblex 43" DB43X3110', detalle: 'Roku TV · Full HD', nota: 'Roku: el más simple.' },
+    ],
+    verMas: { href: '/mejores/black-friday-smart-tv', texto: 'Smart TV para el Black Friday' },
+  },
+  '/precio-hoy/smart-tv-32-pulgadas': {
+    titulo: 'Smart TV de 32": los que elegimos hoy',
+    seccion: 'cta_preciohoy_tv32',
+    evento: 'cta_preciohoy_tv32',
+    items: [
+      { id: 'MLA49197371', nombre: 'Smart TV TCL 32" 32S5K', detalle: 'QLED · Full HD', nota: 'Full HD en 32": más definición que los HD.' },
+      { id: 'MLA74447718', nombre: 'Smart TV LG 32" 32LR650', detalle: 'HD · AI', nota: 'La opción de LG.' },
+      { id: 'MLA66055266', nombre: 'Smart TV Noblex 32" DB32X3010', detalle: 'Roku TV · HD', nota: 'Roku: el sistema más simple.' },
+      { id: 'MLA58672943', nombre: 'Smart TV TCL 32" QLED', detalle: 'Google TV · Full HD · HDR10', nota: 'Con Google TV.' },
+    ],
+    verMas: { href: '/mejores/black-friday-smart-tv', texto: 'Más smart TV para el Black Friday' },
+  },
+  '/precio-hoy/samsung-galaxy-s': {
+    titulo: 'Galaxy S: los que elegimos hoy',
+    seccion: 'cta_preciohoy_galaxy_s',
+    evento: 'cta_preciohoy_galaxy_s',
+    items: [
+      { id: 'MLA78803238', nombre: 'Samsung Galaxy S26 FE', detalle: '256 GB · Graphite', nota: 'Galaxy S a un precio más bajo.' },
+      { id: 'MLA65503984', nombre: 'Samsung Galaxy S26 Ultra', detalle: '256 GB', nota: 'El tope de la línea S.' },
+      { id: 'MLA65560106', nombre: 'Samsung Galaxy S26', detalle: '256 GB · 12 GB de RAM', nota: 'El Galaxy S base de este año.' },
+      { id: 'MLA66706811', nombre: 'Samsung Galaxy S25 FE', detalle: '128 GB · 8 GB de RAM · negro', nota: 'El Galaxy S de la generación anterior.' },
+    ],
+    verMas: { href: '/mejores/black-friday-celulares', texto: 'Galaxy y iPhone para el Black Friday' },
   },
 }
 
@@ -147,6 +203,27 @@ export const SEO_CTA: Record<string, SeoCta> = {
     ],
     descripcion: desde =>
       `Qué celular comprar para jugar Free Fire, COD y Genshin: procesador, RAM real y 120 Hz. Galaxy A57, Edge 70 Fusion o Redmi Note 15 Pro+.${desde ? ` Hoy${desde}.` : ''}`,
+  },
+  // Lote 2 (24/11): 2.017 imp / 28 días en posición 9,4 con 0,10 % de CTR. El seoTitulo
+  // («¿Qué es una cocina multigas?») era informativo; ahora pide la compra y sigue nombrando multigas.
+  '/guias/que-cocina-comprar': {
+    titulo: desde => [
+      () => `Qué cocina comprar en 2026: multigas o gas${coma(desde)}`,
+      () => `Qué cocina comprar en 2026${coma(desde)}`,
+      () => 'Qué cocina comprar en 2026: multigas, gas o eléctrica',
+    ],
+    descripcion: desde =>
+      `Cocina multigas, a gas o eléctrica: qué mirar en medidas, horno y válvula de seguridad, y cuál comprar en 2026.${hoyEnML(desde)}`,
+  },
+  // Lote 2 (24/11): 1.198 imp / 28 días en posición 6,0.
+  '/guias/google-tv-roku-tizen-o-webos-cual-conviene': {
+    titulo: desde => [
+      () => `Google TV, Roku, Tizen o webOS: cuál comprar${coma(desde)}`,
+      () => `Google TV, Roku, Tizen o webOS en 2026${coma(desde)}`,
+      () => 'Google TV, Roku, Tizen o webOS: cuál conviene en 2026',
+    ],
+    descripcion: desde =>
+      `Google TV, Roku, Tizen (Samsung) o webOS (LG): qué sistema de smart TV conviene por apps y Chromecast.${hoyEnML(desde)}`,
   },
 }
 

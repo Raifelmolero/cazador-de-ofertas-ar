@@ -399,7 +399,8 @@ def _todas_las_claves(x):
 
 class TestJsonLdBF(unittest.TestCase):
     """JSON-LD de landings y guías BF (lib/bf-jsonld.ts, pedido GEO del 23/11/2026): ItemList con
-    Product/Offer solo con precio reciente, FAQPage y BreadcrumbList; nunca ratings ni stock."""
+    Product/Offer solo con precio reciente, FAQPage y BreadcrumbList; nunca ratings ni
+    inventoryLevel. availability (InStock) desde el 24/11 por el aviso de Search Console."""
 
     @classmethod
     def setUpClass(cls):
@@ -423,12 +424,14 @@ class TestJsonLdBF(unittest.TestCase):
         self.assertEqual(prod["offers"]["priceCurrency"], "ARS")
         self.assertEqual(prod["offers"]["price"], 1573949)
         self.assertIn("matt_tool=37267219", prod["offers"]["url"])
+        # 24/11: Search Console pide availability en offers; InStock porque hay precio vigente.
+        self.assertEqual(prod["offers"]["availability"], "https://schema.org/InStock")
         # Sin precio (visto hace más de 7 días): ListItem simple, nunca un Product sin offers (inválido).
         self.assertNotIn("item", sin)
         self.assertEqual(sin["@type"], "ListItem")
         self.assertEqual(sin["name"], "Lenovo V15 Gen 5")
         claves = set(_todas_las_claves(ld))
-        for prohibida in ("aggregateRating", "review", "ratingValue", "availability", "inventoryLevel"):
+        for prohibida in ("aggregateRating", "review", "ratingValue", "inventoryLevel"):
             self.assertNotIn(prohibida, claves)
         faq = ld["faq"]
         self.assertEqual(faq["@type"], "FAQPage")
@@ -441,8 +444,10 @@ class TestJsonLdBF(unittest.TestCase):
 
     def test_sin_ratings_en_el_codigo(self):
         sin_comentarios = re.sub(r"//.*", "", self.src)
-        for prohibida in ("aggregateRating", "ratingValue", "review", "availability", "InStock"):
+        for prohibida in ("aggregateRating", "ratingValue", "review", "inventoryLevel"):
             self.assertNotIn(prohibida, sin_comentarios)
+        # availability sí (aviso de Search Console del 24/11), pero siempre por disponibilidadLD.
+        self.assertIn("availability: disponibilidadLD(p.precio)", sin_comentarios)
 
     def test_paginas_usan_el_modulo(self):
         landing = COMPONENTE.read_text(encoding="utf-8")

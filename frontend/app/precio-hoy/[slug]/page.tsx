@@ -7,6 +7,7 @@ import AvisoBFRubro from '@/components/AvisoBFRubro'
 import { avisoBFVigente } from '@/lib/bf-enlaces'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import { getCategoria } from '@/lib/categorias'
 import { busquedaML } from '@/lib/afiliado'
 import { diasDesde, edadVieja } from '@/lib/frescura'
@@ -20,6 +21,7 @@ import { precioActual } from '@/lib/seguimiento'
 import { MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 import TambienTeServira from '@/components/TambienTeServira'
 import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import EnlacesBF from '@/components/EnlacesBF'
 import { ctaDestacado } from '@/lib/cta-destacados'
 import { extrasDeCategoria, relacionadosDePrecioHoy } from '@/lib/relacionados'
 
@@ -74,14 +76,41 @@ const SEO_CTR: Record<string, { titulo: (desde: string, cuando: string) => ((n: 
       `Cuánto sale un iPhone nuevo hoy en Mercado Libre Argentina: desde ${desde}, ${ofertas(n)} y el historial de cada modelo. El que conviene, con link directo.`,
   },
   // 24/11: «tv / televisor / smart tv 32 pulgadas», ~390 impresiones en posición 10-14.
+  // Lote 2 ctr-cta (24/11): 1.083 imp / 28 días, posición 12,4 y 0,28 % de CTR. Hasta el 30/11
+  // el título nombra el Black Friday (como iPhone); la meta pide la compra.
   'smart-tv-32-pulgadas': {
-    titulo: desde => [
-      () => `Smart TV 32 pulgadas: ofertas y precio hoy${desde}`,
-      () => `Smart TV 32 pulgadas: precio hoy${desde}`,
-      () => 'Smart TV 32 pulgadas: ofertas y precio hoy',
-    ],
+    titulo: desde =>
+      avisoBFVigente(getScrapedAt().getTime())
+        ? [
+            () => `Smart TV 32 pulgadas${desde}: ofertas Black Friday`,
+            () => `Smart TV 32 pulgadas: precio hoy${desde}`,
+            () => 'Smart TV 32 pulgadas: precio hoy y Black Friday 2026',
+          ]
+        : [
+            () => `Smart TV 32 pulgadas: ofertas y precio hoy${desde}`,
+            () => `Smart TV 32 pulgadas: precio hoy${desde}`,
+            () => 'Smart TV 32 pulgadas: ofertas y precio hoy',
+          ],
     descripcion: (desde, n) =>
-      `Televisores y smart TV de 32 pulgadas en oferta hoy en Mercado Libre Argentina desde ${desde}: ${ofertas(n)}, con el historial de precio de cada una.`,
+      `Smart TV de 32 pulgadas en oferta hoy desde ${desde}: ${ofertas(n)} en Mercado Libre y el historial de precio de cada uno. Compralo con link directo.`,
+  },
+  // Lote 2 ctr-cta (24/11): 893 imp / 28 días en posición 9,9 y 0 clics. «nuevo»: la lista no
+  // suma reacondicionados ni usados (lib/preciohoy, excluirTodo).
+  'samsung-galaxy-s': {
+    titulo: (desde, cuando) =>
+      avisoBFVigente(getScrapedAt().getTime())
+        ? [
+            () => `Samsung Galaxy S: precio hoy${desde} y Black Friday`,
+            () => `Samsung Galaxy S: precio hoy${desde}`,
+            () => 'Samsung Galaxy S: precio hoy y ofertas Black Friday 2026',
+          ]
+        : [
+            () => `Samsung Galaxy S: precio hoy${desde} (${mesCorto(cuando)})`,
+            () => `Samsung Galaxy S: precio hoy${desde}`,
+            () => 'Samsung Galaxy S: precio hoy en Argentina 2026',
+          ],
+    descripcion: (desde, n) =>
+      `Cuánto sale un Samsung Galaxy S nuevo hoy en Mercado Libre: desde ${desde}, ${ofertas(n)} (S26, S26 FE y Ultra) y el historial de cada modelo.`,
   },
   celular: {
     titulo: desde => [
@@ -157,7 +186,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
   const tambien = relacionadosDePrecioHoy(p.categoria, new Set(seguidos.map(x => x.id)), referencia, 4)
   const tambienExtras = extrasDeCategoria(p.categoria, p.slug)
   // Bloque de productos elegidos con botón en la primera pantalla (lote ctr-cta 24/11,
-  // lib/cta-destacados.ts). Hoy solo iPhone: 2.866 impresiones en 7 días y 0 clics.
+  // lib/cta-destacados.ts): iPhone (2.866 impresiones en 7 días y 0 clics), smart TV 32" y Galaxy S.
   const destacado = ctaDestacado(`/precio-hoy/${p.slug}`)
 
   // El párrafo que un buscador o una IA puede citar tal cual
@@ -220,6 +249,7 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
               lowPrice: Math.round(min),
               highPrice: Math.round(max),
               offerCount: ofertas.length,
+              availability: disponibilidadLD(min),
             },
           },
         ]
@@ -261,6 +291,8 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         <p className="mb-6 inline-flex text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
           <LastUpdated scrapedAt={scrapedAt} />
         </p>
+        {/* Enlazado interno a /black-friday y sus landings (lib/bf-enlaces.ts, páginas top de GSC). */}
+        <EnlacesBF ruta={`/precio-hoy/${p.slug}`} className="-mt-3 mb-6" />
 
         {ofertas.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-6">

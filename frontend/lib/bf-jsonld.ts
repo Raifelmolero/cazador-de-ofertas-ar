@@ -8,7 +8,17 @@
 // - Un Product sin offers, review ni aggregateRating es inválido para Google. Como no
 //   inventamos ratings, un producto sin precio reciente va como ListItem simple
 //   (nombre + url), no como Product.
-// - Nada de aggregateRating, review, availability ni stock: no tenemos esos datos.
+// - Nada de aggregateRating, review ni inventoryLevel: no tenemos esos datos.
+// - availability (24/11/2026, aviso de Search Console «falta availability en offers»):
+//   InStock solo cuando hay precio vigente (visto hace 7 días o menos); sin precio no se
+//   emite Offer. Lo usan también /precio, /precio-hoy, /vs, /mejores, /categoria y /hoy.
+
+/** schema.org/availability de un Offer: InStock con precio vigente, OutOfStock sin precio. */
+export const EN_STOCK = 'https://schema.org/InStock'
+export const SIN_STOCK = 'https://schema.org/OutOfStock'
+export function disponibilidadLD(precio: number | null | undefined): string {
+  return typeof precio === 'number' && precio > 0 ? EN_STOCK : SIN_STOCK
+}
 
 export interface ProductoLD {
   nombre: string
@@ -70,6 +80,7 @@ export function itemListLD(nombre: string, url: string, productos: ProductoLD[])
             '@type': 'Offer',
             price: Math.round(p.precio),
             priceCurrency: 'ARS',
+            availability: disponibilidadLD(p.precio),
             url: p.url,
           },
         },

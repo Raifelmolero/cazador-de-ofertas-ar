@@ -36,6 +36,7 @@ import { presupuestosConEquipos } from '@/lib/presupuesto'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { cajaDeGuia } from '@/lib/queconviene'
 import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import EnlacesBF from '@/components/EnlacesBF'
 import { MAX_TITULO_CTA, SEO_CTA, ctaDestacado, desdeCta } from '@/lib/cta-destacados'
 import { LANDINGS_BF, getLandingBF, productosBF, type ProductoBF } from '@/lib/black-friday-landings'
 import { GUIA_BF_A_LANDING, esGuiaBF, fechaAR } from '@/lib/bf-guias'
@@ -256,6 +257,9 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
             {ctaBoton}
           </a>
         </div>
+
+        {/* Enlazado interno a /black-friday y sus landings (lib/bf-enlaces.ts, guías top de GSC). */}
+        <EnlacesBF ruta={`/guias/${g.slug}`} className="-mt-4 mb-8" />
 
         {elegidosBF.length > 0 && (
           <section className="mb-8" aria-label="Los que elegimos para el Black Friday" data-seccion={`guiabf_${g.slug}_elegidos`}>

@@ -11,6 +11,7 @@ import Footer from '@/components/Footer'
 import AvisoBFRubro from '@/components/AvisoBFRubro'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import { COMPARATIVAS, MIN_PRODUCTOS_INDEXABLE, categoriaDe, getComparativa, indexable, productosDe } from '@/lib/comparativas'
 import { getGuia } from '@/lib/guias'
 import { getSeguidosPrincipales, seguidosDeCategoria, slugPorId } from '@/lib/seguimiento'
@@ -224,7 +225,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
                   '@type': 'Offer',
                   price: p.precio_actual,
                   priceCurrency: 'ARS',
-                  availability: 'https://schema.org/InStock',
+                  availability: disponibilidadLD(p.precio_actual),
                   itemCondition: 'https://schema.org/NewCondition',
                   url: conEtiqueta(p.url_producto, ETIQUETA_JSONLD),
                 },

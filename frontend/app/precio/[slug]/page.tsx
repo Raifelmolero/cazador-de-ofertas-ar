@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import { seoManual } from '@/lib/seguidos-manuales'
 import { CALC_URL } from '@/lib/vender'
 import { COMPARATIVAS } from '@/lib/comparativas'
@@ -182,7 +183,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               '@type': 'Offer',
               price: hoy,
               priceCurrency: 'ARS',
-              availability: 'https://schema.org/InStock',
+              availability: disponibilidadLD(hoy),
               url: conEtiqueta(s.url, ETIQUETA_JSONLD),
               validFrom: s.ultimo_visto,
               // el precio lo seguimos a diario: se declara válido 2 días desde la última vez que se vio

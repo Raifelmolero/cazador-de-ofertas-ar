@@ -7,6 +7,7 @@ import { ofertasHoyLight, ticketAltoPrimero } from '@/lib/ofertashoy'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import LastUpdated from '@/components/LastUpdated'
 import { getScrapedAt } from '@/lib/productos'
+import { disponibilidadLD } from '@/lib/bf-jsonld'
 import { CATEGORIAS, enFrase, getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { GUIAS } from '@/lib/guias'
 import { getContenidoCategoria } from '@/lib/categorias-contenido'
@@ -161,7 +162,7 @@ export default async function CategoriaPage({ params }: { params: Promise<{ slug
                   '@type': 'Offer',
                   price: Math.round(o.precio_actual),
                   priceCurrency: 'ARS',
-                  availability: 'https://schema.org/InStock',
+                  availability: disponibilidadLD(o.precio_actual),
                   itemCondition: 'https://schema.org/NewCondition',
                   priceValidUntil,
                   validFrom: scrapedAt,

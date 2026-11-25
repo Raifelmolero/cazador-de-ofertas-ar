@@ -3,8 +3,8 @@ import Link from 'next/link'
 import CalculadoraConsumo, { type OfertaEquipo } from '@/components/CalculadoraConsumo'
 import Footer from '@/components/Footer'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
-import OfertasCalculadora from '@/components/OfertasCalculadora'
-import { ofertasConsumo } from '@/lib/calc-ofertas'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaConsumo } from '@/lib/calc-ofertas'
 import { CATEGORIAS, enCategoria } from '@/lib/categorias'
 import { ofertasHoyLight } from '@/lib/ofertashoy'
 import { diasDesde, tramoEdad } from '@/lib/frescura'
@@ -141,15 +141,10 @@ export default function CalculadoraConsumoPage() {
 
         <CalculadoraConsumo ofertas={ofertas} busquedas={busquedas} landings={landings} />
 
-        {/* Mismo bloque que la calculadora de comisiones, con equipos que gastan menos luz
-            (lote ctr-cta 24/11: 1.510 impresiones y 0,33 % de CTR en 28 días). */}
-        <OfertasCalculadora
-          className="mt-6 max-w-3xl"
-          ofertas={ofertasConsumo()}
-          titulo="¿Vas a cambiar un equipo? Los que gastan menos, elegidos para el Black Friday"
-          seccion="consumo_ofertas"
-          evento="consumo_oferta_boton"
-        />
+        {/* Mismo cuadro que la calculadora de comisiones, con equipos que gastan menos luz
+            (lote ctr-cta 24/11: 1.510 impresiones y 0,33 % de CTR en 28 días). Desde el 25/11
+            con precio vigente, como los cuadros de oferta destacada (lib/calc-ofertas.ts). */}
+        <CtaOfertaDestacada cta={ctaConsumo()} className="mt-6 max-w-3xl" />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>

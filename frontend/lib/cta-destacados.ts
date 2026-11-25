@@ -6,8 +6,8 @@
 //   /guias/que-xiaomi-redmi-comprar                1.170 imp
 //   /guias/mejor-celular-para-jugar                3.024 imp
 //   /precio-hoy/iphone                             8.625 imp · 0,06 por ciento CTR
-// (La calculadora de consumo usa el bloque de la calculadora de comisiones:
-// lib/calc-ofertas.ts, RUBROS_CONSUMO.)
+// (Las calculadoras usan este mismo cuadro con productos de las landings BF:
+// lib/calc-ofertas.ts, ctaCalculadora y ctaConsumo.)
 //
 // Reglas (las mismas de las landings BF, no re-litigar):
 // - Solo ids que están en data/productos_rentables.json. Título, foto, link de

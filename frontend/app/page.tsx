@@ -8,6 +8,8 @@ import CalcHeader from '@/components/CalcHeader'
 import ProductsGrid from '@/components/ProductsGrid'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 
 // Home de calculadoraml.com.ar (en cazadordeofertas.com.ar la raíz se reescribe
 // a /hoy en next.config.mjs, así que esta página solo la ve el público vendedor).
@@ -169,6 +171,13 @@ export default function HomePage() {
           </ul>
         </section>
       )}
+
+      {/* Fuga calcml (25/11): la grilla de abajo manda a publicaciones de más de $2 M que el
+          vendedor mira para analizar, no para comprar (791 clics y 0 ventas en una semana).
+          Para el que sí está por comprar: el cuadro de oferta destacada (lib/calc-ofertas.ts). */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10">
+        <CtaOfertaDestacada cta={ctaCalculadora()} />
+      </div>
 
       {/* Productos rentables (contenido original de la home) */}
       <section id="productos" className="max-w-7xl mx-auto px-4 sm:px-6 pt-12">

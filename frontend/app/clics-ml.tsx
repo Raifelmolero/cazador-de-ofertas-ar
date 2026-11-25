@@ -50,7 +50,7 @@ export default function ClicsML() {
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
       if (!a) return
-      // Botones con evento propio (ej. `calcml_oferta_boton`, components/OfertasCalculadora):
+      // Botones con evento propio (ej. `calcml_oferta_boton`, cuadro de las calculadoras, lib/calc-ofertas.ts):
       // se mide además del clic_ml de abajo.
       const evento = a.dataset.evento
       if (evento && /^[a-z0-9_]{1,40}$/.test(evento)) {

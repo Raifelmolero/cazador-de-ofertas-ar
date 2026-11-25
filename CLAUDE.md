@@ -29,15 +29,15 @@ tecnicismos innecesarios.**
   márgenes, parseo de ML, retención de media). Corren solos en Actions y a
   mano con `python -m unittest discover -s bot/tests -v`.
 - Estado en `bot/state/` (posted_ids, posts_log, scan_log, price_history,
-  metrics_log): lo commitean los workflows con `[skip ci]`. Esos commits NO redeployan
-  (ver «Costos de Vercel» abajo): el sitio se actualiza cada 3 días con `deploy_agrupado.yml`.
+  metrics_log): lo commitean los workflows con `[skip ci]`. Esos commits y los
+  merges NO redeployan (ver «Costos de Vercel» abajo): el sitio se actualiza
+  cada 3 días con `deploy_agrupado.yml`, o a mano con workflow_dispatch.
 
-## Costos de Vercel (regla, 2/11/2026; actualizada 14/11/2026)
+## Costos de Vercel (regla, 2/11/2026; actualizada 25/11/2026)
 Factura de USD 60 con USD 51 de Build CPU. Objetivo: ~USD 20/mes (Pro fijo; tope total USD 30). No re-litigar:
 - Build Machine del proyecto = **Basic**; builds concurrentes desactivados; presupuesto USD 10.
-- Commits automáticos con prefijo `bot:`, `datos:` u `oferta manual:` no despliegan
-  (`frontend/scripts/vercel-ignore.sh`). **Regla 14/11:** Deploy agrupado cada 3 días (no diario) por costo de Vercel: crédito USD 20/mes, tope total USD 30. Commits intermedios siempre `datos:`. Ninguna tarea programada dispara deploys por su cuenta. Cron: `30 0 */3 * *` (queda `workflow_dispatch` para corridas manuales).
-  Un workflow nuevo que commitee datos TIENE que usar uno de esos prefijos.
+- **Regla 25/11:** Vercel: nunca un deploy por merge; se acumulan merges y sale un solo deploy agrupado cada tanto para no pasarse de la cuota. El auto-deploy efectivo de main está apagado: `frontend/scripts/vercel-ignore.sh` solo buildea commits cuyo mensaje empieza con `deploy:`. Los merges, los `datos:` y los commits del bot no gastan Build CPU. Lo dispara `deploy_agrupado.yml` (cron `30 0 */3 * *`, cada 3 días, ~21:30 ART) solo si hubo cambios del sitio desde el último `deploy:`; también queda `workflow_dispatch` para forzarlo a mano. Commits intermedios siempre `datos:`. Ninguna tarea programada dispara deploys por su cuenta.
+  Un workflow nuevo que commitee datos TIENE que usar un prefijo que no sea `deploy:` (`bot:`, `datos:`, `oferta manual:`, etc.).
 - `generateStaticParams` sobre listas grandes siempre con `.slice()` (calculadora 200, precio 500);
   el resto se arma en la primera visita. Cargadores de JSON memoizados.
 

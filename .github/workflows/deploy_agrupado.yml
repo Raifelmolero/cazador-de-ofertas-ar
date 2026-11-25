@@ -1,14 +1,21 @@
 name: Deploy agrupado
 
-# Los commits del bot ("bot:", "datos:", "oferta manual:") no despliegan solos
-# (ver frontend/scripts/vercel-ignore.sh): cada uno era un build de 5-9 min y en
-# octubre-2026 sumaron USD 51 de Build CPU. Este workflow hace un commit vacío
-# cada 3 días, y Vercel construye una sola vez con todo lo acumulado.
-# Si no hubo cambios del sitio, el ignoreCommand lo saltea.
+# Producción no se despliega en cada merge ni en cada commit del bot.
+# Este workflow junta lo acumulado y dispara un solo build, como máximo
+# cada 3 días, o a mano con workflow_dispatch. El ignoreCommand
+# (frontend/scripts/vercel-ignore.sh) solo buildea commits "deploy:".
+# No usamos git.deploymentEnabled=false: sin un deploy hook, el commit
+# vacío dejaría de desplegar. El ignore equivalente apaga el auto-deploy
+# efectivo de merges y pushes.
 on:
   schedule:
-    - cron: '30 0 */3 * *'  # cada 3 días, 21:30 ART (GitHub suele atrasarlo). Regla 14/11: no diario; crédito USD 20/mes, tope total USD 30
+    - cron: '30 0 */3 * *'  # cada 3 días, ~21:30 ART (GitHub suele atrasarlo). Crédito USD 20/mes, tope total USD 30.
   workflow_dispatch:
+    inputs:
+      force:
+        description: 'Forzar el commit de deploy aunque no haya cambios del sitio desde el último deploy:'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -24,10 +31,36 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: main
-      - name: Disparar deploy
+          fetch-depth: 0
+      - name: Disparar deploy si hay cambios
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          FORCE: ${{ github.event.inputs.force }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          LAST=$(git log -1 --grep='^deploy:' --format=%H || true)
+          FORCE_DEPLOY=false
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$FORCE" != "false" ]; then
+            FORCE_DEPLOY=true
+          fi
+
+          if [ "$FORCE_DEPLOY" != "true" ]; then
+            if [ -z "$LAST" ]; then
+              echo "No hay un deploy: previo; disparo el agrupado."
+            elif git diff --quiet "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json' bot/state/price_history.json bot/state/scan_log.jsonl; then
+              echo "Sin cambios del sitio desde $LAST; no disparo deploy."
+              exit 0
+            else
+              echo "Hay cambios del sitio desde $LAST; disparo el agrupado."
+              git diff --stat "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json' bot/state/price_history.json bot/state/scan_log.jsonl | tail
+            fi
+          else
+            echo "workflow_dispatch con force: disparo el agrupado."
+          fi
+
           git commit --allow-empty -m "deploy: agrupado [skip ci]"
           git pull --rebase -q
           git push

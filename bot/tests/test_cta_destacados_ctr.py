@@ -17,8 +17,6 @@ RAIZ = Path(__file__).resolve().parents[2]
 FRONT = RAIZ / "frontend"
 LIB = FRONT / "lib" / "cta-destacados.ts"
 COMP = FRONT / "components" / "CtaOfertaDestacada.tsx"
-CALC_LIB = FRONT / "lib" / "calc-ofertas.ts"
-CALC_COMP = FRONT / "components" / "OfertasCalculadora.tsx"
 LANDINGS = FRONT / "lib" / "black-friday-landings.ts"
 MANUALES = FRONT / "lib" / "seguidos-manuales.ts"
 CATALOGO = FRONT / "data" / "productos_rentables.json"
@@ -209,47 +207,7 @@ class TestTitlesYMetas(unittest.TestCase):
         self.assertNotRegex(desc, r"m[ií]nimo|\d+\s*%|cup[oó]n")
 
 
-class TestCalculadoraConsumo(unittest.TestCase):
-    """Espeja el bloque BF de la calculadora de comisiones (OfertasCalculadora)."""
-
-    @classmethod
-    def setUpClass(cls):
-        cls.lib = CALC_LIB.read_text(encoding="utf-8")
-        cls.comp = CALC_COMP.read_text(encoding="utf-8")
-        cls.pagina = (FRONT / "app" / "calculadora-consumo-electrico" / "page.tsx").read_text(encoding="utf-8")
-        cls.catalogo = _catalogo()
-        cls.landings = LANDINGS.read_text(encoding="utf-8")
-
-    def test_rubros_eficientes_con_producto_real(self):
-        rubros = re.search(r"RUBROS_CONSUMO = \[([^\]]+)\]", self.lib).group(1)
-        slugs = re.findall(r"'(black-friday-[a-z-]+)'", rubros)
-        self.assertIn("black-friday-aires-acondicionados", slugs)
-        self.assertIn("black-friday-heladeras", slugs)
-        for slug in slugs:
-            i = self.landings.index(f"slug: '{slug}'")
-            bloque = self.landings[i: self.landings.index("\n  },\n", i)]
-            ids = re.findall(r"id: '(MLA\d+)'", bloque)
-            ok = [x for x in ids if x in self.catalogo and self.catalogo[x].get("url_imagen")
-                  and not EXCLUIDAS.search(self.catalogo[x]["titulo"]) and x != LIKON_ID]
-            self.assertTrue(ok, slug)
-            # El primero con foto (el que se muestra) es del rubro de bajo consumo.
-            self.assertRegex(self.catalogo[ok[0]]["titulo"].lower(), r"inverter|lavarropas|no frost", slug)
-
-    def test_cero_bgh_ni_likon(self):
-        self.assertIn("MARCAS_PROHIBIDAS.test(x.nombre)", self.lib)
-        self.assertIn("likon", self.lib)
-        self.assertIn(LIKON_ID, self.lib)
-
-    def test_en_la_pagina_debajo_de_la_calculadora(self):
-        self.assertIn("ofertas={ofertasConsumo()}", self.pagina)
-        self.assertIn('evento="consumo_oferta_boton"', self.pagina)
-        self.assertLess(self.pagina.index("<CalculadoraConsumo"), self.pagina.index("<OfertasCalculadora"))
-
-    def test_boton_48px_marca_y_sin_precios(self):
-        self.assertIn("min-h-[48px]", self.comp)
-        self.assertIn("bg-[#FACC15]", self.comp)
-        self.assertIn("text-black", self.comp)
-        self.assertNotRegex(_sin_comentarios(self.comp), r"\d+\s*%|cup[oó]n|m[ií]nimo hist|line-through|p\.precio")
+# La calculadora de consumo (ctaConsumo) se testea en test_fuga_calcml.py.
 
 
 class TestHerramientasPrecio(unittest.TestCase):

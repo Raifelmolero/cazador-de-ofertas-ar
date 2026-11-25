@@ -4,8 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraCuotas from '@/components/CalculadoraCuotas'
 import Footer from '@/components/Footer'
-import CtaCalculadora from '@/components/CtaCalculadora'
-import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 import { COSTOS_VERIFICADOS, CUOTAS, FUENTE_COSTOS, SIMULADOR_ML } from '@/lib/costosml'
 import { calcularCuotas } from '@/lib/cuotas'
 import { CALC_URL } from '@/lib/vender'
@@ -81,13 +81,10 @@ export default function CalculadoraCuotasPage() {
 
         <CalculadoraCuotas />
 
-        <CtaCalculadora
-          className="mt-6 max-w-3xl"
-          titulo="¿Comprás para revender? Buscá el costo más bajo"
-          texto="Cuanto menos te cuesta el producto, más margen te queda aun ofreciendo cuotas. Estas son las ofertas de hoy, con descuento real verificado."
-          ml={ML_OFERTAS}
-          internos={enlacesOfertas()}
-        />
+        {/* Fuga calcml (25/11): antes un botón a mercadolibre.com.ar/ofertas (listado, 0 ventas).
+            Ahora el cuadro de oferta destacada de las páginas que venden: producto concreto,
+            precio vigente y botón a su publicación (lib/calc-ofertas.ts). */}
+        <CtaOfertaDestacada cta={ctaCalculadora()} className="mt-6 max-w-3xl" />
 
         <p className="mt-6 text-sm text-zinc-400 max-w-3xl">
           ¿Querés sumar tu costo, el envío y ver tu ganancia?{' '}

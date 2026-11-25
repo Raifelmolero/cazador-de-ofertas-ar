@@ -12,7 +12,8 @@ import AlertaCTA from '@/components/AlertaCTA'
 import Image from 'next/image'
 import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
-import OfertasCalculadora from '@/components/OfertasCalculadora'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 import Footer from '@/components/Footer'
 
 // Solo existen las 200 de más margen (getProductosCalc); cualquier otro id da
@@ -156,9 +157,10 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
                 href={producto.url_producto}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
-                className={slugOferta
-                  ? 'text-sm font-semibold text-zinc-400 hover:text-yellow-400'
-                  : 'inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-colors'}
+                // Link chico siempre: es el producto que el vendedor analiza (ticket de más de
+                // $2 M, 1 de cada 3 sin precio de la última semana), no una compra. El botón
+                // grande de compra es el cuadro de oferta destacada de abajo (fuga calcml 25/11).
+                className="text-sm font-semibold text-zinc-400 hover:text-yellow-400"
               >
                 Ver publicación en ML ↗
               </a>
@@ -191,8 +193,8 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
           envioArs={envioArs}
         />
 
-        {/* Ofertas de las landings BF con botón de afiliado (calcml: 0 ventas) */}
-        <OfertasCalculadora />
+        {/* Fuga calcml (25/11): cuadro de oferta destacada con precio vigente (lib/calc-ofertas.ts) */}
+        <CtaOfertaDestacada cta={ctaCalculadora()} />
 
         {parecidas.length > 0 && (
           <nav aria-label="Fichas de precio parecido" className="text-sm">

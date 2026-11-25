@@ -4,8 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraEnvioGratis from '@/components/CalculadoraEnvioGratis'
 import Footer from '@/components/Footer'
-import CtaCalculadora from '@/components/CtaCalculadora'
-import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 import { ENVIO_GRATIS_VERDE, ENVIO_GRATIS_VERIFICADO, UMBRAL_COSTO_FIJO } from '@/lib/costosml'
 import { AYUDA_COSTOS_ENVIO, REPUTACIONES } from '@/lib/enviogratis'
 import { CALC_URL } from '@/lib/vender'
@@ -85,13 +85,10 @@ export default function CalculadoraEnvioGratisPage() {
 
         <CalculadoraEnvioGratis />
 
-        <CtaCalculadora
-          className="mt-6 max-w-3xl"
-          titulo="¿Comprás para revender o para vos? Mirá las ofertas de hoy"
-          texto={`El envío gratis es obligatorio para el vendedor desde ${umbral}. Estas son las ofertas del día, con descuento real verificado.`}
-          ml={ML_OFERTAS}
-          internos={enlacesOfertas()}
-        />
+        {/* Fuga calcml (25/11): antes un botón a mercadolibre.com.ar/ofertas (listado, 0 ventas).
+            Ahora el cuadro de oferta destacada de las páginas que venden: producto concreto,
+            precio vigente y botón a su publicación (lib/calc-ofertas.ts). */}
+        <CtaOfertaDestacada cta={ctaCalculadora()} className="mt-6 max-w-3xl" />
 
         <p className="mt-6 text-sm text-zinc-400 max-w-3xl">
           ¿Querés sumar tu costo y ver tu ganancia?{' '}

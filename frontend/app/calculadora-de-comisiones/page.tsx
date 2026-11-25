@@ -4,9 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraComisiones from '@/components/CalculadoraComisiones'
 import Footer from '@/components/Footer'
-import CtaCalculadora from '@/components/CtaCalculadora'
-import OfertasCalculadora from '@/components/OfertasCalculadora'
-import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 import {
   CARGO_MAX,
   CARGO_MIN,
@@ -81,16 +80,10 @@ export default function CalculadoraComisionesPage() {
 
         <CalculadoraComisiones />
 
-        {/* Ofertas de las landings BF con botón de afiliado (calcml: 0 ventas) */}
-        <OfertasCalculadora className="mt-6 max-w-3xl" />
-
-        <CtaCalculadora
-          className="mt-6 max-w-3xl"
-          titulo="¿Querés bajar tu costo? Mirá las ofertas de hoy"
-          texto="Si comprás para revender, un mejor precio de compra se lleva el margen que la comisión te saca. Descuentos reales, verificados contra el historial de precios."
-          ml={ML_OFERTAS}
-          internos={enlacesOfertas()}
-        />
+        {/* Fuga calcml (25/11): antes un botón a mercadolibre.com.ar/ofertas (listado, 0 ventas).
+            Ahora el cuadro de oferta destacada de las páginas que venden: producto concreto,
+            precio vigente y botón a su publicación (lib/calc-ofertas.ts). */}
+        <CtaOfertaDestacada cta={ctaCalculadora()} className="mt-6 max-w-3xl" />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Preguntas frecuentes</h2>

@@ -4,8 +4,8 @@ import Link from 'next/link'
 import CalcHeader from '@/components/CalcHeader'
 import CalculadoraPrecioVenta from '@/components/CalculadoraPrecioVenta'
 import Footer from '@/components/Footer'
-import CtaCalculadora from '@/components/CtaCalculadora'
-import { ML_OFERTAS, enlacesOfertas } from '@/lib/ctacalc'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import { ctaCalculadora } from '@/lib/calc-ofertas'
 import {
   CARGO_MAX,
   CARGO_MIN,
@@ -82,13 +82,10 @@ export default function CalculadoraPrecioVentaPage() {
 
         <CalculadoraPrecioVenta />
 
-        <CtaCalculadora
-          className="mt-6 max-w-3xl"
-          titulo="¿Todavía buscás qué vender? Mirá lo que está en oferta"
-          texto="Un costo de compra más bajo es margen extra. Ofertas de hoy con descuento real verificado, para comparar contra tu precio de costo."
-          ml={ML_OFERTAS}
-          internos={enlacesOfertas()}
-        />
+        {/* Fuga calcml (25/11): antes un botón a mercadolibre.com.ar/ofertas (listado, 0 ventas).
+            Ahora el cuadro de oferta destacada de las páginas que venden: producto concreto,
+            precio vigente y botón a su publicación (lib/calc-ofertas.ts). */}
+        <CtaOfertaDestacada cta={ctaCalculadora()} className="mt-6 max-w-3xl" />
 
         <p className="mt-6 text-sm text-zinc-400 max-w-3xl">
           ¿Ya tenés un precio y querés ver cuánto te queda?{' '}

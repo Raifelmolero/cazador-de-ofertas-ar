@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-24T23:51:07+00:00",
+  "generado": "2026-11-25T06:49:02+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,45 +8,33 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-24T23:51:07+00:00",
+      "ultima_actividad": "2026-11-25T06:49:00+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 9412 productos en la última corrida"
+          "tarea": "Revisó 9063 productos en la última corrida"
         }
       ],
       "metricas": [
-        {
-          "label": "Facebook",
-          "valor": 5
-        },
         {
           "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "whatsapp_kit",
+          "label": "Facebook",
           "valor": 3
-        },
-        {
-          "label": "Threads",
-          "valor": 2
-        },
-        {
-          "label": "Reels IG",
-          "valor": 1
-        },
-        {
-          "label": "Historias IG",
-          "valor": 1
         },
         {
           "label": "Instagram",
           "valor": 1
+        },
+        {
+          "label": "Threads",
+          "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Dell Inspiron 15 con Ryzen 7, 32GB RAM y 2TB SSD"
+      "ultimo_trabajo": "Notebook Alienware M15 R7 Negro 15.6\" 1920 px x 1080 px Intel 12700H NVIDIA GeFo"
     },
     {
       "id": "investigacion",

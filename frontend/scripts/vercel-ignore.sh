@@ -7,17 +7,22 @@
 [ "$VERCEL_ENV" = "preview" ] && exit 0
 case "$VERCEL_GIT_COMMIT_REF" in dependabot/*) exit 0 ;; esac
 
-# Commits automáticos del bot (ofertas publicadas, tendencias, placas): no
-# despliegan uno por uno. Los junta deploy_agrupado.yml, que hace un commit
-# "deploy:" cada 3 días; ese build compara contra el último deploy y
-# levanta todo lo acumulado. Antes eran ~10 builds por día (USD 51 en oct-2026).
-case "$VERCEL_GIT_COMMIT_MESSAGE" in "bot:"*|"datos:"*|"oferta manual:"*|"cupones:"*|"auditoria:"*) exit 0 ;; esac
+# Regla 25/11: nunca un deploy por merge ni por push a main. Se acumulan
+# los merges y sale un solo build agrupado cada tanto (deploy_agrupado.yml,
+# cron cada 3 días o workflow_dispatch). Solo buildea el commit "deploy:".
+# Antes, el ignore salteaba bot:/datos:/oferta manual: pero NO los merges,
+# y cada PR mergeado a main gastaba un build de producción.
+case "$VERCEL_GIT_COMMIT_MESSAGE" in
+  "deploy:"*) ;;
+  *) exit 0 ;;
+esac
 
 P=${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}
 # Sin commit previo conocido → buildear por las dudas.
 git cat-file -e "$P^{commit}" 2>/dev/null || exit 1
 
-# Buildear solo si cambió algo del sitio. data/oficina.json (estado de /oficina)
-# lo toca cada corrida del bot y no justifica un deploy.
+# Aunque el mensaje sea deploy:, no gastar CPU si no cambió el sitio.
+# data/oficina.json (estado de /oficina) lo toca cada corrida del bot y
+# no justifica un deploy.
 git diff --quiet "$P" HEAD -- . ':(exclude)data/oficina.json' \
   ../bot/state/price_history.json ../bot/state/scan_log.jsonl

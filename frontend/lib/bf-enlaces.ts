@@ -39,8 +39,47 @@ export const AVISO_BF_POR_RUTA: Record<string, DestinoBF> = {
   '/mejor/aires-acondicionados': AIRES,
 }
 
+/** Pedido del 26/11/2026: además de las 10 de arriba, TODA página /mejores/*, /precio-hoy/* o
+ *  /guias/* de un rubro con landing BF lleva el bloque. Se reconoce el rubro por palabras del slug,
+ *  en orden (lo más específico primero: «freidora-de-aire» no es un aire, «galaxy-tab» no es un
+ *  celular). Las landings BF mismas no llevan bloque. */
+const RUBROS_BF_POR_SLUG: [RegExp, DestinoBF][] = [
+  [/freidora/, { slug: 'black-friday-freidoras-de-aire', texto: 'Ver las freidoras que elegimos' }],
+  [/aire-acondicionado|aires-acondicionados|split|frigorias/, AIRES],
+  [/lavarropas|lavasecarropas/, { slug: 'black-friday-lavarropas', texto: 'Ver los lavarropas que elegimos' }],
+  [/heladera/, { slug: 'black-friday-heladeras', texto: 'Ver las heladeras que elegimos' }],
+  [/cafetera/, { slug: 'black-friday-cafeteras', texto: 'Ver las cafeteras que elegimos' }],
+  [/bicicleta/, { slug: 'black-friday-bicicletas', texto: 'Ver las bicicletas que elegimos' }],
+  [/colchon/, { slug: 'black-friday-colchones', texto: 'Ver los colchones que elegimos' }],
+  [/auricular|airpods/, { slug: 'black-friday-auriculares', texto: 'Ver los auriculares que elegimos' }],
+  [/tablet|ipad|galaxy-tab/, { slug: 'black-friday-tablets', texto: 'Ver las tablets que elegimos' }],
+  [/smartwatch|reloj-inteligente|apple-watch|galaxy-watch|smartband/, { slug: 'black-friday-smartwatch', texto: 'Ver los smartwatch que elegimos' }],
+  [/notebook|laptop|macbook/, NOTEBOOKS],
+  [/celulares?-barat|motorola|moto-g|xiaomi|redmi/, { slug: 'black-friday-celulares-baratos', texto: 'Ver los celulares baratos que elegimos' }],
+  [/celular|iphone|samsung-galaxy/, CELULARES],
+  [/pc-gamer|monitor(?!-?(de-)?(presion|bebe))|gaming|gamer/,{ slug: 'black-friday-gaming', texto: 'Ver lo gamer que elegimos' }],
+  [/smart-tv|televisor|(^|-)tv(-|$)/, TV],
+  [/taladro|amoladora|rotomartillo|hidrolavadora|herramienta|sierra/, { slug: 'black-friday-herramientas', texto: 'Ver las herramientas que elegimos' }],
+  [/juguete|(^|-)lego(-|$)/,{ slug: 'black-friday-juguetes', texto: 'Ver los juguetes que elegimos' }],
+]
+
+/** Landing BF del rubro de una ruta /mejores, /precio-hoy o /guias reconocido por su slug. */
+export function landingBFPorSlug(ruta: string): DestinoBF | undefined {
+  const m = ruta.match(/^\/(?:mejores|precio-hoy|guias)\/([a-z0-9-]+)$/)
+  if (!m || m[1].startsWith('black-friday-')) return undefined
+  return RUBROS_BF_POR_SLUG.find(([re]) => re.test(m[1]))?.[1]
+}
+
 export function destinoBF(ruta: string): DestinoBF | undefined {
-  return AVISO_BF_POR_RUTA[ruta]
+  return AVISO_BF_POR_RUTA[ruta] ?? landingBFPorSlug(ruta)
+}
+
+/** Guías «…-cyber-monday» que siguen trayendo tráfico (26/11/2026): misma URL, pero el botón de la
+ *  respuesta corta va a la landing BF del rubro, con un link a /black-friday al lado. Sin fecha de fin. */
+export const GUIA_CYBER_A_LANDING_BF: Record<string, string> = {
+  'conviene-comprar-aire-acondicionado-cyber-monday': 'black-friday-aires-acondicionados',
+  'que-lavarropas-comprar-cyber-monday': 'black-friday-lavarropas',
+  'que-celular-comprar-cyber-monday': 'black-friday-celulares',
 }
 
 /** Bloque compacto de enlaces a /black-friday y a TODAS las landings /mejores/black-friday-*

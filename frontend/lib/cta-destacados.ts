@@ -258,6 +258,12 @@ export interface CtaDestacado extends CtaDestacadoDef {
   productos: ProductoBF[]
 }
 
+/** Cuadro de destacados de arriba de una landing /mejores/black-friday-* (26/11/2026): los
+ *  MAX_DESTACADOS primeros de la landing que pasan la exclusión de marcas e ids de este archivo. */
+export function destacadosLandingBF(productos: ProductoBF[]): ProductoBF[] {
+  return productos.filter(p => !excluidoDeCta(p)).slice(0, MAX_DESTACADOS)
+}
+
 /** Bloque de la ruta con sus productos de hoy, o null si la ruta no tiene o no queda ninguno. */
 export function ctaDestacado(ruta: string, hoy?: string): CtaDestacado | null {
   const def = CTAS_DESTACADOS[ruta]

@@ -7,7 +7,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
-import { BOTON_HERO, Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import { BOTON_HERO, ChipEncabezadoBF, Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
+import TerminoBF from '@/components/black-friday/TerminoBF'
+import { ETIQUETA_MODO_BF, modoBF } from '@/lib/cybermonday'
+import { excluidoDeCta } from '@/lib/cta-destacados'
 import CanalWhatsAppBF from '@/components/black-friday/CanalWhatsAppBF'
 import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
 import { getLandingBF, productosDeItems } from '@/lib/black-friday-landings'
@@ -17,7 +20,10 @@ import { DEALS_URL, MARCA, ORG_ID, WEBSITE_ID } from '@/lib/marca'
 export default function GuiaBFPage({ g }: { g: Guia }) {
   if (!g.bf) return null
   const landing = getLandingBF(g.bf.landing)
-  const productos = productosDeItems(g.bf.items)
+  // Título, pregunta y respuesta ya vienen en el modo del día (getGuia de app/guias/[slug]/page.tsx).
+  const modo = modoBF()
+  // Sin BGH, Likon, HP, OMEN ni Victus (productosDeItems filtra marcas; excluidoDeCta suma ids sueltos).
+  const productos = productosDeItems(g.bf.items).filter(p => !excluidoDeCta(p))
   const [principal, ...resto] = productos
   const url = `${DEALS_URL}/guias/${g.slug}`
   const fechas = fechasGuia(g.slug)
@@ -61,17 +67,16 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={28} height={28} className="rounded-full" />
             <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
-          <Link href="/black-friday" className="text-xs font-black text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full whitespace-nowrap">
-            Black Friday 27/11
-          </Link>
+          <ChipEncabezadoBF modo={modo} />
         </div>
       </header>
 
       {/* Primera pantalla: la respuesta directa y el botón del recomendado */}
       <section className="bg-yellow-400 text-black" data-seccion={`${seccion}_hero`}>
         <div className="max-w-3xl mx-auto px-4 pt-4 pb-5">
-          <p className="text-[11px] font-black uppercase tracking-wider">Guía · Black Friday 2026 · viernes 27/11</p>
+          <p className="text-[11px] font-black uppercase tracking-wider">Guía · {ETIQUETA_MODO_BF[modo]}</p>
           <h1 className="mt-1 font-display text-[26px] sm:text-4xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">{g.titulo}</h1>
+          <TerminoBF modo={modo} className="mt-3" />
 
           <RespuestaCorta texto={g.respuestaCorta} actualizado={fechas.modificada} />
 

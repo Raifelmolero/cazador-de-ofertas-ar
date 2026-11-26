@@ -31,6 +31,10 @@ const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', '
 const precio = (n: number) => '$' + Math.round(n).toLocaleString('es-AR')
 const fecha = (iso: string) => iso.slice(0, 10).split('-').reverse().join('/')
 
+// Black Friday (26/11/2026): el bloque del rubro (AvisoBFRubro) cambia de texto según el modo del día
+// (lib/cybermonday.ts) sin esperar al deploy agrupado: como mucho una regeneración por hora y por página.
+export const revalidate = 3600
+
 export function generateStaticParams() {
   return PRECIOS_HOY.map(p => ({ slug: p.slug }))
 }

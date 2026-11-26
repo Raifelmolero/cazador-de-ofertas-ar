@@ -46,6 +46,8 @@ export const BLACK_FRIDAY = {
   /** Día de Acción de Gracias de EE.UU. 2026: jueves 26/11 (feriado federal, OPM). */
   fuente: { nombre: 'OPM (feriados federales de EE.UU. 2026: Thanksgiving, jueves 26 de noviembre)', url: 'https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/#url=2026' },
   verificado: '2026-09-27',
+  /** Último día que el sitio trata como Black Friday (muchas tiendas lo estiran el fin de semana). */
+  ultimoDia: '2026-11-29',
 }
 
 /** Etapa del Black Friday (un solo día, hora argentina). */
@@ -69,10 +71,151 @@ export function aBlackFridayTrasCyber(texto: string, ahora = new Date()): string
   if (etapaCyber(ahora).etapa !== 'despues') return texto
   return texto
     .replace(CYBER_MONDAY.fechasTexto, BLACK_FRIDAY.fechasTexto)
+    // Fechas escritas a mano en las guías: no pueden quedar pegadas al Black Friday.
+    .replace(/Cyber Monday \(2 al 4 de noviembre de 2026\)/g, `Black Friday (${BLACK_FRIDAY.fechasTexto})`)
+    .replace(/\bel lunes 2\b/g, 'el viernes 27')
     .replace(/Cyber Monday/g, 'Black Friday')
     .replace(/cyber monday/g, 'black friday')
     .replace(/CyberMonday/g, 'Black Friday')
     .replace(/(en|del|al|para el) Cyber\b/g, '$1 Black Friday')
     .replace(/Black Friday (y|o|e) (el |la )?Black Friday/g, 'Black Friday')
     .replace(/Black Friday\/Black Friday/g, 'Black Friday')
+}
+
+// ── Modo del Black Friday por fecha (pedido del 26/11/2026) ─────────────────
+// UNA sola fuente de verdad para title, description, H1, hero y JSON-LD de
+// /black-friday, /mejores/black-friday-*, /guias/*black-friday* y las guías
+// /guias/*-cyber-monday (que ya hablan del Black Friday). Se evalúa en el render
+// (esas páginas tienen ISR de 1 hora): no depende de un deploy el mismo día.
+//   previa  → hasta el jueves 26/11 inclusive
+//   hoy     → viernes 27/11 (el día)
+//   ultimas → sábado 28 y domingo 29/11 (fin de semana estirado)
+//   termino → desde el lunes 30/11: la página sigue viva, con link a las ofertas vigentes
+// Todo en hora argentina (America/Argentina/Buenos_Aires, UTC-3 sin horario de verano).
+
+export type ModoBF = 'previa' | 'hoy' | 'ultimas' | 'termino'
+
+export function modoBF(ahora = new Date()): ModoBF {
+  const t = ahora.getTime()
+  if (t < ms(BLACK_FRIDAY.fecha)) return 'previa'
+  if (t <= ms(BLACK_FRIDAY.fecha, '23:59:59.999')) return 'hoy'
+  if (t <= ms(BLACK_FRIDAY.ultimoDia, '23:59:59.999')) return 'ultimas'
+  return 'termino'
+}
+
+/** Etiqueta chica arriba del H1 (hero de landings y guías BF). */
+export const ETIQUETA_MODO_BF: Record<ModoBF, string> = {
+  previa: 'Black Friday 2026 · viernes 27/11',
+  hoy: '🔥 Black Friday HOY · viernes 27/11',
+  ultimas: '⏳ Black Friday: últimas horas',
+  termino: 'Terminó el Black Friday 2026',
+}
+
+/** Botón del encabezado de landings y guías BF. */
+export const CHIP_MODO_BF: Record<ModoBF, string> = {
+  previa: 'Black Friday 27/11',
+  hoy: 'Black Friday HOY',
+  ultimas: 'Últimas horas BF',
+  termino: 'Ofertas de hoy',
+}
+
+/** Título del cuadro de destacados de arriba (landings y /black-friday). */
+export const DESTACADOS_MODO_BF: Record<ModoBF, string> = {
+  previa: 'Los que recomendamos para el Black Friday',
+  hoy: 'Black Friday HOY: los que recomendamos',
+  ultimas: 'Últimas horas: los que recomendamos',
+  termino: 'Siguen hoy: los que recomendamos',
+}
+
+type ModoActivo = Exclude<ModoBF, 'previa'>
+const FRASE_BF = /\b(?:para el|en el|en) Black Friday(?: 2026)?(?: (?:de|en) Argentina)?/g
+const FRASE_MODO: Record<ModoActivo, string> = {
+  hoy: 'en el Black Friday de hoy',
+  ultimas: 'en las últimas horas del Black Friday',
+  termino: 'después del Black Friday 2026',
+}
+const INICIO_MODO: Record<ModoActivo, string> = {
+  hoy: 'Black Friday HOY',
+  ultimas: 'Últimas horas del Black Friday',
+  termino: 'Ya pasó el Black Friday 2026',
+}
+const FECHA_MODO: Record<ModoActivo, string> = {
+  hoy: '(hoy, viernes 27/11)',
+  ultimas: '(fue el viernes 27/11)',
+  termino: '(fue el viernes 27/11)',
+}
+
+/** Pasa un texto escrito para la previa («… para el Black Friday 2026», «en Black Friday 2026»,
+ *  «Black Friday 2026 en Argentina (viernes 27/11): …») al modo del día. En la previa no lo toca. */
+export function textoModoBF(texto: string, modo: ModoBF): string {
+  if (modo === 'previa') return texto
+  return texto
+    .replace(/^Black Friday 2026\b/, INICIO_MODO[modo])
+    .replace(FRASE_BF, FRASE_MODO[modo])
+    .replace(/\(viernes 27\/11\)/g, FECHA_MODO[modo])
+}
+
+/** <title> en el modo del día sin pasarse de `max`: si no entra ni sacando «Argentina», queda el
+ *  original (que nunca dice que el evento no empezó). */
+export function tituloModoBF(titulo: string, modo: ModoBF, max = 65): string {
+  if (modo === 'previa') return titulo
+  const t = textoModoBF(titulo, modo)
+  if (t.length <= max) return t
+  const corto = t.replace(/\s*\(Argentina\)$/, '').replace(/ en Argentina\b/, '')
+  return corto.length <= max ? corto : titulo
+}
+
+/** <title> de una landing /mejores/black-friday-* en el modo del día, armado desde su H1. */
+export function tituloLandingModoBF(h1: string, titulo: string, modo: ModoBF, max = 65): string {
+  if (modo === 'previa') return titulo
+  const h = textoModoBF(h1, modo)
+  for (const c of [`${h} (Argentina)`, h]) if (c.length <= max) return c
+  return tituloModoBF(titulo, modo, max)
+}
+
+/** La frase de fechas que comparten las guías «…-cyber-monday» («El Cyber Monday 2026 de la CACE
+ *  fue…; los próximos eventos son el Black Friday (viernes 27/11) y…»), según el modo. Sin la
+ *  palabra «Cyber»: aBlackFridayTrasCyber la convertiría. */
+const FRASE_EVENTOS =
+  /El Cyber Monday 2026 de la CACE fue del 2 al 4 de noviembre; los próximos eventos son el Black Friday \(viernes 27\/11\) y el Cyber Monday del lunes 30\/11\./g
+const EVENTOS_MODO: Record<ModoBF, string> = {
+  previa: 'El próximo evento es el Black Friday, el viernes 27 de noviembre.',
+  hoy: 'El Black Friday es hoy, viernes 27 de noviembre.',
+  ultimas: 'El Black Friday fue el viernes 27/11 y muchas tiendas lo estiran el fin de semana.',
+  termino: 'El Black Friday 2026 fue el viernes 27/11; las ofertas siguen todos los días.',
+}
+export function eventosModoBF(texto: string, modo: ModoBF): string {
+  return texto.replace(FRASE_EVENTOS, EVENTOS_MODO[modo])
+}
+
+/** Textos de /black-friday por modo (title ≤ 65, description ≤ 158). */
+export const PAGINA_BF: Record<ModoBF, { titulo: string; descripcion: string; kicker: string; h1: string }> = {
+  previa: {
+    titulo: 'Black Friday y Cyber Monday 2026 Argentina: ofertas reales',
+    descripcion:
+      'Black Friday 27/11 y Cyber Monday 2026: las mejores ofertas de Mercado Libre, verificadas contra el historial de precios. Sin descuentos inflados.',
+    kicker: 'Black Friday 2026 en Argentina',
+    h1: 'Black Friday: viernes 27 de noviembre',
+  },
+  hoy: {
+    titulo: 'Black Friday HOY (27/11): ofertas de Mercado Libre elegidas',
+    descripcion:
+      'Black Friday HOY, viernes 27/11: ofertas de Mercado Libre elegidas y verificadas contra el historial de precios, con link directo a la publicación.',
+    kicker: '🔥 Black Friday HOY · viernes 27/11',
+    h1: 'Black Friday HOY: lo que conviene comprar',
+  },
+  ultimas: {
+    titulo: 'Black Friday 2026, últimas horas: ofertas que siguen hoy',
+    descripcion:
+      'Últimas horas del Black Friday 2026: ofertas de Mercado Libre que siguen hoy, verificadas contra el historial de precios, con link directo a la publicación.',
+    kicker: '⏳ Black Friday: últimas horas',
+    h1: 'Últimas horas del Black Friday: lo que sigue conviniendo',
+  },
+  termino: {
+    titulo: 'Terminó el Black Friday 2026: ofertas que siguen hoy',
+    descripcion:
+      'El Black Friday 2026 ya terminó (fue el viernes 27/11). Mirá las ofertas de Mercado Libre que siguen vigentes hoy, con link directo a la publicación.',
+    kicker: 'Terminó el Black Friday 2026',
+    h1: 'Terminó el Black Friday 2026: estas ofertas siguen hoy',
+  },
 }

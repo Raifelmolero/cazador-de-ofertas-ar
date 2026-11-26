@@ -4,8 +4,8 @@
   el precio visto hace más de 7 días, landings, guías y cuadros muestran otra con precio reciente.
 - Cuadros de arriba (/black-friday y /mejores/black-friday-*): con precio primero.
 - Marcas excluidas también en los cuadros: Omnibook y Vivobook.
-- La calculadora manda al sitio de ofertas con ?utm_source=calcml y los clics de esa visita siguen
-  saliendo con la etiqueta de la calculadora.
+- La calculadora manda al sitio de ofertas con ?utm_source=calcml (solo analytics); los clics a ML
+  de esa visita salen con `sitio`, no con calcml.
 - 3 guías nuevas (heladera y colchón de Black Friday, regalo de Navidad para hombre) registradas.
 """
 import json
@@ -93,15 +93,17 @@ class TestCalculadoraConUtm(unittest.TestCase):
         self.assertNotIn("href={`${DEALS_URL}", aviso)
         calc = _leer("lib/calc-ofertas.ts")
         self.assertIn("href: desdeCalculadora(v.href)", calc)
+        self.assertIn("desdeCalculadora(`${DEALS_URL}${esNotebook ?", calc)
         # La de consumo eléctrico vive en el sitio de ofertas: sin utm de la calculadora.
         consumo = calc.split("export function ctaConsumo")[1]
         self.assertNotIn("desdeCalculadora", consumo)
 
-    def test_clics_de_esa_visita_salen_con_la_etiqueta_de_la_calculadora(self):
+    def test_visita_con_utm_calcml_sale_con_sitio(self):
+        # 26/11 tarde: calcml no convierte; el utm queda solo para analytics.
         clics = _leer("app/clics-ml.tsx")
-        self.assertIn("new Set([ETIQUETA_META, ...ETIQUETAS_REDES, UTM_CALC])", clics)
-        self.assertIn("origen === UTM_CALC ? ETIQUETA_CALC : origen", clics)
-        self.assertIn("CALCULADORA.test(window.location.hostname) ? ETIQUETA_CALC : ETIQUETA_SITIO", clics)
+        self.assertIn("new Set([ETIQUETA_META, ...ETIQUETAS_REDES])", clics)
+        self.assertNotIn("UTM_CALC", clics)
+        self.assertNotIn("etiquetaDeOrigen", clics)
 
     @unittest.skipUnless(shutil.which("node") and TS.exists(), "hace falta node y frontend/node_modules")
     def test_desde_calculadora_en_node(self):

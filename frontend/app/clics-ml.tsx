@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { track } from '@vercel/analytics'
 import { enModoApp } from '@/components/AppInstalable'
-import { aEtiquetaSitio, ETIQUETA_CALC, ETIQUETA_META, ETIQUETA_SITIO, ETIQUETAS_REDES, UTM_CALC } from '@/lib/afiliado'
+import { aEtiquetaSitio, ETIQUETA_CALC, ETIQUETA_META, ETIQUETA_SITIO, ETIQUETAS_REDES } from '@/lib/afiliado'
 
 // Evento "clic_ml" en Vercel Analytics por cada clic que sale a Mercado Libre:
 // muestra qué página y qué tipo de link llevan gente a comprar.
@@ -19,12 +19,9 @@ const CALCULADORA = /(^|\.)calculadoraml\.com\.ar$/
 // las páginas siguientes salgan con la etiqueta de esa red y el panel de ML
 // muestre qué red vende. Todas estas etiquetas existen en el panel (19/11),
 // salvo `meta`, que se crea al arrancar los anuncios.
-// También la calculadora (26/11): quien llega al sitio de ofertas desde calculadoraml.com.ar
-// (`?utm_source=calcml`, lib/afiliado: desdeCalculadora) sigue con la etiqueta de la calculadora.
-const ORIGENES = new Set([ETIQUETA_META, ...ETIQUETAS_REDES, UTM_CALC])
-
-/** Origen guardado → etiqueta del link (calcml usa la de la calculadora, que es configurable). */
-const etiquetaDeOrigen = (origen: string) => (origen === UTM_CALC ? ETIQUETA_CALC : origen)
+// `utm_source=calcml` (links de la calculadora al sitio de ofertas) NO está acá a propósito: sirve
+// para medir el origen en Analytics, pero los clics a ML salen con `sitio` (calcml: 0 ventas).
+const ORIGENES = new Set([ETIQUETA_META, ...ETIQUETAS_REDES])
 
 function etiquetaVisita(): string {
   const propia = CALCULADORA.test(window.location.hostname) ? ETIQUETA_CALC : ETIQUETA_SITIO
@@ -32,7 +29,7 @@ function etiquetaVisita(): string {
     const utm = (new URLSearchParams(window.location.search).get('utm_source') ?? '').toLowerCase()
     if (ORIGENES.has(utm)) sessionStorage.setItem('cz_origen', utm)
     const origen = sessionStorage.getItem('cz_origen')
-    return origen && ORIGENES.has(origen) ? etiquetaDeOrigen(origen) : propia
+    return origen && ORIGENES.has(origen) ? origen : propia
   } catch {
     return propia
   }

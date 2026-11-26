@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ProductoLight } from '@/lib/productos'
+import { sinAfiliado } from '@/lib/afiliado'
 
 export default function ProductCard({ producto }: { producto: ProductoLight }) {
   // "Top" = oferta destacada del día (relámpago o mínimo histórico): con los
@@ -65,9 +66,9 @@ export default function ProductCard({ producto }: { producto: ProductoLight }) {
           Ver análisis y ganancia →
         </Link>
         <a
-          href={producto.url_producto}
+          href={sinAfiliado(producto.url_producto)}
           target="_blank"
-          rel="noopener noreferrer sponsored"
+          rel="noopener noreferrer nofollow"
           className="block text-center text-xs text-zinc-600 hover:text-yellow-400 transition-colors py-1"
         >
           Ver publicación en ML ↗

@@ -262,6 +262,9 @@ export const excluidoDeCta = (p: { id: string; nombre: string }, titulo = '') =>
 
 export interface CtaDestacado extends CtaDestacadoDef {
   productos: ProductoBF[]
+  /** Si está, el botón de cada producto va a esta página INTERNA (sin link de afiliado a ML) y
+   *  no a la publicación. Solo lo usan los cuadros de las calculadoras (lib/calc-ofertas.ts). */
+  destinoInterno?: (p: ProductoBF) => string
 }
 
 /** Los que muestran precio primero, sin cambiar el orden de recomendación dentro de cada grupo

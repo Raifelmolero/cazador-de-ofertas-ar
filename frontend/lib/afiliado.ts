@@ -52,10 +52,23 @@ export const ETIQUETA_CALC = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_CAL
 
 /** Visitas que pasan de la calculadora (calculadoraml.com.ar) al sitio de ofertas (26/11/2026):
  *  los links de la calculadora a /black-friday y a las landings llevan `?utm_source=calcml` y
- *  app/clics-ml.tsx recuerda el origen en la pestaña, así los clics a ML de esa visita siguen
- *  saliendo con ETIQUETA_CALC y el panel mide si el tráfico de la calculadora compra cuando lo
- *  mandamos a ofertas (antes esos clics pasaban a `sitio` y se perdía la medición). */
+ *  solo sirven para medir el origen en Vercel Analytics.
+ *  Desde el 26/11 (tarde) NO cambian la etiqueta de afiliado: calcml absorbía 68 % de los clics
+ *  con 0 ventas; quien llega a ofertas desde la calculadora compra con `sitio` (~8 %). */
 export const UTM_CALC = 'calcml'
+
+/** Link de ML sin parámetros de afiliado (`matt_word`, `matt_tool`): para vendedores que miran
+ *  una publicación a analizar, no a comprar. Así el clic no cuenta en el panel de afiliados. */
+export function sinAfiliado(url: string): string {
+  try {
+    const u = new URL(url)
+    u.searchParams.delete('matt_word')
+    u.searchParams.delete('matt_tool')
+    return u.toString()
+  } catch {
+    return url
+  }
+}
 
 /** Link de la calculadora al sitio de ofertas con el utm de la calculadora (respeta el #ancla). */
 export function desdeCalculadora(href: string): string {

@@ -12,7 +12,7 @@ Fija:
 - productos reales del catálogo, con link /p/MLA de afiliado, foto y precio visto hace <= 7 días;
 - sin BGH, HP, OMEN, Victus, Omnibook, Vivobook, Likon ni el Noblex de $634.500;
 - sin %, tachados, «mínimo histórico» ni cupones;
-- la etiqueta calcml no se reemplaza por sitio.
+- (26/11 tarde) el cuadro de las calculadoras va a páginas internas, no a ML; calcml no se propaga al sitio.
 """
 import datetime
 import json
@@ -96,7 +96,7 @@ class TestSinListados(unittest.TestCase):
 
     def test_ficha_sin_boton_grande_a_la_publicacion_analizada(self):
         src = _leer("app/calculadora/[id]/page.tsx")
-        i = src.index("href={producto.url_producto}")
+        i = src.index("href={sinAfiliado(producto.url_producto)}")
         self.assertNotIn("bg-yellow-400", src[i:i + 600])
 
 
@@ -127,13 +127,41 @@ class TestReglasDelCuadro(unittest.TestCase):
         for t in titulos:
             self.assertNotRegex(t, SIN_DESCUENTOS, t)
 
-    def test_etiqueta_calcml_se_mantiene(self):
+    def test_cuadro_de_la_calculadora_no_manda_a_ml(self):
+        # 26/11: calcml = 68 % de los clics y 0 ventas. El cuadro de las calculadoras va a páginas
+        # internas del sitio de ofertas; el de `sitio` / consumo sigue yendo a la publicación de ML.
+        lib = _sin_comentarios(self.lib)
         self.assertIn("evento: 'calcml_oferta_boton'", self.lib)
-        self.assertNotIn("matt_word", _sin_comentarios(self.lib))
-        clics = CLICS.read_text(encoding="utf-8")
-        self.assertIn("CALCULADORA.test(window.location.hostname) ? ETIQUETA_CALC : ETIQUETA_SITIO", clics)
-        self.assertIn("data-evento={cta.evento}", self.comp)
+        self.assertNotIn("matt_word", lib)
+        self.assertNotIn("p.url", lib)
+        self.assertIn("/mejores/black-friday-notebooks", lib)
+        self.assertIn("/black-friday'", lib)
+        self.assertIn("destinoCalculadora,", lib)
+        ctaconsumo = lib.split("export function ctaConsumo")[1]
+        self.assertNotIn("destinoCalculadora", ctaconsumo)
+        self.assertIn("cta.destinoInterno ? (", self.comp)
+        # Rama por defecto (sitio): sigue yendo a la publicación con link de afiliado.
+        self.assertIn("href={p.url}", self.comp)
         self.assertIn('rel="sponsored nofollow noopener"', self.comp)
+        self.assertIn("data-evento={cta.evento}", self.comp)
+
+    def test_links_chicos_de_analisis_sin_afiliado(self):
+        for f in ("components/ProductCard.tsx", "app/calculadora/[id]/page.tsx"):
+            src = _leer(f)
+            self.assertIn("href={sinAfiliado(producto.url_producto)}", src, f)
+            self.assertNotIn("href={producto.url_producto}", src, f)
+            self.assertNotIn("sponsored", _sin_comentarios(src), f)
+        afiliado = _leer("lib/afiliado.ts")
+        self.assertIn("searchParams.delete('matt_word')", afiliado)
+        self.assertIn("searchParams.delete('matt_tool')", afiliado)
+
+    def test_clics_ml_no_reescribe_a_calcml_en_el_sitio_de_ofertas(self):
+        clics = _sin_comentarios(CLICS.read_text(encoding="utf-8"))
+        self.assertNotIn("UTM_CALC", clics)
+        self.assertNotIn("etiquetaDeOrigen", clics)
+        self.assertIn("new Set([ETIQUETA_META, ...ETIQUETAS_REDES])", clics)
+        # calcml solo en el hostname de la calculadora (sin links de afiliado salientes)
+        self.assertIn("CALCULADORA.test(window.location.hostname) ? ETIQUETA_CALC : ETIQUETA_SITIO", clics)
 
 
 class TestProductosReales(unittest.TestCase):

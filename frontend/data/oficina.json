@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-26T19:07:47+00:00",
+  "generado": "2026-11-26T23:41:33+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-26T06:48:06+00:00",
+      "ultima_actividad": "2026-11-26T23:41:32+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -25,16 +25,12 @@
           "valor": 2
         },
         {
-          "label": "Instagram",
-          "valor": 1
-        },
-        {
           "label": "Threads",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Pc Gamer Amd Ryzen 7 8700g Ddr5 32gb 960gb Monitor Curvo 27 1 Tb 32 Gb Amd Radeo"
+      "ultimo_trabajo": "Soldadora Rectificadora Inverter Lusqtoff MMA400-10 400A 380v Black Series"
     },
     {
       "id": "investigacion",
@@ -190,7 +186,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-25T20:23:14+00:00",
+      "ultima_actividad": "2026-11-26T19:59:40+00:00",
       "ventana_horas": 26,
       "agentes": [
         {
@@ -202,7 +198,7 @@
       "entregas": [
         {
           "fecha": "",
-          "titulo": "✖ Última publicación hace 14 h"
+          "titulo": "✖ Última publicación hace 13 h"
         },
         {
           "fecha": "",

@@ -5,20 +5,47 @@ import Footer from '@/components/Footer'
 import AvisoBFRubro from '@/components/AvisoBFRubro'
 import GuiaBFPage from '@/components/black-friday/GuiaBF'
 import { GUIAS, fechasGuia, getGuia as getGuiaBase } from '@/lib/guias'
-import { aBlackFridayTrasCyber, etapaBlackFriday } from '@/lib/cybermonday'
+import {
+  ETIQUETA_MODO_BF,
+  aBlackFridayTrasCyber,
+  etapaBlackFriday,
+  eventosModoBF,
+  modoBF,
+  textoModoBF,
+  tituloModoBF,
+  type ModoBF,
+} from '@/lib/cybermonday'
+import { GUIA_CYBER_A_LANDING_BF } from '@/lib/bf-enlaces'
+import TerminoBF from '@/components/black-friday/TerminoBF'
+
+// Black Friday (26/11/2026): title, H1 y hero de las guías BF y «…-cyber-monday» siguen el modo del
+// día (lib/cybermonday.ts, modoBF) sin esperar al deploy agrupado: una regeneración por hora y por
+// página como mucho, solo si alguien la visita.
+export const revalidate = 3600
+
+/** Guía que sigue el modo del Black Friday: las BF y las «…-cyber-monday» (ya hablan del Black Friday). */
+const guiaConModoBF = (slug: string) => slug.includes('cyber-monday') || slug.includes('black-friday') || esGuiaBF(slug)
 
 /** Las guías «…-cyber-monday» ya están en Google: misma dirección, pero pasado el evento
- *  el título y la descripción hablan del Black Friday. */
-function getGuia(slug: string) {
+ *  el título y la descripción hablan del Black Friday. Las guías BF y esas, además, pasan
+ *  title/H1/respuesta corta al modo del día (previa / hoy / últimas horas / terminó). */
+function getGuia(slug: string, modo: ModoBF = modoBF()) {
   const g = getGuiaBase(slug)
-  if (!g || !g.slug.includes('cyber-monday')) return g
-  const bf = aBlackFridayTrasCyber
+  if (!g || !guiaConModoBF(g.slug)) return g
+  const cyber = g.slug.includes('cyber-monday')
+  const bf = (t: string) => (cyber ? aBlackFridayTrasCyber(eventosModoBF(t, modo)) : eventosModoBF(t, modo))
+  const m = (t: string) => textoModoBF(bf(t), modo)
   return {
     ...g,
-    titulo: bf(g.titulo),
-    descripcion: bf(g.descripcion),
-    secciones: g.secciones.map(s => ({ h: bf(s.h), p: s.p.map(t => bf(t)) })),
-    faq: g.faq?.map(f => ({ q: bf(f.q), a: bf(f.a) })),
+    titulo: m(g.titulo),
+    descripcion: m(g.descripcion),
+    ...(g.seoTitulo ? { seoTitulo: tituloModoBF(bf(g.seoTitulo), modo, 60) } : {}),
+    ...(g.seoDescripcion ? { seoDescripcion: descripcionSeo(m(g.seoDescripcion)) } : {}),
+    pregunta: m(g.pregunta),
+    respuestaCorta: m(g.respuestaCorta),
+    secciones: cyber ? g.secciones.map(s => ({ h: bf(s.h), p: s.p.map(t => bf(t)) })) : g.secciones,
+    faq: g.faq?.map(f => ({ q: m(f.q), a: bf(f.a) })),
+    ...(g.cta ? { cta: { ...g.cta, titulo: m(g.cta.titulo) } } : {}),
   }
 }
 import { DEALS_URL, MARCA, ORG_ID, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL } from '@/lib/marca'
@@ -117,7 +144,11 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
   // Guías de Black Friday (lib/bf-guias.ts): sin % de descuento ni «mínimo» (no van la tira de ofertas
   // del día ni la caja «qué conviene»); en su lugar, los elegidos de la landing BF con su botón.
   const guiaBF = esGuiaBF(g.slug)
-  const landingBF = guiaBF && GUIA_BF_A_LANDING[g.slug] ? getLandingBF(GUIA_BF_A_LANDING[g.slug]!) : undefined
+  const modo = modoBF()
+  const conModoBF = guiaConModoBF(g.slug)
+  // Guías «…-cyber-monday» con tráfico (lib/bf-enlaces.ts): el botón de la respuesta corta va a la landing BF del rubro.
+  const landingCyberBF = GUIA_CYBER_A_LANDING_BF[g.slug] ? getLandingBF(GUIA_CYBER_A_LANDING_BF[g.slug]) : undefined
+  const landingBF = guiaBF && GUIA_BF_A_LANDING[g.slug] ? getLandingBF(GUIA_BF_A_LANDING[g.slug]!) : landingCyberBF
   const elegidosBF = productosGuiaBF(g.slug)
   const comp = g.comparativa ? getComparativa(g.comparativa) : undefined
   // Guías de tecnología: los equipos del comparador que cumplen su criterio (precio de hoy y mínimo registrado).
@@ -233,10 +264,11 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
       <AvisoBFRubro ruta={`/guias/${g.slug}`} />
 
       <article className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
-        <p className="text-xs font-bold tracking-widest text-yellow-400 mb-3">GUÍA</p>
+        <p className="text-xs font-bold tracking-widest text-yellow-400 mb-3">{conModoBF ? `GUÍA · ${ETIQUETA_MODO_BF[modo]}` : 'GUÍA'}</p>
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-6 [text-wrap:balance]">
           {g.titulo}
         </h1>
+        {conModoBF && <TerminoBF modo={modo} className="mb-6" />}
 
         {/* Propuesta 1 (19/11): guías que más entran de Google, producto con botón en la primera pantalla. */}
         <CajaQueConviene items={queConviene} seccion="queconviene_guia" className="mb-6" />
@@ -256,6 +288,11 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
           >
             {ctaBoton}
           </a>
+          {conModoBF && (
+            <a href="/black-friday" data-seccion="guia_link_black_friday" className="mt-2 flex min-h-11 items-center justify-center text-sm font-bold text-yellow-400 underline underline-offset-2 hover:text-yellow-300">
+              Todo el Black Friday 2026 →
+            </a>
+          )}
         </div>
 
         {/* Enlazado interno a /black-friday y sus landings (lib/bf-enlaces.ts, guías top de GSC). */}

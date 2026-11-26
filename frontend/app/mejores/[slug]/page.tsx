@@ -1,7 +1,7 @@
 import { cyberExtendido } from '@/lib/cupones'
 import Link from 'next/link'
 import { LANDINGS_CYBER } from '@/lib/cybertecno'
-import { etapaCyber, aBlackFridayTrasCyber as bf } from '@/lib/cybermonday'
+import { etapaCyber, aBlackFridayTrasCyber as bf, modoBF, textoModoBF, tituloLandingModoBF } from '@/lib/cybermonday'
 import { busquedaML, conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { descripcionSeo, tituloSeo, MAX_TITULO } from '@/lib/seo'
 import type { ProductWithMargins } from '@/lib/productos'
@@ -34,6 +34,11 @@ const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
 const MAX_FILAS = 12
 
+// Black Friday (26/11/2026): el modo del día (lib/cybermonday.ts, modoBF) cambia title, H1 y hero de
+// las landings /mejores/black-friday-* sin esperar al deploy agrupado. Una regeneración por hora
+// y por página como mucho, solo si alguien la visita (no gasta Build CPU).
+export const revalidate = 3600
+
 export function generateStaticParams() {
   return COMPARATIVAS.map(c => ({ slug: c.slug }))
 }
@@ -44,14 +49,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const bfl = getLandingBF(slug)
   if (bfl) {
     const url = `${DEALS_URL}/mejores/${bfl.slug}`
-    const descripcion = descripcionSeo(bfl.descripcion)
+    // Modo del día (previa / hoy / últimas horas / terminó), resuelto en el render (ISR de 1 hora).
+    const modo = modoBF()
+    const titulo = tituloLandingModoBF(bfl.h1, bfl.titulo, modo)
+    const descripcion = descripcionSeo(textoModoBF(bfl.descripcion, modo))
     return {
-      title: { absolute: bfl.titulo },
+      title: { absolute: titulo },
       description: descripcion,
       keywords: bfl.keywords,
       metadataBase: new globalThis.URL(DEALS_URL),
       alternates: { canonical: url },
-      openGraph: { title: bfl.titulo, description: descripcion, url, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
+      openGraph: { title: titulo, description: descripcion, url, type: 'article', locale: 'es_AR', siteName: 'Cazador de Ofertas AR' },
     }
   }
   const c = getComparativa(slug)

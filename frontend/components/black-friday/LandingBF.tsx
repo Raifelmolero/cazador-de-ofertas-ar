@@ -11,6 +11,9 @@ import { miniaturaML } from '@/lib/imagenml'
 import { LANDINGS_BF, actualizadoBF, productosBF, type LandingBF, type ProductoBF } from '@/lib/black-friday-landings'
 import { breadcrumbLD, faqLD, itemListLD } from '@/lib/bf-jsonld'
 import { fechaAR } from '@/lib/bf-guias'
+import { CHIP_MODO_BF, DESTACADOS_MODO_BF, ETIQUETA_MODO_BF, modoBF, textoModoBF, type ModoBF } from '@/lib/cybermonday'
+import { destacadosLandingBF, excluidoDeCta } from '@/lib/cta-destacados'
+import TerminoBF from '@/components/black-friday/TerminoBF'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
@@ -103,9 +106,68 @@ export function Tarjeta({ p, slug, pos }: { p: ProductoBF; slug: string; pos: nu
   )
 }
 
+/** Botón del encabezado (landings y guías BF): a /black-friday mientras dura; después, a las ofertas de hoy. */
+export function ChipEncabezadoBF({ modo }: { modo: ModoBF }) {
+  const clase = 'text-xs font-black text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full whitespace-nowrap'
+  if (modo === 'termino') {
+    return (
+      <a href={DEALS_URL} className={clase}>
+        {CHIP_MODO_BF[modo]}
+      </a>
+    )
+  }
+  return (
+    <Link href="/black-friday" className={clase}>
+      {CHIP_MODO_BF[modo]}
+    </Link>
+  )
+}
+
+/** Cuadro de destacados de arriba de todo (26/11/2026): el 2.º y 3.º recomendados, cada uno con su
+ *  botón #FACC15 de 48 px a la publicación de ML (link de afiliado). Sin descuentos ni tachados. */
+export function OtrosDestacados({ productos, seccion, desde }: { productos: ProductoBF[]; seccion: string; desde: number }) {
+  if (productos.length === 0) return null
+  return (
+    <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+      {productos.map((p, i) => (
+        <li key={p.id} className="rounded-2xl bg-black p-3">
+          <a href={p.url} target="_blank" rel="sponsored nofollow noopener" className="flex gap-3">
+            <Foto p={p} tam={64} />
+            <div className="min-w-0 flex-1">
+              <p className="font-bold text-white leading-snug">{p.nombre}</p>
+              <p className="text-xs text-zinc-400">{p.detalle}</p>
+              <div className="mt-1">
+                <Precio p={p} claro />
+              </div>
+            </div>
+          </a>
+          <a
+            href={p.url}
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            aria-label={`Ver ${p.nombre} en Mercado Libre`}
+            data-seccion={`${seccion}_destacado_${desde + i}`}
+            data-mla={p.id}
+            className={BOTON_HERO}
+          >
+            <span className="whitespace-nowrap text-lg font-black leading-tight">Ver en Mercado Libre ↗</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export default function LandingBFPage({ l }: { l: LandingBF }) {
-  const productos = productosBF(l)
-  const [principal, ...resto] = productos
+  // Modo del día (lib/cybermonday.ts): previa / hoy / últimas horas / terminó. Se evalúa en el render (ISR).
+  const modo = modoBF()
+  const h1 = textoModoBF(l.h1, modo)
+  // Sin BGH, Likon, HP, OMEN ni Victus (productosDeItems ya filtra marcas; excluidoDeCta suma ids sueltos).
+  const productos = productosBF(l).filter(p => !excluidoDeCta(p))
+  const destacados = destacadosLandingBF(productos)
+  const [principal, ...otrosDestacados] = destacados
+  const enDestacados = new Set(destacados.map(p => p.id))
+  const resto = productos.filter(p => !enDestacados.has(p.id))
   const url = `${DEALS_URL}/mejores/${l.slug}`
   const otras = LANDINGS_BF.filter(x => x.slug !== l.slug)
   const actualizado = actualizadoBF(productos)
@@ -117,7 +179,7 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
       { name: 'Black Friday 2026', item: `${DEALS_URL}/black-friday` },
       { name: l.rubro, item: url },
     ]),
-    ...(productos.length > 0 ? [itemListLD(l.h1, url, productos)] : []),
+    ...(productos.length > 0 ? [itemListLD(h1, url, productos)] : []),
     // Las mismas preguntas que se ven en la página (Google pide que coincidan).
     faqLD(l.faq),
   ]
@@ -134,30 +196,29 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
             <Image src="/personaje/avatar-64.webp" alt="Don Ofertín" width={28} height={28} className="rounded-full" />
             <span className="text-yellow-400">Cazador de Ofertas</span>
           </a>
-          <Link href="/black-friday" className="text-xs font-black text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1.5 rounded-full whitespace-nowrap">
-            Black Friday 27/11
-          </Link>
+          <ChipEncabezadoBF modo={modo} />
         </div>
       </header>
 
-      {/* Primera pantalla: marca amarillo + negro, Don Ofertín y el botón del principal */}
+      {/* Primera pantalla: marca amarillo + negro, Don Ofertín y el cuadro de destacados con sus botones */}
       <section className="bg-yellow-400 text-black" data-seccion={`bf_${l.slug}_hero`}>
         <div className="max-w-3xl mx-auto px-4 pt-4 pb-5">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-black uppercase tracking-wider">Black Friday 2026 · viernes 27/11</p>
+              <p className="text-[11px] font-black uppercase tracking-wider">{ETIQUETA_MODO_BF[modo]}</p>
               <h1 className="mt-1 font-display text-[26px] sm:text-4xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">
-                {l.h1}
+                {h1}
               </h1>
             </div>
             <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={64} height={79} className="shrink-0" priority />
           </div>
 
-          <RespuestaCorta texto={l.respuestaCorta} actualizado={actualizado} />
+          <TerminoBF modo={modo} className="mt-3" />
 
           {principal ? (
-            <>
-              <div className="mt-3 rounded-2xl bg-black p-3">
+            <section aria-label={DESTACADOS_MODO_BF[modo]} data-seccion={`bf_${l.slug}_destacados`} className="mt-3">
+              <h2 className="mb-1.5 text-sm font-black uppercase tracking-wide">{DESTACADOS_MODO_BF[modo]}</h2>
+              <div className="rounded-2xl bg-black p-3">
                 <a href={principal.url} target="_blank" rel="sponsored nofollow noopener" className="flex gap-3">
                   <Foto p={principal} tam={84} prioridad />
                   <div className="min-w-0 flex-1">
@@ -185,7 +246,8 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
                 </a>
               </div>
               <LineaConfianza p={principal} claro />
-            </>
+              <OtrosDestacados productos={otrosDestacados} seccion={`bf_${l.slug}`} desde={2} />
+            </section>
           ) : (
             <div className="mt-4 rounded-2xl bg-black p-3">
               <a href={l.busqueda} target="_blank" rel="sponsored nofollow noopener" data-seccion={`bf_${l.slug}_boton`} className={BOTON_HERO}>
@@ -196,6 +258,8 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
           <p className="mt-2 text-[11px] font-semibold text-black/70 [text-wrap:pretty]">
             Link de afiliado: pagás lo mismo que entrando directo a Mercado Libre. Confirmá el precio ahí antes de comprar.
           </p>
+
+          <RespuestaCorta texto={l.respuestaCorta} actualizado={actualizado} />
         </div>
       </section>
 
@@ -207,7 +271,7 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Más opciones</h2>
             <ul className="grid gap-3 sm:grid-cols-2">
               {resto.map((p, i) => (
-                <Tarjeta key={p.id} p={p} slug={l.slug} pos={i + 2} />
+                <Tarjeta key={p.id} p={p} slug={l.slug} pos={i + destacados.length + 1} />
               ))}
             </ul>
           </section>

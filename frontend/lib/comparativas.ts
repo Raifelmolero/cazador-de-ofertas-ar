@@ -580,7 +580,7 @@ const TODAS: Comparativa[] = [
       'No frost: no junta hielo; cíclica: más barata y gasta menos.',
       'Medí el hueco y la apertura de la puerta, y confirmá si el envío llega hasta tu casa.',
     ],
-    guia: 'que-heladera-comprar',
+    guia: 'que-heladera-comprar-black-friday-2026',
   },
   {
     // La página la arma la landing curada (lib/black-friday-landings.ts); esto queda para listados y la imagen OG.
@@ -756,7 +756,7 @@ const TODAS: Comparativa[] = [
       'Espuma de alta densidad o resortes pocket.',
       'Confirmá si el envío lo sube al piso.',
     ],
-    guia: 'que-colchon-comprar-firmeza-y-material',
+    guia: 'que-colchon-comprar-black-friday-2026',
   },
   {
     slug: 'black-friday-herramientas',

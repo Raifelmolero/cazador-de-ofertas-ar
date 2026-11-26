@@ -17,6 +17,7 @@
 import { getLandingBF, productosBF, MARCAS_PROHIBIDAS, type ProductoBF } from '@/lib/black-friday-landings'
 import { excluidoDeCta, MAX_DESTACADOS, type CtaDestacado } from '@/lib/cta-destacados'
 import { avisoBFVigente } from '@/lib/bf-enlaces'
+import { desdeCalculadora } from '@/lib/afiliado'
 import { DEALS_URL } from '@/lib/marca'
 
 /** Marcas que no van en el cuadro de las calculadoras (además de MARCAS_PROHIBIDAS y las de CTA). */
@@ -30,12 +31,14 @@ export function excluidoCalc(p: ProductoBF): boolean {
 
 /** Calculadoras de vendedores: rubros en orden de preferencia (los 3 primeros que tengan
  *  producto vigente). Los de más abajo son el respaldo si un rubro se queda sin precio fresco. */
+// 26/11 (bf-ventas-2611): en el orden de lo que más ganancia dejó en el panel en la semana 19-25/11
+// (notebooks, smart TV, lavarropas) y herramientas antes que celulares: paga más comisión por venta.
 export const RUBROS_CALC = [
   'black-friday-notebooks',
-  'black-friday-celulares',
   'black-friday-smart-tv',
   'black-friday-lavarropas',
   'black-friday-herramientas',
+  'black-friday-celulares',
   'black-friday-freidoras-de-aire',
 ] as const
 
@@ -79,8 +82,12 @@ function verMas(): CtaDestacado['verMas'] {
     : { href: `${DEALS_URL}/hoy`, texto: 'Ver las ofertas de hoy' }
 }
 
-function armar(def: Omit<CtaDestacado, 'productos' | 'items' | 'verMas'>, productos: ProductoBF[]): CtaDestacado | null {
-  return productos.length ? { ...def, items: productos, productos, verMas: verMas() } : null
+function armar(
+  def: Omit<CtaDestacado, 'productos' | 'items' | 'verMas'>,
+  productos: ProductoBF[],
+  link: (v: CtaDestacado['verMas']) => CtaDestacado['verMas'] = v => v,
+): CtaDestacado | null {
+  return productos.length ? { ...def, items: productos, productos, verMas: link(verMas()) } : null
 }
 
 /** Cuadro de las calculadoras de vendedores (comisiones, precio de venta, envío, cuotas, fichas). */
@@ -92,6 +99,8 @@ export function ctaCalculadora(hoy?: string): CtaDestacado | null {
       evento: 'calcml_oferta_boton',
     },
     destacadosDeRubros(RUBROS_CALC, MAX_DESTACADOS, { hoy }),
+    // Solo acá (calculadoraml.com.ar): la de consumo eléctrico ya vive en el sitio de ofertas.
+    v => ({ ...v, href: desdeCalculadora(v.href) }),
   )
 }
 

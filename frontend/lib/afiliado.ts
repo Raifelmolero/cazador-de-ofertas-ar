@@ -50,6 +50,20 @@ export const ETIQUETA_JSON = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_JSO
 export const ETIQUETA_JSONLD = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_JSONLD, 'web')
 export const ETIQUETA_CALC = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_CALC, ETIQUETA_SITIO)
 
+/** Visitas que pasan de la calculadora (calculadoraml.com.ar) al sitio de ofertas (26/11/2026):
+ *  los links de la calculadora a /black-friday y a las landings llevan `?utm_source=calcml` y
+ *  app/clics-ml.tsx recuerda el origen en la pestaña, así los clics a ML de esa visita siguen
+ *  saliendo con ETIQUETA_CALC y el panel mide si el tráfico de la calculadora compra cuando lo
+ *  mandamos a ofertas (antes esos clics pasaban a `sitio` y se perdía la medición). */
+export const UTM_CALC = 'calcml'
+
+/** Link de la calculadora al sitio de ofertas con el utm de la calculadora (respeta el #ancla). */
+export function desdeCalculadora(href: string): string {
+  const [base, ancla] = href.split('#')
+  const utm = `utm_source=${UTM_CALC}&utm_medium=calculadora`
+  return `${base}${base.includes('?') ? '&' : '?'}${utm}${ancla !== undefined ? `#${ancla}` : ''}`
+}
+
 /** Etiquetas de links públicos que, si el clic pasa DENTRO del sitio, se
  *  reescriben a `sitio` (la grilla de la home usa los links de /ofertas-hoy.json). */
 const ETIQUETAS_PUBLICAS = new Set(['web', ETIQUETA_JSON, ETIQUETA_JSONLD])

@@ -21,6 +21,9 @@ export const GUIA_BF_A_LANDING: Record<string, string | null> = {
   'que-freidora-de-aire-comprar-black-friday-2026': 'black-friday-freidoras-de-aire',
   'que-tablet-comprar-black-friday-2026': 'black-friday-tablets',
   'que-smartwatch-comprar-black-friday-2026': 'black-friday-smartwatch',
+  'que-heladera-comprar-black-friday-2026': 'black-friday-heladeras',
+  'que-colchon-comprar-black-friday-2026': 'black-friday-colchones',
+  'que-regalarle-a-un-hombre-en-navidad': 'black-friday-herramientas',
   'que-consola-comprar-black-friday': null,
   'black-friday-argentina-que-conviene-comprar': null,
 }

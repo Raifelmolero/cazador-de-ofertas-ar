@@ -391,6 +391,220 @@ export const GUIAS_BF_2026: Guia[] = [
       { href: '/guias/que-smartwatch-comprar', texto: 'Qué smartwatch comprar' },
     ],
   },
+  // ── Lote del 26/11/2026 (bf-ventas-2611): rubros de ticket alto o de más comisión por venta que
+  // tenían landing BF pero no guía (heladeras, colchones) y un regalo de Navidad para comprar en el
+  // Black Friday (herramientas). Productos con precio visto el 25 y el 26/11 en los datos del repo.
+  {
+    slug: 'que-heladera-comprar-black-friday-2026',
+    titulo: 'Qué heladera comprar en Black Friday 2026',
+    descripcion:
+      'Qué heladera comprar en el Black Friday 2026 en Argentina: la Midea no frost inverter de 412 litros para una familia, y cuál elegir si son menos o si querés dispenser.',
+    seoTitulo: 'Qué heladera comprar en Black Friday 2026 (Argentina)',
+    seoDescripcion:
+      'Para una familia de 3 o 4, la Midea no frost inverter de 412 litros. Cuántos litros y qué tipo conviene según la casa, para el Black Friday del 27/11.',
+    pregunta: '¿Qué heladera conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Para una familia de 3 o 4 personas, la Midea no frost inverter de 412 litros con freezer arriba: no junta hielo y el motor inverter gasta menos luz. Si querés dispenser de agua, la Samsung RT42CG6720S9 de 407 litros; para 1 o 2 personas alcanza una de 250 a 300 litros, como la Samsung RT29K577J de 299 litros o la Philco de 244 litros. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+    bf: {
+      landing: 'black-friday-heladeras',
+      items: [
+        { id: 'MLA46219969', nombre: 'Midea Top Mount 412 L', detalle: 'No frost · inverter · freezer arriba · 412 litros · blanca', nota: 'La que recomendamos para una familia de 3 o 4 personas.' },
+        { id: 'MLA58200691', nombre: 'Samsung RT42CG6720S9 407 L', detalle: 'Inverter · dispenser · 407 litros · inox', nota: 'Con dispenser de agua.' },
+        { id: 'MLA75812333', nombre: 'Gafa HGNF340P 350 L', detalle: 'No frost · inverter · con freezer · 350 litros', nota: 'Un poco más chica, para familia.' },
+        { id: 'MLA36520313', nombre: 'Electrolux IT70S 480 L', detalle: 'No frost · inverter · multidoor · freezer arriba · 480 litros · plata', nota: 'Para familias grandes.' },
+        { id: 'MLA17005892', nombre: 'Samsung RT29K577J 299 L', detalle: 'No frost · inverter · 299 litros', nota: 'Para 1 o 2 personas.' },
+        { id: 'MLA76009709', nombre: 'Philco NPHNC304P 299 L', detalle: 'No frost · freezer abajo · 299 litros · plata', nota: 'Freezer abajo: lo que más usás queda a la altura de la vista.' },
+        { id: 'MLA75795585', nombre: 'Philco NPHCT260B 244 L', detalle: 'Con freezer · 244 litros · blanca', nota: 'La más chica de la lista.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Cuántos litros según la casa',
+      columnas: ['Personas', 'Litros', 'De esta guía'],
+      filas: [
+        ['1 o 2', '250 a 300 litros', 'Samsung RT29K577J (299 L), Philco NPHNC304P (299 L) o Philco NPHCT260B (244 L)'],
+        ['3 o 4', '350 a 420 litros', 'Midea Top Mount (412 L), Samsung RT42CG6720S9 (407 L) o Gafa HGNF340P (350 L)'],
+        ['5 o más, o compras del mes', 'Más de 450 litros', 'Electrolux IT70S (480 L)'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Por qué la Midea de 412 litros va primero',
+        p: [
+          'Junta lo que más pesa en una casa de 3 o 4 personas: litros de sobra para la compra de la semana, no frost para no descongelar nunca y motor inverter, que gasta menos luz y hace menos ruido que uno común.',
+          'Tiene el freezer arriba, el formato más común. Si preferís el freezer abajo, mirá la Philco NPHNC304P.',
+        ],
+      },
+      {
+        h: 'No frost, inverter y dispenser',
+        p: [
+          'No frost quiere decir que no junta hielo: el frío circula parejo y no hay que descongelarla. Inverter es el motor: ajusta la velocidad en vez de prenderse y apagarse a fondo, y eso se nota en la boleta de luz en una heladera que va a estar prendida muchos años.',
+          'El dispenser de agua, como el de la Samsung RT42CG6720S9, es comodidad: agua fría sin abrir la puerta.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Medí el hueco (alto, ancho y profundidad) y dejá unos centímetros atrás y arriba para que ventile. Fijate para qué lado abre la puerta y si se puede cambiar.',
+          'Confirmá en la publicación si el envío la sube al piso y la garantía oficial. El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿Cuántos litros de heladera necesito?', a: 'Como referencia, 250 a 300 litros para 1 o 2 personas, 350 a 420 para una familia de 3 o 4, y más de 450 si son más o comprás para todo el mes.' },
+      { q: '¿Conviene una heladera no frost?', a: 'Si la usás mucho, sí: no junta hielo, conserva parejo y no hay que descongelarla. Una cíclica es más simple, pero cada tanto hay que vaciarla para sacar el hielo.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-heladeras', titulo: 'Las heladeras que elegimos para el Black Friday', boton: 'Ver las heladeras del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-heladeras', texto: 'Heladeras del Black Friday 2026' },
+      { href: '/mejores/black-friday-lavarropas', texto: 'Lavarropas del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/heladera-cuantos-litros-necesito', texto: 'Cuántos litros de heladera necesito' },
+      { href: '/guias/heladera-no-frost-o-con-freezer', texto: 'Heladera no frost o con freezer' },
+    ],
+  },
+  {
+    slug: 'que-colchon-comprar-black-friday-2026',
+    titulo: 'Qué colchón comprar en Black Friday 2026',
+    descripcion:
+      'Qué colchón comprar en el Black Friday 2026 en Argentina: el Viggo Cuarzo de resortes pocket para 2 plazas, uno en caja si hay escaleras y cuál para cama queen.',
+    seoTitulo: 'Qué colchón comprar en Black Friday 2026 (Argentina)',
+    seoDescripcion:
+      'Para 2 plazas, el Viggo Cuarzo de resortes pocket. Cuándo conviene uno de espuma en caja y cuál para cama queen, para el Black Friday del 27/11.',
+    pregunta: '¿Qué colchón conviene comprar en el Black Friday 2026?',
+    respuestaCorta:
+      'Para una cama de 2 plazas, el Viggo Cuarzo de resortes pocket de 140 × 190: cada resorte trabaja por separado, así que se siente menos el movimiento del otro. Si preferís espuma o el colchón tiene que subir por una escalera angosta, el Piero de espuma de alta densidad, que llega enrollado en caja; para cama queen con sommier incluido, el conjunto Simmons Hotel Bilt de 160 × 200. El Black Friday 2026 en Argentina es el viernes 27 de noviembre.',
+    bf: {
+      landing: 'black-friday-colchones',
+      items: [
+        { id: 'MLA80159945', nombre: 'Viggo Cuarzo 2 plazas', detalle: 'Resortes pocket · 140 × 190 cm', nota: 'El que recomendamos para 2 plazas.' },
+        { id: 'MLA18567231', nombre: 'Piero colchón en caja 2 plazas', detalle: 'Espuma de alta densidad · 140 × 190 cm · llega enrollado', nota: 'De espuma, fácil de subir por escalera.' },
+        { id: 'MLA79583833', nombre: 'Norden Zenith híbrido 2 plazas', detalle: 'Resortes en caja y espuma · 140 × 190 × 25 cm', nota: 'Híbrido: resortes y espuma, también en caja.' },
+        { id: 'MLA23918588', nombre: 'Simmons Backcare Hotel Bilt 2 plazas', detalle: 'Colchón · 140 × 190 cm', nota: 'Otra opción de 2 plazas, de Simmons.' },
+        { id: 'MLA34102691', nombre: 'Cannon Renovation Pillow 2 plazas', detalle: 'Espuma · pillow top · 140 × 190 × 30 cm', nota: 'Espuma con pillow top, más mullido arriba.' },
+        { id: 'MLA23214643', nombre: 'Colchón y sommier Simmons Hotel Bilt Queen', detalle: 'Conjunto · 160 × 200 cm', nota: 'Para cama queen, con sommier.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Cuál elegir según tu caso',
+      columnas: ['Situación', 'Qué buscar', 'De esta guía'],
+      filas: [
+        ['Dormís con otra persona', 'Resortes pocket', 'Viggo Cuarzo'],
+        ['Escalera angosta o ascensor chico', 'Colchón en caja (llega enrollado)', 'Piero en caja o Norden Zenith'],
+        ['Te gusta mullido arriba', 'Pillow top', 'Cannon Renovation Pillow'],
+        ['Cama queen y sin sommier', 'Conjunto colchón y sommier', 'Simmons Hotel Bilt Queen'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Por qué el Viggo Cuarzo va primero',
+        p: [
+          'Los resortes pocket vienen cada uno en su bolsita: se mueven por separado, ventilan bien y, si duermen dos, se siente menos cuando el otro se da vuelta. Viene en 140 × 190, la medida de 2 plazas más común en Argentina.',
+        ],
+      },
+      {
+        h: 'Espuma, resortes o híbrido',
+        p: [
+          'Los tres duran si son de buena calidad. La espuma de alta densidad es silenciosa y pesa menos; los resortes pocket ventilan más; el híbrido, como el Norden Zenith, combina resortes y espuma.',
+          'La firmeza depende de cómo dormís: firme si dormís boca arriba o pesás más; intermedio si dormís de costado.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Medí la cama: 2 plazas es 140 × 190; queen, 160 × 200. Confirmá en la publicación la altura del colchón, si viene en caja y si el envío lo sube al piso.',
+          'El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿Colchón de espuma o de resortes?', a: 'Los dos duran si son buenos. Los resortes pocket ventilan más y transmiten menos el movimiento del otro; la espuma de alta densidad es más silenciosa y suele pesar menos.' },
+      { q: '¿Conviene un colchón en caja?', a: 'Sí, si tiene que pasar por una escalera angosta o un ascensor chico: llega enrollado y se abre en casa. Dejalo unas horas para que tome su forma antes de dormir encima.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-colchones', titulo: 'Los colchones que elegimos para el Black Friday', boton: 'Ver los colchones del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-colchones', texto: 'Colchones del Black Friday 2026' },
+      { href: '/mejores/black-friday-heladeras', texto: 'Heladeras del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/colchon-de-resortes-o-de-espuma', texto: 'Colchón de resortes o de espuma' },
+      { href: '/guias/medidas-de-colchon-y-sommier', texto: 'Medidas de colchón y sommier' },
+    ],
+  },
+  {
+    slug: 'que-regalarle-a-un-hombre-en-navidad',
+    titulo: 'Qué regalarle a un hombre en Navidad 2026',
+    descripcion:
+      'Qué regalarle a un hombre en Navidad 2026: herramientas Stanley, termo para el mate, smartwatch, auriculares y una afeitadora, para comprar en el Black Friday y tenerlo a tiempo.',
+    seoTitulo: 'Qué regalarle a un hombre en Navidad 2026: 7 ideas',
+    seoDescripcion:
+      'Taladro Stanley, termo para el mate, smartwatch Huawei, auriculares Sony y más: regalos de Navidad para él, para comprar en el Black Friday del 27/11.',
+    pregunta: '¿Qué regalarle a un hombre en Navidad?',
+    respuestaCorta:
+      'Si le gusta arreglar cosas en casa, el combo de taladro percutor inalámbrico Stanley de 20 V, que viene con baterías, cargador y caja: sirve todo el año. Para el que no larga el mate, el termo Stanley Mate System de 1,2 litros; para el que entrena o sale a correr, el smartwatch Huawei Watch GT 7, que anda con Android y con iPhone. Si lo comprás en el Black Friday del viernes 27 de noviembre, tenés casi un mes de margen hasta Navidad.',
+    bf: {
+      landing: 'black-friday-herramientas',
+      items: [
+        { id: 'MLA22329091', nombre: 'Combo taladro percutor Stanley 20 V', detalle: 'Inalámbrico · baterías, cargador y caja', nota: 'El que recomendamos: para el que arregla todo en casa.' },
+        { id: 'MLA40759330', nombre: 'Set de herramientas Stanley 141 piezas', detalle: 'Herramientas de mano · con maletín · STMT98109-LA', nota: 'Para armar la caja de herramientas de cero.' },
+        { id: 'MLA19761025', nombre: 'Termo Stanley Mate System 1,2 L', detalle: 'Original · Classic · 1,2 litros', nota: 'Para el que toma mate todo el día.' },
+        { id: 'MLA77843334', nombre: 'Huawei Watch GT 7 46 mm', detalle: 'GPS · NFC · Android e iOS', nota: 'Para el que entrena o sale a correr.' },
+        { id: 'MLA41995002', nombre: 'Sony ULT Wear WH-ULT900N', detalle: 'Auriculares inalámbricos · cancelación de ruido · negro', nota: 'Para el que viaja o trabaja con ruido.' },
+        { id: 'MLA64992878', nombre: 'Philips Multigroom MG7935/15', detalle: 'Recortadora 15 en 1 · rostro, cabello y cuerpo', nota: 'Barba y pelo con un solo aparato.' },
+        { id: 'MLA74075769', nombre: 'Hidrolavadora Logus 130 bar', detalle: '2200 W · 8 litros por minuto', nota: 'Para el auto, el patio y la vereda.' },
+      ],
+    },
+    tabla: {
+      titulo: 'Qué regalar según lo que le gusta',
+      columnas: ['Le gusta…', 'Idea', 'De esta guía'],
+      filas: [
+        ['Arreglar cosas en casa', 'Taladro a batería o set de herramientas', 'Combo taladro Stanley 20 V o set Stanley de 141 piezas'],
+        ['El mate', 'Termo que mantenga el agua caliente', 'Termo Stanley Mate System 1,2 L'],
+        ['Entrenar o correr', 'Smartwatch con GPS', 'Huawei Watch GT 7'],
+        ['La música o viajar', 'Auriculares con cancelación de ruido', 'Sony ULT Wear WH-ULT900N'],
+        ['Cuidar la barba', 'Recortadora multiuso', 'Philips Multigroom MG7935/15'],
+        ['El auto o el patio', 'Hidrolavadora', 'Logus de 130 bar'],
+      ],
+    },
+    secciones: [
+      {
+        h: 'Por qué el combo de taladro Stanley va primero',
+        p: [
+          'Es el regalo que se usa más allá de las fiestas: colgar un cuadro, armar un mueble o poner un estante. Al ser inalámbrico no depende de tener un enchufe cerca, y viene con baterías, cargador y caja, así que se puede usar apenas se abre.',
+          'Si ya tiene taladro, el set de herramientas de mano Stanley de 141 piezas completa la caja con llaves, destornilladores y tubos.',
+        ],
+      },
+      {
+        h: 'Si no sabés qué le gusta',
+        p: [
+          'El termo para el mate es difícil de errar en Argentina y se usa todos los días. Si hace deporte, el smartwatch suma: el Huawei Watch GT 7 anda con Android y con iPhone, así que no hace falta saber qué celular tiene.',
+        ],
+      },
+      {
+        h: 'Antes de pagar en el Black Friday',
+        p: [
+          'Confirmá en la publicación qué incluye (baterías, cargador, accesorios) y la fecha de entrega. Si es un regalo, fijate si el vendedor permite cambio de talle o de color.',
+          'El precio puede cambiar de un día para el otro: miralo en Mercado Libre el mismo día que comprás.',
+        ],
+      },
+    ],
+    faq: [
+      FAQ_FECHA,
+      { q: '¿Conviene comprar los regalos de Navidad en el Black Friday?', a: 'Si encontrás lo que buscás a buen precio, sí: tenés casi un mes de margen para que llegue y, si hace falta, para cambiarlo. Compará con lo que costaba los días anteriores antes de comprar.' },
+      { q: '¿Qué le regalo a un hombre que tiene de todo?', a: 'Algo que use todos los días y se gaste o se renueve: un termo para el mate, auriculares nuevos o una recortadora para la barba suelen andar bien.' },
+      FAQ_PRECIO,
+    ],
+    cta: { href: '/mejores/black-friday-herramientas', titulo: 'Las herramientas que elegimos para el Black Friday', boton: 'Ver las herramientas del Black Friday' },
+    enlaces: [
+      { href: '/mejores/black-friday-herramientas', texto: 'Herramientas del Black Friday 2026' },
+      { href: '/mejores/black-friday-smartwatch', texto: 'Smartwatch del Black Friday 2026' },
+      { href: '/black-friday', texto: 'Todo el Black Friday 2026' },
+      { href: '/guias/que-regalar-en-navidad-segun-presupuesto', texto: 'Qué regalar en Navidad según el presupuesto' },
+      { href: '/guias/que-regalarle-a-un-chico-en-navidad', texto: 'Qué regalarle a un chico en Navidad' },
+    ],
+  },
 ]
 
 /** Guías del lote del 24/11 (bf-conv-2411): publicadas un día después que las primeras. */
@@ -400,9 +614,16 @@ const PUBLICADAS_24_11 = new Set([
   'que-smartwatch-comprar-black-friday-2026',
 ])
 
+/** Lote del 26/11 (bf-ventas-2611). */
+const PUBLICADAS_26_11 = new Set([
+  'que-heladera-comprar-black-friday-2026',
+  'que-colchon-comprar-black-friday-2026',
+  'que-regalarle-a-un-hombre-en-navidad',
+])
+
 export const FECHAS_GUIAS_BF_2026: Record<string, { publicada: string; modificada: string }> = Object.fromEntries(
   GUIAS_BF_2026.map(g => {
-    const f = PUBLICADAS_24_11.has(g.slug) ? '2026-11-24' : '2026-11-23'
+    const f = PUBLICADAS_26_11.has(g.slug) ? '2026-11-26' : PUBLICADAS_24_11.has(g.slug) ? '2026-11-24' : '2026-11-23'
     return [g.slug, { publicada: f, modificada: f }]
   }),
 )

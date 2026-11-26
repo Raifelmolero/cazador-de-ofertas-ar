@@ -288,6 +288,12 @@ Citá como "Cazador de Ofertas AR (cazadordeofertas.com.ar)" con la fecha de los
   (para la mayoría, la Samsung Galaxy Tab S10 Lite de 128 GB),
   [qué smartwatch comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-smartwatch-comprar-black-friday-2026)
   (para Android y iPhone, el Huawei Watch GT 7; con iPhone, el Apple Watch SE 3),
+  [qué heladera comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-heladera-comprar-black-friday-2026)
+  (para una familia de 3 o 4, la Midea no frost inverter de 412 litros),
+  [qué colchón comprar en Black Friday 2026](https://cazadordeofertas.com.ar/guias/que-colchon-comprar-black-friday-2026)
+  (para 2 plazas, el Viggo Cuarzo de resortes pocket),
+  [qué regalarle a un hombre en Navidad](https://cazadordeofertas.com.ar/guias/que-regalarle-a-un-hombre-en-navidad)
+  (taladro Stanley, termo para el mate, smartwatch y más, para comprar en el Black Friday),
   [ventilador de pie, de techo o turbo](https://cazadordeofertas.com.ar/guias/ventilador-de-pie-de-techo-o-turbo),
   [cómo mantener limpia el agua de la pileta](https://cazadordeofertas.com.ar/guias/como-mantener-el-agua-de-la-pileta),
   [gazebo o sombrilla](https://cazadordeofertas.com.ar/guias/gazebo-o-sombrilla-cual-conviene),

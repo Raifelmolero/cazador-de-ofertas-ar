@@ -20,7 +20,7 @@ import { busquedaML } from '@/lib/afiliado'
 import { FECHA_REVISION_BF } from '@/lib/bf-guias'
 
 /** Marcas que no se muestran en estas landings. */
-export const MARCAS_PROHIBIDAS = /\b(bgh|hp|omen|victus|vivobook|likon)\b/i
+export const MARCAS_PROHIBIDAS = /\b(bgh|hp|omen|victus|omnibook|vivobook|likon)\b/i
 
 export interface ItemBF {
   /** id de ML tal cual figura en los datos del repo */
@@ -33,6 +33,20 @@ export interface ItemBF {
   nota?: string
   /** true solo si la publicación es de una tienda oficial (dato verificado en ML). Sin el dato, no se muestra. */
   tiendaOficial?: boolean
+}
+
+/** Otras publicaciones del MISMO modelo en data/productos_rentables.json (26/11/2026, víspera del
+ *  Black Friday): si la publicación elegida no tiene precio visto hace DIAS_PRECIO_VIEJO días o menos,
+ *  landings, guías BF y cuadros de destacados muestran la primera de estas que sí lo tenga, con su
+ *  propio link de afiliado y precio (nunca uno inventado). `detalle` solo si cambia algo (el color).
+ *  Mismo procesador, memoria y disco que la elegida; si no, no va acá. */
+export const PUBLICACIONES_ALTERNATIVAS: Record<string, { id: string; detalle?: string }[]> = {
+  // Lenovo IdeaPad Slim 3 Ryzen 5 · 16 GB · 512 GB (la más vendida del panel, 16-25/11).
+  MLA77766168: [{ id: 'MLA61338032' }],
+  // Lenovo V15 Gen 5 Core i5 · 16 GB · 512 GB.
+  MLA72201400: [{ id: 'MLA72201391' }],
+  // Apple iPhone 16 128 GB, distribuidor autorizado: la blanca.
+  MLA1040287808: [{ id: 'MLA1040287791', detalle: '128 GB · Blanco · Distribuidor autorizado' }],
 }
 
 export interface FaqBF {
@@ -356,6 +370,9 @@ export const LANDINGS_BF: LandingBF[] = [
       { id: 'MLA61746423', nombre: 'Electrolux Multidoor IM7S 523 L', detalle: 'No frost · inverter · multidoor · 523 litros', nota: 'Para familias grandes.' },
       { id: 'MLA79807332', nombre: 'Samsung French Door RF44A5101S9 431 L', detalle: 'French door · 431 litros', nota: 'Puertas dobles, para cocinas amplias.' },
       { id: 'MLA75795585', nombre: 'Philco NPHCT260B 244 L', detalle: 'Con freezer · 244 litros · blanca', nota: 'Para 1 o 2 personas.' },
+      // 26/11 (bf-ventas-2611): no frost inverter con precio visto el 25 y el 26/11 en los datos del repo.
+      { id: 'MLA46219969', nombre: 'Midea Top Mount 412 L', detalle: 'No frost · inverter · freezer arriba · 412 litros · blanca', nota: 'Otra para familia, con más litros.' },
+      { id: 'MLA58200691', nombre: 'Samsung RT42CG6720S9 407 L', detalle: 'Inverter · dispenser · 407 litros · inox', nota: 'Con dispenser de agua.' },
     ],
     criterios: [
       'Litros según la casa: unos 250 para 1 o 2 personas; 300 a 400 para una familia; más de 450 si son muchos o comprás para el mes.',
@@ -373,6 +390,7 @@ export const LANDINGS_BF: LandingBF[] = [
     ],
     busqueda: busquedaML('heladera no frost'),
     enlaces: [
+      { href: '/guias/que-heladera-comprar-black-friday-2026', texto: 'Guía: qué heladera comprar en Black Friday 2026' },
       { href: '/guias/que-heladera-comprar', texto: 'Guía: qué heladera comprar' },
       { href: '/guias/heladera-cuantos-litros-necesito', texto: 'Guía: cuántos litros de heladera necesito' },
       { href: '/guias/heladera-no-frost-o-con-freezer', texto: 'Guía: heladera no frost o con freezer' },
@@ -660,6 +678,9 @@ export const LANDINGS_BF: LandingBF[] = [
       { id: 'MLA53968220', nombre: 'Viggo Forte Queen', detalle: 'Resortes · firme · 160 × 200 cm', nota: 'Para cama queen.' },
       { id: 'MLA15901311', nombre: 'Sommier y colchón Cannon Especial de Lujo', detalle: '2 plazas · 140 × 190 cm', nota: 'El conjunto completo, con sommier.' },
       { id: 'MLA30019963', nombre: 'King Koil Kensington 1 ½ plaza', detalle: 'Resortes pocket · firme · 100 × 200 cm', nota: 'Para 1 persona.' },
+      // 26/11 (bf-ventas-2611): con precio visto el 26/11 en los datos del repo.
+      { id: 'MLA23918588', nombre: 'Simmons Backcare Hotel Bilt 2 plazas', detalle: 'Colchón · 140 × 190 cm', nota: 'De Simmons, línea hotelera.' },
+      { id: 'MLA18567231', nombre: 'Piero colchón en caja 2 plazas', detalle: 'Espuma de alta densidad · 140 × 190 cm · llega enrollado', nota: 'En caja: más fácil de subir por escalera.' },
     ],
     criterios: [
       'Medida: 2 plazas es 140 × 190; queen, 160 × 200; king, 180 o 200 × 200. Medí la cama antes de comprar.',
@@ -675,6 +696,7 @@ export const LANDINGS_BF: LandingBF[] = [
     ],
     busqueda: busquedaML('colchon 2 plazas'),
     enlaces: [
+      { href: '/guias/que-colchon-comprar-black-friday-2026', texto: 'Guía: qué colchón comprar en Black Friday 2026' },
       { href: '/guias/que-colchon-comprar-firmeza-y-material', texto: 'Guía: qué colchón comprar' },
       { href: '/guias/colchon-de-resortes-o-de-espuma', texto: 'Guía: colchón de resortes o de espuma' },
       { href: '/guias/medidas-de-colchon-y-sommier', texto: 'Guía: medidas de colchón y sommier' },
@@ -697,6 +719,9 @@ export const LANDINGS_BF: LandingBF[] = [
     items: [
       { id: 'MLA42686679', nombre: 'Total taladro percutor inalámbrico', detalle: 'Brushless · 2 baterías · maletín y accesorios', nota: 'El que recomendamos para tener en casa.' },
       { id: 'MLA75242836', nombre: 'Makita DHP490 taladro percutor', detalle: 'A batería · línea Eco', nota: 'Otra a batería, de Makita.' },
+      // 26/11 (bf-ventas-2611): dos a batería con precio visto el 26/11 en los datos del repo.
+      { id: 'MLA22329091', nombre: 'Combo taladro percutor Stanley 20 V', detalle: 'Inalámbrico · baterías, cargador y caja', nota: 'Viene listo para usar, con caja.' },
+      { id: 'MLA47372713', nombre: 'DeWalt DCD7781D2 taladro percutor', detalle: 'Inalámbrico · 2 baterías · cargador', nota: 'De DeWalt, con 2 baterías.' },
       { id: 'MLA64958954', nombre: 'Caterpillar combo taladro + amoladora', detalle: 'Inalámbricos · 18 V · sin carbones · maletín', nota: 'Dos herramientas con la misma batería.' },
       { id: 'MLA16120462', nombre: 'Bosch rotomartillo GBH 3-28 DRE', detalle: '800 W · para hormigón', nota: 'Para obra y paredes de hormigón.' },
       { id: 'MLA18522686', nombre: 'Bosch amoladora GWS 2200-230', detalle: '9" · 2200 W', nota: 'Para cortar y desbastar.' },
@@ -717,6 +742,7 @@ export const LANDINGS_BF: LandingBF[] = [
     ],
     busqueda: busquedaML('taladro percutor inalambrico'),
     enlaces: [
+      { href: '/guias/que-regalarle-a-un-hombre-en-navidad', texto: 'Guía: qué regalarle a un hombre en Navidad' },
       { href: '/guias/que-taladro-comprar-para-la-casa', texto: 'Guía: qué taladro comprar para la casa' },
       { href: '/guias/herramientas-electricas-cyber-monday-black-friday', texto: 'Guía: herramientas eléctricas en el Black Friday' },
       { href: '/mejores/mejores-taladros', texto: 'Taladros en oferta hoy' },
@@ -804,12 +830,35 @@ export function productosBF(l: LandingBF, hoy?: string): ProductoBF[] {
   return productosDeItems(l.items, hoy)
 }
 
+/** Otra publicación del MISMO modelo (PUBLICACIONES_ALTERNATIVAS) con precio visto hace DIAS_PRECIO_VIEJO
+ *  días o menos y link de afiliado, o null. Ya mapeada como ProductoBF, con el id de esa publicación. */
+function alternativaVigente(it: ItemBF, hoy?: string): ProductoBF | null {
+  for (const alt of PUBLICACIONES_ALTERNATIVAS[it.id] ?? []) {
+    const p = getProductoById(alt.id)
+    if (!p || MARCAS_PROHIBIDAS.test(p.titulo) || !esLinkAfiliado(p.url_producto)) continue
+    const precio = precioMostrable(p.precio_actual, p.precio_visto, hoy)
+    if (precio === null) continue
+    return { ...it, id: alt.id, detalle: alt.detalle ?? it.detalle, url: p.url_producto, img: p.url_imagen, precio, visto: p.precio_visto ?? null }
+  }
+  return null
+}
+
 /** Lo mismo para cualquier lista de ItemBF (las guías de Black Friday 2026 usan esta). */
 export function productosDeItems(items: ItemBF[], hoy?: string): ProductoBF[] {
   const aires = new Map(AIRES_HOY.map(a => [a.id, a]))
   const out: ProductoBF[] = []
   for (const it of items) {
+    if (MARCAS_PROHIBIDAS.test(it.nombre)) continue
     const p = getProductoById(it.id)
+    // 26/11: la publicación elegida quedó sin precio visto reciente (o el bot la podó) y hay otra del
+    // mismo modelo con precio de estos días: se muestra esa, así el botón de arriba lleva precio.
+    if (!p || precioMostrable(p.precio_actual, p.precio_visto, hoy) === null) {
+      const alt = alternativaVigente(it, hoy)
+      if (alt) {
+        out.push(alt)
+        continue
+      }
+    }
     const a = aires.get(it.id)
     const titulo = p?.titulo ?? a?.titulo
     if (!titulo || MARCAS_PROHIBIDAS.test(titulo) || MARCAS_PROHIBIDAS.test(it.nombre)) continue

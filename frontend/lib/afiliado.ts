@@ -50,6 +50,33 @@ export const ETIQUETA_JSON = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_JSO
 export const ETIQUETA_JSONLD = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_JSONLD, 'web')
 export const ETIQUETA_CALC = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_CALC, ETIQUETA_SITIO)
 
+/** Visitas que pasan de la calculadora (calculadoraml.com.ar) al sitio de ofertas (26/11/2026):
+ *  los links de la calculadora a /black-friday y a las landings llevan `?utm_source=calcml` y
+ *  solo sirven para medir el origen en Vercel Analytics.
+ *  Desde el 26/11 (tarde) NO cambian la etiqueta de afiliado: calcml absorbía 68 % de los clics
+ *  con 0 ventas; quien llega a ofertas desde la calculadora compra con `sitio` (~8 %). */
+export const UTM_CALC = 'calcml'
+
+/** Link de ML sin parámetros de afiliado (`matt_word`, `matt_tool`): para vendedores que miran
+ *  una publicación a analizar, no a comprar. Así el clic no cuenta en el panel de afiliados. */
+export function sinAfiliado(url: string): string {
+  try {
+    const u = new URL(url)
+    u.searchParams.delete('matt_word')
+    u.searchParams.delete('matt_tool')
+    return u.toString()
+  } catch {
+    return url
+  }
+}
+
+/** Link de la calculadora al sitio de ofertas con el utm de la calculadora (respeta el #ancla). */
+export function desdeCalculadora(href: string): string {
+  const [base, ancla] = href.split('#')
+  const utm = `utm_source=${UTM_CALC}&utm_medium=calculadora`
+  return `${base}${base.includes('?') ? '&' : '?'}${utm}${ancla !== undefined ? `#${ancla}` : ''}`
+}
+
 /** Etiquetas de links públicos que, si el clic pasa DENTRO del sitio, se
  *  reescriben a `sitio` (la grilla de la home usa los links de /ofertas-hoy.json). */
 const ETIQUETAS_PUBLICAS = new Set(['web', ETIQUETA_JSON, ETIQUETA_JSONLD])

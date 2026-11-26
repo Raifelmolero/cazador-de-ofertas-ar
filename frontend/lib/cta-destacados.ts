@@ -18,8 +18,8 @@
 // - Sin BGH, Likon (MLA80862058), HP, OMEN ni Victus.
 import { productosDeItems, type ItemBF, type ProductoBF } from '@/lib/black-friday-landings'
 
-/** Marcas que no van en ningún bloque destacado. */
-export const MARCAS_EXCLUIDAS_CTA = /\b(bgh|likon|hp|omen|victus)\b/i
+/** Marcas que no van en ningún bloque destacado (Omnibook y Vivobook sumadas el 26/11: regla de copy). */
+export const MARCAS_EXCLUIDAS_CTA = /\b(bgh|likon|hp|omen|victus|omnibook|vivobook)\b/i
 /** Ids que no van aunque el título no nombre la marca. */
 export const IDS_EXCLUIDOS_CTA = new Set(['MLA80862058'])
 
@@ -56,9 +56,9 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
     items: [
       { id: 'MLA65683670', nombre: 'Motorola Moto G15 Power', detalle: '256 GB · 8 GB de RAM · verde', nota: 'Moto G para el uso de todos los días.' },
       { id: 'MLA68413833', nombre: 'Motorola Moto G67 5G', detalle: '256 GB · 8 GB de RAM · dual SIM · IP68', nota: 'Moto G de gama media, con 5G.' },
-      // 24/11 (lote 2): la publicación del Edge 70 Fusion con el precio visto más reciente del catálogo
-      // (22/11). La de antes (MLA66618502, visto 17/11) dejaba de mostrar precio el 25/11.
-      { id: 'MLA79114940', nombre: 'Motorola Edge 70 Fusion', detalle: '256 GB · 12 GB de RAM · celeste', nota: 'La línea Edge: gama media-alta.' },
+      // 24/11 (lote 2): la publicación del Edge 70 Fusion con el precio visto más reciente del catálogo.
+      // 26/11: MLA74346728 (visto 26/11) en lugar de MLA79114940 (visto 22/11, sin precio desde el 30/11).
+      { id: 'MLA74346728', nombre: 'Motorola Edge 70 Fusion', detalle: '256 GB · 12 GB de RAM · 5G', nota: 'La línea Edge: gama media-alta.' },
       { id: 'MLA76204388', nombre: 'Motorola Moto G17', detalle: '128 GB · 4 GB de RAM · azul', nota: 'Moto G de entrada.' },
     ],
     verMas: { href: '/mejores/black-friday-celulares-baratos', texto: 'Celulares baratos para el Black Friday' },
@@ -158,9 +158,15 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
     titulo: 'Los que recomendamos para el Black Friday',
     seccion: 'cta_black_friday',
     evento: 'cta_black_friday',
+    // 26/11 (bf-ventas-2611): en el orden de lo que más ganancia dejó en el panel (notebooks, TV,
+    // lavarropas) y con herramientas, que paga más comisión por venta que tecnología. Arriba van los
+    // 3 primeros con precio visto en los últimos días (conPrecioPrimero).
     items: [
       { id: 'MLA77766168', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La notebook que recomendamos.' },
       { id: 'MLA47330762', nombre: 'Samsung 55" QLED Serie D', detalle: '4K · QLED', nota: 'El smart TV que recomendamos.' },
+      { id: 'MLA52816628', nombre: 'Samsung Ecobubble 10,5 kg', detalle: 'Lavarropas Ecobubble · 10,5 kg · blanco', nota: 'El lavarropas que recomendamos.' },
+      { id: 'MLA51226992', nombre: 'LG 55" QNED AI 55QNED82', detalle: '4K · QNED', nota: 'Otro smart TV de 55" que elegimos.' },
+      { id: 'MLA22329091', nombre: 'Combo taladro percutor Stanley 20 V', detalle: 'Con baterías, cargador y caja', nota: 'La herramienta que elegimos.' },
       { id: 'MLA1040287808', nombre: 'Apple iPhone 16', detalle: '128 GB · Negro · Distribuidor autorizado', nota: 'El iPhone que recomendamos.' },
       { id: 'MLA54262263', nombre: 'Philips XL Series 6,2 L', detalle: 'Freidora de aire · 6,2 litros', nota: 'La freidora que recomendamos.' },
     ],
@@ -256,20 +262,29 @@ export const excluidoDeCta = (p: { id: string; nombre: string }, titulo = '') =>
 
 export interface CtaDestacado extends CtaDestacadoDef {
   productos: ProductoBF[]
+  /** Si está, el botón de cada producto va a esta página INTERNA (sin link de afiliado a ML) y
+   *  no a la publicación. Solo lo usan los cuadros de las calculadoras (lib/calc-ofertas.ts). */
+  destinoInterno?: (p: ProductoBF) => string
+}
+
+/** Los que muestran precio primero, sin cambiar el orden de recomendación dentro de cada grupo
+ *  (26/11, Black Friday): con deploys agrupados cada ~3 días, el recomendado puede quedar con el
+ *  precio visto hace más de DIAS_PRECIO_VIEJO días; arriba de todo van tarjetas con precio y botón. */
+export function conPrecioPrimero<T extends { precio: number | null }>(productos: T[]): T[] {
+  return [...productos.filter(p => p.precio !== null), ...productos.filter(p => p.precio === null)]
 }
 
 /** Cuadro de destacados de arriba de una landing /mejores/black-friday-* (26/11/2026): los
- *  MAX_DESTACADOS primeros de la landing que pasan la exclusión de marcas e ids de este archivo. */
+ *  MAX_DESTACADOS primeros de la landing que pasan la exclusión de marcas e ids de este archivo,
+ *  con precio primero. */
 export function destacadosLandingBF(productos: ProductoBF[]): ProductoBF[] {
-  return productos.filter(p => !excluidoDeCta(p)).slice(0, MAX_DESTACADOS)
+  return conPrecioPrimero(productos.filter(p => !excluidoDeCta(p))).slice(0, MAX_DESTACADOS)
 }
 
 /** Bloque de la ruta con sus productos de hoy, o null si la ruta no tiene o no queda ninguno. */
 export function ctaDestacado(ruta: string, hoy?: string): CtaDestacado | null {
   const def = CTAS_DESTACADOS[ruta]
   if (!def) return null
-  const productos = productosDeItems(def.items, hoy)
-    .filter(p => !excluidoDeCta(p))
-    .slice(0, MAX_DESTACADOS)
+  const productos = conPrecioPrimero(productosDeItems(def.items, hoy).filter(p => !excluidoDeCta(p))).slice(0, MAX_DESTACADOS)
   return productos.length ? { ...def, productos } : null
 }

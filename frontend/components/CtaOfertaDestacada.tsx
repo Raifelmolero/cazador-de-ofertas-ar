@@ -54,23 +54,35 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
                 )}
               </span>
             </span>
-            <a
-              href={p.url}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              data-evento={cta.evento}
-              data-mla={p.id}
-              className={`${BOTON_ML} mt-auto`}
-            >
-              Ver en Mercado Libre
-            </a>
+            {cta.destinoInterno ? (
+              // Cuadro de las calculadoras: página interna del sitio de ofertas, sin link de afiliado
+              // a ML (la etiqueta calcml no convertía: 0 ventas). El clic de compra lo hace el sitio.
+              <a href={cta.destinoInterno(p)} data-evento={cta.evento} data-mla={p.id} className={`${BOTON_ML} mt-auto`}>
+                Ver ofertas →
+              </a>
+            ) : (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                data-evento={cta.evento}
+                data-mla={p.id}
+                className={`${BOTON_ML} mt-auto`}
+              >
+                Ver en Mercado Libre
+              </a>
+            )}
           </li>
         ))}
       </ul>
       <a href={cta.verMas.href} className="mt-2 flex min-h-12 items-center justify-center rounded-xl border-2 border-[#FACC15] px-4 text-center font-black text-[#FACC15] hover:bg-[#FACC15]/10">
         {cta.verMas.texto} →
       </a>
-      <p className="mt-2 text-sm leading-relaxed text-zinc-400">El precio puede cambiar: confirmalo en la publicación. Link de afiliado: pagás lo mismo.</p>
+      <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+        {cta.destinoInterno
+          ? 'El precio puede cambiar: confirmalo en la publicación.'
+          : 'El precio puede cambiar: confirmalo en la publicación. Link de afiliado: pagás lo mismo.'}
+      </p>
     </section>
   )
 }

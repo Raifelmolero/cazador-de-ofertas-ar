@@ -14,6 +14,7 @@ import CostBreakdownChart from '@/components/CostBreakdownChart'
 import ProfitCalculator from '@/components/ProfitCalculator'
 import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
 import { ctaCalculadora } from '@/lib/calc-ofertas'
+import { sinAfiliado } from '@/lib/afiliado'
 import Footer from '@/components/Footer'
 
 // Solo existen las 200 de más margen (getProductosCalc); cualquier otro id da
@@ -154,9 +155,9 @@ export default async function CalculadoraPage({ params }: { params: Promise<{ id
                 </a>
               )}
               <a
-                href={producto.url_producto}
+                href={sinAfiliado(producto.url_producto)}
                 target="_blank"
-                rel="noopener noreferrer sponsored"
+                rel="noopener noreferrer nofollow"
                 // Link chico siempre: es el producto que el vendedor analiza (ticket de más de
                 // $2 M, 1 de cada 3 sin precio de la última semana), no una compra. El botón
                 // grande de compra es el cuadro de oferta destacada de abajo (fuga calcml 25/11).

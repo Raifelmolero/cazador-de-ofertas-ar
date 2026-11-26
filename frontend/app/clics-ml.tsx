@@ -19,6 +19,8 @@ const CALCULADORA = /(^|\.)calculadoraml\.com\.ar$/
 // las páginas siguientes salgan con la etiqueta de esa red y el panel de ML
 // muestre qué red vende. Todas estas etiquetas existen en el panel (19/11),
 // salvo `meta`, que se crea al arrancar los anuncios.
+// `utm_source=calcml` (links de la calculadora al sitio de ofertas) NO está acá a propósito: sirve
+// para medir el origen en Analytics, pero los clics a ML salen con `sitio` (calcml: 0 ventas).
 const ORIGENES = new Set([ETIQUETA_META, ...ETIQUETAS_REDES])
 
 function etiquetaVisita(): string {

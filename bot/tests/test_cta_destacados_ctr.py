@@ -20,8 +20,6 @@ COMP = FRONT / "components" / "CtaOfertaDestacada.tsx"
 LANDINGS = FRONT / "lib" / "black-friday-landings.ts"
 MANUALES = FRONT / "lib" / "seguidos-manuales.ts"
 CATALOGO = FRONT / "data" / "productos_rentables.json"
-HISTORIAL = RAIZ / "bot" / "state" / "price_history.json"
-OFERTAS_MANUALES = RAIZ / "bot" / "state" / "ofertas_manuales.json"
 
 EXCLUIDAS = re.compile(r"\b(bgh|likon|hp|omen|victus)\b", re.I)
 LIKON_ID = "MLA80862058"
@@ -218,14 +216,32 @@ class TestHerramientasPrecio(unittest.TestCase):
         "MLA42782167": "llave-impacto-inalambrica-20v-1-2-pulgadas-pektra-brushless-mla42782167",
     }
 
+    # Foto de los datos del repo al corte del lote (24/11/2026), de donde salieron las fichas de
+    # lib/seguidos-manuales.ts. NO se leen los archivos vivos: el bot reescribe price_history.json
+    # en cada corrida (last_ts avanza un día por día mientras el producto siga apareciendo, y min
+    # puede bajar), y las ofertas manuales vencen a los 14 días. Compararlos contra una ficha
+    # escrita a mano rompía el test cada día que pasaba, sin que nada estuviera mal.
+    # Verificable con git:
+    # - price_history.json en 00378428 (24/11, última corrida del bot antes del lote 17213fd5);
+    # - ofertas_manuales.json: price_cur y fecha `agregada` de cada id;
+    # - precio_testigo_2026.json: min/min_ts del martillo (99.999 el 03/10).
+    CORTE = {
+        "MLA25570995": {
+            "historial": {"min": 94108, "min_ts": "2026-11-21", "last": 94108, "last_ts": "2026-11-24"},
+            "manual": ("2026-11-21", 94108),
+            "testigo": ("2026-10-03", 99999),
+        },
+        "MLA42782167": {
+            "historial": {"min": 99999, "min_ts": "2026-11-21", "last": 99999, "last_ts": "2026-11-24"},
+            "manual": ("2026-11-15", 99999),
+            "testigo": None,
+        },
+    }
+
     @classmethod
     def setUpClass(cls):
         cls.src = MANUALES.read_text(encoding="utf-8")
         cls.catalogo = _catalogo()
-        cls.hist = json.loads(HISTORIAL.read_text(encoding="utf-8"))
-        man = json.loads(OFERTAS_MANUALES.read_text(encoding="utf-8"))
-        lista = man if isinstance(man, list) else next(v for v in man.values() if isinstance(v, (list, dict)))
-        cls.manuales = {x["id"]: x for x in (lista.values() if isinstance(lista, dict) else lista) if isinstance(x, dict) and "id" in x}
 
     def _entrada(self, i: str) -> str:
         a = self.src.index(f"id: '{i}'")
@@ -251,23 +267,22 @@ class TestHerramientasPrecio(unittest.TestCase):
             self.assertIn(f"url: '{base}?matt_word=web&matt_tool=37267219'", e)
 
     def test_serie_y_minimo_salen_del_historial(self):
-        for i in self.SKUS:
+        self.assertEqual(sorted(self.CORTE), sorted(self.SKUS))
+        for i, corte in self.CORTE.items():
             e = self._entrada(i)
-            h = self.hist[i]
+            h = corte["historial"]
             serie = [(d, int(v)) for d, v in re.findall(r"\['(\d{4}-\d{2}-\d{2})', (\d+)\]", e)]
             self.assertGreaterEqual(len(serie), 2, i)
-            self.assertEqual(serie[-1], (h["last_ts"], int(h["last"])), i)
-            self.assertIn(f"min: {int(h['min'])},", e)
+            self.assertEqual(serie, sorted(serie), i)  # en orden de fecha
+            self.assertEqual(serie[-1], (h["last_ts"], h["last"]), i)
+            self.assertIn(f"min: {h['min']},", e)
             self.assertIn(f"ultimo_visto: '{h['last_ts']}'", e)
-            # cada punto es un precio visto en algún dato del repo
-            vistos = {(h["min_ts"], int(h["min"])), (h["last_ts"], int(h["last"]))}
-            m = self.manuales.get(i)
-            if m:
-                vistos.add((m["agregada"][:10], int(m["price_cur"])))
-            testigo = json.loads((RAIZ / "bot" / "state" / "precio_testigo_2026.json").read_text(encoding="utf-8"))
-            t = testigo.get(i) or (testigo.get("items") or {}).get(i)
-            if t:
-                vistos.add((t["min_ts"], int(t["min"])))
+            # el mínimo de la ficha es el menor precio de su propia serie
+            self.assertEqual(min(v for _, v in serie), h["min"], i)
+            # cada punto es un precio visto en algún dato del repo al corte
+            vistos = {(h["min_ts"], h["min"]), (h["last_ts"], h["last"]), corte["manual"]}
+            if corte["testigo"]:
+                vistos.add(corte["testigo"])
             for punto in serie:
                 self.assertIn(punto, vistos, (i, punto))
 

@@ -319,14 +319,14 @@ export const LANDINGS_BF: LandingBF[] = [
     h1: 'Bicicletas rodado 29 para el Black Friday 2026',
     titulo: 'Black Friday 2026 bicicletas R29 Argentina: cuál',
     descripcion:
-      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 Battle, SLP, Overtech, Alpina y Gariotti elegidas, con link directo a Mercado Libre.',
+      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 SLP, Overtech, Alpina y Gariotti elegidas, con link directo a Mercado Libre.',
     keywords: ['black friday 2026 bicicletas argentina', 'bicicleta r29 black friday 2026', 'mountain bike black friday', 'bicicleta mercado libre black friday'],
     intro:
       'Mountain bikes rodado 29 para tierra, ripio y calles rotas, todas de aluminio. Arriba, la que más recomendamos; abajo, otras R29 de varias marcas y talles.',
     respuestaCorta:
-      'Para tierra, ripio y calles rotas, la Battle R29 de aluminio con monoplato Shimano: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
+      'Para tierra, ripio y calles rotas, la Overtech Peregrine R29 de aluminio con monoplato: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
     items: [
-      { id: 'MLA53194352', nombre: 'Bicicleta MTB Battle R29', detalle: 'Aluminio · monoplato Shimano 8 velocidades · talle 16', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
+      { id: 'MLA41151469', nombre: 'Overtech Peregrine R29', detalle: 'Aluminio · monoplato · talle M', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
       { id: 'MLA51766931', nombre: 'SLP MTB 10 Pro R29', detalle: 'Aluminio · Shimano 21 velocidades · cuadro 21', nota: 'Cuadro grande, para gente alta.' },
       { id: 'MLA47640884', nombre: 'Overtech Fortis R29', detalle: 'Aluminio · full Shimano · talle M' },
       { id: 'MLA44916984', nombre: 'Overtech Q6 R29', detalle: 'Aluminio · 21 velocidades · freno a disco · talle S', nota: 'Cuadro chico.' },
@@ -340,7 +340,7 @@ export const LANDINGS_BF: LandingBF[] = [
       'Fijate si llega armada o hay que terminar de armarla (manubrio, pedales, ajuste de frenos).',
     ],
     faq: [
-      { q: '¿Qué bicicleta conviene comprar en el Black Friday 2026?', a: 'Para andar por tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio, como la Battle R29 monoplato de esta página. Si querés más cambios para subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0.' },
+      { q: '¿Qué bicicleta conviene comprar en el Black Friday 2026?', a: 'Para andar por tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio, como la Overtech Peregrine R29 monoplato de esta página. Si querés más cambios para subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0.' },
       { q: '¿Qué talle de cuadro necesito?', a: 'Depende de tu altura: cada publicación trae la tabla de talles del fabricante (S, M, L, XL o en pulgadas). Elegí por esa tabla antes que por el rodado.' },
       { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
     ],

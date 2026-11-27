@@ -109,7 +109,7 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
     items: [
       { id: 'MLA56719132', nombre: 'Cocina multigas Philco Essential', detalle: '56 cm · blanca · PHCM56BL', nota: 'Multigas: gas natural o garrafa.' },
       { id: 'MLA18735482', nombre: 'Cocina a gas Longvie 12331X', detalle: '56 cm · acero inoxidable · cajón parrilla', nota: 'A gas, con cajón parrilla.' },
-      { id: 'MLA21093847', nombre: 'Cocina vitrocerámica Dalton', detalle: '4 hornallas · 50 cm · acero inoxidable', nota: 'Eléctrica: para casas sin gas.' },
+      { id: 'MLA35962100', nombre: 'Cocina eléctrica Kanji KJH-EKB001V', detalle: '50 cm · negra · con grill', nota: 'Eléctrica: para casas sin gas.' },
       { id: 'MLA80241962', nombre: 'Cocina multigas Atma', detalle: '56 cm · negra', nota: 'Otra multigas de 56 cm.' },
     ],
     verMas: { href: '/mejores/mejores-cocinas-y-hornos', texto: 'Comparativa de cocinas y hornos' },
@@ -134,7 +134,7 @@ export const CTAS_DESTACADOS: Record<string, CtaDestacadoDef> = {
       { id: 'MLA49197371', nombre: 'Smart TV TCL 32" 32S5K', detalle: 'QLED · Full HD', nota: 'Full HD en 32": más definición que los HD.' },
       { id: 'MLA74447718', nombre: 'Smart TV LG 32" 32LR650', detalle: 'HD · AI', nota: 'La opción de LG.' },
       { id: 'MLA66055266', nombre: 'Smart TV Noblex 32" DB32X3010', detalle: 'Roku TV · HD', nota: 'Roku: el sistema más simple.' },
-      { id: 'MLA58672943', nombre: 'Smart TV TCL 32" QLED', detalle: 'Google TV · Full HD · HDR10', nota: 'Con Google TV.' },
+      { id: 'MLA45170216', nombre: 'Smart TV Quint 32" QT3-32GTV2024', detalle: 'Google TV · 32 pulgadas', nota: 'Con Google TV.' },
     ],
     verMas: { href: '/mejores/black-friday-smart-tv', texto: 'Más smart TV para el Black Friday' },
   },

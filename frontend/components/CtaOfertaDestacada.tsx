@@ -45,11 +45,15 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
               </span>
               <span className="flex min-w-0 flex-1 flex-col">
                 <span className="text-base font-bold leading-snug text-zinc-100">{p.nombre}</span>
-                <span className="text-sm leading-snug text-zinc-400">{p.detalle}</span>
+                {p.detalle && <span className="text-sm leading-snug text-zinc-400">{p.detalle}</span>}
                 {p.precio !== null && (
                   <>
                     <span className="mt-1 font-display text-xl font-black leading-tight tabular-nums text-[#FACC15]">{pesos(p.precio)}</span>
-                    <UltVerificacion fecha={p.visto} />
+                    {cta.rotulos?.[p.id] ? (
+                      <span className="block text-sm leading-snug text-amber-300">{cta.rotulos[p.id]}</span>
+                    ) : (
+                      <UltVerificacion fecha={p.visto} />
+                    )}
                   </>
                 )}
               </span>
@@ -58,7 +62,7 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
               // Cuadro de las calculadoras: página interna del sitio de ofertas, sin link de afiliado
               // a ML (la etiqueta calcml no convertía: 0 ventas). El clic de compra lo hace el sitio.
               <a href={cta.destinoInterno(p)} data-evento={cta.evento} data-mla={p.id} className={`${BOTON_ML} mt-auto`}>
-                Ver ofertas →
+                {cta.textoBoton ?? 'Ver ofertas →'}
               </a>
             ) : (
               <a

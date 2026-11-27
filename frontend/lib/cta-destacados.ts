@@ -265,6 +265,11 @@ export interface CtaDestacado extends CtaDestacadoDef {
   /** Si está, el botón de cada producto va a esta página INTERNA (sin link de afiliado a ML) y
    *  no a la publicación. Solo lo usan los cuadros de las calculadoras (lib/calc-ofertas.ts). */
   destinoInterno?: (p: ProductoBF) => string
+  /** Texto del botón cuando va a una página interna (por defecto «Ver ofertas →»). */
+  textoBoton?: string
+  /** id → rótulo del precio cuando no es vigente (regla de /mejor: «Último precio registrado…»).
+   *  Lo usan las landings de verano (lib/verano-ticket-alto.ts). */
+  rotulos?: Record<string, string>
 }
 
 /** Los que muestran precio primero, sin cambiar el orden de recomendación dentro de cada grupo

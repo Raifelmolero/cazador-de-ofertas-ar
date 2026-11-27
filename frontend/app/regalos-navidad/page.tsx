@@ -11,6 +11,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { tituloSeo, descripcionSeo } from '@/lib/seo'
 import Footer from '@/components/Footer'
+import EnlacesVerano from '@/components/EnlacesVerano'
 import LastUpdated from '@/components/LastUpdated'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
@@ -411,6 +412,9 @@ export default function RegalosNavidadPage() {
           </div>
           <ExtensionCTA className="mt-5" />
         </section>
+
+        {/* Verano ticket alto (27/11): después de Navidad viene el verano; regalos grandes para la casa. */}
+        <EnlacesVerano titulo="Regalos grandes para la casa: el verano" seccion="navidad_verano" className="mb-10" />
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Más para elegir el regalo</h2>

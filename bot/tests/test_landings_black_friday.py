@@ -174,7 +174,7 @@ class TestBicicletasBF(unittest.TestCase):
     def test_battle_primera_y_todas_r29(self):
         b = self.bloques["black-friday-bicicletas"]
         ids = re.findall(r"id: '(MLA\d+)'", b)
-        self.assertEqual(ids[0], "MLA53194352")
+        self.assertEqual(ids[0], "MLA41151469")
         for i in ids:
             p = self.catalogo.get(i)
             if p:

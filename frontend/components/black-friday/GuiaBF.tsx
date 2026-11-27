@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import CtaFijoML from '@/components/CtaFijoML'
 import { BOTON_HERO, ChipEncabezadoBF, Foto, LineaConfianza, Precio, RespuestaCorta, Tarjeta, pesos } from '@/components/black-friday/LandingBF'
 import TerminoBF from '@/components/black-friday/TerminoBF'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
 import { ETIQUETA_MODO_BF, modoBF } from '@/lib/cybermonday'
 import { excluidoDeCta } from '@/lib/cta-destacados'
 import CanalWhatsAppBF from '@/components/black-friday/CanalWhatsAppBF'
@@ -76,7 +77,7 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
         <div className="max-w-3xl mx-auto px-4 pt-4 pb-5">
           <p className="text-[11px] font-black uppercase tracking-wider">Guía · {ETIQUETA_MODO_BF[modo]}</p>
           <h1 className="mt-1 font-display text-[26px] sm:text-4xl font-black leading-[1.05] tracking-tight [text-wrap:balance]">{g.titulo}</h1>
-          <TerminoBF modo={modo} className="mt-3" />
+          <TerminoBF modo={modo} landing={g.bf.landing} className="mt-3" />
 
           <RespuestaCorta texto={g.respuestaCorta} actualizado={fechas.modificada} />
 
@@ -124,6 +125,8 @@ export default function GuiaBFPage({ g }: { g: Guia }) {
       </section>
 
       <article className="max-w-3xl mx-auto px-4 py-6">
+        {/* Del Black Friday a Navidad (27/11): /regalos-navidad */}
+        <EnlaceNavidad seccion={`navidad_${seccion}`} className="mb-6" />
         {resto.length > 0 && (
           <section className="mb-8">
             <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Otras que elegimos</h2>

@@ -14,6 +14,7 @@ import { fechaAR } from '@/lib/bf-guias'
 import { CHIP_MODO_BF, DESTACADOS_MODO_BF, ETIQUETA_MODO_BF, modoBF, textoModoBF, type ModoBF } from '@/lib/cybermonday'
 import { destacadosLandingBF, excluidoDeCta } from '@/lib/cta-destacados'
 import TerminoBF from '@/components/black-friday/TerminoBF'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 
@@ -213,7 +214,7 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
             <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={64} height={79} className="shrink-0" priority />
           </div>
 
-          <TerminoBF modo={modo} className="mt-3" />
+          <TerminoBF modo={modo} landing={l.slug} className="mt-3" />
 
           {principal ? (
             <section aria-label={DESTACADOS_MODO_BF[modo]} data-seccion={`bf_${l.slug}_destacados`} className="mt-3">
@@ -264,6 +265,8 @@ export default function LandingBFPage({ l }: { l: LandingBF }) {
       </section>
 
       <div className="max-w-3xl mx-auto px-4 py-6">
+        {/* Del Black Friday a Navidad (27/11): /regalos-navidad, sin cambiar la URL de la landing */}
+        <EnlaceNavidad seccion={`navidad_${l.slug}`} className="mb-6" />
         <p className="text-zinc-300 leading-relaxed [text-wrap:pretty]">{l.intro}</p>
 
         {resto.length > 0 && (

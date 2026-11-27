@@ -1,12 +1,13 @@
 // Banner de temporada: UNA sola fuente de verdad de qué fecha comercial se
 // promociona según el día (hora argentina). Las fechas de Cyber Monday y Black
 // Friday salen de lib/cybermonday.ts; cambiar allá y esto acompaña.
-// Se evalúa en el render del servidor: el sitio se rebuildea 3×/día con cada
-// corrida del bot, así que el banner cambia solo en el primer build del día.
+// Se evalúa en el render del servidor y, como la home es estática y se deploya
+// cada ~3 días (deploy agrupado), se vuelve a evaluar en el navegador al montar
+// (components/BannerTemporadaVivo.tsx): el banner cambia el día que corresponde.
 import { BLACK_FRIDAY, CYBER_MONDAY } from './cybermonday'
 
 export interface Temporada {
-  id: 'madre' | 'cyber' | 'blackfriday' | 'navidad'
+  id: 'madre' | 'cyber' | 'blackfriday' | 'blackfriday-finde' | 'navidad'
   href: string
   titulo: string
   bajada: string
@@ -58,7 +59,8 @@ export const TEMPORADAS: Temporada[] = [
     id: 'blackfriday',
     href: '/black-friday',
     titulo: `🖤 Black Friday: ${BLACK_FRIDAY.fechasTexto}`,
-    bajada: 'Ofertas comparadas contra el historial de precios → mirá la previa',
+    // Sin «mirá la previa»: el banner sigue el mismo día del Black Friday.
+    bajada: 'Ofertas comparadas contra el historial de precios → ver las elegidas',
     caja: 'border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60',
     texto: 'text-yellow-200',
     desde: diaSiguiente(CYBER_MONDAY.fin),
@@ -67,13 +69,25 @@ export const TEMPORADAS: Temporada[] = [
     agenda: { href: '/black-friday/agenda.ics', inicio: BLACK_FRIDAY.fecha },
   },
   {
+    // Sábado y domingo (BLACK_FRIDAY.ultimoDia): el sitio lo sigue tratando como Black Friday.
+    id: 'blackfriday-finde',
+    href: '/black-friday',
+    titulo: '⏳ Black Friday: últimas horas',
+    bajada: 'Lo que sigue con buen precio, comparado contra el historial → ver las ofertas',
+    caja: 'border-yellow-400/30 bg-yellow-400/10 hover:border-yellow-400/60',
+    texto: 'text-yellow-200',
+    desde: diaSiguiente(BLACK_FRIDAY.fecha),
+    hasta: BLACK_FRIDAY.ultimoDia,
+  },
+  {
+    // Terminado el Black Friday (lunes 30/11 en adelante), la home pasa a Navidad.
     id: 'navidad',
     href: '/regalos-navidad',
     titulo: '🎄 Regalos de Navidad y Reyes en oferta',
     bajada: 'Por presupuesto y con el descuento verificado → ver los regalos',
     caja: 'border-green-400/30 bg-green-500/10 hover:border-green-400/60',
     texto: 'text-green-200',
-    desde: diaSiguiente(BLACK_FRIDAY.fecha),
+    desde: diaSiguiente(BLACK_FRIDAY.ultimoDia),
     hasta: '2027-01-06',
     escena: '/personaje/escena-navidad.webp',
   },

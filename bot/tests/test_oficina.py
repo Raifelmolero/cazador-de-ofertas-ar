@@ -52,7 +52,12 @@ class Oficina(unittest.TestCase):
 class Robots(unittest.TestCase):
     def test_robots_bloquea_oficina(self):
         src = (ROOT / "frontend" / "app" / "robots.ts").read_text(encoding="utf-8")
-        self.assertIn("disallow: '/oficina'", src)
+        # Los grupos con user-agent propio ignoran la regla '*', así que
+        # todas las reglas tienen que bloquear /oficina.
+        reglas = [ln for ln in src.splitlines() if "userAgent:" in ln]
+        self.assertGreaterEqual(len(reglas), 2)
+        for ln in reglas:
+            self.assertIn("disallow: '/oficina'", ln, msg=ln)
 
 
 if __name__ == "__main__":

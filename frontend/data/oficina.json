@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-26T23:41:33+00:00",
+  "generado": "2026-11-27T06:31:10+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,21 +8,21 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-26T23:41:32+00:00",
+      "ultima_actividad": "2026-11-27T06:31:07+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 9006 productos en la última corrida"
+          "tarea": "Revisó 8356 productos en la última corrida"
         }
       ],
       "metricas": [
         {
-          "label": "Facebook",
+          "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Telegram",
-          "valor": 2
+          "label": "Facebook",
+          "valor": 3
         },
         {
           "label": "Threads",
@@ -30,7 +30,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Soldadora Rectificadora Inverter Lusqtoff MMA400-10 400A 380v Black Series"
+      "ultimo_trabajo": "Notebook Lenovo ThinkPad E16 Gen 3 de 16\" con AMD Ryzen 5, 32GB RAM y 512GB SSD"
     },
     {
       "id": "investigacion",

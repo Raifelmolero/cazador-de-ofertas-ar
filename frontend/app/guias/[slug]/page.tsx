@@ -17,6 +17,8 @@ import {
 } from '@/lib/cybermonday'
 import { GUIA_CYBER_A_LANDING_BF } from '@/lib/bf-enlaces'
 import TerminoBF from '@/components/black-friday/TerminoBF'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
+import { descripcionConNavidad, guiaLlevaNavidad, terminoBF } from '@/lib/navidad-post-bf'
 
 // Black Friday (26/11/2026): title, H1 y hero de las guías BF y «…-cyber-monday» siguen el modo del
 // día (lib/cybermonday.ts, modoBF) sin esperar al deploy agrupado: una regeneración por hora y por
@@ -103,7 +105,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const sufijo = desde ? `: desde ${desde}` : ''
     titulo = tituloSeo(conAnio, [n => `${n}${sufijo} — Cazador de Ofertas AR`, n => `${n}${sufijo}`, n => n])
     descripcion = descripcionSeo(
-      desde ? `Hoy desde ${desde} en Mercado Libre, con vista al Black Friday 2026. ${g.descripcion}` : `${g.descripcion} Actualizada a 2026, con vista al Black Friday.`,
+      // Pasado el Black Friday (29/11), «con vista al Black Friday» quedaba viejo: ahora mira a Navidad.
+      terminoBF()
+        ? desde ? `Hoy desde ${desde} en Mercado Libre, con vista a Navidad 2026. ${g.descripcion}` : `${g.descripcion} Actualizada a 2026, con vista a Navidad.`
+        : desde ? `Hoy desde ${desde} en Mercado Libre, con vista al Black Friday 2026. ${g.descripcion}` : `${g.descripcion} Actualizada a 2026, con vista al Black Friday.`,
     )
   }
   // Textos puestos a mano por CTR bajo en Search Console (lote 24/11): pisan a los automáticos.
@@ -116,6 +121,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const desde = desdeCta(ctaDestacado(`/guias/${g.slug}`))
     titulo = tituloSeo('', seoCta.titulo(desde), MAX_TITULO_CTA)
     descripcion = descripcionSeo(seoCta.descripcion(desde))
+  }
+  // Guías BF ya terminado el Black Friday: la description suma los regalos de Navidad (si entra).
+  if (guiaConModoBF(g.slug)) {
+    const landing = g.bf?.landing ?? GUIA_BF_A_LANDING[g.slug] ?? GUIA_CYBER_A_LANDING_BF[g.slug]
+    descripcion = descripcionConNavidad(descripcion, modoBF(), landing ? getLandingBF(landing)?.rubro : undefined)
   }
   return {
     metadataBase: new URL(DEALS_URL),
@@ -268,11 +278,13 @@ export default async function GuiaPage({ params }: { params: Promise<{ slug: str
         <h1 className="font-display text-3xl sm:text-5xl font-black leading-[1.05] tracking-tight mb-6 [text-wrap:balance]">
           {g.titulo}
         </h1>
-        {conModoBF && <TerminoBF modo={modo} className="mb-6" />}
+        {conModoBF && <TerminoBF modo={modo} landing={landingBF?.slug} className="mb-6" />}
 
         {/* Propuesta 1 (19/11): guías que más entran de Google, producto con botón en la primera pantalla. */}
         <CajaQueConviene items={queConviene} seccion="queconviene_guia" className="mb-6" />
         <CtaOfertaDestacada cta={destacadoGuia} className="mb-6" />
+        {/* Guías de rubros que se regalan (notebooks, celulares, TV, juguetes…): link a /regalos-navidad */}
+        {(guiaLlevaNavidad(g.slug) || conModoBF) && <EnlaceNavidad seccion={`navidad_guia_${g.slug}`} className="mb-6" />}
 
         <div className="rounded-2xl border border-yellow-400/30 bg-yellow-400/5 px-5 py-4 mb-8">
           <p className="text-xs font-bold text-yellow-400 mb-1">RESPUESTA CORTA</p>

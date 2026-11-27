@@ -11,6 +11,9 @@ import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt, type ProductWithMargins } from '@/lib/productos'
 import { getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import { slugPorId } from '@/lib/seguimiento'
+import { FAQ_ENVIO_NAVIDAD } from '@/lib/navidad-post-bf'
+import { bloquesTicketAlto } from '@/lib/regalos-ticket-alto'
+import RegalosTicketAlto from '@/components/RegalosTicketAlto'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const AÑO = 2026
@@ -73,6 +76,9 @@ export default async function Page({ params }: { params: Promise<{ presupuesto: 
   })
   const url = `${DEALS_URL}/regalos-navidad/${r.slug}`
   const titulo = `Regalos de Navidad ${r.nombre} (${AÑO})`
+  // Notebooks, celulares y TV de este presupuesto, de mayor a menor precio (solo datos del repo).
+  const ticketAlto = bloquesTicketAlto(4, r.min, r.max)
+  const faqs = FAQ_ENVIO_NAVIDAD
   const jsonLd = [
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -81,6 +87,10 @@ export default async function Page({ params }: { params: Promise<{ presupuesto: 
         { '@type': 'ListItem', position: 2, name: `Regalos de Navidad ${AÑO}`, item: `${DEALS_URL}/regalos-navidad` },
         { '@type': 'ListItem', position: 3, name: r.corto, item: url },
       ],
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
     ...(productos.length > 0
       ? [{
@@ -119,7 +129,11 @@ export default async function Page({ params }: { params: Promise<{ presupuesto: 
           </div>
         </div>
       </section>
+      <RegalosTicketAlto bloques={ticketAlto} titulo={`Notebooks, celulares y TV ${r.corto}`} seccion={`navidad_ticket_alto_${r.slug}`} />
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {ticketAlto.some(b => b.productos.length > 0) && productos.length > 0 && (
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Todos los regalos {r.corto}</h2>
+        )}
         {productos.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {productos.map((o, i) => <OfertaCard key={o.id_ml} producto={light(o)} priority={i < 4} />)}
@@ -128,6 +142,20 @@ export default async function Page({ params }: { params: Promise<{ presupuesto: 
         <p className="mt-6 text-sm">
           <Link href="/regalos-navidad" className="font-bold text-yellow-400 hover:underline">← Todos los regalos de Navidad, por presupuesto y destinatario</Link>
         </p>
+      </section>
+      <section className="max-w-3xl mx-auto px-4 pb-10">
+        <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Envíos para Navidad: preguntas frecuentes</h2>
+        <div className="space-y-3">
+          {faqs.map(f => (
+            <details key={f.q} className="group bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3">
+              <summary className="cursor-pointer text-sm font-bold text-zinc-100 list-none flex items-center justify-between gap-3">
+                {f.q}
+                <span className="text-yellow-400 shrink-0 transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
       </section>
       <Footer brand="ofertas" />
     </main>

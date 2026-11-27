@@ -29,6 +29,8 @@ import { nombreCorto } from '@/lib/nombrecorto'
 import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 import { getLandingBF } from '@/lib/black-friday-landings'
 import LandingBFPage from '@/components/black-friday/LandingBF'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
+import { descripcionConNavidad, terminoBF } from '@/lib/navidad-post-bf'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // Modo del día (previa / hoy / últimas horas / terminó), resuelto en el render (ISR de 1 hora).
     const modo = modoBF()
     const titulo = tituloLandingModoBF(bfl.h1, bfl.titulo, modo)
-    const descripcion = descripcionSeo(textoModoBF(bfl.descripcion, modo))
+    const descripcion = descripcionConNavidad(descripcionSeo(textoModoBF(bfl.descripcion, modo)), modo, bfl.rubro)
     return {
       title: { absolute: titulo },
       description: descripcion,
@@ -282,8 +284,18 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         </h1>
         {trasCyber && (
           <p className="text-sm text-zinc-200 bg-zinc-900 border border-yellow-400/30 rounded-xl px-4 py-3 mb-4">
-            {cyberExtendido() ? 'Mercado Libre extendió el Cyber Monday (hoy hay cupones de hasta $80.000 en /cupones-mercado-libre).' : 'El Cyber Monday ya terminó.'} El próximo evento grande es el <strong>Black Friday (27/11)</strong>:{' '}
-            <Link href={`/mejores/${trasCyber}`} className="text-yellow-400 underline">mirá qué conviene esperar</Link>.
+            {terminoBF() ? (
+              // Pasado el Black Friday (29/11), «el próximo evento es el Black Friday» quedaba viejo.
+              <>
+                El Cyber Monday y el Black Friday ya terminaron. Lo que viene es <strong>Navidad</strong>:{' '}
+                <Link href="/regalos-navidad" className="text-yellow-400 underline">mirá los regalos por presupuesto</Link>.
+              </>
+            ) : (
+              <>
+                {cyberExtendido() ? 'Mercado Libre extendió el Cyber Monday (hoy hay cupones de hasta $80.000 en /cupones-mercado-libre).' : 'El Cyber Monday ya terminó.'} El próximo evento grande es el <strong>Black Friday (27/11)</strong>:{' '}
+                <Link href={`/mejores/${trasCyber}`} className="text-yellow-400 underline">mirá qué conviene esperar</Link>.
+              </>
+            )}{' '}
             Los precios de abajo son los de hoy.
           </p>
         )}
@@ -293,6 +305,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         <p className="text-base sm:text-xs text-zinc-400 mb-6">
           <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} en la comparativa
         </p>
+        {/* Del Black Friday a Navidad (27/11): link destacado a /regalos-navidad, debajo del primer producto */}
+        <EnlaceNavidad seccion={`navidad_mejores_${c.slug}`} className="mb-6" />
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativa de precios de hoy</h2>

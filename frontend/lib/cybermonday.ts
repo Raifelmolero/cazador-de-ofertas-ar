@@ -162,7 +162,11 @@ export function tituloModoBF(titulo: string, modo: ModoBF, max = 65): string {
   const t = textoModoBF(titulo, modo)
   if (t.length <= max) return t
   const corto = t.replace(/\s*\(Argentina\)$/, '').replace(/ en Argentina\b/, '')
-  return corto.length <= max ? corto : titulo
+  if (corto.length <= max) return corto
+  // «Qué notebook comprar después del Black Friday 2026: RAM, SSD y CPU» no entra: se corta la bajada
+  // después de los dos puntos antes que dejar el título de la previa («… en el Black Friday»).
+  const sinBajada = corto.split(': ')[0]
+  return sinBajada !== corto && sinBajada.length <= max && sinBajada.includes('Black Friday') ? sinBajada : titulo
 }
 
 /** <title> de una landing /mejores/black-friday-* en el modo del día, armado desde su H1. */
@@ -211,11 +215,12 @@ export const PAGINA_BF: Record<ModoBF, { titulo: string; descripcion: string; ki
     kicker: '⏳ Black Friday: últimas horas',
     h1: 'Últimas horas del Black Friday: lo que sigue conviniendo',
   },
+  // Después del BF (pedido del 27/11): la página empuja a Navidad sin cambiar la URL.
   termino: {
-    titulo: 'Terminó el Black Friday 2026: ofertas que siguen hoy',
+    titulo: 'Terminó el Black Friday 2026: ofertas y regalos de Navidad',
     descripcion:
-      'El Black Friday 2026 ya terminó (fue el viernes 27/11). Mirá las ofertas de Mercado Libre que siguen vigentes hoy, con link directo a la publicación.',
+      'El Black Friday 2026 terminó (fue el viernes 27/11). Ofertas de Mercado Libre que siguen con buen precio hoy y regalos de Navidad por presupuesto.',
     kicker: 'Terminó el Black Friday 2026',
-    h1: 'Terminó el Black Friday 2026: estas ofertas siguen hoy',
+    h1: 'Terminó el Black Friday 2026: estas siguen con buen precio',
   },
 }

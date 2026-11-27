@@ -14,6 +14,7 @@ import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import BannerTemporada from '@/components/BannerTemporada'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
 import AtajosVerano from '@/components/AtajosVerano'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import TopConcurso from '@/components/TopConcurso'
@@ -242,9 +243,10 @@ export default function HoyPage() {
       a: 'Las de hoy están arriba en esta página, ordenadas por relevancia, con la fecha en que vimos cada precio. Se actualizan a medida que cargamos ofertas nuevas, así que conviene volver a mirar a la mañana, a la tarde y a la noche.',
     },
     {
-      q: '¿Cuándo es el Black Friday y conviene esperar?',
-      a: 'El Black Friday es el viernes 27 de noviembre. La previa arranca el lunes 16/11. Como en cualquier evento, muchos descuentos se calculan sobre un precio de lista inflado: lo más seguro es comparar contra el historial de precios. Si el producto ya está en su mínimo histórico, esperar no aporta.',
-      link: { href: '/black-friday', texto: 'Mirá la previa del Black Friday →' },
+      // 27/11: la home se rebuildea cada ~3 días; el texto vale antes y después del fin de semana del BF.
+      q: '¿Cuándo fue el Black Friday y qué conviene ahora para Navidad?',
+      a: 'El Black Friday 2026 cayó el viernes 27 de noviembre y muchas tiendas lo estiraron el fin de semana. Ahora vienen las compras de Navidad: como en cualquier evento, muchos descuentos se calculan sobre un precio de lista inflado, así que lo más seguro es comparar contra el historial de precios. Si el regalo ya está en su mínimo histórico, esperar no aporta; para que llegue antes del 24/12, revisá la fecha de entrega en la publicación.',
+      link: { href: '/regalos-navidad', texto: 'Ver los regalos de Navidad por presupuesto →' },
     },
     {
       q: '¿Cómo encuentro cupones y descuentos extra en Mercado Libre?',
@@ -480,6 +482,10 @@ export default function HoyPage() {
         ]}
         className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-2"
       />
+      {/* Del Black Friday a Navidad (27/11): link destacado a /regalos-navidad debajo de las notebooks */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+        <EnlaceNavidad seccion="navidad_home" />
+      </div>
 
       {herramientas.length >= 3 && (
         <>

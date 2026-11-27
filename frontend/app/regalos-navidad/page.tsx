@@ -17,7 +17,10 @@ import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { getScrapedAt, type ProductWithMargins } from '@/lib/productos'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { getCategoria, ofertasDeCategoria } from '@/lib/categorias'
-import { BLACK_FRIDAY } from '@/lib/cybermonday'
+import { BLACK_FRIDAY, modoBF } from '@/lib/cybermonday'
+import { FAQ_ENVIO_NAVIDAD } from '@/lib/navidad-post-bf'
+import { bloquesTicketAlto } from '@/lib/regalos-ticket-alto'
+import RegalosTicketAlto from '@/components/RegalosTicketAlto'
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
@@ -68,7 +71,7 @@ const COMPARATIVAS_REL = [
 ]
 
 const TITULO = `Regalos de Navidad ${AÑO}: ofertas reales por presupuesto`
-const DESCRIPCION = `Ideas de regalo para Navidad ${AÑO} y Reyes en Argentina: ofertas de Mercado Libre por presupuesto y por destinatario (chicos, gamers, papá y mamá, la casa), con el descuento verificado contra el historial de precios.`
+const DESCRIPCION = `Regalos para Navidad ${AÑO} y Reyes: notebooks, celulares, TV, juguetes y más de Mercado Libre por presupuesto, con el descuento verificado.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
@@ -138,16 +141,26 @@ export default function RegalosNavidadPage() {
   const mostrados = rangos.flatMap(r => r.productos)
   const comparativas = COMPARATIVAS_REL.map(s => getComparativa(s)).filter(c => c !== undefined)
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
+  // Regalos caros arriba (pedido del 27/11): notebooks, celulares y TV de mayor precio que hay hoy en los datos.
+  const ticketAlto = bloquesTicketAlto(4)
+  // Antes del Black Friday se lo menciona como evento que viene; después, como algo que ya pasó.
+  const bfPasado = modoBF() === 'ultimas' || modoBF() === 'termino'
 
   const faqs = [
     {
       q: `¿Cuándo conviene comprar los regalos de Navidad ${AÑO}?`,
-      a: `Navidad es el viernes 25 de diciembre de ${AÑO} (los regalos se abren a la medianoche del 24) y Reyes el miércoles 6 de enero de ${AÑO + 1}. En Mercado Libre conviene tener el pedido hecho al menos una semana antes: la última semana los envíos se cargan. Mirá la fecha de entrega estimada antes de pagar.`,
+      a: `Navidad es el viernes 25 de diciembre de ${AÑO} (los regalos se abren a la medianoche del 24) y Reyes el miércoles 6 de enero de ${AÑO + 1}. Conviene comprar con margen: revisá la fecha de entrega en la publicación antes de pagar y elegí una que llegue antes del 24/12.`,
     },
-    {
-      q: '¿Conviene comprar en Black Friday para Navidad?',
-      a: `Puede convenir, pero no siempre. El Black Friday ${BLACK_FRIDAY.año} es el ${BLACK_FRIDAY.fechasTexto}: comprar ahí te da margen para que llegue. Pero que haya evento no garantiza que el precio sea el más bajo: algunas publicaciones suben el precio antes para mostrar un descuento mayor. Lo prudente es anotar hoy el precio del regalo que te interesa, compararlo con el del evento y con el de diciembre, y revisar la política de cambios, porque comprás con más de un mes de anticipación.`,
-    },
+    ...FAQ_ENVIO_NAVIDAD,
+    bfPasado
+      ? {
+          q: '¿Ya pasó el Black Friday? ¿Conviene esperar otra oferta?',
+          a: `El Black Friday ${BLACK_FRIDAY.año} fue el ${BLACK_FRIDAY.fechasTexto}. Que haya pasado no quiere decir que hoy esté caro: cada regalo de esta página está comparado contra el precio más bajo que registramos. Si ya está en su mínimo y llega a tiempo, esperar no suma; si no, anotá el precio y compará antes de comprar.`,
+        }
+      : {
+          q: '¿Conviene comprar en Black Friday para Navidad?',
+          a: `Puede convenir, pero no siempre. El Black Friday ${BLACK_FRIDAY.año} es el ${BLACK_FRIDAY.fechasTexto}: comprar ahí te da margen para que llegue. Pero que haya evento no garantiza que el precio sea el más bajo: algunas publicaciones suben el precio antes para mostrar un descuento mayor. Lo prudente es anotar hoy el precio del regalo que te interesa, compararlo con el del evento y con el de diciembre, y revisar la política de cambios, porque comprás con más de un mes de anticipación.`,
+        },
     {
       q: '¿Cómo sé si el descuento de un regalo es real?',
       a: `Comparando el precio de hoy contra lo que el producto costó antes, no contra el precio tachado. En nuestro registro, el ${pct}% de las ofertas que revisamos en mercadolibre.com.ar/ofertas tenía el descuento inflado: el producto ya se había vendido al menos 5% más barato. Cada regalo de esta página muestra su mínimo registrado.`,
@@ -222,7 +235,8 @@ export default function RegalosNavidadPage() {
             {TITULO}
           </h1>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Juguetes, consolas, perfumes, herramientas, bicicletas y electro de cocina, separados por presupuesto y por
+            Notebooks, celulares y TV arriba; después juguetes, consolas, perfumes, herramientas, bicicletas y electro de
+            cocina, separados por presupuesto y por
             destinatario. Cada regalo está comparado contra el precio más bajo que registramos, así sabés si el descuento
             es de verdad.
           </p>
@@ -241,6 +255,11 @@ export default function RegalosNavidadPage() {
               ver qué hay en cada presupuesto y comparar; el día que compres, verificá el precio otra vez.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
+              {ticketAlto.some(b => b.productos.length > 0) && (
+                <a href="#ticket-alto" className="text-xs font-bold rounded-full border border-yellow-400/50 px-3 py-1 text-yellow-200 hover:border-yellow-400">
+                  💻📱📺 Notebooks, celulares y TV
+                </a>
+              )}
               {rangos.map(r => (
                 <a key={r.id} href={`#${r.id}`} className="text-xs font-bold rounded-full border border-green-400/30 px-3 py-1 text-green-200 hover:border-green-400/60">
                   {r.titulo} ({r.total})
@@ -255,6 +274,8 @@ export default function RegalosNavidadPage() {
           </div>
         </div>
       </section>
+
+      <RegalosTicketAlto bloques={ticketAlto} seccion="navidad_ticket_alto" />
 
       {rangos.map(r => (
         <section key={r.id} id={r.id} className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 scroll-mt-20">
@@ -317,15 +338,23 @@ export default function RegalosNavidadPage() {
 
       <article className="max-w-3xl mx-auto px-4 pb-10">
         <section className="mb-10">
-          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">¿Black Friday o diciembre?</h2>
-          <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
-            El evento grande que queda antes de Navidad es el <strong className="text-zinc-200">Black Friday</strong> ({BLACK_FRIDAY.fechasTexto}).
-            Comprar ahí te da margen de envío, pero un evento no garantiza el mejor precio: anotá hoy lo que cuesta el
-            regalo que te interesa y comparalo después.
-          </p>
+          <h2 className="font-display text-xl sm:text-2xl font-black mb-3">{bfPasado ? 'Después del Black Friday' : '¿Black Friday o diciembre?'}</h2>
+          {bfPasado ? (
+            <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
+              El <strong className="text-zinc-200">Black Friday</strong> fue el {BLACK_FRIDAY.fechasTexto}. Muchas de sus
+              ofertas siguen con buen precio: compará cada regalo contra su mínimo registrado y comprá con margen para que
+              llegue antes del 24/12 (la fecha de entrega está en la publicación).
+            </p>
+          ) : (
+            <p className="text-zinc-400 leading-relaxed mb-4 [text-wrap:pretty]">
+              El evento grande que queda antes de Navidad es el <strong className="text-zinc-200">Black Friday</strong> ({BLACK_FRIDAY.fechasTexto}).
+              Comprar ahí te da margen de envío, pero un evento no garantiza el mejor precio: anotá hoy lo que cuesta el
+              regalo que te interesa y comparalo después.
+            </p>
+          )}
           <div className="flex flex-wrap gap-3">
             <Link href="/black-friday" className="inline-block text-sm font-bold border border-zinc-700 hover:border-yellow-400 text-zinc-200 rounded-xl px-5 py-2.5 transition-colors">
-              Black Friday {BLACK_FRIDAY.año} →
+              {bfPasado ? `Lo que sigue del Black Friday ${BLACK_FRIDAY.año} →` : `Black Friday ${BLACK_FRIDAY.año} →`}
             </Link>
           </div>
         </section>

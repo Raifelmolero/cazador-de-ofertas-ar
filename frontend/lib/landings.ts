@@ -668,7 +668,7 @@ export const LANDINGS: Landing[] = [
     ],
     faq: [
       { q: '¿Conviene esperar al Cyber Monday?', a: 'Solo si el precio del Cyber baja del mínimo registrado. Si hoy ya está en su mínimo, esperar no garantiza mejorar.' },
-      { q: '¿Cuándo es el próximo evento de ofertas en Mercado Libre?', a: 'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. El Cyber de la CACE fue del 2 al 4 de noviembre.' },
+      { q: '¿Cuándo es el próximo evento de ofertas en Mercado Libre?', a: 'El Cyber de la CACE fue del 2 al 4 de noviembre y el Black Friday 2026 cayó el viernes 27 de noviembre. Lo que sigue son las compras de Navidad (25/12) y Reyes (6/1): mirá los regalos de Navidad por presupuesto.' },
       { q: '¿Qué es un mínimo histórico?', a: 'El precio más bajo que registramos para ese producto desde que lo seguimos (3 revisiones por día).' },
       { q: '¿Se infla el precio antes del Cyber?', a: 'A veces sube el precio "anterior" para que el porcentaje de descuento se vea mayor. Por eso comparamos con nuestro propio historial.' },
     ],
@@ -735,7 +735,7 @@ export const LANDINGS: Landing[] = [
       { q: '¿Conviene comprar tecnología en el Cyber?', a: 'Si el precio baja del mínimo registrado, sí. Si no, puede que hoy ya esté igual o mejor.' },
       { q: '¿Qué mirar en una tablet?', a: 'Memoria (4 GB de RAM mínimo), almacenamiento (64 GB o más) y la versión del sistema operativo.' },
       { q: '¿Cómo comparar monitores?', a: 'Tamaño, resolución, frecuencia (Hz) y tipo de panel. Para oficina, 24 pulgadas Full HD alcanza.' },
-      { q: '¿Cuándo es el próximo evento de ofertas?', a: 'El Black Friday es el viernes 27 de noviembre de 2026 y el Cyber Monday, el lunes 30. El Cyber de la CACE fue del 2 al 4 de noviembre.' },
+      { q: '¿Cuándo es el próximo evento de ofertas?', a: 'El Cyber de la CACE fue del 2 al 4 de noviembre y el Black Friday 2026 cayó el viernes 27 de noviembre. Lo que sigue son las compras de Navidad (25/12) y Reyes (6/1): mirá los regalos de Navidad por presupuesto.' },
     ],
     enlaces: [
       { href: '/black-friday', label: 'Black Friday 2026' },

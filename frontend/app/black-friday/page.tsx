@@ -15,6 +15,7 @@ import { BLACK_FRIDAY as BF, DESTACADOS_MODO_BF, PAGINA_BF, modoBF } from '@/lib
 import { getDatosBF, slotPublicable } from '@/lib/black-friday-previa'
 import { itemListLD } from '@/lib/bf-jsonld'
 import TerminoBF from '@/components/black-friday/TerminoBF'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
 import CuentaRegresivaBF from '@/components/black-friday/CuentaRegresivaBF'
 import EventosBF from '@/components/black-friday/EventosBF'
 import StickyWhatsAppBF from '@/components/black-friday/StickyWhatsAppBF'
@@ -169,6 +170,10 @@ export default function BlackFridayPage() {
       q: '¿Ya terminó el Black Friday 2026?',
       a: 'Sí: fue el viernes 27 de noviembre y muchas tiendas lo estiraron el fin de semana. Las ofertas siguen todos los días: en la página de ofertas de hoy las comparamos contra el historial de precios.',
     },
+    {
+      q: '¿Y para los regalos de Navidad, qué conviene ahora?',
+      a: 'Armamos los regalos de Navidad por presupuesto, con notebooks, celulares y TV arriba y cada precio comparado contra el historial. Para que llegue antes del 24/12, revisá la fecha de entrega en la publicación antes de pagar: depende del vendedor y de tu código postal.',
+    },
   ]
 
   const faqs = [
@@ -296,6 +301,8 @@ export default function BlackFridayPage() {
               ))}
             </ul>
           </nav>
+          {/* Del Black Friday a Navidad (27/11): link destacado a /regalos-navidad */}
+          <EnlaceNavidad seccion="navidad_black_friday" className="mt-5" />
           {yaConviene.length > 0 && (
             <div className="mt-5">
               <CajaQueConviene items={yaConviene} titulo="Lo que podés mirar hoy" seccion="queconviene_black_friday" />

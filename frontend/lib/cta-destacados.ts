@@ -29,7 +29,7 @@ export interface CtaDestacadoDef {
   titulo: string
   /** data-seccion del bloque (lo cuenta clics-ml.tsx en clic_ml) */
   seccion: string
-  /** data-evento del botón: evento propio en Vercel Analytics */
+  /** data-evento del botón: evento propio en Clarity */
   evento: string
   /** en orden de recomendación; se muestran los MAX_DESTACADOS primeros que sigan en los datos */
   items: ItemBF[]

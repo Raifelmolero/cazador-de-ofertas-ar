@@ -23,7 +23,7 @@ import { descripcionConNavidad, guiaLlevaNavidad, terminoBF } from '@/lib/navida
 // Black Friday (26/11/2026): title, H1 y hero de las guías BF y «…-cyber-monday» siguen el modo del
 // día (lib/cybermonday.ts, modoBF) sin esperar al deploy agrupado: una regeneración por hora y por
 // página como mucho, solo si alguien la visita.
-export const revalidate = 3600
+export const revalidate = 43200
 
 /** Guía que sigue el modo del Black Friday: las BF y las «…-cyber-monday» (ya hablan del Black Friday). */
 const guiaConModoBF = (slug: string) => slug.includes('cyber-monday') || slug.includes('black-friday') || esGuiaBF(slug)

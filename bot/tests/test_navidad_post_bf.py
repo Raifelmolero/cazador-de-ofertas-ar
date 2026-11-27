@@ -55,6 +55,11 @@ out.desc = {
   sinRubro: N.descripcionConNavidad(datos.descripcion, 'termino'),
   rubros: Object.fromEntries(datos.rubros.map(r => [r, N.descripcionConNavidad(datos.descripcion, 'termino', r)])),
 };
+out.destino = Object.fromEntries(datos.instantes.map(i => [i, {
+  nb: N.rutaDestinoCalculadora(true, new Date(i)),
+  otro: N.rutaDestinoCalculadora(false, new Date(i)),
+  mas: N.rutaVerMas(new Date(i)).ruta,
+}]));
 out.faq = N.FAQ_ENVIO_NAVIDAD;
 out.bajadas = T.TEMPORADAS.map(t => t.titulo + ' ' + t.bajada);
 process.stdout.write(JSON.stringify(out));
@@ -119,6 +124,28 @@ class TestNavidadPostBFEnNode(unittest.TestCase):
     def test_ventana_del_link_a_regalos_navidad(self):
         for i, (_, _, enlace) in INSTANTES.items():
             self.assertEqual(self.r["enlace"][i], enlace, i)
+
+    def test_destino_de_las_calculadoras_por_fecha(self):
+        # (notebook, otro rubro, «ver más»): BF hasta el 29/11 23:59 ART; después Navidad; tras Reyes, /hoy.
+        bf = ("/mejores/black-friday-notebooks", "/black-friday", "/black-friday")
+        navidad = ("/categoria/notebooks", "/regalos-navidad", "/regalos-navidad")
+        hoy = ("/hoy", "/hoy", "/hoy")
+        esperado = {
+            "2026-11-26T23:59:59-03:00": bf,
+            "2026-11-29T23:59:59-03:00": bf,
+            "2026-11-30T02:59:59Z": bf,  # 23:59:59 del 29 en Argentina
+            "2026-11-30T00:00:00-03:00": navidad,
+            "2026-11-30T03:00:00Z": navidad,
+            "2026-12-24T12:00:00-03:00": navidad,
+            "2027-01-06T23:59:59-03:00": navidad,
+            "2027-01-07T00:00:00-03:00": hoy,
+        }
+        for i, (nb, otro, mas) in esperado.items():
+            d = self.r["destino"][i]
+            self.assertEqual((d["nb"], d["otro"], d["mas"]), (nb, otro, mas), i)
+            if (d["nb"], d["otro"], d["mas"]) != bf:
+                for v in d.values():
+                    self.assertNotIn("black-friday", v, i)
 
     def test_banner_sin_textos_vencidos(self):
         for b in self.r["bajadas"]:

@@ -2,14 +2,15 @@ name: Deploy agrupado
 
 # Producción no se despliega en cada merge ni en cada commit del bot.
 # Este workflow junta lo acumulado y dispara un solo build, como máximo
-# cada 3 días, o a mano con workflow_dispatch. El ignoreCommand
+# una vez por semana (domingo ~21:30 ART), o a mano con workflow_dispatch. Los cambios
+# solo de bot/state (historial de precios, scan_log) NO lo disparan. El ignoreCommand
 # (frontend/scripts/vercel-ignore.sh) solo buildea commits "deploy:".
 # No usamos git.deploymentEnabled=false: sin un deploy hook, el commit
 # vacío dejaría de desplegar. El ignore equivalente apaga el auto-deploy
 # efectivo de merges y pushes.
 on:
   schedule:
-    - cron: '30 0 */3 * *'  # cada 3 días, ~21:30 ART (GitHub suele atrasarlo). Crédito USD 20/mes, tope total USD 30.
+    - cron: '30 0 * * 1'  # una vez por semana: lunes 00:30 UTC = domingo ~21:30 ART (GitHub suele atrasarlo). Crédito USD 20/mes, tope total USD 30.
   workflow_dispatch:
     inputs:
       force:
@@ -50,12 +51,12 @@ jobs:
           if [ "$FORCE_DEPLOY" != "true" ]; then
             if [ -z "$LAST" ]; then
               echo "No hay un deploy: previo; disparo el agrupado."
-            elif git diff --quiet "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json' bot/state/price_history.json bot/state/scan_log.jsonl; then
+            elif git diff --quiet "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json'; then
               echo "Sin cambios del sitio desde $LAST; no disparo deploy."
               exit 0
             else
               echo "Hay cambios del sitio desde $LAST; disparo el agrupado."
-              git diff --stat "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json' bot/state/price_history.json bot/state/scan_log.jsonl | tail
+              git diff --stat "$LAST" HEAD -- frontend ':(exclude)frontend/data/oficina.json' | tail
             fi
           else
             echo "workflow_dispatch con force: disparo el agrupado."

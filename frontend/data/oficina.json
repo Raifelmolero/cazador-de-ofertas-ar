@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-27T19:03:42+00:00",
+  "generado": "2026-11-27T23:21:31+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -8,7 +8,7 @@
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
       "frecuencia": "3 veces por día",
-      "ultima_actividad": "2026-11-27T06:31:07+00:00",
+      "ultima_actividad": "2026-11-27T23:21:31+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
@@ -18,19 +18,23 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 3
+          "valor": 6
         },
         {
           "label": "Telegram",
-          "valor": 2
+          "valor": 3
         },
         {
           "label": "Threads",
+          "valor": 2
+        },
+        {
+          "label": "Instagram",
           "valor": 1
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Lenovo ThinkPad E16 Gen 3 de 16\" con AMD Ryzen 5, 32GB RAM y 512GB SSD"
+      "ultimo_trabajo": "Notebook Asus Tuf A15 Fa506ncq-hn003 R7 16gb 1tb Ssd"
     },
     {
       "id": "investigacion",
@@ -186,7 +190,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
-      "ultima_actividad": "2026-11-26T19:59:40+00:00",
+      "ultima_actividad": "2026-11-27T19:48:23+00:00",
       "ventana_horas": 26,
       "agentes": [
         {

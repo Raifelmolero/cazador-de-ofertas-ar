@@ -146,6 +146,27 @@ export default function CalculadoraConsumoPage() {
             con precio vigente, como los cuadros de oferta destacada (lib/calc-ofertas.ts). */}
         <CtaOfertaDestacada cta={ctaConsumo()} className="mt-6 max-w-3xl" />
 
+        {/* Verano ticket alto (27/11): los equipos que más luz gastan en verano, con su comparativa. */}
+        <nav aria-label="Comparativas para el verano" data-seccion="consumo_verano" className="mt-6 max-w-3xl">
+          <p className="mb-2 font-display text-lg font-black leading-tight text-zinc-100">¿Vas a cambiar un equipo este verano?</p>
+          <ul className="flex flex-wrap gap-2">
+            {[
+              { href: '/mejores/mejores-aires-acondicionados', texto: '❄️ Aires acondicionados' },
+              { href: '/mejores/mejores-heladeras', texto: '🧊 Heladeras' },
+              { href: '/mejores/mejores-ventiladores', texto: '🌀 Ventiladores' },
+            ].map(e => (
+              <li key={e.href}>
+                <Link
+                  href={e.href}
+                  className="inline-flex min-h-11 items-center rounded-xl border border-[#FACC15]/50 px-4 text-sm font-bold text-[#FACC15] hover:bg-[#FACC15]/10"
+                >
+                  {e.texto}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>
           <ul className="list-disc pl-5 space-y-2 text-zinc-400 leading-relaxed">

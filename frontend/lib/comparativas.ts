@@ -51,6 +51,8 @@ const PERENNES = new Set([
   'black-friday-celulares-baratos', 'black-friday-gaming',
   'black-friday-freidoras-de-aire', 'black-friday-auriculares', 'black-friday-tablets',
   'black-friday-smartwatch', 'black-friday-colchones', 'black-friday-herramientas', 'black-friday-juguetes',
+  // Verano ticket alto (27/11, lib/verano-ticket-alto.ts): en el sitemap aunque un día tengan pocas ofertas.
+  'mejores-piletas', 'mejores-muebles-de-jardin', 'mejores-ventiladores',
 ])
 
 // Lo que se cuela en las tablas de celulares por compartir palabra ("Galaxy Book",

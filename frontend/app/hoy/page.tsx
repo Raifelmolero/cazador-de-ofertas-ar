@@ -13,6 +13,7 @@ import Verificador from '@/components/Verificador'
 import { getEstudio } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
+import EnlacesVerano from '@/components/EnlacesVerano'
 import BannerTemporada from '@/components/BannerTemporada'
 import EnlaceNavidad from '@/components/EnlaceNavidad'
 import AtajosVerano from '@/components/AtajosVerano'
@@ -504,6 +505,8 @@ export default function HoyPage() {
           </p>
         </>
       )}
+      {/* Verano ticket alto (27/11): sección liviana, solo links a las 5 comparativas de verano. */}
+      <EnlacesVerano seccion="verano_home" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6" />
       <LoMasSeCompra ofertas={ofertasLight} />
       {tendencias && <TendenciasML datos={tendencias} />}
       <ColchonesDestacados ofertas={colchones} />

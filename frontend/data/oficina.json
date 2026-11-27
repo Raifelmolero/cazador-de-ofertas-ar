@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-27T23:21:31+00:00",
+  "generado": "2026-11-27T23:57:11+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -7,7 +7,9 @@
       "emoji": "📤",
       "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
       "automatico": true,
-      "frecuencia": "3 veces por día",
+      "frecuencia": "3 veces por día (12:00, 17:00 y 21:00)",
+      "badge": "Automático · 3×/día",
+      "ventana_horas": 18,
       "ultima_actividad": "2026-11-27T23:21:31+00:00",
       "agentes": [
         {
@@ -18,18 +20,18 @@
       "metricas": [
         {
           "label": "Facebook",
-          "valor": 6
-        },
-        {
-          "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Threads",
+          "label": "Telegram",
           "valor": 2
         },
         {
           "label": "Instagram",
+          "valor": 1
+        },
+        {
+          "label": "Threads",
           "valor": 1
         }
       ],
@@ -43,6 +45,7 @@
       "descripcion": "Encuentra rubros de comisión alta con demanda y poca competencia.",
       "automatico": false,
       "frecuencia": "A demanda",
+      "badge": "A demanda",
       "ultima_actividad": "2026-09-25",
       "agentes": [
         {
@@ -59,11 +62,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         }
       ]
     },
@@ -74,7 +77,8 @@
       "descripcion": "Escribe guías y comparativas para traer tráfico de Google y de las IA.",
       "automatico": false,
       "frecuencia": "A demanda",
-      "ultima_actividad": null,
+      "badge": "A demanda",
+      "ultima_actividad": "2026-11-26T20:20:53Z",
       "agentes": [
         {
           "nombre": "marketing-seo",
@@ -84,7 +88,7 @@
       "metricas": [
         {
           "label": "Guías publicadas",
-          "valor": 46
+          "valor": 141
         },
         {
           "label": "Comparativas",
@@ -121,6 +125,7 @@
       "descripcion": "Mejora placas, historias y reels. Propone y vos aprobás.",
       "automatico": false,
       "frecuencia": "A demanda",
+      "badge": "A demanda",
       "ultima_actividad": "2026-09-26",
       "agentes": [
         {
@@ -152,7 +157,9 @@
       "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
       "automatico": true,
       "frecuencia": "Semanal (domingo)",
+      "badge": "Semanal",
       "ultima_actividad": "2026-11-23T10:11:32+00:00",
+      "ventana_horas": 192,
       "agentes": [
         {
           "nombre": "Reporte semanal",
@@ -190,6 +197,7 @@
       "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
       "automatico": true,
       "frecuencia": "Diario (08:00)",
+      "badge": "Diario 08:00",
       "ultima_actividad": "2026-11-27T19:48:23+00:00",
       "ventana_horas": 26,
       "agentes": [
@@ -217,6 +225,29 @@
           "titulo": "✖ npm audit encontró vulnerabilidades altas o críticas"
         }
       ]
+    },
+    {
+      "id": "guardia",
+      "nombre": "Guardia",
+      "emoji": "👁️",
+      "descripcion": "Vigila el sitio y los precios todo el día, también de noche.",
+      "automatico": true,
+      "frecuencia": "Vigilante cada 2 h · alertas cada 15 min",
+      "badge": "Cada 2 h",
+      "ultima_actividad": null,
+      "sin_registro": true,
+      "ventana_horas": 6,
+      "agentes": [
+        {
+          "nombre": "Vigilante",
+          "tarea": "Chequeo del sitio cada 2 horas"
+        },
+        {
+          "nombre": "Alertas",
+          "tarea": "Avisos de baja de precio cada 15 minutos"
+        }
+      ],
+      "metricas": []
     }
   ]
 }

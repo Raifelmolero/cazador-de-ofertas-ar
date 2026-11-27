@@ -82,10 +82,19 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
       <a href={cta.verMas.href} className="mt-2 flex min-h-12 items-center justify-center rounded-xl border-2 border-[#FACC15] px-4 text-center font-black text-[#FACC15] hover:bg-[#FACC15]/10">
         {cta.verMas.texto} →
       </a>
+      {cta.enlaces && cta.enlaces.length > 0 && (
+        <nav aria-label="Seguí mirando" className="mt-2 flex flex-wrap gap-2">
+          {cta.enlaces.map(e => (
+            <a key={e.href} href={e.href} className="flex min-h-11 items-center rounded-full border border-zinc-700 px-4 text-sm font-bold text-zinc-200 hover:border-[#FACC15] hover:text-[#FACC15]">
+              {e.texto}
+            </a>
+          ))}
+        </nav>
+      )}
       <p className="mt-2 text-sm leading-relaxed text-zinc-400">
         {cta.destinoInterno
           ? 'El precio puede cambiar: confirmalo en la publicación.'
-          : 'El precio puede cambiar: confirmalo en la publicación. Link de afiliado: pagás lo mismo.'}
+          : 'Se abre la publicación en Mercado Libre, donde pagás con sus medios de pago. El precio puede cambiar: confirmalo ahí. Link de afiliado: pagás lo mismo.'}
       </p>
     </section>
   )

@@ -270,6 +270,8 @@ export interface CtaDestacado extends CtaDestacadoDef {
   /** id → rótulo del precio cuando no es vigente (regla de /mejor: «Último precio registrado…»).
    *  Lo usan las landings de verano (lib/verano-ticket-alto.ts). */
   rotulos?: Record<string, string>
+  /** Enlaces internos chicos debajo del cuadro (comparativas, ofertas, regalos). Solo calculadoras. */
+  enlaces?: { href: string; texto: string }[]
 }
 
 /** Los que muestran precio primero, sin cambiar el orden de recomendación dentro de cada grupo

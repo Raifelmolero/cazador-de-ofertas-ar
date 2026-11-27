@@ -90,14 +90,24 @@ function verMas(): CtaDestacado['verMas'] {
     : { href: `${DEALS_URL}/hoy`, texto: 'Ver las ofertas de hoy' }
 }
 
+/** Enlaces internos del bloque post-resultado (27/11): a donde sigue quien ya hizo la cuenta.
+ *  Todo al sitio de ofertas (`sitio` convierte ~7-8 %), con el utm de la calculadora solo para
+ *  medir origen. Nunca a listados de ML. */
+export const ENLACES_CALCULADORA: { href: string; texto: string }[] = [
+  { href: `${DEALS_URL}/mejores`, texto: 'Comparativas: qué comprar' },
+  { href: `${DEALS_URL}/hoy`, texto: 'Ofertas de hoy' },
+  { href: `${DEALS_URL}/regalos-navidad`, texto: 'Regalos de Navidad' },
+]
+
 function armar(
   def: Omit<CtaDestacado, 'productos' | 'items' | 'verMas'>,
   productos: ProductoBF[],
   link: (v: CtaDestacado['verMas']) => CtaDestacado['verMas'] = v => v,
   destinoInterno?: CtaDestacado['destinoInterno'],
+  enlaces?: CtaDestacado['enlaces'],
 ): CtaDestacado | null {
   return productos.length
-    ? { ...def, items: productos, productos, verMas: link(verMas()), ...(destinoInterno ? { destinoInterno } : {}) }
+    ? { ...def, items: productos, productos, verMas: link(verMas()), ...(destinoInterno ? { destinoInterno } : {}), ...(enlaces ? { enlaces } : {}) }
     : null
 }
 
@@ -121,6 +131,7 @@ export function ctaCalculadora(hoy?: string): CtaDestacado | null {
     // Solo acá (calculadoraml.com.ar): la de consumo eléctrico ya vive en el sitio de ofertas.
     v => ({ ...v, href: desdeCalculadora(v.href) }),
     destinoCalculadora,
+    ENLACES_CALCULADORA.map(e => ({ ...e, href: desdeCalculadora(e.href) })),
   )
 }
 

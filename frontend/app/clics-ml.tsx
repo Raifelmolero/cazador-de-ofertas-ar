@@ -47,6 +47,26 @@ export default function ClicsML() {
       const nuevo = aEtiquetaSitio(a.href, etiqueta)
       if (nuevo) a.href = nuevo
     }
+    // Barrido (27/11): además del evento, los <a> visibles pasan a `sitio` apenas hidrata la página.
+    // Cubre lo que no dispara clic/puntero: «copiar dirección del link», compartir desde el menú del
+    // navegador, arrastrar, lectores de pantalla. Solo `<a>` del DOM; JSON-LD y /ofertas-hoy.json no se tocan.
+    const barrer = () => {
+      document.querySelectorAll<HTMLAnchorElement>('a[href*="matt_word="]').forEach(a => {
+        if (!ML.test(a.hostname)) return
+        const nuevo = aEtiquetaSitio(a.href, etiqueta)
+        if (nuevo) a.href = nuevo
+      })
+    }
+    barrer()
+    let pendiente = 0
+    const mo = new MutationObserver(() => {
+      if (pendiente) return
+      pendiente = window.setTimeout(() => {
+        pendiente = 0
+        barrer()
+      }, 300)
+    })
+    mo.observe(document.body, { childList: true, subtree: true })
     const eventos = ['pointerdown', 'touchstart', 'mousedown', 'click', 'auxclick', 'contextmenu', 'keydown'] as const
     for (const ev of eventos) document.addEventListener(ev, marcarSitio, { capture: true, passive: true })
     const onClick = (e: MouseEvent) => {
@@ -89,6 +109,8 @@ export default function ClicsML() {
     }
     document.addEventListener('click', onClick, { capture: true })
     return () => {
+      mo.disconnect()
+      if (pendiente) window.clearTimeout(pendiente)
       document.removeEventListener('click', onClick, { capture: true })
       for (const ev of eventos) document.removeEventListener(ev, marcarSitio, { capture: true })
     }

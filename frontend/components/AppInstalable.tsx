@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { track } from '@vercel/analytics'
+import { track } from '@/lib/evento'
 
 /**
  * Hace que cazadordeofertas.com.ar se pueda instalar como app (PWA):

@@ -16,7 +16,7 @@
 // Noblex de $634.500; sin %, tachados, «mínimo histórico» ni cupones.
 import { getLandingBF, productosBF, MARCAS_PROHIBIDAS, type ProductoBF } from '@/lib/black-friday-landings'
 import { excluidoDeCta, MAX_DESTACADOS, type CtaDestacado } from '@/lib/cta-destacados'
-import { avisoBFVigente } from '@/lib/bf-enlaces'
+import { rutaDestinoCalculadora, rutaVerMas } from '@/lib/navidad-post-bf'
 import { desdeCalculadora } from '@/lib/afiliado'
 import { DEALS_URL } from '@/lib/marca'
 
@@ -82,12 +82,12 @@ export function destacadosDeRubros(
   return out
 }
 
-/** «Ver más»: el Black Friday mientras dure; después, las ofertas de hoy. Siempre al dominio de
- *  ofertas con URL absoluta (desde la calculadora esas rutas redirigen: así no hay salto de más). */
+/** «Ver más»: Black Friday hasta el 29/11, regalos de Navidad hasta Reyes, después las ofertas de hoy
+ *  (lib/navidad-post-bf). Siempre al dominio de ofertas con URL absoluta (desde la calculadora esas
+ *  rutas redirigen: así no hay salto de más). */
 function verMas(): CtaDestacado['verMas'] {
-  return avisoBFVigente()
-    ? { href: `${DEALS_URL}/black-friday`, texto: 'Ver todo el Black Friday' }
-    : { href: `${DEALS_URL}/hoy`, texto: 'Ver las ofertas de hoy' }
+  const { ruta, texto } = rutaVerMas()
+  return { href: `${DEALS_URL}${ruta}`, texto }
 }
 
 /** Enlaces internos del bloque post-resultado (27/11): a donde sigue quien ya hizo la cuenta.
@@ -112,11 +112,12 @@ function armar(
 }
 
 /** Destino de cada producto del cuadro de las calculadoras (26/11): páginas internas del sitio de
- *  ofertas, donde la etiqueta `sitio` convierte ~8 %. Notebooks → su comparativa; el resto → BF.
+ *  ofertas, donde la etiqueta `sitio` convierte ~8 %. Según la fecha (rutaDestinoCalculadora): BF hasta
+ *  el 29/11; desde el 30/11 /regalos-navidad (notebooks → su categoría); pasados Reyes, /hoy.
  *  Nunca una publicación de ML con calcml (1.605 clics, 0 ventas). */
 export function destinoCalculadora(p: ProductoBF): string {
   const esNotebook = /notebook|laptop/i.test(p.nombre)
-  return desdeCalculadora(`${DEALS_URL}${esNotebook ? '/mejores/black-friday-notebooks' : '/black-friday'}`)
+  return desdeCalculadora(`${DEALS_URL}${rutaDestinoCalculadora(esNotebook)}`)
 }
 
 /** Cuadro de las calculadoras de vendedores (comisiones, precio de venta, envío, cuotas, fichas). */

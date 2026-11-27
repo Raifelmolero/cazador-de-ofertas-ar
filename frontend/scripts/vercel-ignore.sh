@@ -9,7 +9,7 @@ case "$VERCEL_GIT_COMMIT_REF" in dependabot/*) exit 0 ;; esac
 
 # Regla 25/11: nunca un deploy por merge ni por push a main. Se acumulan
 # los merges y sale un solo build agrupado cada tanto (deploy_agrupado.yml,
-# cron cada 3 días o workflow_dispatch). Solo buildea el commit "deploy:".
+# cron semanal o workflow_dispatch). Solo buildea el commit "deploy:".
 # Antes, el ignore salteaba bot:/datos:/oferta manual: pero NO los merges,
 # y cada PR mergeado a main gastaba un build de producción.
 case "$VERCEL_GIT_COMMIT_MESSAGE" in
@@ -23,6 +23,6 @@ git cat-file -e "$P^{commit}" 2>/dev/null || exit 1
 
 # Aunque el mensaje sea deploy:, no gastar CPU si no cambió el sitio.
 # data/oficina.json (estado de /oficina) lo toca cada corrida del bot y
-# no justifica un deploy.
-git diff --quiet "$P" HEAD -- . ':(exclude)data/oficina.json' \
-  ../bot/state/price_history.json ../bot/state/scan_log.jsonl
+# no justifica un deploy. Tampoco bot/state (historial de precios, scan_log):
+# solo cuenta lo que cambió dentro de frontend/.
+git diff --quiet "$P" HEAD -- . ':(exclude)data/oficina.json'

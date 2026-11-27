@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { track } from '@vercel/analytics'
+import { track } from '@/lib/evento'
 import { enModoApp } from '@/components/AppInstalable'
 import { aEtiquetaSitio, ETIQUETA_CALC, ETIQUETA_META, ETIQUETA_SITIO, ETIQUETAS_REDES } from '@/lib/afiliado'
 

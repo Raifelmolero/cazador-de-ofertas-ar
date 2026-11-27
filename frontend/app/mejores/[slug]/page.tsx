@@ -42,7 +42,7 @@ const MAX_FILAS = 12
 // Black Friday (26/11/2026): el modo del día (lib/cybermonday.ts, modoBF) cambia title, H1 y hero de
 // las landings /mejores/black-friday-* sin esperar al deploy agrupado. Una regeneración por hora
 // y por página como mucho, solo si alguien la visita (no gasta Build CPU).
-export const revalidate = 3600
+export const revalidate = 21600
 
 export function generateStaticParams() {
   return COMPARATIVAS.map(c => ({ slug: c.slug }))

@@ -52,7 +52,7 @@ export const ETIQUETA_CALC = etiquetaEnv(process.env.NEXT_PUBLIC_ML_ETIQUETA_CAL
 
 /** Visitas que pasan de la calculadora (calculadoraml.com.ar) al sitio de ofertas (26/11/2026):
  *  los links de la calculadora a /black-friday y a las landings llevan `?utm_source=calcml` y
- *  solo sirven para medir el origen en Vercel Analytics.
+ *  solo sirven para medir el origen (Clarity).
  *  Desde el 26/11 (tarde) NO cambian la etiqueta de afiliado: calcml absorbía 68 % de los clics
  *  con 0 ventas; quien llega a ofertas desde la calculadora compra con `sitio` (~8 %). */
 export const UTM_CALC = 'calcml'

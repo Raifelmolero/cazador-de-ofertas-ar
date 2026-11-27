@@ -1,9 +1,9 @@
 'use client'
 import { useEffect } from 'react'
-import { track } from '@vercel/analytics'
+import { track } from '@/lib/evento'
 import { faseBF } from '@/lib/black-friday-previa'
 
-/** Eventos de la lander (brief §8), en Vercel Analytics con prefijo `bf_`.
+/** Eventos de la lander (brief §8), en Clarity con prefijo `bf_`.
  *  Cualquier link con `data-bf-evento="cta_whatsapp"` dispara `bf_cta_whatsapp`;
  *  los demás atributos `data-bf-*` viajan como parámetros (placement, slot, mla,
  *  categoria). El `clic_ml` general de clics-ml.tsx sigue disparando aparte. */

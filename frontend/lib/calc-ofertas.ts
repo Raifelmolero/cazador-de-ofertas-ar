@@ -52,7 +52,9 @@ export const RUBROS_CONSUMO = [
 /** Solo electro de bajo consumo en el cuadro de consumo (la landing de aires trae una pileta). */
 const BAJO_CONSUMO = /inverter|no ?frost|lavarropas|lavasecarropas|ecobubble|carga frontal|heladera|split/i
 
-/** Primer producto vigente (con foto, link de afiliado y precio mostrable) de cada rubro, hasta `max`. */
+/** Primer producto vigente (con foto, link de afiliado y precio mostrable) de cada rubro, hasta `max`.
+ *  Si un rubro no tiene producto fresco (p. ej. los aires con precio visto hace más de 7 días),
+ *  completa el cupo con otros productos vigentes de esos mismos rubros. */
 export function destacadosDeRubros(
   rubros: readonly string[],
   max: number,
@@ -60,17 +62,23 @@ export function destacadosDeRubros(
 ): ProductoBF[] {
   const out: ProductoBF[] = []
   const vistos = new Set<string>()
-  for (const slug of rubros) {
-    const l = getLandingBF(slug)
-    if (!l) continue
-    const p = productosBF(l, hoy).find(
-      x => x.img && x.precio !== null && !vistos.has(x.id) && !excluidoCalc(x) && (!filtro || filtro(x)),
-    )
-    if (!p) continue
-    vistos.add(p.id)
-    out.push(p)
-    if (out.length >= max) break
+  const sirve = (x: ProductoBF) =>
+    Boolean(x.img && x.precio !== null && !vistos.has(x.id) && !excluidoCalc(x) && (!filtro || filtro(x)))
+  const agregarDe = (soloPrimero: boolean) => {
+    for (const slug of rubros) {
+      const l = getLandingBF(slug)
+      if (!l) continue
+      for (const p of productosBF(l, hoy)) {
+        if (!sirve(p)) continue
+        vistos.add(p.id)
+        out.push(p)
+        if (out.length >= max || soloPrimero) break
+      }
+      if (out.length >= max) break
+    }
   }
+  agregarDe(true)
+  if (out.length < max) agregarDe(false)
   return out
 }
 

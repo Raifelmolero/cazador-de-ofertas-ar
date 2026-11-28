@@ -22,7 +22,7 @@ import { sinOmen } from '@/lib/prioridades'
 import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 import NavInferior from '@/components/NavInferior'
 import AvisoSeguir from '@/components/AvisoSeguir'
-import { leerPrecio, type Lectura } from '@/lib/lectura-precio'
+import { leerPrecio, minimoDe, type Lectura } from '@/lib/lectura-precio'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -82,11 +82,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const manual = seoManual(s.id)
   const titulo = manual ? manual.seoTitulo : tituloSeo(s.titulo, conDiferencia(dif, FORMATOS_TITULO))
   const ultimo = s.serie[s.serie.length - 1]
+  const piso = minimoDe(s.serie, s.min, s.min_ts)
   const descripcion = manual
     ? recortar(`${manual.seoDescripcion} Último precio visto: ${precio(ultimo[1])} el ${fecha(ultimo[0])}.`, MAX_DESCRIPCION)
     : tituloSeo(s.titulo, conDiferencia(dif, [
-    n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
-    n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
+    n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(piso.min)} el ${fecha(piso.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
+    n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(piso.min)} el ${fecha(piso.min_ts)}.`,
   ]), MAX_DESCRIPCION)
   return {
     title: titulo,
@@ -117,7 +118,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const url = `${DEALS_URL}/precio/${s.slug}`
   const hoy = precioActual(s)
   const enOferta = vigente(s)
-  const enMinimo = enOferta && hoy <= s.min
+  const piso = minimoDe(s.serie, s.min, s.min_ts)
+  const enMinimo = enOferta && hoy <= piso.min
   const cat = categoriaDeSeguido(s)
   // Si hoy no está en oferta, mostramos las de su categoría que sí lo están
   const alternativas = !enOferta && cat ? sinOmen(ofertasDeCategoria(cat)).filter(o => o.id_ml !== s.id).slice(0, 4) : []
@@ -142,15 +144,15 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const lectura = leerPrecio(hoy, s.serie, s.min)
 
   const veredicto = !enOferta
-    ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(s.min)} el ${fecha(s.min_ts)}.`
+    ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(piso.min)} el ${fecha(piso.min_ts)}.`
     : enMinimo
       ? `El último precio que vimos, ${precio(hoy)}, es el más bajo que registramos desde que lo seguimos (${fecha(s.desde)}).`
-      : `El último precio que vimos, ${precio(hoy)}, está por encima del mínimo que registramos (${precio(s.min)} el ${fecha(s.min_ts)}).`
+      : `El último precio que vimos, ${precio(hoy)}, está por encima del mínimo que registramos (${precio(piso.min)} el ${fecha(piso.min_ts)}).`
 
   const faqs = [
     {
       q: `¿Cuál es el precio más bajo de ${nombre}?`,
-      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(s.min)}, el ${fecha(s.min_ts)}. Seguimos el precio desde el ${fecha(s.desde)}.`,
+      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(piso.min)}, el ${fecha(piso.min_ts)}. Seguimos el precio desde el ${fecha(s.desde)}.`,
     },
     {
       q: `¿Conviene comprar ${nombre} hoy?`,
@@ -182,7 +184,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             name: s.titulo,
             sku: s.id,
             url,
-            description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
+            description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(piso.min)} el ${fecha(piso.min_ts)}.`,
             ...(s.img ? { image: s.img } : {}),
             ...(marca ? { brand: { '@type': 'Brand', name: marca } } : {}),
             offers: {
@@ -285,7 +287,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             {!verificado && <p className="text-base leading-snug text-zinc-300">último precio registrado</p>}
           </div>
         </div>
-        <MomentoDeCompra lectura={lectura} enOferta={enOferta} min={s.min} />
+        <MomentoDeCompra lectura={lectura} enOferta={enOferta} min={piso.min} />
         <a
           href={s.url}
           data-seccion="precio_cta"
@@ -350,18 +352,18 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
 
         <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 text-sm">
           <Dato label="Último precio" valor={precio(hoy)} />
-          <Dato label="Más bajo registrado" valor={precio(s.min)} sub={fecha(s.min_ts)} />
+          <Dato label="Más bajo registrado" valor={precio(piso.min)} sub={fecha(piso.min_ts)} />
           <Dato label="Seguido desde" valor={fecha(s.desde)} />
         </dl>
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Evolución del precio</h2>
           {s.serie.length >= 2 ? (
-            <Grafico serie={s.serie} min={s.min} promedio={lectura?.promedio} />
+            <Grafico serie={s.serie} min={piso.min} promedio={lectura?.promedio} />
           ) : (
             <p className="text-sm text-zinc-500">
               Empezamos a guardar la serie diaria el {fecha(s.serie[0][0])}; el gráfico aparece a partir del segundo día.
-              Mientras tanto, el precio más bajo que registramos es {precio(s.min)} ({fecha(s.min_ts)}).
+              Mientras tanto, el precio más bajo que registramos es {precio(piso.min)} ({fecha(piso.min_ts)}).
             </p>
           )}
         </section>

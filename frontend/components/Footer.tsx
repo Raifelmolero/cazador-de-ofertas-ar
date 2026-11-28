@@ -24,7 +24,7 @@ export default function Footer({ brand = 'calculadora', sinCupones = false }: { 
       {brand === 'ofertas' && (
         <div className="max-w-md mx-auto mb-8 text-center">
           <p className="font-display text-base font-black text-zinc-100">Te avisamos antes que nadie</p>
-          <p className="mt-0.5 mb-3 text-sm text-zinc-400">Las ofertas cortas suelen salir primero en las redes.</p>
+          <p className="mt-0.5 mb-3 text-sm text-zinc-400">Publicamos las ofertas todos los días en WhatsApp, Instagram, X y Telegram.</p>
           <SeguirRedes variante="chico" donde="footer" />
         </div>
       )}

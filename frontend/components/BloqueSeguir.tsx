@@ -2,11 +2,11 @@
 // ninguna oferta. Sin hooks: lo usan la home (servidor) y la grilla (cliente).
 //
 // El gancho es verdad: el bot publica en las redes en cada corrida (12, 17 y 21 h) y la web
-// se actualiza con el deploy agrupado (cada ~3 días). Por eso «suelen salir primero ahí».
+// Las ofertas salen todos los días en las redes (WhatsApp, IG, X, Telegram).
 import SeguirRedes from '@/components/SeguirRedes'
 
 export const GANCHO_SEGUIR =
-  'Publicamos en las redes apenas cazamos una oferta; esta página se actualiza cada pocos días. Las que duran poco (relámpago, poco stock) suelen salir primero ahí.'
+  'Publicamos las ofertas todos los días en WhatsApp, Instagram, X y Telegram. Seguinos y te avisamos antes que nadie.'
 
 /** Bloque ancho, para el final de la home. */
 export function BloqueSeguir({ className = '' }: { className?: string }) {
@@ -32,7 +32,7 @@ export function TarjetaSeguir() {
   return (
     <div className="col-span-2 flex flex-col justify-center rounded-2xl border border-dashed border-yellow-400/40 bg-yellow-400/[0.06] p-4">
       <p className="font-display text-lg font-black leading-tight [text-wrap:balance]">¿Querés enterarte primero de la próxima?</p>
-      <p className="mt-1 mb-3 text-sm text-zinc-300">Las ofertas cortas suelen salir antes en las redes que acá.</p>
+      <p className="mt-1 mb-3 text-sm text-zinc-300">Publicamos las ofertas todos los días en WhatsApp, Instagram, X y Telegram.</p>
       <SeguirRedes donde="tarjeta_grilla" />
     </div>
   )

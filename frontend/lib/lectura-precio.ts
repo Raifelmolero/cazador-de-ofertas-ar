@@ -24,16 +24,49 @@ export function promedio(precios: number[]) {
 }
 
 /**
- * `actual` contra la serie diaria y el mínimo registrado. null si hay menos de DIAS_MINIMOS días.
- * «minimo» = igual o por debajo del mínimo registrado.
+ * El más bajo entre la serie que mostramos y el mínimo guardado.
+ * `min` de seguimiento.json sale de price_history y a veces queda *más alto*
+ * que un precio que sí está en la serie (pasó en la desmalezadora y en otras
+ * ~78 fichas): promedio y mínimo tienen que salir del mismo conjunto.
+ * Si el guardado es más bajo (la serie se recortó), se conserva ese.
  */
-export function leerPrecio(actual: number, serie: [string, number][], min: number): Lectura | null {
+export function minimoDe(
+  serie: [string, number][],
+  minGuardado?: number,
+  minTsGuardado?: string,
+): { min: number; min_ts: string } {
+  const puntos = serie.filter(([, n]) => Number.isFinite(n) && n > 0)
+  if (!puntos.length) {
+    return Number.isFinite(minGuardado) && (minGuardado as number) > 0
+      ? { min: minGuardado as number, min_ts: minTsGuardado ?? '' }
+      : { min: 0, min_ts: minTsGuardado ?? '' }
+  }
+  let min = puntos[0][1]
+  let min_ts = puntos[0][0]
+  for (const [ts, n] of puntos) {
+    if (n < min) {
+      min = n
+      min_ts = ts
+    }
+  }
+  if (Number.isFinite(minGuardado) && (minGuardado as number) > 0 && (minGuardado as number) < min) {
+    return { min: minGuardado as number, min_ts: minTsGuardado ?? '' }
+  }
+  return { min, min_ts }
+}
+
+/**
+ * `actual` contra la serie diaria y el mínimo efectivo. null si hay menos de DIAS_MINIMOS días.
+ * «minimo» = igual o por debajo del mínimo efectivo.
+ */
+export function leerPrecio(actual: number, serie: [string, number][], min?: number): Lectura | null {
   const precios = serie.map(p => p[1]).filter(n => Number.isFinite(n) && n > 0)
   if (precios.length < DIAS_MINIMOS || !(actual > 0)) return null
+  const { min: minEfectivo } = minimoDe(serie, min)
   const prom = promedio(precios)
   const vsPromedioPct = Math.round(((prom - actual) / prom) * 100)
   const veredicto: Veredicto =
-    actual <= min ? 'minimo' : vsPromedioPct >= BAJO_PROMEDIO_PCT ? 'bueno' : -vsPromedioPct >= SOBRE_PROMEDIO_PCT ? 'caro' : 'normal'
+    actual <= minEfectivo ? 'minimo' : vsPromedioPct >= BAJO_PROMEDIO_PCT ? 'bueno' : -vsPromedioPct >= SOBRE_PROMEDIO_PCT ? 'caro' : 'normal'
   return { veredicto, promedio: prom, vsPromedioPct, dias: precios.length }
 }
 

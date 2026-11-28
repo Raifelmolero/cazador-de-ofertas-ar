@@ -20,6 +20,8 @@ on:
 jobs:
   ping:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -37,7 +39,9 @@ jobs:
         if: github.event_name == 'push'
         run: sleep 180
       - name: Avisar a IndexNow
-        run: python bot/tools/indexnow.py ${{ github.event_name == 'push' && 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo || 'diario') }}
+        env:
+          MODO: ${{ github.event_name == 'push' && 'push' || (github.event_name == 'workflow_dispatch' && inputs.modo || 'diario') }}
+        run: python bot/tools/indexnow.py "$MODO"
       - name: Guardar URLs enviadas
         if: success()
         uses: actions/cache/save@v6

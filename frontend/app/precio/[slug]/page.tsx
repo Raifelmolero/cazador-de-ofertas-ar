@@ -4,6 +4,7 @@ import AlertaCTA from '@/components/AlertaCTA'
 import TambienTeServira from '@/components/TambienTeServira'
 import { extrasDeCategoria, relacionadosDePrecio } from '@/lib/relacionados'
 import Image from 'next/image'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { getProductoById } from '@/lib/productos'
@@ -234,9 +235,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a>
           {' '}
           <span aria-hidden="true">/</span>{' '}
-          <a href="/precio" className="hover:text-yellow-400">
+          <Link href="/precio" className="hover:text-yellow-400">
             Historial de precios
-          </a>
+          </Link>
           {cat && (
             <>
               {' '}
@@ -251,9 +252,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
         {enlaceNavidadVigente() && (
           <p className="hidden sm:block text-sm text-zinc-400 mb-3">
             ¿Lo pensás para Navidad? Mirá las{' '}
-            <a href="/regalos-navidad" className="font-semibold text-yellow-400 hover:underline">
+            <Link href="/regalos-navidad" className="font-semibold text-yellow-400 hover:underline">
               ofertas de regalos por presupuesto
-            </a>
+            </Link>
             .
           </p>
         )}

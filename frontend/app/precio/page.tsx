@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Footer from '@/components/Footer'
 import TopOfertasHoy from '@/components/TopOfertasHoy'
 import { ofertasHoyLight } from '@/lib/ofertashoy'
@@ -84,13 +85,13 @@ export default function PreciosIndex() {
         </p>
         <p className="text-sm text-zinc-400 mb-8">
           Para regalos de Navidad, andá a{' '}
-          <a href="/regalos-navidad" className="font-semibold text-yellow-400 hover:underline">
+          <Link href="/regalos-navidad" className="font-semibold text-yellow-400 hover:underline">
             /regalos-navidad
-          </a>
+          </Link>
           . Los precios de un rubro completo están en{' '}
-          <a href="/precio-hoy" className="font-semibold text-yellow-400 hover:underline">
+          <Link href="/precio-hoy" className="font-semibold text-yellow-400 hover:underline">
             /precio-hoy
-          </a>
+          </Link>
           .
         </p>
         {destacadas.length > 0 && (

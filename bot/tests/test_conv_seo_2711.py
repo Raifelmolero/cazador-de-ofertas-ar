@@ -15,6 +15,7 @@ FRONT = Path(__file__).resolve().parents[2] / "frontend"
 LIB = FRONT / "lib" / "calc-ofertas.ts"
 COMP = FRONT / "components" / "CtaOfertaDestacada.tsx"
 CLICS = FRONT / "app" / "clics-ml.tsx"
+NAVIDAD = FRONT / "lib" / "navidad-post-bf.ts"
 SIN_DESCUENTOS = r"\d+\s*%|cup[oó]n|m[ií]nimo hist|line-through|tachad|precio_anterior|descuento|Estaba"
 EXCLUIDAS = r"\b(bgh|hp|omen|victus|omnibook|vivobook|likon)\b"
 
@@ -68,7 +69,9 @@ class TestBloquePostResultado(unittest.TestCase):
     def test_copy_nuevo_limpio_y_sin_marcas_excluidas(self):
         for src in (self.lib, self.comp):
             self.assertNotRegex(src, SIN_DESCUENTOS)
-        textos = re.findall(r"texto: '([^']+)'", self.lib)
+        # Los textos de «Ver más» viven en lib/navidad-post-bf.ts desde el ahorro Vercel (27/11).
+        navidad = _sc(NAVIDAD.read_text(encoding="utf-8"))
+        textos = re.findall(r"texto: '([^']+)'", self.lib) + re.findall(r"texto: '([^']+)'", navidad)
         self.assertGreaterEqual(len(textos), 5)
         for t in textos:
             self.assertNotRegex(t, re.compile(EXCLUIDAS, re.I), t)

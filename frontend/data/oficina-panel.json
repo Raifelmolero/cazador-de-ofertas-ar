@@ -1,0 +1,86 @@
+{
+  "actualizado": "2026-11-28T02:30:00+00:00",
+  "nota": "Lo actualiza Control (Grok Bot) en cada ronda. Todo campo null se muestra como «sin dato»; nunca se inventa. Las fechas son ISO y las etiquetas se calculan en pantalla.",
+  "metas": { "semana": 2000000, "mes": 10000000 },
+  "semana": {
+    "desde": "2026-11-18",
+    "hasta": "2026-11-24",
+    "ganancia": 663060,
+    "clics": 1495,
+    "pedidos": 32,
+    "medido": "2026-11-25T14:09:00+00:00",
+    "fuente": "Panel de afiliados ML"
+  },
+  "mes": {
+    "desde": "2026-11-01",
+    "hasta": "2026-11-27",
+    "ganancia": 3576120,
+    "pedidos": null,
+    "medido": "2026-11-28T00:50:00+00:00",
+    "fuente": "Mis ingresos ML (pantallazo)"
+  },
+  "canales": {
+    "desde": "2026-11-13",
+    "hasta": "2026-11-19",
+    "medido": "2026-11-21T04:00:00+00:00",
+    "items": [
+      { "n": "Sitio", "clics": 250, "ventas": 18 },
+      { "n": "Web (otros)", "clics": 715, "ventas": 11 },
+      { "n": "Calculadora", "clics": 139, "ventas": 0 },
+      { "n": "WhatsApp", "clics": 74, "ventas": 0 },
+      { "n": "Instagram", "clics": null, "ventas": null },
+      { "n": "Telegram", "clics": null, "ventas": null },
+      { "n": "Facebook", "clics": null, "ventas": null }
+    ]
+  },
+  "prs_esperando": {
+    "medido": "2026-11-28T02:30:00+00:00",
+    "items": [
+      { "n": 102, "titulo": "Lote 28/11: verano, Navidad, IDs, conversión/SEO, ahorro Vercel, /pro, oficina", "nota": "El que sale en el deploy del domingo" },
+      { "n": 101, "titulo": "Meta de verificación Admitad" },
+      { "n": 100, "titulo": "Oficina de agentes en vivo (ya incluido en #102)" },
+      { "n": 99, "titulo": "/pro Pack Vendedor", "nota": "Falta el link de Mercado Pago" },
+      { "n": 98, "titulo": "Ahorro Vercel (deploy semanal, ISR)" },
+      { "n": 97, "titulo": "Conversión web/calcml y enlazado SEO" },
+      { "n": 95, "titulo": "Cuadros de verano ticket alto" },
+      { "n": 94, "titulo": "3 IDs vencidos (arregla Bot Tests rojo)" }
+    ]
+  },
+  "cupos": {
+    "grok": { "pct_semana": 18, "reinicia": "2026-12-03", "medido": "2026-11-28T02:00:00+00:00" },
+    "claude": { "pct_semana": 18, "pct_sesion": 37, "reinicia": "2026-12-03", "medido": "2026-11-28T02:00:00+00:00" },
+    "vercel": { "pct_semana": null, "tope": "USD 30 por mes", "medido": null }
+  },
+  "equipo": {
+    "medido": "2026-11-28T02:30:00+00:00",
+    "director": { "nombre": "Grok Bot", "rol": "Director: decide, coordina y pasa el panel", "ultima": "2026-11-27T23:59:00+00:00" },
+    "agentes": [
+      { "nombre": "Radar", "rol": "Ofertas y precios; hereda Black Friday el 1/12", "ultima": null },
+      { "nombre": "Contenido", "rol": "Redes, canal de WhatsApp y calendario de posts", "ultima": null },
+      { "nombre": "Crecimiento", "rol": "Crecimiento de la web y las redes (rol a confirmar)", "ultima": null },
+      { "nombre": "Control", "rol": "Métricas, GitHub, agentes y panel", "ultima": "2026-11-27T23:59:00+00:00" }
+    ],
+    "aparte": ["Vida Personal", "Asesor Financiero"]
+  },
+  "automatizaciones": {
+    "medido": "2026-11-28T01:58:00+00:00",
+    "items": [
+      { "n": "Cargador", "t": "Carga y refresca ofertas", "c": "todos los días 11:13", "e": "ok" },
+      { "n": "Armador", "t": "3 ofertas de tecnología → Trello", "c": "todos los días 10:00", "e": "ok" },
+      { "n": "Revisor", "t": "Precios de posts programados", "c": "todos los días 10:38", "e": "alerta", "nota": "Corrió 1 min sin resumen el 27/11" },
+      { "n": "Reciclador", "t": "Recarga ofertas por vencer", "c": "15:00 (1-30/11)", "e": "ok" },
+      { "n": "Indexador", "t": "Indexación en Search Console", "c": "todos los días 13:42", "e": "ok" },
+      { "n": "Guionista", "t": "Contenido semanal", "c": "jueves 10:00", "e": "ok", "nota": "Lotes sin OK, nada programado" },
+      { "n": "Medidor", "t": "Panel ML + Search Console", "c": "domingo 21:08", "e": "ok" },
+      { "n": "Auditor", "t": "Auditoría con semáforo", "c": "mié y dom 11:00", "e": "alerta", "nota": "Rojo en reglas: % sin respaldo" },
+      { "n": "Vigilante", "t": "Sitio, bot y latido (GitHub)", "c": "cada 2 h, en la nube", "e": "ok" },
+      { "n": "Bot de ofertas", "t": "Telegram, IG, Threads, WA", "c": "todo el día, en la nube", "e": "ok" },
+      { "n": "Facebook", "t": "8 ofertas por día en FB", "c": "todo el día", "e": "ok" },
+      { "n": "Estratega", "t": "1 mejora de conversión por día (PR)", "c": "todos los días 17:00", "e": "ok" },
+      { "n": "Redactor SEO", "t": "1 guía SEO/GEO por noche (PR)", "c": "todos los días 02:00", "e": "ok" },
+      { "n": "Tendencias", "t": "Qué se vende más en ML", "c": "todos los días 9:00", "e": "ok" },
+      { "n": "X / Twitter", "t": "Publicador de X", "c": "en la nube", "e": "ok" },
+      { "n": "IG unfollow", "t": "Dejar de seguir cuentas", "c": "pausada", "e": "pausa", "nota": "IG revierte los unfollows" }
+    ]
+  }
+}

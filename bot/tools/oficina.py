@@ -64,6 +64,43 @@ def _slugs(archivo: Path) -> list[str]:
     return re.findall(r"^\s{4}slug: '([^']+)'", archivo.read_text(encoding="utf-8"), re.M)
 
 
+def _slugs_guias() -> list[str]:
+    """Slugs de TODAS las guías: guias.ts más guias-long-tail.ts, guias-tecno.ts,
+    guias-bf-2026.ts, etc."""
+    out: list[str] = []
+    for f in sorted((ROOT / "frontend" / "lib").glob("guias*.ts")):
+        out += _slugs(f)
+    return out
+
+
+def _fecha_archivos(archivos: list[Path]) -> str | None:
+    """Fecha honesta del último cambio de los archivos: la del último commit si
+    hay historia completa; si no, el mtime."""
+    import subprocess
+    existentes = [a for a in archivos if a.exists()]
+    if not existentes:
+        return None
+    try:
+        r = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", *[str(a) for a in existentes]],
+            cwd=ROOT, capture_output=True, text=True, timeout=20,
+        )
+        if r.returncode == 0 and r.stdout.strip():
+            return r.stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        pass
+    mt = max(a.stat().st_mtime for a in existentes)
+    return datetime.fromtimestamp(mt, timezone.utc).isoformat(timespec="seconds")
+
+
+def _marketing_previo() -> dict | None:
+    try:
+        d = json.loads(OUT.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return next((x for x in d.get("departamentos", []) if x.get("id") == "marketing"), None)
+
+
 def publicacion(ahora: datetime) -> dict:
     posts = _tail_jsonl(STATE / "posts_log.jsonl", 400)
     ult_24 = [p for p in posts if ahora - _parse_ts(p["ts"]) <= timedelta(hours=24)]
@@ -76,7 +113,10 @@ def publicacion(ahora: datetime) -> dict:
         "emoji": "📤",
         "descripcion": "Busca ofertas en Mercado Libre y las publica en todas las redes.",
         "automatico": True,
-        "frecuencia": "3 veces por día",
+        "frecuencia": "3 veces por día (12:00, 17:00 y 21:00)",
+        "badge": "Automático · 3×/día",
+        # El hueco más largo es de 21:00 a 12:00 (15 h): se tolera hasta 18 h.
+        "ventana_horas": 18,
         "ultima_actividad": ultimo["ts"] if ultimo else None,
         "agentes": [
             {
@@ -100,6 +140,7 @@ def investigacion() -> dict:
         "descripcion": "Encuentra rubros de comisión alta con demanda y poca competencia.",
         "automatico": False,
         "frecuencia": "A demanda",
+        "badge": "A demanda",
         "ultima_actividad": informes[0]["fecha"] if informes else None,
         "agentes": [{"nombre": "investigador-nichos", "tarea": "Informe de nicho"}],
         "metricas": [{"label": "Informes", "valor": len(informes)}],
@@ -107,9 +148,24 @@ def investigacion() -> dict:
     }
 
 
-def marketing() -> dict:
-    guias = _slugs(ROOT / "frontend" / "lib" / "guias.ts")
+def marketing(ahora: datetime | None = None) -> dict:
+    ahora = ahora or datetime.now(timezone.utc)
+    guias = _slugs_guias()
     comps = _slugs(ROOT / "frontend" / "lib" / "comparativas.ts")
+    total = len(guias) + len(comps)
+    # Última actividad: si el total no cambió desde la corrida anterior se
+    # conserva la fecha previa; si no, fecha de los archivos (git/mtime).
+    # Nunca null si hay contenido.
+    previo = _marketing_previo()
+    ultima = None
+    if total:
+        prev_total = sum(m.get("valor", 0) for m in (previo or {}).get("metricas", []))
+        if previo and previo.get("ultima_actividad") and prev_total == total:
+            ultima = previo["ultima_actividad"]
+        else:
+            archivos = sorted((ROOT / "frontend" / "lib").glob("guias*.ts")) + [
+                ROOT / "frontend" / "lib" / "comparativas.ts"]
+            ultima = _fecha_archivos(archivos)
     return {
         "id": "marketing",
         "nombre": "Marketing / SEO",
@@ -117,13 +173,36 @@ def marketing() -> dict:
         "descripcion": "Escribe guías y comparativas para traer tráfico de Google y de las IA.",
         "automatico": False,
         "frecuencia": "A demanda",
-        "ultima_actividad": None,
+        "badge": "A demanda",
+        "ultima_actividad": ultima,
         "agentes": [{"nombre": "marketing-seo", "tarea": "Guías y comparativas del sitio"}],
         "metricas": [
             {"label": "Guías publicadas", "valor": len(guias)},
             {"label": "Comparativas", "valor": len(comps)},
         ],
         "entregas": [{"fecha": "", "titulo": s.replace("-", " ")} for s in (guias[-3:] + comps[-2:])[::-1]],
+    }
+
+
+def guardia() -> dict:
+    """Vigilante (cada 2 h) y alertas (cada 15 min). No dejan estado en el repo,
+    así que NO hay timestamp: se muestra la frecuencia, sin inventar actividad."""
+    return {
+        "id": "guardia",
+        "nombre": "Guardia",
+        "emoji": "👁️",
+        "descripcion": "Vigila el sitio y los precios todo el día, también de noche.",
+        "automatico": True,
+        "frecuencia": "Vigilante cada 2 h · alertas cada 15 min",
+        "badge": "Cada 2 h",
+        "ultima_actividad": None,
+        "sin_registro": True,
+        "ventana_horas": 6,
+        "agentes": [
+            {"nombre": "Vigilante", "tarea": "Chequeo del sitio cada 2 horas"},
+            {"nombre": "Alertas", "tarea": "Avisos de baja de precio cada 15 minutos"},
+        ],
+        "metricas": [],
     }
 
 
@@ -136,6 +215,7 @@ def diseno() -> dict:
         "descripcion": "Mejora placas, historias y reels. Propone y vos aprobás.",
         "automatico": False,
         "frecuencia": "A demanda",
+        "badge": "A demanda",
         "ultima_actividad": entregas[0]["fecha"] if entregas else None,
         "agentes": [{"nombre": "diseno", "tarea": "Rediseño de reel (v2)"}],
         "metricas": [{"label": "Propuestas", "valor": len(entregas)}],
@@ -160,7 +240,10 @@ def analisis() -> dict:
         "descripcion": "Mide qué genera plata y qué no. Reporte todos los domingos.",
         "automatico": True,
         "frecuencia": "Semanal (domingo)",
+        "badge": "Semanal",
         "ultima_actividad": ult.get("ts"),
+        # Corre 1 vez por semana: tolera 8 días antes de ponerse en rojo.
+        "ventana_horas": 192,
         "agentes": [{"nombre": "Reporte semanal", "tarea": "Métricas y cacería de la semana"}],
         "metricas": metricas,
         "metricas_titulo": "Última medición (vs. la anterior)",
@@ -177,6 +260,7 @@ def auditoria() -> dict:
         "descripcion": "Revisa tests, dependencias, páginas del sitio y que el bot siga publicando.",
         "automatico": True,
         "frecuencia": "Diario (08:00)",
+        "badge": "Diario 08:00",
         # Corre 1 vez por día: el semáforo tolera 26 h antes de ponerse en rojo.
         "ultima_actividad": ult["ts"] if ult else None,
         "ventana_horas": 26,
@@ -191,7 +275,7 @@ def main() -> None:
     data = {
         "generado": ahora.isoformat(timespec="seconds"),
         "departamentos": [
-            publicacion(ahora), investigacion(), marketing(), diseno(), analisis(), auditoria(),
+            publicacion(ahora), investigacion(), marketing(ahora), diseno(), analisis(), auditoria(), guardia(),
         ],
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

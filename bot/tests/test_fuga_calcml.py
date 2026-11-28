@@ -122,7 +122,12 @@ class TestReglasDelCuadro(unittest.TestCase):
 
     def test_copy_sin_descuentos_ni_cupones(self):
         self.assertNotRegex(_sin_comentarios(self.comp), SIN_DESCUENTOS)
-        titulos = re.findall(r"titulo: '([^']+)'", self.lib) + re.findall(r"texto: '([^']+)'", self.lib)
+        navidad = (FRONT / "lib" / "navidad-post-bf.ts").read_text(encoding="utf-8").split("export function rutaVerMas")[1].split("\n}\n")[0]
+        titulos = (
+            re.findall(r"titulo: '([^']+)'", self.lib)
+            + re.findall(r"texto: '([^']+)'", self.lib)
+            + re.findall(r"texto: '([^']+)'", navidad)
+        )
         self.assertGreaterEqual(len(titulos), 4)
         for t in titulos:
             self.assertNotRegex(t, SIN_DESCUENTOS, t)
@@ -134,8 +139,12 @@ class TestReglasDelCuadro(unittest.TestCase):
         self.assertIn("evento: 'calcml_oferta_boton'", self.lib)
         self.assertNotIn("matt_word", lib)
         self.assertNotIn("p.url", lib)
-        self.assertIn("/mejores/black-friday-notebooks", lib)
-        self.assertIn("/black-friday'", lib)
+        # 27/11: el destino sale de la agenda por fecha (lib/navidad-post-bf), no queda fijo en BF:
+        # lo que pasa en cada fecha lo prueba test_navidad_post_bf.py en node.
+        self.assertIn("rutaDestinoCalculadora(esNotebook)", lib)
+        self.assertIn("rutaVerMas()", lib)
+        self.assertNotIn("/black-friday'", lib)
+        self.assertNotIn("/mejores/black-friday-notebooks", lib)
         self.assertIn("destinoCalculadora,", lib)
         ctaconsumo = lib.split("export function ctaConsumo")[1]
         self.assertNotIn("destinoCalculadora", ctaconsumo)
@@ -175,13 +184,12 @@ class TestProductosReales(unittest.TestCase):
         cls.hoy = max(datetime.date.fromisoformat(p["precio_visto"][:10]) for p in items if p.get("precio_visto"))
         cls.bloques = _bloques()
 
-    def _elegidos(self, rubros, filtro=lambda p, nombre: True, maximo=3):
-        out = []
+    def _candidatos(self, rubros, filtro):
         for slug in rubros:
             self.assertIn(slug, self.bloques, slug)
             for i, nombre, detalle in re.findall(r"id: '(MLA\d+)', nombre: '([^']+)'(?:, detalle: '([^']*)')?", self.bloques[slug]):
                 p = self.catalogo.get(i)
-                if not p or not p.get("url_imagen") or i == LIKON_ID or i in {x["id_ml"] for x in out}:
+                if not p or not p.get("url_imagen") or i == LIKON_ID:
                     continue
                 if EXCLUIDAS.search(p["titulo"]) or EXCLUIDAS.search(nombre):
                     continue
@@ -192,8 +200,27 @@ class TestProductosReales(unittest.TestCase):
                     continue
                 if not filtro(p, nombre + " " + detalle):
                     continue
+                yield p
+
+    def _elegidos(self, rubros, filtro=lambda p, nombre: True, maximo=3):
+        # Igual que destacadosDeRubros: un producto por rubro y, si falta cupo
+        # (un rubro sin precio fresco), completar con otros de esos mismos rubros.
+        out = []
+        vistos = set()
+        for slug in rubros:
+            for p in self._candidatos([slug], filtro):
+                if p["id_ml"] in vistos:
+                    continue
                 out.append(p)
+                vistos.add(p["id_ml"])
                 break
+            if len(out) >= maximo:
+                return out
+        for p in self._candidatos(rubros, filtro):
+            if p["id_ml"] in vistos:
+                continue
+            out.append(p)
+            vistos.add(p["id_ml"])
             if len(out) >= maximo:
                 break
         return out

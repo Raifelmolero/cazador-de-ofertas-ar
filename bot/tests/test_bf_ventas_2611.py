@@ -93,7 +93,7 @@ class TestCalculadoraConUtm(unittest.TestCase):
         self.assertNotIn("href={`${DEALS_URL}", aviso)
         calc = _leer("lib/calc-ofertas.ts")
         self.assertIn("href: desdeCalculadora(v.href)", calc)
-        self.assertIn("desdeCalculadora(`${DEALS_URL}${esNotebook ?", calc)
+        self.assertIn("desdeCalculadora(`${DEALS_URL}${rutaDestinoCalculadora(esNotebook)}`)", calc)
         # La de consumo eléctrico vive en el sitio de ofertas: sin utm de la calculadora.
         consumo = calc.split("export function ctaConsumo")[1]
         self.assertNotIn("desdeCalculadora", consumo)

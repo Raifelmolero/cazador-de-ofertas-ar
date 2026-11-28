@@ -73,7 +73,7 @@ const AFILIADOS_ML_URL = 'https://www.mercadolibre.com.ar/l/afiliados'
 // Title, H1, hero y JSON-LD siguen el modo del día (lib/cybermonday.ts, modoBF: previa / hoy /
 // últimas horas / terminó), resuelto en el render: los deploys son agrupados cada ~3 días, así que
 // la página se regenera como mucho una vez por hora cuando alguien la visita.
-export const revalidate = 3600
+export const revalidate = 43200
 
 export function generateMetadata(): Metadata {
   const { titulo, descripcion } = PAGINA_BF[modoBF()]

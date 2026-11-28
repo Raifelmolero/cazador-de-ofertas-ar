@@ -31,6 +31,9 @@ import { getLandingBF } from '@/lib/black-friday-landings'
 import LandingBFPage from '@/components/black-friday/LandingBF'
 import EnlaceNavidad from '@/components/EnlaceNavidad'
 import { descripcionConNavidad, terminoBF } from '@/lib/navidad-post-bf'
+import CtaOfertaDestacada from '@/components/CtaOfertaDestacada'
+import EnlacesVerano from '@/components/EnlacesVerano'
+import { cuadroVerano, getLandingVerano } from '@/lib/verano-ticket-alto'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -39,7 +42,7 @@ const MAX_FILAS = 12
 // Black Friday (26/11/2026): el modo del día (lib/cybermonday.ts, modoBF) cambia title, H1 y hero de
 // las landings /mejores/black-friday-* sin esperar al deploy agrupado. Una regeneración por hora
 // y por página como mucho, solo si alguien la visita (no gasta Build CPU).
-export const revalidate = 3600
+export const revalidate = 21600
 
 export function generateStaticParams() {
   return COMPARATIVAS.map(c => ({ slug: c.slug }))
@@ -92,8 +95,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const opciones = [`${base}${desde} — Cazador de Ofertas AR`, `${base}${desde}`, `${corto}${desde}`]
   // Black Friday: tope de 60 (pedido del 24/11), el resto sigue con MAX_TITULO.
   const max = c.slug.includes('black-friday') ? 60 : MAX_TITULO
-  const titulo = c.seoTitulo ?? opciones.find(o => o.length <= max) ?? tituloSeo(base, [n => n], max)
-  const descripcionBase = esCyber ? bf(c.descripcion) : c.descripcion
+  // Verano ticket alto (27/11): title y description de temporada (lib/verano-ticket-alto.ts).
+  const verano = getLandingVerano(c.slug)
+  const titulo = verano?.seoTitulo ?? c.seoTitulo ?? opciones.find(o => o.length <= max) ?? tituloSeo(base, [n => n], max)
+  const descripcionBase = esCyber ? bf(c.descripcion) : (verano?.seoDescripcion ?? c.descripcion)
   const descripcion = descripcionSeo(
     esCyber && precios.length >= MIN_PRODUCTOS_INDEXABLE && !/desde \$/.test(descripcionBase)
       ? `Desde ${precio(Math.min(...precios))} hoy en Mercado Libre. ${descripcionBase}`
@@ -165,6 +170,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
   const porPresupuesto = presupuestosConEquipos().filter(x => x.p.comparador === c.categoria)
   const comparador = porPresupuesto.length ? getComparador(porPresupuesto[0].p.comparador) : undefined
   const destacado = c.slug === 'black-friday-notebooks' ? elegirDestacadoNotebooks(productos) : elegirDestacado(productos)
+  // Verano ticket alto (27/11): cuadro amarillo con botón a la ficha /precio (null si no hay 3 fichas).
+  const esVerano = !!getLandingVerano(c.slug)
+  const cuadro = esVerano ? cuadroVerano(c.slug) : null
 
   const jsonLd = [
     {
@@ -299,7 +307,8 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
             Los precios de abajo son los de hoy.
           </p>
         )}
-        {destacado && <DestacadoML producto={destacado} lista={productos} />}
+        {/* Verano: el cuadro reemplaza al destacado de arriba (el destacado sigue en la barra fija del celular). */}
+        {cuadro ? <CtaOfertaDestacada cta={cuadro} className="mb-6" /> : destacado && <DestacadoML producto={destacado} lista={productos} />}
         {/* El texto va después del primer producto */}
         <p className="text-base text-zinc-400 leading-relaxed mb-3 [text-wrap:pretty]">{c.intro}</p>
         <p className="text-base sm:text-xs text-zinc-400 mb-6">
@@ -308,7 +317,9 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         {/* Del Black Friday a Navidad (27/11): link destacado a /regalos-navidad, debajo del primer producto */}
         <EnlaceNavidad seccion={`navidad_mejores_${c.slug}`} className="mb-6" />
 
-        <section className="mb-10">
+        {esVerano && <EnlacesVerano seccion={`verano_enlaces_${c.slug}`} excluir={c.slug} titulo="Más para el verano" className="mb-6" />}
+
+        <section id="comparativa" className="mb-10 scroll-mt-20">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Comparativa de precios de hoy</h2>
           {productos.length === 0 ? (
             <SinOfertas que={`de ${c.nombre}`} enlaces={enlacesAfines({ categoria: c.categoria })} />

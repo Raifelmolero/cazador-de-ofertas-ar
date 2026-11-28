@@ -131,9 +131,13 @@ class TestBloquesCta(unittest.TestCase):
         ph = (FRONT / "app" / "precio-hoy" / "[slug]" / "page.tsx").read_text(encoding="utf-8")
         self.assertIn("ctaDestacado(`/precio-hoy/${p.slug}`)", ph)
         cuerpo = ph[ph.index("export default async function PrecioHoyPage"):]
-        # Above the fold: justo debajo del H1, antes de los recuadros de precio.
+        # Above the fold: H1, luego producto + botón, el aviso BF debajo para no empujar el CTA.
         self.assertLess(cuerpo.index("<h1"), cuerpo.index("<CtaOfertaDestacada"))
+        self.assertIn("destacarPrimero", cuerpo[cuerpo.index("<CtaOfertaDestacada"):cuerpo.index("<CtaOfertaDestacada")+120])
+        self.assertLess(cuerpo.index("<CtaOfertaDestacada"), cuerpo.index("<AvisoBFRubro"))
         self.assertLess(cuerpo.index("<CtaOfertaDestacada"), cuerpo.index('data-seccion="preciohoy_minimo"'))
+        comp = (FRONT / "components" / "CtaOfertaDestacada.tsx").read_text(encoding="utf-8")
+        self.assertIn("destacarPrimero", comp)
 
 
 class TestTitlesYMetas(unittest.TestCase):

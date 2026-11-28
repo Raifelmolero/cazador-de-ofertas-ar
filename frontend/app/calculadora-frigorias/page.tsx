@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CalculadoraFrigorias, { type AireOferta, type LandingsAire } from '@/components/CalculadoraFrigorias'
 import Footer from '@/components/Footer'
+import EnlacesVerano from '@/components/EnlacesVerano'
 import { busquedaML } from '@/lib/afiliado'
 import { getComparativa, productosDe } from '@/lib/comparativas'
 import { getLanding, indexableLanding } from '@/lib/landings'
@@ -113,6 +114,19 @@ export default function CalculadoraFrigoriasPage() {
         </p>
 
         <CalculadoraFrigorias aires={aires} busqueda={busquedaML('aire acondicionado split')} landings={landings} />
+
+        {/* Verano ticket alto (27/11): de la calculadora a la comparativa de aires, visible y arriba. */}
+        <p className="mt-6 max-w-3xl rounded-2xl border border-[#FACC15]/50 bg-zinc-900 p-4 text-zinc-200" data-seccion="frigorias_verano">
+          ¿Ya sabés cuántas frigorías necesitás?{' '}
+          <Link href="/mejores/mejores-aires-acondicionados" className="font-black text-[#FACC15] hover:underline">
+            Mirá los aires acondicionados para este verano →
+          </Link>
+        </p>
+        <EnlacesVerano
+          seccion="frigorias_verano_enlaces"
+          slugs={['mejores-aires-acondicionados', 'mejores-heladeras', 'mejores-piletas', 'mejores-muebles-de-jardin']}
+          className="mt-4 max-w-3xl"
+        />
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-4">Cómo calculamos</h2>

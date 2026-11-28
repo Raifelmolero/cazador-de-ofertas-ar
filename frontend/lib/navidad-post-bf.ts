@@ -58,6 +58,26 @@ export function terminoBF(ahora = new Date()): boolean {
   return modoBF(ahora) === 'termino'
 }
 
+/** Ruta (sin dominio) a la que mandan los cuadros de las calculadoras, según la fecha:
+ *  - hasta el domingo 29/11 23:59 ART (BF vivo): notebooks → su comparativa BF; el resto → /black-friday.
+ *  - desde el lunes 30/11 00:00 ART hasta Reyes: /regalos-navidad (notebooks → su categoría viva).
+ *  - después de Reyes: /hoy.
+ *  Nunca /black-friday ni /mejores/black-friday-* cuando esas páginas ya dicen «terminó». */
+export function rutaDestinoCalculadora(esNotebook: boolean, ahora = new Date()): string {
+  if (!terminoBF(ahora)) return esNotebook ? '/mejores/black-friday-notebooks' : '/black-friday'
+  if (enlaceNavidadVigente(ahora)) {
+    return (esNotebook && categoriaEquivalente('black-friday-notebooks')?.href) || '/regalos-navidad'
+  }
+  return '/hoy'
+}
+
+/** «Ver más» de los cuadros de las calculadoras: misma agenda que rutaDestinoCalculadora. */
+export function rutaVerMas(ahora = new Date()): { ruta: string; texto: string } {
+  if (!terminoBF(ahora)) return { ruta: '/black-friday', texto: 'Ver todo el Black Friday' }
+  if (enlaceNavidadVigente(ahora)) return { ruta: '/regalos-navidad', texto: 'Ver los regalos de Navidad' }
+  return { ruta: '/hoy', texto: 'Ver las ofertas de hoy' }
+}
+
 /** Guías (/guias/<slug>) de rubros que se regalan caros: llevan el link a /regalos-navidad. */
 const GUIA_REGALABLE = /notebook|laptop|macbook|celular|iphone|samsung-galaxy|smart-tv|televisor|(^|-)tv(-|$)|regalo|navidad|juguete|consola|playstation|nintendo|gamer|tablet|ipad|auricular|smartwatch/
 

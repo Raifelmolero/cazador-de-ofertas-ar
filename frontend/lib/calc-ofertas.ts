@@ -16,7 +16,7 @@
 // Noblex de $634.500; sin %, tachados, «mínimo histórico» ni cupones.
 import { getLandingBF, productosBF, MARCAS_PROHIBIDAS, type ProductoBF } from '@/lib/black-friday-landings'
 import { excluidoDeCta, MAX_DESTACADOS, type CtaDestacado } from '@/lib/cta-destacados'
-import { avisoBFVigente } from '@/lib/bf-enlaces'
+import { rutaDestinoCalculadora, rutaVerMas } from '@/lib/navidad-post-bf'
 import { desdeCalculadora } from '@/lib/afiliado'
 import { DEALS_URL } from '@/lib/marca'
 
@@ -52,7 +52,9 @@ export const RUBROS_CONSUMO = [
 /** Solo electro de bajo consumo en el cuadro de consumo (la landing de aires trae una pileta). */
 const BAJO_CONSUMO = /inverter|no ?frost|lavarropas|lavasecarropas|ecobubble|carga frontal|heladera|split/i
 
-/** Primer producto vigente (con foto, link de afiliado y precio mostrable) de cada rubro, hasta `max`. */
+/** Primer producto vigente (con foto, link de afiliado y precio mostrable) de cada rubro, hasta `max`.
+ *  Si un rubro no tiene producto fresco (p. ej. los aires con precio visto hace más de 7 días),
+ *  completa el cupo con otros productos vigentes de esos mismos rubros. */
 export function destacadosDeRubros(
   rubros: readonly string[],
   max: number,
@@ -60,45 +62,62 @@ export function destacadosDeRubros(
 ): ProductoBF[] {
   const out: ProductoBF[] = []
   const vistos = new Set<string>()
-  for (const slug of rubros) {
-    const l = getLandingBF(slug)
-    if (!l) continue
-    const p = productosBF(l, hoy).find(
-      x => x.img && x.precio !== null && !vistos.has(x.id) && !excluidoCalc(x) && (!filtro || filtro(x)),
-    )
-    if (!p) continue
-    vistos.add(p.id)
-    out.push(p)
-    if (out.length >= max) break
+  const sirve = (x: ProductoBF) =>
+    Boolean(x.img && x.precio !== null && !vistos.has(x.id) && !excluidoCalc(x) && (!filtro || filtro(x)))
+  const agregarDe = (soloPrimero: boolean) => {
+    for (const slug of rubros) {
+      const l = getLandingBF(slug)
+      if (!l) continue
+      for (const p of productosBF(l, hoy)) {
+        if (!sirve(p)) continue
+        vistos.add(p.id)
+        out.push(p)
+        if (out.length >= max || soloPrimero) break
+      }
+      if (out.length >= max) break
+    }
   }
+  agregarDe(true)
+  if (out.length < max) agregarDe(false)
   return out
 }
 
-/** «Ver más»: el Black Friday mientras dure; después, las ofertas de hoy. Siempre al dominio de
- *  ofertas con URL absoluta (desde la calculadora esas rutas redirigen: así no hay salto de más). */
+/** «Ver más»: Black Friday hasta el 29/11, regalos de Navidad hasta Reyes, después las ofertas de hoy
+ *  (lib/navidad-post-bf). Siempre al dominio de ofertas con URL absoluta (desde la calculadora esas
+ *  rutas redirigen: así no hay salto de más). */
 function verMas(): CtaDestacado['verMas'] {
-  return avisoBFVigente()
-    ? { href: `${DEALS_URL}/black-friday`, texto: 'Ver todo el Black Friday' }
-    : { href: `${DEALS_URL}/hoy`, texto: 'Ver las ofertas de hoy' }
+  const { ruta, texto } = rutaVerMas()
+  return { href: `${DEALS_URL}${ruta}`, texto }
 }
+
+/** Enlaces internos del bloque post-resultado (27/11): a donde sigue quien ya hizo la cuenta.
+ *  Todo al sitio de ofertas (`sitio` convierte ~7-8 %), con el utm de la calculadora solo para
+ *  medir origen. Nunca a listados de ML. */
+export const ENLACES_CALCULADORA: { href: string; texto: string }[] = [
+  { href: `${DEALS_URL}/mejores`, texto: 'Comparativas: qué comprar' },
+  { href: `${DEALS_URL}/hoy`, texto: 'Ofertas de hoy' },
+  { href: `${DEALS_URL}/regalos-navidad`, texto: 'Regalos de Navidad' },
+]
 
 function armar(
   def: Omit<CtaDestacado, 'productos' | 'items' | 'verMas'>,
   productos: ProductoBF[],
   link: (v: CtaDestacado['verMas']) => CtaDestacado['verMas'] = v => v,
   destinoInterno?: CtaDestacado['destinoInterno'],
+  enlaces?: CtaDestacado['enlaces'],
 ): CtaDestacado | null {
   return productos.length
-    ? { ...def, items: productos, productos, verMas: link(verMas()), ...(destinoInterno ? { destinoInterno } : {}) }
+    ? { ...def, items: productos, productos, verMas: link(verMas()), ...(destinoInterno ? { destinoInterno } : {}), ...(enlaces ? { enlaces } : {}) }
     : null
 }
 
 /** Destino de cada producto del cuadro de las calculadoras (26/11): páginas internas del sitio de
- *  ofertas, donde la etiqueta `sitio` convierte ~8 %. Notebooks → su comparativa; el resto → BF.
+ *  ofertas, donde la etiqueta `sitio` convierte ~8 %. Según la fecha (rutaDestinoCalculadora): BF hasta
+ *  el 29/11; desde el 30/11 /regalos-navidad (notebooks → su categoría); pasados Reyes, /hoy.
  *  Nunca una publicación de ML con calcml (1.605 clics, 0 ventas). */
 export function destinoCalculadora(p: ProductoBF): string {
   const esNotebook = /notebook|laptop/i.test(p.nombre)
-  return desdeCalculadora(`${DEALS_URL}${esNotebook ? '/mejores/black-friday-notebooks' : '/black-friday'}`)
+  return desdeCalculadora(`${DEALS_URL}${rutaDestinoCalculadora(esNotebook)}`)
 }
 
 /** Cuadro de las calculadoras de vendedores (comisiones, precio de venta, envío, cuotas, fichas). */
@@ -113,6 +132,7 @@ export function ctaCalculadora(hoy?: string): CtaDestacado | null {
     // Solo acá (calculadoraml.com.ar): la de consumo eléctrico ya vive en el sitio de ofertas.
     v => ({ ...v, href: desdeCalculadora(v.href) }),
     destinoCalculadora,
+    ENLACES_CALCULADORA.map(e => ({ ...e, href: desdeCalculadora(e.href) })),
   )
 }
 

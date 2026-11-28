@@ -257,8 +257,9 @@ class TestModoBFEnLasPaginas(unittest.TestCase):
         cls.lib_cta = leer("lib/cta-destacados.ts")
 
     def test_isr_en_las_paginas_que_dependen_de_la_fecha(self):
-        for src in (self.bf, self.mejores, self.guias, self.precio_hoy):
-            self.assertIn("export const revalidate = 3600", src)
+        # 27/11 (ahorro Vercel): TTL largo; igual se vuelve a evaluar el modo al menos cada 6-12 h.
+        for src, ttl in ((self.bf, 43200), (self.mejores, 21600), (self.guias, 43200), (self.precio_hoy, 21600)):
+            self.assertIn(f"export const revalidate = {ttl}", src)
 
     def test_title_h1_hero_y_jsonld_usan_el_modo(self):
         self.assertIn("PAGINA_BF[modoBF()]", self.bf)

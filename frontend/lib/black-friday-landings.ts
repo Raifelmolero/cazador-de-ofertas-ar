@@ -41,7 +41,10 @@ export interface ItemBF {
  *  propio link de afiliado y precio (nunca uno inventado). `detalle` solo si cambia algo (el color).
  *  Mismo procesador, memoria y disco que la elegida; si no, no va acá. */
 export const PUBLICACIONES_ALTERNATIVAS: Record<string, { id: string; detalle?: string }[]> = {
-  // Lenovo IdeaPad Slim 3 Ryzen 5 · 16 GB · 512 GB (la más vendida del panel, 16-25/11).
+  // Lenovo IdeaPad Slim 3 Ryzen 5 · 16 GB · 512 GB. La publicación recomendada es la de
+  // precio más reciente en el catálogo (MLA61338032, $1.387.099 visto el 25/11). La
+  // MLA77766168 quedó en $1.573.949 visto el 19/11 (más de 7 días): queda de respaldo.
+  MLA61338032: [{ id: 'MLA77766168' }],
   MLA77766168: [{ id: 'MLA61338032' }],
   // Lenovo V15 Gen 5 Core i5 · 16 GB · 512 GB.
   MLA72201400: [{ id: 'MLA72201391' }],
@@ -92,7 +95,7 @@ export const LANDINGS_BF: LandingBF[] = [
     respuestaCorta:
       'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: rinde de sobra para estudiar, trabajar y el uso diario, y con esa memoria no se queda corta en un par de años. Si preferís Intel, la Lenovo V15 Gen 5 con Core i5; para jugar o editar video, la Lenovo LOQ o la Asus TUF Gaming A15, que traen placa de video dedicada.',
     items: [
-      { id: 'MLA77766168', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La que recomendamos para la mayoría: estudio, oficina y uso diario.' },
+      { id: 'MLA61338032', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La que recomendamos para la mayoría: estudio, oficina y uso diario.' },
       { id: 'MLA72201400', nombre: 'Lenovo V15 Gen 5', detalle: 'Intel Core i5 · 16 GB de RAM · 512 GB SSD', nota: 'Alternativa con Intel para trabajar.' },
       { id: 'MLA53659389', nombre: 'Lenovo IdeaPad Slim 3 táctil', detalle: 'Ryzen 7 8840HS · 16 GB de RAM · 512 GB SSD · Windows 11', nota: 'Más procesador y pantalla táctil.' },
       { id: 'MLA61813247', nombre: 'Asus Zenbook 14 OLED', detalle: 'Ryzen 7 8840HS · 16 GB de RAM · 1 TB SSD', nota: 'Liviana y con pantalla OLED.' },
@@ -319,14 +322,14 @@ export const LANDINGS_BF: LandingBF[] = [
     h1: 'Bicicletas rodado 29 para el Black Friday 2026',
     titulo: 'Black Friday 2026 bicicletas R29 Argentina: cuál',
     descripcion:
-      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 Battle, SLP, Overtech, Alpina y Gariotti elegidas, con link directo a Mercado Libre.',
+      'Black Friday 2026 en Argentina (viernes 27/11): mountain bikes rodado 29 SLP, Overtech, Alpina y Gariotti elegidas, con link directo a Mercado Libre.',
     keywords: ['black friday 2026 bicicletas argentina', 'bicicleta r29 black friday 2026', 'mountain bike black friday', 'bicicleta mercado libre black friday'],
     intro:
       'Mountain bikes rodado 29 para tierra, ripio y calles rotas, todas de aluminio. Arriba, la que más recomendamos; abajo, otras R29 de varias marcas y talles.',
     respuestaCorta:
-      'Para tierra, ripio y calles rotas, la Battle R29 de aluminio con monoplato Shimano: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
+      'Para tierra, ripio y calles rotas, la Overtech Peregrine R29 de aluminio con monoplato: es simple de usar y de mantener. Si querés más cambios para las subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0. Elegí el talle de cuadro por tu altura con la tabla de cada publicación, antes que por el rodado.',
     items: [
-      { id: 'MLA53194352', nombre: 'Bicicleta MTB Battle R29', detalle: 'Aluminio · monoplato Shimano 8 velocidades · talle 16', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
+      { id: 'MLA41151469', nombre: 'Overtech Peregrine R29', detalle: 'Aluminio · monoplato · talle M', nota: 'La que recomendamos: monoplato, simple de usar y de mantener.' },
       { id: 'MLA51766931', nombre: 'SLP MTB 10 Pro R29', detalle: 'Aluminio · Shimano 21 velocidades · cuadro 21', nota: 'Cuadro grande, para gente alta.' },
       { id: 'MLA47640884', nombre: 'Overtech Fortis R29', detalle: 'Aluminio · full Shimano · talle M' },
       { id: 'MLA44916984', nombre: 'Overtech Q6 R29', detalle: 'Aluminio · 21 velocidades · freno a disco · talle S', nota: 'Cuadro chico.' },
@@ -340,7 +343,7 @@ export const LANDINGS_BF: LandingBF[] = [
       'Fijate si llega armada o hay que terminar de armarla (manubrio, pedales, ajuste de frenos).',
     ],
     faq: [
-      { q: '¿Qué bicicleta conviene comprar en el Black Friday 2026?', a: 'Para andar por tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio, como la Battle R29 monoplato de esta página. Si querés más cambios para subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0.' },
+      { q: '¿Qué bicicleta conviene comprar en el Black Friday 2026?', a: 'Para andar por tierra, ripio y calles rotas, una mountain bike rodado 29 de aluminio, como la Overtech Peregrine R29 monoplato de esta página. Si querés más cambios para subidas, una de 21 velocidades con freno a disco, como la Overtech Q6 o la Alpina 3.0.' },
       { q: '¿Qué talle de cuadro necesito?', a: 'Depende de tu altura: cada publicación trae la tabla de talles del fabricante (S, M, L, XL o en pulgadas). Elegí por esa tabla antes que por el rodado.' },
       { q: '¿El precio es el mismo que en Mercado Libre?', a: 'Sí. Los botones llevan a la publicación de Mercado Libre con nuestro link de afiliado: pagás lo mismo que entrando directo. El precio puede cambiar, confirmalo ahí antes de comprar.' },
     ],

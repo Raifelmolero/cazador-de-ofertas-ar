@@ -12,21 +12,34 @@ import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 
 const pesos = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 
-export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDestacado | null; className?: string }) {
+export default function CtaOfertaDestacada({
+  cta,
+  className = '',
+  destacarPrimero = false,
+}: {
+  cta: CtaDestacado | null
+  className?: string
+  /** Primera tarjeta a lo ancho, con precio y botón a la vista en la primera pantalla. */
+  destacarPrimero?: boolean
+}) {
   if (!cta || cta.productos.length === 0) return null
   return (
     <section
       aria-label={cta.titulo}
       data-seccion={cta.seccion}
       data-cta-destacado=""
+      data-destacar-primero={destacarPrimero ? '' : undefined}
       className={`rounded-2xl border border-[#FACC15]/50 bg-zinc-900 p-2.5 sm:p-4 ${className}`}
     >
       <h2 className="mb-2 font-display text-lg font-black leading-tight text-[#FACC15] [text-wrap:balance]">{cta.titulo}</h2>
-      <ul className={`grid gap-2.5 ${cta.productos.length > 1 ? 'sm:grid-cols-3' : ''}`}>
+      <ul className={`grid gap-2.5 ${destacarPrimero ? 'grid-cols-1 sm:grid-cols-2' : cta.productos.length > 1 ? 'sm:grid-cols-3' : ''}`}>
         {cta.productos.map((p, i) => (
-          <li key={p.id} className="flex min-w-0 flex-col gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/60 p-2">
-            <span className="flex gap-3 sm:flex-col">
-              <span className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-white sm:h-24 sm:w-full">
+          <li
+            key={p.id}
+            className={`flex min-w-0 flex-col gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/60 p-2 ${destacarPrimero && i === 0 ? 'sm:col-span-2' : ''}`}
+          >
+            <span className={`flex gap-3 ${destacarPrimero && i === 0 ? 'sm:flex-row sm:items-center' : 'sm:flex-col'}`}>
+              <span className={`shrink-0 overflow-hidden rounded-lg bg-white ${destacarPrimero && i === 0 ? 'h-24 w-24 sm:h-28 sm:w-28' : 'h-20 w-20 sm:h-24 sm:w-full'}`}>
                 {p.img && (
                   // eslint-disable-next-line @next/next/no-img-element -- fotos del CDN de ML, sin optimizador (ver CLAUDE.md)
                   <img
@@ -45,11 +58,15 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
               </span>
               <span className="flex min-w-0 flex-1 flex-col">
                 <span className="text-base font-bold leading-snug text-zinc-100">{p.nombre}</span>
-                <span className="text-sm leading-snug text-zinc-400">{p.detalle}</span>
+                {p.detalle && <span className="text-sm leading-snug text-zinc-400">{p.detalle}</span>}
                 {p.precio !== null && (
                   <>
                     <span className="mt-1 font-display text-xl font-black leading-tight tabular-nums text-[#FACC15]">{pesos(p.precio)}</span>
-                    <UltVerificacion fecha={p.visto} />
+                    {cta.rotulos?.[p.id] ? (
+                      <span className="block text-sm leading-snug text-amber-300">{cta.rotulos[p.id]}</span>
+                    ) : (
+                      <UltVerificacion fecha={p.visto} />
+                    )}
                   </>
                 )}
               </span>
@@ -58,7 +75,7 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
               // Cuadro de las calculadoras: página interna del sitio de ofertas, sin link de afiliado
               // a ML (la etiqueta calcml no convertía: 0 ventas). El clic de compra lo hace el sitio.
               <a href={cta.destinoInterno(p)} data-evento={cta.evento} data-mla={p.id} className={`${BOTON_ML} mt-auto`}>
-                Ver ofertas →
+                {cta.textoBoton ?? 'Ver ofertas →'}
               </a>
             ) : (
               <a
@@ -78,10 +95,19 @@ export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDe
       <a href={cta.verMas.href} className="mt-2 flex min-h-12 items-center justify-center rounded-xl border-2 border-[#FACC15] px-4 text-center font-black text-[#FACC15] hover:bg-[#FACC15]/10">
         {cta.verMas.texto} →
       </a>
+      {cta.enlaces && cta.enlaces.length > 0 && (
+        <nav aria-label="Seguí mirando" className="mt-2 flex flex-wrap gap-2">
+          {cta.enlaces.map(e => (
+            <a key={e.href} href={e.href} className="flex min-h-11 items-center rounded-full border border-zinc-700 px-4 text-sm font-bold text-zinc-200 hover:border-[#FACC15] hover:text-[#FACC15]">
+              {e.texto}
+            </a>
+          ))}
+        </nav>
+      )}
       <p className="mt-2 text-sm leading-relaxed text-zinc-400">
         {cta.destinoInterno
           ? 'El precio puede cambiar: confirmalo en la publicación.'
-          : 'El precio puede cambiar: confirmalo en la publicación. Link de afiliado: pagás lo mismo.'}
+          : 'Se abre la publicación en Mercado Libre, donde pagás con sus medios de pago. El precio puede cambiar: confirmalo ahí. Link de afiliado: pagás lo mismo.'}
       </p>
     </section>
   )

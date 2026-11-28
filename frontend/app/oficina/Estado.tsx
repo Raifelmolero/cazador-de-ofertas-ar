@@ -1,71 +1,33 @@
 'use client'
 
-// El sitio es estático: el "hace X" y el semáforo se calculan en el navegador
-// para que no queden congelados en la hora del último deploy.
+// Semáforo de un departamento. El sitio es estático: se calcula en el
+// navegador con el reloj actual, así no queda congelado en el último deploy.
 
-import { useSyncExternalStore } from 'react'
+import type { Depto, Nivel } from './salud'
+import { salud } from './salud'
 
-function suscribirMinuto(onChange: () => void) {
-  const t = setInterval(onChange, 60000)
-  return () => clearInterval(t)
+const COLOR: Record<Nivel, string> = {
+  ok: 'bg-emerald-400',
+  revisar: 'bg-red-500',
+  pausa: 'bg-amber-400',
+  espera: 'bg-amber-400',
+  guardia: 'bg-sky-400',
+  pronto: 'bg-zinc-500',
 }
 
-function haceCuanto(ms: number): string {
-  const min = Math.round(ms / 60000)
-  if (min < 60) return `hace ${min} min`
-  const h = Math.round(min / 60)
-  if (h < 48) return `hace ${h} h`
-  return `hace ${Math.round(h / 24)} días`
-}
-
-export default function Estado({
-  ultima,
-  automatico,
-  proximamente,
-  ventanaHoras = 12,
-}: {
-  ultima: string | null
-  automatico: boolean
-  proximamente?: boolean
-  ventanaHoras?: number
-}) {
-  // Reloj de minuto en minuto; en el server es null para no romper la hidratación.
-  const ahora = useSyncExternalStore(
-    suscribirMinuto,
-    () => Math.floor(Date.now() / 60000) * 60000,
-    () => null,
-  )
-
-  let color = 'bg-zinc-500'
-  let texto = 'En espera'
-  let detalle = ultima ? '' : 'Sin actividad todavía'
-
-  if (proximamente) {
-    texto = 'Próximamente'
-    detalle = 'Se suma en las próximas semanas'
-  } else if (ultima && ahora !== null) {
-    const ms = ahora - new Date(ultima).getTime()
-    detalle = `Última actividad ${haceCuanto(ms)}`
-    if (automatico) {
-      // Pasada la ventana esperada (12 h el bot, 26 h la auditoría) es una falla.
-      const ok = ms < ventanaHoras * 3600 * 1000
-      color = ok ? 'bg-emerald-400' : 'bg-red-500'
-      texto = ok ? 'Trabajando' : 'Revisar: sin actividad'
-    } else {
-      texto = 'Listo, espera tarea'
-      color = 'bg-amber-400'
-    }
-  }
-
+export default function Estado({ depto, ahora }: { depto: Depto; ahora: number | null }) {
+  // En el server `ahora` es null: se pinta neutro para no romper la hidratación.
+  const s = ahora === null ? null : salud(depto, ahora)
+  const nivel: Nivel = s?.nivel ?? 'pronto'
   return (
-    <div className="flex items-center gap-2 text-xs">
-      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${color}`}>
-        {texto === 'Trabajando' && (
-          <span className={`absolute inset-0 animate-ping rounded-full ${color} opacity-60`} />
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
+      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${COLOR[nivel]}`}>
+        {(nivel === 'ok' || nivel === 'guardia') && (
+          <span className={`absolute inset-0 animate-ping rounded-full ${COLOR[nivel]} opacity-60`} />
         )}
       </span>
-      <span className="font-semibold text-white">{texto}</span>
-      {detalle && <span className="text-zinc-400">· {detalle}</span>}
+      <span className="font-semibold text-white">{s?.texto ?? 'Cargando…'}</span>
+      {s?.detalle && <span className="text-zinc-400">· {s.detalle}</span>}
     </div>
   )
 }

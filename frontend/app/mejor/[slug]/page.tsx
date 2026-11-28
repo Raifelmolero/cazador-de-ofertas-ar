@@ -182,6 +182,16 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
           <p className="mt-3 text-sm text-zinc-500">
             <LastUpdated scrapedAt={getScrapedAt().toISOString()} />.
           </p>
+          <div data-seccion="mejor_arriba" className="mt-5">
+            <a
+              href={x.recomendado.url}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-yellow-400 hover:bg-yellow-300 px-5 py-3 font-black text-black transition-colors sm:w-auto"
+            >
+              Ver {fem ? 'la' : 'el'} que más trae a {pesos(x.recomendado.precio)} en Mercado Libre 🛒
+            </a>
+          </div>
         </div>
       </section>
 

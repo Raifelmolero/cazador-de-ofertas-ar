@@ -32,9 +32,6 @@ on:
         type: boolean
         default: false
 
-permissions:
-  contents: write
-
 concurrency:
   group: deals-bot
   cancel-in-progress: false
@@ -42,6 +39,8 @@ concurrency:
 jobs:
   post-deals:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -159,6 +158,8 @@ jobs:
     needs: post-deals
     if: always()
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # alertas.py commitea su estado
     timeout-minutes: 5
     concurrency:
       group: alertas

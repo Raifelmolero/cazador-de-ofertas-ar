@@ -801,6 +801,8 @@ const TODAS: Comparativa[] = [
     keywords: [
       'consola', 'playstation', 'nintendo', 'bicicleta', 'monopatin', 'monopatín',
       'auriculares', 'smartwatch', 'perfume', 'parlante', 'lego', 'tablet',
+      // Decoración (28/11, ticket-alto.md): árboles, guirnaldas, pesebres, adornos e inflables navideños.
+      'arbol de navidad', 'arbol navidad', 'guirnalda', 'pesebre', 'adorno de navidad', 'adornos navide', 'papa noel inflable',
     ],
     presupuestos: [50000, 150000],
     criterios: [
@@ -808,6 +810,52 @@ const TODAS: Comparativa[] = [
       'Envío Full llega más rápido y simplifica el cambio si el regalo no convence.',
       'Consolas y tecnología: preferí tiendas oficiales y revisá la garantía (oficial o del vendedor).',
       'Bicicletas y monopatines: chequeá el rodado o la edad recomendada según quién lo va a usar.',
+    ],
+  },
+  // Movilidad eléctrica (28/11, ticket-alto.md «Regalos de Navidad» #2): se arman en la primera visita,
+  // no en el build (A_PEDIDO en app/mejores/[slug]/page.tsx).
+  {
+    slug: 'bicicletas-electricas',
+    nombre: 'bicicletas eléctricas',
+    titulo: `Mejores bicicletas eléctricas en oferta ${AÑO}: comparativa de precios`,
+    seoTitulo: `Bicicletas eléctricas en oferta ${AÑO}: comparativa`,
+    descripcion:
+      'Comparativa de bicicletas eléctricas en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Qué mirar en motor, batería y autonomía.',
+    intro:
+      'Las bicicletas eléctricas en oferta hoy, comparadas por precio, descuento y el precio más bajo que registramos para cada una. La tabla se actualiza a medida que cargamos ofertas nuevas.',
+    keywords: ['bicicleta electrica', 'bici electrica', 'e-bike', 'ebike'],
+    excluir: ['kit de conversion', 'kit conversion', 'repuesto', 'cubierta', 'camara de', 'cargador para', 'bateria para', 'infantil'],
+    criterios: [
+      'Motor: 250 a 350 W alcanza para ciudad; 500 W o más para subidas o para llevar peso. Más potencia, más consumo de batería.',
+      'Batería y autonomía: la autonomía anunciada es en condiciones ideales; con peso, subidas o mucho acelerador, contá un 30 % menos.',
+      'Plegable o rodado grande: la plegable entra en el departamento o el baúl; la de rodado 26-29 es más estable en calle rota.',
+      'Garantía y repuestos: preferí tienda oficial o un vendedor con service en Argentina; la batería es lo que más se gasta.',
+    ],
+    enlaces: [
+      { href: '/mejores/monopatines-electricos', texto: 'Monopatines eléctricos en oferta' },
+      { href: '/regalos-navidad', texto: 'Regalos de Navidad por presupuesto' },
+    ],
+  },
+  {
+    slug: 'monopatines-electricos',
+    nombre: 'monopatines eléctricos',
+    titulo: `Mejores monopatines eléctricos en oferta ${AÑO}: comparativa de precios`,
+    seoTitulo: `Monopatines eléctricos en oferta ${AÑO}: comparativa`,
+    descripcion:
+      'Comparativa de monopatines eléctricos para adultos en oferta hoy en Mercado Libre Argentina: precio, descuento y precio mínimo registrado. Potencia, autonomía y peso máximo.',
+    intro:
+      'Los monopatines eléctricos para adultos en oferta hoy, comparados por precio, descuento y el precio más bajo que registramos para cada uno. La tabla se actualiza a medida que cargamos ofertas nuevas.',
+    keywords: ['monopatin electrico', 'scooter electrico'],
+    excluir: ['infantil', 'nino', 'repuesto', 'cubierta', 'camara de', 'cargador para', 'bateria para', 'guardabarro'],
+    criterios: [
+      'Potencia: 350 W va bien en llano; 500 W o más si hay subidas o pesás más de 90 kg.',
+      'Autonomía: la anunciada es con poco peso y sin viento; tomá un 30 % menos como referencia real.',
+      'Ruedas y suspensión: ruedas de 10" o más y suspensión hacen la diferencia en veredas y calles rotas.',
+      'Peso máximo y frenos: revisá el peso que soporta y que tenga freno a disco o doble freno.',
+    ],
+    enlaces: [
+      { href: '/mejores/bicicletas-electricas', texto: 'Bicicletas eléctricas en oferta' },
+      { href: '/regalos-navidad', texto: 'Regalos de Navidad por presupuesto' },
     ],
   },
   {

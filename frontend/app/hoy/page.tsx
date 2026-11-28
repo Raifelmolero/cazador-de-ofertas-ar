@@ -116,6 +116,20 @@ export default function HoyPage() {
     ['700000-a-1500000', '$700 mil a $1,5 M'],
     ['mas-de-1500000', 'Más de $1,5 M'],
   ] as const
+  // Buscador de regalos (28/11): destinatarios = anclas de las secciones del hub /regalos-navidad
+  // (DESTINATARIOS en app/regalos-navidad/page.tsx). Sin rutas nuevas.
+  const regalosPorDestinatario = [
+    ['para-el', '🧔 Para él'],
+    ['para-ella', '💐 Para ella'],
+    ['para-chicos', '🧸 Chicos'],
+    ['para-tech', '💻 Tech'],
+    ['para-verano', '☀️ Verano'],
+    ['decoracion-navidad', '🎄 Decoración'],
+  ] as const
+  const buscadorRegalos = [
+    { titulo: '¿Para quién es?', chips: regalosPorDestinatario.map(([ancla, texto]) => ({ href: `/regalos-navidad#${ancla}`, texto })) },
+    { titulo: '¿Cuánto querés gastar?', chips: regalosPorPresupuesto.map(([slug, texto]) => ({ href: `/regalos-navidad/${slug}`, texto })) },
+  ]
   // Mezcla de categorías (data/categorias-prioritarias.json, se actualiza cada día
   // desde tendencias-hoy.md): aires, consolas, heladeras, TV, lavarropas, celulares
   // y piletas de ticket alto y vigentes. Computación queda con su tope (~20 %).
@@ -378,24 +392,29 @@ export default function HoyPage() {
             <ChipsHero titulo="¿Qué buscás?" chips={chipsRubro} />
           </div>
           {enlaceNavidadVigente() && (
-            <nav aria-label="Regalos de Navidad por presupuesto" data-seccion="navidad_hero" className="mt-4 rounded-2xl border border-green-400/30 bg-green-500/[0.07] p-3">
-              <Link href="/regalos-navidad" data-evento="navidad_enlace" className="flex min-h-11 items-center justify-between gap-2 font-display text-base font-black text-green-200 hover:text-green-100">
-                <span>🎄 Regalos de Navidad por presupuesto</span>
+            <nav aria-label="Buscador de regalos de Navidad" data-seccion="navidad_hero" className="mt-4 rounded-2xl border border-green-400/30 bg-green-500/[0.07] p-3 sm:p-4">
+              <Link href="/regalos-navidad" data-evento="navidad_enlace" className="flex min-h-11 items-center justify-between gap-2 font-display text-lg font-black text-green-200 hover:text-green-100">
+                <span>🎄 Buscador de regalos de Navidad</span>
                 <span aria-hidden="true">→</span>
               </Link>
-              <ul className="-mx-3 mt-1 flex gap-2 overflow-x-auto px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {regalosPorPresupuesto.map(([slug, texto]) => (
-                  <li key={slug} className="shrink-0">
-                    <Link
-                      href={`/regalos-navidad/${slug}`}
-                      data-evento="navidad_enlace"
-                      className="chip presionable flex min-h-11 items-center whitespace-nowrap rounded-full border border-green-400/40 bg-zinc-950/60 px-4 text-base font-bold text-green-100 hover:border-green-300"
-                    >
-                      {texto}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {buscadorRegalos.map(fila => (
+                <div key={fila.titulo} className="mt-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-green-300/80">{fila.titulo}</p>
+                  <ul className="-mx-3 mt-1.5 flex gap-2 overflow-x-auto px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible">
+                    {fila.chips.map(c => (
+                      <li key={c.href} className="shrink-0">
+                        <Link
+                          href={c.href}
+                          data-evento="navidad_enlace"
+                          className="chip presionable flex min-h-11 items-center whitespace-nowrap rounded-full border border-green-400/40 bg-zinc-950/60 px-4 text-base font-bold text-green-100 hover:border-green-300"
+                        >
+                          {c.texto}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </nav>
           )}
         </div>

@@ -78,7 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...['hasta-300000', '300000-a-700000', '700000-a-1500000', 'mas-de-1500000'].map(s => ({ url: `${DEALS_URL}/regalos-navidad/${s}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
     { url: `${DEALS_URL}/precio-hoy`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     ...preciosHoyVisibles().map(p => ({ url: `${DEALS_URL}/precio-hoy/${p.slug}`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 })),
-    { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.6 },
+    { url: `${DEALS_URL}/precio`, lastModified, changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${DEALS_URL}/privacidad`, changeFrequency: 'yearly' as const, priority: 0.1 },
     { url: `${DEALS_URL}/terminos`, changeFrequency: 'yearly' as const, priority: 0.1 },
     ...getSeguidosPrincipales().map(s => ({

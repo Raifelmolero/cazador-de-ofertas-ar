@@ -23,6 +23,7 @@ import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 import NavInferior from '@/components/NavInferior'
 import AvisoSeguir from '@/components/AvisoSeguir'
 import { leerPrecio, minimoDe, type Lectura } from '@/lib/lectura-precio'
+import { enlaceNavidadVigente } from '@/lib/navidad-post-bf'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -167,8 +168,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ofertas de hoy', item: DEALS_URL },
-        ...(cat ? [{ '@type': 'ListItem', position: 2, name: cat.nombre, item: `${DEALS_URL}/categoria/${cat.slug}` }] : []),
-        { '@type': 'ListItem', position: cat ? 3 : 2, name: nombre, item: url },
+        { '@type': 'ListItem', position: 2, name: 'Historial de precios', item: `${DEALS_URL}/precio` },
+        ...(cat ? [{ '@type': 'ListItem', position: 3, name: cat.nombre, item: `${DEALS_URL}/categoria/${cat.slug}` }] : []),
+        { '@type': 'ListItem', position: cat ? 4 : 3, name: nombre, item: url },
       ],
     },
     {
@@ -230,6 +232,11 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
       <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
         <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a>
+          {' '}
+          <span aria-hidden="true">/</span>{' '}
+          <a href="/precio" className="hover:text-yellow-400">
+            Historial de precios
+          </a>
           {cat && (
             <>
               {' '}
@@ -239,8 +246,17 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
               </a>
             </>
           )}{' '}
-          <span aria-hidden="true">/</span> <span className="text-zinc-300">Historial de precios</span>
+          <span aria-hidden="true">/</span> <span className="text-zinc-300">{nombre}</span>
         </nav>
+        {enlaceNavidadVigente() && (
+          <p className="hidden sm:block text-sm text-zinc-400 mb-3">
+            ¿Lo pensás para Navidad? Mirá las{' '}
+            <a href="/regalos-navidad" className="font-semibold text-yellow-400 hover:underline">
+              ofertas de regalos por presupuesto
+            </a>
+            .
+          </p>
+        )}
 
         {/* Móvil: foto chica al costado + precio y botón de compra visibles sin scroll */}
         <div className="flex flex-row gap-3 sm:gap-5 mb-3">

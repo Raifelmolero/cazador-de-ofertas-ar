@@ -9,7 +9,7 @@
 // Sin JSON-LD de Event: Navidad no es un evento con organizador.
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { tituloSeo, descripcionSeo } from '@/lib/seo'
+import { tituloSeo, descripcionSeo, urlInternaPrecio } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import EnlacesVerano from '@/components/EnlacesVerano'
 import LastUpdated from '@/components/LastUpdated'
@@ -81,16 +81,19 @@ const COMPARATIVAS_REL = [
   'monopatines-electricos',
 ]
 
-const TITULO = `Regalos de Navidad ${AÑO}: ofertas reales por presupuesto`
-const DESCRIPCION = `Regalos para Navidad ${AÑO} y Reyes: notebooks, celulares, TV, juguetes y más de Mercado Libre por presupuesto, con el descuento verificado.`
+const TITULO = `Regalos de Navidad ${AÑO} en oferta, por presupuesto`
+const DESCRIPCION = `Regalos de Navidad y Reyes ${AÑO} en Argentina, por presupuesto: él, ella, chicos, árboles y combos. Descuento verificado contra el más bajo que registramos.`
 
 export const metadata: Metadata = {
   title: tituloSeo(TITULO, [t => `${t} — Cazador de Ofertas AR`, t => t]),
   description: descripcionSeo(DESCRIPCION),
   keywords: [
     `regalos de navidad ${AÑO}`,
-    'qué regalar en navidad',
+    'regalos para navidad',
+    'ofertas regalos navidad',
     'regalos navidad mercado libre',
+    'árbol de navidad oferta',
+    'combo árbol navidad luces',
     'regalos de reyes',
     'ofertas navidad argentina',
     'regalos para chicos navidad',
@@ -165,6 +168,14 @@ export default function RegalosNavidadPage() {
       q: `¿Cuándo conviene comprar los regalos de Navidad ${AÑO}?`,
       a: `Navidad es el viernes 25 de diciembre de ${AÑO} (los regalos se abren a la medianoche del 24) y Reyes el miércoles 6 de enero de ${AÑO + 1}. Conviene comprar con margen: revisá la fecha de entrega en la publicación antes de pagar y elegí una que llegue antes del 24/12.`,
     },
+    {
+      q: '¿Qué regalar en Navidad 2026?',
+      a: `En la guía https://cazadordeofertas.com.ar/guias/que-regalar-en-navidad-segun-presupuesto hay ideas por presupuesto. En esta página están las ofertas de hoy, con el descuento comparado contra el precio más bajo que registramos.`,
+    },
+    {
+      q: '¿Tienen árboles de Navidad, combos de luces y decoración?',
+      a: 'Sí: más abajo hay un bloque de decoración con árboles, combos árbol + luces + adornos, inflables y guirnaldas, tomados de las ofertas de hoy. Si un combo tiene historial, el enlace te lleva a su ficha en este sitio para ver el precio más bajo que registramos. No son los precios de diciembre: verificá el día que compres.',
+    },
     ...FAQ_ENVIO_NAVIDAD,
     bfPasado
       ? {
@@ -205,7 +216,7 @@ export default function RegalosNavidadPage() {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: `Regalos de Navidad ${AÑO} en oferta`,
-            itemListElement: mostrados.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.url_producto })),
+            itemListElement: mostrados.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: urlInternaPrecio(p.id_ml, historial, URL) })),
           },
         ]
       : []),
@@ -253,6 +264,21 @@ export default function RegalosNavidadPage() {
             electro de cocina y decoración (árboles, luces e inflables), separados por presupuesto y por
             destinatario. Cada regalo está comparado contra el precio más bajo que registramos, así sabés si el descuento
             es de verdad.
+          </p>
+          <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+            Si todavía no sabés qué elegir, leé{' '}
+            <Link href="/guias/que-regalar-en-navidad-segun-presupuesto" className="font-semibold text-yellow-400 hover:underline">
+              qué regalar en Navidad según el presupuesto
+            </Link>
+            {' '}o la guía{' '}
+            <Link href="/guias/que-regalarle-a-un-chico-en-navidad" className="font-semibold text-yellow-400 hover:underline">
+              qué regalarle a un chico
+            </Link>
+            . El historial de cada ficha está en{' '}
+            <Link href="/precio" className="font-semibold text-yellow-400 hover:underline">
+              /precio
+            </Link>
+            ; el combo de árbol 1,80 m con adornos y 200 LED tiene ficha propia.
           </p>
 
           <div className="mt-6 rounded-2xl border border-green-400/30 bg-green-500/[0.07] p-5 sm:p-6">

@@ -14,7 +14,7 @@ export default function EnlaceNavidad({ seccion, className = '' }: { seccion: st
       className={`block rounded-2xl border border-green-400/40 bg-green-500/10 px-4 py-3 transition-colors hover:border-green-400/70 ${className}`}
     >
       <span className="block font-display text-sm font-black text-green-200 sm:text-base">
-        🎄 Regalos de Navidad: notebooks, celulares y TV por presupuesto →
+        🎄 Regalos de Navidad: tecno, árboles y combos por presupuesto →
       </span>
       <span className="mt-0.5 block text-xs text-zinc-300 sm:text-sm">
         Con el descuento comparado contra el historial. Para que llegue antes del 24/12, revisá la fecha de entrega en la publicación.

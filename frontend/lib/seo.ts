@@ -64,3 +64,11 @@ export function diferenciadores(nombres: Map<string, string>, recortado: (n: str
 /** Agrega el diferenciador al nombre en todos los formatos (también al recortado). */
 export const conDiferencia = (dif: string | undefined, formatos: ((n: string) => string)[]) =>
   dif ? formatos.map(f => (n: string) => f(`${n} ${dif}`)) : formatos
+
+const SITIO = 'https://cazadordeofertas.com.ar'
+
+/** URL de ficha en el sitio para JSON-LD ItemList (nunca un link de Mercado Libre). */
+export function urlInternaPrecio(idMl: string, slugs: Record<string, string>, fallback: string): string {
+  const slug = slugs[idMl]
+  return slug ? `${SITIO}/precio/${slug}` : fallback
+}

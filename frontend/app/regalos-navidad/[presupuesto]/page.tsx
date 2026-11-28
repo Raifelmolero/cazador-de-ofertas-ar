@@ -4,7 +4,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { tituloSeo, descripcionSeo } from '@/lib/seo'
+import { tituloSeo, descripcionSeo, urlInternaPrecio } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import LastUpdated from '@/components/LastUpdated'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ presupues
   if (!r) return {}
   const url = `${DEALS_URL}/regalos-navidad/${r.slug}`
   const t = `Regalos de Navidad ${r.corto} (${AÑO})`
-  const d = `Ideas de regalo caros para Navidad ${AÑO} ${r.corto} en Argentina: notebooks, celulares, TV, consolas y electro de Mercado Libre con el descuento verificado contra el historial.`
+  const d = `Regalos de Navidad ${AÑO} ${r.corto} en Argentina: tecno, casa, árboles y más, con el descuento verificado contra el historial de este sitio.`
   return {
     title: tituloSeo(t, [s => `${s} — Cazador de Ofertas AR`, s => s]),
     description: descripcionSeo(d),
@@ -95,7 +95,7 @@ export default async function Page({ params }: { params: Promise<{ presupuesto: 
     ...(productos.length > 0
       ? [{
           '@context': 'https://schema.org', '@type': 'ItemList', name: titulo,
-          itemListElement: productos.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: p.url_producto })),
+          itemListElement: productos.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titulo, url: urlInternaPrecio(p.id_ml, historial, url) })),
         }]
       : []),
   ]

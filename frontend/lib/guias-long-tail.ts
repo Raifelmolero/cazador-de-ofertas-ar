@@ -2613,7 +2613,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       'Ideas de regalos de Navidad para chicos según la edad: bebés, primera infancia, edad escolar y preadolescentes. Qué revisar de seguridad y para que llegue a tiempo.',
     pregunta: '¿Qué le regalo a un chico en Navidad?',
     respuestaCorta:
-      'Lo mejor es pensar en la edad: para bebés, juguetes de estimulación grandes y sin piezas chicas; de 3 a 6 años, bloques, juegos de encastre, disfraces y triciclos; en edad escolar, juegos de mesa, bicicletas, kits de ciencia o arte; y para preadolescentes, auriculares, parlantes o un smartwatch. Revisá siempre la edad recomendada en la caja.',
+      'Lo mejor es pensar en la edad: para bebés, juguetes grandes y sin piezas chicas; de 3 a 6 años, bloques, LEGO, triciclos o monopatines con protección; en edad escolar, una bici del rodado justo, juegos de mesa o una cama elástica; y para preadolescentes, un juego de consola, un monopatín o una bicicleta. Revisá la edad de la caja y que el envío llegue antes del 24.',
     secciones: [
       {
         h: 'Bebés y primera infancia',
@@ -2631,7 +2631,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       {
         h: 'Preadolescentes',
         p: [
-          'Tecnología simple y útil: auriculares, parlantes bluetooth o un smartwatch. Si es un celular o una tablet, conviene configurar el control parental.',
+          'Un juego de consola, un monopatín, una bicicleta o un kit de LEGO grande. Si es una tablet, preferí una de marca conocida y configurá el control parental. No hace falta un smartwatch de adulto ni una bici eléctrica de adulto.',
         ],
       },
       {
@@ -2643,7 +2643,7 @@ export const GUIAS_LONG_TAIL: Guia[] = [
       },
     ],
     categoria: { slug: 'bebes-y-jugueteria', nombre: 'bebés y juguetería' },
-    comparativa: 'regalos-de-navidad',
+    comparativa: 'black-friday-juguetes',
     cta: { href: '/mejores/regalos-de-navidad', titulo: 'Regalos de Navidad en oferta hoy', boton: 'Ver regalos de Navidad' },
     faq: [
       {

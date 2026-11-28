@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-27T23:57:11+00:00",
+  "generado": "2026-11-28T06:06:04+00:00",
   "departamentos": [
     {
       "id": "publicacion",
@@ -10,21 +10,21 @@
       "frecuencia": "3 veces por día (12:00, 17:00 y 21:00)",
       "badge": "Automático · 3×/día",
       "ventana_horas": 18,
-      "ultima_actividad": "2026-11-27T23:21:31+00:00",
+      "ultima_actividad": "2026-11-28T06:06:02+00:00",
       "agentes": [
         {
           "nombre": "Cazador (bot)",
-          "tarea": "Revisó 8632 productos en la última corrida"
+          "tarea": "Revisó 8232 productos en la última corrida"
         }
       ],
       "metricas": [
         {
-          "label": "Facebook",
+          "label": "Telegram",
           "valor": 3
         },
         {
-          "label": "Telegram",
-          "valor": 2
+          "label": "Facebook",
+          "valor": 3
         },
         {
           "label": "Instagram",
@@ -36,7 +36,7 @@
         }
       ],
       "metricas_titulo": "Publicaciones en las últimas 24 h",
-      "ultimo_trabajo": "Notebook Asus Tuf A15 Fa506ncq-hn003 R7 16gb 1tb Ssd"
+      "ultimo_trabajo": "Notebook Asus TUF Gaming A15 FA506NCQ-HN003 AMD Ryzen 7 7435HS 16GB DDR5 1TB SSD"
     },
     {
       "id": "investigacion",
@@ -62,11 +62,11 @@
       "entregas": [
         {
           "fecha": "2026-09-25",
-          "titulo": "piloto fase1"
+          "titulo": "gastronomia hoteleria"
         },
         {
           "fecha": "2026-09-25",
-          "titulo": "gastronomia hoteleria"
+          "titulo": "piloto fase1"
         }
       ]
     },
@@ -78,7 +78,7 @@
       "automatico": false,
       "frecuencia": "A demanda",
       "badge": "A demanda",
-      "ultima_actividad": "2026-11-26T20:20:53Z",
+      "ultima_actividad": "2026-11-28T00:02:33-03:00",
       "agentes": [
         {
           "nombre": "marketing-seo",
@@ -92,7 +92,7 @@
         },
         {
           "label": "Comparativas",
-          "valor": 77
+          "valor": 79
         }
       ],
       "entregas": [

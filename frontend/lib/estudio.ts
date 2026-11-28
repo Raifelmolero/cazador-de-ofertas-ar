@@ -79,3 +79,15 @@ export function getEstudio(): Estudio {
     porMes: [...meses].map(([mes, x]) => ({ mes, ...x, pct: pct(x.infladas, x.revisadas) })),
   }
 }
+
+/**
+ * Última pasada del bot (cualquiera, con o sin infladas): cuántas ofertas revisó y en cuántas
+ * el precio era el más bajo registrado. Para el contador del hero de la home. null si no hay
+ * registro o si la pasada tiene más de 3 días (no se muestra un «hoy» viejo).
+ */
+export function ultimaPasada(ahora = Date.now()): { ts: string; revisadas: number; minimos: number } | null {
+  const s = leerScans().filter(x => x.scanned > 0).at(-1)
+  if (!s) return null
+  if (ahora - Date.parse(s.ts) > 3 * 86_400_000) return null
+  return { ts: s.ts, revisadas: s.scanned, minimos: s.minimos }
+}

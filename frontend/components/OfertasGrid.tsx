@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import OfertaCard, { type OfertaLight } from '@/components/OfertaCard'
 import { busquedaML } from '@/lib/afiliado'
-import { RUBROS_FILTRO } from '@/lib/rubros-filtro'
+import { EVENTO_FILTRO, PRESUPUESTOS_FILTRO, RUBROS_FILTRO, enPresupuesto, type DetalleFiltro, type PresupuestoId } from '@/lib/rubros-filtro'
+import { TarjetaSeguir } from '@/components/BloqueSeguir'
 
 function normalizar(s: string) {
   return s
@@ -101,8 +102,10 @@ const CHIPS = [
   ...RUBROS_FILTRO.map(r => ({ id: r.slug, label: r.label })),
   { id: 'flash', label: '⚡ Relámpago' },
   { id: 'low', label: '📉 Mínimo histórico' },
-  { id: 'cheap', label: 'Hasta $100.000' },
 ] as const
+
+// Cada cuántas ofertas va la tarjeta de «Seguinos» (rediseño 27/11).
+const CADA_SEGUIR = 12
 
 type ChipId = (typeof CHIPS)[number]['id']
 
@@ -110,7 +113,6 @@ function pasaChip(o: OfertaLight, chip: ChipId) {
   if (chip === 'all') return true
   if (chip === 'flash') return !!o.relampago
   if (chip === 'low') return !!o.minimo_historico
-  if (chip === 'cheap') return o.precio_actual <= 100_000
   return o.rubro === chip
 }
 
@@ -131,9 +133,18 @@ function ordenar(ofertas: OfertaLight[], orden: OrdenId) {
   return copia
 }
 
+/** Intercala la tarjeta de «Seguinos» cada CADA_SEGUIR ofertas (nunca al final de la lista). */
+function conSeguir(tarjetas: React.ReactNode[], activo: boolean): React.ReactNode[] {
+  if (!activo) return tarjetas
+  const out: React.ReactNode[] = []
+  tarjetas.forEach((t, i) => {
+    out.push(t)
+    if ((i + 1) % CADA_SEGUIR === 0 && i < tarjetas.length - 1) out.push(<TarjetaSeguir key={`seguir-${i}`} />)
+  })
+  return out
+}
+
 const PASO = 48
-// Las que vienen en el HTML; el resto se baja de /ofertas-hoy.json al pintar.
-export const OFERTAS_EN_HTML = PASO
 
 export default function OfertasGrid({
   ofertas: iniciales,
@@ -162,7 +173,10 @@ export default function OfertasGrid({
       fetch('/ofertas-hoy.json')
         .then(r => (r.ok ? r.json() : null))
         .then((todas: OfertaLight[] | null) => {
-          if (vivo && todas?.length) setOfertas(todas)
+          if (!vivo || !todas?.length) return
+          // El JSON no trae el mini gráfico (solo las del HTML lo tienen): se conserva.
+          const spark = new Map(iniciales.filter(o => o.spark).map(o => [o.id_ml, o.spark]))
+          setOfertas(spark.size ? todas.map(o => (spark.has(o.id_ml) ? { ...o, spark: spark.get(o.id_ml) } : o)) : todas)
         })
         .catch(() => {})
     const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }
@@ -176,6 +190,7 @@ export default function OfertasGrid({
   const [q, setQ] = useState('')
   const [chip, setChip] = useState<ChipId>('all')
   const [orden, setOrden] = useState<OrdenId>('relevancia')
+  const [tope, setTope] = useState<PresupuestoId | 'all'>('all')
   const [desdeUrl, setDesdeUrl] = useState(false)
   const resultadosRef = useRef<HTMLDivElement>(null)
 
@@ -184,8 +199,13 @@ export default function OfertasGrid({
     const params = new URLSearchParams(window.location.search)
     // ?categoria=notebooks: filtro rápido del header.
     const rubro = RUBROS_FILTRO.find(r => r.slug === params.get('categoria'))
-    if (rubro) {
+    const presu = PRESUPUESTOS_FILTRO.find(p => p.slug === params.get('presupuesto'))
+    if (presu) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- leer la URL solo existe en el cliente
+      setTope(presu.slug)
+      if (!rubro) requestAnimationFrame(() => resultadosRef.current?.scrollIntoView({ block: 'start' }))
+    }
+    if (rubro) {
       setChip(rubro.slug)
       requestAnimationFrame(() => resultadosRef.current?.scrollIntoView({ block: 'start' }))
     }
@@ -198,12 +218,38 @@ export default function OfertasGrid({
     requestAnimationFrame(() => resultadosRef.current?.scrollIntoView({ block: 'start' }))
   }, [])
 
+  // Chips del hero (components/ChipsHero): cada toque arranca un filtro limpio.
+  useEffect(() => {
+    const onFiltro = (e: Event) => {
+      const d = (e as CustomEvent<DetalleFiltro>).detail ?? {}
+      const rubro = RUBROS_FILTRO.find(r => r.slug === d.rubro)
+      setQ('')
+      setTope(d.presupuesto ?? 'all')
+      setChip(d.minimos ? 'low' : rubro ? rubro.slug : 'all')
+    }
+    window.addEventListener(EVENTO_FILTRO, onFiltro)
+    return () => window.removeEventListener(EVENTO_FILTRO, onFiltro)
+  }, [])
+
+  // Cada fila de chips cuenta con el filtro de la otra fila puesto (presupuesto × rubro).
   const counts = useMemo(() => {
     const c = Object.fromEntries(CHIPS.map(x => [x.id, 0])) as Record<ChipId, number>
-    for (const o of ofertas) for (const x of CHIPS) if (pasaChip(o, x.id)) c[x.id]++
-    c.all = Math.max(ofertas.length, total ?? 0)
+    for (const o of ofertas) {
+      if (!enPresupuesto(o.precio_actual, tope)) continue
+      for (const x of CHIPS) if (pasaChip(o, x.id)) c[x.id]++
+    }
+    if (tope === 'all') c.all = Math.max(ofertas.length, total ?? 0)
     return c
-  }, [ofertas, total])
+  }, [ofertas, total, tope])
+  const countsTope = useMemo(() => {
+    const c: Record<string, number> = {}
+    for (const p of PRESUPUESTOS_FILTRO) c[p.slug] = 0
+    for (const o of ofertas) {
+      if (!pasaChip(o, chip)) continue
+      for (const p of PRESUPUESTOS_FILTRO) if (enPresupuesto(o.precio_actual, p.slug)) c[p.slug]++
+    }
+    return c
+  }, [ofertas, chip])
 
   // Render incremental: 423 tarjetas SSR pesaban 1,7 MB de HTML y ~1 s de
   // hidratación en mobile. Se muestran de a PASO; búsqueda/filtros siguen
@@ -213,14 +259,14 @@ export default function OfertasGrid({
   // hacia abajo en mobile y no hay nada que filtrar.
   const catalogoChico = Math.max(ofertas.length, total ?? 0) < 40
   const nq = normalizar(q.trim())
-  const filtrando = chip !== 'all' || nq !== '' || orden !== 'relevancia'
+  const filtrando = chip !== 'all' || tope !== 'all' || nq !== '' || orden !== 'relevancia'
   const visibles = useMemo(() => {
     const base =
-      chip !== 'all' || nq !== ''
-        ? ofertas.filter(o => pasaChip(o, chip) && (!nq || coincide(o.titulo, nq)))
+      chip !== 'all' || tope !== 'all' || nq !== ''
+        ? ofertas.filter(o => pasaChip(o, chip) && enPresupuesto(o.precio_actual, tope) && (!nq || coincide(o.titulo, nq)))
         : ofertas
     return ordenar(base, orden)
-  }, [ofertas, chip, nq, orden])
+  }, [ofertas, chip, tope, nq, orden])
 
   return (
     <>
@@ -256,7 +302,27 @@ export default function OfertasGrid({
             ))}
           </select>
         </div>
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div role="group" aria-label="Presupuesto" className="flex items-center gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <span className="shrink-0 text-sm font-bold text-zinc-400" aria-hidden="true">💰</span>
+          {PRESUPUESTOS_FILTRO.map(p => {
+            const activo = tope === p.slug
+            const n = countsTope[p.slug]
+            if (!activo && n === 0) return null
+            return (
+              <button
+                key={p.slug}
+                onClick={() => setTope(activo ? 'all' : p.slug)}
+                aria-pressed={activo}
+                className={`chip min-h-11 shrink-0 text-base font-bold rounded-full px-4 py-2 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+                  activo ? 'bg-zinc-50 text-black border-zinc-50' : 'bg-zinc-900 text-zinc-200 border-zinc-800 hover:border-zinc-600'
+                }`}
+              >
+                {p.label} <span className={activo ? 'text-black/60' : 'text-zinc-500'}>({n.toLocaleString('es-AR')})</span>
+              </button>
+            )
+          })}
+        </div>
+        <div role="group" aria-label="Rubro" className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {CHIPS.map(c => {
             const activo = chip === c.id
             const n = counts[c.id]
@@ -266,7 +332,7 @@ export default function OfertasGrid({
                 key={c.id}
                 onClick={() => setChip(activo && c.id !== 'all' ? 'all' : c.id)}
                 aria-pressed={activo}
-                className={`min-h-11 shrink-0 text-base font-bold rounded-full px-4 py-2 border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+                className={`chip min-h-11 shrink-0 text-base font-bold rounded-full px-4 py-2 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
                   activo
                     ? 'bg-yellow-400 text-black border-yellow-400'
                     : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
@@ -307,6 +373,7 @@ export default function OfertasGrid({
             onClick={() => {
               setQ('')
               setChip('all')
+              setTope('all')
               setOrden('relevancia')
             }}
             className="text-sm font-bold bg-zinc-900 border border-zinc-700 hover:border-yellow-400/60 text-white rounded-xl px-5 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
@@ -317,35 +384,15 @@ export default function OfertasGrid({
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {filtrando ? (
-            visibles.slice(0, limite).map((o, i) => <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />)
+            conSeguir(visibles.slice(0, limite).map((o, i) => <OfertaCard key={o.id_ml} producto={o} posicion={i + 1} />), !catalogoChico)
           ) : (
             <>
               {/* Sin priority: la grilla está varias pantallas abajo, las fotos van lazy */}
               <OfertaCard producto={visibles[0]} featured posicion={1} />
-              {visibles.slice(1, 7).map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={o} posicion={i + 2} />
-              ))}
-
-              {/* CTA intercalado: después de 101 tarjetas nadie llega al del final */}
-              {visibles.length > 7 && !catalogoChico && (
-                <div className="col-span-full flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow-400 rounded-2xl px-5 py-4 sm:px-6 my-1">
-                  <p className="text-black font-extrabold text-sm sm:text-base text-center sm:text-left [text-wrap:balance]">
-                    📲 Las 3 mejores del día van directo al canal de Telegram, gratis
-                  </p>
-                  <a
-                    href={telegramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 bg-black text-yellow-400 font-bold text-sm rounded-xl px-5 py-2.5 transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-                  >
-                    Unirme al canal ✈️
-                  </a>
-                </div>
+              {conSeguir(
+                visibles.slice(1, limite).map((o, i) => <OfertaCard key={o.id_ml} producto={o} posicion={i + 2} />),
+                !catalogoChico,
               )}
-
-              {visibles.slice(7, limite).map((o, i) => (
-                <OfertaCard key={o.id_ml} producto={o} posicion={i + 8} />
-              ))}
             </>
           )}
         </div>

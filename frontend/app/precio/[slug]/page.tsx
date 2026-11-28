@@ -20,6 +20,9 @@ import { miniaturaML } from '@/lib/imagenml'
 import { nombreCorto as nombreTarjeta } from '@/lib/nombrecorto'
 import { sinOmen } from '@/lib/prioridades'
 import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
+import NavInferior from '@/components/NavInferior'
+import AvisoSeguir from '@/components/AvisoSeguir'
+import { leerPrecio, minimoDe, type Lectura } from '@/lib/lectura-precio'
 import {
   categoriaDeSeguido,
   getSeguido,
@@ -79,11 +82,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const manual = seoManual(s.id)
   const titulo = manual ? manual.seoTitulo : tituloSeo(s.titulo, conDiferencia(dif, FORMATOS_TITULO))
   const ultimo = s.serie[s.serie.length - 1]
+  const piso = minimoDe(s.serie, s.min, s.min_ts)
   const descripcion = manual
     ? recortar(`${manual.seoDescripcion} Último precio visto: ${precio(ultimo[1])} el ${fecha(ultimo[0])}.`, MAX_DESCRIPCION)
     : tituloSeo(s.titulo, conDiferencia(dif, [
-    n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
-    n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
+    n => `Precio de hoy e historial de ${n} en Mercado Libre Argentina. Mínimo registrado: ${precio(piso.min)} el ${fecha(piso.min_ts)}. Seguido desde ${fecha(s.desde)}.`,
+    n => `Precio de hoy e historial de ${n} en Mercado Libre. Mínimo: ${precio(piso.min)} el ${fecha(piso.min_ts)}.`,
   ]), MAX_DESCRIPCION)
   return {
     title: titulo,
@@ -114,7 +118,8 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   const url = `${DEALS_URL}/precio/${s.slug}`
   const hoy = precioActual(s)
   const enOferta = vigente(s)
-  const enMinimo = enOferta && hoy <= s.min
+  const piso = minimoDe(s.serie, s.min, s.min_ts)
+  const enMinimo = enOferta && hoy <= piso.min
   const cat = categoriaDeSeguido(s)
   // Si hoy no está en oferta, mostramos las de su categoría que sí lo están
   const alternativas = !enOferta && cat ? sinOmen(ofertasDeCategoria(cat)).filter(o => o.id_ml !== s.id).slice(0, 4) : []
@@ -135,16 +140,19 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
   // Sin campo de marca en los datos: se deduce del título solo si es inequívoca
   const marca = marcaDeTitulo(s.titulo)
 
+  // «¿Es buen momento para comprar?» (rediseño 27/11): solo con ≥ 3 días de serie propia.
+  const lectura = leerPrecio(hoy, s.serie, s.min)
+
   const veredicto = !enOferta
-    ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(s.min)} el ${fecha(s.min_ts)}.`
+    ? `Hoy no lo vemos en oferta en Mercado Libre. El último precio que registramos fue ${precio(hoy)} (${fecha(s.ultimo_visto)}); el más bajo, ${precio(piso.min)} el ${fecha(piso.min_ts)}.`
     : enMinimo
       ? `El último precio que vimos, ${precio(hoy)}, es el más bajo que registramos desde que lo seguimos (${fecha(s.desde)}).`
-      : `El último precio que vimos, ${precio(hoy)}, está por encima del mínimo que registramos (${precio(s.min)} el ${fecha(s.min_ts)}).`
+      : `El último precio que vimos, ${precio(hoy)}, está por encima del mínimo que registramos (${precio(piso.min)} el ${fecha(piso.min_ts)}).`
 
   const faqs = [
     {
       q: `¿Cuál es el precio más bajo de ${nombre}?`,
-      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(s.min)}, el ${fecha(s.min_ts)}. Seguimos el precio desde el ${fecha(s.desde)}.`,
+      a: `El precio más bajo que registramos en Mercado Libre Argentina es ${precio(piso.min)}, el ${fecha(piso.min_ts)}. Seguimos el precio desde el ${fecha(s.desde)}.`,
     },
     {
       q: `¿Conviene comprar ${nombre} hoy?`,
@@ -176,7 +184,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             name: s.titulo,
             sku: s.id,
             url,
-            description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(s.min)} el ${fecha(s.min_ts)}.`,
+            description: `Historial de precios de ${s.titulo} en Mercado Libre Argentina. Mínimo registrado: ${precio(piso.min)} el ${fecha(piso.min_ts)}.`,
             ...(s.img ? { image: s.img } : {}),
             ...(marca ? { brand: { '@type': 'Brand', name: marca } } : {}),
             offers: {
@@ -279,6 +287,7 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
             {!verificado && <p className="text-base leading-snug text-zinc-300">último precio registrado</p>}
           </div>
         </div>
+        <MomentoDeCompra lectura={lectura} enOferta={enOferta} min={piso.min} />
         <a
           href={s.url}
           data-seccion="precio_cta"
@@ -343,18 +352,18 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
 
         <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 text-sm">
           <Dato label="Último precio" valor={precio(hoy)} />
-          <Dato label="Más bajo registrado" valor={precio(s.min)} sub={fecha(s.min_ts)} />
+          <Dato label="Más bajo registrado" valor={precio(piso.min)} sub={fecha(piso.min_ts)} />
           <Dato label="Seguido desde" valor={fecha(s.desde)} />
         </dl>
 
         <section className="mb-10">
           <h2 className="font-display text-xl sm:text-2xl font-black mb-3">Evolución del precio</h2>
           {s.serie.length >= 2 ? (
-            <Grafico serie={s.serie} min={s.min} />
+            <Grafico serie={s.serie} min={piso.min} promedio={lectura?.promedio} />
           ) : (
             <p className="text-sm text-zinc-500">
               Empezamos a guardar la serie diaria el {fecha(s.serie[0][0])}; el gráfico aparece a partir del segundo día.
-              Mientras tanto, el precio más bajo que registramos es {precio(s.min)} ({fecha(s.min_ts)}).
+              Mientras tanto, el precio más bajo que registramos es {precio(piso.min)} ({fecha(piso.min_ts)}).
             </p>
           )}
         </section>
@@ -432,22 +441,9 @@ export default async function PrecioPage({ params }: { params: Promise<{ slug: s
 
       <Footer brand="ofertas" />
 
-      {/* Celular: el botón de compra queda siempre a mano al bajar por el historial */}
-      <div className="sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="text-base text-zinc-300 truncate">Último precio</p>
-          <p className="font-display text-lg font-black text-yellow-400 leading-tight">{precio(hoy)}</p>
-        </div>
-        <a
-          href={s.url}
-          data-seccion="precio_barra_fija"
-          target="_blank"
-          rel="sponsored nofollow noopener"
-          className="flex min-h-12 w-[52%] shrink-0 items-center justify-center rounded-xl bg-[#FACC15] px-2 text-center text-base font-black leading-tight text-black active:scale-[0.97] transition-transform"
-        >
-          Ver en Mercado Libre
-        </a>
-      </div>
+      {/* Celular: barra inferior con el botón de compra integrado (no se apilan dos barras fijas) */}
+      <NavInferior pagina="precio" cta={{ url: s.url, precio: precio(hoy), seccion: 'precio_barra_fija' }} />
+      <AvisoSeguir />
     </main>
   )
 }
@@ -475,10 +471,35 @@ function Dato({ label, valor, sub }: { label: string; valor: string; sub?: strin
   )
 }
 
-function Grafico({ serie, min }: { serie: [string, number][]; min: number }) {
+/**
+ * Veredicto corto arriba del pliegue: compara el último precio con NUESTRO mínimo y promedio.
+ * Sin ≥ 3 días de serie no opina (nunca un «buen momento» sin datos).
+ */
+function MomentoDeCompra({ lectura, enOferta, min }: { lectura: Lectura | null; enOferta: boolean; min: number }) {
+  if (!lectura || !enOferta) return null
+  const v = {
+    minimo: { tono: 'border-emerald-400/50 bg-emerald-400/10 text-emerald-200', titulo: 'Sí: es el precio más bajo que registramos', icono: '🟢' },
+    bueno: { tono: 'border-sky-400/50 bg-sky-400/10 text-sky-200', titulo: `Buen momento: ${lectura.vsPromedioPct}% abajo de su promedio`, icono: '🔵' },
+    normal: { tono: 'border-zinc-700 bg-zinc-900 text-zinc-200', titulo: 'Precio normal: cerca de su promedio', icono: '⚪' },
+    caro: { tono: 'border-amber-400/50 bg-amber-400/10 text-amber-200', titulo: `Si no te urge, esperá: ${-lectura.vsPromedioPct}% arriba de su promedio`, icono: '🟠' },
+  }[lectura.veredicto]
+  return (
+    <div data-seccion="precio_veredicto" className={`mb-3 rounded-xl border px-3 py-2.5 ${v.tono}`}>
+      <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">¿Es buen momento para comprar?</p>
+      <p className="mt-0.5 font-display text-base sm:text-lg font-black leading-snug">
+        <span aria-hidden="true">{v.icono}</span> {v.titulo}
+      </p>
+      <p className="text-sm text-zinc-400 tabular-nums">
+        Promedio {precio(lectura.promedio)} · mínimo {precio(min)} · {lectura.dias} días registrados
+      </p>
+    </div>
+  )
+}
+
+function Grafico({ serie, min, promedio }: { serie: [string, number][]; min: number; promedio?: number }) {
   const W = 600
   const H = 200
-  const P = 8
+  const P = 10
   const precios = serie.map(p => p[1])
   const lo = Math.min(...precios, min)
   const hi = Math.max(...precios)
@@ -486,15 +507,29 @@ function Grafico({ serie, min }: { serie: [string, number][]; min: number }) {
   const x = (i: number) => P + (i * (W - 2 * P)) / (serie.length - 1)
   const y = (v: number) => H - P - ((v - lo) * (H - 2 * P)) / rango
   const puntos = serie.map((p, i) => `${x(i)},${y(p[1])}`).join(' ')
+  // Área bajo la línea: se lee de un vistazo si hoy está arriba o abajo
+  const area = `${x(0)},${H - P} ${puntos} ${x(serie.length - 1)},${H - P}`
+  const ultimo = precios[precios.length - 1]
   return (
     <figure>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-xl bg-zinc-900 border border-zinc-800" role="img" aria-label="Evolución del precio">
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto rounded-xl bg-zinc-900 border border-zinc-800" role="img" aria-label={`Evolución del precio: último ${precio(ultimo)}, mínimo ${precio(min)}, máximo ${precio(hi)}`}>
+        <defs>
+          <linearGradient id="area-precio" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#facc15" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#facc15" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <polygon points={area} fill="url(#area-precio)" />
+        {promedio && <line x1={P} x2={W - P} y1={y(promedio)} y2={y(promedio)} stroke="#71717a" strokeDasharray="2 5" strokeWidth="1" />}
         <line x1={P} x2={W - P} y1={y(min)} y2={y(min)} stroke="#10b981" strokeDasharray="4 4" strokeWidth="1" />
-        <polyline points={puntos} fill="none" stroke="#facc15" strokeWidth="2.5" />
+        <polyline points={puntos} fill="none" stroke="#facc15" strokeWidth="2.5" strokeLinejoin="round" />
+        <circle cx={x(serie.length - 1)} cy={y(ultimo)} r="5" fill="#facc15" stroke="#09090b" strokeWidth="2" />
       </svg>
-      <figcaption className="flex justify-between text-xs text-zinc-500 mt-1">
+      <figcaption className="mt-1 flex flex-wrap justify-between gap-x-3 text-xs text-zinc-400">
         <span>{fecha(serie[0][0])}</span>
-        <span className="text-emerald-500">- - mínimo {precio(min)}</span>
+        <span className="text-emerald-400">- - mínimo {precio(min)}</span>
+        {promedio && <span>·· promedio {precio(promedio)}</span>}
+        <span>máximo {precio(hi)}</span>
         <span>{fecha(serie[serie.length - 1][0])}</span>
       </figcaption>
     </figure>

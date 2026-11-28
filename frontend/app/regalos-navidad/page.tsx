@@ -25,6 +25,8 @@ import RegalosTicketAlto from '@/components/RegalosTicketAlto'
 import { getEstudio } from '@/lib/estudio'
 import { getInfladas } from '@/lib/infladas'
 import { slugPorId } from '@/lib/seguimiento'
+import { MARCAS_PROHIBIDAS } from '@/lib/black-friday-landings'
+import { gruposDecoracion } from '@/lib/decoracion-navidad'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const URL = `${DEALS_URL}/regalos-navidad`
@@ -44,10 +46,16 @@ const RANGOS = [
 ] as const
 
 /** Destinatario derivado de la categoría del producto (sin adivinar por título). */
+// 28/11: para él, para ella, tech y verano (ticket-alto.md «Regalos de Navidad»). Las anclas (#para-el…)
+// las usa el buscador de regalos de la home (/hoy); no cambiar los id sin cambiar app/hoy/page.tsx.
+// Chicos sin bicicletas: esa categoría trae e-bikes de adulto (van en «Para él»).
 const DESTINATARIOS: { id: string; titulo: string; emoji: string; categorias: string[] }[] = [
-  { id: 'para-chicos', titulo: 'Para chicos', emoji: '🧸', categorias: ['bebes-y-jugueteria', 'bicicletas'] },
+  { id: 'para-el', titulo: 'Para él', emoji: '🧔', categorias: ['herramientas-electricas', 'parrillas', 'bicicletas'] },
+  { id: 'para-ella', titulo: 'Para ella', emoji: '💐', categorias: ['perfumes', 'aspiradoras'] },
+  { id: 'para-chicos', titulo: 'Para chicos', emoji: '🧸', categorias: ['bebes-y-jugueteria'] },
+  { id: 'para-tech', titulo: 'Tech', emoji: '💻', categorias: ['notebooks', 'celulares', 'monitores'] },
   { id: 'para-gamers', titulo: 'Para gamers', emoji: '🎮', categorias: ['gamer'] },
-  { id: 'para-papa-y-mama', titulo: 'Para papá y mamá', emoji: '🎁', categorias: ['perfumes', 'herramientas-electricas'] },
+  { id: 'para-verano', titulo: 'Para el verano', emoji: '☀️', categorias: ['piletas', 'muebles-de-jardin', 'ventiladores'] },
   { id: 'para-la-casa', titulo: 'Para la casa', emoji: '🏠', categorias: ['electro-de-cocina', 'freidoras-de-aire'] },
 ]
 
@@ -69,6 +77,8 @@ const COMPARATIVAS_REL = [
   'mejores-freidoras-de-aire',
   'mejores-taladros',
   'mejores-auriculares',
+  'bicicletas-electricas',
+  'monopatines-electricos',
 ]
 
 const TITULO = `Regalos de Navidad ${AÑO}: ofertas reales por presupuesto`
@@ -115,8 +125,9 @@ export default function RegalosNavidadPage() {
     return ofertas
   })
   const vistos = new Set<string>()
+  // Sin BGH, HP/OMEN/Victus, Vivobook ni Likon (regla del sitio para lo que se empuja).
   const regalos: ProductWithMargins[] = [...(comp ? productosDe(comp) : []), ...porCategoria].filter(p =>
-    vistos.has(p.id_ml) ? false : (vistos.add(p.id_ml), true),
+    vistos.has(p.id_ml) || MARCAS_PROHIBIDAS.test(p.titulo) ? false : (vistos.add(p.id_ml), true),
   )
   const light = (o: ProductWithMargins): OfertaLight => ({
     id_ml: o.id_ml,
@@ -139,6 +150,8 @@ export default function RegalosNavidadPage() {
     const todos = regalos.filter(p => d.categorias.includes(deCategoria.get(p.id_ml) ?? ''))
     return { ...d, total: todos.length, productos: todos.slice(0, POR_DESTINATARIO) }
   })
+  const decoracion = gruposDecoracion(4)
+  const hayDecoracion = decoracion.some(g => g.productos.length > 0)
   const mostrados = rangos.flatMap(r => r.productos)
   const comparativas = COMPARATIVAS_REL.map(s => getComparativa(s)).filter(c => c !== undefined)
   const pct = estudio.pctInfladas.toLocaleString('es-AR')
@@ -236,8 +249,8 @@ export default function RegalosNavidadPage() {
             {TITULO}
           </h1>
           <p className="text-zinc-400 leading-relaxed [text-wrap:pretty]">
-            Notebooks, celulares y TV arriba; después juguetes, consolas, perfumes, herramientas, bicicletas y electro de
-            cocina, separados por presupuesto y por
+            Notebooks, celulares y TV arriba; después juguetes, consolas, perfumes, herramientas, bicicletas, verano,
+            electro de cocina y decoración (árboles, luces e inflables), separados por presupuesto y por
             destinatario. Cada regalo está comparado contra el precio más bajo que registramos, así sabés si el descuento
             es de verdad.
           </p>
@@ -271,6 +284,11 @@ export default function RegalosNavidadPage() {
                   {d.titulo} ({d.total})
                 </a>
               ))}
+              {hayDecoracion && (
+                <a href="#decoracion-navidad" className="text-xs font-bold rounded-full border border-red-400/40 px-3 py-1 text-red-200 hover:border-red-400">
+                  🎄 Decoración: árboles y luces
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -324,6 +342,32 @@ export default function RegalosNavidadPage() {
           </div>
         ))}
       </section>
+
+      {hayDecoracion && (
+        <section id="decoracion-navidad" data-seccion="navidad_decoracion" className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 scroll-mt-20">
+          <div className="max-w-3xl">
+            <h2 className="font-display text-xl sm:text-2xl font-black mb-1">🎄 Decoración de Navidad</h2>
+            <p className="text-sm text-zinc-400">
+              Árboles, combos con luces y adornos, inflables y guirnaldas en oferta hoy. Los que están en su precio más bajo
+              registrado van primero y lo dicen en la tarjeta. Si lo querés para el 24, mirá la fecha de entrega antes de pagar.
+            </p>
+          </div>
+          {decoracion
+            .filter(g => g.productos.length > 0)
+            .map(g => (
+              <div key={g.id} id={g.id} className="pt-6 scroll-mt-20">
+                <h3 className="font-display text-lg font-black mb-3">
+                  {g.emoji} {g.titulo} <span className="text-sm font-semibold text-zinc-500">({g.total} hoy)</span>
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                  {g.productos.map(o => (
+                    <OfertaCard key={o.id_ml} producto={light(o)} />
+                  ))}
+                </div>
+              </div>
+            ))}
+        </section>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-2">
         <p className="text-sm text-zinc-400 mb-2">Regalos caros por presupuesto:</p>

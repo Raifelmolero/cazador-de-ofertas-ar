@@ -3,14 +3,14 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getOfertas, getScrapedAt } from '@/lib/productos'
 import { disponibilidadLD } from '@/lib/bf-jsonld'
-import OfertasGrid, { OFERTAS_EN_HTML } from '@/components/OfertasGrid'
-import { conDestacada, ofertasHoyLight } from '@/lib/ofertashoy'
+import OfertasGrid from '@/components/OfertasGrid'
+import { conDestacada, conSpark, ofertasHoyLight } from '@/lib/ofertashoy'
 import BackToTop from '@/components/BackToTop'
 import CtaFijoML from '@/components/CtaFijoML'
 import AnclaVerificador from '@/components/AnclaVerificador'
 import ExtensionCTA from '@/components/ExtensionCTA'
 import Verificador from '@/components/Verificador'
-import { getEstudio } from '@/lib/estudio'
+import { getEstudio, ultimaPasada } from '@/lib/estudio'
 import { getHistorial } from '@/lib/historial'
 import Footer from '@/components/Footer'
 import EnlacesVerano from '@/components/EnlacesVerano'
@@ -22,6 +22,12 @@ import TopConcurso from '@/components/TopConcurso'
 import { corregirConcurso } from '@/lib/topconcurso'
 import { categoriaPrioritaria, cupoComputacion, elegirMezcla, esExcluidaDeDestacados } from '@/lib/prioridades'
 import AtajosCelular from '@/components/AtajosCelular'
+import ChipsHero, { BotonMinimos, type ChipHero } from '@/components/ChipsHero'
+import NavInferior from '@/components/NavInferior'
+import AvisoSeguir from '@/components/AvisoSeguir'
+import { BloqueSeguir } from '@/components/BloqueSeguir'
+import { OFERTAS_EN_HTML, PRESUPUESTOS_FILTRO, RUBROS_FILTRO, enPresupuesto } from '@/lib/rubros-filtro'
+import { enlaceNavidadVigente } from '@/lib/navidad-post-bf'
 import CajaQueConviene from '@/components/CajaQueConviene'
 import { ofertasVerificadasHome } from '@/lib/queconviene'
 import LoMasSeCompra from '@/components/LoMasSeCompra'
@@ -43,9 +49,8 @@ import { etapaBlackFriday } from '@/lib/cybermonday'
 import { diaMes, getInfladas, pesos } from '@/lib/infladas'
 import { conEtiqueta, ETIQUETA_JSONLD } from '@/lib/afiliado'
 import { sinOmen } from '@/lib/prioridades'
-import { DEALS_URL, MARCA, ORG_ID, SAME_AS, TELEGRAM_URL, WEBSITE_ID, WHATSAPP_URL as WHATSAPP_DEFAULT } from '@/lib/marca'
+import { DEALS_URL, MARCA, ORG_ID, SAME_AS, TELEGRAM_URL, WEBSITE_ID } from '@/lib/marca'
 
-const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? WHATSAPP_DEFAULT
 // DEALS_URL: dominio propio de la marca de ofertas; su raíz sirve esta página
 // (rewrite en next.config.mjs), así que el canonical consolida todo ahí.
 
@@ -84,11 +89,47 @@ export default function HoyPage() {
   const conHistorial = Object.keys(getHistorial()).length
   const infladas = getInfladas()
   const tendencias = getTendencias()
+  const pasada = ultimaPasada()
 
   // Solo los campos que la grilla usa; en el HTML van las primeras, el resto
   // lo baja la grilla de /ofertas-hoy.json después de pintar.
   const ofertasLight = ofertasHoyLight()
   const catColchones = getCategoria('colchones')
+
+  // Hero (rediseño 27/11): chips con la cantidad real de ofertas de cada filtro.
+  const chipsPresupuesto: ChipHero[] = PRESUPUESTOS_FILTRO.map(p => ({
+    texto: p.label,
+    n: ofertasLight.filter(o => enPresupuesto(o.precio_actual, p.slug)).length,
+    filtro: { presupuesto: p.slug },
+    href: `?presupuesto=${p.slug}#ofertas`,
+  })).filter(c => c.n > 0)
+  const chipsRubro: ChipHero[] = RUBROS_FILTRO.map(r => ({
+    texto: r.label,
+    n: ofertasLight.filter(o => o.rubro === r.slug).length,
+    filtro: { rubro: r.slug },
+    href: `?categoria=${r.slug}#ofertas`,
+  })).filter(c => c.n > 0)
+  // Mismos rangos que /regalos-navidad/[presupuesto] (páginas que ya existen)
+  const regalosPorPresupuesto = [
+    ['hasta-300000', 'Hasta $300 mil'],
+    ['300000-a-700000', '$300 a $700 mil'],
+    ['700000-a-1500000', '$700 mil a $1,5 M'],
+    ['mas-de-1500000', 'Más de $1,5 M'],
+  ] as const
+  // Buscador de regalos (28/11): destinatarios = anclas de las secciones del hub /regalos-navidad
+  // (DESTINATARIOS en app/regalos-navidad/page.tsx). Sin rutas nuevas.
+  const regalosPorDestinatario = [
+    ['para-el', '🧔 Para él'],
+    ['para-ella', '💐 Para ella'],
+    ['para-chicos', '🧸 Chicos'],
+    ['para-tech', '💻 Tech'],
+    ['para-verano', '☀️ Verano'],
+    ['decoracion-navidad', '🎄 Decoración'],
+  ] as const
+  const buscadorRegalos = [
+    { titulo: '¿Para quién es?', chips: regalosPorDestinatario.map(([ancla, texto]) => ({ href: `/regalos-navidad#${ancla}`, texto })) },
+    { titulo: '¿Cuánto querés gastar?', chips: regalosPorPresupuesto.map(([slug, texto]) => ({ href: `/regalos-navidad/${slug}`, texto })) },
+  ]
   // Mezcla de categorías (data/categorias-prioritarias.json, se actualiza cada día
   // desde tendencias-hoy.md): aires, consolas, heladeras, TV, lavarropas, celulares
   // y piletas de ticket alto y vigentes. Computación queda con su tope (~20 %).
@@ -269,7 +310,7 @@ export default function HoyPage() {
   }
 
   return (
-    <main className="lectura-movil min-h-screen">
+    <main className="lectura-movil min-h-screen pb-[calc(3.5rem+env(safe-area-inset-bottom))] sm:pb-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -311,6 +352,73 @@ export default function HoyPage() {
         </div>
         <AtajosCelular />
       </header>
+
+      {/* Hero (rediseño 27/11): la idea central en 3 segundos + filtros a un pulgar.
+          Contador honesto: sale del registro de la última pasada del bot (bot/state/scan_log.jsonl)
+          y del catálogo del día; si la pasada tiene más de 3 días, no se muestra. */}
+      <section aria-labelledby="hero-titulo" data-seccion="hero_filtro" className="hero-filtro relative overflow-hidden border-b border-zinc-900">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-5 pb-5 sm:pt-12 sm:pb-10">
+          <h1 id="hero-titulo" className="font-display text-[1.7rem] sm:text-5xl font-black leading-[1.02] tracking-tight [text-wrap:balance]">
+            <span className="text-zinc-400">Mercado Libre tiene millones de productos.</span>{' '}
+            Acá quedan solo <span className="subrayado-oferta text-yellow-400">las ofertas reales</span>.
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-zinc-300 leading-relaxed [text-wrap:pretty]">
+            {pasada ? (
+              <>
+                Última revisión: <strong className="text-zinc-50 tabular-nums">{pasada.revisadas.toLocaleString('es-AR')}</strong> ofertas →{' '}
+                <BotonMinimos className="font-bold text-emerald-300 underline decoration-emerald-400/50 underline-offset-4 hover:text-emerald-200">
+                  {minimos.toLocaleString('es-AR')} en su precio más bajo registrado
+                </BotonMinimos>
+                .{' '}
+              </>
+            ) : (
+              minimos > 0 && (
+                <>
+                  <BotonMinimos className="font-bold text-emerald-300 underline decoration-emerald-400/50 underline-offset-4 hover:text-emerald-200">
+                    {minimos.toLocaleString('es-AR')} ofertas en su precio más bajo registrado
+                  </BotonMinimos>
+                  .{' '}
+                </>
+              )
+            )}
+            {estudio.infladas > 0 && (
+              <span className="text-zinc-400">
+                Desde el {estudio.desde.split('-').reverse().join('/')} descartamos {estudio.infladas.toLocaleString('es-AR')} descuentos inflados.
+              </span>
+            )}
+          </p>
+          <div className="mt-4 space-y-3">
+            <ChipsHero titulo="¿Cuánto querés gastar?" chips={chipsPresupuesto} />
+            <ChipsHero titulo="¿Qué buscás?" chips={chipsRubro} />
+          </div>
+          {enlaceNavidadVigente() && (
+            <nav aria-label="Buscador de regalos de Navidad" data-seccion="navidad_hero" className="mt-4 rounded-2xl border border-green-400/30 bg-green-500/[0.07] p-3 sm:p-4">
+              <Link href="/regalos-navidad" data-evento="navidad_enlace" className="flex min-h-11 items-center justify-between gap-2 font-display text-lg font-black text-green-200 hover:text-green-100">
+                <span>🎄 Buscador de regalos de Navidad</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              {buscadorRegalos.map(fila => (
+                <div key={fila.titulo} className="mt-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-green-300/80">{fila.titulo}</p>
+                  <ul className="-mx-3 mt-1.5 flex gap-2 overflow-x-auto px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible">
+                    {fila.chips.map(c => (
+                      <li key={c.href} className="shrink-0">
+                        <Link
+                          href={c.href}
+                          data-evento="navidad_enlace"
+                          className="chip presionable flex min-h-11 items-center whitespace-nowrap rounded-full border border-green-400/40 bg-zinc-950/60 px-4 text-base font-bold text-green-100 hover:border-green-300"
+                        >
+                          {c.texto}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          )}
+        </div>
+      </section>
 
       <TopConcurso seccion="top_concurso_hoy" id="top-concurso-hoy" />
       {/* Black Friday (27/11): landings de ticket alto, a un toque. Se apaga solo después del evento. */}
@@ -361,21 +469,14 @@ export default function HoyPage() {
         style={{ background: 'radial-gradient(ellipse 70% 60% at 50% -20%, rgba(250,204,21,0.09) 0%, transparent 70%)' }}
       >
         <div className="max-w-3xl mx-auto">
-          {/* Celular: primero el atajo a las ofertas (el que entra quiere comprar) */}
-          <div className="sm:hidden flex items-center gap-3 mb-4">
-            <Image src="/personaje/pulgar.webp" alt="Don Ofertín, el cazador de ofertas" width={84} height={104} className="shrink-0" />
-            <div>
-              <p className="font-display text-xl font-black leading-tight">Ofertas de Mercado Libre, con la fecha de cada precio</p>
-              <p className="mt-1 text-xs text-zinc-400">{ofertas.length.toLocaleString('es-AR')} ofertas{minimos > 0 ? ` · ${minimos} en su mínimo histórico` : ''}</p>
-            </div>
-          </div>
-          <h1 className="font-display text-base sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
+          {/* Celular: la presentación ya la hace el hero de arriba (rediseño 27/11) */}
+          <h2 className="font-display text-base sm:text-6xl font-black tracking-tight leading-[1.02] [text-wrap:balance]">
             ¿Ese descuento de Mercado Libre es real?
             {/* Celular: el verificador va debajo de la grilla; las ofertas primero */}
             <a href="#verificador-movil" className="sm:hidden ml-1 font-sans text-sm font-bold text-yellow-400 underline underline-offset-2">
               Verificalo acá ↓
             </a>
-          </h1>
+          </h2>
           <p className="hidden sm:block mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]">
             Pegá el link y te lo decimos con el historial de precios que registramos desde julio.
             Según nuestro estudio, {estudio.pctInfladas.toLocaleString('es-AR')}% de las ofertas tiene el precio tachado inflado.
@@ -534,7 +635,7 @@ export default function HoyPage() {
           </p>
         ) : (
           <OfertasGrid
-            ofertas={ofertasLight.slice(0, OFERTAS_EN_HTML)}
+            ofertas={conSpark(ofertasLight.slice(0, OFERTAS_EN_HTML))}
             total={ofertasLight.length}
             telegramUrl={TELEGRAM_URL}
             omitirIds={ofertasLight.length > 6 && ofertasLight.length < 40 ? Array.from(top3Ids) : undefined}
@@ -593,38 +694,9 @@ export default function HoyPage() {
         </section>
       )}
 
-      {/* CTA canal */}
+      {/* Seguir en redes (rediseño 27/11): mismo lugar que el viejo CTA del canal */}
+      <BloqueSeguir className="pb-4" />
       <section className="max-w-2xl mx-auto px-4 pb-4 text-center">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-8">
-          <h2 className="text-xl font-black mb-2">
-            ¿Querés las ofertas apenas salen? 🔥
-          </h2>
-          <p className="text-sm text-zinc-400 mb-5">
-            Publicamos las mejores a diario, con alerta de mínimos
-            históricos.
-          </p>
-          {/* WhatsApp primero: en Argentina casi todos lo tienen; Telegram no.
-              Aparece solo cuando el link del canal está cargado en Vercel. */}
-          {WHATSAPP_URL && (
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm font-bold bg-green-500 hover:bg-green-400 text-black rounded-xl px-8 py-3 mb-3 sm:mb-0 sm:mr-3 transition-colors"
-            >
-              Seguir en WhatsApp 💬
-            </a>
-          )}
-          <a
-            href={TELEGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm font-bold bg-yellow-400 hover:bg-yellow-300 text-black rounded-xl px-8 py-3 transition-colors"
-          >
-            Unirme al canal ✈️
-          </a>
-        </div>
-
         <p className="text-xs text-zinc-600 mt-6">
           ¿Revendés en Mercado Libre?{' '}
           {/* Absoluto a propósito: en cazadordeofertas.com.ar la raíz vuelve a esta misma página */}
@@ -658,8 +730,8 @@ export default function HoyPage() {
         </div>
       </section>
 
-      {/* Categorías: enlazado interno hacia las páginas por rubro */}
-      <section className="max-w-2xl mx-auto px-4 pb-10">
+      {/* Categorías: enlazado interno hacia las páginas por rubro (destino de «Rubros» en la barra inferior) */}
+      <section id="rubros" className="max-w-2xl mx-auto px-4 pb-10 scroll-mt-20">
         <h2 className="font-display text-lg font-black mb-4 text-center">Ofertas por categoría</h2>
         <ul className="flex flex-wrap justify-center gap-2 mb-3">
           {NICHOS.map(n => (
@@ -761,9 +833,12 @@ export default function HoyPage() {
           precio={'$' + Math.round(ofertasLight[0].precio_actual).toLocaleString('es-AR')}
           url={ofertasLight[0].url_producto}
           desde={500}
+          sobreNav
         />
       )}
-      <BackToTop />
+      <BackToTop sobreNav />
+      <NavInferior pagina="hoy" />
+      <AvisoSeguir dosBarras />
       <AnclaVerificador />
     </main>
   )

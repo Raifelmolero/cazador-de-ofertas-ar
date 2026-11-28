@@ -6,7 +6,7 @@ import { nombreCorto } from '@/lib/nombrecorto'
 import Link from 'next/link'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
 import { alertaUrl } from '@/components/AlertaCTA'
-import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
+import { BadgeVeracidad, BOTON_ML, MiniGrafico, UltVerificacion, VsPromedio } from '@/components/PartesTarjeta'
 
 /** Subconjunto serializable de ProductWithMargins: es lo único que la tarjeta
  *  necesita, y mantiene liviano el payload que viaja al cliente. */
@@ -26,6 +26,10 @@ export interface OfertaLight {
   historial?: string
   /** slug del filtro rápido de /hoy (lib/rubros-filtro) */
   rubro?: string
+  /** % por debajo de NUESTRO promedio (lib/lectura-precio); solo si es ≥ 5 % con ≥ 3 días de serie */
+  vs_promedio?: number
+  /** puntos del mini gráfico: solo las tarjetas que vienen en el HTML (lib/ofertashoy conSpark) */
+  spark?: number[]
 }
 
 function precio(n: number) {
@@ -75,17 +79,17 @@ export default function OfertaCard(props: {
   // «Avisame si baja»: solo ticket alto, donde esperar la baja vale más plata
   const alerta = props.producto.precio_actual >= TICKET_ALTO_DESDE ? alertaUrl(props.producto.id_ml) : null
   if (!slug && !alerta) return <Tarjeta {...props} />
-  const enlace = 'flex min-h-11 items-center justify-center text-center text-base leading-tight transition-colors'
+  const enlace = 'presionable flex min-h-11 items-center justify-center gap-1 text-center text-base leading-tight'
   return (
     <div className={`flex min-w-0 flex-col ${props.featured ? 'col-span-full' : ''}`}>
       <Tarjeta {...props} />
       {slug && (
-        <Link href={`/precio/${slug}`} className={`${enlace} text-zinc-400 hover:text-yellow-400`}>
-          📈 Historial
+        <Link href={`/precio/${slug}`} className={`${enlace} font-semibold text-zinc-200 underline decoration-zinc-600 underline-offset-4 hover:text-yellow-300 hover:decoration-yellow-400`}>
+          📈 Ver historial
         </Link>
       )}
       {alerta && (
-        <a href={alerta} target="_blank" rel="noopener noreferrer" className={`${enlace} text-sky-300/90 hover:text-sky-200`}>
+        <a href={alerta} target="_blank" rel="noopener noreferrer" className={`${enlace} text-sky-300 hover:text-sky-200`}>
           🔔 Avisame si baja
         </a>
       )}
@@ -131,6 +135,11 @@ function Tarjeta({
         ) : (
           <span className="flex h-full w-full items-center justify-center text-4xl text-zinc-300">📦</span>
         )}
+        <BadgeVeracidad
+          minimo={producto.minimo_historico}
+          vsPromedio={producto.vs_promedio}
+          className="absolute bottom-1.5 left-1.5 z-[1] max-w-[calc(100%-0.75rem)] shadow-sm shadow-black/30"
+        />
         <ShareButton producto={producto} />
       </span>
 
@@ -140,9 +149,13 @@ function Tarjeta({
           <h2 className={`line-clamp-2 text-base leading-snug text-zinc-100 ${featured ? 'font-bold sm:text-xl' : 'font-medium'}`}>
             {nombreCorto(producto.titulo)}
           </h2>
-          <span className={`mt-1.5 font-display font-black leading-tight tabular-nums text-yellow-400 ${featured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-2xl'}`}>
-            {precio(producto.precio_actual)}
+          <span className="mt-1.5 flex flex-wrap items-end gap-x-2 gap-y-1">
+            <span className={`font-display font-black leading-none tracking-tight tabular-nums text-yellow-400 ${featured ? 'text-3xl sm:text-4xl' : 'text-[1.4rem] sm:text-3xl'}`}>
+              {precio(producto.precio_actual)}
+            </span>
+            <MiniGrafico puntos={producto.spark} className="mb-0.5" />
           </span>
+          <VsPromedio pct={producto.vs_promedio} />
           <UltVerificacion fecha={producto.precio_visto} />
         </span>
         <span className={featured ? 'w-full p-3 pt-2 sm:max-w-sm sm:px-6' : 'mt-auto block p-2 pt-0 sm:p-4 sm:pt-0'}>

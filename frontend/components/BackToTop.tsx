@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 
 /** Botón flotante para volver arriba: aparece tras scrollear ~2 pantallas.
  *  Con 100+ ofertas, volver al buscador desde abajo era una remada. */
-export default function BackToTop() {
+/** `sobreNav`: en celular hay barra inferior + CtaFijoML; el botón sube para no taparlos. */
+export default function BackToTop({ sobreNav = false }: { sobreNav?: boolean }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function BackToTop() {
         window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
       }}
       aria-label="Volver arriba"
-      className="fixed bottom-24 sm:bottom-5 right-4 z-20 w-11 h-11 rounded-full bg-yellow-400 text-black text-xl font-black shadow-lg shadow-black/40 hover:bg-yellow-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      className={`fixed ${sobreNav ? 'bottom-[calc(9rem+env(safe-area-inset-bottom))]' : 'bottom-24'} sm:bottom-5 right-4 z-20 w-11 h-11 rounded-full bg-yellow-400 text-black text-xl font-black shadow-lg shadow-black/40 hover:bg-yellow-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white`}
     >
       ↑
     </button>

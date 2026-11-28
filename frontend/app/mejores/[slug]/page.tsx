@@ -44,8 +44,12 @@ const MAX_FILAS = 12
 // y por página como mucho, solo si alguien la visita (no gasta Build CPU).
 export const revalidate = 21600
 
+/** Comparativas nuevas que NO se prerenderizan en el build (costo de Build CPU, regla del 25/11):
+ *  se arman en la primera visita y quedan cacheadas con el mismo `revalidate`. */
+const A_PEDIDO = new Set(['bicicletas-electricas', 'monopatines-electricos'])
+
 export function generateStaticParams() {
-  return COMPARATIVAS.map(c => ({ slug: c.slug }))
+  return COMPARATIVAS.filter(c => !A_PEDIDO.has(c.slug)).map(c => ({ slug: c.slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

@@ -94,6 +94,13 @@ export function seguidosDeCategoria(slug: string) {
   return getSeguidosPrincipales().filter(s => categoriaDeSeguido(s)?.slug === slug)
 }
 
+let porId: Map<string, Seguido> | null = null
+/** Seguido por id_ml (serie y mínimo para el badge y el mini gráfico de las tarjetas). */
+export function seguidoPorId(id: string): Seguido | undefined {
+  porId ??= new Map(getSeguidos().map(s => [s.id, s]))
+  return porId.get(id)
+}
+
 /** Mapa id_ml → slug para enlazar desde tarjetas y tablas. */
 export function slugPorId(): Record<string, string> {
   return Object.fromEntries(getSeguidos().map(s => [s.id, principalDe(s).slug]))

@@ -4,7 +4,8 @@
 import type { OfertaLight } from '@/components/OfertaCard'
 import { getOfertas } from '@/lib/productos'
 import { corregirConcurso } from '@/lib/topconcurso'
-import { slugPorId } from '@/lib/seguimiento'
+import { seguidoPorId, slugPorId } from '@/lib/seguimiento'
+import { BAJO_PROMEDIO_PCT, leerPrecio, muestrear } from '@/lib/lectura-precio'
 import { enCategoria, getCategoria } from '@/lib/categorias'
 import { esExcluidaDeDestacados, sinOmen } from '@/lib/prioridades'
 import { RUBROS_FILTRO } from '@/lib/rubros-filtro'
@@ -67,5 +68,28 @@ export function ofertasHoyLight(): OfertaLight[] {
     precio_visto: o.precio_visto,
     historial: historial[o.id_ml],
     rubro: rubroDe(o.titulo),
+    vs_promedio: vsPromedio(o.id_ml, o.precio_actual),
   }))
+}
+
+/** % por debajo de NUESTRO promedio (≥ BAJO_PROMEDIO_PCT y con ≥ 3 días de serie); si no, nada. */
+function vsPromedio(id: string, precio: number): number | undefined {
+  const s = seguidoPorId(id)
+  const l = s ? leerPrecio(precio, s.serie, s.min) : null
+  return l && l.vsPromedioPct >= BAJO_PROMEDIO_PCT ? l.vsPromedioPct : undefined
+}
+
+/**
+ * Mini gráfico de las tarjetas: solo para las que van en el HTML (la home pasa las primeras),
+ * así /ofertas-hoy.json no engorda. Últimos 30 días de serie, hasta 12 puntos, y el precio de
+ * hoy al final si es distinto del último registrado.
+ */
+export function conSpark(lista: OfertaLight[]): OfertaLight[] {
+  return lista.map(o => {
+    const s = seguidoPorId(o.id_ml)
+    if (!s || s.serie.length < 3) return o
+    const precios = s.serie.slice(-30).map(p => p[1])
+    if (Math.round(precios[precios.length - 1]) !== Math.round(o.precio_actual)) precios.push(o.precio_actual)
+    return { ...o, spark: muestrear(precios) }
+  })
 }

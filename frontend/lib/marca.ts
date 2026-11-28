@@ -20,5 +20,18 @@ export const BOT_ALERTAS_URL = 'https://t.me/cazador_ofertas_ar_bot'
 
 export const SAME_AS = [INSTAGRAM_URL, X_URL, THREADS_URL, TELEGRAM_URL, WHATSAPP_URL]
 
+/**
+ * «Seguinos» del sitio de ofertas (rediseño 27/11): una sola lista para el bloque, la tarjeta
+ * de la grilla, el aviso después del clic a ML y el footer. WhatsApp primero (en Argentina lo
+ * tiene casi todo el mundo). `red` va en data-red y en el evento de Clarity `seguir_<red>`.
+ */
+export const REDES_SEGUIR = [
+  { red: 'whatsapp', nombre: 'WhatsApp', url: WHATSAPP_URL },
+  { red: 'instagram', nombre: 'Instagram', url: INSTAGRAM_URL },
+  { red: 'x', nombre: 'X', url: X_URL },
+  { red: 'telegram', nombre: 'Telegram', url: TELEGRAM_URL },
+] as const
+export type RedSeguir = (typeof REDES_SEGUIR)[number]['red']
+
 /** Calculadora hermana (mismo deploy, otro dominio). */
 export const CALC_URL = 'https://calculadoraml.com.ar'

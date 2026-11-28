@@ -13,12 +13,15 @@ export default function CtaFijoML({
   url,
   desde = 380,
   seccion = 'cta-fijo',
+  sobreNav = false,
 }: {
   titulo: string
   precio: string
   url: string
   desde?: number
   seccion?: string
+  /** hay barra inferior (components/NavInferior): la barra se apoya encima en vez de taparla */
+  sobreNav?: boolean
 }) {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -37,7 +40,7 @@ export default function CtaFijoML({
     <div
       data-seccion={seccion}
       aria-hidden={!visible}
-      className={`sm:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3 transition-transform duration-200 ${visible ? 'translate-y-0' : 'translate-y-full'}`}
+      className={`sm:hidden fixed inset-x-0 ${sobreNav ? 'bottom-[calc(3.5rem+env(safe-area-inset-bottom))]' : 'bottom-0'} z-20 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md px-4 py-3 flex items-center gap-3 transition-transform duration-200 ${visible ? 'translate-y-0' : sobreNav ? 'pointer-events-none translate-y-[calc(100%+3.5rem)]' : 'translate-y-full'}`}
     >
       <div className="min-w-0 flex-1">
         <p className="text-base text-zinc-300 truncate">{titulo}</p>
@@ -48,7 +51,7 @@ export default function CtaFijoML({
         target="_blank"
         rel="sponsored nofollow noopener"
         tabIndex={visible ? 0 : -1}
-        className="flex min-h-12 w-[46%] shrink-0 items-center justify-center rounded-xl bg-[#FACC15] px-2 text-center text-base font-black leading-tight text-black active:scale-[0.97] transition-transform"
+        className="flex min-h-12 w-[46%] shrink-0 items-center justify-center rounded-xl bg-[#FACC15] px-2 text-center text-base font-black leading-tight text-black presionable"
       >
         Ver en Mercado Libre
       </a>

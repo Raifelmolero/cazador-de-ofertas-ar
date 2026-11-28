@@ -138,7 +138,7 @@ export default function AppInstalable() {
     <div
       role="dialog"
       aria-label="Instalá la app del Cazador de Ofertas"
-      className="fixed z-30 left-3 right-16 bottom-20 sm:left-5 sm:right-auto sm:bottom-5 sm:w-96 rounded-2xl border border-yellow-400/30 bg-zinc-900/95 backdrop-blur-md shadow-xl shadow-black/50 py-2.5 pl-2.5 pr-2 flex items-center gap-2.5 rise-in"
+      className="fixed z-20 left-3 right-3 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] sm:left-5 sm:right-auto sm:bottom-5 sm:w-96 rounded-2xl border border-yellow-400/30 bg-zinc-900/95 backdrop-blur-md shadow-xl shadow-black/50 py-2.5 pl-2.5 pr-2 flex items-center gap-2.5 rise-in"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/app/icon-192.png" alt="" width={36} height={36} className="shrink-0 rounded-lg" />

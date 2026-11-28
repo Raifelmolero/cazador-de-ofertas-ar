@@ -12,21 +12,34 @@ import { BOTON_ML, UltVerificacion } from '@/components/PartesTarjeta'
 
 const pesos = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
 
-export default function CtaOfertaDestacada({ cta, className = '' }: { cta: CtaDestacado | null; className?: string }) {
+export default function CtaOfertaDestacada({
+  cta,
+  className = '',
+  destacarPrimero = false,
+}: {
+  cta: CtaDestacado | null
+  className?: string
+  /** Primera tarjeta a lo ancho, con precio y botón a la vista en la primera pantalla. */
+  destacarPrimero?: boolean
+}) {
   if (!cta || cta.productos.length === 0) return null
   return (
     <section
       aria-label={cta.titulo}
       data-seccion={cta.seccion}
       data-cta-destacado=""
+      data-destacar-primero={destacarPrimero ? '' : undefined}
       className={`rounded-2xl border border-[#FACC15]/50 bg-zinc-900 p-2.5 sm:p-4 ${className}`}
     >
       <h2 className="mb-2 font-display text-lg font-black leading-tight text-[#FACC15] [text-wrap:balance]">{cta.titulo}</h2>
-      <ul className={`grid gap-2.5 ${cta.productos.length > 1 ? 'sm:grid-cols-3' : ''}`}>
+      <ul className={`grid gap-2.5 ${destacarPrimero ? 'grid-cols-1 sm:grid-cols-2' : cta.productos.length > 1 ? 'sm:grid-cols-3' : ''}`}>
         {cta.productos.map((p, i) => (
-          <li key={p.id} className="flex min-w-0 flex-col gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/60 p-2">
-            <span className="flex gap-3 sm:flex-col">
-              <span className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-white sm:h-24 sm:w-full">
+          <li
+            key={p.id}
+            className={`flex min-w-0 flex-col gap-2.5 rounded-xl border border-zinc-800 bg-zinc-950/60 p-2 ${destacarPrimero && i === 0 ? 'sm:col-span-2' : ''}`}
+          >
+            <span className={`flex gap-3 ${destacarPrimero && i === 0 ? 'sm:flex-row sm:items-center' : 'sm:flex-col'}`}>
+              <span className={`shrink-0 overflow-hidden rounded-lg bg-white ${destacarPrimero && i === 0 ? 'h-24 w-24 sm:h-28 sm:w-28' : 'h-20 w-20 sm:h-24 sm:w-full'}`}>
                 {p.img && (
                   // eslint-disable-next-line @next/next/no-img-element -- fotos del CDN de ML, sin optimizador (ver CLAUDE.md)
                   <img

@@ -276,9 +276,6 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
         </div>
       </header>
 
-      {/* Black Friday 27/11: link a la landing del rubro (lib/bf-enlaces.ts), se apaga tras el 30/11 */}
-      <AvisoBFRubro ruta={`/precio-hoy/${p.slug}`} />
-
       <article className="max-w-3xl mx-auto px-4 pt-3 pb-8 sm:py-12">
         <nav aria-label="Ruta" className="hidden sm:block text-xs text-zinc-500 mb-3">
           <a href={DEALS_URL} className="hover:text-yellow-400">Ofertas de hoy</a> /{' '}
@@ -288,10 +285,12 @@ export default async function PrecioHoyPage({ params }: { params: Promise<{ slug
           {titulo(p.nombre)}
         </h1>
         {destacado ? (
-          <CtaOfertaDestacada cta={destacado} className="mb-4" />
+          <CtaOfertaDestacada cta={destacado} destacarPrimero className="mb-4" />
         ) : (
           ofertas[0] && <DestacadoML producto={ofertas[0]} lista={ofertas} rotulo="El más barato que vimos" />
         )}
+        {/* Banner BF debajo del CTA para que producto y botón queden en la primera pantalla. */}
+        <AvisoBFRubro ruta={`/precio-hoy/${p.slug}`} />
         <p className="mb-6 inline-flex text-[11px] sm:text-xs font-semibold text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full px-4 py-1.5">
           <LastUpdated scrapedAt={scrapedAt} />
         </p>

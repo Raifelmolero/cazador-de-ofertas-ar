@@ -58,11 +58,12 @@ class TestLandingsBlackFriday(unittest.TestCase):
 
     def test_ideapad_primera_en_notebooks(self):
         ids = re.findall(r"id: '(MLA\d+)'", self.bloques["black-friday-notebooks"])
-        self.assertEqual(ids[0], "MLA77766168")
-        p = self.catalogo.get("MLA77766168")
+        # Recomendada: publicación con precio más reciente del mismo modelo (16/512).
+        self.assertEqual(ids[0], "MLA61338032")
+        p = self.catalogo.get("MLA61338032")
         if p:  # el bot poda a los 14 días: si sigue, tiene que ser la de 16/512
-            self.assertIn("Ideapad Slim 3", p["titulo"])
-            self.assertEqual(int(p["precio_actual"]), 1573949)
+            self.assertIn("ideapad slim 3", p["titulo"].lower())
+            self.assertEqual(int(p["precio_actual"]), 1387099)
 
     def test_productos_del_repo_y_sin_marcas_prohibidas(self):
         for slug, b in self.bloques.items():

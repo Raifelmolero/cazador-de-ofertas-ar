@@ -41,7 +41,10 @@ export interface ItemBF {
  *  propio link de afiliado y precio (nunca uno inventado). `detalle` solo si cambia algo (el color).
  *  Mismo procesador, memoria y disco que la elegida; si no, no va acá. */
 export const PUBLICACIONES_ALTERNATIVAS: Record<string, { id: string; detalle?: string }[]> = {
-  // Lenovo IdeaPad Slim 3 Ryzen 5 · 16 GB · 512 GB (la más vendida del panel, 16-25/11).
+  // Lenovo IdeaPad Slim 3 Ryzen 5 · 16 GB · 512 GB. La publicación recomendada es la de
+  // precio más reciente en el catálogo (MLA61338032, $1.387.099 visto el 25/11). La
+  // MLA77766168 quedó en $1.573.949 visto el 19/11 (más de 7 días): queda de respaldo.
+  MLA61338032: [{ id: 'MLA77766168' }],
   MLA77766168: [{ id: 'MLA61338032' }],
   // Lenovo V15 Gen 5 Core i5 · 16 GB · 512 GB.
   MLA72201400: [{ id: 'MLA72201391' }],
@@ -92,7 +95,7 @@ export const LANDINGS_BF: LandingBF[] = [
     respuestaCorta:
       'Para la mayoría, la Lenovo IdeaPad Slim 3 con Ryzen 5, 16 GB de RAM y 512 GB de SSD: rinde de sobra para estudiar, trabajar y el uso diario, y con esa memoria no se queda corta en un par de años. Si preferís Intel, la Lenovo V15 Gen 5 con Core i5; para jugar o editar video, la Lenovo LOQ o la Asus TUF Gaming A15, que traen placa de video dedicada.',
     items: [
-      { id: 'MLA77766168', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La que recomendamos para la mayoría: estudio, oficina y uso diario.' },
+      { id: 'MLA61338032', nombre: 'Lenovo IdeaPad Slim 3', detalle: 'Ryzen 5 · 16 GB de RAM · 512 GB SSD', nota: 'La que recomendamos para la mayoría: estudio, oficina y uso diario.' },
       { id: 'MLA72201400', nombre: 'Lenovo V15 Gen 5', detalle: 'Intel Core i5 · 16 GB de RAM · 512 GB SSD', nota: 'Alternativa con Intel para trabajar.' },
       { id: 'MLA53659389', nombre: 'Lenovo IdeaPad Slim 3 táctil', detalle: 'Ryzen 7 8840HS · 16 GB de RAM · 512 GB SSD · Windows 11', nota: 'Más procesador y pantalla táctil.' },
       { id: 'MLA61813247', nombre: 'Asus Zenbook 14 OLED', detalle: 'Ryzen 7 8840HS · 16 GB de RAM · 1 TB SSD', nota: 'Liviana y con pantalla OLED.' },

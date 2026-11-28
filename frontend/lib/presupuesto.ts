@@ -8,6 +8,7 @@
 import { normalizar } from '@/lib/categorias'
 import { equiposDe, getComparador, rangoOficial, USADOS, type Equipo } from '@/lib/comparador'
 import { DIAS_VIGENCIA, tramoEdad } from '@/lib/frescura'
+import { MARCAS_EXCLUIDAS_CTA } from '@/lib/cta-destacados'
 
 export interface Presupuesto {
   slug: string
@@ -74,8 +75,10 @@ export interface PresupuestoArmado {
   enMinimo: Equipo[] // los que hoy están en el precio más bajo que registramos
 }
 
-/** Marca reconocida: las de marca "Otra" suelen inflar specs en el título. */
-const conocida = (e: Equipo) => e.marca !== 'Otra'
+/** Marca reconocida: las de marca "Otra" suelen inflar specs en el título.
+ *  Las excluidas de los destacados (HP, OMEN, Victus, Omnibook, Vivobook, BGH, Likon) siguen en la
+ *  lista completa, pero nunca como recomendado, más barato, franja alta ni «en su mínimo». */
+const conocida = (e: Equipo) => e.marca !== 'Otra' && !MARCAS_EXCLUIDAS_CTA.test(e.titulo)
 
 const cache = new Map<string, Equipo[]>()
 const cacheConVencidas = new Map<string, Equipo[]>()
@@ -113,8 +116,9 @@ export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
   // (rangoOficial es 1 para todos en los demás rubros, así que ahí no cambia nada).
   const orden = [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || puntaje(p.comparador, b) - puntaje(p.comparador, a) || rangoOficial(a) - rangoOficial(b) || a.precio - b.precio)
   const marcas = orden.filter(conocida)
+  const sinExcluidas = orden.filter(e => !MARCAS_EXCLUIDAS_CTA.test(e.titulo))
   // «Recomendado»: si hay una TV oficial con puntaje hasta 10 % menor que la primera (y misma frescura), se prefiere esa.
-  let recomendado = marcas[0] ?? orden[0]
+  let recomendado = marcas[0] ?? sinExcluidas[0] ?? orden[0]
   if (p.comparador === 'smart-tv' && marcas[0] && marcas[0].tienda_oficial !== true) {
     const top = puntaje(p.comparador, marcas[0])
     const oficial = marcas.find(e => e.tienda_oficial === true && tramoEdad(e.dias) === tramoEdad(marcas[0].dias) && vencido(e) === vencido(marcas[0]) && puntaje(p.comparador, e) >= top * 0.9)
@@ -125,8 +129,8 @@ export function armarPresupuesto(p: Presupuesto): PresupuestoArmado | null {
     equipos: orden,
     recomendado,
     franjaAlta: marcas.filter(e => e.precio >= p.hasta * 0.6).slice(0, 3),
-    masBarato: [...xs].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || a.precio - b.precio || rangoOficial(a) - rangoOficial(b))[0],
-    enMinimo: orden.filter(e => e.minimo !== null && e.precio <= e.minimo).slice(0, 5),
+    masBarato: [...(sinExcluidas.length ? sinExcluidas : xs)].sort((a, b) => tramoEdad(a.dias) - tramoEdad(b.dias) || Number(vencido(a)) - Number(vencido(b)) || a.precio - b.precio || rangoOficial(a) - rangoOficial(b))[0],
+    enMinimo: marcas.filter(e => e.minimo !== null && e.precio <= e.minimo).slice(0, 5),
   }
 }
 

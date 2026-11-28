@@ -12,8 +12,9 @@ import { getScrapedAt } from '@/lib/productos'
 import { getComparador, type Equipo } from '@/lib/comparador'
 import { armarPresupuesto, getPresupuesto, presupuestosConEquipos, type PresupuestoArmado } from '@/lib/presupuesto'
 import { duelosConPrecio } from '@/lib/vs'
-import { etapaBlackFriday } from '@/lib/cybermonday'
 import { etiquetaEdad } from '@/lib/frescura'
+import EnlaceNavidad from '@/components/EnlaceNavidad'
+import { enlaceNavidadVigente } from '@/lib/navidad-post-bf'
 
 const DEALS_URL = 'https://cazadordeofertas.com.ar'
 const TELEGRAM_URL = 'https://t.me/cazadordeofertasar'
@@ -54,10 +55,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // La búsqueda primero y el recomendado de hoy, sin fecha: en Google se lee completa (~155 caracteres).
   const r = x.recomendado
   const corto = r.titulo.split(' ').slice(0, 5).join(' ')
-  const desc = `¿Qué ${nombre(x)} comprar con hasta $${x.p.texto}? Comparamos ${x.equipos.length} ${plural(x)} de Mercado Libre. Hoy recomendamos: ${corto}, a ${pesos(r.precio)}.`
+  // Hasta Reyes, la búsqueda de regalo («… para Navidad 2026») también entra; el año queda igual.
+  const navidad = enlaceNavidadVigente()
+  const desc = `¿Qué ${nombre(x)} comprar${navidad ? ' o regalar en Navidad' : ''} con hasta $${x.p.texto}? Comparamos ${x.equipos.length} ${plural(x)} de Mercado Libre. Hoy recomendamos: ${corto}, a ${pesos(r.precio)}.`
+  const anio = new Date().getFullYear()
   return {
     // Con el año y «ranking»: así se busca («mejor celular hasta 300 mil 2026»). El sitio se arma todos los días.
-    title: tituloSeo(`Mejor ${nombre(x)} hasta $${x.p.texto} (${new Date().getFullYear()})`, [s => `${s}: ranking de hoy`, s => s]),
+    title: tituloSeo(`Mejor ${nombre(x)} hasta $${x.p.texto} (${navidad ? `Navidad ${anio}` : anio})`, [s => `${s}: ranking de hoy`, s => s]),
     description: descripcionSeo(desc),
     metadataBase: new globalThis.URL(DEALS_URL),
     alternates: { canonical: url },
@@ -104,7 +108,13 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
   const url = `${DEALS_URL}/mejor/${x.p.slug}`
   const hoy = fechaAR(getScrapedAt().toISOString().slice(0, 10))
   const fem = esFem(x)
-  const otros = presupuestosConEquipos().filter(o => o.p.comparador === x.p.comparador && o.p.slug !== x.p.slug)
+  const publicados = presupuestosConEquipos()
+  const otros = publicados.filter(o => o.p.comparador === x.p.comparador && o.p.slug !== x.p.slug)
+  // Cruce notebooks ↔ celulares ↔ TV: de cada otro rubro, el presupuesto más parecido a este.
+  const cruzados = (['notebooks', 'celulares', 'smart-tv'] as const)
+    .filter(c => c !== x.p.comparador)
+    .map(c => publicados.filter(o => o.p.comparador === c).sort((a, b) => Math.abs(a.p.hasta - x.p.hasta) - Math.abs(b.p.hasta - x.p.hasta))[0])
+    .filter(o => o !== undefined)
   const duelos = duelosConPrecio().filter(d => d.duelo.comparador === x.p.comparador && Math.min(d.a.desde, d.b.desde) <= x.p.hasta).slice(0, 5)
   const alta = x.franjaAlta.filter(e => e !== x.recomendado)
 
@@ -153,21 +163,6 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
         </div>
       </header>
 
-      {/* Aviso del Black Friday (BF-1): mismo estilo que BannerTemporada, sin precios ni
-          promesas. Se apaga solo en el primer deploy posterior al evento. */}
-      {etapaBlackFriday().etapa !== 'despues' && (
-        <aside aria-label="Black Friday" className="max-w-5xl mx-auto px-4 pt-4">
-          <Link
-            href="/black-friday"
-            className="block rounded-2xl border border-yellow-400/30 bg-yellow-400/10 px-4 py-2.5 text-center transition-colors hover:border-yellow-400/60 sm:px-5 sm:py-3"
-          >
-            <span className="font-display text-sm font-black text-yellow-200 sm:text-base [text-wrap:balance]">
-              🖤 Black Friday es el viernes 27/11: mirá las ofertas →
-            </span>
-          </Link>
-        </aside>
-      )}
-
       <section className="border-b border-zinc-900 px-4 py-8 sm:py-10">
         <div className="max-w-5xl mx-auto">
           <nav aria-label="Ruta" className="text-xs text-zinc-500 mb-3">
@@ -198,6 +193,9 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
             Ver {fem ? 'la' : 'el'} que más trae a {pesos(x.recomendado.precio)} en Mercado Libre 🛒
           </a>
         </section>
+
+        {/* Del Black Friday a Navidad: debajo del CTA principal, para no taparlo */}
+        <EnlaceNavidad seccion={`navidad_mejor_${x.p.slug}`} className="mb-8" />
 
         <section className="mb-8">
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -260,6 +258,13 @@ export default async function PresupuestoPage({ params }: { params: Promise<{ sl
             {otros.map(o => (
               <li key={o.p.slug}>
                 <Link href={`/mejor/${o.p.slug}`} className="font-bold text-yellow-400 hover:underline">💲 Mejor {nombre(x)} hasta ${o.p.texto} →</Link>
+              </li>
+            ))}
+            {cruzados.map(o => (
+              <li key={o.p.slug}>
+                <Link href={`/mejor/${o.p.slug}`} className="font-bold text-yellow-400 hover:underline">
+                  {o.p.comparador === 'notebooks' ? '💻' : o.p.comparador === 'celulares' ? '📱' : '📺'} Mejor {nombre(o)} hasta ${o.p.texto} →
+                </Link>
               </li>
             ))}
             {duelos.map(d => (

@@ -5,6 +5,7 @@
 import { getCategoria, ofertasDeCategoria } from '@/lib/categorias'
 import type { ProductWithMargins } from '@/lib/productos'
 import { TICKET_ALTO_DESDE } from '@/lib/ticketalto'
+import { MARCAS_EXCLUIDAS_CTA } from '@/lib/cta-destacados'
 
 export interface BloqueTicketAlto {
   id: string
@@ -32,7 +33,8 @@ export function bloquesTicketAlto(por = 4, min = 0, max = Infinity): BloqueTicke
     // El mismo modelo publicado por varios vendedores (mismo título): una sola tarjeta, la más barata.
     const porTitulo = new Map<string, ProductWithMargins>()
     for (const p of c ? ofertasDeCategoria(c) : []) {
-      if (p.precio_actual < desde || p.precio_actual >= max || vistos.has(p.id_ml)) continue
+      // Bloque destacado: sin HP, OMEN, Victus, Omnibook, Vivobook, BGH ni Likon (la OMEN de $8,4 M salía primera).
+      if (p.precio_actual < desde || p.precio_actual >= max || vistos.has(p.id_ml) || MARCAS_EXCLUIDAS_CTA.test(p.titulo)) continue
       const t = p.titulo.trim().toLowerCase()
       const otro = porTitulo.get(t)
       if (!otro || p.precio_actual < otro.precio_actual) porTitulo.set(t, p)

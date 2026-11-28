@@ -150,6 +150,9 @@ const FECHA_MODO: Record<ModoActivo, string> = {
 export function textoModoBF(texto: string, modo: ModoBF): string {
   if (modo === 'previa') return texto
   return texto
+    // «El Black Friday 2026 (en Argentina) es el viernes 27 de noviembre»: respuestas cortas de las guías BF e intros.
+    .replace(/\bEl Black Friday 2026( en Argentina)? es el viernes 27 de noviembre/g, (_, ar = '') =>
+      modo === 'hoy' ? `El Black Friday 2026${ar} es hoy, viernes 27 de noviembre` : `El Black Friday 2026${ar} fue el viernes 27 de noviembre`)
     .replace(/^Black Friday 2026\b/, INICIO_MODO[modo])
     .replace(FRASE_BF, FRASE_MODO[modo])
     .replace(/\(viernes 27\/11\)/g, FECHA_MODO[modo])

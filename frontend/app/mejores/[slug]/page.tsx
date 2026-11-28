@@ -314,7 +314,7 @@ export default async function ComparativaPage({ params }: { params: Promise<{ sl
         {/* Verano: el cuadro reemplaza al destacado de arriba (el destacado sigue en la barra fija del celular). */}
         {cuadro ? <CtaOfertaDestacada cta={cuadro} className="mb-6" /> : destacado && <DestacadoML producto={destacado} lista={productos} />}
         {/* El texto va después del primer producto */}
-        <p className="text-base text-zinc-400 leading-relaxed mb-3 [text-wrap:pretty]">{c.intro}</p>
+        <p className="text-base text-zinc-400 leading-relaxed mb-3 [text-wrap:pretty]">{textoModoBF(c.intro, modoBF())}</p>
         <p className="text-base sm:text-xs text-zinc-400 mb-6">
           <LastUpdated scrapedAt={scrapedAt} /> · {productos.length} en la comparativa
         </p>

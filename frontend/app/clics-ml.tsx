@@ -106,6 +106,8 @@ export default function ClicsML() {
         // Abierto como app instalada o en el navegador: ¿los que instalan compran más?
         modo: enModoApp() ? 'app' : 'web',
       })
+      // Aviso de «Seguinos» (components/AvisoSeguir.tsx): se entera del clic, no lo toca.
+      window.dispatchEvent(new Event('cz:clic-ml'))
     }
     document.addEventListener('click', onClick, { capture: true })
     return () => {

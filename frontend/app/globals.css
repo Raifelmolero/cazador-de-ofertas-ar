@@ -60,6 +60,61 @@ body::before {
   }
 }
 
+/* Rediseño 27/11: microanimaciones solo con CSS (sin dependencias). Todo se apaga con
+   prefers-reduced-motion (abajo). */
+
+/* Hero de la home: un foco amarillo arriba y una trama de «etiquetas» muy tenue (filtro = criba) */
+.hero-filtro {
+  background:
+    radial-gradient(ellipse 80% 70% at 15% -10%, rgba(250, 204, 21, 0.11) 0%, transparent 65%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0) 0 0 / 18px 18px;
+}
+/* Subrayado de marcador bajo «las ofertas reales» */
+.subrayado-oferta {
+  background: linear-gradient(transparent 68%, rgba(250, 204, 21, 0.22) 68%, rgba(250, 204, 21, 0.22) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Botones: se hunden apenas al tocarlos (respuesta inmediata al pulgar) */
+.presionable {
+  transition-property: transform, background-color, color, filter;
+  transition-duration: 120ms;
+  transition-timing-function: ease-out;
+  -webkit-tap-highlight-color: transparent;
+}
+.presionable:active { transform: scale(0.96); }
+
+/* Chips de filtro: cambio de color suave al activarse */
+.chip {
+  transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out, transform 120ms ease-out;
+}
+.chip:active { transform: scale(0.95); }
+
+/* Badge «Mínimo histórico»: un brillo que cruza cada tanto. Solo transform: no repinta. */
+@keyframes brillo {
+  0%, 70% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%) skewX(-20deg); }
+}
+.brillo-minimo { overflow: hidden; isolation: isolate; }
+.brillo-minimo:not(.absolute) { position: relative; }
+.brillo-minimo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: brillo 4.5s ease-in-out infinite;
+}
+
+/* Aviso de «Seguinos»: entra desde abajo */
+@keyframes aviso-entra {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.aviso-entra { animation: aviso-entra 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
 /* Custom scrollbar (paleta zinc, como el resto del sitio) */
 ::-webkit-scrollbar {
   width: 6px;
@@ -83,6 +138,8 @@ body::before {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .brillo-minimo::after { display: none; }
+  .presionable:active, .chip:active { transform: none; }
 }
 
 /* En el verificador el sello responde a una acción: sin demora */

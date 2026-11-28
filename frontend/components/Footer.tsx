@@ -1,4 +1,4 @@
-import { TELEGRAM_URL, INSTAGRAM_URL, X_URL } from '@/lib/marca'
+import SeguirRedes from '@/components/SeguirRedes'
 
 const BRANDS = {
   calculadora: {
@@ -20,6 +20,14 @@ export default function Footer({ brand = 'calculadora', sinCupones = false }: { 
   const b = BRANDS[brand]
   return (
     <footer className="border-t border-zinc-900 mt-12 py-10 px-4">
+      {/* Seguinos (rediseño 27/11): solo en el sitio de ofertas; los links salen de lib/marca (REDES_SEGUIR) */}
+      {brand === 'ofertas' && (
+        <div className="max-w-md mx-auto mb-8 text-center">
+          <p className="font-display text-base font-black text-zinc-100">Te avisamos antes que nadie</p>
+          <p className="mt-0.5 mb-3 text-sm text-zinc-400">Las ofertas cortas suelen salir primero en las redes.</p>
+          <SeguirRedes variante="chico" donde="footer" />
+        </div>
+      )}
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-600">
         <div className="flex items-center gap-1.5">
           <span className="font-extrabold text-yellow-400 text-sm">{b.name}</span>
@@ -75,13 +83,6 @@ export default function Footer({ brand = 'calculadora', sinCupones = false }: { 
                   </a>
                 </span>
               ))}
-              <br />
-              Seguinos:{' '}
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">Telegram</a>
-              {' · '}
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">Instagram</a>
-              {' · '}
-              <a href={X_URL} target="_blank" rel="noopener" className="underline hover:text-yellow-400 transition-colors">X (Twitter)</a>
             </>
           )}
         </p>

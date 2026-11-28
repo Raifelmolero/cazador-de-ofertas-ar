@@ -22,7 +22,7 @@ P=${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}
 git cat-file -e "$P^{commit}" 2>/dev/null || exit 1
 
 # Aunque el mensaje sea deploy:, no gastar CPU si no cambió el sitio.
-# data/oficina.json (estado de /oficina) lo toca cada corrida del bot y
+# data/oficina.json y oficina-panel.json (estado de /oficina) los toca cada corrida del bot y
 # no justifica un deploy. Tampoco bot/state (historial de precios, scan_log):
 # solo cuenta lo que cambió dentro de frontend/.
-git diff --quiet "$P" HEAD -- . ':(exclude)data/oficina.json'
+git diff --quiet "$P" HEAD -- . ':(exclude)data/oficina.json' ':(exclude)data/oficina-panel.json'

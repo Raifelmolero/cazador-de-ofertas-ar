@@ -60,5 +60,17 @@ class Robots(unittest.TestCase):
             self.assertIn("disallow: '/oficina'", ln, msg=ln)
 
 
+
+class PanelDecision(unittest.TestCase):
+    def test_panel_json_honesto(self):
+        d = json.loads((ROOT / "frontend" / "data" / "oficina-panel.json").read_text(encoding="utf-8"))
+        self.assertEqual(d["metas"], {"semana": 2000000, "mes": 10000000})
+        for k in ("semana", "mes"):  # fechas ISO, sin etiquetas escritas a mano
+            self.assertRegex(d[k]["desde"], r"^\d{4}-\d{2}-\d{2}$")
+            self.assertNotIn("rango", d[k])
+        self.assertIsNone(d["cupos"]["vercel"]["pct_semana"])  # sin dato real: null, no inventado
+        self.assertEqual(len(d["equipo"]["agentes"]) + 1, 5)
+        self.assertEqual(d["equipo"]["aparte"], ["Vida Personal", "Asesor Financiero"])
+
 if __name__ == "__main__":
     unittest.main()

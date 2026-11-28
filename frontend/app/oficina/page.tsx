@@ -6,8 +6,9 @@
 
 import type { Metadata } from 'next'
 import oficina from '@/data/oficina.json'
+import panel from '@/data/oficina-panel.json'
 import Tablero from './Tablero'
-import type { DatosOficina } from './salud'
+import type { DatosOficina, PanelOficina } from './salud'
 
 export const metadata: Metadata = {
   title: 'Oficina de agentes',
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function OficinaPage() {
   return (
     <main className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:py-12">
-      <Tablero inicial={oficina as DatosOficina} />
+      <Tablero inicial={oficina as DatosOficina} panelInicial={panel as PanelOficina} />
     </main>
   )
 }

@@ -5,10 +5,14 @@
 // público, CORS abierto). Así no hace falta un deploy ni una función de Vercel.
 
 import { useEffect, useState, useSyncExternalStore } from 'react'
+import Equipo from './Equipo'
 import Estado from './Estado'
+import Panel from './Panel'
 import {
   type DatosOficina,
   type Depto,
+  type PanelOficina,
+  validoPanel,
   esDeDia,
   haceCuanto,
   horaBA,
@@ -19,6 +23,8 @@ import {
 
 const URL_DATOS =
   'https://raw.githubusercontent.com/Raifelmolero/cazador-de-ofertas-ar/main/frontend/data/oficina.json'
+const URL_PANEL =
+  'https://raw.githubusercontent.com/Raifelmolero/cazador-de-ofertas-ar/main/frontend/data/oficina-panel.json'
 const REFRESCO_MS = 5 * 60 * 1000
 
 function suscribirMinuto(onChange: () => void) {
@@ -47,8 +53,9 @@ const fmtFechaHora = (iso: string) =>
     timeZone: 'America/Argentina/Buenos_Aires',
   })
 
-export default function Tablero({ inicial }: { inicial: DatosOficina }) {
+export default function Tablero({ inicial, panelInicial }: { inicial: DatosOficina; panelInicial: PanelOficina }) {
   const [datos, setDatos] = useState<DatosOficina>(inicial)
+  const [panel, setPanel] = useState<PanelOficina>(panelInicial)
   const [envivo, setEnvivo] = useState(false)
   const ahora = useSyncExternalStore(
     suscribirMinuto,
@@ -66,6 +73,12 @@ export default function Tablero({ inicial }: { inicial: DatosOficina }) {
         if (vivo && valido(j)) {
           setDatos(j)
           setEnvivo(true)
+        }
+        // El panel de decisión es un segundo archivo; si falta (o aún no está en main) se queda el del build.
+        const rp = await fetch(URL_PANEL, { cache: 'no-cache' })
+        if (rp.ok) {
+          const jp: unknown = await rp.json()
+          if (vivo && validoPanel(jp)) setPanel(jp)
         }
       } catch {
         // Sin red o GitHub caído: se queda con lo que ya hay (el del build).
@@ -96,6 +109,8 @@ export default function Tablero({ inicial }: { inicial: DatosOficina }) {
       <header className="mb-6">
         <p className="text-xs font-semibold uppercase tracking-widest text-amber-400">Cazador de Ofertas AR</p>
         <h1 className="mt-1 text-3xl font-bold sm:text-4xl">Oficina de agentes</h1>
+
+        <Panel p={panel} ahora={ahora} />
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
@@ -133,6 +148,8 @@ export default function Tablero({ inicial }: { inicial: DatosOficina }) {
 
         <Turnos hora={hora} />
       </header>
+
+      <Equipo e={panel.equipo} a={panel.automatizaciones} ahora={ahora} />
 
       <section className="mb-8 rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
         <h2 className="text-sm font-bold uppercase tracking-wider text-amber-400">Línea de tiempo</h2>

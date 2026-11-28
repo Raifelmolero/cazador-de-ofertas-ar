@@ -102,3 +102,50 @@ export function horaBA(ahora: number): number {
 export function esDeDia(hora: number): boolean {
   return hora >= TURNO_DIA.desde && hora < TURNO_DIA.hasta
 }
+
+// ---- Panel de decisión (frontend/data/oficina-panel.json) ----
+// Todo lo que no se midió viene null y se muestra como «sin dato».
+
+export interface Cupo {
+  pct_semana: number | null
+  pct_sesion?: number | null
+  reinicia?: string
+  tope?: string
+  medido: string | null
+}
+export interface PanelOficina {
+  actualizado: string
+  metas: { semana: number; mes: number }
+  semana: { desde: string; hasta: string; ganancia: number | null; clics: number | null; pedidos: number | null; medido: string | null; fuente: string }
+  mes: { desde: string; hasta: string; ganancia: number | null; pedidos: number | null; medido: string | null; fuente: string }
+  canales: { desde: string; hasta: string; medido: string | null; items: { n: string; clics: number | null; ventas: number | null }[] }
+  prs_esperando: { medido: string | null; items: { n: number; titulo: string; nota?: string }[] }
+  cupos: { grok: Cupo; claude: Cupo; vercel: Cupo }
+  equipo: {
+    medido: string | null
+    director: { nombre: string; rol: string; ultima: string | null }
+    agentes: { nombre: string; rol: string; ultima: string | null }[]
+    aparte: string[]
+  }
+  automatizaciones: { medido: string | null; items: { n: string; t: string; c: string; e: 'ok' | 'alerta' | 'pausa'; nota?: string }[] }
+}
+
+export function validoPanel(x: unknown): x is PanelOficina {
+  const d = x as PanelOficina
+  return !!d && !!d.metas && !!d.semana && !!d.mes && !!d.canales && Array.isArray(d.canales.items) && !!d.cupos && !!d.equipo && !!d.automatizaciones
+}
+
+// «18-24/11» (o «28/10-3/11» si cruza de mes) a partir de dos fechas ISO.
+export function rangoCorto(desde: string, hasta: string): string {
+  const [, m1, d1] = desde.split('-').map(Number)
+  const [, m2, d2] = hasta.split('-').map(Number)
+  return m1 === m2 ? `${d1}-${d2}/${m2}` : `${d1}/${m1}-${d2}/${m2}`
+}
+
+export const pesos = (n: number): string => '$' + Math.round(n).toLocaleString('es-AR')
+
+// Días enteros desde una fecha de medición; null si no hay fecha.
+export function edadDias(medido: string | null, ahora: number | null): number | null {
+  if (!medido || ahora === null) return null
+  return Math.max(0, Math.floor((ahora - new Date(medido).getTime()) / 86400000))
+}
